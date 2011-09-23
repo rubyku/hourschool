@@ -1,0 +1,12 @@
+<h1>Users</h1>
+<ul class="hmenu">
+    <%= render 'devise/menu/user_registration_items' %>
+    <%= render 'devise/menu/user_login_items' %>
+  </ul>
+<table>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, user %></td>
+  </tr>
+<% end %>
+</table>

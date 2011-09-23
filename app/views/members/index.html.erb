@@ -1,0 +1,12 @@
+<h1>Members</h1>
+<ul class="hmenu">
+    <%= render 'devise/menu/member_registration_items' %>
+    <%= render 'devise/menu/member_login_items' %>
+  </ul>
+<table>
+<% @members.each do |member| %>
+  <tr>
+    <td><%= link_to member.name, member %></td>
+  </tr>
+<% end %>
+</table>

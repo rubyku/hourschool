@@ -1,0 +1,9 @@
+<h1><%= @member.name %></h1>
+<ul class="hmenu">
+    <%= render 'devise/menu/member_registration_items' %>
+    <%= render 'devise/menu/member_login_items' %>
+  </ul>
+<p><%= @member.email %></p>
+<br />
+<p><%= link_to 'Edit', edit_member_registration_path %></p>
+<p><%= link_to 'List of Users', members_path %></p>
