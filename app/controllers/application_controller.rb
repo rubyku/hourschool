@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
+  
   protect_from_forgery
   before_filter :limit_subdomain_access
 
@@ -12,4 +13,8 @@ class ApplicationController < ActionController::Base
             redirect_to root_url(:subdomain => false)
           end
       end
+      
+      
+      
+     
 end

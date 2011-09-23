@@ -1,19 +1,19 @@
 HourschoolV2::Application.routes.draw do
-  
 
-  get "sites/show"
-
-  devise_for :members
+  devise_for :members 
   resources :members, :only => [:index, :show]
   
-  devise_for :users
-  resources :users, :only => [:index, :show]
-  
-  resources :enterprises, :only => [:index, :show] do 
+   resources :enterprises, :only => [:index, :show]  do 
     resources :subdomains, :shallow => true
   end
+  
+  devise_for :users
+  resources :users, :only => [:index, :show] 
+
+  
   match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
+  get "sites/show"
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
