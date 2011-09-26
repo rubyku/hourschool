@@ -10,6 +10,11 @@
 	<div class="header-image">
 	  <%= link_to image_tag("hourschool_logo.png"), root_url(:subdomain => false)  %>
 	 </div>
+	<div class="alert">
+	<% flash.each do |name, msg| %>
+	<%= msg %>
+	<% end %>
+	</div>
 <%= yield %>
 
 </body>

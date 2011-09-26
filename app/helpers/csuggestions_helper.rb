@@ -1,0 +1,2 @@
+module CsuggestionsHelper
+end

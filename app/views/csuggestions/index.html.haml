@@ -1,0 +1,26 @@
+.content
+	%h3= "Requests"
+	%table
+		%tr
+			%th Name
+			%th Description
+    
+		- for csuggestion in @csuggestions
+			%tr
+				%td= csuggestion.name
+				%td= csuggestion.description
+				%div{:id => "vote_count_csug#{csuggestion.id}"}
+					%td= "#{csuggestion.votes_for} votes"
+      
+			%td= link_to 'Show', csuggestion
+			%td= link_to 'Edit', edit_csuggestion_path(csuggestion)
+			- if current_user.id != csuggestion.requested_by
+				%div{:id => "vote_csug#{csuggestion.id}"}
+					- if !current_user.voted_on?(csuggestion)
+						%td= link_to 'Vote', csvote_path("csid" => csuggestion.id), :remote => true
+					- else
+						%td= "You voted up"
+			- else
+				%p= "You requested this"
+			
+		%p= link_to "Request new class", new_csuggestion_path

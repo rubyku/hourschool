@@ -1,0 +1,1 @@
+$("#<%=vote_csug#{@csuggestion.id}%>").html("<%= escape_javascript ('<td>' + @csuggestion.votes_for.to_s + ' votes </td>') %>")

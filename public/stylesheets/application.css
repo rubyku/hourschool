@@ -50,6 +50,14 @@ p {
 	
 }
 
+.alert {
+	margin-left: 20px;
+	display: block;
+	clear: both;
+	
+	font-color: orange;
+}
+
 .content {
 	margin-left: 20px;
 	padding-top: 30px;

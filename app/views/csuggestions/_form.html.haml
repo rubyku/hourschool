@@ -1,0 +1,11 @@
+.content
+	= form_for @csuggestion do |f|
+		%p
+			= f.label "Title"
+		%br
+			= f.text_field :name
+		%p
+			= f.label :description
+		%br
+			= f.text_area :description
+		%p= f.submit "Submit"
