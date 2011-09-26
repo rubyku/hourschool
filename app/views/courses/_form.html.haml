@@ -1,0 +1,44 @@
+= form_for @course, :html => { :multipart => true } do |f|
+  / = f.error_messages
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title
+  %p
+    = f.label :description
+    %br
+    = f.text_area :description
+  %p
+    = f.label :price
+    %br
+    = f.text_field :price
+  %p
+    = f.label :seats
+    %br
+    = f.text_field :seats
+  %p
+    = f.label :date
+    %br
+    = f.date_select :date
+  %p
+    = f.label :time
+    %br
+    = f.time_select :time
+  %p
+    = f.label "Address"
+    %br
+    = f.text_field :place
+  / %p
+  /     = f.label :city_id
+  /     %br
+  /     = f.text_field :city_id
+  %p
+    = f.label :minimum
+    %br
+    = f.text_field :minimum
+  %p
+    = f.label :photo
+    %br
+    = f.file_field :photo
+  %p
+    = f.submit

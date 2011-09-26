@@ -19,6 +19,18 @@ gem 'heroku', :group => :development
 
 gem 'mysql2', '~> 0.2.6'
 
+#tagging and voting
+gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'thumbs_up'
+
+#uploads, parsing, etc
+gem 'paperclip'
+
+
+#generators
+gem "nifty-generators", :group => :development
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -41,3 +53,4 @@ gem 'mysql2', '~> 0.2.6'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test

@@ -10,7 +10,67 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923212950) do
+ActiveRecord::Schema.define(:version => 20110926190745) do
+
+  create_table "cities", :force => true do |t|
+    t.integer  "zip"
+    t.string   "area"
+    t.string   "name"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.float    "price"
+    t.integer  "seats"
+    t.date     "date"
+    t.time     "time"
+    t.string   "place"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "minimum"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
+  create_table "croles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.boolean  "attending"
+  end
+
+  create_table "csuggestions", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ecourses", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.float    "price"
+    t.integer  "seats"
+    t.date     "date"
+    t.time     "time"
+    t.string   "place"
+    t.integer  "enterprise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "minimum"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
 
   create_table "enterprises", :force => true do |t|
     t.string   "area"
@@ -18,6 +78,23 @@ ActiveRecord::Schema.define(:version => 20110923212950) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "domain"
+  end
+
+  create_table "eroles", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "ecourse_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.boolean  "attending"
+  end
+
+  create_table "esuggestions", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "enterprise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "members", :force => true do |t|
@@ -89,5 +166,19 @@ ActiveRecord::Schema.define(:version => 20110923212950) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.boolean  "vote",          :default => false
+    t.integer  "voteable_id",                      :null => false
+    t.string   "voteable_type",                    :null => false
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
+  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end

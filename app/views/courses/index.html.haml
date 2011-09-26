@@ -1,0 +1,29 @@
+.content
+	%table
+		%tr
+			%th Title
+			%th Description
+			%th Price
+			%th Seats
+			%th Date
+			%th Time
+			%th Place
+			%th City
+			%th Minimum
+		- p @courses
+		- for course in @courses
+			%tr
+				%td= course.title
+				%td= course.description
+				%td= course.price
+				%td= course.seats
+				%td= course.date
+				%td= course.time
+				%td= course.place
+				%td= course.city_id
+				%td= course.minimum
+				%td= link_to 'Show', course
+				%td= link_to 'Edit', edit_course_path(course)
+				%td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+
+		%p= link_to "New Course", new_course_path

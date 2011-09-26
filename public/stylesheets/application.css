@@ -63,10 +63,64 @@ p {
 	width: 80%;
 	background: #8f8f8f;
 }
+
 #home-search-bar {
 	margin-left: 20px;
+}
+#learn-search-bar {
+	margin-left: 20px;
+
 }
 #home-search-bar input[type=text] {
 	padding: 5px;
 	width: 200px;
 }
+#learn-search-bar input[type=text] {
+	padding: 5px;
+	width: 75%;
+	
+}
+#learn-city-search-bar input[type=text] {
+	padding: 5px;
+	margin-left: 20px;
+}
+
+#learn-city-search-bar input[type=submit]{
+		margin-left: 20px;
+}
+
+.nav {
+	float: left;
+	width: 20%;
+}
+.nav li{
+	margin-left: 20px;
+	list-style: none;
+}
+
+#nav-browse-city {
+	padding: 10px;
+}
+#nav-browse-time {
+	padding: 10px;
+}
+
+#learn-content, #teach-content {
+	width: 55%;
+	float: left;
+	padding-top: 25px;
+	padding-left: 20px;
+}
+#learn-upcoming-classes, #teach-upcoming-classes {
+	height: 200px;
+	background: #bfbfbf;
+	padding-bottom: 25px;
+}
+#learn-help-make-classes-happen {
+	padding-bottom: 25px;
+	background: #bfbfbf;
+	height: 200px;
+}
+/*
+article, aside, figure, footer, header, hgroup, menu, nav, section { display:block; }
+*/

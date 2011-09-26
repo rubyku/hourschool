@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  zip: 1
+  area: MyString
+  name: MyString
+  state: MyString
+
+two:
+  zip: 1
+  area: MyString
+  name: MyString
+  state: MyString

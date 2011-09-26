@@ -1,0 +1,9 @@
+.content
+	%h1= @user.name
+	%ul{:class => "hmenu"}
+		= render 'devise/menu/user_registration_items'
+		= render 'devise/menu/user_login_items' 
+	%p= @user.email
+	%p= "Student = #{@user.student_for}"
+	%p= "Teacher = #{@user.teacher_for}"
+	
