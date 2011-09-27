@@ -8,4 +8,13 @@ class Ecourse < ActiveRecord::Base
   
   acts_as_taggable_on :categories
   
+  has_attached_file :photo, :styles => { :small => "150x150>" },
+                      :url => "/images/courses/:id/:style/:basename.:extension"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  
+  attr_accessible :photo
+  has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
+  
 end

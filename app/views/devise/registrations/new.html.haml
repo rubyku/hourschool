@@ -13,6 +13,11 @@
 				%br/
 
 				= f.text_field :organization
+		- else
+			%div
+				= f.label :location
+				%br/
+				= f.text_field :location
 		%div
 			= f.label :email
 			%br/

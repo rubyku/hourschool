@@ -28,9 +28,14 @@
 		%strong Minimum:
 		= @course.minimum
 
-	%p
+	/ %p
+	/ 	= link_to "Edit", edit_course_path(@course)
+	/ 	|
+	/ 	= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
+	/ 	|
+	/ 	= link_to "View All", courses_path
+	- if current_user.is_teacher_for?(@course)
 		= link_to "Edit", edit_course_path(@course)
 		|
 		= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
-		|
-		= link_to "View All", courses_path
+	= link_to_function "Back", "history.back()"

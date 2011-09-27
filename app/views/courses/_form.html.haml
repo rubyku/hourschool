@@ -1,3 +1,4 @@
+%p= "create a course in #{current_user.location}"
 = form_for @course, :html => { :multipart => true } do |f|
   / = f.error_messages
   %p
@@ -8,6 +9,10 @@
     = f.label :description
     %br
     = f.text_area :description
+  %p
+    = f.label "Categories (Seperate by comma)"
+    %br
+    = f.text_field :categories
   %p
     = f.label :price
     %br
@@ -28,12 +33,9 @@
     = f.label "Address"
     %br
     = f.text_field :place
-  / %p
-  /     = f.label :city_id
-  /     %br
-  /     = f.text_field :city_id
+  
   %p
-    = f.label :minimum
+    = f.label "Minimum students needed for the class to happen"
     %br
     = f.text_field :minimum
   %p

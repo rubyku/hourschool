@@ -26,6 +26,10 @@ gem 'thumbs_up'
 #uploads, parsing, etc
 gem 'paperclip'
 
+#dev gems
+gem 'forgery', :group => :development
+gem 'random_data', :group => :development
+gem 'faker', :group => :development
 
 #generators
 gem "nifty-generators", :group => :development

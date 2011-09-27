@@ -47,8 +47,34 @@
 	#learn-content
 		%h3= "Upcoming classes"
 		#learn-upcoming-classes
+			
+			- @classes_this_week.each do |c|
+				.thumbnail
+					- if c.photo.exists?
+						= image_tag(c.photo.url)
+					- else
+						= image_tag("learning_logo1.jpg")
+					%br
+						= link_to "#{c.title}", c
+						
+						= "#{(c.date - Date.today).numerator} days from today"
+			
 		%h3= "Help make these classes happen"
 		#learn-help-make-classes-happen
+			- @top_suggestions.each do |t|
+				.suggbox
+					%p= t.name
+					%p
+						%span{:id => "vote_count_#{t.id}"}
+							= "Currently has #{t.votes_for} votes"
+						%span{:id => "vote_link_#{t.id}"}
+							- if user_signed_in?
+								- if !current_user.voted_on?(t)
+									= link_to "Vote up", csvote_path("csid" => t.id), :remote => true
+								- else
+									= "You voted up "
+							- else
+								= link_to_function "Vote up", "alert('Please login to vote!')"
 			
 	
 	

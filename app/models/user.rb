@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_presence_of :name
+  validates_presence_of :name, :location
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
   
   has_many :croles, :dependent => :destroy
@@ -28,5 +28,7 @@ class User < ActiveRecord::Base
     teaching_courses = self.croles.where(:role => 'teacher').collect{|c| c.course_id}
     return teaching_courses.include?(course.id)
   end
+  
+  
 
 end

@@ -113,22 +113,54 @@ p {
 	padding: 10px;
 }
 
+#learn-upcoming-classes {
+	
+	padding-bottom: 25px;
+	overflow: hidden;
+}
 #learn-content, #teach-content {
 	width: 55%;
 	float: left;
 	padding-top: 25px;
 	padding-left: 20px;
 }
-#learn-upcoming-classes, #teach-upcoming-classes {
-	height: 200px;
+#teach-upcoming-classes {
+	height: 300px;
 	background: #bfbfbf;
 	padding-bottom: 25px;
+	overflow: hidden;
+}
+
+#learn-upcoming-classes img {
+	padding: 5px;
+	display: inline;
+}
+#learn-upcoming-classes h6 {
+	display: inline;
+	
 }
 #learn-help-make-classes-happen {
 	padding-bottom: 25px;
-	background: #bfbfbf;
-	height: 200px;
+	/*background: #bfbfbf;
+	height: 200px;*/
 }
+.suggbox {
+	border: 1px solid #bfbfbf;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.thumbnail
+{
+float: left;
+width: 150px;
+height: 175px;
+border: 1px solid #999;
+margin: 0 15px 15px 0;
+padding: 5px;
+}
+
+.clearboth { clear: both; }
 /*
 article, aside, figure, footer, header, hgroup, menu, nav, section { display:block; }
 */
