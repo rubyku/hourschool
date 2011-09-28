@@ -39,4 +39,14 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def is_a_student?(user)
+    students = croles.where(:role => 'student')
+    if students.any?
+      return students.collect(&:user).include?(user)
+    else
+      return false
+    end
+    
+  end
+  
 end

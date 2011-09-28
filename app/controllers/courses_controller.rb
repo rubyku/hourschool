@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    p current_user
+    #p current_user
     
   end
 
@@ -63,5 +63,28 @@ class CoursesController < ApplicationController
       redirect_to :back, :alert => "You are not authorized to do this"
     end
     
+  end
+  
+  def register
+     @course = Course.find(params[:id])
+      @user = current_user
+      @crole = @course.croles.create!(:attending => true, :role => 'student')
+      @user.croles << @crole
+      @user.courses << @course
+      @user.save
+      
+      # @user = current_user
+      #       if @course.save
+      #         @crole = Crole.find_by_course_id_and_user_id(@course.id, current_user.id) 
+      #         if @crole.nil?
+      #           @crole = @course.croles.create!(:attending => true, :role => 'teacher')
+      #           @user.croles << @crole
+      #           @user.courses << @course
+      #           @user.save
+      #         end
+      #         redirect_to @course, :notice => "Successfully created course."
+      #       else
+      #         render :action => 'new'
+      #       end
   end
 end

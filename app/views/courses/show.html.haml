@@ -34,8 +34,21 @@
 	/ 	= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
 	/ 	|
 	/ 	= link_to "View All", courses_path
-	- if current_user.is_teacher_for?(@course)
-		= link_to "Edit", edit_course_path(@course)
-		|
-		= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
+	%br/
+	%p= "Number of students attending #{@course.students.size}"
+	- if user_signed_in?
+		- if current_user.is_teacher_for?(@course)
+			= link_to "Edit", edit_course_path(@course)
+			|
+			= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
+		
+			
+		- if @course.is_a_student?(current_user)
+			%p= "You have registered for this course"
+		- else 
+			#register-course-link
+				= link_to "Register", register_path("id" => @course.id), :remote => true
+			
+	%br/
 	= link_to_function "Back", "history.back()"
+	/ = link_to image_tag('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'), '#'
