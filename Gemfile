@@ -8,6 +8,7 @@ gem 'rails', '3.0.9'
 gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth"
+gem "koala"
 
 gem 'haml'
 gem 'rake', '0.8.7'
