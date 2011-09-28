@@ -18,13 +18,13 @@
 		#nav-browse-city
 			%h3= "Browse by city"
 			%li= link_to "All", "#"
+			%li= link_to "Austin", "#"
 			%li= link_to "San Fransisco", "#"
-			%li= link_to "Chicago", "#"
 			%p= "Do not find your city?"
 			#learn-city-search-bar
 				= form_tag root_path, :method => 'post' do
 					= text_field_tag :search, params[:search]
-					= submit_tag "find a class"
+					= submit_tag "find your city"
 		
 		#nav-browse-time
 			%h3= "Browse by Time"
@@ -32,32 +32,20 @@
 			%li= link_to "Past classes", "#"
 		#nav-browse-category
 			%h3= "Browse by Category"
-			%li= link_to "Art, Design, Philosophy", "#"
-			%li= link_to "Health and Well being", "#"
-			%li= link_to "Language", "#"
-			%li= link_to "Maintenance", "#"
-			%li= link_to "Web development", "#"
+			- TAGS.each do |tg|
+				%li= link_to "#{tg}", search_by_tg_path("index"=>TAGS.index(tg)), :remote => true
+			
 		#nav-misc-category
 			%h3= "Can't find a class you want?"
-			%li= link_to "Request a class", "#", :method => "post"
+			%li= link_to "Request a class", new_csuggestion_path
 		#nav-misc-category
 			%h3= "Show me a something awesome"
-			%li= link_to "Inspire me", "#"
+			%li= link_to "Inspire me", @random_course
 			
 	#learn-content
 		%h3= "Upcoming classes"
 		#learn-upcoming-classes
-			
-			- @classes_this_week.each do |c|
-				.thumbnail
-					- if c.photo.exists?
-						= image_tag(c.photo.url)
-					- else
-						= image_tag("learning_logo1.jpg")
-					%br
-						= link_to "#{c.title}", c
-						
-						= "#{(c.date - Date.today).numerator} days from today"
+			= render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes_this_week}
 			
 		%h3= "Help make these classes happen"
 		#learn-help-make-classes-happen

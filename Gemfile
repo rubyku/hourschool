@@ -24,6 +24,14 @@ gem 'mysql2', '~> 0.2.6'
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'thumbs_up'
 
+#searching-indexing
+#gem 'thinking-sphinx', '2.0.5'
+gem 'indextank'
+
+#geo
+gem 'geokit'
+
+
 #uploads, parsing, etc
 gem 'paperclip'
 

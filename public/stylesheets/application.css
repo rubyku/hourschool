@@ -124,12 +124,12 @@ p {
 	padding-top: 25px;
 	padding-left: 20px;
 }
-#teach-upcoming-classes {
+/*#teach-upcoming-classes {
 	height: 300px;
 	background: #bfbfbf;
 	padding-bottom: 25px;
 	overflow: hidden;
-}
+}*/
 
 #learn-upcoming-classes img {
 	padding: 5px;
@@ -139,7 +139,7 @@ p {
 	display: inline;
 	
 }
-#learn-help-make-classes-happen {
+#learn-help-make-classes-happen, #teach-upcoming-classes {
 	padding-bottom: 25px;
 	/*background: #bfbfbf;
 	height: 200px;*/

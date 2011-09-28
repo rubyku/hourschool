@@ -73,13 +73,24 @@ puts 'CREATING users'
 # user2 = User.create! :name => 'Jane Doe', :email => 'janedoe@test.com', :password => 'testing', :password_confirmation => 'testing', :location => "Austin"
 # puts 'New user created: ' << user2.name
 
+TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintainance", "Technology"]
 
+city1 = City.create! :name => "Austin", :state => "TX"
+city2 = City.create! :name => "San Francisco", :state => "CA"
+city1.save
+city2.save
+
+p "Created cities, Austin and SF"
 
 (1..100).each do |count|
   name = "#{Random.firstname} #{Random.initial} #{Random.lastname}"
   email = "austin_#{count}@test.com"
   password = "testing"
-  location = "Austin"
+  if count < 50
+    location = "Austin, TX"
+  else
+    location = "San Francisco, CA"
+  end
   user = User.create! :name => name, :email => email, :password => password, :password_confirmation => password, :location => location
   user.save
   
@@ -94,8 +105,13 @@ puts 'CREATING users'
   address = Random.address_line_1
   minimum = rand(5)
   minimum = 1 unless minimum < seats && minimum != 0
+  #get random tags
+  tags = []
+  tags << TAGS[rand(4)] 
+  course = Course.create! :title => title, :description => description, :price => price, :seats => seats, 
+                  :date => date, :time => time, :place => address, :minimum => minimum
+  course.category_list = tags.join(", ").to_s
   
-  course = Course.create! :title => title, :description => description, :price => price, :seats => seats, :date => date, :time => time, :place => address, :minimum => minimum
   if course.save
     crole = Crole.find_by_course_id_and_user_id(course.id, user.id) 
     if crole.nil?
@@ -104,7 +120,17 @@ puts 'CREATING users'
        user.courses << course
        user.save
      end
-     p "created course #{course.title}, #{course.price}, by #{user.name}"
+     city = City.find_by_name(location.split(',')[0].strip)
+     city.courses << course
+     city.save
+     
+     # begin
+     #        INDEX.document("course_#{course.id}").add({:text => course.description, :cid => "course_#{course.id}", :title => course.title, :tags => course.categories.join(' ')})
+     #      rescue
+     #        p "Skipping.."
+     #        
+     #      end
+     p "created course #{course.title}, #{course.price}, by #{user.name}, in #{location}"
   end
   
   #create two suggestions per user

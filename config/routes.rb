@@ -28,6 +28,7 @@ HourschoolV2::Application.routes.draw do
   match '/teach' => 'home#teach'
   match '/csvote' => 'csuggestions#vote'
   match '/register' => 'courses#register'
+  match '/search_by_tg' => 'home#search_by_tg'
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

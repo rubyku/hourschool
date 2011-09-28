@@ -1,14 +1,21 @@
 %p= "create a course in #{current_user.location}"
 = form_for @course, :html => { :multipart => true } do |f|
   / = f.error_messages
+  = hidden_field_tag 'req', "#{@reqid}"
   %p
     = f.label :title
     %br
-    = f.text_field :title
+    - if @reqid.nil?
+      = f.text_field :title
+    - else
+      = f.text_field :title, :value => "#{@reqtitle}"
   %p
     = f.label :description
     %br
-    = f.text_area :description
+    - if @reqid.nil?
+      = f.text_area :description
+    - else
+      = f.text_area :description, :value => "#{@reqdescription}"
   %p
     = f.label "Categories (Seperate by comma)"
     %br

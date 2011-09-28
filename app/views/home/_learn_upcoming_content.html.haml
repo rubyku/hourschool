@@ -1,0 +1,10 @@
+- classes_this_week.each do |c|
+	.thumbnail
+		- if c.photo.exists?
+			= image_tag(c.photo.url)
+		- else
+			= image_tag("learning_logo1.jpg")
+		%br
+			= link_to "#{c.title}", c
+			
+			= "#{(c.date - Date.today).numerator} days from today"

@@ -23,7 +23,7 @@
 		= @course.place
 	%p
 		%strong City:
-		= @course.city_id
+		= @course.city.name
 	%p
 		%strong Minimum:
 		= @course.minimum
@@ -42,12 +42,12 @@
 			|
 			= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
 		
-			
-		- if @course.is_a_student?(current_user)
-			%p= "You have registered for this course"
-		- else 
-			#register-course-link
-				= link_to "Register", register_path("id" => @course.id), :remote => true
+		- else	
+			- if @course.is_a_student?(current_user)
+				%p= "You have registered for this course"
+			- else 
+				#register-course-link
+					= link_to "Register", register_path("id" => @course.id), :remote => true
 			
 	%br/
 	= link_to_function "Back", "history.back()"
