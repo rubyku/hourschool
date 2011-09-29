@@ -41,9 +41,12 @@ gem 'paperclip'
 #gem "active_merchant", :require => 'active_merchant'
 
 #dev gems
-gem 'forgery', :group => :development
-gem 'random_data', :group => :development
-gem 'faker', :group => :development
+# gem 'forgery', :group => :development
+# gem 'random_data', :group => :development
+# gem 'faker', :group => :development
+gem 'forgery'
+gem 'random_data'
+gem 'faker'
 
 #generators
 gem "nifty-generators", :group => :development
