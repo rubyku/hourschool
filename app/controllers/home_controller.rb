@@ -20,6 +20,7 @@ class HomeController < ApplicationController
       @random_course = Course.find(rand(Course.count-1) + 1)
   end
   
+  
   def teach
      @top_suggestions =  Csuggestion.tally(
         {  :at_least => 1,

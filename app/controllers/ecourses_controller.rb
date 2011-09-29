@@ -23,22 +23,21 @@ class EcoursesController < ApplicationController
   end
 
   def create
-    @course = Ecourse.new(params[:ecourse])
-    
+    @course = Ecourse.new(params[:ecourse].merge!({:price => 0.0}))
+    @member = current_member
     #was it from a request
     from_req = !params[:req].nil?
     
-    @member = current_member
     if @course.save
-      @erole = Erole.find_by_course_id_and_member_id(@course.id, current_member.id) 
+      @erole = Erole.find_by_ecourse_id_and_member_id(@course.id, current_member.id) 
       if @erole.nil?
         @erole = @course.eroles.create!(:attending => true, :role => 'teacher')
         @member.eroles << @erole
-        @member.courses << @course
-        @meber.save
+        @member.ecourses << @course
+        @member.save
       end
       #now the course has been saved add it to a city where it belongs
-      ent = Enterprise.find_or_create_by_name_and_domain(current_member.organization, current_member.domain)
+      ent = Enterprise.find_or_create_by_name_and_domain(current_member.org, current_member.domain)
       ent.ecourses << @course
       ent.save
       

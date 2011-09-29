@@ -11,6 +11,9 @@ class Member < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
   belongs_to :enterprise
   
+  has_many :eroles, :dependent => :destroy
+   has_many :ecourses, :through => :eroles
+  
   acts_as_voter
     
     def member_domain
@@ -19,8 +22,24 @@ class Member < ActiveRecord::Base
       domain = email[index1+1..index2-1]
     end
     
+    def domain
+      member_domain
+    end
+    
+    def org
+      Enterprise.find_by_domain(member_domain).name
+    end
+    
     def student_for
       return self.eroles.where(:role => 'student').count
+    end
+    
+    def ecourses_for_which_is_a_student
+      return self.eroles.where(:role => 'student').limit(20).collect(&:ecourse)
+    end
+    
+    def ecourses_for_which_is_a_teacher
+      return self.eroles.where(:role => 'teacher').limit(20).collect(&:ecourse)
     end
 
     def teacher_for

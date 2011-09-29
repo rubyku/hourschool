@@ -17,4 +17,45 @@ class Ecourse < ActiveRecord::Base
   attr_accessible :photo
   has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
   
+  def teacher
+     teachers = eroles.where(:role => 'teacher')
+     if teachers.any?
+       teachers.first.member
+     else
+       nil
+     end
+   end
+
+   def students
+     students = eroles.where(:role => 'student')
+     if students.any?
+       students.collect(&:member)
+     else
+       []
+     end
+   end
+   
+   def is_a_student?(member)
+      students = eroles.where(:role => 'student')
+      if students.any?
+        return students.collect(&:member).include?(member)
+      else
+        return false
+      end
+
+    end
+    
+   def future?
+     date - Date.today > 0
+   end
+   
+   def today?
+     date - Date.today == 0
+   end
+   
+   def past?
+     date - Date.today < 0
+   end
+   
+  
 end

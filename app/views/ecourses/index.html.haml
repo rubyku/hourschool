@@ -8,7 +8,7 @@
 			%th Date
 			%th Time
 			%th Place
-			%th City
+			
 			%th Minimum
 		- p @courses
 		- for course in @courses
@@ -20,10 +20,10 @@
 				%td= course.date
 				%td= course.time
 				%td= course.place
-				%td= course.city_id
+				
 				%td= course.minimum
-				%td= link_to 'Show', ecourse
+				%td= link_to 'Show', course
 				%td= link_to 'Edit', edit_ecourse_path(course)
-				%td= link_to 'Destroy', ecourse, :confirm => 'Are you sure?', :method => :delete
+				%td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
 
 		%p= link_to "New Course", new_ecourse_path

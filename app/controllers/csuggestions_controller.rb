@@ -19,7 +19,9 @@ class CsuggestionsController < ApplicationController
     @user = current_user
     #need to have validations
     if @csuggestion.save
-      
+      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+      city.csuggestions << @csuggestion
+      city.save
       redirect_to @csuggestion, :notice => "Successfully created csuggestion."
     else
       render :action => 'new'
@@ -41,6 +43,9 @@ class CsuggestionsController < ApplicationController
 
   def destroy
     @csuggestion = Csuggestion.find(params[:id])
+     city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+      city.csuggestions.delete(@csuggestion)
+      city.save
     @csuggestion.destroy
     redirect_to csuggestions_url, :notice => "Successfully destroyed csuggestion."
   end

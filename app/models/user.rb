@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :location
   # Setup accessible (or protected) attributes for your model
-  validate :supported_location, :location_format
+  #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
   

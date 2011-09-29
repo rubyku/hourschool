@@ -1,6 +1,6 @@
 class EsuggestionsController < ApplicationController
   skip_before_filter :limit_subdomain_access
-  before_filter :authenticate_member!, :only => [:create,:new,:udpate, :vote, :show]
+  before_filter :authenticate_member!
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
   
   def index
@@ -20,7 +20,11 @@ class EsuggestionsController < ApplicationController
     @member = current_member
     #need to have validations
     if @esuggestion.save
-      
+      #add to enterprise
+      ent = Enterprise.find_or_create_by_name_and_domain(@member.org, @member.domain)
+      ent.esuggestions << @esuggestion
+      ent.save
+      current_member.vote_for(@esuggestion)
       redirect_to @esuggestion, :notice => "Successfully created request."
     else
       render :action => 'new'
@@ -42,7 +46,13 @@ class EsuggestionsController < ApplicationController
 
   def destroy
     @esuggestion = Esuggestion.find(params[:id])
+    @member = current_member
+    #remove from enterprise
+    ent = Enterprise.find_or_create_by_name_and_domain(@member.org, @member.domain)
+    ent.esuggestions.delete(@esuggestion)
+    ent.save
     @esuggestion.destroy
+    
     redirect_to esuggestions_url, :notice => "Successfully destroyed request."
   end
   

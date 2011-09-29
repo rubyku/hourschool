@@ -10,7 +10,9 @@ class SitesController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url(:subdomain => false)
     end
-    
+    date = Date.today
+    @my_classes = current_member.ecourses_for_which_is_a_student.collect{|c| c if c.future?}
+    @my_past_classes = current_member.ecourses_for_which_is_a_student.collect{|c| c if c.past?}
   end
   
   protected
@@ -19,7 +21,6 @@ class SitesController < ApplicationController
     index1 = current_member.email.index('@')
     index2 = current_member.email.index('.com')
     
-    p site.enterprise.domain
     redirect_to root_url(:subdomain => false) unless current_member.email[index1+1..index2-1] == site.enterprise.domain
   end
 

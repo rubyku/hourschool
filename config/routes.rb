@@ -32,6 +32,8 @@ HourschoolV2::Application.routes.draw do
   match '/csvote' => 'csuggestions#vote'
   match '/register' => 'courses#register'
 
+  match '/enterprise-learn' => 'enterprises#learn'
+  match '/enterprise-teach' => 'enterprise#teach'
   match '/esvote' => 'esuggestions#vote'
   match '/eregister' => 'ecourses#register'
   

@@ -49,4 +49,17 @@ class Course < ActiveRecord::Base
     
   end
   
+   
+   def future?
+     date - Date.today > 0
+   end
+   
+   def today?
+     date - Date.today == 0
+   end
+   
+   def past?
+     date - Date.today < 0
+   end
+  
 end
