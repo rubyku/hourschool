@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register]
   
   def index
     @courses = Course.all

@@ -1,5 +1,10 @@
 <div class="content">
-<h2>Sign in</h2>
+
+<%  if resource_name.to_s == "member" %>
+	<h2>Sign in with your work email</h2>
+<% else %>
+	<h2> Sign in </h2>
+<% end%>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -16,11 +21,11 @@
 <% end %>
 <%= render :partial => "devise/shared/links" %>
 <div>
-	<h3> OR </h3>
 <%  if resource_name.to_s == "user" %>
+	<h3> OR </h3>
 	<%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
-<% end %>
 	<p> Only takes few seconds </p>
+<% end %>
 </div>
 
 </div>

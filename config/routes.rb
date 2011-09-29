@@ -1,13 +1,15 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :ecourses, :path => 'classes'
 
   resources :csuggestions, :path => 'requests'
-  
+  resources :esuggestions, :path => 'suggestions'
 
   resources :courses
 
   devise_for :members 
   resources :members, :only => [:index, :show]
+  
   
    resources :enterprises, :only => [:index, :show]  do 
     resources :subdomains, :shallow => true
@@ -23,12 +25,18 @@ HourschoolV2::Application.routes.draw do
   
   match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
+  
   get "sites/show"
   match '/learn' => 'home#learn'
   match '/teach' => 'home#teach'
   match '/csvote' => 'csuggestions#vote'
   match '/register' => 'courses#register'
+
+  match '/esvote' => 'esuggestions#vote'
+  match '/eregister' => 'ecourses#register'
+  
   match '/search_by_tg' => 'home#search_by_tg'
+  match '/organization' => 'home#organization'
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

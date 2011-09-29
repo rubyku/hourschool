@@ -1,12 +1,14 @@
-
-
 .left-link
 	%ul{:class => "hmenu"}
 		
-		%li= link_to "Learn", learn_path
-		%li= link_to "Teach", teach_path
+		%li= link_to "Learn", "#"
+		%li= link_to "Teach", '#'
 		%li= link_to "Local partner", "#"
-		%li= link_to "Organization", organization_path
+		%li= link_to "Organization", '#'
+.right-link
+	%ul{:class => "hmenu"}
+		= render "devise/menu/member_login_items"
+		= render "devise/menu/member_registration_items"
 .content
 	#home-search-bar
 		- form_tag root_path, :method => 'post' do
@@ -14,7 +16,6 @@
 			= submit_tag "find a class"
 	%h3= "Featured classes"
 	.featured_classes
-	
+
 	%h3= "About us...etc"
 	.featured_classes
-

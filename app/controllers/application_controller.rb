@@ -14,6 +14,15 @@ class ApplicationController < ActionController::Base
           end
       end
       
+      def after_sign_in_path_for(resource)
+         if resource.is_a?(Member)
+            #p "member domain is #{resource.member_domain}"
+            root_url(:subdomain => resource.member_domain )
+          else
+            super
+          end
+      end
+      
       
       
      

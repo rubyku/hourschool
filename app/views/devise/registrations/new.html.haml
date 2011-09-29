@@ -1,5 +1,11 @@
 .content
-	%h2= "Sign up"
+	
+	- if resource_name.to_s == "member"
+		%h2= "Sign up for Hourschool Enterprise, it is free!"
+		= link_to "is my company participating?", "#"
+	- else
+		%h2= "Sign up"
+		
 	= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
 		= devise_error_messages!
 		%div

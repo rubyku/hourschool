@@ -1,0 +1,2 @@
+module EcoursesHelper
+end

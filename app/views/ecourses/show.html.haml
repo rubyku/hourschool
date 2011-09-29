@@ -1,0 +1,45 @@
+- title "Ecourse"
+
+%p
+  %strong Title:
+  = @ecourse.title
+%p
+  %strong Description:
+  = @ecourse.description
+%p
+  %strong Price:
+  = @ecourse.price
+%p
+  %strong Seats:
+  = @ecourse.seats
+%p
+  %strong Date:
+  = @ecourse.date
+%p
+  %strong Time:
+  = @ecourse.time
+%p
+  %strong Place:
+  = @ecourse.place
+%p
+  %strong Enterprise:
+  = @ecourse.enterprise_id
+%p
+  %strong Minimum:
+  = @ecourse.minimum
+%p
+  %strong Photo File Name:
+  = @ecourse.photo_file_name
+%p
+  %strong Photo Content Type:
+  = @ecourse.photo_content_type
+%p
+  %strong Photo File Size:
+  = @ecourse.photo_file_size
+
+%p
+  = link_to "Edit", edit_ecourse_path(@ecourse)
+  |
+  = link_to "Destroy", @ecourse, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", ecourses_path

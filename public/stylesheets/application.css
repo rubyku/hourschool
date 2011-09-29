@@ -101,6 +101,14 @@ p {
 	float: left;
 	width: 20%;
 }
+.nav-right {
+	float: right;
+	width: 20%;
+}
+.nav-right li{
+	margin-left: 20px;
+	list-style: none;
+}
 .nav li{
 	margin-left: 20px;
 	list-style: none;

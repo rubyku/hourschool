@@ -39,5 +39,8 @@ class HomeController < ApplicationController
     @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 1)).tagged_with("#{keyword}").limit(10)
     
   end
+  
+  def organization
+  end
 
 end

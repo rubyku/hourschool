@@ -5,15 +5,12 @@ class SitesController < ApplicationController
    before_filter :correct_member
   
   def show
-    p current_member
-    p current_user
-    p member_signed_in?.to_s
-   
     begin
       @site = Site.find_by_name!(request.subdomain)
     rescue ActiveRecord::RecordNotFound
       redirect_to root_url(:subdomain => false)
     end
+    
   end
   
   protected
