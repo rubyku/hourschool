@@ -197,8 +197,11 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-  config.omniauth :facebook, "116183295130221", "83d6e8f67cf05b1710d073ac1af99a70", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
-  
+  if Rails.env == "development"
+    config.omniauth :facebook, "116183295130221", "83d6e8f67cf05b1710d073ac1af99a70", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
+  else
+    config.omniauth :facebook, "166677053395153", "d9721fecc36f4169d39a2a5477c06abb", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
+  end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
