@@ -26,9 +26,6 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    active_merchant (1.5.2)
-      activesupport (>= 2.3.2)
-      builder (>= 2.0.0)
     activemodel (3.0.9)
       activesupport (= 3.0.9)
       builder (~> 2.1.2)
@@ -199,7 +196,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_merchant
   acts-as-taggable-on (~> 2.1.0)
   devise!
   faker
