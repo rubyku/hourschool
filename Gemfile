@@ -36,8 +36,8 @@ gem 'geokit'
 gem 'paperclip'
 
 #payment
-gem "active_paypal_adaptive_payment"
-gem "active_merchant", :require => 'active_merchant'
+#gem "active_paypal_adaptive_payment"
+#gem "active_merchant", :require => 'active_merchant'
 
 #dev gems
 gem 'forgery', :group => :development
