@@ -6,6 +6,7 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
+#gem 'devise', '1.4.7'
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth"
 #gem "koala"

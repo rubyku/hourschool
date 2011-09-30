@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
             #p "member domain is #{resource.member_domain}"
             root_url(:subdomain => resource.member_domain )
           else
-            super
+            user_root_path
           end
       end
       

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  
   def index
     @users = User.all
   end
 
   def show
+    p current_user
     if params[:id].nil?
       @user = current_user
     else
