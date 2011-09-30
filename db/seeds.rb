@@ -150,11 +150,11 @@ end
 # user1.save
 # user2.save
 puts 'SETTING UP ENTERPRISE'
-ent1 = Enterprise.create! :area => 'Austin, Texas', :name => 'Austin Center for Design', :domain => 'ac4d'
+ent1 = Enterprise.create! :area => 'Austin, Texas', :name => 'Austin Center for Design', :domain => 'austincenterfordesign'
 ent2 = Enterprise.create! :area => 'Austin, Texas', :name => 'Google', :domain => 'gmail'
 
 puts 'SETTING UP  SUBDOMAINS/COMPANIES'
-subdomain1 = Subdomain.create! :name => 'ac4d'
+subdomain1 = Subdomain.create! :name => 'austincenterfordesign'
 puts 'Created subdomain: ' << subdomain1.name
 subdomain2 = Subdomain.create! :name => 'gmail'
 puts 'Created subdomain: ' << subdomain2.name
