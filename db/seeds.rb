@@ -168,7 +168,7 @@ ent2.save
   if count < 50
    email = "austin_#{count}@gmail.com"
   else
-    email = "austin_#{count}@ac4d.com"
+    email = "austin_#{count}@austincenterfordesign.com"
   end
   
   password = "testing"
