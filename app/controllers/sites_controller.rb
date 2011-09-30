@@ -17,11 +17,17 @@ class SitesController < ApplicationController
   
   protected
   def correct_member
-    site = Site.find_by_name!(request.subdomain)
-    index1 = current_member.email.index('@')
-    index2 = current_member.email.index('.com')
+    begin
+      site = Site.find_by_name!(request.subdomain)
+      index1 = current_member.email.index('@')
+      index2 = current_member.email.index('.com')
+
+      redirect_to root_url(:subdomain => false) unless current_member.email[index1+1..index2-1] == site.enterprise.domain
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url(:subdomain => false)
+    end
+    #site = Site.find_by_name!(request.subdomain)
     
-    redirect_to root_url(:subdomain => false) unless current_member.email[index1+1..index2-1] == site.enterprise.domain
   end
 
 end
