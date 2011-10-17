@@ -1,0 +1,2943 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 114, ../../../../.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/*
+  960 Grid System ~ Core CSS.
+  Learn more ~ http://960.gs/
+
+  Licensed under GPL and MIT.
+*/
+/*
+  Forces backgrounds to span full width,
+  even if there is horizontal scrolling.
+  Increase this if your layout is wider.
+
+  Note: IE6 works fine without this fix.
+*/
+/* line 16, ../../app/assets/stylesheets/components/960_16_col.scss */
+body {
+  min-width: 960px;
+}
+
+/* Container
+----------------------------------------------------------------------------------------------------*/
+/* line 23, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+}
+
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+/* line 47, ../../app/assets/stylesheets/components/960_16_col.scss */
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12,
+.grid_13,
+.grid_14,
+.grid_15,
+.grid_16 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* line 69, ../../app/assets/stylesheets/components/960_16_col.scss */
+.push_1, .pull_1,
+.push_2, .pull_2,
+.push_3, .pull_3,
+.push_4, .pull_4,
+.push_5, .pull_5,
+.push_6, .pull_6,
+.push_7, .pull_7,
+.push_8, .pull_8,
+.push_9, .pull_9,
+.push_10, .pull_10,
+.push_11, .pull_11,
+.push_12, .pull_12,
+.push_13, .pull_13,
+.push_14, .pull_14,
+.push_15, .pull_15,
+.push_16, .pull_16 {
+  position: relative;
+}
+
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+/* line 76, ../../app/assets/stylesheets/components/960_16_col.scss */
+.alpha {
+  margin-left: 0;
+}
+
+/* line 80, ../../app/assets/stylesheets/components/960_16_col.scss */
+.omega {
+  margin-right: 0;
+}
+
+/* Grid >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
+/* line 87, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_1 {
+  width: 40px;
+}
+
+/* line 91, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_2 {
+  width: 100px;
+}
+
+/* line 95, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_3 {
+  width: 160px;
+}
+
+/* line 99, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_4 {
+  width: 220px;
+}
+
+/* line 103, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_5 {
+  width: 280px;
+}
+
+/* line 107, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_6 {
+  width: 340px;
+}
+
+/* line 111, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_7 {
+  width: 400px;
+}
+
+/* line 115, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_8 {
+  width: 460px;
+}
+
+/* line 119, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_9 {
+  width: 520px;
+}
+
+/* line 123, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_10 {
+  width: 580px;
+}
+
+/* line 127, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_11 {
+  width: 640px;
+}
+
+/* line 131, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_12 {
+  width: 700px;
+}
+
+/* line 135, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_13 {
+  width: 760px;
+}
+
+/* line 139, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_14 {
+  width: 820px;
+}
+
+/* line 143, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_15 {
+  width: 880px;
+}
+
+/* line 147, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .grid_16 {
+  width: 940px;
+}
+
+/* Prefix Extra Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
+/* line 154, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_1 {
+  padding-left: 60px;
+}
+
+/* line 158, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_2 {
+  padding-left: 120px;
+}
+
+/* line 162, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_3 {
+  padding-left: 180px;
+}
+
+/* line 166, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_4 {
+  padding-left: 240px;
+}
+
+/* line 170, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_5 {
+  padding-left: 300px;
+}
+
+/* line 174, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_6 {
+  padding-left: 360px;
+}
+
+/* line 178, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_7 {
+  padding-left: 420px;
+}
+
+/* line 182, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_8 {
+  padding-left: 480px;
+}
+
+/* line 186, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_9 {
+  padding-left: 540px;
+}
+
+/* line 190, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_10 {
+  padding-left: 600px;
+}
+
+/* line 194, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_11 {
+  padding-left: 660px;
+}
+
+/* line 198, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_12 {
+  padding-left: 720px;
+}
+
+/* line 202, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_13 {
+  padding-left: 780px;
+}
+
+/* line 206, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_14 {
+  padding-left: 840px;
+}
+
+/* line 210, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .prefix_15 {
+  padding-left: 900px;
+}
+
+/* Suffix Extra Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
+/* line 217, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_1 {
+  padding-right: 60px;
+}
+
+/* line 221, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_2 {
+  padding-right: 120px;
+}
+
+/* line 225, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_3 {
+  padding-right: 180px;
+}
+
+/* line 229, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_4 {
+  padding-right: 240px;
+}
+
+/* line 233, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_5 {
+  padding-right: 300px;
+}
+
+/* line 237, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_6 {
+  padding-right: 360px;
+}
+
+/* line 241, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_7 {
+  padding-right: 420px;
+}
+
+/* line 245, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_8 {
+  padding-right: 480px;
+}
+
+/* line 249, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_9 {
+  padding-right: 540px;
+}
+
+/* line 253, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_10 {
+  padding-right: 600px;
+}
+
+/* line 257, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_11 {
+  padding-right: 660px;
+}
+
+/* line 261, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_12 {
+  padding-right: 720px;
+}
+
+/* line 265, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_13 {
+  padding-right: 780px;
+}
+
+/* line 269, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_14 {
+  padding-right: 840px;
+}
+
+/* line 273, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .suffix_15 {
+  padding-right: 900px;
+}
+
+/* Push Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
+/* line 280, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_1 {
+  left: 60px;
+}
+
+/* line 284, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_2 {
+  left: 120px;
+}
+
+/* line 288, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_3 {
+  left: 180px;
+}
+
+/* line 292, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_4 {
+  left: 240px;
+}
+
+/* line 296, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_5 {
+  left: 300px;
+}
+
+/* line 300, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_6 {
+  left: 360px;
+}
+
+/* line 304, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_7 {
+  left: 420px;
+}
+
+/* line 308, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_8 {
+  left: 480px;
+}
+
+/* line 312, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_9 {
+  left: 540px;
+}
+
+/* line 316, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_10 {
+  left: 600px;
+}
+
+/* line 320, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_11 {
+  left: 660px;
+}
+
+/* line 324, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_12 {
+  left: 720px;
+}
+
+/* line 328, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_13 {
+  left: 780px;
+}
+
+/* line 332, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_14 {
+  left: 840px;
+}
+
+/* line 336, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .push_15 {
+  left: 900px;
+}
+
+/* Pull Space >> 16 Columns
+----------------------------------------------------------------------------------------------------*/
+/* line 343, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_1 {
+  left: -60px;
+}
+
+/* line 347, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_2 {
+  left: -120px;
+}
+
+/* line 351, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_3 {
+  left: -180px;
+}
+
+/* line 355, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_4 {
+  left: -240px;
+}
+
+/* line 359, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_5 {
+  left: -300px;
+}
+
+/* line 363, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_6 {
+  left: -360px;
+}
+
+/* line 367, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_7 {
+  left: -420px;
+}
+
+/* line 371, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_8 {
+  left: -480px;
+}
+
+/* line 375, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_9 {
+  left: -540px;
+}
+
+/* line 379, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_10 {
+  left: -600px;
+}
+
+/* line 383, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_11 {
+  left: -660px;
+}
+
+/* line 387, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_12 {
+  left: -720px;
+}
+
+/* line 391, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_13 {
+  left: -780px;
+}
+
+/* line 395, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_14 {
+  left: -840px;
+}
+
+/* line 399, ../../app/assets/stylesheets/components/960_16_col.scss */
+.container_16 .pull_15 {
+  left: -900px;
+}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+/* http://sonspring.com/journal/clearing-floats */
+/* line 408, ../../app/assets/stylesheets/components/960_16_col.scss */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+/* line 422, ../../app/assets/stylesheets/components/960_16_col.scss */
+.clearfix:before,
+.clearfix:after,
+.container_16:before,
+.container_16:after {
+  content: '.';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+
+/* line 434, ../../app/assets/stylesheets/components/960_16_col.scss */
+.clearfix:after,
+.container_16:after {
+  clear: both;
+}
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
+/* line 444, ../../app/assets/stylesheets/components/960_16_col.scss */
+.clearfix,
+.container_16 {
+  zoom: 1;
+}
+
+/*......RESET.......*/
+/*...Ensures default variables in different browsers are the same...*/
+/* line 3, ../../app/assets/stylesheets/components/homepage.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 16, ../../app/assets/stylesheets/components/homepage.scss */
+body {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: white;
+  line-height: 18px;
+  background-color: none;
+  background-image: url(../../../images/v2/BG_grey.png);
+  position: relative;
+}
+
+/* line 25, ../../app/assets/stylesheets/components/homepage.scss */
+p, ol, ul {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: white;
+  line-height: 24px;
+}
+
+/* line 33, ../../app/assets/stylesheets/components/homepage.scss */
+a {
+  text-decoration: underline;
+  color: #ff7733;
+}
+
+/* line 34, ../../app/assets/stylesheets/components/homepage.scss */
+a:visited {
+  text-decoration: underline;
+  color: #ff7733;
+}
+
+/* line 35, ../../app/assets/stylesheets/components/homepage.scss */
+a:active {
+  text-decoration: underline;
+  color: #ff7733;
+}
+
+/* line 36, ../../app/assets/stylesheets/components/homepage.scss */
+a:hover {
+  text-decoration: underline;
+  color: #ff7733;
+}
+
+/*......HOMEPAGE PAGE BREAKDOWN......*/
+/* line 41, ../../app/assets/stylesheets/components/homepage.scss */
+.homepage_top_bg {
+  background-color: #ff7733;
+  padding-bottom: 40px;
+}
+
+/* line 46, ../../app/assets/stylesheets/components/homepage.scss */
+.homepage_middle_bg {
+  background-image: url(../../../images/v2/BG_grey.png);
+}
+
+/* line 50, ../../app/assets/stylesheets/components/homepage.scss */
+.homepage_bottom_bg {
+  background-color: #fff;
+}
+
+/* line 55, ../../app/assets/stylesheets/components/homepage.scss */
+.featuredContent {
+  display: block;
+  width: 960px;
+  height: 350px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* line 65, ../../app/assets/stylesheets/components/homepage.scss */
+.footerContent {
+  display: block;
+  width: 960px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+/*......HOMEPAGE NAV......*/
+/* line 77, ../../app/assets/stylesheets/components/homepage.scss */
+#header {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow: hidden;
+  color: white;
+}
+
+/* line 85, ../../app/assets/stylesheets/components/homepage.scss */
+a#menu_homepage {
+  color: white;
+  text-decoration: none;
+}
+
+/* line 90, ../../app/assets/stylesheets/components/homepage.scss */
+#logo {
+  position: relative;
+  float: left;
+}
+
+/* line 95, ../../app/assets/stylesheets/components/homepage.scss */
+table#homepage_menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+}
+
+/* line 102, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_teach, td#homepage_menu_partners, td#homepage_menu_business {
+  border: 1px solid white;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 110, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_learn, td#homepage_menu_faq {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 121, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_learn {
+  width: 176px;
+}
+
+/* line 125, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_teach {
+  width: 170px;
+}
+
+/* line 129, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_partners {
+  width: 170px;
+}
+
+/* line 133, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_business {
+  width: 235px;
+}
+
+/* line 137, ../../app/assets/stylesheets/components/homepage.scss */
+td#homepage_menu_faq {
+  width: 67px;
+}
+
+/* line 141, ../../app/assets/stylesheets/components/homepage.scss */
+#menu18 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+}
+
+/* line 150, ../../app/assets/stylesheets/components/homepage.scss */
+#menu9 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* line 158, ../../app/assets/stylesheets/components/homepage.scss */
+#menu_faq {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/* line 166, ../../app/assets/stylesheets/components/homepage.scss */
+#login {
+  position: relative;
+  float: right;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/*......BANNER CONTENT......*/
+/* line 179, ../../app/assets/stylesheets/components/homepage.scss */
+.featured-content {
+  padding: 30px;
+  padding-bottom: 45px;
+}
+
+/* line 184, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_1 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 18px;
+  margin-left: 66px;
+  color: white;
+}
+
+/* line 195, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_2 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 48px;
+  margin-left: 92px;
+  color: white;
+}
+
+/* line 205, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_3 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 100px;
+  margin-bottom: 45px;
+  margin-left: 13px;
+  color: white;
+}
+
+/* line 215, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_4 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 45px;
+  margin-left: 190px;
+  color: white;
+}
+
+/* line 225, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_5 {
+  text-transform: uppercase;
+  font-family: bello-pro-1, bello-pro-2;
+  font-size: 100px;
+  margin-left: 13px;
+  margin-top: -18px;
+  color: white;
+}
+
+/* line 234, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_6 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 100px;
+  margin-left: 95px;
+  margin-top: -2px;
+  color: white;
+}
+
+/* line 245, ../../app/assets/stylesheets/components/homepage.scss */
+h1#homepage_headline {
+  text-transform: uppercase;
+  color: white;
+}
+
+/* line 250, ../../app/assets/stylesheets/components/homepage.scss */
+.word1, .word2, .word3, .word4 {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 40px;
+}
+
+/* line 257, ../../app/assets/stylesheets/components/homepage.scss */
+.word5 {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 20px;
+  margin-left: 62px;
+}
+
+/* line 265, ../../app/assets/stylesheets/components/homepage.scss */
+.word7 {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 40px;
+  margin-left: 13px;
+}
+
+/* line 273, ../../app/assets/stylesheets/components/homepage.scss */
+.word9 {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 100px;
+  top: 2em;
+}
+
+/* line 281, ../../app/assets/stylesheets/components/homepage.scss */
+.word6, .word8, .word12 {
+  font-family: bello-pro-1, bello-pro-2;
+  font-size: 100px;
+}
+
+/* line 286, ../../app/assets/stylesheets/components/homepage.scss */
+.word10 {
+  font-family: bello-pro-1, bello-pro-2;
+  font-size: 100px;
+  margin-left: -320px;
+}
+
+/* line 293, ../../app/assets/stylesheets/components/homepage.scss */
+.word11 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 90px;
+}
+
+/* line 301, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_7 {
+  position: relative;
+  float: left;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  margin-top: 50px;
+  letter-spacing: 0.1em;
+  color: white;
+}
+
+/* line 313, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage_headline_8 {
+  position: relative;
+  float: left;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  margin-left: 62px;
+  width: 144px;
+  margin-top: 25px;
+  color: white;
+}
+
+/* line 327, ../../app/assets/stylesheets/components/homepage.scss */
+#homeSearchForm-background {
+  position: relative;
+  float: left;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 465px;
+  height: 50px;
+  background-color: white;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+
+/* line 338, ../../app/assets/stylesheets/components/homepage.scss */
+#homepageSearchForm {
+  position: relative;
+  float: left;
+  border: 0px solid white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 415px;
+  height: 40px;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding-left: 40px;
+  margin-top: -45px;
+  margin-left: 5px;
+  margin-bottom: 15px;
+  overflow: visible;
+  z-index: 10;
+}
+
+/* line 357, ../../app/assets/stylesheets/components/homepage.scss */
+#homepageSearchButton {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 110px;
+  height: 33px;
+  background-color: #e4652f;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  margin-right: -5px;
+}
+
+/* line 378, ../../app/assets/stylesheets/components/homepage.scss */
+img.mag-glass-homepage {
+  position: relative;
+  float: left;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -42px;
+  margin-left: 20px;
+}
+
+/* line 387, ../../app/assets/stylesheets/components/homepage.scss */
+img#homepage_arrow {
+  position: relative;
+  float: left;
+  margin-top: 45px;
+  margin-left: -85px;
+}
+
+/*......FEATURED CONTENT......*/
+/* line 398, ../../app/assets/stylesheets/components/homepage.scss */
+.viewMore {
+  position: relative;
+  float: right;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  font-style: italic;
+  color: #bbb;
+  padding-right: 7px;
+}
+
+/* line 411, ../../app/assets/stylesheets/components/homepage.scss */
+img.arrow_small_pointright {
+  padding-bottom: -10px;
+  margin-left: 3px;
+}
+
+/* line 417, ../../app/assets/stylesheets/components/homepage.scss */
+.classRow-homepage {
+  float: left;
+  width: 960px;
+  margin-bottom: 23px;
+}
+
+/* line 423, ../../app/assets/stylesheets/components/homepage.scss */
+.classBlock-homepage {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 65px;
+}
+
+/* line 434, ../../app/assets/stylesheets/components/homepage.scss */
+.classBlock-last-homepage {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 444, ../../app/assets/stylesheets/components/homepage.scss */
+img.class-arrow {
+  position: relative;
+  float: right;
+  margin-top: -13px;
+  margin-right: 10px;
+}
+
+/*......NOT LOGGED IN......*/
+/* line 3, ../../app/assets/stylesheets/components/header.scss */
+#header {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+
+/* line 10, ../../app/assets/stylesheets/components/header.scss */
+#logo {
+  position: relative;
+  float: left;
+}
+
+/* line 15, ../../app/assets/stylesheets/components/header.scss */
+#login {
+  color: #4f4e4e;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 24, ../../app/assets/stylesheets/components/header.scss */
+li#login {
+  float: left;
+  color: #8f8f8f;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* line 31, ../../app/assets/stylesheets/components/header.scss */
+.profile-avatar {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: -3px;
+  background-color: #ccc;
+}
+
+/* line 40, ../../app/assets/stylesheets/components/header.scss */
+table#menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 49, ../../app/assets/stylesheets/components/header.scss */
+td#menu_teach, td#menu_partners, td#menu_business {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 57, ../../app/assets/stylesheets/components/header.scss */
+td#menu_learn, td#menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 68, ../../app/assets/stylesheets/components/header.scss */
+td#menu_learn {
+  width: 176px;
+}
+
+/* line 72, ../../app/assets/stylesheets/components/header.scss */
+td#menu_teach {
+  width: 170px;
+}
+
+/* line 76, ../../app/assets/stylesheets/components/header.scss */
+td#menu_partners {
+  width: 170px;
+}
+
+/* line 80, ../../app/assets/stylesheets/components/header.scss */
+td#menu_business {
+  width: 235px;
+}
+
+/* line 84, ../../app/assets/stylesheets/components/header.scss */
+td#menu_faq {
+  width: 67px;
+}
+
+/* line 88, ../../app/assets/stylesheets/components/header.scss */
+a#menu {
+  color: #8f8f8f;
+  text-decoration: none;
+}
+
+/* line 94, ../../app/assets/stylesheets/components/header.scss */
+a#menu:hover {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 96, ../../app/assets/stylesheets/components/header.scss */
+#menu18 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+}
+
+/* line 105, ../../app/assets/stylesheets/components/header.scss */
+#menu9 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* line 113, ../../app/assets/stylesheets/components/header.scss */
+#menu_faq {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/*......LOGGED IN - ENTERPRISE......*/
+/* line 124, ../../app/assets/stylesheets/components/header.scss */
+#enterprise_peer_learning {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  color: #4f4e4e;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 136, ../../app/assets/stylesheets/components/header.scss */
+table#enterprise_menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 145, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_request, td#enterprise_menu_community {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 153, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_dashboard, td#enterprise_menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 165, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_dashboard {
+  width: 200px;
+}
+
+/* line 169, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_learn {
+  width: 160px;
+}
+
+/* line 173, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_teach {
+  width: 160px;
+}
+
+/* line 177, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_request {
+  width: 160px;
+}
+
+/* line 181, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_community {
+  width: 200px;
+}
+
+/* line 185, ../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_faq {
+  width: 67px;
+}
+
+/*......LOGGED IN - COMMUNITY......*/
+/* line 191, ../../app/assets/stylesheets/components/header.scss */
+#peer-learning-at {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 202, ../../app/assets/stylesheets/components/header.scss */
+table#community_menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 211, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_teach, td#community_menu_request, td#community_menu_community {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 219, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_learn, td#community_menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 231, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_learn {
+  width: 176px;
+}
+
+/* line 235, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_teach {
+  width: 170px;
+}
+
+/* line 239, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_request {
+  width: 170px;
+}
+
+/* line 243, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_community {
+  width: 235px;
+}
+
+/* line 247, ../../app/assets/stylesheets/components/header.scss */
+td#community_menu_faq {
+  width: 67px;
+}
+
+/*......RESET.......*/
+/*...Ensures default variables in different browsers are the same...*/
+/* line 3, ../../app/assets/stylesheets/components/general.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*......HOURSCHOOL V2.......*/
+/* line 19, ../../app/assets/stylesheets/components/general.scss */
+body {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: #4f4e4e;
+  line-height: 18px;
+  background-color: none;
+  background-image: url(../../../images/v2/BG_grey.png);
+  position: relative;
+}
+
+/* line 29, ../../app/assets/stylesheets/components/general.scss */
+p, ol, ul {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: #4f4e4e;
+  line-height: 18px;
+  letter-spacing: auto;
+}
+
+/* line 37, ../../app/assets/stylesheets/components/general.scss */
+a {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 38, ../../app/assets/stylesheets/components/general.scss */
+a:visited {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 39, ../../app/assets/stylesheets/components/general.scss */
+a:active {
+  text-decoration: underline;
+  color: #ff7733;
+}
+
+/* line 40, ../../app/assets/stylesheets/components/general.scss */
+a:hover {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/*......PAGE BREAKDOWN......*/
+/* line 45, ../../app/assets/stylesheets/components/general.scss */
+.brand_bg {
+  background-color: #ff7733;
+  height: 3px;
+}
+
+/* line 50, ../../app/assets/stylesheets/components/general.scss */
+.enterprise_brand_bg {
+  background-color: #1059c5;
+  height: 7px;
+}
+
+/* line 55, ../../app/assets/stylesheets/components/general.scss */
+.middle_bg {
+  background-image: url(../../../images/v2/BG_grey.png);
+}
+
+/* line 59, ../../app/assets/stylesheets/components/general.scss */
+.bottom_bg {
+  background-color: #fff;
+}
+
+/* line 63, ../../app/assets/stylesheets/components/general.scss */
+.main {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+}
+
+/* line 68, ../../app/assets/stylesheets/components/general.scss */
+.full-page {
+  width: 960px;
+  float: left;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+/* line 75, ../../app/assets/stylesheets/components/general.scss */
+.marcomm-half-page {
+  width: 960px;
+  float: left;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+/* line 83, ../../app/assets/stylesheets/components/general.scss */
+.page {
+  width: 700px;
+  float: left;
+  padding-bottom: 30px;
+  background-color: #fff;
+}
+
+/* line 90, ../../app/assets/stylesheets/components/general.scss */
+.page-content {
+  padding: 30px 30px 30px;
+}
+
+/* line 94, ../../app/assets/stylesheets/components/general.scss */
+.page-section-float-left {
+  float: left;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* line 100, ../../app/assets/stylesheets/components/general.scss */
+.page-section-float-right {
+  float: right;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* line 106, ../../app/assets/stylesheets/components/general.scss */
+.sidebar {
+  width: 260px;
+  float: left;
+}
+
+/* line 111, ../../app/assets/stylesheets/components/general.scss */
+.sidebar-white {
+  width: 250px;
+  float: left;
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+/* line 118, ../../app/assets/stylesheets/components/general.scss */
+.sidebar-content {
+  padding: 0px 0px 10px 30px;
+}
+
+/* line 122, ../../app/assets/stylesheets/components/general.scss */
+.sidebar-content-white {
+  padding: 30px 15px 10px 15px;
+}
+
+/* line 126, ../../app/assets/stylesheets/components/general.scss */
+ul.noBullet {
+  list-style-type: none;
+}
+
+/* line 130, ../../app/assets/stylesheets/components/general.scss */
+li.noBullet {
+  float: left;
+}
+
+/*......SEARCH......*/
+/* line 136, ../../app/assets/stylesheets/components/general.scss */
+.searchBar {
+  margin-top: -15px;
+  margin-bottom: 25px;
+}
+
+/* line 141, ../../app/assets/stylesheets/components/general.scss */
+.mag-glass {
+  position: relative;
+  float: left;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -32px;
+  margin-left: 22px;
+}
+
+/* line 150, ../../app/assets/stylesheets/components/general.scss */
+.searchForm {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 40px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  margin-left: 0px;
+  margin-top: 20px;
+  padding-left: 40px;
+  color: #666;
+  border: 5px solid #ccc;
+  opacity: 0.5;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 170, ../../app/assets/stylesheets/components/general.scss */
+.searchButton {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 110px;
+  height: 40px;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -45px;
+  margin-right: 3px;
+  background-color: #ff7733;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+/*......SUB-NAV.....*/
+/* line 197, ../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-active {
+  color: black;
+}
+
+/* line 198, ../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-inactive {
+  color: #8f8f8f;
+}
+
+/* line 199, ../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-active:hover {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 200, ../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-inactive:hover {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 202, ../../app/assets/stylesheets/components/general.scss */
+ul.sub-nav {
+  list-style: none;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+/* line 212, ../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-active, li.sub-nav-inactive {
+  float: left;
+  margin-right: 10px;
+  padding-bottom: 3px;
+}
+
+/* line 218, ../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-active {
+  border-bottom: 3px solid #ff7733;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* line 224, ../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-inactive {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*......PAGE BIG HEADINGS......*/
+/* line 232, ../../app/assets/stylesheets/components/general.scss */
+.heading25_ccc {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+}
+
+/* line 242, ../../app/assets/stylesheets/components/general.scss */
+.welcome-header {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 40px;
+}
+
+/* line 250, ../../app/assets/stylesheets/components/general.scss */
+.greyheader_half {
+  position: relative;
+  float: left;
+  width: 680px;
+  margin-top: -76px;
+  margin-left: -45px;
+  overflow: visible;
+  z-index: 10;
+}
+
+/*......DASHBOARD......*/
+/* line 262, ../../app/assets/stylesheets/components/general.scss */
+.dashbord-story {
+  float: left;
+  width: 100%;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 2px dashed #ccc;
+}
+
+/* line 271, ../../app/assets/stylesheets/components/general.scss */
+ul.dashboard-name {
+  list-style: none;
+  margin-top: 5px;
+}
+
+/* line 276, ../../app/assets/stylesheets/components/general.scss */
+li.dashboard-name {
+  float: left;
+  top: 0px;
+  padding-right: 7px;
+  vertical-align: middle;
+}
+
+/* line 283, ../../app/assets/stylesheets/components/general.scss */
+ul.class {
+  float: left;
+  top: 0px;
+  margin-right: 10px;
+}
+
+/* line 289, ../../app/assets/stylesheets/components/general.scss */
+ul.status {
+  float: right;
+  top: 0px;
+}
+
+/* line 294, ../../app/assets/stylesheets/components/general.scss */
+ul.comment {
+  float: left;
+  position: absolute;
+  width: 450px;
+  margin-top: 35px;
+  margin-left: 125px;
+}
+
+/* line 302, ../../app/assets/stylesheets/components/general.scss */
+img.dashboard-icon {
+  float: left;
+  margin-top: 1px;
+}
+
+/* line 307, ../../app/assets/stylesheets/components/general.scss */
+img.dashboard-class {
+  float: right;
+}
+
+/* line 311, ../../app/assets/stylesheets/components/general.scss */
+.dashboard-name {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  float: left;
+}
+
+/*......LEARN PAGE.....*/
+/* line 321, ../../app/assets/stylesheets/components/general.scss */
+ul.searchFilter {
+  list-style-type: none;
+  margin-bottom: 20px;
+  font-size: 11px;
+  line-height: 23px;
+}
+
+/* line 328, ../../app/assets/stylesheets/components/general.scss */
+.classRow {
+  float: left;
+  width: 650px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* line 335, ../../app/assets/stylesheets/components/general.scss */
+.classBlock {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 30px;
+}
+
+/* line 346, ../../app/assets/stylesheets/components/general.scss */
+.classBlock_last {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 356, ../../app/assets/stylesheets/components/general.scss */
+img.class-arrow {
+  position: relative;
+  float: right;
+  margin-top: -13px;
+  margin-right: 10px;
+}
+
+/* line 363, ../../app/assets/stylesheets/components/general.scss */
+.class-description {
+  padding: 10px;
+}
+
+/* line 367, ../../app/assets/stylesheets/components/general.scss */
+table.view-more, tr.view-more {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+/* line 373, ../../app/assets/stylesheets/components/general.scss */
+ul.view-more-arrow {
+  float: left;
+  list-style-type: none;
+}
+
+/* line 378, ../../app/assets/stylesheets/components/general.scss */
+a.view-more {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-style: italic;
+  color: #bbbbbb;
+  text-decoration: none;
+  padding-left: 4px;
+  padding-bottom: 5px;
+}
+
+/*......CLASS BLOCK.....*/
+/* line 393, ../../app/assets/stylesheets/components/general.scss */
+.heading13-class {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* line 400, ../../app/assets/stylesheets/components/general.scss */
+.heading9-class {
+  font-weight: 400;
+  font-size: 9px;
+}
+
+/* line 405, ../../app/assets/stylesheets/components/general.scss */
+.heading10-class {
+  font-weight: 400;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+/*......VOTE FOR A CLASS.....*/
+/* line 414, ../../app/assets/stylesheets/components/general.scss */
+.vote-class {
+  margin-top: 0px;
+  padding: 20px 20px 0px 0px;
+  border-bottom: 1px dashed #ccc;
+}
+/* line 419, ../../app/assets/stylesheets/components/general.scss */
+.vote-class a {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #4f4e4e;
+  line-height: 20px;
+  text-decoration: none;
+  padding-left: 3px;
+  margin-top: 3px;
+}
+/* line 427, ../../app/assets/stylesheets/components/general.scss */
+.vote-class a:hover {
+  text-decoration: underline;
+}
+
+/* line 433, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-last {
+  margin-top: 0px;
+  padding: 20px 20px 0px 0px;
+}
+/* line 437, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-last a {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #4f4e4e;
+  line-height: 20px;
+  text-decoration: none;
+  padding-left: 3px;
+  margin-top: 3px;
+}
+/* line 445, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-last a:hover {
+  text-decoration: underline;
+}
+
+/* line 451, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-title {
+  float: left;
+}
+
+/* line 455, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-number {
+  float: right;
+}
+
+/* line 459, ../../app/assets/stylesheets/components/general.scss */
+.vote-class-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  margin-left: 8px;
+  width: 87px;
+  height: 30px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/* line 480, ../../app/assets/stylesheets/components/general.scss */
+.heading35-vote {
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 35px;
+  text-align: center;
+  margin-left: -5px;
+  margin-bottom: 5px;
+}
+
+/* line 491, ../../app/assets/stylesheets/components/general.scss */
+.heading20-vote {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+/* line 499, ../../app/assets/stylesheets/components/general.scss */
+.heading10-vote {
+  color: #8f8f8f;
+  text-transformnsform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/*......TEACH PAGE.....*/
+/* line 513, ../../app/assets/stylesheets/components/general.scss */
+.claim-class-button {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #ff7733;
+  color: white;
+  text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+/* line 532, ../../app/assets/stylesheets/components/general.scss */
+.why-teach {
+  margin-top: 20px;
+  padding: 0px 10px 0px 0px;
+}
+
+/* line 537, ../../app/assets/stylesheets/components/general.scss */
+.why-teach-short {
+  width: 75%;
+  float: left;
+}
+
+/* line 542, ../../app/assets/stylesheets/components/general.scss */
+.why-teach-last {
+  margin-top: 20px;
+  padding: 0px 20px 30px 0px;
+}
+
+/* line 547, ../../app/assets/stylesheets/components/general.scss */
+#create-class-button {
+  float: left;
+  width: 135px;
+  height: 85px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+/* line 557, ../../app/assets/stylesheets/components/general.scss */
+img#create-class-star {
+  margin-top: 10px;
+  margin-left: 46px;
+}
+
+/* line 563, ../../app/assets/stylesheets/components/general.scss */
+.heading15-whyteach {
+  /*  color: $brand-background;*/
+  /*  text-transform: uppercase;*/
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+/* line 572, ../../app/assets/stylesheets/components/general.scss */
+.create-class-heading {
+  float: left;
+  padding-top: 5px;
+  padding-left: 18px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  color: white;
+  font-size: 10;
+}
+
+/*......CLASS DETAIL PAGE.....*/
+/* line 586, ../../app/assets/stylesheets/components/general.scss */
+.class-logistic-block {
+  float: left;
+  width: 220px;
+  margin-right: 10px;
+}
+
+/* line 592, ../../app/assets/stylesheets/components/general.scss */
+.class-logistic-line {
+  float: left;
+  width: 200px;
+  margin-right: 10px;
+}
+
+/* line 598, ../../app/assets/stylesheets/components/general.scss */
+.class-description-block {
+  float: left;
+  width: 400px;
+}
+
+/* line 603, ../../app/assets/stylesheets/components/general.scss */
+.class-attendance-block {
+  float: left;
+  width: 220px;
+  padding: 0px 0px 10px 0px;
+}
+
+/* line 609, ../../app/assets/stylesheets/components/general.scss */
+img#fb-comment {
+  margin-top: 10px;
+}
+
+/* line 613, ../../app/assets/stylesheets/components/general.scss */
+hr#class {
+  border: 1px dashed #ededed;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* line 621, ../../app/assets/stylesheets/components/general.scss */
+p.class-detail {
+  margin-bottom: 10px;
+}
+
+/* line 625, ../../app/assets/stylesheets/components/general.scss */
+ul.withBullets {
+  list-style-type: square;
+}
+
+/* line 629, ../../app/assets/stylesheets/components/general.scss */
+li.withBullets {
+  margin-bottom: 10px;
+}
+
+/* line 633, ../../app/assets/stylesheets/components/general.scss */
+.class-section-heading {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+/* line 643, ../../app/assets/stylesheets/components/general.scss */
+.class-details {
+  color: #666;
+  font-weight: 700;
+  font-size: 12px;
+  width: 190px;
+}
+
+/* line 650, ../../app/assets/stylesheets/components/general.scss */
+p.class-details {
+  color: #666;
+  font-weight: 400;
+  font-size: 12px;
+  width: 180px;
+}
+
+/* line 657, ../../app/assets/stylesheets/components/general.scss */
+.class-alterntives {
+  font-weight: 400;
+  font-size: 9px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+/* line 664, ../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-cost {
+  margin-right: 3px;
+}
+
+/* line 668, ../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-when {
+  margin-right: 7px;
+}
+
+/* line 672, ../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-where {
+  margin-right: 10px;
+}
+
+/* line 676, ../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-heart {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+/* line 681, ../../app/assets/stylesheets/components/general.scss */
+p.class-details-heart-number {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* line 686, ../../app/assets/stylesheets/components/general.scss */
+.class-button {
+  float: left;
+  text-align: center;
+  width: 91%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #ff7733;
+  color: white;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 7px 10px 7px 10px;
+}
+
+/* line 703, ../../app/assets/stylesheets/components/general.scss */
+.class-title-big {
+  float: left;
+  color: #8f8f8f;
+  width: 400px;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  line-height: 22px;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*......CONFIRM......*/
+/* line 718, ../../app/assets/stylesheets/components/general.scss */
+.confirm-classBlock {
+  float: left;
+  width: 190px;
+  height: 500px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 30px;
+}
+
+/* line 729, ../../app/assets/stylesheets/components/general.scss */
+.confirm-first-message {
+  text-transform: uppercase;
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 10px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 741, ../../app/assets/stylesheets/components/general.scss */
+.confirm-second-message {
+  text-transform: uppercase;
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 20px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 753, ../../app/assets/stylesheets/components/general.scss */
+.confirm-bring-friend {
+  text-transform: uppercase;
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 20px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 765, ../../app/assets/stylesheets/components/general.scss */
+.confirm-copy-url {
+  float: left;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  margin-right: 10px;
+  margin-top: 21px;
+  margin-bottom: 20px;
+}
+
+/* line 777, ../../app/assets/stylesheets/components/general.scss */
+hr#confirm {
+  border: 1px dashed #ededed;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/*......PROFILE PAGE......*/
+/* line 790, ../../app/assets/stylesheets/components/general.scss */
+.classes-taught {
+  float: left;
+  width: 300px;
+  height: 217px;
+  margin-bottom: 20px;
+  background-color: white;
+  text-align: center;
+  border: 1px solid #ededed;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 803, ../../app/assets/stylesheets/components/general.scss */
+.classes-taken {
+  float: left;
+  width: 300px;
+  height: 217px;
+  margin-bottom: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+/* line 812, ../../app/assets/stylesheets/components/general.scss */
+.profile-big-number-active {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 110px;
+  padding-top: 75px;
+}
+
+/* line 820, ../../app/assets/stylesheets/components/general.scss */
+.profile-big-number-inactive {
+  color: #ededed;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 110px;
+  padding-top: 75px;
+}
+
+/* line 828, ../../app/assets/stylesheets/components/general.scss */
+.profile-big-words-active {
+  color: #8f8f8f;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 45px;
+}
+
+/* line 838, ../../app/assets/stylesheets/components/general.scss */
+.profile-big-words-inactive {
+  color: #ededed;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 45px;
+}
+
+/* line 849, ../../app/assets/stylesheets/components/general.scss */
+a.profile-link {
+  color: #ff7733;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* line 855, ../../app/assets/stylesheets/components/general.scss */
+a.bio-detail-header {
+  float: left;
+  color: #8f8f8f;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* line 863, ../../app/assets/stylesheets/components/general.scss */
+.profile-heading10 {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+}
+
+/* line 873, ../../app/assets/stylesheets/components/general.scss */
+ul.avatar {
+  float: left;
+  list-style-type: none;
+  margin-bottom: 20px;
+  line-height: 23px;
+}
+
+/* line 880, ../../app/assets/stylesheets/components/general.scss */
+li.avatar {
+  float: left;
+}
+
+/* line 884, ../../app/assets/stylesheets/components/general.scss */
+.avatar {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: #ccc;
+}
+
+/* line 893, ../../app/assets/stylesheets/components/general.scss */
+.avatar-30 {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-top: -5px;
+  background-color: #ccc;
+}
+
+/* line 901, ../../app/assets/stylesheets/components/general.scss */
+.avatar-100 {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 15px;
+  background-color: #ccc;
+}
+
+/* line 909, ../../app/assets/stylesheets/components/general.scss */
+.avatar-medium {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+/* line 917, ../../app/assets/stylesheets/components/general.scss */
+.avatar-big {
+  width: 190px;
+  height: 190px;
+  margin-bottom: 10px;
+  float: left;
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+/*......CREATE A NEW CLASS.....*/
+/* line 4, ../../app/assets/stylesheets/components/form.scss */
+.form-question {
+  float: left;
+  width: 95%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* line 12, ../../app/assets/stylesheets/components/form.scss */
+.class-form-question {
+  float: left;
+  /*  width: 95%;*/
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* line 19, ../../app/assets/stylesheets/components/form.scss */
+.form-question-tip {
+  float: left;
+  width: 95%;
+  font-size: 12px;
+}
+
+/* line 25, ../../app/assets/stylesheets/components/form.scss */
+p.form-bg {
+  float: left;
+  background-color: #f7f9fa;
+  width: 95%;
+  margin-top: 10px;
+  height: 70px;
+  padding: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 35, ../../app/assets/stylesheets/components/form.scss */
+.form {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 48, ../../app/assets/stylesheets/components/form.scss */
+.form-med {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 100px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: text-top;
+}
+
+/* line 62, ../../app/assets/stylesheets/components/form.scss */
+.form-with-margin {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 75, ../../app/assets/stylesheets/components/form.scss */
+.form-med-with-margin {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 60px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+  padding-top: 5px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: text-top;
+}
+
+/* line 89, ../../app/assets/stylesheets/components/form.scss */
+.form-tall {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 433px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: text-top;
+}
+
+/* line 103, ../../app/assets/stylesheets/components/form.scss */
+.submit-proposal-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  width: 180px;
+  height: 30px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 124, ../../app/assets/stylesheets/components/form.scss */
+p.note {
+  float: left;
+  margin-bottom: 20px;
+}
+
+/* line 129, ../../app/assets/stylesheets/components/form.scss */
+p.tip {
+  float: left;
+  color: #8f8f8f;
+  font-size: 11px;
+}
+
+/* line 135, ../../app/assets/stylesheets/components/form.scss */
+a.tip {
+  float: left;
+  color: #8f8f8f;
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+/*......SIDEBAR.....*/
+/* line 2, ../../app/assets/stylesheets/components/sidebar.scss */
+.sidebar-heading {
+  color: #666;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  line-height: 26px;
+  margin-top: 10px;
+}
+
+/* line 13, ../../app/assets/stylesheets/components/sidebar.scss */
+.heading10-sidebar {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/*......SIMILAR CLASSES OR USERS ON THE SIDEBAR......*/
+/* line 24, ../../app/assets/stylesheets/components/sidebar.scss */
+.sidebar-block {
+  float: left;
+  width: 220px;
+  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px dashed #ccc;
+}
+
+/* line 32, ../../app/assets/stylesheets/components/sidebar.scss */
+.sidebar-block-last {
+  float: left;
+  width: 220px;
+  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 0px dashed #ccc;
+  padding-bottom: 40px;
+}
+
+/* line 41, ../../app/assets/stylesheets/components/sidebar.scss */
+p.similar-class-description {
+  float: left;
+  width: 200px;
+  font-size: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 48, ../../app/assets/stylesheets/components/sidebar.scss */
+p.profile-name-blurb {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 5px;
+  float: left;
+  width: 150px;
+}
+
+/* line 58, ../../app/assets/stylesheets/components/sidebar.scss */
+p.profile-location-blurb {
+  float: left;
+  width: 150px;
+  font-weight: 400;
+  font-size: 11px;
+  padding-bottom: 10px;
+}
+
+/* line 66, ../../app/assets/stylesheets/components/sidebar.scss */
+p.profile-bio {
+  padding-bottom: 10px;
+  width: 220px;
+}
+
+/*......TIPBOX......*/
+/* line 74, ../../app/assets/stylesheets/components/sidebar.scss */
+.tape {
+  float: left;
+  margin-top: -31px;
+  margin-left: 32px;
+}
+
+/* line 81, ../../app/assets/stylesheets/components/sidebar.scss */
+.tipbox {
+  position: relative;
+  width: 160px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: 40px;
+  background: #fefefe;
+  border: 0.5px solid #f0f0f0;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 95, ../../app/assets/stylesheets/components/sidebar.scss */
+#tipboxButton {
+  margin-top: 10px;
+  padding: 7px;
+  text-align: center;
+  background-color: #a9a9a9;
+  color: white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+/* line 110, ../../app/assets/stylesheets/components/sidebar.scss */
+.heading10 {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/*......MARCOMM PAGES......*/
+/* line 3, ../../app/assets/stylesheets/components/marcomm.scss */
+.marcomm-header {
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+/* line 8, ../../app/assets/stylesheets/components/marcomm.scss */
+.heading25_666 {
+  color: #666;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  padding-bottom: 25px;
+  /*  margin-top: -27px;*/
+}
+
+/* line 19, ../../app/assets/stylesheets/components/marcomm.scss */
+.greyheader_full {
+  position: left;
+  float: left;
+  margin-top: -59px;
+  margin-left: -60px;
+  overflow: visible;
+  width: 1020px;
+  z-index: 99;
+}
+
+/* line 29, ../../app/assets/stylesheets/components/marcomm.scss */
+.heading15-marcomm {
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+/* line 38, ../../app/assets/stylesheets/components/marcomm.scss */
+ul.noBullet-marcomm {
+  list-style-type: none;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/* line 44, ../../app/assets/stylesheets/components/marcomm.scss */
+li.noBullet-marcomm {
+  margin-bottom: 3px;
+}
+
+/* line 48, ../../app/assets/stylesheets/components/marcomm.scss */
+span.list-number {
+  font-size: 20px;
+}
+
+/*......ABOUT......*/
+/* line 54, ../../app/assets/stylesheets/components/marcomm.scss */
+.about-bio-team {
+  float: left;
+  width: 600px;
+  padding-bottom: 20px;
+}
+
+/* line 60, ../../app/assets/stylesheets/components/marcomm.scss */
+.about-bio-advisor {
+  padding-bottom: 20px;
+}
+
+/* line 64, ../../app/assets/stylesheets/components/marcomm.scss */
+.about-bio-team-name {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* line 73, ../../app/assets/stylesheets/components/marcomm.scss */
+.about-bio-advisor-company {
+  font-style: italic;
+}
+
+/*......BUSINESS......*/
+/*......FOOTER......*/
+/* line 3, ../../app/assets/stylesheets/components/footer.scss */
+.bottom_bg {
+  background-color: #fff;
+}
+
+/* line 7, ../../app/assets/stylesheets/components/footer.scss */
+.three-col-left {
+  padding-right: 20px;
+}
+
+/* line 11, ../../app/assets/stylesheets/components/footer.scss */
+.three-col-middle {
+  margin-right: 20px;
+}
+
+/* line 15, ../../app/assets/stylesheets/components/footer.scss */
+.three-col-right {
+  margin-bottom: 100px;
+}
+
+/*......FOOTER FONT......*/
+/* line 23, ../../app/assets/stylesheets/components/footer.scss */
+.footer-heading {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* line 34, ../../app/assets/stylesheets/components/footer.scss */
+.footer-date {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 10px;
+  color: #cccccc;
+}
+
+/* line 41, ../../app/assets/stylesheets/components/footer.scss */
+.footer-blog-title {
+  color: #999999;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+/* line 49, ../../app/assets/stylesheets/components/footer.scss */
+table#footer, td#footer {
+  padding-bottom: 5px;
+}
+
+/* line 53, ../../app/assets/stylesheets/components/footer.scss */
+img.footer_contact {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 59, ../../app/assets/stylesheets/components/footer.scss */
+.footer_contact {
+  position: relative;
+  float: left;
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+}
+
+/* line 69, ../../app/assets/stylesheets/components/footer.scss */
+p.footer {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+}
+
+/* line 77, ../../app/assets/stylesheets/components/footer.scss */
+a.footer {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+  color: #999999;
+  text-decoration: underline;
+}
+
+/* line 85, ../../app/assets/stylesheets/components/footer.scss */
+.newsletterForm {
+  border: 1px solid #eeeaea;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
+  width: 220px;
+  height: 30px;
+  color: #666;
+  padding-left: 5px;
+  font-style: italic;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+/* line 99, ../../app/assets/stylesheets/components/footer.scss */
+.newsletterButton {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 84px;
+  height: 33px;
+  background-color: #999;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/*......ENTERPRISE......*/
+/* line 124, ../../app/assets/stylesheets/components/footer.scss */
+table#powered-by {
+  float: right;
+}
+
+/* line 128, ../../app/assets/stylesheets/components/footer.scss */
+.footer-powered-by {
+  font-family: verdana,sans-serif;
+  font-size: 9px;
+  color: #a8a7a7;
+  text-transform: uppercase;
+  padding-right: 10px;
+}
+
+/* line 136, ../../app/assets/stylesheets/components/footer.scss */
+img#powered-by-logo {
+  padding-bottom: -40px;
+}

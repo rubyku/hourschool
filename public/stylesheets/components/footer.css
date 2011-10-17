@@ -1,0 +1,147 @@
+/*......FOOTER......*/
+/* line 3, ../../../app/assets/stylesheets/components/footer.scss */
+.bottom_bg {
+  background-color: #fff;
+}
+
+/* line 7, ../../../app/assets/stylesheets/components/footer.scss */
+.three-col-left {
+  padding-right: 20px;
+}
+
+/* line 11, ../../../app/assets/stylesheets/components/footer.scss */
+.three-col-middle {
+  margin-right: 20px;
+}
+
+/* line 15, ../../../app/assets/stylesheets/components/footer.scss */
+.three-col-right {
+  margin-bottom: 100px;
+}
+
+/*......FOOTER FONT......*/
+/* line 23, ../../../app/assets/stylesheets/components/footer.scss */
+.footer-heading {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* line 34, ../../../app/assets/stylesheets/components/footer.scss */
+.footer-date {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 10px;
+  color: #cccccc;
+}
+
+/* line 41, ../../../app/assets/stylesheets/components/footer.scss */
+.footer-blog-title {
+  color: #999999;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+/* line 49, ../../../app/assets/stylesheets/components/footer.scss */
+table#footer, td#footer {
+  padding-bottom: 5px;
+}
+
+/* line 53, ../../../app/assets/stylesheets/components/footer.scss */
+img.footer_contact {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 59, ../../../app/assets/stylesheets/components/footer.scss */
+.footer_contact {
+  position: relative;
+  float: left;
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+}
+
+/* line 69, ../../../app/assets/stylesheets/components/footer.scss */
+p.footer {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+}
+
+/* line 77, ../../../app/assets/stylesheets/components/footer.scss */
+a.footer {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  line-height: 16px;
+  color: #999999;
+  text-decoration: underline;
+}
+
+/* line 85, ../../../app/assets/stylesheets/components/footer.scss */
+.newsletterForm {
+  border: 1px solid #eeeaea;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
+  width: 220px;
+  height: 30px;
+  color: #666;
+  padding-left: 5px;
+  font-style: italic;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+/* line 99, ../../../app/assets/stylesheets/components/footer.scss */
+.newsletterButton {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 84px;
+  height: 33px;
+  background-color: #999;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/*......ENTERPRISE......*/
+/* line 124, ../../../app/assets/stylesheets/components/footer.scss */
+table#powered-by {
+  float: right;
+}
+
+/* line 128, ../../../app/assets/stylesheets/components/footer.scss */
+.footer-powered-by {
+  font-family: verdana,sans-serif;
+  font-size: 9px;
+  color: #a8a7a7;
+  text-transform: uppercase;
+  padding-right: 10px;
+}
+
+/* line 136, ../../../app/assets/stylesheets/components/footer.scss */
+img#powered-by-logo {
+  padding-bottom: -40px;
+}

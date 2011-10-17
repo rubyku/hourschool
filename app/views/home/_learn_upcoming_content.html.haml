@@ -1,10 +1,17 @@
 - classes_this_week.each do |c|
-	.thumbnail
+	.classBlock
 		- if c.photo.exists?
 			= image_tag(c.photo.url)
+			%img.class-arrow{:src => '../../../images/v2/arrow_white_pointup.png'}
 		- else
-			= image_tag("learning_logo1.jpg")
+			= image_tag("../../../images/v2-courses/112_BakingBread.jpg")
+			%img.class-arrow{:src => '../../../images/v2/arrow_white_pointup.png'}
 		%br
-			= link_to "#{c.title}", c
 			
-			= "#{(c.date - Date.today).numerator} days from today"
+			.class-description
+				.heading13-class 
+					= link_to "#{c.title}", c
+				%p= c.description.truncate(50)
+				.heading9-class 
+					> 3 spots left!
+					= "#{(c.date - Date.today).numerator} days from today"

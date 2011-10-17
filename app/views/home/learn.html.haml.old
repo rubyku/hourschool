@@ -1,0 +1,69 @@
+.left-link
+	%ul{:class => "hmenu"}
+		
+		%li= link_to "Learn", learn_path
+		%li= link_to "Teach", teach_path
+		%li= link_to "Local partner", "#"
+		%li= link_to "Organization", organization_path
+.right-link
+	%ul{:class => "hmenu"}
+		= render "devise/menu/user_login_items"
+		= render "devise/menu/user_registration_items"
+.content
+	#learn-search-bar
+		= form_tag root_path, :method => 'post' do
+			= text_field_tag :search, params[:search]
+			= submit_tag "find a class"
+	.nav
+		#nav-browse-city
+			%h3= "Browse by city"
+			%li= link_to "All", "#"
+			%li= link_to "Austin", "#"
+			%li= link_to "San Fransisco", "#"
+			%p= "Do not find your city?"
+			#learn-city-search-bar
+				= form_tag root_path, :method => 'post' do
+					= text_field_tag :search, params[:search]
+					= submit_tag "find your city"
+		
+		#nav-browse-time
+			%h3= "Browse by Time"
+			%li= link_to "Upcoming", "#"
+			%li= link_to "Past classes", "#"
+		#nav-browse-category
+			%h3= "Browse by Category"
+			- TAGS.each do |tg|
+				%li= link_to "#{tg}", search_by_tg_path("index"=>TAGS.index(tg)), :remote => true
+			
+		#nav-misc-category
+			%h3= "Can't find a class you want?"
+			%li= link_to "Request a class", new_csuggestion_path
+		#nav-misc-category
+			%h3= "Show me a something awesome"
+			%li= link_to "Inspire me", @random_course
+			
+	#learn-content
+		%h3= "Upcoming classes"
+		#learn-upcoming-classes
+			= render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes_this_week}
+			
+		%h3= "Help make these classes happen"
+		#learn-help-make-classes-happen
+			- @top_suggestions.each do |t|
+				.suggbox
+					%p= t.name
+					%p
+						%span{:id => "vote_count_#{t.id}"}
+							= "Currently has #{t.votes_for} votes"
+						%span{:id => "vote_link_#{t.id}"}
+							- if user_signed_in?
+								- if !current_user.voted_on?(t)
+									= link_to "Vote up", csvote_path("csid" => t.id), :remote => true
+								- else
+									= "You voted up "
+							- else
+								= link_to_function "Vote up", "alert('Please login to vote!')"
+			
+	
+	
+	

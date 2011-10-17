@@ -1,4 +1,4 @@
-ul.hmenu {
+/*ul.hmenu {
   list-style: none;
   margin: 0 0 2em;
   padding: 10px;
@@ -132,6 +132,9 @@ p {
 	padding-top: 25px;
 	padding-left: 20px;
 }
+
+*/
+
 /*#teach-upcoming-classes {
 	height: 300px;
 	background: #bfbfbf;
@@ -139,6 +142,7 @@ p {
 	overflow: hidden;
 }*/
 
+/*
 #learn-upcoming-classes img {
 	padding: 5px;
 	display: inline;
@@ -149,8 +153,7 @@ p {
 }
 #learn-help-make-classes-happen, #teach-upcoming-classes {
 	padding-bottom: 25px;
-	/*background: #bfbfbf;
-	height: 200px;*/
+	
 }
 .suggbox {
 	border: 1px solid #bfbfbf;
@@ -169,6 +172,7 @@ padding: 5px;
 }
 
 .clearboth { clear: both; }
+*/
 /*
 article, aside, figure, footer, header, hgroup, menu, nav, section { display:block; }
 */

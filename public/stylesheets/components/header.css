@@ -1,0 +1,278 @@
+/*......NOT LOGGED IN......*/
+/* line 3, ../../../app/assets/stylesheets/components/header.scss */
+#header {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  overflow: hidden;
+}
+
+/* line 10, ../../../app/assets/stylesheets/components/header.scss */
+#logo {
+  position: relative;
+  float: left;
+}
+
+/* line 15, ../../../app/assets/stylesheets/components/header.scss */
+#login {
+  color: #4f4e4e;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 24, ../../../app/assets/stylesheets/components/header.scss */
+li#login {
+  float: left;
+  color: #8f8f8f;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* line 31, ../../../app/assets/stylesheets/components/header.scss */
+.profile-avatar {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-top: -3px;
+  background-color: #ccc;
+}
+
+/* line 40, ../../../app/assets/stylesheets/components/header.scss */
+table#menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 49, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_teach, td#menu_partners, td#menu_business {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 57, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_learn, td#menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 68, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_learn {
+  width: 176px;
+}
+
+/* line 72, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_teach {
+  width: 170px;
+}
+
+/* line 76, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_partners {
+  width: 170px;
+}
+
+/* line 80, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_business {
+  width: 235px;
+}
+
+/* line 84, ../../../app/assets/stylesheets/components/header.scss */
+td#menu_faq {
+  width: 67px;
+}
+
+/* line 88, ../../../app/assets/stylesheets/components/header.scss */
+a#menu {
+  color: #8f8f8f;
+  text-decoration: none;
+}
+
+/* line 94, ../../../app/assets/stylesheets/components/header.scss */
+a#menu:hover {
+  text-decoration: none;
+  color: #ff7733;
+}
+
+/* line 96, ../../../app/assets/stylesheets/components/header.scss */
+#menu18 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+}
+
+/* line 105, ../../../app/assets/stylesheets/components/header.scss */
+#menu9 {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* line 113, ../../../app/assets/stylesheets/components/header.scss */
+#menu_faq {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/*......LOGGED IN - ENTERPRISE......*/
+/* line 124, ../../../app/assets/stylesheets/components/header.scss */
+#enterprise_peer_learning {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  color: #4f4e4e;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 136, ../../../app/assets/stylesheets/components/header.scss */
+table#enterprise_menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 145, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_request, td#enterprise_menu_community {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 153, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_dashboard, td#enterprise_menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 165, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_dashboard {
+  width: 200px;
+}
+
+/* line 169, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_learn {
+  width: 160px;
+}
+
+/* line 173, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_teach {
+  width: 160px;
+}
+
+/* line 177, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_request {
+  width: 160px;
+}
+
+/* line 181, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_community {
+  width: 200px;
+}
+
+/* line 185, ../../../app/assets/stylesheets/components/header.scss */
+td#enterprise_menu_faq {
+  width: 67px;
+}
+
+/*......LOGGED IN - COMMUNITY......*/
+/* line 191, ../../../app/assets/stylesheets/components/header.scss */
+#peer-learning-at {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* line 202, ../../../app/assets/stylesheets/components/header.scss */
+table#community_menu {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* line 211, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_teach, td#community_menu_request, td#community_menu_community {
+  border: 1px solid #d0cdcd;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 219, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_learn, td#community_menu_faq {
+  border-top: 1px solid #d0cdcd;
+  border-bottom: 1px solid #d0cdcd;
+  border-left: 0px;
+  border-right: 0px;
+  height: 60px;
+  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 231, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_learn {
+  width: 176px;
+}
+
+/* line 235, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_teach {
+  width: 170px;
+}
+
+/* line 239, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_request {
+  width: 170px;
+}
+
+/* line 243, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_community {
+  width: 235px;
+}
+
+/* line 247, ../../../app/assets/stylesheets/components/header.scss */
+td#community_menu_faq {
+  width: 67px;
+}
