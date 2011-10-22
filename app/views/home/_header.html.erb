@@ -1,0 +1,69 @@
+<div id="header">
+  <div class="container_16">
+    
+    <!-- <a href="/p/dashboard" id="logo"> -->
+	<%= link_to image_tag("/images/v2/Logo_Orange.png"), user_root_path, :id => "logo" %>
+       
+    
+  
+    <div id="login">
+        <ul id="login">
+          <li id="login">Peer learning in Austin</li>
+          <li id="login">
+			<% link_to profile_path do %>
+				<div class="profile-avatar"></div>
+			<% end %>
+		  </li> 
+          <li id="login">
+			<%= link_to current_user.name, profile_path, :id => "menu"%>
+			<!-- <a href="/p/profile" id="menu">Abby Goldsmith</a> -->
+		 </li>
+          <li id="login">
+			<img src="images/v2/arrow_grey_profile.png" class="profile-arrow">
+		 </li>
+        </ul>
+    </div>
+   
+        <table id="menu">
+          <tr id="menu">
+              <td id="community_menu_learn">
+				<% link_to learn_path, :id => "menu" do %>
+                <!-- <a href="/p/learn" id="menu"> -->
+                  <div id="menu18">Learn</div> 
+                  <div id="menu9">something new</div>
+                <!-- </a> -->
+				<% end %>
+              </td>
+              <td id="community_menu_teach">
+                <% link_to teach_path, :id => "menu" do %>
+                  <div id="menu9">Offer to</div>
+                  <div id="menu18">teach</div>
+                <% end %>
+              </td>
+            <td id="community_menu_request">
+			<% link_to new_csuggestion_path, :id => "menu" do %>
+              
+                <div id="menu18">Request</div>
+                <div id="menu9">a class</div>
+              <% end %>
+            </td>
+            <td id="community_menu_community">
+              <% link_to community_path, :id => "menu" do %>
+                <div id="menu9">Help build your</div>
+                <div id="menu18">Community</div>
+              <% end %>
+            </td>
+            <td id="community_menu_faq">
+              <% link_to community_faq_path, :id => "menu" do %>
+                <div id="menu_faq">F</div>
+                <div id="menu_faq">A</div>
+                <div id="menu_faq">Q</div>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+
+
+  </div><!-- /end .container_16 -->
+
+</div><!-- /end #header -->

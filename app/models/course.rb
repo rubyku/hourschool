@@ -49,6 +49,9 @@ class Course < ActiveRecord::Base
     
   end
   
+  def seats_left
+    self.seats - self.students.count
+  end
    
    def future?
      date - Date.today > 0

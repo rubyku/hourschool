@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   
   acts_as_voter
   
+  
+  
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
     p data

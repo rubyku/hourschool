@@ -41,7 +41,12 @@
 </head>
 <body>
 	
-<%= yield %>
+	<div class="container_16 main clearfix">  
+	  <%= yield %>
+	</div>
 
+<div class="bottom_bg">
+  <%= render :partial => 'shared/footer' %>
+</div><!-- /end .bottom_bg -->
 </body>
 </html>

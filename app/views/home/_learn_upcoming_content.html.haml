@@ -1,5 +1,11 @@
+- count = 0
 - classes_this_week.each do |c|
-	.classBlock
+	- count = count + 1
+	- if count%3 == 0
+		- className = "classBlock_last"
+	- else
+		- className = "classBlock"
+	%div{:class => "#{className}"}
 		- if c.photo.exists?
 			= image_tag(c.photo.url)
 			%img.class-arrow{:src => '../../../images/v2/arrow_white_pointup.png'}
@@ -13,5 +19,5 @@
 					= link_to "#{c.title}", c
 				%p= c.description.truncate(50)
 				.heading9-class 
-					> 3 spots left!
+					= "#{c.seats_left} seats left"
 					= "#{(c.date - Date.today).numerator} days from today"

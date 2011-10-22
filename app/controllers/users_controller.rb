@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+  before_filter :authenticate_user!
   def index
     @users = User.all
   end
@@ -13,6 +13,10 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       p current_user
     end
+  end
+  
+  def profile
+    
   end
 
 end

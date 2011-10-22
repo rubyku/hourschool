@@ -1,9 +1,30 @@
-.content
-	%h1= @user.name
-	%ul{:class => "hmenu"}
-		= render 'devise/menu/user_registration_items'
-		= render 'devise/menu/user_login_items' 
-	%p= @user.email
-	%p= "Student = #{@user.student_for}"
-	%p= "Teacher = #{@user.teacher_for}"
+/ .content
+/ 	%h1= @user.name
+/ 	%ul{:class => "hmenu"}
+/ 		= render 'devise/menu/user_registration_items'
+/ 		= render 'devise/menu/user_login_items' 
+/ 	%p= @user.email
+/ 	%p= "Student = #{@user.student_for}"
+/ 	%p= "Teacher = #{@user.teacher_for}"
+= render :partial => "home/header"	
+.container_16.searchBar.clearfix
+	= form_tag root_path, :method => 'post' do
+		%input.searchForm(type='text' placeholder='Find a class to attend')
+		%img.mag-glass{:src => 'images/v2/search-magnifying-glass-orange.png'}
+		= submit_tag "Search", :class => "searchButton"
+
+.page
+	.page-content
+		.page-section-float-left.clearfix
+			.welcome-header 
+				="Welcome back, #{@user.name}"
+			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+			%ul.sub-nav.clearfix
+				%li.sub-nav-active 
+					%a.sub-nav-active(href="") Everyone's activities
+				%li.sub-nav-inactive 
+					%a.sub-nav-inactive(href="") My activities
+
+		.page-section-float-left
 	
+

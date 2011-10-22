@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     @location = params[:location]
     date = Date.today
     #get 10 classes this week
-    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 1)).limit(10)
+    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 1)).limit(6)
     # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,
@@ -42,6 +42,12 @@ class HomeController < ApplicationController
   end
   
   def organization
+  end
+  
+  def community
+  end
+  
+  def community_faq
   end
 
 end

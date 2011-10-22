@@ -3,9 +3,7 @@
 		%ul.searchFilter
 			%li
 				.sidebar-heading Browse By City
-			%li All
-			%li Austin
-			%li San Franscico
+		
 			- SUPPORTED_CITIES.each do |sc|
 				%li= link_to "#{sc}", '#', :remote => true
 		%ul.searchFilter
@@ -21,7 +19,7 @@
 
 	%hr#class    
 	.sidebar-content
-		.sidebar-heading Classes you might like
+		.sidebar-heading Classes we like
 		.sidebar-block
 			.heading13-class Putting Techniques
 			.heading9-class Oct 3, 6:00P
@@ -48,15 +46,15 @@
 				%li.avatar-list
 					%a(href="/p/profile")
 						.avatar
-		.sidebar-heading Friends most like you
-		.sidebar-block
-			%a(href="/p/profile")
-				.avatar-medium
-			%p.profile-name-blurb Norman Tran
-			%p.profile-location-blurb Austin, TX
-		.sidebar-block-last
-			%a(href="/p/profile")
-				.avatar-medium
-			%p.profile-name-blurb Phill Pappas
-			%p.profile-location-blurb Austin, TX	
+		/ .sidebar-heading Friends most like you
+		/ 		.sidebar-block
+		/ 			%a(href="/p/profile")
+		/ 				.avatar-medium
+		/ 			%p.profile-name-blurb Norman Tran
+		/ 			%p.profile-location-blurb Austin, TX
+		/ 		.sidebar-block-last
+		/ 			%a(href="/p/profile")
+		/ 				.avatar-medium
+		/ 			%p.profile-name-blurb Phill Pappas
+		/ 			%p.profile-location-blurb Austin, TX	
 			

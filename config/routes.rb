@@ -19,9 +19,10 @@ HourschoolV2::Application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
+  match 'user_root' => 'users#show'
   resources :users, :only => [:index, :show] 
   
-  match 'user_root' => 'users#show'
+  
   
   match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
@@ -36,6 +37,10 @@ HourschoolV2::Application.routes.draw do
   match '/enterprise-teach' => 'enterprise#teach'
   match '/esvote' => 'esuggestions#vote'
   match '/eregister' => 'ecourses#register'
+  
+  match '/community' => 'home#community'
+  match '/community_faq' => 'home#community_faq'
+  match '/profile' => 'users#profile'
   
   match '/search_by_tg' => 'home#search_by_tg'
   match '/organization' => 'home#organization'
