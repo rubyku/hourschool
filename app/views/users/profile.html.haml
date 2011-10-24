@@ -1,0 +1,6 @@
+= render :partial => "home/header"	
+.container_16.searchBar.clearfix
+	= form_tag root_path, :method => 'post' do
+		%input.searchForm(type='text' placeholder='Find a class to attend')
+		%img.mag-glass{:src => 'images/v2/search-magnifying-glass-orange.png'}
+		= submit_tag "Search", :class => "searchButton"
