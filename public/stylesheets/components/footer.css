@@ -129,10 +129,12 @@ a.footer {
 /*......ENTERPRISE......*/
 /* line 124, ../../../app/assets/stylesheets/components/footer.scss */
 table#powered-by {
+  margin-top: 60px;
+  margin-bottom: 60px;
   float: right;
 }
 
-/* line 128, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 130, ../../../app/assets/stylesheets/components/footer.scss */
 .footer-powered-by {
   font-family: verdana,sans-serif;
   font-size: 9px;
@@ -141,7 +143,7 @@ table#powered-by {
   padding-right: 10px;
 }
 
-/* line 136, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 138, ../../../app/assets/stylesheets/components/footer.scss */
 img#powered-by-logo {
   padding-bottom: -40px;
 }

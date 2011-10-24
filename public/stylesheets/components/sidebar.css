@@ -1,9 +1,9 @@
 /*
 Syntax error: Undefined variable: "$brand-background".
-        on line 49 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss
+        on line 60 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss
 
 Backtrace:
-/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss:49
+/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss:60
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/script/variable.rb:50:in `_perform'
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/script/node.rb:40:in `perform'
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:216:in `visit_prop'
@@ -80,4 +80,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$brand-background\".\A         on line 49 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss"; }
+  content: "Syntax error: Undefined variable: \"$brand-background\".\A         on line 60 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss"; }

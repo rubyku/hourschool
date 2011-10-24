@@ -8,10 +8,10 @@
 	%div{:class => "#{className}"}
 		- if c.photo.exists?
 			= image_tag(c.photo.url)
-			%img.class-arrow{:src => '../../../images/v2/arrow_white_pointup.png'}
+			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		- else
-			= image_tag("../../../images/v2-courses/112_BakingBread.jpg")
-			%img.class-arrow{:src => '../../../images/v2/arrow_white_pointup.png'}
+			= image_tag("/images/v2-courses/112_BakingBread.jpg")
+			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		%br
 			
 			.class-description
@@ -21,3 +21,11 @@
 				.heading9-class 
 					= "#{c.seats_left} seats left"
 					= "#{(c.date - Date.today).numerator} days from today"
+
+.page-section-float-right
+	%table.view-more
+		%tr
+			%td
+				%img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
+			%td
+				= link_to "view more", "#"

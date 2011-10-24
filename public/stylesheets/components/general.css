@@ -1,83 +1,1046 @@
-/*
-Syntax error: Undefined variable: "$brand-background".
-        on line 46 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/general.scss
+/*......RESET.......*/
+/*...Ensures default variables in different browsers are the same...*/
+/* line 3, ../../../app/assets/stylesheets/components/general.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+}
 
-Backtrace:
-/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/general.scss:46
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/script/variable.rb:50:in `_perform'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/script/node.rb:40:in `perform'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:216:in `visit_prop'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `map'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:236:in `visit_rule'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `map'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `block in visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:47:in `visit_root'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:7:in `visit'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/root_node.rb:20:in `render'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:293:in `_render'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:241:in `block in render'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/util.rb:297:in `silence_sass_warnings'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:241:in `render'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:136:in `block (2 levels) in compile'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:122:in `timed'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:135:in `block in compile'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/logger.rb:45:in `red'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:134:in `compile'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:114:in `compile_if_required'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:99:in `block (2 levels) in run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:97:in `each'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:97:in `block in run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:122:in `timed'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:96:in `run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/watch_project.rb:142:in `recompile'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `call'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `run_callback'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:55:in `callback_action'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:35:in `update'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:39:in `block in modified'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `each'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `modified'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:18:in `refresh'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:30:in `block in temporary_multipath_handler'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `each'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `temporary_multipath_handler'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:17:in `block (2 levels) in run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `each'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `block in run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/rb-fsevent-0.4.3.1/lib/rb-fsevent/fsevent.rb:37:in `call'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/rb-fsevent-0.4.3.1/lib/rb-fsevent/fsevent.rb:37:in `run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:20:in `run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/monitor.rb:26:in `run'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm.rb:20:in `monitor'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/watch_project.rb:86:in `perform'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/base.rb:18:in `execute'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/project_base.rb:19:in `execute'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:25:in `block in <top (required)>'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:39:in `call'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:39:in `<top (required)>'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/bin/compass:19:in `load'
-/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/bin/compass:19:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$brand-background\".\A         on line 46 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/general.scss"; }
+/*......HOURSCHOOL V2.......*/
+/* line 19, ../../../app/assets/stylesheets/components/general.scss */
+body {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: #4f4e4e;
+  line-height: 18px;
+  background-color: none;
+  background-image: url(../../../images/v2/BG_grey.png);
+  position: relative;
+}
+
+/* line 29, ../../../app/assets/stylesheets/components/general.scss */
+p, ol, ul {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  color: #4f4e4e;
+  line-height: 18px;
+  letter-spacing: auto;
+}
+
+/* line 37, ../../../app/assets/stylesheets/components/general.scss */
+a {
+  text-decoration: none;
+  color: #d70100;
+}
+
+/* line 38, ../../../app/assets/stylesheets/components/general.scss */
+a:visited {
+  text-decoration: none;
+  color: #d70100;
+}
+
+/* line 39, ../../../app/assets/stylesheets/components/general.scss */
+a:active {
+  text-decoration: underline;
+  color: #d70100;
+}
+
+/* line 40, ../../../app/assets/stylesheets/components/general.scss */
+a:hover {
+  text-decoration: none;
+  color: #d70100;
+}
+
+/*......PAGE BREAKDOWN......*/
+/* line 45, ../../../app/assets/stylesheets/components/general.scss */
+.brand_bg {
+  background-color: #d70100;
+  height: 3px;
+}
+
+/* line 50, ../../../app/assets/stylesheets/components/general.scss */
+.enterprise_brand_bg {
+  background-color: #d70100;
+  height: 7px;
+}
+
+/* line 55, ../../../app/assets/stylesheets/components/general.scss */
+.middle_bg {
+  background-image: url(../../../images/v2/BG_grey.png);
+}
+
+/* line 59, ../../../app/assets/stylesheets/components/general.scss */
+.bottom_bg {
+  background-color: #fff;
+}
+
+/* line 63, ../../../app/assets/stylesheets/components/general.scss */
+.main {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+}
+
+/* line 68, ../../../app/assets/stylesheets/components/general.scss */
+.full-page {
+  width: 960px;
+  float: left;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+/* line 75, ../../../app/assets/stylesheets/components/general.scss */
+.marcomm-half-page {
+  width: 960px;
+  float: left;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  background-color: #fff;
+}
+
+/* line 83, ../../../app/assets/stylesheets/components/general.scss */
+.page {
+  width: 700px;
+  float: left;
+  padding-bottom: 30px;
+  background-color: #fff;
+}
+
+/* line 90, ../../../app/assets/stylesheets/components/general.scss */
+.page-content {
+  padding: 30px 30px 30px;
+}
+
+/* line 94, ../../../app/assets/stylesheets/components/general.scss */
+.page-section-float-left {
+  float: left;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* line 100, ../../../app/assets/stylesheets/components/general.scss */
+.page-section-float-right {
+  float: right;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+/* line 106, ../../../app/assets/stylesheets/components/general.scss */
+.sidebar {
+  width: 260px;
+  float: left;
+}
+
+/* line 111, ../../../app/assets/stylesheets/components/general.scss */
+.sidebar-white {
+  width: 250px;
+  float: left;
+  background-color: #fff;
+  margin-left: 10px;
+}
+
+/* line 118, ../../../app/assets/stylesheets/components/general.scss */
+.sidebar-content {
+  padding: 0px 0px 10px 30px;
+}
+
+/* line 122, ../../../app/assets/stylesheets/components/general.scss */
+.sidebar-content-white {
+  padding: 30px 15px 10px 15px;
+}
+
+/* line 126, ../../../app/assets/stylesheets/components/general.scss */
+ul.noBullet {
+  list-style-type: none;
+}
+
+/* line 130, ../../../app/assets/stylesheets/components/general.scss */
+li.noBullet {
+  float: left;
+}
+
+/*......SEARCH......*/
+/* line 136, ../../../app/assets/stylesheets/components/general.scss */
+.searchBar {
+  margin-top: -15px;
+  margin-bottom: 25px;
+}
+
+/* line 141, ../../../app/assets/stylesheets/components/general.scss */
+.mag-glass {
+  position: relative;
+  float: left;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -32px;
+  margin-left: 22px;
+}
+
+/* line 150, ../../../app/assets/stylesheets/components/general.scss */
+.searchForm {
+  position: relative;
+  float: left;
+  width: 95%;
+  height: 40px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  margin-left: 0px;
+  margin-top: 20px;
+  padding-left: 40px;
+  color: #666;
+  border: 5px solid #ccc;
+  opacity: 0.5;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 170, ../../../app/assets/stylesheets/components/general.scss */
+.searchButton {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 110px;
+  height: 40px;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -45px;
+  margin-right: 3px;
+  background-color: #d70100;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+/*......SUB-NAV.....*/
+/* line 197, ../../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-active {
+  color: black;
+}
+
+/* line 198, ../../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-inactive {
+  color: #8f8f8f;
+}
+
+/* line 199, ../../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-active:hover {
+  text-decoration: none;
+  color: #d70100;
+}
+
+/* line 200, ../../../app/assets/stylesheets/components/general.scss */
+a.sub-nav-inactive:hover {
+  text-decoration: none;
+  color: #d70100;
+}
+
+/* line 202, ../../../app/assets/stylesheets/components/general.scss */
+ul.sub-nav {
+  list-style: none;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+/* line 212, ../../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-active, li.sub-nav-inactive {
+  float: left;
+  margin-right: 10px;
+  padding-bottom: 3px;
+}
+
+/* line 218, ../../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-active {
+  border-bottom: 3px solid #d70100;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* line 224, ../../../app/assets/stylesheets/components/general.scss */
+li.sub-nav-inactive {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*......PAGE BIG HEADINGS......*/
+/* line 232, ../../../app/assets/stylesheets/components/general.scss */
+.heading25_ccc {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+}
+
+/* line 242, ../../../app/assets/stylesheets/components/general.scss */
+.welcome-header {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 40px;
+}
+
+/* line 250, ../../../app/assets/stylesheets/components/general.scss */
+.greyheader_half {
+  position: relative;
+  float: left;
+  width: 680px;
+  margin-top: -76px;
+  margin-left: -45px;
+  overflow: visible;
+  z-index: 10;
+}
+
+/*......DASHBOARD......*/
+/* line 262, ../../../app/assets/stylesheets/components/general.scss */
+.dashbord-story {
+  float: left;
+  width: 100%;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 2px dashed #ccc;
+}
+
+/* line 271, ../../../app/assets/stylesheets/components/general.scss */
+ul.dashboard-name {
+  list-style: none;
+  margin-top: 5px;
+}
+
+/* line 276, ../../../app/assets/stylesheets/components/general.scss */
+li.dashboard-name {
+  float: left;
+  top: 0px;
+  padding-right: 7px;
+  vertical-align: middle;
+}
+
+/* line 283, ../../../app/assets/stylesheets/components/general.scss */
+ul.class {
+  float: left;
+  top: 0px;
+  margin-right: 10px;
+}
+
+/* line 289, ../../../app/assets/stylesheets/components/general.scss */
+ul.status {
+  float: right;
+  top: 0px;
+}
+
+/* line 294, ../../../app/assets/stylesheets/components/general.scss */
+ul.comment {
+  float: left;
+  position: absolute;
+  width: 450px;
+  margin-top: 27px;
+  margin-left: 125px;
+}
+
+/* line 302, ../../../app/assets/stylesheets/components/general.scss */
+img.dashboard-icon {
+  float: left;
+  margin-top: 1px;
+}
+
+/* line 307, ../../../app/assets/stylesheets/components/general.scss */
+img.dashboard-class {
+  float: right;
+}
+
+/* line 311, ../../../app/assets/stylesheets/components/general.scss */
+.dashboard-name {
+  color: #d70100;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  float: left;
+}
+
+/*......LEARN PAGE.....*/
+/* line 321, ../../../app/assets/stylesheets/components/general.scss */
+ul.searchFilter {
+  list-style-type: none;
+  margin-bottom: 20px;
+  font-size: 11px;
+  line-height: 23px;
+}
+
+/* line 328, ../../../app/assets/stylesheets/components/general.scss */
+.classRow {
+  float: left;
+  width: 650px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* line 335, ../../../app/assets/stylesheets/components/general.scss */
+.classBlock {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 30px;
+}
+
+/* line 346, ../../../app/assets/stylesheets/components/general.scss */
+.classBlock_last {
+  float: left;
+  width: 190px;
+  height: 250px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 356, ../../../app/assets/stylesheets/components/general.scss */
+img.class-arrow {
+  position: relative;
+  float: right;
+  margin-top: -13px;
+  margin-right: 10px;
+}
+
+/* line 363, ../../../app/assets/stylesheets/components/general.scss */
+.class-description {
+  padding: 10px;
+}
+
+/* line 367, ../../../app/assets/stylesheets/components/general.scss */
+table.view-more, tr.view-more {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+/* line 373, ../../../app/assets/stylesheets/components/general.scss */
+ul.view-more-arrow {
+  float: left;
+  list-style-type: none;
+}
+
+/* line 378, ../../../app/assets/stylesheets/components/general.scss */
+a.view-more {
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-style: italic;
+  color: #bbbbbb;
+  text-decoration: none;
+  padding-left: 4px;
+  padding-bottom: 5px;
+}
+
+/*......CLASS BLOCK.....*/
+/* line 393, ../../../app/assets/stylesheets/components/general.scss */
+.heading13-class {
+  color: #d70100;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* line 400, ../../../app/assets/stylesheets/components/general.scss */
+.heading9-class {
+  font-weight: 400;
+  font-size: 9px;
+}
+
+/* line 405, ../../../app/assets/stylesheets/components/general.scss */
+.heading10-class {
+  font-weight: 400;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+/*......VOTE FOR A CLASS.....*/
+/* line 414, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class {
+  margin-top: 0px;
+  padding: 20px 20px 0px 0px;
+  border-bottom: 1px dashed #ccc;
+}
+/* line 419, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class a {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #4f4e4e;
+  line-height: 20px;
+  text-decoration: none;
+  padding-left: 3px;
+  margin-top: 3px;
+}
+/* line 427, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class a:hover {
+  text-decoration: underline;
+}
+
+/* line 433, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-last {
+  margin-top: 0px;
+  padding: 20px 20px 0px 0px;
+}
+/* line 437, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-last a {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #4f4e4e;
+  line-height: 20px;
+  text-decoration: none;
+  padding-left: 3px;
+  margin-top: 3px;
+}
+/* line 445, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-last a:hover {
+  text-decoration: underline;
+}
+
+/* line 451, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-title {
+  float: left;
+}
+
+/* line 455, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-number {
+  float: right;
+}
+
+/* line 459, ../../../app/assets/stylesheets/components/general.scss */
+.vote-class-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  margin-left: 8px;
+  width: 87px;
+  height: 30px;
+  background-color: #d70100;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/* line 480, ../../../app/assets/stylesheets/components/general.scss */
+.heading35-vote {
+  color: #d70100;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 35px;
+  text-align: center;
+  margin-left: -5px;
+  margin-bottom: 5px;
+}
+
+/* line 491, ../../../app/assets/stylesheets/components/general.scss */
+.heading20-vote {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+/* line 499, ../../../app/assets/stylesheets/components/general.scss */
+.heading10-vote {
+  color: #8f8f8f;
+  text-transformnsform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+/*......TEACH PAGE.....*/
+/* line 513, ../../../app/assets/stylesheets/components/general.scss */
+.claim-class-button {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #d70100;
+  color: white;
+  text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+/* line 532, ../../../app/assets/stylesheets/components/general.scss */
+.why-teach {
+  margin-top: 20px;
+  padding: 0px 10px 0px 0px;
+}
+
+/* line 537, ../../../app/assets/stylesheets/components/general.scss */
+.why-teach-short {
+  width: 75%;
+  float: left;
+  margin-bottom: 30px;
+}
+
+/* line 543, ../../../app/assets/stylesheets/components/general.scss */
+.why-teach-last {
+  margin-top: 20px;
+  padding: 0px 20px 30px 0px;
+}
+
+/* line 548, ../../../app/assets/stylesheets/components/general.scss */
+#create-class-button {
+  float: left;
+  width: 135px;
+  height: 85px;
+  background-color: #d70100;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+/* line 558, ../../../app/assets/stylesheets/components/general.scss */
+img#create-class-star {
+  margin-top: 10px;
+  margin-left: 46px;
+}
+
+/* line 564, ../../../app/assets/stylesheets/components/general.scss */
+.heading15-whyteach {
+  /*  color: $brand-background;*/
+  /*  text-transform: uppercase;*/
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+/* line 573, ../../../app/assets/stylesheets/components/general.scss */
+.create-class-heading {
+  float: left;
+  padding-top: 5px;
+  padding-left: 18px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  color: white;
+  font-size: 10;
+}
+
+/*......CLASS DETAIL PAGE.....*/
+/* line 587, ../../../app/assets/stylesheets/components/general.scss */
+.class-logistic-block {
+  float: left;
+  width: 220px;
+  margin-right: 0px;
+}
+
+/* line 593, ../../../app/assets/stylesheets/components/general.scss */
+.class-logistic-line {
+  float: left;
+  width: 200px;
+  margin-right: 0px;
+}
+
+/* line 599, ../../../app/assets/stylesheets/components/general.scss */
+.class-description-block {
+  float: left;
+  width: 400px;
+}
+
+/* line 604, ../../../app/assets/stylesheets/components/general.scss */
+.class-attendance-block {
+  float: left;
+  width: 220px;
+  padding: 0px 0px 10px 0px;
+}
+
+/* line 610, ../../../app/assets/stylesheets/components/general.scss */
+img#fb-comment {
+  margin-top: 10px;
+}
+
+/* line 614, ../../../app/assets/stylesheets/components/general.scss */
+hr#class {
+  border: 1px dashed #ededed;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* line 622, ../../../app/assets/stylesheets/components/general.scss */
+p.class-detail {
+  margin-bottom: 10px;
+}
+
+/* line 626, ../../../app/assets/stylesheets/components/general.scss */
+ul.withBullets {
+  list-style-type: square;
+}
+
+/* line 630, ../../../app/assets/stylesheets/components/general.scss */
+li.withBullets {
+  margin-bottom: 10px;
+}
+
+/* line 634, ../../../app/assets/stylesheets/components/general.scss */
+.class-section-heading {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+/* line 644, ../../../app/assets/stylesheets/components/general.scss */
+.class-details {
+  color: #666;
+  font-weight: 700;
+  font-size: 12px;
+  width: 190px;
+}
+
+/* line 651, ../../../app/assets/stylesheets/components/general.scss */
+p.class-details {
+  color: #666;
+  font-weight: 400;
+  font-size: 12px;
+  width: 180px;
+}
+
+/* line 658, ../../../app/assets/stylesheets/components/general.scss */
+.class-alterntives {
+  font-weight: 400;
+  font-size: 9px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+/* line 665, ../../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-cost {
+  margin-right: 3px;
+}
+
+/* line 669, ../../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-when {
+  margin-right: 7px;
+}
+
+/* line 673, ../../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-where {
+  margin-right: 10px;
+}
+
+/* line 677, ../../../app/assets/stylesheets/components/general.scss */
+img.class-details-icon-heart {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+/* line 682, ../../../app/assets/stylesheets/components/general.scss */
+p.class-details-heart-number {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* line 687, ../../../app/assets/stylesheets/components/general.scss */
+.class-button {
+  float: left;
+  text-align: center;
+  width: 91%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #d70100;
+  color: white;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 7px 10px 7px 10px;
+}
+
+/* line 704, ../../../app/assets/stylesheets/components/general.scss */
+.class-title-big {
+  float: left;
+  color: #8f8f8f;
+  width: 400px;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  line-height: 22px;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/*......CONFIRM......*/
+/* line 719, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-classBlock {
+  float: left;
+  width: 190px;
+  height: 500px;
+  background-color: white;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 30px;
+}
+
+/* line 730, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-first-message {
+  text-transform: uppercase;
+  color: #d70100;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 10px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 742, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-second-message {
+  text-transform: uppercase;
+  color: #d70100;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 20px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 754, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-bring-friend {
+  text-transform: uppercase;
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 20px;
+  float: left;
+  letter-spacing: 0.15em;
+  width: 100%;
+}
+
+/* line 766, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-copy-url {
+  float: left;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  margin-right: 10px;
+  margin-top: 21px;
+  margin-bottom: 20px;
+}
+
+/* line 778, ../../../app/assets/stylesheets/components/general.scss */
+hr#confirm {
+  border: 1px dashed #ededed;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/*......PROFILE PAGE......*/
+/* line 791, ../../../app/assets/stylesheets/components/general.scss */
+.classes-taught {
+  float: left;
+  width: 300px;
+  height: 217px;
+  margin-bottom: 20px;
+  background-color: white;
+  text-align: center;
+  border: 1px solid #ededed;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+/* line 804, ../../../app/assets/stylesheets/components/general.scss */
+.classes-taken {
+  float: left;
+  width: 300px;
+  height: 217px;
+  margin-bottom: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+/* line 813, ../../../app/assets/stylesheets/components/general.scss */
+.profile-big-number-active {
+  color: #d70100;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 110px;
+  padding-top: 75px;
+}
+
+/* line 821, ../../../app/assets/stylesheets/components/general.scss */
+.profile-big-number-inactive {
+  color: #ededed;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 110px;
+  padding-top: 75px;
+}
+
+/* line 829, ../../../app/assets/stylesheets/components/general.scss */
+.profile-big-words-active {
+  color: #8f8f8f;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 45px;
+}
+
+/* line 839, ../../../app/assets/stylesheets/components/general.scss */
+.profile-big-words-inactive {
+  color: #ededed;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: 45px;
+}
+
+/* line 850, ../../../app/assets/stylesheets/components/general.scss */
+a.profile-link {
+  color: #d70100;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* line 856, ../../../app/assets/stylesheets/components/general.scss */
+a.bio-detail-header {
+  float: left;
+  color: #8f8f8f;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* line 864, ../../../app/assets/stylesheets/components/general.scss */
+.profile-heading10 {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+}
+
+/* line 874, ../../../app/assets/stylesheets/components/general.scss */
+ul.avatar {
+  float: left;
+  list-style-type: none;
+  margin-bottom: 20px;
+  line-height: 23px;
+}
+
+/* line 881, ../../../app/assets/stylesheets/components/general.scss */
+li.avatar {
+  float: left;
+}
+
+/* line 885, ../../../app/assets/stylesheets/components/general.scss */
+.avatar {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: #ccc;
+}
+
+/* line 894, ../../../app/assets/stylesheets/components/general.scss */
+.avatar-30 {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-top: -5px;
+  background-color: #ccc;
+}
+
+/* line 902, ../../../app/assets/stylesheets/components/general.scss */
+.avatar-100 {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 15px;
+  background-color: #ccc;
+}
+
+/* line 910, ../../../app/assets/stylesheets/components/general.scss */
+.avatar-medium {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+/* line 918, ../../../app/assets/stylesheets/components/general.scss */
+.avatar-big {
+  width: 190px;
+  height: 190px;
+  margin-bottom: 10px;
+  float: left;
+  margin-right: 10px;
+  background-color: #ccc;
+}

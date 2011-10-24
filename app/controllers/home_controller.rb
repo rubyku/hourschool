@@ -49,5 +49,8 @@ class HomeController < ApplicationController
   
   def community_faq
   end
+  
+  def contactus
+  end
 
 end

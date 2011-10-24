@@ -1,47 +1,7 @@
-.left-link
-	%ul{:class => "hmenu"}
-		
-		%li= link_to "Learn", learn_path
-		%li= link_to "Teach", teach_path
-		%li= link_to "Local partner", "#"
-		%li= link_to "Organization", "#"
-.right-link
-	/ %ul{:class => "hmenu"}
-	/ 		%li= link_to "Sign up", new_user_registration_path
-	/ 		%li= link_to "Login", new_user_session_path
-	%ul{:class => "hmenu"}
-		= render "devise/menu/user_login_items"
-		= render "devise/menu/user_registration_items"
-.content
-	#learn-search-bar
-		= form_tag root_path, :method => 'post' do
-			= text_field_tag :search, params[:search]
-			= submit_tag "find a class"
-	.nav
-		%br/
-		%br/
-		#nav-misc-category
-			%h3= "Have a great idea for a class?"
-			%li= link_to "Teach it", new_course_path
-		#nav-misc-category
-			%h3= "Show me something to teach?"
-			%li= link_to "Inspire me", "#"
-	#teach-content
-		%h3= "Most popular requested classes"
-		#teach-upcoming-classes
-			- @top_suggestions.each do |t|
-				.suggbox
-					%p= t.name
-					%p
-						%span{:id => "vote_count_#{t.id}"}
-							= "Currently has #{t.votes_for} votes"
-						%span{:id => "vote_link_#{t.id}"}
-							- if user_signed_in?
-								- if !current_user.voted_on?(t)
-									= link_to "Vote up", csvote_path("csid" => t.id), :remote => true
-								- else
-									= "You voted up "
-								= link_to "Teach", new_course_path("req" => t.id)
-							- else
-								= link_to_function "Vote up", "alert('Please login to vote!')"
-		
+= render :partial => "header"
+.container_16.searchBar.clearfix
+	= form_tag root_path, :method => 'post' do
+		%input.searchForm(type='text' placeholder='Find a class to attend')
+		%img.mag-glass{:src => 'images/v2/search-magnifying-glass-orange.png'}
+		= submit_tag "Search", :class => "searchButton"
+= render :partial => "why_teach"

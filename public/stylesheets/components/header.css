@@ -1,5 +1,5 @@
 /*......NOT LOGGED IN......*/
-/* line 3, ../../../app/assets/stylesheets/components/header.scss */
+/* line 5, ../../../app/assets/stylesheets/components/header.scss */
 #header {
   width: 100%;
   padding-top: 20px;
@@ -7,13 +7,13 @@
   overflow: hidden;
 }
 
-/* line 10, ../../../app/assets/stylesheets/components/header.scss */
+/* line 12, ../../../app/assets/stylesheets/components/header.scss */
 #logo {
   position: relative;
   float: left;
 }
 
-/* line 15, ../../../app/assets/stylesheets/components/header.scss */
+/* line 17, ../../../app/assets/stylesheets/components/header.scss */
 #login {
   color: #4f4e4e;
   text-transform: uppercase;
@@ -23,7 +23,7 @@
   letter-spacing: 0.1em;
 }
 
-/* line 24, ../../../app/assets/stylesheets/components/header.scss */
+/* line 26, ../../../app/assets/stylesheets/components/header.scss */
 li#login {
   float: left;
   color: #8f8f8f;
@@ -31,7 +31,7 @@ li#login {
   margin-left: 10px;
 }
 
-/* line 31, ../../../app/assets/stylesheets/components/header.scss */
+/* line 33, ../../../app/assets/stylesheets/components/header.scss */
 .profile-avatar {
   width: 25px;
   height: 25px;
@@ -40,7 +40,7 @@ li#login {
   background-color: #ccc;
 }
 
-/* line 40, ../../../app/assets/stylesheets/components/header.scss */
+/* line 42, ../../../app/assets/stylesheets/components/header.scss */
 table#menu {
   position: relative;
   float: right;
@@ -49,7 +49,7 @@ table#menu {
   margin-bottom: 20px;
 }
 
-/* line 49, ../../../app/assets/stylesheets/components/header.scss */
+/* line 51, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_teach, td#menu_partners, td#menu_business {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -58,7 +58,7 @@ td#menu_teach, td#menu_partners, td#menu_business {
   vertical-align: middle;
 }
 
-/* line 57, ../../../app/assets/stylesheets/components/header.scss */
+/* line 59, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_learn, td#menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -70,44 +70,44 @@ td#menu_learn, td#menu_faq {
   vertical-align: middle;
 }
 
-/* line 68, ../../../app/assets/stylesheets/components/header.scss */
+/* line 70, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_learn {
   width: 176px;
 }
 
-/* line 72, ../../../app/assets/stylesheets/components/header.scss */
+/* line 74, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_teach {
   width: 170px;
 }
 
-/* line 76, ../../../app/assets/stylesheets/components/header.scss */
+/* line 78, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_partners {
   width: 170px;
 }
 
-/* line 80, ../../../app/assets/stylesheets/components/header.scss */
+/* line 82, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_business {
   width: 235px;
 }
 
-/* line 84, ../../../app/assets/stylesheets/components/header.scss */
+/* line 86, ../../../app/assets/stylesheets/components/header.scss */
 td#menu_faq {
   width: 67px;
 }
 
-/* line 88, ../../../app/assets/stylesheets/components/header.scss */
+/* line 90, ../../../app/assets/stylesheets/components/header.scss */
 a#menu {
   color: #8f8f8f;
   text-decoration: none;
 }
 
-/* line 94, ../../../app/assets/stylesheets/components/header.scss */
+/* line 95, ../../../app/assets/stylesheets/components/header.scss */
 a#menu:hover {
   text-decoration: none;
-  color: #ff7733;
+  color: #d70100;
 }
 
-/* line 96, ../../../app/assets/stylesheets/components/header.scss */
+/* line 97, ../../../app/assets/stylesheets/components/header.scss */
 #menu18 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -117,7 +117,7 @@ a#menu:hover {
   line-height: 20px;
 }
 
-/* line 105, ../../../app/assets/stylesheets/components/header.scss */
+/* line 106, ../../../app/assets/stylesheets/components/header.scss */
 #menu9 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -126,7 +126,7 @@ a#menu:hover {
   font-size: 10px;
 }
 
-/* line 113, ../../../app/assets/stylesheets/components/header.scss */
+/* line 114, ../../../app/assets/stylesheets/components/header.scss */
 #menu_faq {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -136,20 +136,20 @@ a#menu:hover {
 }
 
 /*......LOGGED IN - ENTERPRISE......*/
-/* line 124, ../../../app/assets/stylesheets/components/header.scss */
+/* line 125, ../../../app/assets/stylesheets/components/header.scss */
 #enterprise_peer_learning {
   position: relative;
   float: left;
   margin-left: 10px;
-  color: #4f4e4e;
+  color: #d70100;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
 }
 
-/* line 136, ../../../app/assets/stylesheets/components/header.scss */
+/* line 137, ../../../app/assets/stylesheets/components/header.scss */
 table#enterprise_menu {
   position: relative;
   float: right;
@@ -158,7 +158,7 @@ table#enterprise_menu {
   margin-bottom: 20px;
 }
 
-/* line 145, ../../../app/assets/stylesheets/components/header.scss */
+/* line 146, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_request, td#enterprise_menu_community {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -167,7 +167,7 @@ td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_request, 
   vertical-align: middle;
 }
 
-/* line 153, ../../../app/assets/stylesheets/components/header.scss */
+/* line 154, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_dashboard, td#enterprise_menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -179,38 +179,38 @@ td#enterprise_menu_dashboard, td#enterprise_menu_faq {
   vertical-align: middle;
 }
 
-/* line 165, ../../../app/assets/stylesheets/components/header.scss */
+/* line 166, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_dashboard {
   width: 200px;
 }
 
-/* line 169, ../../../app/assets/stylesheets/components/header.scss */
+/* line 170, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_learn {
   width: 160px;
 }
 
-/* line 173, ../../../app/assets/stylesheets/components/header.scss */
+/* line 174, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_teach {
   width: 160px;
 }
 
-/* line 177, ../../../app/assets/stylesheets/components/header.scss */
+/* line 178, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_request {
   width: 160px;
 }
 
-/* line 181, ../../../app/assets/stylesheets/components/header.scss */
+/* line 182, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_community {
   width: 200px;
 }
 
-/* line 185, ../../../app/assets/stylesheets/components/header.scss */
+/* line 186, ../../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_faq {
   width: 67px;
 }
 
 /*......LOGGED IN - COMMUNITY......*/
-/* line 191, ../../../app/assets/stylesheets/components/header.scss */
+/* line 192, ../../../app/assets/stylesheets/components/header.scss */
 #peer-learning-at {
   position: relative;
   float: left;
@@ -222,7 +222,7 @@ td#enterprise_menu_faq {
   letter-spacing: 0.1em;
 }
 
-/* line 202, ../../../app/assets/stylesheets/components/header.scss */
+/* line 203, ../../../app/assets/stylesheets/components/header.scss */
 table#community_menu {
   position: relative;
   float: right;
@@ -231,7 +231,7 @@ table#community_menu {
   margin-bottom: 20px;
 }
 
-/* line 211, ../../../app/assets/stylesheets/components/header.scss */
+/* line 212, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_teach, td#community_menu_request, td#community_menu_community {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -240,7 +240,7 @@ td#community_menu_teach, td#community_menu_request, td#community_menu_community 
   vertical-align: middle;
 }
 
-/* line 219, ../../../app/assets/stylesheets/components/header.scss */
+/* line 220, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_learn, td#community_menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -252,27 +252,27 @@ td#community_menu_learn, td#community_menu_faq {
   vertical-align: middle;
 }
 
-/* line 231, ../../../app/assets/stylesheets/components/header.scss */
+/* line 232, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_learn {
   width: 176px;
 }
 
-/* line 235, ../../../app/assets/stylesheets/components/header.scss */
+/* line 236, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_teach {
   width: 170px;
 }
 
-/* line 239, ../../../app/assets/stylesheets/components/header.scss */
+/* line 240, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_request {
   width: 170px;
 }
 
-/* line 243, ../../../app/assets/stylesheets/components/header.scss */
+/* line 244, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_community {
   width: 235px;
 }
 
-/* line 247, ../../../app/assets/stylesheets/components/header.scss */
+/* line 248, ../../../app/assets/stylesheets/components/header.scss */
 td#community_menu_faq {
   width: 67px;
 }

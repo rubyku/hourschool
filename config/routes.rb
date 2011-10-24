@@ -41,6 +41,7 @@ HourschoolV2::Application.routes.draw do
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
   match '/profile' => 'users#profile'
+  match '/contact' => 'home#contactus'
   
   match '/search_by_tg' => 'home#search_by_tg'
   match '/organization' => 'home#organization'
