@@ -24,25 +24,25 @@
               </a>
             </td>
             <td id="homepage_menu_teach">
-              <a href="/p/teach" id="menu_homepage">
+              <a href="/teach" id="menu_homepage">
                 <div id="menu9">Offer to</div>
                 <div id="menu18">teach</div>
               </a>
             </td>
             <td id="homepage_menu_partners">
-              <a href="/p/partners" id="menu_homepage">
+              <a href="/partners" id="menu_homepage">
                 <div id="menu18">Local</div>
                 <div id="menu9">Partners</div>
               </a>
             </td>
             <td id="homepage_menu_business">
-              <a href="/p/business" id="menu_homepage">
+              <a href="/business" id="menu_homepage">
                 <div id="menu9">Hourschool for</div>
                 <div id="menu18">Business</div>
               </a>
             </td>
             <td id="homepage_menu_faq">
-              <a href="/p/faq" id="menu_homepage">
+              <a href="/community_faq" id="menu_homepage">
                 <div id="menu_faq">F</div>
                 <div id="menu_faq">A</div>
                 <div id="menu_faq">Q</div>
@@ -72,10 +72,15 @@
         <div id="homepage_headline_7">Find a class</div>
 
         <div id="homeSearchForm-background"></div>
-        <input type="text" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/>
-        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
-        <br>
-        <input type="submit" value="Search" id="homepageSearchButton" />
+        
+		<%= form_tag search_path, :method => 'post' do %>
+			<input type="text" name="search" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/>
+	        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+			<br>
+			<input type="submit" value="Search" id="homepageSearchButton" />
+	        
+		<% end %>
+        
         <div id="homepage_headline_8"><font size="0.01" style="italic" >or</font> check out our featured classes</div>
          
          <img src="../../../images/v2/arrow_homepage.png" id="homepage_arrow">

@@ -43,6 +43,10 @@ GEM
       rails
     addressable (2.2.6)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     babosa (0.2.2)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -187,6 +191,8 @@ GEM
       macaddr (~> 1.0)
     warden (1.0.5)
       rack (>= 1.0)
+    will_paginate (3.0.2)
+    xml-simple (1.1.1)
     yajl-ruby (1.0.0)
 
 PLATFORMS
@@ -194,6 +200,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
+  aws-s3
   devise!
   faker
   forgery
@@ -212,3 +219,4 @@ DEPENDENCIES
   rake (= 0.8.7)
   random_data
   thumbs_up
+  will_paginate (~> 3.0.2)

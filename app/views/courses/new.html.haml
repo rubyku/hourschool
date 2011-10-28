@@ -1,6 +1,7 @@
 = render 'home/header'
+/ = render 'form'
 = render 'submit_course_form'
-= render 'sidebar'
+= render  :partial => 'home/teach_sidebar', :locals => {:random_course => @random_course}
 / .content
 / 	%h3= "New Course"
 / 

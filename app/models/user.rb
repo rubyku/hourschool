@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :croles, :dependent => :destroy
   has_many :courses, :through => :croles
   
+  has_many :payments
+  
   
   acts_as_voter
   

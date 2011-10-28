@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @current_course = @course
     #p current_user
     
   end
@@ -19,6 +20,7 @@ class CoursesController < ApplicationController
       @reqtitle = req.name
       @reqdescription = req.description
     end
+    @random_course = Course.find(rand(Course.count-1) + 1)
   end
 
   def create
@@ -89,13 +91,70 @@ class CoursesController < ApplicationController
     
   end
   
+  def drop
+      @course = Course.find(params[:id])
+      
+      @user = current_user
+      
+       # #remove the relevant crole from user
+       #        @user.croles.delete(@user.croles.where(:course_id => @course.id).first)
+      
+      #remove the course
+      @user.courses.delete(@user.courses.where(:id => @course.id).first)
+     
+      @user.save
+      
+      respond_to do |format|
+        format.html { redirect_to @course }
+        format.js { }
+      end
+     
+  end
+  
+  def register_with_amazon
+     @course = Course.find(params[:referenceId])
+     
+     if @course.price > 0.0
+       @payment = Payment.new(
+           :transaction_amount => params[:transactionAmount],
+           :transaction_id     => params[:transactionId]
+         )
+         if @payment.save
+           @payment.update_attributes(:user => current_user, :course => @course)
+             @user = current_user
+             @crole = @course.croles.create!(:attending => true, :role => 'student')
+             @user.croles << @crole
+             @user.courses << @course
+             @user.save
+           # @course.roles.create(:user => current_user, :role => 'student')
+           #            UserMailer.newStudent_email(@course, course_url(@course), current_user).deliver
+           #            UserMailer.newStudentToTeacher_email(@course, course_url(@course), current_user).deliver
+           #            UserMailer.newStudentToStudent_email(@course, course_url(@course), current_user).deliver
+           p "made it"
+           redirect_to @course, :notice => 'You have succesfully signed up for the class.'
+         else
+           p "did not make it"
+           redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
+         end
+     end
+     
+    
+  end
+  
   def register
      @course = Course.find(params[:id])
+     
       @user = current_user
       @crole = @course.croles.create!(:attending => true, :role => 'student')
       @user.croles << @crole
       @user.courses << @course
       @user.save
+     
+     
+      respond_to do |format|
+        format.html { redirect_to @course }
+        format.js { }
+      end
       
       # @user = current_user
       #       if @course.save

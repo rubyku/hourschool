@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929232940) do
+ActiveRecord::Schema.define(:version => 20111028075815) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110929232940) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.string   "time_range"
   end
 
   create_table "croles", :force => true do |t|
@@ -120,6 +121,15 @@ ActiveRecord::Schema.define(:version => 20110929232940) do
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
   add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
+
+  create_table "payments", :force => true do |t|
+    t.float    "amount"
+    t.string   "transaction_id"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

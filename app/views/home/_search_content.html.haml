@@ -1,5 +1,5 @@
 - count = 0
-- classes_this_week.each do |c|
+- courses.each do |c|
 	- count = count + 1
 	- if count%3 == 0
 		- className = "classBlock_last"
@@ -28,4 +28,4 @@
 			%td
 				%img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
 			%td
-				= will_paginate classes_this_week
+				= will_paginate courses

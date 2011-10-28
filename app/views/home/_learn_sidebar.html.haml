@@ -15,46 +15,14 @@
 			%li
 				.sidebar-heading Browse By Category
 			- TAGS.each do |tg|
-				%li= link_to "#{tg}", search_by_tg_path("index"=>TAGS.index(tg)), :remote => true
+				%li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
 
 	%hr#class    
 	.sidebar-content
 		.sidebar-heading Classes we like
-		.sidebar-block
-			.heading13-class Putting Techniques
-			.heading9-class Oct 3, 6:00P
-			%p.similar-class Sharpen your skills with an hour long class from the master himself!
-			%ul.avatar-list
-				%li
-					.heading10-sidebar Friends attending
-				%li.avatar-list
-					%a(href="/p/profile")
-						.avatar
-				%li.avatar-list
-					%a(href="/p/profile")
-						.avatar
-		.sidebar-block-last
-			.heading13-class Putting Techniques
-			.heading9-class Oct 3, 6:00P
-			%p.similar-class Sharpen your skills with an hour long class from the master himself!
-			%ul.avatar-list
-				%li
-					.heading10-sidebar Friends attending
-				%li.avatar-list
-					%a(href="/p/profile")
-						.avatar
-				%li.avatar-list
-					%a(href="/p/profile")
-						.avatar
-		/ .sidebar-heading Friends most like you
-		/ 		.sidebar-block
-		/ 			%a(href="/p/profile")
-		/ 				.avatar-medium
-		/ 			%p.profile-name-blurb Norman Tran
-		/ 			%p.profile-location-blurb Austin, TX
-		/ 		.sidebar-block-last
-		/ 			%a(href="/p/profile")
-		/ 				.avatar-medium
-		/ 			%p.profile-name-blurb Phill Pappas
-		/ 			%p.profile-location-blurb Austin, TX	
-			
+		- @classes_we_like.each do |cl|
+			.sidebar-block
+				.heading13-class
+					= link_to "#{cl.title}", cl
+				.heading9-class 
+					= "#{cl.date.day} #{Date::ABBR_MONTHNAMES[cl.date.month]}"

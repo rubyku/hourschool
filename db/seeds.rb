@@ -101,7 +101,7 @@ p "Created cities, Austin and SF"
   seats = rand(20)
   seats = 10 unless seats != 0
   date = Random.date(0..21)
-  time = Time.now.gmtime
+  time = "9-11pm"
   address = Random.address_line_1
   minimum = rand(5)
   minimum = 1 unless minimum < seats && minimum != 0
@@ -109,7 +109,7 @@ p "Created cities, Austin and SF"
   tags = []
   tags << TAGS[rand(4)] 
   course = Course.create! :title => title, :description => description, :price => price, :seats => seats, 
-                  :date => date, :time => time, :place => address, :minimum => minimum
+                  :date => date, :time_range => time, :place => address, :minimum => minimum
   course.category_list = tags.join(", ").to_s
   
   if course.save
@@ -149,84 +149,84 @@ end
 
 # user1.save
 # user2.save
-puts 'SETTING UP ENTERPRISE'
-ent1 = Enterprise.create! :area => 'Austin, Texas', :name => 'Austin Center for Design', :domain => 'austincenterfordesign'
-ent2 = Enterprise.create! :area => 'Austin, Texas', :name => 'Google', :domain => 'gmail'
-
-puts 'SETTING UP  SUBDOMAINS/COMPANIES'
-subdomain1 = Subdomain.create! :name => 'austincenterfordesign'
-puts 'Created subdomain: ' << subdomain1.name
-subdomain2 = Subdomain.create! :name => 'gmail'
-puts 'Created subdomain: ' << subdomain2.name
-ent1.subdomain = subdomain1
-ent1.save
-ent2.subdomain = subdomain2
-ent2.save
-
-(1..100).each do |count|
-  name = "#{Random.firstname} #{Random.initial} #{Random.lastname}"
-  if count < 50
-   email = "austin_#{count}@gmail.com"
-  else
-    email = "austin_#{count}@austincenterfordesign.com"
-  end
-  
-  password = "testing"
-  if count < 50
-    organization = "Google"
-  else
-    organization = "Austin Center for Design"
-  end
-  member = Member.create! :name => name, :email => email, :password => password, :password_confirmation => password, :organization => organization
-  member.save
-  
-  random_text = Random.paragraphs
-  title = random_text.split(/\s+/)[0..3].join(' ')
-  description = random_text
-  seats = rand(20)
-  seats = 10 unless seats != 0
-  date = Random.date(0..21)
-  time = Time.now.gmtime
-  address = Random.address_line_1
-  minimum = rand(5)
-  minimum = 1 unless minimum < seats && minimum != 0
-  #get random tags
-  tags = []
-  tags << TAGS[rand(4)] 
-  ecourse = Ecourse.create! :title => title, :description => description, :price => 0.0, :seats => seats, 
-                  :date => date, :time => time, :place => address, :minimum => minimum
-  ecourse.category_list = tags.join(", ").to_s
-  
-  if ecourse.save
-    erole = Erole.find_by_ecourse_id_and_member_id(ecourse.id, member.id) 
-    if erole.nil?
-       erole = ecourse.eroles.create!(:attending => true, :role => 'teacher')
-       member.eroles << erole
-       member.ecourses << ecourse
-       member.save
-     end
-     ent = Enterprise.find_or_create_by_name_and_domain(member.org, member.domain)
-     ent.ecourses << ecourse
-     ent.save
-     
-     # begin
-     #        INDEX.document("course_#{course.id}").add({:text => course.description, :cid => "course_#{course.id}", :title => course.title, :tags => course.categories.join(' ')})
-     #      rescue
-     #        p "Skipping.."
-     #        
-     #      end
-     p "created course #{ecourse.title}, #{ecourse.price}, by #{member.name}, in #{organization}"
-  end
-  
-  #create two suggestions per user
-  random_text = Random.paragraphs(1)
-  sugg_name = random_text.split(/\s+/)[0..2].join(' ')
-  sugg_desc = random_text
-  sugg_requested_by = member.id
-  esugg = Esuggestion.create! :name => sugg_name, :description => sugg_desc, :requested_by => sugg_requested_by
-  member.vote_for(esugg)
-  ent = Enterprise.find_or_create_by_name_and_domain(member.org, member.domain)
-   ent.esuggestions << esugg
-   ent.save
-  #create courses randomly
-end
+# puts 'SETTING UP ENTERPRISE'
+# ent1 = Enterprise.create! :area => 'Austin, Texas', :name => 'Austin Center for Design', :domain => 'austincenterfordesign'
+# ent2 = Enterprise.create! :area => 'Austin, Texas', :name => 'Google', :domain => 'gmail'
+# 
+# puts 'SETTING UP  SUBDOMAINS/COMPANIES'
+# subdomain1 = Subdomain.create! :name => 'austincenterfordesign'
+# puts 'Created subdomain: ' << subdomain1.name
+# subdomain2 = Subdomain.create! :name => 'gmail'
+# puts 'Created subdomain: ' << subdomain2.name
+# ent1.subdomain = subdomain1
+# ent1.save
+# ent2.subdomain = subdomain2
+# ent2.save
+# 
+# (1..100).each do |count|
+#   name = "#{Random.firstname} #{Random.initial} #{Random.lastname}"
+#   if count < 50
+#    email = "austin_#{count}@gmail.com"
+#   else
+#     email = "austin_#{count}@austincenterfordesign.com"
+#   end
+#   
+#   password = "testing"
+#   if count < 50
+#     organization = "Google"
+#   else
+#     organization = "Austin Center for Design"
+#   end
+#   member = Member.create! :name => name, :email => email, :password => password, :password_confirmation => password, :organization => organization
+#   member.save
+#   
+#   random_text = Random.paragraphs
+#   title = random_text.split(/\s+/)[0..3].join(' ')
+#   description = random_text
+#   seats = rand(20)
+#   seats = 10 unless seats != 0
+#   date = Random.date(0..21)
+#   time = Time.now.gmtime
+#   address = Random.address_line_1
+#   minimum = rand(5)
+#   minimum = 1 unless minimum < seats && minimum != 0
+#   #get random tags
+#   tags = []
+#   tags << TAGS[rand(4)] 
+#   ecourse = Ecourse.create! :title => title, :description => description, :price => 0.0, :seats => seats, 
+#                   :date => date, :time => time, :place => address, :minimum => minimum
+#   ecourse.category_list = tags.join(", ").to_s
+#   
+#   if ecourse.save
+#     erole = Erole.find_by_ecourse_id_and_member_id(ecourse.id, member.id) 
+#     if erole.nil?
+#        erole = ecourse.eroles.create!(:attending => true, :role => 'teacher')
+#        member.eroles << erole
+#        member.ecourses << ecourse
+#        member.save
+#      end
+#      ent = Enterprise.find_or_create_by_name_and_domain(member.org, member.domain)
+#      ent.ecourses << ecourse
+#      ent.save
+#      
+#      # begin
+#      #        INDEX.document("course_#{course.id}").add({:text => course.description, :cid => "course_#{course.id}", :title => course.title, :tags => course.categories.join(' ')})
+#      #      rescue
+#      #        p "Skipping.."
+#      #        
+#      #      end
+#      p "created course #{ecourse.title}, #{ecourse.price}, by #{member.name}, in #{organization}"
+#   end
+#   
+#   #create two suggestions per user
+#   random_text = Random.paragraphs(1)
+#   sugg_name = random_text.split(/\s+/)[0..2].join(' ')
+#   sugg_desc = random_text
+#   sugg_requested_by = member.id
+#   esugg = Esuggestion.create! :name => sugg_name, :description => sugg_desc, :requested_by => sugg_requested_by
+#   member.vote_for(esugg)
+#   ent = Enterprise.find_or_create_by_name_and_domain(member.org, member.domain)
+#    ent.esuggestions << esugg
+#    ent.save
+#   #create courses randomly
+# end

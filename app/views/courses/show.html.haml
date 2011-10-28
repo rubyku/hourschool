@@ -1,54 +1,50 @@
-.content
-	= image_tag @course.photo.url
-	%p
-		%strong Title:
-		= @course.title
-	%p
-		%strong Description:
-		= @course.description
-	%p
-		%strong Price:
-		= @course.price
-	%p
-		%strong Seats:
-		= @course.seats
-	%p
-		%strong Date:
-		= @course.date
-	%p
-		%strong Time:
-		= @course.time
-	%p
-		%strong Place:
-		= @course.place
-	%p
-		%strong City:
-		= @course.city.name
-	%p
-		%strong Minimum:
-		= @course.minimum
+= render :partial => "home/header"	
 
-	/ %p
-	/ 	= link_to "Edit", edit_course_path(@course)
-	/ 	|
-	/ 	= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
-	/ 	|
-	/ 	= link_to "View All", courses_path
-	%br/
-	%p= "Number of students attending #{@course.students.size}"
-	- if user_signed_in?
-		- if current_user.is_teacher_for?(@course)
-			= link_to "Edit", edit_course_path(@course)
-			|
-			= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
-		
-		- else	
-			- if @course.is_a_student?(current_user)
-				%p= "You have registered for this course"
-			- else 
-				#register-course-link
-					= link_to "Register", register_path("id" => @course.id), :remote => true
-			
-	%br/
-	= link_to_function "Back", "history.back()"
-	/ = link_to image_tag('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif'), '#'
+.page
+	.page-content
+		.page-section-float-left
+			%ul.sub-nav
+				%li.sub-nav-active
+					= link_to "This class", @current_course, :class => "sub-nav-active"
+		.page-section-float-left
+			.class-logistic-block
+				- if @current_course.photo.exists?
+					= image_tag(@current_course.photo.url)
+					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+				- else
+					= image_tag("/images/v2-courses/default_image.jpg")
+					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+			.class-description-block
+				.class-title-big
+					= "#{@current_course.title}"
+				.heading10-class Classes are always more fun with a group of friends. Share this class!
+				%table
+					%tr
+						%td
+							.twshare.left
+							%a.twitter-share-button.left{"data-count" => "horizontal", "data-via" => "fuonrails", :href => "http://twitter.com/share"} Tweet
+							%script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+						%td
+							.fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
+							%script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
+							%fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}
+		.page-section-float-left
+			.class-section-heading 
+				= "This class will cover"
+			%p= @current_course.description
+			%br/
+			- if @current_course.price > 0.0
+				/ = image_tag("/images/amzn-payments.gif")
+				/ = render :partial => "amazon_form", :locals => {:course => @current_course}
+				= render "amazon_form"
+				/ = amazon_simple_pay_form_tag do
+				/ 					= hidden_field_tag 'referenceId', 'Class registration'
+				/ 					= hidden_field_tag 'description', @current_course.title
+				/ 					= submit_tag("Purchase the class through Amazon")
+		%hr#class
+			.class-section-heading Join the conversation
+			= render :partial => "disqus"
+
+
+= render :partial => "sidebar", :locals => {:course => @course}
+    

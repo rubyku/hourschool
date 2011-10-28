@@ -25,6 +25,9 @@ gem 'mysql2', '~> 0.2.6'
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'thumbs_up'
 
+#pagination
+gem 'will_paginate', '~> 3.0.2'
+
 #searching-indexing
 #gem 'thinking-sphinx', '2.0.5'
 gem 'indextank'
@@ -35,6 +38,9 @@ gem 'geokit'
 
 #uploads, parsing, etc
 gem 'paperclip'
+
+#storage
+gem 'aws-s3'
 
 #payment
 #gem "active_merchant"

@@ -1,16 +1,81 @@
-.sidebar
-	.tipbox
-		%img.tape{:src => '/images/v2/Tape_White.png'}
-			.heading10 First time teaching? Want resources?
-			- link_to community_faq_path do
-				#tipboxButton Help me!
-	.tipbox
-		%img.tape{:src => '/images/v2/Tape_White.png'}
-			.heading10 Want to see a class sample?
-			- link_to '#' do
-				#tipboxButton Inspire me!
-	.tipbox
-		%img.tape{:src => '/images/v2/Tape_White.png'}
-			.heading10 Have more questions?
-			- link_to contact_path do
-				#tipboxButton Contact us!
+.sidebar-white
+	.sidebar-content-white
+		.class-section-heading
+			= course.title
+		.class-details
+			= "Class min. of #{course.minimum}, max. of #{course.seats}"
+		- if course.seats_left > course.seats/2
+			= image_tag "/images/v2/ClassMin_Bar.png"
+			
+			- if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
+				- if course.price == 0.0
+					= link_to "Register for this class", register_path(:id => course.id)
+				- else
+					= "use the links on the left to purchase through Amazon"
+					
+					
+					/ = link_to image_tag("/images/amzn-payments.gif"), register_with_amazon_path(:id => course.id)
+			- else
+				- if course.is_a_student?(current_user)
+					- if (course.date - Date.today).numerator >= 1
+						= link_to "You are registered. Unregister", drop_path(:id => course.id)
+					- else
+						= "You are registered"
+				- else
+					= "Teaching"
+		- elsif course.seats_left < course.seats/2
+			= image_tag "/images/v2/ClassMin_Bar_orange_halfFull.png"
+			
+			- if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
+				= link_to "Register for this class", register_path(:id => course.id)
+			- else
+				- if course.is_a_student?
+					- if (course.date - Date.today).numerator >= 1
+						= "Unregister"
+					- else
+						= "Register"
+				- else
+					= "Teaching"
+				
+		- else
+			= image_tag "/images/v2/ClassMin_Bar_orange_FULL.png"
+			
+			= link_to "Class full. Request a new one!", new_csuggestion_path
+		.sidebar-block
+			%ul.noBullet
+				%li.noBullet
+					= image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+				%li.noBullet
+					.class-details
+						= "#{course.price}"
+					.class-alterntives
+						%br/
+			%ul.noBullet
+				%li.noBullet
+					= image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+				%li.noBullet
+					.class-details
+						= course.date
+					.class-details
+						= "#{course.time_range}"
+					.class-alterntives
+						%br/
+						
+			%ul.noBullet
+				%li.noBullet
+					= image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+				%li.noBullet
+					.class-details
+						= "#{course.place}"
+		.sidebar-block
+			.sidebar-heading Teacher
+			.avatar-medium
+			%ul.noBullet
+				%li.noBullet
+					= "#{course.teacher.name}"
+		.sidebar-block-last
+			.sidebar-heading
+				= "Students (#{course.students.size})"
+		
+						
+	

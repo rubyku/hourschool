@@ -58,8 +58,9 @@
 			.form-question
 				= f.label :categories
 			.form-question-tip
-				= 'Choose few categories that this class falls into. Separate by commas Examples are Technology, Philosophy, Design, Art, Crafts, etc.'
-				= f.text_field :categories, :value => ' ', :class => "form-with-margin"
+				= 'Choose the best category this class falls into '
+				/ = f.text_field :categories, :value => ' ', :class => "form-with-margin"
+				= f.select :categories, options_for_select([['Art, Design and Philosophy','Art, Design and Philosophy'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology']]) 
 			.form-question
 				= f.label :price
 			.form-question-tip
@@ -76,10 +77,15 @@
 				= 'When do you want to teach the class?'
 				= f.date_select :date, :class => "form-with-margin"
 			.form-question
-				= f.label :time
+				= f.label :place
 			.form-question-tip
-				= 'OK, what time?'
-				= f.time_select :time, :class => "form-with-margin"
+				= "Where will this class happen? Be specific."
+				= f.text_field :place, :class => "form-with-margin", :value => 'TBD'
+			.form-question
+				= f.label "Time"
+			.form-question-tip
+				= 'OK, what time? Eg. 6pm - 7pm, 8.30 - 9.30 am'
+				= f.text_field :time_range, :class => "form-with-margin"
 			%br/
 			.form-question
 				= f.label :minimum
@@ -90,6 +96,10 @@
 				= f.label :photo
 			.form-question-tip
 				= 'Upload a picture/image for your class that shows up in the listings and class page'
-				= f.file_field :photo
-			%f.submit
+			= f.file_field :photo
+			%br/
+			.form-question
+				= f.label "Done?"
+			%br/
+			= f.submit
 			

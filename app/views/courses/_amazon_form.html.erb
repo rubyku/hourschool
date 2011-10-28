@@ -1,0 +1,20 @@
+<form action="https://authorize.payments-sandbox.amazon.com/pba/paypipeline" method="post">
+<input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+  <input type="hidden" name="referenceId" value="<%= @course.id %>" >
+  <input type="hidden" name="amount" value="<%= @course.price %>" >
+  <input type="hidden" name="signature" value="+S7ApcVxOQGPJle1ZXH/k7S2dLPa3KktJ3sFyMmvHrs=" >
+  <input type="hidden" name="isDonationWidget" value="0" >
+  <input type="hidden" name="description" value="<%= @course.title %>" >
+  <input type="hidden" name="amazonPaymentsAccountId" value="UUMRCJXJLISZ1EMCRML8HFRR8DIZKCK4XRDUR9" >
+  <% if Rails.env == "production"%>
+  	<input type="hidden" name="returnUrl" value="http://hourschool.com/register_with_amazon" >
+    <input type="hidden" name="abandonUrl" value="http://hourschool.com/learn" >
+  <% else %>
+	<input type="hidden" name="returnUrl" value="http://localhost:3000/register_with_amazon" >
+	<input type="hidden" name="abandonUrl" value="http://localhost:3000/learn" >
+  <% end %>
+  <input type="hidden" name="processImmediate" value="1" >
+  <input type="hidden" name="cobrandingStyle" value="logo" >
+  
+  <input type="image" src="http://g-ecx.images-amazon.com/images/G/01/asp/beige_small_paynow_withmsg_whitebg.gif" border="0">
+</form>

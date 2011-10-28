@@ -22,7 +22,7 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'users#show'
   resources :users, :only => [:index, :show] 
   
-  
+  resources :payments
   
   match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
@@ -32,6 +32,8 @@ HourschoolV2::Application.routes.draw do
   match '/teach' => 'home#teach'
   match '/csvote' => 'csuggestions#vote'
   match '/register' => 'courses#register'
+  match '/register_with_amazon' => 'courses#register_with_amazon'
+  match '/drop' => 'courses#drop'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'
@@ -41,9 +43,15 @@ HourschoolV2::Application.routes.draw do
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
   match '/profile' => 'users#profile'
-  match '/contact' => 'home#contactus'
   
-  match '/search_by_tg' => 'home#search_by_tg'
+  match '/my_classes' => 'users#my_classes'
+  match '/classes_taken' => 'users#classes_taken'
+  match '/classes_taught' => 'users#classes_taught'
+  
+  match '/contact' => 'home#contactus'
+  match '/search' => 'home#search'
+  
+  match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/organization' => 'home#organization'
   root :to => "home#index"
   # The priority is based upon order of creation:
