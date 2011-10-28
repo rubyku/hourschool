@@ -53,6 +53,7 @@ HourschoolV2::Application.routes.draw do
   
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/organization' => 'home#organization'
+  match '/business' => 'home#business'
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

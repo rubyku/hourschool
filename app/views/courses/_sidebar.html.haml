@@ -11,7 +11,8 @@
 				- if course.price == 0.0
 					= link_to "Register for this class", register_path(:id => course.id)
 				- else
-					= "use the links on the left to purchase through Amazon"
+					.class-alterntives
+						= "Purchase from Amazon"
 					
 					
 					/ = link_to image_tag("/images/amzn-payments.gif"), register_with_amazon_path(:id => course.id)
@@ -73,9 +74,18 @@
 			%ul.noBullet
 				%li.noBullet
 					= "#{course.teacher.name}"
+				
+				- if course.teacher != current_user
+					%li.noBullet
+						= link_to "Contact Teacher", '#'
+						
 		.sidebar-block-last
 			.sidebar-heading
 				= "Students (#{course.students.size})"
+				- if course.teacher == current_user
+					%ul.noBullet
+						%li.noBullet
+							= link_to "Send a message to all students", '#'
 		
 						
 	
