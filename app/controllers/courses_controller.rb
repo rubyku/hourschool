@@ -1,7 +1,9 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register]
   
+  
   def index
+    #authenticate admin - change this.
     @courses = Course.all
   end
 
@@ -51,7 +53,8 @@ class CoursesController < ApplicationController
       end
       #add to indextank
       #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
-      redirect_to @course, :notice => "Successfully created course."
+      #redirect_to @course, :notice => "Successfully created course."
+      redirect_to current_user, :notice => "Successfully submitted your proposal"
     else
       render :action => 'new'
     end

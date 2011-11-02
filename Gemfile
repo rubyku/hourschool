@@ -35,6 +35,11 @@ gem 'indextank'
 #geo
 gem 'geokit'
 
+#rails-tinymce
+gem 'use_tinymce'
+
+#tumblr api
+gem 'tumblr-api'
 
 #uploads, parsing, etc
 gem 'paperclip'

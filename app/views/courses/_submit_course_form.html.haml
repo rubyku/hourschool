@@ -1,0 +1,109 @@
+/ .page
+/ 
+/   .page-content
+/   
+/     .heading25_ccc Submit your proposal
+/   
+/     .form-question What topic are you teaching? 
+/     .form-question-tip Try to be a little more specific. For example, "typography" is better than "design". "Weeknight quick dinner" is better than "cooking".  
+/     %input.form-with-margin(type='text')
+/     
+/     .form-question What will your class cover?
+/     .form-question-tip We just want a general idea. Please keep this to 1-2 sentences. 
+/     %textarea.form-med-with-margin(type='text')
+/ 
+/     .form-question What is your experience?
+/     .form-question-tip Our community cares less about credentials, but more about why you're passionate about the subject, your experience, and why you want to share this knowledge with more people. 
+/     %textarea.form-med-with-margin(type='text')
+/ 
+/     
+/     .form-question Please read our policy.
+/     %p.note This is our pricing policy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+/       
+/     %p.note Note: This isn't your actual class. Your answers will only be seen by HourSchool staff. We'll respond as soon as we can. Thanks again!
+/     
+/     %p.note
+/       %input(type='checkbox') I understand and I agree!
+/     
+/     .form-question Ready to submit?
+/     %input.submit-proposal-button(type='submit' value='Submit my proposal')
+/ 
+/     
+
+.page
+	.page-content
+		.heading25_ccc 
+			= "Enter the class details"
+		- @course.errors.full_messages.each do |message|
+			.error
+				%p= "#{message}"
+				
+		= form_for @course, :html => { :multipart => true } do |f|
+			
+			= hidden_field_tag 'req', "#{@reqid}"
+			.form-question
+				= f.label :title
+			.form-question-tip
+				= 'Provide an attention grabbing, but a relevant title.'
+			%br
+				- if @reqid.nil?
+					= f.text_field :title, :class => "form-with-margin"
+				- else
+					= f.text_field :title, :value => "#{@reqtitle}", :class => "form-with-margin"
+			.form-question
+				= f.label :description
+			.form-question-tip
+				= 'Try to be a little more specific. For example, "typography" is better than "design". "Weeknight quick dinner" is better than "cooking".'
+				%br
+					- if @reqid.nil?
+						= f.text_area :description, :class => "form-with-margin"
+					- else
+						= f.text_area :description, :value => "#{@reqdescription}", :class => "form-with-margin"
+			.form-question
+				= f.label :categories
+			.form-question-tip
+				= 'Choose the best category this class falls into '
+				/ = f.text_field :categories, :value => ' ', :class => "form-with-margin"
+				= f.select :categories, options_for_select([['Art, Design and Philosophy','Art, Design and Philosophy'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology']]) 
+			.form-question
+				= f.label :price
+			.form-question-tip
+				= 'How much are you charging for this class per student. Examples - 15.00, 25.99. A 0.0 is perfectly fine too :)'
+				= f.text_field :price, :class => "form-with-margin"
+			.form-question
+				= f.label :seats
+			.form-question-tip
+				= 'What is the maximum number of student you are willing to accomodate in your class?'
+				= f.text_field :seats, :class => "form-with-margin"
+			.form-question
+				= f.label :date
+			.form-question-tip
+				= 'When do you want to teach the class?'
+				= f.date_select :date, :class => "form-with-margin"
+			.form-question
+				= f.label :place
+			.form-question-tip
+				= "Where will this class happen? Be specific."
+				= f.text_field :place, :class => "form-with-margin", :value => 'TBD'
+			.form-question
+				= f.label "Time"
+			.form-question-tip
+				= 'OK, what time? Eg. 6pm - 7pm, 8.30 - 9.30 am'
+				= f.text_field :time_range, :class => "form-with-margin"
+			%br/
+			.form-question
+				= f.label :minimum
+			.form-question-tip
+				= 'What is the minimum number of students to make this class happen? In other words, if this many students do not show up, you cannot teach the class.'
+				= f.text_field :minimum, :class => "form-with-margin"
+			.form-question
+				= f.label :photo
+			.form-question-tip
+				= 'Upload a picture/image for your class that shows up in the listings and class page'
+			= f.file_field :photo
+			%br/
+			.form-question
+				= f.label "Done?"
+			%br/
+			= f.submit
+			

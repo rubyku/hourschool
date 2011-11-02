@@ -1,8 +1,12 @@
-.content
-	%h3= "Edit course"
-	= render 'form'
+= render 'home/header'
+= render 'submit_course_form'
+= render  :partial => 'home/teach_sidebar', :locals => {:random_course => @random_course}
 
-	%p
-		= link_to "Show", @course
-		|
-		= link_to "View All", courses_path
+/ .content
+/ 	%h3= "Edit course"
+/ 	= render 'form'
+/ 
+/ 	%p
+/ 		= link_to "Show", @course
+/ 		|
+/ 		= link_to "View All", courses_path

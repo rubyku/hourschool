@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028075815) do
+ActiveRecord::Schema.define(:version => 20111102112940) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20111028075815) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.string   "time_range"
+    t.string   "status"
+    t.text     "experience"
+    t.text     "about"
   end
 
   create_table "croles", :force => true do |t|

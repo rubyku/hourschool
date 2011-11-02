@@ -56,7 +56,7 @@
 					= image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
 				%li.noBullet
 					.class-details
-						= course.date
+						= course.date.strftime("%B %d, %Y")
 					.class-details
 						= "#{course.time_range}"
 					.class-alterntives

@@ -33,14 +33,6 @@
 }
 
 /* line 34, ../../../app/assets/stylesheets/components/footer.scss */
-.footer-date {
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 10px;
-  color: #cccccc;
-}
-
-/* line 41, ../../../app/assets/stylesheets/components/footer.scss */
 .footer-blog-title {
   color: #999999;
   font-family: futura-pt-1, futura-pt-2;
@@ -49,19 +41,19 @@
   letter-spacing: 0.1em;
 }
 
-/* line 49, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 42, ../../../app/assets/stylesheets/components/footer.scss */
 table#footer, td#footer {
   padding-bottom: 5px;
 }
 
-/* line 53, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 46, ../../../app/assets/stylesheets/components/footer.scss */
 img.footer_contact {
   position: relative;
   float: left;
   margin-right: 10px;
 }
 
-/* line 59, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 52, ../../../app/assets/stylesheets/components/footer.scss */
 .footer_contact {
   position: relative;
   float: left;
@@ -71,7 +63,7 @@ img.footer_contact {
   line-height: 16px;
 }
 
-/* line 69, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 62, ../../../app/assets/stylesheets/components/footer.scss */
 p.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -79,7 +71,7 @@ p.footer {
   line-height: 16px;
 }
 
-/* line 77, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 70, ../../../app/assets/stylesheets/components/footer.scss */
 a.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -88,13 +80,13 @@ a.footer {
   text-decoration: underline;
 }
 
-/* line 85, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 78, ../../../app/assets/stylesheets/components/footer.scss */
 .newsletterForm {
   border: 1px solid #eeeaea;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px;
-  width: 220px;
+  width: 98%;
   height: 30px;
   color: #666;
   padding-left: 5px;
@@ -103,7 +95,7 @@ a.footer {
   margin-bottom: 10px;
 }
 
-/* line 99, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 92, ../../../app/assets/stylesheets/components/footer.scss */
 .newsletterButton {
   /* Disables default styling */
   border: none;
@@ -127,14 +119,14 @@ a.footer {
 }
 
 /*......ENTERPRISE......*/
-/* line 124, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 117, ../../../app/assets/stylesheets/components/footer.scss */
 table#powered-by {
   margin-top: 60px;
   margin-bottom: 60px;
   float: right;
 }
 
-/* line 130, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 123, ../../../app/assets/stylesheets/components/footer.scss */
 .footer-powered-by {
   font-family: verdana,sans-serif;
   font-size: 9px;
@@ -143,7 +135,7 @@ table#powered-by {
   padding-right: 10px;
 }
 
-/* line 138, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 131, ../../../app/assets/stylesheets/components/footer.scss */
 img#powered-by-logo {
   padding-bottom: -40px;
 }

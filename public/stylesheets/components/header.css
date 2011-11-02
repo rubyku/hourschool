@@ -104,7 +104,7 @@ a#menu {
 /* line 95, ../../../app/assets/stylesheets/components/header.scss */
 a#menu:hover {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
 /* line 97, ../../../app/assets/stylesheets/components/header.scss */
@@ -141,7 +141,7 @@ a#menu:hover {
   position: relative;
   float: left;
   margin-left: 10px;
-  color: #d70100;
+  color: #ff7733;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;

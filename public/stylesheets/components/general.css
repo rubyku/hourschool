@@ -30,37 +30,37 @@ p, ol, ul {
 /* line 37, ../../../app/assets/stylesheets/components/general.scss */
 a {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
 /* line 38, ../../../app/assets/stylesheets/components/general.scss */
 a:visited {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
 /* line 39, ../../../app/assets/stylesheets/components/general.scss */
 a:active {
   text-decoration: underline;
-  color: #d70100;
+  color: #ff7733;
 }
 
 /* line 40, ../../../app/assets/stylesheets/components/general.scss */
 a:hover {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
 /*......PAGE BREAKDOWN......*/
 /* line 45, ../../../app/assets/stylesheets/components/general.scss */
 .brand_bg {
-  background-color: #d70100;
+  background-color: #ff7733;
   height: 3px;
 }
 
 /* line 50, ../../../app/assets/stylesheets/components/general.scss */
 .enterprise_brand_bg {
-  background-color: #d70100;
+  background-color: #ff7733;
   height: 7px;
 }
 
@@ -72,15 +72,16 @@ a:hover {
 /* line 59, ../../../app/assets/stylesheets/components/general.scss */
 .bottom_bg {
   background-color: #fff;
+  padding-bottom: 100px;
 }
 
-/* line 63, ../../../app/assets/stylesheets/components/general.scss */
+/* line 64, ../../../app/assets/stylesheets/components/general.scss */
 .main {
   margin-bottom: 25px;
   padding-bottom: 25px;
 }
 
-/* line 68, ../../../app/assets/stylesheets/components/general.scss */
+/* line 69, ../../../app/assets/stylesheets/components/general.scss */
 .full-page {
   width: 960px;
   float: left;
@@ -88,7 +89,7 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 75, ../../../app/assets/stylesheets/components/general.scss */
+/* line 76, ../../../app/assets/stylesheets/components/general.scss */
 .marcomm-half-page {
   width: 960px;
   float: left;
@@ -97,7 +98,24 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 83, ../../../app/assets/stylesheets/components/general.scss */
+/* line 84, ../../../app/assets/stylesheets/components/general.scss */
+.email-page {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+/* line 92, ../../../app/assets/stylesheets/components/general.scss */
+.email-content {
+  padding: 30px 30px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+/* line 99, ../../../app/assets/stylesheets/components/general.scss */
 .page {
   width: 700px;
   float: left;
@@ -105,32 +123,32 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 90, ../../../app/assets/stylesheets/components/general.scss */
+/* line 106, ../../../app/assets/stylesheets/components/general.scss */
 .page-content {
   padding: 30px 30px 30px;
 }
 
-/* line 94, ../../../app/assets/stylesheets/components/general.scss */
+/* line 110, ../../../app/assets/stylesheets/components/general.scss */
 .page-section-float-left {
   float: left;
   width: 100%;
   padding-bottom: 20px;
 }
 
-/* line 100, ../../../app/assets/stylesheets/components/general.scss */
+/* line 116, ../../../app/assets/stylesheets/components/general.scss */
 .page-section-float-right {
   float: right;
   width: 100%;
   padding-bottom: 20px;
 }
 
-/* line 106, ../../../app/assets/stylesheets/components/general.scss */
+/* line 122, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar {
   width: 260px;
   float: left;
 }
 
-/* line 111, ../../../app/assets/stylesheets/components/general.scss */
+/* line 127, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-white {
   width: 250px;
   float: left;
@@ -138,34 +156,45 @@ a:hover {
   margin-left: 10px;
 }
 
-/* line 118, ../../../app/assets/stylesheets/components/general.scss */
+/* line 134, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-content {
   padding: 0px 0px 10px 30px;
 }
 
-/* line 122, ../../../app/assets/stylesheets/components/general.scss */
+/* line 138, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-content-white {
   padding: 30px 15px 10px 15px;
 }
 
-/* line 126, ../../../app/assets/stylesheets/components/general.scss */
+/* line 142, ../../../app/assets/stylesheets/components/general.scss */
 ul.noBullet {
   list-style-type: none;
 }
 
-/* line 130, ../../../app/assets/stylesheets/components/general.scss */
+/* line 146, ../../../app/assets/stylesheets/components/general.scss */
 li.noBullet {
   float: left;
 }
 
+/* line 150, ../../../app/assets/stylesheets/components/general.scss */
+.footer {
+  margin-right: 10px;
+}
+
+/* line 154, ../../../app/assets/stylesheets/components/general.scss */
+.footer-right {
+  margin-right: 10px;
+  margin-left: 40px;
+}
+
 /*......SEARCH......*/
-/* line 136, ../../../app/assets/stylesheets/components/general.scss */
+/* line 162, ../../../app/assets/stylesheets/components/general.scss */
 .searchBar {
   margin-top: -15px;
   margin-bottom: 25px;
 }
 
-/* line 141, ../../../app/assets/stylesheets/components/general.scss */
+/* line 167, ../../../app/assets/stylesheets/components/general.scss */
 .mag-glass {
   position: relative;
   float: left;
@@ -175,7 +204,7 @@ li.noBullet {
   margin-left: 22px;
 }
 
-/* line 150, ../../../app/assets/stylesheets/components/general.scss */
+/* line 176, ../../../app/assets/stylesheets/components/general.scss */
 .searchForm {
   position: relative;
   float: left;
@@ -197,7 +226,7 @@ li.noBullet {
   border-radius: 5px;
 }
 
-/* line 170, ../../../app/assets/stylesheets/components/general.scss */
+/* line 196, ../../../app/assets/stylesheets/components/general.scss */
 .searchButton {
   /* Disables default styling */
   border: none;
@@ -211,7 +240,7 @@ li.noBullet {
   z-index: 10;
   margin-top: -45px;
   margin-right: 3px;
-  background-color: #d70100;
+  background-color: #ff7733;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -225,29 +254,29 @@ li.noBullet {
 }
 
 /*......SUB-NAV.....*/
-/* line 197, ../../../app/assets/stylesheets/components/general.scss */
+/* line 223, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-active {
   color: black;
 }
 
-/* line 198, ../../../app/assets/stylesheets/components/general.scss */
+/* line 224, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-inactive {
   color: #8f8f8f;
 }
 
-/* line 199, ../../../app/assets/stylesheets/components/general.scss */
+/* line 225, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-active:hover {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
-/* line 200, ../../../app/assets/stylesheets/components/general.scss */
+/* line 226, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-inactive:hover {
   text-decoration: none;
-  color: #d70100;
+  color: #ff7733;
 }
 
-/* line 202, ../../../app/assets/stylesheets/components/general.scss */
+/* line 228, ../../../app/assets/stylesheets/components/general.scss */
 ul.sub-nav {
   list-style: none;
   font-family: futura-pt-1, futura-pt-2;
@@ -258,28 +287,28 @@ ul.sub-nav {
   margin-bottom: 20px;
 }
 
-/* line 212, ../../../app/assets/stylesheets/components/general.scss */
+/* line 238, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-active, li.sub-nav-inactive {
   float: left;
   margin-right: 10px;
   padding-bottom: 3px;
 }
 
-/* line 218, ../../../app/assets/stylesheets/components/general.scss */
+/* line 244, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-active {
-  border-bottom: 3px solid #d70100;
+  border-bottom: 3px solid #ff7733;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 224, ../../../app/assets/stylesheets/components/general.scss */
+/* line 250, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-inactive {
   padding-left: 10px;
   padding-right: 10px;
 }
 
 /*......PAGE BIG HEADINGS......*/
-/* line 232, ../../../app/assets/stylesheets/components/general.scss */
+/* line 258, ../../../app/assets/stylesheets/components/general.scss */
 .heading25_ccc {
   color: #cccccc;
   text-transform: uppercase;
@@ -290,7 +319,7 @@ li.sub-nav-inactive {
   margin-bottom: 25px;
 }
 
-/* line 242, ../../../app/assets/stylesheets/components/general.scss */
+/* line 268, ../../../app/assets/stylesheets/components/general.scss */
 .welcome-header {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -299,7 +328,7 @@ li.sub-nav-inactive {
   padding-bottom: 40px;
 }
 
-/* line 250, ../../../app/assets/stylesheets/components/general.scss */
+/* line 276, ../../../app/assets/stylesheets/components/general.scss */
 .greyheader_half {
   position: relative;
   float: left;
@@ -311,7 +340,7 @@ li.sub-nav-inactive {
 }
 
 /*......DASHBOARD......*/
-/* line 262, ../../../app/assets/stylesheets/components/general.scss */
+/* line 288, ../../../app/assets/stylesheets/components/general.scss */
 .dashbord-story {
   float: left;
   width: 100%;
@@ -321,13 +350,13 @@ li.sub-nav-inactive {
   border-bottom: 2px dashed #ccc;
 }
 
-/* line 271, ../../../app/assets/stylesheets/components/general.scss */
+/* line 297, ../../../app/assets/stylesheets/components/general.scss */
 ul.dashboard-name {
   list-style: none;
   margin-top: 5px;
 }
 
-/* line 276, ../../../app/assets/stylesheets/components/general.scss */
+/* line 302, ../../../app/assets/stylesheets/components/general.scss */
 li.dashboard-name {
   float: left;
   top: 0px;
@@ -335,20 +364,20 @@ li.dashboard-name {
   vertical-align: middle;
 }
 
-/* line 283, ../../../app/assets/stylesheets/components/general.scss */
+/* line 309, ../../../app/assets/stylesheets/components/general.scss */
 ul.class {
   float: left;
   top: 0px;
   margin-right: 10px;
 }
 
-/* line 289, ../../../app/assets/stylesheets/components/general.scss */
+/* line 315, ../../../app/assets/stylesheets/components/general.scss */
 ul.status {
   float: right;
   top: 0px;
 }
 
-/* line 294, ../../../app/assets/stylesheets/components/general.scss */
+/* line 320, ../../../app/assets/stylesheets/components/general.scss */
 ul.comment {
   float: left;
   position: absolute;
@@ -357,20 +386,20 @@ ul.comment {
   margin-left: 125px;
 }
 
-/* line 302, ../../../app/assets/stylesheets/components/general.scss */
+/* line 328, ../../../app/assets/stylesheets/components/general.scss */
 img.dashboard-icon {
   float: left;
   margin-top: 1px;
 }
 
-/* line 307, ../../../app/assets/stylesheets/components/general.scss */
+/* line 333, ../../../app/assets/stylesheets/components/general.scss */
 img.dashboard-class {
   float: right;
 }
 
-/* line 311, ../../../app/assets/stylesheets/components/general.scss */
+/* line 337, ../../../app/assets/stylesheets/components/general.scss */
 .dashboard-name {
-  color: #d70100;
+  color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 13px;
@@ -378,7 +407,7 @@ img.dashboard-class {
 }
 
 /*......LEARN PAGE.....*/
-/* line 321, ../../../app/assets/stylesheets/components/general.scss */
+/* line 347, ../../../app/assets/stylesheets/components/general.scss */
 ul.searchFilter {
   list-style-type: none;
   margin-bottom: 20px;
@@ -386,7 +415,7 @@ ul.searchFilter {
   line-height: 23px;
 }
 
-/* line 328, ../../../app/assets/stylesheets/components/general.scss */
+/* line 354, ../../../app/assets/stylesheets/components/general.scss */
 .classRow {
   float: left;
   width: 650px;
@@ -394,7 +423,7 @@ ul.searchFilter {
   margin-bottom: 20px;
 }
 
-/* line 335, ../../../app/assets/stylesheets/components/general.scss */
+/* line 361, ../../../app/assets/stylesheets/components/general.scss */
 .classBlock {
   float: left;
   width: 190px;
@@ -406,7 +435,7 @@ ul.searchFilter {
   margin-right: 30px;
 }
 
-/* line 346, ../../../app/assets/stylesheets/components/general.scss */
+/* line 372, ../../../app/assets/stylesheets/components/general.scss */
 .classBlock_last {
   float: left;
   width: 190px;
@@ -417,7 +446,7 @@ ul.searchFilter {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 356, ../../../app/assets/stylesheets/components/general.scss */
+/* line 382, ../../../app/assets/stylesheets/components/general.scss */
 img.class-arrow {
   position: relative;
   float: right;
@@ -425,25 +454,25 @@ img.class-arrow {
   margin-right: 10px;
 }
 
-/* line 363, ../../../app/assets/stylesheets/components/general.scss */
+/* line 389, ../../../app/assets/stylesheets/components/general.scss */
 .class-description {
   padding: 10px;
 }
 
-/* line 367, ../../../app/assets/stylesheets/components/general.scss */
+/* line 393, ../../../app/assets/stylesheets/components/general.scss */
 table.view-more, tr.view-more {
   float: right;
   margin-right: 10px;
   margin-bottom: 20px;
 }
 
-/* line 373, ../../../app/assets/stylesheets/components/general.scss */
+/* line 399, ../../../app/assets/stylesheets/components/general.scss */
 ul.view-more-arrow {
   float: left;
   list-style-type: none;
 }
 
-/* line 378, ../../../app/assets/stylesheets/components/general.scss */
+/* line 404, ../../../app/assets/stylesheets/components/general.scss */
 a.view-more {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -457,21 +486,21 @@ a.view-more {
 }
 
 /*......CLASS BLOCK.....*/
-/* line 393, ../../../app/assets/stylesheets/components/general.scss */
+/* line 419, ../../../app/assets/stylesheets/components/general.scss */
 .heading13-class {
-  color: #d70100;
+  color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 13px;
 }
 
-/* line 400, ../../../app/assets/stylesheets/components/general.scss */
+/* line 426, ../../../app/assets/stylesheets/components/general.scss */
 .heading9-class {
   font-weight: 400;
   font-size: 9px;
 }
 
-/* line 405, ../../../app/assets/stylesheets/components/general.scss */
+/* line 431, ../../../app/assets/stylesheets/components/general.scss */
 .heading10-class {
   font-weight: 400;
   font-size: 10px;
@@ -479,13 +508,13 @@ a.view-more {
 }
 
 /*......VOTE FOR A CLASS.....*/
-/* line 414, ../../../app/assets/stylesheets/components/general.scss */
+/* line 440, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
   border-bottom: 1px dashed #ccc;
 }
-/* line 419, ../../../app/assets/stylesheets/components/general.scss */
+/* line 445, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -495,17 +524,17 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 427, ../../../app/assets/stylesheets/components/general.scss */
+/* line 453, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class a:hover {
   text-decoration: underline;
 }
 
-/* line 433, ../../../app/assets/stylesheets/components/general.scss */
+/* line 459, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
 }
-/* line 437, ../../../app/assets/stylesheets/components/general.scss */
+/* line 463, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -515,22 +544,22 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 445, ../../../app/assets/stylesheets/components/general.scss */
+/* line 471, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a:hover {
   text-decoration: underline;
 }
 
-/* line 451, ../../../app/assets/stylesheets/components/general.scss */
+/* line 477, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-title {
   float: left;
 }
 
-/* line 455, ../../../app/assets/stylesheets/components/general.scss */
+/* line 481, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-number {
   float: right;
 }
 
-/* line 459, ../../../app/assets/stylesheets/components/general.scss */
+/* line 485, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-button {
   /* Disables default styling */
   border: none;
@@ -539,7 +568,7 @@ a.view-more {
   margin-left: 8px;
   width: 87px;
   height: 30px;
-  background-color: #d70100;
+  background-color: #ff7733;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -553,9 +582,9 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 480, ../../../app/assets/stylesheets/components/general.scss */
+/* line 506, ../../../app/assets/stylesheets/components/general.scss */
 .heading35-vote {
-  color: #d70100;
+  color: #ff7733;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -565,7 +594,7 @@ a.view-more {
   margin-bottom: 5px;
 }
 
-/* line 491, ../../../app/assets/stylesheets/components/general.scss */
+/* line 517, ../../../app/assets/stylesheets/components/general.scss */
 .heading20-vote {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -574,7 +603,7 @@ a.view-more {
   padding-bottom: 5px;
 }
 
-/* line 499, ../../../app/assets/stylesheets/components/general.scss */
+/* line 525, ../../../app/assets/stylesheets/components/general.scss */
 .heading10-vote {
   color: #8f8f8f;
   text-transformnsform: uppercase;
@@ -586,7 +615,7 @@ a.view-more {
 }
 
 /*......TEACH PAGE.....*/
-/* line 513, ../../../app/assets/stylesheets/components/general.scss */
+/* line 539, ../../../app/assets/stylesheets/components/general.scss */
 .claim-class-button {
   margin-top: 5px;
   margin-bottom: 15px;
@@ -594,7 +623,7 @@ a.view-more {
   padding-bottom: 7px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #d70100;
+  background-color: #ff7733;
   color: white;
   text-align: center;
   -moz-border-radius: 5px;
@@ -608,44 +637,43 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 532, ../../../app/assets/stylesheets/components/general.scss */
+/* line 558, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach {
   margin-top: 20px;
   padding: 0px 10px 0px 0px;
 }
 
-/* line 537, ../../../app/assets/stylesheets/components/general.scss */
+/* line 563, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach-short {
   width: 75%;
   float: left;
   margin-bottom: 30px;
 }
 
-/* line 543, ../../../app/assets/stylesheets/components/general.scss */
+/* line 569, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach-last {
-  margin-top: 20px;
-  padding: 0px 20px 30px 0px;
+  padding: 0px 20px 10px 0px;
 }
 
-/* line 548, ../../../app/assets/stylesheets/components/general.scss */
+/* line 573, ../../../app/assets/stylesheets/components/general.scss */
 #create-class-button {
   float: left;
   width: 135px;
   height: 85px;
-  background-color: #d70100;
+  background-color: #ff7733;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-left: 20px;
 }
 
-/* line 558, ../../../app/assets/stylesheets/components/general.scss */
+/* line 583, ../../../app/assets/stylesheets/components/general.scss */
 img#create-class-star {
   margin-top: 10px;
   margin-left: 46px;
 }
 
-/* line 564, ../../../app/assets/stylesheets/components/general.scss */
+/* line 589, ../../../app/assets/stylesheets/components/general.scss */
 .heading15-whyteach {
   /*  color: $brand-background;*/
   /*  text-transform: uppercase;*/
@@ -655,7 +683,7 @@ img#create-class-star {
   letter-spacing: 0.1em;
 }
 
-/* line 573, ../../../app/assets/stylesheets/components/general.scss */
+/* line 598, ../../../app/assets/stylesheets/components/general.scss */
 .create-class-heading {
   float: left;
   padding-top: 5px;
@@ -668,39 +696,39 @@ img#create-class-star {
 }
 
 /*......CLASS DETAIL PAGE.....*/
-/* line 587, ../../../app/assets/stylesheets/components/general.scss */
+/* line 612, ../../../app/assets/stylesheets/components/general.scss */
 .class-logistic-block {
   float: left;
   width: 220px;
   margin-right: 0px;
 }
 
-/* line 593, ../../../app/assets/stylesheets/components/general.scss */
+/* line 618, ../../../app/assets/stylesheets/components/general.scss */
 .class-logistic-line {
   float: left;
   width: 200px;
   margin-right: 0px;
 }
 
-/* line 599, ../../../app/assets/stylesheets/components/general.scss */
+/* line 624, ../../../app/assets/stylesheets/components/general.scss */
 .class-description-block {
   float: left;
   width: 400px;
 }
 
-/* line 604, ../../../app/assets/stylesheets/components/general.scss */
+/* line 629, ../../../app/assets/stylesheets/components/general.scss */
 .class-attendance-block {
   float: left;
   width: 220px;
   padding: 0px 0px 10px 0px;
 }
 
-/* line 610, ../../../app/assets/stylesheets/components/general.scss */
+/* line 635, ../../../app/assets/stylesheets/components/general.scss */
 img#fb-comment {
   margin-top: 10px;
 }
 
-/* line 614, ../../../app/assets/stylesheets/components/general.scss */
+/* line 639, ../../../app/assets/stylesheets/components/general.scss */
 hr#class {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -709,22 +737,22 @@ hr#class {
   margin-bottom: 10px;
 }
 
-/* line 622, ../../../app/assets/stylesheets/components/general.scss */
+/* line 647, ../../../app/assets/stylesheets/components/general.scss */
 p.class-detail {
   margin-bottom: 10px;
 }
 
-/* line 626, ../../../app/assets/stylesheets/components/general.scss */
+/* line 651, ../../../app/assets/stylesheets/components/general.scss */
 ul.withBullets {
   list-style-type: square;
 }
 
-/* line 630, ../../../app/assets/stylesheets/components/general.scss */
+/* line 655, ../../../app/assets/stylesheets/components/general.scss */
 li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 634, ../../../app/assets/stylesheets/components/general.scss */
+/* line 659, ../../../app/assets/stylesheets/components/general.scss */
 .class-section-heading {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -735,7 +763,7 @@ li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 644, ../../../app/assets/stylesheets/components/general.scss */
+/* line 669, ../../../app/assets/stylesheets/components/general.scss */
 .class-details {
   color: #666;
   font-weight: 700;
@@ -743,7 +771,7 @@ li.withBullets {
   width: 190px;
 }
 
-/* line 651, ../../../app/assets/stylesheets/components/general.scss */
+/* line 676, ../../../app/assets/stylesheets/components/general.scss */
 p.class-details {
   color: #666;
   font-weight: 400;
@@ -751,7 +779,7 @@ p.class-details {
   width: 180px;
 }
 
-/* line 658, ../../../app/assets/stylesheets/components/general.scss */
+/* line 683, ../../../app/assets/stylesheets/components/general.scss */
 .class-alterntives {
   font-weight: 400;
   font-size: 9px;
@@ -759,34 +787,34 @@ p.class-details {
   margin-bottom: 8px;
 }
 
-/* line 665, ../../../app/assets/stylesheets/components/general.scss */
+/* line 690, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-cost {
   margin-right: 3px;
 }
 
-/* line 669, ../../../app/assets/stylesheets/components/general.scss */
+/* line 694, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-when {
   margin-right: 7px;
 }
 
-/* line 673, ../../../app/assets/stylesheets/components/general.scss */
+/* line 698, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-where {
   margin-right: 10px;
 }
 
-/* line 677, ../../../app/assets/stylesheets/components/general.scss */
+/* line 702, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-heart {
   margin-right: 5px;
   margin-top: 2px;
 }
 
-/* line 682, ../../../app/assets/stylesheets/components/general.scss */
+/* line 707, ../../../app/assets/stylesheets/components/general.scss */
 p.class-details-heart-number {
   font-size: 10px;
   font-weight: 700;
 }
 
-/* line 687, ../../../app/assets/stylesheets/components/general.scss */
+/* line 712, ../../../app/assets/stylesheets/components/general.scss */
 .class-button {
   float: left;
   text-align: center;
@@ -794,7 +822,7 @@ p.class-details-heart-number {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background-color: #d70100;
+  background-color: #ff7733;
   color: white;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -806,7 +834,7 @@ p.class-details-heart-number {
   padding: 7px 10px 7px 10px;
 }
 
-/* line 704, ../../../app/assets/stylesheets/components/general.scss */
+/* line 729, ../../../app/assets/stylesheets/components/general.scss */
 .class-title-big {
   float: left;
   color: #8f8f8f;
@@ -820,7 +848,7 @@ p.class-details-heart-number {
 }
 
 /*......CONFIRM......*/
-/* line 719, ../../../app/assets/stylesheets/components/general.scss */
+/* line 744, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-classBlock {
   float: left;
   width: 190px;
@@ -832,10 +860,10 @@ p.class-details-heart-number {
   margin-right: 30px;
 }
 
-/* line 730, ../../../app/assets/stylesheets/components/general.scss */
+/* line 755, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-first-message {
   text-transform: uppercase;
-  color: #d70100;
+  color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 40px;
@@ -845,10 +873,10 @@ p.class-details-heart-number {
   width: 100%;
 }
 
-/* line 742, ../../../app/assets/stylesheets/components/general.scss */
+/* line 767, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
-  color: #d70100;
+  color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
@@ -858,7 +886,7 @@ p.class-details-heart-number {
   width: 100%;
 }
 
-/* line 754, ../../../app/assets/stylesheets/components/general.scss */
+/* line 779, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-bring-friend {
   text-transform: uppercase;
   color: #666;
@@ -871,7 +899,7 @@ p.class-details-heart-number {
   width: 100%;
 }
 
-/* line 766, ../../../app/assets/stylesheets/components/general.scss */
+/* line 791, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-copy-url {
   float: left;
   text-transform: uppercase;
@@ -884,7 +912,7 @@ p.class-details-heart-number {
   margin-bottom: 20px;
 }
 
-/* line 778, ../../../app/assets/stylesheets/components/general.scss */
+/* line 803, ../../../app/assets/stylesheets/components/general.scss */
 hr#confirm {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -894,7 +922,7 @@ hr#confirm {
 }
 
 /*......PROFILE PAGE......*/
-/* line 791, ../../../app/assets/stylesheets/components/general.scss */
+/* line 816, ../../../app/assets/stylesheets/components/general.scss */
 .classes-taught {
   float: left;
   width: 300px;
@@ -908,7 +936,7 @@ hr#confirm {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 804, ../../../app/assets/stylesheets/components/general.scss */
+/* line 829, ../../../app/assets/stylesheets/components/general.scss */
 .classes-taken {
   float: left;
   width: 300px;
@@ -918,16 +946,16 @@ hr#confirm {
   text-align: center;
 }
 
-/* line 813, ../../../app/assets/stylesheets/components/general.scss */
+/* line 838, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-active {
-  color: #d70100;
+  color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 110px;
   padding-top: 75px;
 }
 
-/* line 821, ../../../app/assets/stylesheets/components/general.scss */
+/* line 846, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -936,7 +964,7 @@ hr#confirm {
   padding-top: 75px;
 }
 
-/* line 829, ../../../app/assets/stylesheets/components/general.scss */
+/* line 854, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-active {
   color: #8f8f8f;
   font-family: futura-pt-1, futura-pt-2;
@@ -947,7 +975,7 @@ hr#confirm {
   padding-top: 45px;
 }
 
-/* line 839, ../../../app/assets/stylesheets/components/general.scss */
+/* line 864, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -958,14 +986,14 @@ hr#confirm {
   padding-top: 45px;
 }
 
-/* line 850, ../../../app/assets/stylesheets/components/general.scss */
+/* line 875, ../../../app/assets/stylesheets/components/general.scss */
 a.profile-link {
-  color: #d70100;
+  color: #ff7733;
   font-weight: 700;
   font-size: 11px;
 }
 
-/* line 856, ../../../app/assets/stylesheets/components/general.scss */
+/* line 881, ../../../app/assets/stylesheets/components/general.scss */
 a.bio-detail-header {
   float: left;
   color: #8f8f8f;
@@ -974,7 +1002,7 @@ a.bio-detail-header {
   font-size: 13px;
 }
 
-/* line 864, ../../../app/assets/stylesheets/components/general.scss */
+/* line 889, ../../../app/assets/stylesheets/components/general.scss */
 .profile-heading10 {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -985,7 +1013,7 @@ a.bio-detail-header {
   padding-top: 10px;
 }
 
-/* line 874, ../../../app/assets/stylesheets/components/general.scss */
+/* line 899, ../../../app/assets/stylesheets/components/general.scss */
 ul.avatar {
   float: left;
   list-style-type: none;
@@ -993,12 +1021,12 @@ ul.avatar {
   line-height: 23px;
 }
 
-/* line 881, ../../../app/assets/stylesheets/components/general.scss */
+/* line 906, ../../../app/assets/stylesheets/components/general.scss */
 li.avatar {
   float: left;
 }
 
-/* line 885, ../../../app/assets/stylesheets/components/general.scss */
+/* line 910, ../../../app/assets/stylesheets/components/general.scss */
 .avatar {
   width: 25px;
   height: 25px;
@@ -1008,7 +1036,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 894, ../../../app/assets/stylesheets/components/general.scss */
+/* line 919, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-30 {
   width: 30px;
   height: 30px;
@@ -1017,7 +1045,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 902, ../../../app/assets/stylesheets/components/general.scss */
+/* line 927, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-100 {
   width: 100px;
   height: 100px;
@@ -1026,7 +1054,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 910, ../../../app/assets/stylesheets/components/general.scss */
+/* line 935, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-medium {
   float: left;
   width: 50px;
@@ -1035,7 +1063,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 918, ../../../app/assets/stylesheets/components/general.scss */
+/* line 943, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-big {
   width: 190px;
   height: 190px;
