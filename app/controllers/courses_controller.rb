@@ -79,7 +79,11 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update_attributes(params[:course])
-      redirect_to @course, :notice  => "Successfully updated course."
+      if params[:course][:photo].blank?  
+        redirect_to @course, :notice  => "Successfully updated course."
+      else  
+        render :action => 'crop'
+      end
     else
       render :action => 'edit'
     end

@@ -27,8 +27,13 @@
 		
 		.page-section-float-left
 			#user_show_main_content
-				
-				
+				= "Approved courses"
+				%br/
+				- @approved_courses.each do |ac|
+					%p= ac.title
+					%p= ac.about
+					%p= link_to "Edit Details", edit_course_path(ac.id)
+			
 		
 	
 

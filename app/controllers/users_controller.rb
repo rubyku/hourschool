@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       #p current_user
     end
-    
+    @approved_courses = @user.courses.where(:status => "approved")
+    @pending_courses = @user.courses.where(:status => "pending")
   end
   
   def profile

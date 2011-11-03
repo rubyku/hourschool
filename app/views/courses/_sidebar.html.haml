@@ -82,10 +82,12 @@
 		.sidebar-block-last
 			.sidebar-heading
 				= "Students (#{course.students.size})"
-				- if course.teacher == current_user
-					%ul.noBullet
-						%li.noBullet
-							= link_to "Send a message to all students", '#'
+			- if course.teacher == current_user
+				%ul.noBullet
+					%li.noBullet
+						= link_to "Send a message to all students", '#'
+					%li.noBullet
+						= link_to "Update course", edit_course_path(course.id)
 		
 						
 	

@@ -16,10 +16,13 @@ class Course < ActiveRecord::Base
   
   acts_as_taggable_on :categories
   
-  has_attached_file :photo, :styles => { :small => "150x150>", :large => "500x500>" },
+  has_attached_file :photo, :styles => { :small => "150x150>", :large => "190x120>" },:processors => [:cropper],
                       :storage => :s3,
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                            :path => "/:style/:id/:filename"
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_photo, :if => :cropping?
+  
   #:url => "/images/courses/:id/:style/:basename.:extension"
   #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
   #:s3_credentials => S3_CREDENTIALS,
@@ -78,7 +81,23 @@ class Course < ActiveRecord::Base
      date - Date.today < 0
    end
    
+   
+   def cropping?
+       !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+     end
+
+     def photo_geometry(style = :original)
+       @geometry ||= {}
+       @geometry[style] ||= Paperclip::Geometry.from_file(photo.url(style))
+     end
+
+ 
    private
+   
+    def reprocess_avatar
+      photo.reprocess!
+    end
+   
    #validations
    def default_validations
     
