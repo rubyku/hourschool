@@ -41,6 +41,7 @@
 		= form_for @course, :html => { :multipart => true } do |f|
 			
 			= hidden_field_tag 'req', "#{@reqid}"
+			= f.hidden_field :status, :value => "live"
 			.form-question
 				= f.label :title
 			.form-question-tip

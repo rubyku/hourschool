@@ -1,10 +1,22 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register]
-  
+  before_filter :must_be_admin, :only => [:index, :approve]
   
   def index
     #authenticate admin - change this.
-    @courses = Course.all
+    @courses = Course.where(:status => "proposal")
+    @user = current_user
+  end
+  
+  def approve
+    p "id is #{params[:id]}"
+    @course = Course.find(params[:id])
+    @course.update_attribute :status, "approved"
+    
+    #send email and other stuff here to the teacher
+    
+    redirect_to courses_path
+    
   end
 
   def show
@@ -173,4 +185,12 @@ class CoursesController < ApplicationController
       #         render :action => 'new'
       #       end
   end
+  
+  private
+  def must_be_admin
+    if !current_user.try(:admin?)
+      redirect_to current_user
+    end
+  end
+    
 end

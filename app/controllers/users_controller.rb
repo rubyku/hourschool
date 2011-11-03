@@ -11,8 +11,9 @@ class UsersController < ApplicationController
     else
       
       @user = User.find(params[:id])
-      p current_user
+      #p current_user
     end
+    
   end
   
   def profile

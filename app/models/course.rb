@@ -16,7 +16,7 @@ class Course < ActiveRecord::Base
   
   acts_as_taggable_on :categories
   
-  has_attached_file :photo, :styles => { :small => "150x150>" },
+  has_attached_file :photo, :styles => { :small => "150x150>", :large => "500x500>" },
                       :storage => :s3,
                           :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                            :path => "/:style/:id/:filename"

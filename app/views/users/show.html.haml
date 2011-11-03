@@ -17,14 +17,18 @@
 				="Welcome back, #{@user.name}"
 			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 			%ul.sub-nav.clearfix
-				%li.sub-nav-active 
-					%a.sub-nav-active(href="") Everyone's activities
+				%li.sub-nav-inactive 
+					%a.sub-nav-nactive(href="") Everyone's activities
 				%li.sub-nav-inactive 
 					%a.sub-nav-inactive(href="") My activities
-				%li.sub-nav-inactive 
-					= link_to "My courses", "#", :class => "sub-nav-inactive"
+				%li.sub-nav-active 
+					= link_to "My courses", "#", :class => "sub-nav-active", :id => "link_to_my_courses"
 					
-
+		
 		.page-section-float-left
+			#user_show_main_content
+				
+				
+		
 	
 
