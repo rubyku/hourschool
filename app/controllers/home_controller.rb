@@ -100,7 +100,7 @@ class HomeController < ApplicationController
     #intersection of all courses in the city and the conditions that the course happens in a week and matches
     #search query
     
-    @courses = (@all_courses_in_city & Course.find(:all, :conditions => ["(title OR description) LIKE ? AND date BETWEEN ? AND ?", search_string,date, date.advance(:weeks => 2)])).paginate(:page => params[:page], :per_page => 10)
+    @courses = (@all_courses_in_city & Course.find(:all, :conditions => ["description LIKE ? AND date BETWEEN ? AND ?", search_string,date, date.advance(:weeks => 2)])).paginate(:page => params[:page], :per_page => 10)
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,
           :at_most => 10000,
