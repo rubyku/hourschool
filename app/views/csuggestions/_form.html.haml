@@ -1,11 +1,12 @@
-.content
-	= form_for @csuggestion do |f|
-		%p
-			= f.label "Title"
-		%br
-			= f.text_field :name
-		%p
-			= f.label :description
-		%br
-			= f.text_area :description
-		%p= f.submit "Submit"
+.page
+	.page-content
+		.heading25_ccc
+			= "Your suggestion"
+		= form_for @csuggestion do |f|
+			.form-question
+				= f.label "Title"
+			= f.text_field :name, :class => "form"
+			.form-question
+				= f.label "Description (1-2 Sentences)"
+			= f.text_area :description, :class => "form"
+			= f.submit "Request this class", :class => "submit-proposal-button"
