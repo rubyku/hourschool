@@ -8,6 +8,7 @@ class Course < ActiveRecord::Base
   
   attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :minimum
   attr_accessible :status, :about, :experience 
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
   
   validate :default_validations, :message => "The fields cannot be empty" 
@@ -16,16 +17,23 @@ class Course < ActiveRecord::Base
   
   acts_as_taggable_on :categories
   
-  has_attached_file :photo, :styles => { :small => "150x150>", :large => "190x120>" },:processors => [:cropper],
+  
+  has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
                       :storage => :s3,
-                          :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                           :path => "/:style/:id/:filename"
+                          :s3_credentials => "#{Rails.root}/config/s3.yml",
+                          :path => "/:style/:id/:filename",
+                           :processors => [:cropper]
+                           
+                           
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  #before_update :reprocess_photo, :if => :cropping?
   after_update :reprocess_photo, :if => :cropping?
   
   #:url => "/images/courses/:id/:style/:basename.:extension"
   #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
   #:s3_credentials => S3_CREDENTIALS,
+  #:processors => [:cropper]
+  #:path => "/:style/:id/:filename",
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
   
@@ -83,18 +91,24 @@ class Course < ActiveRecord::Base
    
    
    def cropping?
+       p "cropping? = #{!crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?}"
+       p "crop_x = #{crop_x}, crop_y = #{crop_y}, crop_w = #{crop_w}, crop_h = #{crop_h}"
        !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
      end
 
      def photo_geometry(style = :original)
        @geometry ||= {}
-       @geometry[style] ||= Paperclip::Geometry.from_file(photo.url(style))
+       path = (photo.options[:storage] == :s3) ? photo.url(style) : photo.path(style)
+       #@geometry[style] ||= Paperclip::Geometry.from_file(path)
+      @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
+           
      end
 
  
    private
    
-    def reprocess_avatar
+    def reprocess_photo
+      p "hello world"
       photo.reprocess!
     end
    

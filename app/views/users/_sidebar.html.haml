@@ -1,0 +1,9 @@
+.sidebar
+	.sidebar-content
+		
+		%ul.searchFilter
+			%li
+				.sidebar-heading Your account
+			
+			%li= link_to "update", edit_user_registration_path(current_user.id)
+

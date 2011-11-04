@@ -9,7 +9,7 @@
 		.page-section-float-left
 			.class-logistic-block
 				- if @current_course.photo.exists?
-					= image_tag(@current_course.photo.url)
+					= image_tag(@current_course.photo.url(:small), :size => "190x120")
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 				- else
 					= image_tag("/images/v2-courses/default_image.jpg")
