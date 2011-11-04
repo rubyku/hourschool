@@ -25,7 +25,7 @@
 				= 'We just want a general idea. 1-2 sentences is plenty.'
 				%br
 					- if @reqid.nil?
-						= f.text_area :about, :class => "form-with-margin", :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						= f.text_area :about, :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
 					- else
 						= f.text_area :about, :value => "#{@reqdescription}", :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
 						
