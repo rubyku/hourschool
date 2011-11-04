@@ -6,4 +6,5 @@
 				.sidebar-heading Your account
 			
 			%li= link_to "update", edit_user_registration_path(current_user.id)
+			%li= link_to "Sign out", destroy_user_session_path
 

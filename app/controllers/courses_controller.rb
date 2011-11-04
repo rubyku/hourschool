@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register]
   before_filter :must_be_admin, :only => [:index, :approve]
+  uses_yui_editor
   
   def index
     #authenticate admin - change this.
