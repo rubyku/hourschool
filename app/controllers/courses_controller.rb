@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview]
   before_filter :must_be_admin, :only => [:index, :approve]
   uses_yui_editor
   
@@ -10,7 +10,6 @@ class CoursesController < ApplicationController
   end
   
   def approve
-    p "id is #{params[:id]}"
     @course = Course.find(params[:id])
     @course.update_attribute :status, "approved"
     
@@ -37,7 +36,12 @@ class CoursesController < ApplicationController
     end
     @random_course = Course.find(rand(Course.count-1) + 1)
   end
-
+  
+  def preview
+    id = params[:id]
+    @course = Course.find(id)
+  end
+  
   def create
     @course = Course.new(params[:course])
     
@@ -79,9 +83,16 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    if @course.update_attributes(params[:course])
+    p "course is #{params[:course]}"
+    cat = []
+    cat << (params[:course][:categories]).to_s
+    if @course.update_attributes((params[:course]).delete(:categories))
+      
+      @course.category_list = cat.join(", ").to_s
+      @course.save
       if params[:course][:photo].blank?  
-        redirect_to @course, :notice  => "Successfully updated course."
+        #redirect_to preview_path(params[:id])
+        redirect_to preview_path(:id => @course.id)
       else  
         render :action => 'crop'
       end

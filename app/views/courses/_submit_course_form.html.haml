@@ -67,7 +67,7 @@
 			.form-question-tip
 				= 'Choose the best category this class falls into '
 				/ = f.text_field :categories, :value => ' ', :class => "form-with-margin"
-				= f.select :categories, options_for_select([['Art, Design and Philosophy','Art, Design and Philosophy'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology']]) 
+				= f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']]) 
 			.form-question
 				= f.label :price
 			.form-question-tip

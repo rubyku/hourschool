@@ -34,6 +34,7 @@ HourschoolV2::Application.routes.draw do
   match '/register' => 'courses#register'
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'
+  match '/preview' => 'courses#preview'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'
