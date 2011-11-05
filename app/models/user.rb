@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
   
   def send_reg_email
-    UserMailer.send_registration_mail(self.email).deliver
+    UserMailer.send_registration_mail(self.email, self.name).deliver
   end
   
 end
