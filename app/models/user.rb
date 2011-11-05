@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   
   after_save :update_location_database
- # after_create :send_reg_email
+  after_create :send_reg_email
   
   def zipcode
     self.zip
@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
       g = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.zip}"
       City.create!(:name => self.city, :state => self.state, :lat => g.lat, :lng => g.lng)
     end
-    UserMailer.send_registration_mail(self.email).deliver
+    
   end
   
   def send_reg_email
