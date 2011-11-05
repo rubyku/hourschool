@@ -15,7 +15,10 @@
 					= image_tag(@current_course.photo.url(:small), :size => "190x120")
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 				- else
-					= image_tag("/images/v2-courses/default_image.jpg")
+					- if !@current_course.categories.first.nil?
+						= image_tag("#{DEF_IMAGES[@current_course.categories.first.name]}")
+					- else
+						= image_tag("/images/v2-courses/default_image.jpg")
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 			.class-description-block
 				.class-title-big

@@ -9,8 +9,9 @@
 			.classRow
 				= render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes}
 
-		.page-section-float-left
-			.heading25_ccc 
-				= "Help make these classes happen"
-			= render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
+		- if @suggestions.size > 0
+			.page-section-float-left
+				.heading25_ccc 
+					= "Help make these classes happen"
+				= render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
 = render :partial => 'learn_sidebar'

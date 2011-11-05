@@ -1136,3 +1136,16 @@ img#amazon {
   margin-top: 80px;
   margin-left: -160px;
 }
+
+.empty-prompt{
+  color: #cccccc;
+	text-transform: uppercase;
+	font-family: futura-pt-1,futura-pt-2;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 24px;
+	letter-spacing: 0.1em;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}

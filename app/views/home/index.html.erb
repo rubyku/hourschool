@@ -51,8 +51,9 @@
         </a>
 
         <div id="login">
-          <a href="/signup" id="menu_homepage">Sign up</a> 
-          <a href="/p/dashboard" id="menu_homepage">Sign in</a>
+		  <%= link_to "Sign up", new_user_registration_path %>
+		 <%= link_to "Sign in", new_user_session_path %>
+          
         </div>
 
         <table id="homepage_menu">
