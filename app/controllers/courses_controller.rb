@@ -42,6 +42,11 @@ class CoursesController < ApplicationController
     @course = Course.find(id)
   end
   
+  def confirm
+    id = params[:id]
+    @course = Course.find(id)
+  end
+  
   def create
     @course = Course.new(params[:course])
     
