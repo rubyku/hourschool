@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.teacher.email, :subject => subject)
   end
   
+  def send_registration_mail(user_email)
+    @email = user_email
+    mail(:to => user_email, :subject => "Welcome to HourSchool!")
+  end
+  
 end

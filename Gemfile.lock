@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/jlecour/geokit-rails3.git
+  revision: 0b6d1ddb2461d676df1d4de9758600f56bdfbf4f
+  specs:
+    geokit-rails3 (0.1.5)
+      geokit (~> 1.5)
+      rails (~> 3.0)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 59f2767345a1666f4745c02b231fe876712461e2
   specs:
@@ -52,6 +60,10 @@ GEM
     builder (2.1.2)
     cocaine (0.2.0)
     crack (0.1.8)
+    daemons (1.1.4)
+    delayed_job (2.1.4)
+      activesupport (~> 3.0)
+      daemons
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faker (1.0.1)
@@ -208,11 +220,12 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
   aws-s3
+  delayed_job
   devise!
   faker
   forgery
   friendly_id (= 3.2.1)
-  geokit
+  geokit-rails3!
   haml
   heroku
   indextank

@@ -23,10 +23,11 @@
 					= f.text_field :organization, :class => "form"
 			- else
 				%div{:class => "form-question"}
-					= f.label "Location (City, State)"
+					= f.label "Zipcode"
 					%br/
+					= f.text_field :zipcode, :class => "form"
 					/ = f.text_field :location
-					= f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
+					/ = f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
 			%div{:class => "form-question"}
 				= f.label :email
 				%br/

@@ -3,9 +3,11 @@
 		%ul.searchFilter
 			%li
 				.sidebar-heading Browse By City
-		
-			- SUPPORTED_CITIES.each do |sc|
-				%li= link_to "#{sc}", '#', :remote => true
+			- if current_user
+				%li= link_to "#{current_user.city}", '#', :remote => true unless current_user.city == "Austin" || current_user.city == "San Francisco"
+				
+			%li= link_to "Austin", '#', :remote => true
+			%li= link_to "San Francisco", "#", :remote => true
 		%ul.searchFilter
 			%li
 				.sidebar-heading Browse By Time

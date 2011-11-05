@@ -75,23 +75,25 @@ puts 'CREATING users'
 
 TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintainance", "Technology"]
 
-city1 = City.create! :name => "Austin", :state => "TX"
-city2 = City.create! :name => "San Francisco", :state => "CA"
-city1.save
-city2.save
+# city1 = City.create! :name => "Austin", :state => "TX"
+# city2 = City.create! :name => "San Francisco", :state => "CA"
+# city1.save
+# city2.save
 
-p "Created cities, Austin and SF"
+#p "Created cities, Austin and SF"
 
 (1..100).each do |count|
   name = "#{Random.firstname} #{Random.initial} #{Random.lastname}"
-  email = "austin_#{count}@test.com"
+  email = "people_#{count}@test.com"
   password = "testing"
   if count < 50
-    location = "Austin, TX"
+    location = "78759"
+  elsif count > 50 && count < 75
+    location = "94110"
   else
-    location = "San Francisco, CA"
+    location = "48103"
   end
-  user = User.create! :name => name, :email => email, :password => password, :password_confirmation => password, :location => location
+  user = User.create! :name => name, :email => email, :password => password, :password_confirmation => password, :zipcode => location
   user.save
   
   random_text = Random.paragraphs
@@ -120,7 +122,7 @@ p "Created cities, Austin and SF"
        user.courses << course
        user.save
      end
-     city = City.find_by_name(location.split(',')[0].strip)
+     city = City.find_by_name(user.city)
      city.courses << course
      city.save
      
@@ -140,7 +142,7 @@ p "Created cities, Austin and SF"
   sugg_requested_by = user.id
   csugg = Csuggestion.create! :name => sugg_name, :description => sugg_desc, :requested_by => sugg_requested_by
   user.vote_for(csugg)
-  city = City.find_by_name(location.split(',')[0].strip)
+  city = City.find_by_name(user.city)
    city.csuggestions << csugg
    city.save
   #create courses randomly

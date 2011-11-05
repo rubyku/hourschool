@@ -1,5 +1,14 @@
+
 = render :partial => "header"
 .container_16.searchBar.clearfix
 	= render :partial => 'search_form'
-= render :partial => "why_teach"
+
+.page
+	.page-content
+		.page-section-float-left
+			= render :partial => "why_teach"
+		.page-section-float-left
+			.heading25_ccc 
+				= "Help make these classes happen"
+			= render :partial => "teach_suggestions", :locals => {:suggestions => @suggestions}
 = render :partial => "teach_sidebar", :locals => {:random_course => @random_course}

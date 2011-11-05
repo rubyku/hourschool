@@ -1,5 +1,5 @@
 
-- @top_suggestions.each do |t|
+- suggestions.each do |t|
 	.vote-class.clearfix
 		.vote-class-title
 			.heading20-vote
@@ -32,4 +32,11 @@
 							= "You voted"
 					- else
 						= link_to_function "Add vote", "alert('Please login to vote!')"
+.page-section-float-right
+	%table.view-more
+		%tr
+			%td
+				%img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
+			%td
+				= will_paginate suggestions, :previous_label => "Prev"
 					

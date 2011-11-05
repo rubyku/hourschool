@@ -18,9 +18,9 @@
 				= f.text_field :organization
 		- else
 			%div
-				= f.label "Location (City, State)"
+				= f.label "Zipcode"
 				%br/
-				= f.text_field :location
+				= f.text_field :zipcode, :class => "form"
 		
 		%div
 			= f.label :password

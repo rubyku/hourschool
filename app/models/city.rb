@@ -5,8 +5,9 @@ class City < ActiveRecord::Base
   validates_presence_of :name, :state
   
   attr_accessible :name, :state, :zip
+  attr_accessible :lat, :lng
   
-  include Geokit::Mappable 
-  
+  #include Geokit::Mappable 
+  acts_as_mappable
   
 end

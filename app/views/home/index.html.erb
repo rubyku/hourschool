@@ -74,7 +74,8 @@
         <div id="homeSearchForm-background"></div>
         
 		<%= form_tag search_path, :method => 'post' do %>
-			<input type="text" name="search" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/>
+			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :class => 'searchForm', :onclick => 'this.select();', :id =>"homepageSearchForm"%>
+			<!--<input type="text" name="search" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/> -->
 	        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
 			<br>
 			<input type="submit" value="Search" id="homepageSearchButton" />

@@ -33,7 +33,12 @@ gem 'will_paginate', '~> 3.0.2'
 gem 'indextank'
 
 #geo
-gem 'geokit'
+#gem 'geokit'
+#gem 'geokit-rails3'
+gem 'geokit-rails3', :git =>  'git://github.com/jlecour/geokit-rails3.git'
+
+#delayed job
+gem 'delayed_job'
 
 #rails-tinymce
 gem 'use_tinymce'

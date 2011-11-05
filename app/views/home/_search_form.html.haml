@@ -1,4 +1,6 @@
 = form_tag search_path, :method => 'post' do
-	%input.searchForm(type='text' placeholder='Find a class to attend')
+	/ %input.searchForm(type='text' placeholder='Find a class to attend')
+	
+	= text_field_tag 'search', 'Find a class to attend', :class => 'searchForm', :onclick => 'this.select();'
 	%img.mag-glass{:src => '/images/v2/search-magnifying-glass-orange.png'}
 	= submit_tag "Search", :class => "searchButton"

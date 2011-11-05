@@ -7,7 +7,7 @@
 		- className = "classBlock"
 	%div{:class => "#{className}"}
 		- if c.photo.exists?
-			= image_tag(c.photo.url)
+			= image_tag(c.photo.url(:small), :size => "190x120")
 			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		- else
 			= image_tag("/images/v2-courses/112_BakingBread.jpg")
@@ -28,4 +28,5 @@
 			%td
 				%img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
 			%td
-				= will_paginate classes_this_week
+				= will_paginate classes_this_week, :previous_label => "Prev"
+				
