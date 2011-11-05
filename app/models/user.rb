@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
         #           end
         #         end
         #        return "ec-not-supported"
-        if data data["location"]["name"].nil?
+        if data["location"]["name"].nil?
           return nil
         else
           return User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => data["name"], 
