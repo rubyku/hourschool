@@ -1,278 +1,83 @@
-/*......NOT LOGGED IN......*/
-/* line 5, ../../../app/assets/stylesheets/components/header.scss */
-#header {
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  overflow: hidden;
-}
+/*
+Syntax error: Undefined mixin 'rounded-corners'.
+        on line 53 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss, in `rounded-corners'
+        from line 53 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss
 
-/* line 12, ../../../app/assets/stylesheets/components/header.scss */
-#logo {
-  position: relative;
-  float: left;
-}
-
-/* line 17, ../../../app/assets/stylesheets/components/header.scss */
-#login {
-  color: #4f4e4e;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-}
-
-/* line 26, ../../../app/assets/stylesheets/components/header.scss */
-li#login {
-  float: left;
-  color: #8f8f8f;
-  text-decoration: none;
-  margin-left: 10px;
-}
-
-/* line 33, ../../../app/assets/stylesheets/components/header.scss */
-.profile-avatar {
-  width: 25px;
-  height: 25px;
-  float: left;
-  margin-top: -3px;
-  background-color: #ccc;
-}
-
-/* line 42, ../../../app/assets/stylesheets/components/header.scss */
-table#menu {
-  position: relative;
-  float: right;
-  margin-top: 12px;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-/* line 51, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_teach, td#menu_partners, td#menu_business {
-  border: 1px solid #d0cdcd;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 59, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_learn, td#menu_faq {
-  border-top: 1px solid #d0cdcd;
-  border-bottom: 1px solid #d0cdcd;
-  border-left: 0px;
-  border-right: 0px;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 70, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_learn {
-  width: 176px;
-}
-
-/* line 74, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_teach {
-  width: 170px;
-}
-
-/* line 78, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_partners {
-  width: 170px;
-}
-
-/* line 82, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_business {
-  width: 235px;
-}
-
-/* line 86, ../../../app/assets/stylesheets/components/header.scss */
-td#menu_faq {
-  width: 67px;
-}
-
-/* line 90, ../../../app/assets/stylesheets/components/header.scss */
-a#menu {
-  color: #8f8f8f;
-  text-decoration: none;
-}
-
-/* line 95, ../../../app/assets/stylesheets/components/header.scss */
-a#menu:hover {
-  text-decoration: none;
-  color: #ff7733;
-}
-
-/* line 97, ../../../app/assets/stylesheets/components/header.scss */
-#menu18 {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.2em;
-  line-height: 20px;
-}
-
-/* line 106, ../../../app/assets/stylesheets/components/header.scss */
-#menu9 {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 10px;
-}
-
-/* line 114, ../../../app/assets/stylesheets/components/header.scss */
-#menu_faq {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-}
-
-/*......LOGGED IN - ENTERPRISE......*/
-/* line 125, ../../../app/assets/stylesheets/components/header.scss */
-#enterprise_peer_learning {
-  position: relative;
-  float: left;
-  margin-left: 10px;
-  color: #ff7733;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-}
-
-/* line 137, ../../../app/assets/stylesheets/components/header.scss */
-table#enterprise_menu {
-  position: relative;
-  float: right;
-  margin-top: 12px;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-/* line 146, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_request, td#enterprise_menu_community {
-  border: 1px solid #d0cdcd;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 154, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_dashboard, td#enterprise_menu_faq {
-  border-top: 1px solid #d0cdcd;
-  border-bottom: 1px solid #d0cdcd;
-  border-left: 0px;
-  border-right: 0px;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 166, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_dashboard {
-  width: 200px;
-}
-
-/* line 170, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_learn {
-  width: 160px;
-}
-
-/* line 174, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_teach {
-  width: 160px;
-}
-
-/* line 178, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_request {
-  width: 160px;
-}
-
-/* line 182, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_community {
-  width: 200px;
-}
-
-/* line 186, ../../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_faq {
-  width: 67px;
-}
-
-/*......LOGGED IN - COMMUNITY......*/
-/* line 192, ../../../app/assets/stylesheets/components/header.scss */
-#peer-learning-at {
-  position: relative;
-  float: left;
-  margin-left: 10px;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-}
-
-/* line 203, ../../../app/assets/stylesheets/components/header.scss */
-table#community_menu {
-  position: relative;
-  float: right;
-  margin-top: 12px;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-/* line 212, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_teach, td#community_menu_request, td#community_menu_community {
-  border: 1px solid #d0cdcd;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 220, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_learn, td#community_menu_faq {
-  border-top: 1px solid #d0cdcd;
-  border-bottom: 1px solid #d0cdcd;
-  border-left: 0px;
-  border-right: 0px;
-  height: 60px;
-  vertical-align: bottom;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* line 232, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_learn {
-  width: 176px;
-}
-
-/* line 236, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_teach {
-  width: 170px;
-}
-
-/* line 240, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_request {
-  width: 170px;
-}
-
-/* line 244, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_community {
-  width: 235px;
-}
-
-/* line 248, ../../../app/assets/stylesheets/components/header.scss */
-td#community_menu_faq {
-  width: 67px;
-}
+Backtrace:
+/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss:53:in `rounded-corners'
+/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss:53
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:170:in `visit_mixin'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:236:in `visit_rule'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:27:in `block in visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:39:in `with_environment'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:26:in `visit_children'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:47:in `visit_root'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/root_node.rb:20:in `render'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:293:in `_render'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:241:in `block in render'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/util.rb:297:in `silence_sass_warnings'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/engine.rb:241:in `render'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:136:in `block (2 levels) in compile'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:122:in `timed'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:135:in `block in compile'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/logger.rb:45:in `red'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:134:in `compile'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:114:in `compile_if_required'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:99:in `block (2 levels) in run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:97:in `each'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:97:in `block in run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:122:in `timed'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/compiler.rb:96:in `run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/watch_project.rb:142:in `recompile'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `call'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:73:in `run_callback'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:55:in `callback_action'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/path.rb:35:in `update'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:39:in `block in modified'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `each'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:37:in `modified'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/state/directory.rb:18:in `refresh'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:30:in `block in temporary_multipath_handler'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `each'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:27:in `temporary_multipath_handler'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:17:in `block (2 levels) in run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `each'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:16:in `block in run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/rb-fsevent-0.4.3.1/lib/rb-fsevent/fsevent.rb:37:in `call'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/rb-fsevent-0.4.3.1/lib/rb-fsevent/fsevent.rb:37:in `run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/backends/rbfsevent.rb:20:in `run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm/monitor.rb:26:in `run'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/fssm-0.2.7/lib/fssm.rb:20:in `monitor'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/watch_project.rb:86:in `perform'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/base.rb:18:in `execute'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/commands/project_base.rb:19:in `execute'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:25:in `block in <top (required)>'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:39:in `call'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/compass-0.11.5/bin/compass:39:in `<top (required)>'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/bin/compass:19:in `load'
+/Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/bin/compass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'rounded-corners'.\A         on line 53 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss, in `rounded-corners'\A         from line 53 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/header.scss"; }

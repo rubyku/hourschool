@@ -7,9 +7,12 @@
 		- className = "classBlock"
 	%div{:class => "#{className}"}
 		- if c.photo.exists?
-			= image_tag(c.photo.url(:small), :size => "190x120")
+			/ Course.find(10).categories.first.name
+			= link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
 			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		- else
+			
+			= image_tag("#{DEF_IMAGES[c.categories.first.name]}")
 			= image_tag("/images/v2-courses/112_BakingBread.jpg")
 			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		%br

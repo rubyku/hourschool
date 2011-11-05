@@ -7,7 +7,7 @@
 }
 
 /*......HOURSCHOOL V2.......*/
-/* line 19, ../../../app/assets/stylesheets/components/general.scss */
+/* line 17, ../../../app/assets/stylesheets/components/general.scss */
 body {
   font-family: verdana,sans-serif;
   font-size: 13px;
@@ -18,7 +18,7 @@ body {
   position: relative;
 }
 
-/* line 29, ../../../app/assets/stylesheets/components/general.scss */
+/* line 27, ../../../app/assets/stylesheets/components/general.scss */
 p, ol, ul {
   font-family: verdana,sans-serif;
   font-size: 13px;
@@ -27,61 +27,61 @@ p, ol, ul {
   letter-spacing: auto;
 }
 
-/* line 37, ../../../app/assets/stylesheets/components/general.scss */
+/* line 35, ../../../app/assets/stylesheets/components/general.scss */
 a {
   text-decoration: none;
-  color: #ff7733;
+  color: #4f4e4e;
 }
 
-/* line 38, ../../../app/assets/stylesheets/components/general.scss */
+/* line 36, ../../../app/assets/stylesheets/components/general.scss */
 a:visited {
   text-decoration: none;
   color: #ff7733;
 }
 
-/* line 39, ../../../app/assets/stylesheets/components/general.scss */
+/* line 37, ../../../app/assets/stylesheets/components/general.scss */
 a:active {
   text-decoration: underline;
   color: #ff7733;
 }
 
-/* line 40, ../../../app/assets/stylesheets/components/general.scss */
+/* line 38, ../../../app/assets/stylesheets/components/general.scss */
 a:hover {
   text-decoration: none;
   color: #ff7733;
 }
 
 /*......PAGE BREAKDOWN......*/
-/* line 45, ../../../app/assets/stylesheets/components/general.scss */
+/* line 43, ../../../app/assets/stylesheets/components/general.scss */
 .brand_bg {
   background-color: #ff7733;
   height: 3px;
 }
 
-/* line 50, ../../../app/assets/stylesheets/components/general.scss */
+/* line 48, ../../../app/assets/stylesheets/components/general.scss */
 .enterprise_brand_bg {
   background-color: #ff7733;
   height: 7px;
 }
 
-/* line 55, ../../../app/assets/stylesheets/components/general.scss */
+/* line 53, ../../../app/assets/stylesheets/components/general.scss */
 .middle_bg {
   background-image: url(../../../images/v2/BG_grey.png);
 }
 
-/* line 59, ../../../app/assets/stylesheets/components/general.scss */
+/* line 57, ../../../app/assets/stylesheets/components/general.scss */
 .bottom_bg {
   background-color: #fff;
   padding-bottom: 100px;
 }
 
-/* line 64, ../../../app/assets/stylesheets/components/general.scss */
+/* line 62, ../../../app/assets/stylesheets/components/general.scss */
 .main {
   margin-bottom: 25px;
   padding-bottom: 25px;
 }
 
-/* line 69, ../../../app/assets/stylesheets/components/general.scss */
+/* line 67, ../../../app/assets/stylesheets/components/general.scss */
 .full-page {
   width: 960px;
   float: left;
@@ -89,7 +89,7 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 76, ../../../app/assets/stylesheets/components/general.scss */
+/* line 74, ../../../app/assets/stylesheets/components/general.scss */
 .marcomm-half-page {
   width: 960px;
   float: left;
@@ -98,7 +98,7 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 84, ../../../app/assets/stylesheets/components/general.scss */
+/* line 82, ../../../app/assets/stylesheets/components/general.scss */
 .email-page {
   width: 700px;
   margin-left: auto;
@@ -107,7 +107,7 @@ a:hover {
   padding-bottom: 50px;
 }
 
-/* line 92, ../../../app/assets/stylesheets/components/general.scss */
+/* line 90, ../../../app/assets/stylesheets/components/general.scss */
 .email-content {
   padding: 30px 30px 30px;
   margin-top: 20px;
@@ -115,7 +115,7 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 99, ../../../app/assets/stylesheets/components/general.scss */
+/* line 97, ../../../app/assets/stylesheets/components/general.scss */
 .page {
   width: 700px;
   float: left;
@@ -123,32 +123,32 @@ a:hover {
   background-color: #fff;
 }
 
-/* line 106, ../../../app/assets/stylesheets/components/general.scss */
+/* line 104, ../../../app/assets/stylesheets/components/general.scss */
 .page-content {
   padding: 30px 30px 30px;
 }
 
-/* line 110, ../../../app/assets/stylesheets/components/general.scss */
+/* line 108, ../../../app/assets/stylesheets/components/general.scss */
 .page-section-float-left {
   float: left;
   width: 100%;
   padding-bottom: 20px;
 }
 
-/* line 116, ../../../app/assets/stylesheets/components/general.scss */
+/* line 114, ../../../app/assets/stylesheets/components/general.scss */
 .page-section-float-right {
   float: right;
   width: 100%;
   padding-bottom: 20px;
 }
 
-/* line 122, ../../../app/assets/stylesheets/components/general.scss */
+/* line 120, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar {
   width: 260px;
   float: left;
 }
 
-/* line 127, ../../../app/assets/stylesheets/components/general.scss */
+/* line 125, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-white {
   width: 250px;
   float: left;
@@ -156,45 +156,45 @@ a:hover {
   margin-left: 10px;
 }
 
-/* line 134, ../../../app/assets/stylesheets/components/general.scss */
+/* line 132, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-content {
   padding: 0px 0px 10px 30px;
 }
 
-/* line 138, ../../../app/assets/stylesheets/components/general.scss */
+/* line 136, ../../../app/assets/stylesheets/components/general.scss */
 .sidebar-content-white {
   padding: 30px 15px 10px 15px;
 }
 
-/* line 142, ../../../app/assets/stylesheets/components/general.scss */
+/* line 140, ../../../app/assets/stylesheets/components/general.scss */
 ul.noBullet {
   list-style-type: none;
 }
 
-/* line 146, ../../../app/assets/stylesheets/components/general.scss */
+/* line 144, ../../../app/assets/stylesheets/components/general.scss */
 li.noBullet {
   float: left;
 }
 
-/* line 150, ../../../app/assets/stylesheets/components/general.scss */
+/* line 149, ../../../app/assets/stylesheets/components/general.scss */
 .footer {
   margin-right: 10px;
 }
 
-/* line 154, ../../../app/assets/stylesheets/components/general.scss */
+/* line 153, ../../../app/assets/stylesheets/components/general.scss */
 .footer-right {
   margin-right: 10px;
   margin-left: 40px;
 }
 
 /*......SEARCH......*/
-/* line 162, ../../../app/assets/stylesheets/components/general.scss */
+/* line 161, ../../../app/assets/stylesheets/components/general.scss */
 .searchBar {
   margin-top: -15px;
   margin-bottom: 25px;
 }
 
-/* line 167, ../../../app/assets/stylesheets/components/general.scss */
+/* line 166, ../../../app/assets/stylesheets/components/general.scss */
 .mag-glass {
   position: relative;
   float: left;
@@ -204,7 +204,7 @@ li.noBullet {
   margin-left: 22px;
 }
 
-/* line 176, ../../../app/assets/stylesheets/components/general.scss */
+/* line 175, ../../../app/assets/stylesheets/components/general.scss */
 .searchForm {
   position: relative;
   float: left;
@@ -226,7 +226,7 @@ li.noBullet {
   border-radius: 5px;
 }
 
-/* line 196, ../../../app/assets/stylesheets/components/general.scss */
+/* line 195, ../../../app/assets/stylesheets/components/general.scss */
 .searchButton {
   /* Disables default styling */
   border: none;
@@ -254,29 +254,29 @@ li.noBullet {
 }
 
 /*......SUB-NAV.....*/
-/* line 223, ../../../app/assets/stylesheets/components/general.scss */
+/* line 222, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-active {
   color: black;
 }
 
-/* line 224, ../../../app/assets/stylesheets/components/general.scss */
+/* line 223, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-inactive {
   color: #8f8f8f;
 }
 
-/* line 225, ../../../app/assets/stylesheets/components/general.scss */
+/* line 224, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-active:hover {
   text-decoration: none;
   color: #ff7733;
 }
 
-/* line 226, ../../../app/assets/stylesheets/components/general.scss */
+/* line 225, ../../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-inactive:hover {
   text-decoration: none;
   color: #ff7733;
 }
 
-/* line 228, ../../../app/assets/stylesheets/components/general.scss */
+/* line 227, ../../../app/assets/stylesheets/components/general.scss */
 ul.sub-nav {
   list-style: none;
   font-family: futura-pt-1, futura-pt-2;
@@ -287,28 +287,28 @@ ul.sub-nav {
   margin-bottom: 20px;
 }
 
-/* line 238, ../../../app/assets/stylesheets/components/general.scss */
+/* line 237, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-active, li.sub-nav-inactive {
   float: left;
   margin-right: 10px;
   padding-bottom: 3px;
 }
 
-/* line 244, ../../../app/assets/stylesheets/components/general.scss */
+/* line 243, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-active {
   border-bottom: 3px solid #ff7733;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 250, ../../../app/assets/stylesheets/components/general.scss */
+/* line 249, ../../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-inactive {
   padding-left: 10px;
   padding-right: 10px;
 }
 
 /*......PAGE BIG HEADINGS......*/
-/* line 258, ../../../app/assets/stylesheets/components/general.scss */
+/* line 257, ../../../app/assets/stylesheets/components/general.scss */
 .heading25_ccc {
   color: #cccccc;
   text-transform: uppercase;
@@ -319,44 +319,51 @@ li.sub-nav-inactive {
   margin-bottom: 25px;
 }
 
-/* line 268, ../../../app/assets/stylesheets/components/general.scss */
+/* line 267, ../../../app/assets/stylesheets/components/general.scss */
 .welcome-header {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* line 276, ../../../app/assets/stylesheets/components/general.scss */
+/* line 277, ../../../app/assets/stylesheets/components/general.scss */
 .greyheader_half {
   position: relative;
   float: left;
   width: 680px;
-  margin-top: -76px;
+  margin-top: -56px;
   margin-left: -45px;
   overflow: visible;
   z-index: 10;
 }
 
 /*......DASHBOARD......*/
-/* line 288, ../../../app/assets/stylesheets/components/general.scss */
-.dashbord-story {
+/* line 290, ../../../app/assets/stylesheets/components/general.scss */
+.dashboard-story {
   float: left;
   width: 100%;
-  margin-top: 30px;
-  padding-bottom: 10px;
-  padding: 10px 0px 10px 0px;
-  border-bottom: 2px dashed #ccc;
+  padding: 20px 0px 20px 0px;
+  border-bottom: 1px dashed #ccc;
 }
 
 /* line 297, ../../../app/assets/stylesheets/components/general.scss */
+.dashboard-story-last {
+  float: left;
+  width: 100%;
+  padding: 20px 0px 20px 0px;
+}
+
+/* line 303, ../../../app/assets/stylesheets/components/general.scss */
 ul.dashboard-name {
   list-style: none;
   margin-top: 5px;
 }
 
-/* line 302, ../../../app/assets/stylesheets/components/general.scss */
+/* line 308, ../../../app/assets/stylesheets/components/general.scss */
 li.dashboard-name {
   float: left;
   top: 0px;
@@ -364,40 +371,40 @@ li.dashboard-name {
   vertical-align: middle;
 }
 
-/* line 309, ../../../app/assets/stylesheets/components/general.scss */
+/* line 315, ../../../app/assets/stylesheets/components/general.scss */
 ul.class {
   float: left;
   top: 0px;
   margin-right: 10px;
 }
 
-/* line 315, ../../../app/assets/stylesheets/components/general.scss */
+/* line 321, ../../../app/assets/stylesheets/components/general.scss */
 ul.status {
   float: right;
   top: 0px;
 }
 
-/* line 320, ../../../app/assets/stylesheets/components/general.scss */
+/* line 326, ../../../app/assets/stylesheets/components/general.scss */
 ul.comment {
   float: left;
   position: absolute;
   width: 450px;
-  margin-top: 27px;
+  margin-top: 35px;
   margin-left: 125px;
 }
 
-/* line 328, ../../../app/assets/stylesheets/components/general.scss */
+/* line 334, ../../../app/assets/stylesheets/components/general.scss */
 img.dashboard-icon {
   float: left;
   margin-top: 1px;
 }
 
-/* line 333, ../../../app/assets/stylesheets/components/general.scss */
+/* line 339, ../../../app/assets/stylesheets/components/general.scss */
 img.dashboard-class {
   float: right;
 }
 
-/* line 337, ../../../app/assets/stylesheets/components/general.scss */
+/* line 343, ../../../app/assets/stylesheets/components/general.scss */
 .dashboard-name {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -407,7 +414,7 @@ img.dashboard-class {
 }
 
 /*......LEARN PAGE.....*/
-/* line 347, ../../../app/assets/stylesheets/components/general.scss */
+/* line 353, ../../../app/assets/stylesheets/components/general.scss */
 ul.searchFilter {
   list-style-type: none;
   margin-bottom: 20px;
@@ -415,7 +422,7 @@ ul.searchFilter {
   line-height: 23px;
 }
 
-/* line 354, ../../../app/assets/stylesheets/components/general.scss */
+/* line 360, ../../../app/assets/stylesheets/components/general.scss */
 .classRow {
   float: left;
   width: 650px;
@@ -423,7 +430,7 @@ ul.searchFilter {
   margin-bottom: 20px;
 }
 
-/* line 361, ../../../app/assets/stylesheets/components/general.scss */
+/* line 367, ../../../app/assets/stylesheets/components/general.scss */
 .classBlock {
   float: left;
   width: 190px;
@@ -435,7 +442,7 @@ ul.searchFilter {
   margin-right: 30px;
 }
 
-/* line 372, ../../../app/assets/stylesheets/components/general.scss */
+/* line 378, ../../../app/assets/stylesheets/components/general.scss */
 .classBlock_last {
   float: left;
   width: 190px;
@@ -446,7 +453,7 @@ ul.searchFilter {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 382, ../../../app/assets/stylesheets/components/general.scss */
+/* line 388, ../../../app/assets/stylesheets/components/general.scss */
 img.class-arrow {
   position: relative;
   float: right;
@@ -454,25 +461,25 @@ img.class-arrow {
   margin-right: 10px;
 }
 
-/* line 389, ../../../app/assets/stylesheets/components/general.scss */
+/* line 395, ../../../app/assets/stylesheets/components/general.scss */
 .class-description {
   padding: 10px;
 }
 
-/* line 393, ../../../app/assets/stylesheets/components/general.scss */
+/* line 399, ../../../app/assets/stylesheets/components/general.scss */
 table.view-more, tr.view-more {
   float: right;
   margin-right: 10px;
   margin-bottom: 20px;
 }
 
-/* line 399, ../../../app/assets/stylesheets/components/general.scss */
+/* line 405, ../../../app/assets/stylesheets/components/general.scss */
 ul.view-more-arrow {
   float: left;
   list-style-type: none;
 }
 
-/* line 404, ../../../app/assets/stylesheets/components/general.scss */
+/* line 410, ../../../app/assets/stylesheets/components/general.scss */
 a.view-more {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -486,21 +493,22 @@ a.view-more {
 }
 
 /*......CLASS BLOCK.....*/
-/* line 419, ../../../app/assets/stylesheets/components/general.scss */
+/* line 425, ../../../app/assets/stylesheets/components/general.scss */
 .heading13-class {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
-/* line 426, ../../../app/assets/stylesheets/components/general.scss */
+/* line 433, ../../../app/assets/stylesheets/components/general.scss */
 .heading9-class {
   font-weight: 400;
   font-size: 9px;
 }
 
-/* line 431, ../../../app/assets/stylesheets/components/general.scss */
+/* line 438, ../../../app/assets/stylesheets/components/general.scss */
 .heading10-class {
   font-weight: 400;
   font-size: 10px;
@@ -508,13 +516,13 @@ a.view-more {
 }
 
 /*......VOTE FOR A CLASS.....*/
-/* line 440, ../../../app/assets/stylesheets/components/general.scss */
+/* line 447, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
   border-bottom: 1px dashed #ccc;
 }
-/* line 445, ../../../app/assets/stylesheets/components/general.scss */
+/* line 452, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -524,17 +532,17 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 453, ../../../app/assets/stylesheets/components/general.scss */
+/* line 460, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class a:hover {
   text-decoration: underline;
 }
 
-/* line 459, ../../../app/assets/stylesheets/components/general.scss */
+/* line 466, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
 }
-/* line 463, ../../../app/assets/stylesheets/components/general.scss */
+/* line 470, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -544,22 +552,22 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 471, ../../../app/assets/stylesheets/components/general.scss */
+/* line 478, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a:hover {
   text-decoration: underline;
 }
 
-/* line 477, ../../../app/assets/stylesheets/components/general.scss */
+/* line 484, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-title {
   float: left;
 }
 
-/* line 481, ../../../app/assets/stylesheets/components/general.scss */
+/* line 488, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-number {
   float: right;
 }
 
-/* line 485, ../../../app/assets/stylesheets/components/general.scss */
+/* line 492, ../../../app/assets/stylesheets/components/general.scss */
 .vote-class-button {
   /* Disables default styling */
   border: none;
@@ -582,7 +590,7 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 506, ../../../app/assets/stylesheets/components/general.scss */
+/* line 513, ../../../app/assets/stylesheets/components/general.scss */
 .heading35-vote {
   color: #ff7733;
   text-transform: uppercase;
@@ -594,7 +602,7 @@ a.view-more {
   margin-bottom: 5px;
 }
 
-/* line 517, ../../../app/assets/stylesheets/components/general.scss */
+/* line 524, ../../../app/assets/stylesheets/components/general.scss */
 .heading20-vote {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -603,7 +611,7 @@ a.view-more {
   padding-bottom: 5px;
 }
 
-/* line 525, ../../../app/assets/stylesheets/components/general.scss */
+/* line 532, ../../../app/assets/stylesheets/components/general.scss */
 .heading10-vote {
   color: #8f8f8f;
   text-transformnsform: uppercase;
@@ -615,7 +623,7 @@ a.view-more {
 }
 
 /*......TEACH PAGE.....*/
-/* line 539, ../../../app/assets/stylesheets/components/general.scss */
+/* line 546, ../../../app/assets/stylesheets/components/general.scss */
 .claim-class-button {
   margin-top: 5px;
   margin-bottom: 15px;
@@ -637,25 +645,25 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 558, ../../../app/assets/stylesheets/components/general.scss */
+/* line 565, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach {
   margin-top: 20px;
   padding: 0px 10px 0px 0px;
 }
 
-/* line 563, ../../../app/assets/stylesheets/components/general.scss */
+/* line 570, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach-short {
   width: 75%;
   float: left;
   margin-bottom: 30px;
 }
 
-/* line 569, ../../../app/assets/stylesheets/components/general.scss */
+/* line 576, ../../../app/assets/stylesheets/components/general.scss */
 .why-teach-last {
   padding: 0px 20px 10px 0px;
 }
 
-/* line 573, ../../../app/assets/stylesheets/components/general.scss */
+/* line 580, ../../../app/assets/stylesheets/components/general.scss */
 #create-class-button {
   float: left;
   width: 135px;
@@ -667,13 +675,13 @@ a.view-more {
   margin-left: 20px;
 }
 
-/* line 583, ../../../app/assets/stylesheets/components/general.scss */
+/* line 590, ../../../app/assets/stylesheets/components/general.scss */
 img#create-class-star {
   margin-top: 10px;
   margin-left: 46px;
 }
 
-/* line 589, ../../../app/assets/stylesheets/components/general.scss */
+/* line 596, ../../../app/assets/stylesheets/components/general.scss */
 .heading15-whyteach {
   /*  color: $brand-background;*/
   /*  text-transform: uppercase;*/
@@ -683,7 +691,7 @@ img#create-class-star {
   letter-spacing: 0.1em;
 }
 
-/* line 598, ../../../app/assets/stylesheets/components/general.scss */
+/* line 605, ../../../app/assets/stylesheets/components/general.scss */
 .create-class-heading {
   float: left;
   padding-top: 5px;
@@ -696,39 +704,39 @@ img#create-class-star {
 }
 
 /*......CLASS DETAIL PAGE.....*/
-/* line 612, ../../../app/assets/stylesheets/components/general.scss */
+/* line 619, ../../../app/assets/stylesheets/components/general.scss */
 .class-logistic-block {
   float: left;
   width: 220px;
   margin-right: 0px;
 }
 
-/* line 618, ../../../app/assets/stylesheets/components/general.scss */
+/* line 625, ../../../app/assets/stylesheets/components/general.scss */
 .class-logistic-line {
   float: left;
   width: 200px;
   margin-right: 0px;
 }
 
-/* line 624, ../../../app/assets/stylesheets/components/general.scss */
+/* line 631, ../../../app/assets/stylesheets/components/general.scss */
 .class-description-block {
   float: left;
   width: 400px;
 }
 
-/* line 629, ../../../app/assets/stylesheets/components/general.scss */
+/* line 636, ../../../app/assets/stylesheets/components/general.scss */
 .class-attendance-block {
   float: left;
   width: 220px;
   padding: 0px 0px 10px 0px;
 }
 
-/* line 635, ../../../app/assets/stylesheets/components/general.scss */
+/* line 642, ../../../app/assets/stylesheets/components/general.scss */
 img#fb-comment {
   margin-top: 10px;
 }
 
-/* line 639, ../../../app/assets/stylesheets/components/general.scss */
+/* line 646, ../../../app/assets/stylesheets/components/general.scss */
 hr#class {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -737,22 +745,22 @@ hr#class {
   margin-bottom: 10px;
 }
 
-/* line 647, ../../../app/assets/stylesheets/components/general.scss */
+/* line 654, ../../../app/assets/stylesheets/components/general.scss */
 p.class-detail {
   margin-bottom: 10px;
 }
 
-/* line 651, ../../../app/assets/stylesheets/components/general.scss */
+/* line 658, ../../../app/assets/stylesheets/components/general.scss */
 ul.withBullets {
   list-style-type: square;
 }
 
-/* line 655, ../../../app/assets/stylesheets/components/general.scss */
+/* line 662, ../../../app/assets/stylesheets/components/general.scss */
 li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 659, ../../../app/assets/stylesheets/components/general.scss */
+/* line 666, ../../../app/assets/stylesheets/components/general.scss */
 .class-section-heading {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -763,7 +771,7 @@ li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 669, ../../../app/assets/stylesheets/components/general.scss */
+/* line 676, ../../../app/assets/stylesheets/components/general.scss */
 .class-details {
   color: #666;
   font-weight: 700;
@@ -771,7 +779,7 @@ li.withBullets {
   width: 190px;
 }
 
-/* line 676, ../../../app/assets/stylesheets/components/general.scss */
+/* line 683, ../../../app/assets/stylesheets/components/general.scss */
 p.class-details {
   color: #666;
   font-weight: 400;
@@ -779,7 +787,7 @@ p.class-details {
   width: 180px;
 }
 
-/* line 683, ../../../app/assets/stylesheets/components/general.scss */
+/* line 690, ../../../app/assets/stylesheets/components/general.scss */
 .class-alterntives {
   font-weight: 400;
   font-size: 9px;
@@ -787,34 +795,34 @@ p.class-details {
   margin-bottom: 8px;
 }
 
-/* line 690, ../../../app/assets/stylesheets/components/general.scss */
+/* line 697, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-cost {
   margin-right: 3px;
 }
 
-/* line 694, ../../../app/assets/stylesheets/components/general.scss */
+/* line 701, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-when {
   margin-right: 7px;
 }
 
-/* line 698, ../../../app/assets/stylesheets/components/general.scss */
+/* line 705, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-where {
   margin-right: 10px;
 }
 
-/* line 702, ../../../app/assets/stylesheets/components/general.scss */
+/* line 709, ../../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-heart {
   margin-right: 5px;
   margin-top: 2px;
 }
 
-/* line 707, ../../../app/assets/stylesheets/components/general.scss */
+/* line 714, ../../../app/assets/stylesheets/components/general.scss */
 p.class-details-heart-number {
   font-size: 10px;
   font-weight: 700;
 }
 
-/* line 712, ../../../app/assets/stylesheets/components/general.scss */
+/* line 719, ../../../app/assets/stylesheets/components/general.scss */
 .class-button {
   float: left;
   text-align: center;
@@ -834,10 +842,10 @@ p.class-details-heart-number {
   padding: 7px 10px 7px 10px;
 }
 
-/* line 729, ../../../app/assets/stylesheets/components/general.scss */
+/* line 736, ../../../app/assets/stylesheets/components/general.scss */
 .class-title-big {
   float: left;
-  color: #8f8f8f;
+  color: #666;
   width: 400px;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -847,59 +855,79 @@ p.class-details-heart-number {
   margin-bottom: 10px;
 }
 
+/* line 748, ../../../app/assets/stylesheets/components/general.scss */
+img.steps {
+  margin-left: 160px;
+  margin-top: -25px;
+  margin-bottom: 20px;
+}
+
 /*......CONFIRM......*/
-/* line 744, ../../../app/assets/stylesheets/components/general.scss */
-.confirm-classBlock {
+/* line 756, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-classblock {
   float: left;
   width: 190px;
-  height: 500px;
   background-color: white;
-  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  /*  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+    -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+    box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;*/
   margin-right: 30px;
 }
 
-/* line 755, ../../../app/assets/stylesheets/components/general.scss */
+/* line 766, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-class-description {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 771, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-first-message {
   text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 40px;
+  margin-top: 10px;
   margin-bottom: 10px;
   float: left;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   width: 100%;
 }
 
-/* line 767, ../../../app/assets/stylesheets/components/general.scss */
+/* line 784, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   float: left;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.05em;
   width: 100%;
 }
 
-/* line 779, ../../../app/assets/stylesheets/components/general.scss */
+/* line 796, ../../../app/assets/stylesheets/components/general.scss */
+.confirm-grasshopper {
+  float: right;
+  margin-top: -40px;
+  margin-right: 10px;
+}
+
+/* line 802, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-bring-friend {
   text-transform: uppercase;
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   float: left;
   letter-spacing: 0.15em;
   width: 100%;
 }
 
-/* line 791, ../../../app/assets/stylesheets/components/general.scss */
+/* line 814, ../../../app/assets/stylesheets/components/general.scss */
 .confirm-copy-url {
   float: left;
   text-transform: uppercase;
@@ -908,11 +936,11 @@ p.class-details-heart-number {
   font-size: 11px;
   letter-spacing: 0.15em;
   margin-right: 10px;
-  margin-top: 21px;
   margin-bottom: 20px;
+  margin-top: 21px;
 }
 
-/* line 803, ../../../app/assets/stylesheets/components/general.scss */
+/* line 826, ../../../app/assets/stylesheets/components/general.scss */
 hr#confirm {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -921,8 +949,13 @@ hr#confirm {
   margin-bottom: 30px;
 }
 
+/* line 834, ../../../app/assets/stylesheets/components/general.scss */
+p.confirm {
+  margin-top: 21px;
+}
+
 /*......PROFILE PAGE......*/
-/* line 816, ../../../app/assets/stylesheets/components/general.scss */
+/* line 841, ../../../app/assets/stylesheets/components/general.scss */
 .classes-taught {
   float: left;
   width: 300px;
@@ -936,7 +969,7 @@ hr#confirm {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 829, ../../../app/assets/stylesheets/components/general.scss */
+/* line 854, ../../../app/assets/stylesheets/components/general.scss */
 .classes-taken {
   float: left;
   width: 300px;
@@ -946,7 +979,7 @@ hr#confirm {
   text-align: center;
 }
 
-/* line 838, ../../../app/assets/stylesheets/components/general.scss */
+/* line 863, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-active {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -955,7 +988,7 @@ hr#confirm {
   padding-top: 75px;
 }
 
-/* line 846, ../../../app/assets/stylesheets/components/general.scss */
+/* line 871, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -964,7 +997,7 @@ hr#confirm {
   padding-top: 75px;
 }
 
-/* line 854, ../../../app/assets/stylesheets/components/general.scss */
+/* line 879, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-active {
   color: #8f8f8f;
   font-family: futura-pt-1, futura-pt-2;
@@ -975,7 +1008,7 @@ hr#confirm {
   padding-top: 45px;
 }
 
-/* line 864, ../../../app/assets/stylesheets/components/general.scss */
+/* line 889, ../../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -986,14 +1019,14 @@ hr#confirm {
   padding-top: 45px;
 }
 
-/* line 875, ../../../app/assets/stylesheets/components/general.scss */
+/* line 900, ../../../app/assets/stylesheets/components/general.scss */
 a.profile-link {
   color: #ff7733;
   font-weight: 700;
   font-size: 11px;
 }
 
-/* line 881, ../../../app/assets/stylesheets/components/general.scss */
+/* line 906, ../../../app/assets/stylesheets/components/general.scss */
 a.bio-detail-header {
   float: left;
   color: #8f8f8f;
@@ -1002,7 +1035,7 @@ a.bio-detail-header {
   font-size: 13px;
 }
 
-/* line 889, ../../../app/assets/stylesheets/components/general.scss */
+/* line 914, ../../../app/assets/stylesheets/components/general.scss */
 .profile-heading10 {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -1013,7 +1046,7 @@ a.bio-detail-header {
   padding-top: 10px;
 }
 
-/* line 899, ../../../app/assets/stylesheets/components/general.scss */
+/* line 924, ../../../app/assets/stylesheets/components/general.scss */
 ul.avatar {
   float: left;
   list-style-type: none;
@@ -1021,12 +1054,12 @@ ul.avatar {
   line-height: 23px;
 }
 
-/* line 906, ../../../app/assets/stylesheets/components/general.scss */
+/* line 931, ../../../app/assets/stylesheets/components/general.scss */
 li.avatar {
   float: left;
 }
 
-/* line 910, ../../../app/assets/stylesheets/components/general.scss */
+/* line 935, ../../../app/assets/stylesheets/components/general.scss */
 .avatar {
   width: 25px;
   height: 25px;
@@ -1036,7 +1069,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 919, ../../../app/assets/stylesheets/components/general.scss */
+/* line 944, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-30 {
   width: 30px;
   height: 30px;
@@ -1045,7 +1078,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 927, ../../../app/assets/stylesheets/components/general.scss */
+/* line 952, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-100 {
   width: 100px;
   height: 100px;
@@ -1054,7 +1087,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 935, ../../../app/assets/stylesheets/components/general.scss */
+/* line 960, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-medium {
   float: left;
   width: 50px;
@@ -1063,7 +1096,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 943, ../../../app/assets/stylesheets/components/general.scss */
+/* line 968, ../../../app/assets/stylesheets/components/general.scss */
 .avatar-big {
   width: 190px;
   height: 190px;
@@ -1071,4 +1104,35 @@ li.avatar {
   float: left;
   margin-right: 10px;
   background-color: #ccc;
+}
+
+/*......STUDENT-PREVIEW PAGE......*/
+/* line 979, ../../../app/assets/stylesheets/components/general.scss */
+.orange-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+/* line 999, ../../../app/assets/stylesheets/components/general.scss */
+img#amazon {
+  float: left;
+  margin-top: 80px;
+  margin-left: -160px;
 }

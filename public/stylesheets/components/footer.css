@@ -63,7 +63,7 @@ img.footer_contact {
   line-height: 16px;
 }
 
-/* line 62, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 61, ../../../app/assets/stylesheets/components/footer.scss */
 p.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -71,7 +71,7 @@ p.footer {
   line-height: 16px;
 }
 
-/* line 70, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 69, ../../../app/assets/stylesheets/components/footer.scss */
 a.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -80,7 +80,7 @@ a.footer {
   text-decoration: underline;
 }
 
-/* line 78, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 77, ../../../app/assets/stylesheets/components/footer.scss */
 .newsletterForm {
   border: 1px solid #eeeaea;
   -moz-border-radius: 5px 5px 5px 5px;
@@ -95,7 +95,7 @@ a.footer {
   margin-bottom: 10px;
 }
 
-/* line 92, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 91, ../../../app/assets/stylesheets/components/footer.scss */
 .newsletterButton {
   /* Disables default styling */
   border: none;
@@ -118,15 +118,33 @@ a.footer {
   letter-spacing: 0.1em;
 }
 
+/* line 114, ../../../app/assets/stylesheets/components/footer.scss */
+.heading10-footer {
+  float: left;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  color: #ccc;
+  letter-spacing: 0.1em;
+}
+
+/* line 126, ../../../app/assets/stylesheets/components/footer.scss */
+.grasshopper-footer {
+  float: left;
+}
+
 /*......ENTERPRISE......*/
-/* line 117, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 132, ../../../app/assets/stylesheets/components/footer.scss */
 table#powered-by {
   margin-top: 60px;
   margin-bottom: 60px;
   float: right;
 }
 
-/* line 123, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 138, ../../../app/assets/stylesheets/components/footer.scss */
 .footer-powered-by {
   font-family: verdana,sans-serif;
   font-size: 9px;
@@ -135,7 +153,7 @@ table#powered-by {
   padding-right: 10px;
 }
 
-/* line 131, ../../../app/assets/stylesheets/components/footer.scss */
+/* line 146, ../../../app/assets/stylesheets/components/footer.scss */
 img#powered-by-logo {
   padding-bottom: -40px;
 }

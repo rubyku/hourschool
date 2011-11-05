@@ -109,7 +109,7 @@ TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintai
   minimum = 1 unless minimum < seats && minimum != 0
   #get random tags
   tags = []
-  tags << TAGS[rand(4)] 
+  tags << TAGS[rand(8)] 
   course = Course.create! :title => title, :description => description, :price => price, :seats => seats, 
                   :date => date, :time_range => time, :place => address, :minimum => minimum
   course.category_list = tags.join(", ").to_s

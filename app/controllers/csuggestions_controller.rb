@@ -1,5 +1,5 @@
 class CsuggestionsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create,:new,:udpate, :vote]
+  before_filter :authenticate_user!, :only => [:create,:udpate, :vote]
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
   
   def index
@@ -58,13 +58,15 @@ class CsuggestionsController < ApplicationController
   
   protected
    def has_not_created_suggestion_recently?
-      #has to be 30 minutes before requesting a suggestion
-      cuser_suggestions = Csuggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
-      if !cuser_suggestions.nil?
-        wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
-        if wait_time < 5
-          redirect_to current_user, :alert => "Please wait for another #{5 - wait_time} minutes before requesting"
+     if current_user
+        #has to be 30 minutes before requesting a suggestion
+        cuser_suggestions = Csuggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
+        if !cuser_suggestions.nil?
+          wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
+          if wait_time < 5
+            redirect_to current_user, :alert => "Please wait for another #{5 - wait_time} minutes before requesting"
+          end
         end
-      end
     end
+  end
 end

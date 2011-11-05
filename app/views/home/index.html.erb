@@ -1,3 +1,44 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>HourSchool</title>
+  
+  <link rel="icon" 
+        type="image/png" 
+        href="/images/favicon.png">
+      
+  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  
+  <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+  
+  <script type="text/javascript" src="http://localhost:3000/javascripts/jquery.lettering-0.6.1.min.js"></script>
+   
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22725750-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
+  
+  <script>
+    $(document).ready(function() {
+      $("h1#homepage_headline").lettering('words');
+    });
+  </script>
+
+</head>
 <body id="hasbanner">
 
 <div class="homepage_top_bg">
@@ -10,15 +51,14 @@
         </a>
 
         <div id="login">
-		  <%= link_to "Sign up", new_user_registration_path, :id => "menu_homepage"%> |
-          <%= link_to "Sign in", new_user_session_path, :id => "menu_homepage"%>
-          
+          <a href="/signup" id="menu_homepage">Sign up</a> 
+          <a href="/p/dashboard" id="menu_homepage">Sign in</a>
         </div>
 
         <table id="homepage_menu">
           <tr id="homepage_menu">
             <td id="homepage_menu_learn">
-			  <a href="/learn" id="menu_homepage">
+              <a href="/learn" id="menu_homepage">
                 <div id="menu18">Learn</div> 
                 <div id="menu9">something new</div>
               </a>
@@ -29,10 +69,10 @@
                 <div id="menu18">teach</div>
               </a>
             </td>
-            <td id="homepage_menu_partners">
-              <a href="/partners" id="menu_homepage">
-                <div id="menu18">Local</div>
-                <div id="menu9">Partners</div>
+            <td id="homepage_menu_suggest">
+              <a href="/requests/new" id="menu_homepage">
+                <div id="menu18">Suggest</div>
+                <div id="menu9">a class</div>
               </a>
             </td>
             <td id="homepage_menu_business">
@@ -72,16 +112,15 @@
         <div id="homepage_headline_7">Find a class</div>
 
         <div id="homeSearchForm-background"></div>
-        
-		<%= form_tag search_path, :method => 'post' do %>
-			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :class => 'searchForm', :onclick => 'this.select();', :id =>"homepageSearchForm"%>
+        <%= form_tag search_path, :method => 'post' do %>
+			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.select();', :id =>"homepageSearchForm"%>
 			<!--<input type="text" name="search" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/> -->
 	        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
 			<br>
 			<input type="submit" value="Search" id="homepageSearchButton" />
 	        
 		<% end %>
-        
+		
         <div id="homepage_headline_8"><font size="0.01" style="italic" >or</font> check out our featured classes</div>
          
          <img src="../../../images/v2/arrow_homepage.png" id="homepage_arrow">
@@ -92,6 +131,7 @@
     </div><!-- /end .container16 -->
     
 </div><!-- /end .homepage_top_bg -->
+
 
 
 <div class="featured-content container_16 clearfix">
@@ -148,83 +188,7 @@
 
 
 
+
 <div class="bottom_bg">
-   <div class="container_16 clearfix">  
-      
-      <div class="grid_6">
-          <div class="footer-heading">Our Mission</div>
-          <p class="footer">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p><br>
-
-          <p class="footer">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><br>
-
-          <a href="/p/about" class="footer">Learn More</a>
-      </div><!-- .end /threeCol_left -->
-          
-      <div class="grid_6">  
-        <div class="footer-heading">Recent Blog Post</div>
-        <div class="footer-date">SEPT 10, 2011</div>
-        <div class="footer-blog-title">Title of Blog Post</div><br>
-
-        <p class="footer">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p><br>
-
-        <p class="footer">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu..</p><br>
-
-        <a href="http://hourschool.tumblr.com/" class="footer">Continue Reading</a>
-        
-      </div>
-      
-      <div class="grid_4 three-col-right">
-        
-        <div class="footer-heading">Connect with us</div>
-        
-        <table id="footer">
-          <tr>
-            <td id="footer">
-               <img src="../../../images/v2/icon_facebook.png" class="footer_contact">
-            </td>
-            <td id="footer">
-               <a href="http://www.facebook.com/hourschool" class="footer" target="_blank">Like us on Facebook</a>
-            </td>
-          </tr>
-
-          <tr>
-             <td id="footer"> 
-                <img src="../../../images/v2/icon_twitter.png" class="footer_contact">
-             </td>
-             <td id="footer">
-               <a href="http://www.twitter.com/hourschool" class="footer" target="_blank">Follow us on Twitter</a>
-             </td>
-          </tr>
-          
-          <tr>
-            <td id="footer">
-              <img src="../../../images/v2/icon_email.png" class="footer_contact">
-            </td>
-            <td id="footer">
-          <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
-            </td>
-          </tr>
-      
-          <tr>
-             <td id="footer"> 
-               <img src="../../../images/v2/icon_phone.png" class="footer_contact">
-             </td>
-             <td id="footer">
-               <div class="footer_contact">(877) 246-4689</div>
-             </td>
-          </tr>
-      
-        </table>
-
-        <div class="footer-heading">Newsletter sign up</div>
-          
-           <p class="footer">Sign up for our newsletter to get updates on latest classes in your city!</p>
-          
-           <input type="text" placeholder="email address" class="newsletterForm"><br>
-          
-           <input type="submit" value="Submit" class="newsletterButton">
-           
-      </div><!-- .end /threeCol_right -->
-    
-   </div><!-- /end .container_16 -->
+  <%= render :partial => 'shared/footer' %>
 </div><!-- /end .bottom_bg -->

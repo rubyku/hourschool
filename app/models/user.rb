@@ -31,10 +31,14 @@ class User < ActiveRecord::Base
   end
 
   def zipcode=(zip)
-    loc = Geokit::Geocoders::GoogleGeocoder.geocode "#{zip}"
-    
-    self.location = loc.city + ", " + loc.state
-    self.zip = zip
+    if !zip.nil? && !zip.blank?
+      loc = Geokit::Geocoders::GoogleGeocoder.geocode "#{zip}"
+      if !loc.city.nil? && !loc.state.nil?
+        self.location = loc.city + ", " + loc.state
+        self.zip = zip
+      end
+    end
+    nil
   end
   
   

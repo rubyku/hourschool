@@ -101,6 +101,7 @@ a:hover {
 a#menu_homepage {
   color: white;
   text-decoration: none;
+  padding-left: 10px;
 }
 
 /* line 90, ../../../app/assets/stylesheets/components/homepage.scss */
@@ -118,7 +119,7 @@ table#homepage_menu {
 }
 
 /* line 102, ../../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_teach, td#homepage_menu_partners, td#homepage_menu_business {
+td#homepage_menu_teach, td#homepage_menu_suggest, td#homepage_menu_business {
   border: 1px solid white;
   height: 60px;
   vertical-align: bottom;
@@ -149,7 +150,7 @@ td#homepage_menu_teach {
 }
 
 /* line 129, ../../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_partners {
+td#homepage_menu_suggest {
   width: 170px;
 }
 

@@ -1,6 +1,7 @@
 require 'will_paginate/array'
 class HomeController < ApplicationController
-  
+  layout nil
+    layout 'application', :except => :index
   def index
     if current_user
       redirect_to current_user
