@@ -5,11 +5,9 @@
 		<% if !get_tumblr_first_regular_post.nil? %>
 		<% tum = get_tumblr_first_regular_post %>
 		<div class="footer-heading">Recent Blog Post</div>
-		<div class="footer-date"><%= Date.parse(tum["date"]).strftime("%B %d, %Y")%></div>
-		<div class="footer-blog-title"><%= tum["regular_title"]%></div><br>
+		<div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
 		<p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 250, :omission => "..."))%></p><br>
-		<%= link_to "Continue Reading", tum["url"], :class => "footer "%>
 
 		<% end %>
 
@@ -17,12 +15,15 @@
 
 	<div class="grid_6">  
 		<div class="footer-heading">Newsletter sign up</div>
+      <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <div id="mc_embed_signup">
+        <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        	<p class="footer">Sign up for our newsletter to get updates on latest classes in your city!</p>
+        	<input type="email" value="" name="EMAIL" class="newsletterForm" placeholder="email address" required><br>
+        	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletterButton">
+        </form>
+        </div>
 
-		<p class="footer">Sign up for our newsletter to get updates on latest classes in your city!</p>
-
-		<input type="text" placeholder="email address" class="newsletterForm"><br>
-
-		<input type="submit" value="Submit" class="newsletterButton">
 
 
 	</div>
