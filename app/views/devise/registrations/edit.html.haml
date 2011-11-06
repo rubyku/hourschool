@@ -2,22 +2,20 @@
 .page
   .content
     .heading25_ccc Edit your account
-    
-      
+    = form_tag about_save_path, :method => 'post' do
+      = label_tag :about, "About you (Briefly)", :class => 'form-question'
+      %br/
+      = text_area_tag "about","", :class => "form"
+      = submit_tag "save (password not required)"
+          
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages! 
       %div{:class => "form-question"}
         = f.label :name
       %br/
       = f.text_field :name, :class => "form"
-      %div{:class => "form-question"}
-        = f.label "About you (Briefly)"
-        = form_tag about_save_path, :method => 'post' do
-          %br/
-          = text_area_tag "about", :class => "form"
-          = submit_tag "save (password not required)"
+     
       %br/
-      
       %div{:class => "form-question"}
         = f.label :email
       %br/

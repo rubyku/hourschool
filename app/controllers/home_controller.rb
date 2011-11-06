@@ -175,7 +175,10 @@ class HomeController < ApplicationController
   end
   
   def about_save
-    p params
+    if !params[:about].nil?
+      current_user.update_attribute :about, params[:about]
+    end
+    redirect_to current_user
   end
 
 end
