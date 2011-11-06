@@ -116,6 +116,7 @@ a.footer {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
 
 /* line 114, ../../../app/assets/stylesheets/components/footer.scss */

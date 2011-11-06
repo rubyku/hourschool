@@ -6,11 +6,11 @@
 .page
 	.page-content
 		.page-section-float-left
-    		.welcome-header Never taught before? Perfect!
-              %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+			.welcome-header Never taught before? Perfect!
+			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 			= render :partial => "why_teach"
 		.page-section-float-left
-    		.welcome-header Help make these classes happen
-              %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+			.welcome-header Classes that still need a teacher
+			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 			= render :partial => "teach_suggestions", :locals => {:suggestions => @suggestions}
 = render :partial => "teach_sidebar", :locals => {:random_course => @random_course}
