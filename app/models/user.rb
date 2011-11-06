@@ -91,6 +91,17 @@ class User < ActiveRecord::Base
     return classes
   end
   
+  def top_three_recent_classes_as_teacher
+     date = Date.today
+     all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
+     classes = (all_upcoming_classes & all_teacher_roles)
+     if classes.size > 3 
+       classes = classes[0..2]
+     end
+     return classes
+   end
+  
   def top_three_past_classes_as_student
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
@@ -101,6 +112,17 @@ class User < ActiveRecord::Base
     end
     return classes
   end
+  
+  def top_three_past_classes_as_teacher
+     all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+     all_past_classes = self.courses.where(['date < ?', DateTime.now])
+     classes = (all_past_classes & all_teacher_roles)
+     classes = (all_past_classes & all_teacger_roles)
+     if classes.size > 3 
+       classes = classes[0..2]
+     end
+     return classes
+   end
   
   def top_three_suggestions
     suggestions = Csuggestion.where(:requested_by => self.id)

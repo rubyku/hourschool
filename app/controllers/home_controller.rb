@@ -4,7 +4,8 @@ class HomeController < ApplicationController
     layout 'application', :except => :index
   def index
     if current_user
-      redirect_to current_user
+      redirect_to user_root_path
+      #redirect_to current_user
     end
   end
   
