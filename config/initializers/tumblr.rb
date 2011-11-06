@@ -1,2 +1,3 @@
 require 'tumblr'
-Tumblr.blog = 'hourschool'
+TUMUSER = Tumblr::User.new('hello@hourschool.com', 'ac4dlove')
+

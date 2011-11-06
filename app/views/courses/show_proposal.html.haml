@@ -1,0 +1,42 @@
+%head
+	= include_yui_editor_if_used.html_safe 
+	
+= render :partial => "home/header"	
+
+.page
+	.page-content
+		.page-section-float-left
+			%ul.sub-nav
+				%li.sub-nav-active
+					= link_to "This propsal", proposal_path(:id => @current_course.id), :class => "sub-nav-active"
+		.page-section-float-left
+			.class-logistic-block
+				- if @current_course.photo.exists?
+					= image_tag(@current_course.photo.url(:small), :size => "190x120")
+					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+				- else
+					- if !@current_course.categories.first.nil?
+						= image_tag("#{DEF_IMAGES[@current_course.categories.first.name]}",:size => "190x120")
+					- else
+						= image_tag("/images/v2-courses/default_image.jpg",:size => "190x120")
+					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+			.class-description-block
+				.class-title-big
+					= "#{@current_course.title}"
+				
+							
+		.page-section-float-left
+			.class-section-heading 
+				= "This class will cover"
+				%p= sanitize @current_course.about
+			.class-section-float-left
+				= "About the teacher"
+				%p= sanitize @current_course.experience
+				
+		.page-section-float-left
+			- if user_admin?
+				%p= "Welcome, #{current_user.name}"
+				= button_to "Approve this course", approve_path(:id => @current_course.id), :class => "submit-proposal-button", :method => :put
+		    
+			
+    

@@ -14,8 +14,8 @@ class CoursesController < ApplicationController
     @course.update_attribute :status, "approved"
     
     #send email and other stuff here to the teacher
-    
-    redirect_to courses_path
+    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
+    redirect_to "/profile-pending"
     
   end
 
@@ -26,6 +26,10 @@ class CoursesController < ApplicationController
     
   end
 
+  def show_proposal
+    @current_course = Course.find(params[:id])
+  end
+  
   def new
     @course = Course.new
     @reqid = params[:req]
@@ -154,6 +158,10 @@ class CoursesController < ApplicationController
      
   end
   
+  def register_preview
+    @course = Course.find(params[:id])
+  end
+  
   def register_with_amazon
      @course = Course.find(params[:referenceId])
      
@@ -174,7 +182,8 @@ class CoursesController < ApplicationController
            #            UserMailer.newStudentToTeacher_email(@course, course_url(@course), current_user).deliver
            #            UserMailer.newStudentToStudent_email(@course, course_url(@course), current_user).deliver
            p "made it"
-           redirect_to @course, :notice => 'You have succesfully signed up for the class.'
+           redirect_to confirm_path(:id => @course.id)
+           #redirect_to @course, :notice => 'You have succesfully signed up for the class.'
          else
            p "did not make it"
            redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
@@ -182,6 +191,9 @@ class CoursesController < ApplicationController
      end
      
     
+  end
+  def course_confirm
+    @course = Course.find(params[:id])
   end
   
   def register
@@ -191,11 +203,14 @@ class CoursesController < ApplicationController
       @crole = @course.croles.create!(:attending => true, :role => 'student')
       @user.croles << @crole
       @user.courses << @course
-      @user.save
-     
+      if @user.save
+        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
+      end
      
       respond_to do |format|
-        format.html { redirect_to @course }
+        format.html { 
+          redirect_to course_confirm_path(:id => @course.id) 
+          }
         format.js { }
       end
       
@@ -216,7 +231,9 @@ class CoursesController < ApplicationController
   
   private
   def must_be_admin
-    if !current_user.try(:admin?)
+    #if !current_user.try(:admin?) || !current_user.is_admin?
+    if !current_user.is_admin?
+      p "not admin"
       redirect_to current_user
     end
   end

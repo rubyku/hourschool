@@ -1,0 +1,10 @@
+%table
+  %tr
+    %td
+      .twshare.left
+      %a.twitter-share-button.left{"data-count" => "horizontal", "data-via" => "fuonrails", :href => "http://twitter.com/share"} Tweet
+      %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+    %td
+      .fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
+      %script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
+      %fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}

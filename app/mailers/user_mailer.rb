@@ -17,4 +17,18 @@ class UserMailer < ActionMailer::Base
     mail(:to => user_email, :subject => "Welcome to HourSchool!")
   end
   
+  def send_course_approval_mail(user_email, user_name, course)
+    @email = user_email
+    @name = user_name
+    @course = course
+    mail(:to => user_email, :subject => "Your proposal has been approved!")
+  end
+  
+  def send_course_registration_mail(user_email, user_name, course)
+     @email = user_email
+     @name = user_name
+     @course = course
+     mail(:to => user_email, :subject => "You have registered for a course!")
+   end
+  
 end

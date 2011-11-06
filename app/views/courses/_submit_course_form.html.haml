@@ -52,6 +52,11 @@
 				- else
 					= f.text_field :title, :value => "#{@reqtitle}", :class => "form-with-margin"
 			.form-question
+				= f.label "A tagline for your course"
+			%br/
+			.form-question-tip
+				= f.text_field :coursetag, :class => "form-with-margin"
+			.form-question
 				= f.label :description
 			.form-question-tip
 				= 'Try to be a little more specific. For example, "typography" is better than "design". "Weeknight quick dinner" is better than "cooking".'

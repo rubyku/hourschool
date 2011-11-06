@@ -37,6 +37,9 @@ HourschoolV2::Application.routes.draw do
   match '/preview' => 'courses#preview'
   match '/confirm' => 'courses#confirm'
   match '/heart' => 'courses#heart'
+  match '/proposal' => 'courses#show_proposal'
+  match '/payment_preview' => 'courses#register_preview'
+  match '/course_confirm' => 'courses#course_confirm'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'

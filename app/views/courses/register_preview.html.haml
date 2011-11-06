@@ -1,0 +1,67 @@
+= render :partial => "home/header"
+.page
+	.page-content
+		.confirm-classblock
+			- link_to @course do
+				- if @course.photo.exists?
+					= image_tag(@course.photo.url(:small), :size => "190x120")
+					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+				- else
+					- if !@course.categories.first.nil?
+						= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+					- else
+						= image_tag("/images/v2-courses/default_image.jpg",:size => "190x120")
+				= image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
+				.confirm-class-description
+					.heading13-class
+						= @course.title
+					%p 
+						- if @course.coursetag.blank?
+							= @course.about
+						- else
+							= @course.coursetag
+			.sidebar-block-last
+				%ul.noBullet
+					%li.noBullet
+						= image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+					%li.noBullet
+						.class-details
+							= "#{@course.price}"
+						.class-alterntives
+							%br/
+				%ul.noBullet
+					%li.noBullet
+						= image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+					%li.noBullet
+						.class-details
+							= @course.date.strftime("%B %d, %Y")
+						.class-details
+							= "#{@course.time_range}"
+						.class-alterntives
+							%br/
+
+				%ul.noBullet
+					%li.noBullet
+						= image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+					%li.noBullet
+						.class-details
+							= "#{@course.place}"
+							= "#{@course.city.name}"
+		.class-description-block
+			.confirm-bring-friend You're a couple short steps from signing up for this class!
+			%br
+			%br
+			%p.confirm If the class doesn't happen because there aren't enough students, you will get a refund.
+			%br
+			%p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
+			%br
+			.heading9-class Purchase this class through Amazon
+			= render "amazon_form"
+      
+      
+.sidebar
+	.tipbox
+		%img.tape{:src => '../../../images/v2/Tape_White.png'}
+		.heading10 Have questions?
+		%a(href="/p/contact")
+			#tipboxButton Contact us!

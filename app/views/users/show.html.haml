@@ -18,21 +18,13 @@
 			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 			%ul.sub-nav.clearfix
 				%li.sub-nav-inactive 
-					%a.sub-nav-nactive(href="") Everyone's activities
-				%li.sub-nav-inactive 
-					%a.sub-nav-inactive(href="") My activities
-				%li.sub-nav-active 
-					= link_to "My courses", "#", :class => "sub-nav-active", :id => "link_to_my_courses"
+					%a.sub-nav-nactive(href="") News feed
+			
 					
 		
 		.page-section-float-left
 			#user_show_main_content
-				= "Approved courses"
-				%br/
-				- @approved_courses.each do |ac|
-					%p= ac.title
-					%p= ac.about
-					%p= link_to "Edit Details", edit_course_path(ac.id)
+				
 					
 			
 		

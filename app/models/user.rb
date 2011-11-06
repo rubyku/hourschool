@@ -111,11 +111,21 @@ class User < ActiveRecord::Base
   end
   
   def top_three_pending
-    pending = self.courses.where(:status => "proposal")
-    if pending.size > 3
-      pending = pending[0..2]
+    if self.is_admin?
+      #if user is admin return all pending in the dashbboard
+      Course.where(:status => "proposal")
+    else
+      pending = self.courses.where(:status => "proposal")
+      if pending.size > 3
+        pending = pending[0..2]
+      end
+      return pending
     end
-    return pending
+  end
+  
+  def approved_classes
+      approved = self.courses.where(:status => "approved")
+      return approved
   end
   
   def student_for
@@ -161,6 +171,12 @@ class User < ActiveRecord::Base
     location.split(',')[1].strip unless location.nil?
   end
   
+  def is_admin?
+    #ideally should check the admin column
+    email = self.email
+    email == "saranyan13@gmail.com" || email == "alex@hourschool.com" || email == "ruby@hourschool.com" || email == "saranyan@hourschool.com"
+  end
+  
   private
   # def supported_location
   #     SUPPORTED_CITIES.each do |sc|
@@ -188,6 +204,8 @@ class User < ActiveRecord::Base
   
   def send_reg_email
     UserMailer.send_registration_mail(self.email, self.name).deliver
+   
   end
+  
   
 end

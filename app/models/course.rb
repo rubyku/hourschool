@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   has_many :payments
   
   attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :minimum
-  attr_accessible :status, :about, :experience 
+  attr_accessible :status, :about, :experience, :coursetag
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
   

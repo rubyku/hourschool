@@ -47,13 +47,27 @@
 			%p= sanitize @current_course.description
 			%br/
 			- if @current_course.price > 0.0
+				= button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
 				/ = image_tag("/images/amzn-payments.gif")
 				/ = render :partial => "amazon_form", :locals => {:course => @current_course}
-				= render "amazon_form"
+				
+				
 				/ = amazon_simple_pay_form_tag do
 				/ 					= hidden_field_tag 'referenceId', 'Class registration'
 				/ 					= hidden_field_tag 'description', @current_course.title
 				/ 					= submit_tag("Purchase the class through Amazon")
+			- else
+				- if @current_course.is_a_student?(current_user)
+					- if (@current_course.date - Date.today).numerator >= 1
+						= button_to "Drop this class", drop_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
+					- else
+						.submit-proposal-button= "You are registered"
+				- elsif @current_course.is_a_teacher?(current_user)
+					.submit-proposal-button= "Teaching"
+				- else
+					= button_to "Register for this class", register_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
+				
+				
 		%hr#class
 			.class-section-heading Join the conversation
 			= render :partial => "disqus"

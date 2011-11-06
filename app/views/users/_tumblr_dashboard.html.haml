@@ -1,0 +1,32 @@
+.dashboard-story.clearfix
+
+  %ul.class
+    %li
+      %img.dashboard-class{:src => '../../../images/v2-courses/129_JessRoastChicken_dashboard.jpg'}
+
+  %ul.dashboard-name
+    %li.dashboard-name
+      .avatar-30
+    %li.dashboard-name
+      %a.dashboard-name(href="/p/profile") Ruby Ku
+
+  %ul.comment
+    %li
+      %p hearted the class Sunday Dinner: Roasting a Chicken and what to do with the leftovers!
+      .heading9-class 2 hours ago
+ 
+  %ul.status
+    %li
+      %img.dashboard-icon{:src => '../../../images/v2/StatusIcon_Heart.png'}
+      
+      
+- if !get_tumblr_first_three_regular_dashboard_post.nil?
+    - tums = get_tumblr_first_three_regular_dashboard_post
+    - tum["regular_title"]
+    - Date.parse(tum["date"]).strftime("%B %d, %Y")
+    - tum["regular_body"].html_safe
+    - tums.each do |tum|
+      .dashboard-story.clearfix
+        %ul.class
+          %li
+            
