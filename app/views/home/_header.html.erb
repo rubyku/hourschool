@@ -10,7 +10,6 @@
         <ul id="login">
           <li id="login">Peer learning in Austin</li>
           <li id="login">
-              
 					<% if user_signed_in? %>
 						<%#= link_to current_user.name, profile_path, :id => "menu"%>
 						<%= current_user.name %>
@@ -43,7 +42,6 @@
             </table>
           </div>
 		  <% end %>
-
         </ul>
     </div>
 
@@ -64,6 +62,21 @@
   
     
    
+    <script type="text/javascript">
+        $("#nav-dropdown").click(function() {
+            $("#dropdown-box").show();
+            $("#nav-dropdown").hide();
+            $("#nav-dropdown-selected").show();
+            return false;
+         });
+    	 $("#nav-dropdown-selected").click(function() {
+             $("#dropdown-box").hide();
+             $("#nav-dropdown").show();
+             $("#nav-dropdown-selected").hide();
+             return false;
+        });
+    </script>
+    
         <table id="menu">
           <tr id="menu">
               <td id="community_menu_learn">
