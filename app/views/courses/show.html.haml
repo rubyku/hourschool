@@ -34,6 +34,13 @@
 							.fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
 							%script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
 							%fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}
+				#link_to_heart_this_class
+					- if current_user
+						- if !current_user.voted_on?(@current_course)
+							= link_to "Heart this class", heart_path(:id => @current_course.id), :remote => true
+						- else
+							= "You have hearted this class!"
+							
 		.page-section-float-left
 			.class-section-heading 
 				= "This class will cover"

@@ -1,0 +1,89 @@
+= render :partial => "home/header"	
+.page
+  .page-content
+  
+    .page-section-float-left
+      .confirm-second-message Your class is now live!
+      %img.confirm-grasshopper{:src => '/images/v2/grasshopper-orange.png'}
+      
+    %hr#confirm
+      
+    .page-section-float-left
+      .confirm-classblock
+        - link_to @course do
+          - if @course.photo.exists?
+            = image_tag(@course.photo.url(:small), :size => "190x120")
+            %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+          - else
+            - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
+              = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+            - else
+              = image_tag("/images/v2-courses/default_image.jpg", :size => "190x120")
+        .confirm-class-description
+          .heading13-class
+            = @course.title
+          %p= @course.about
+
+        .sidebar-block-last
+        
+          %ul.noBullet
+            %li.noBullet
+              %img.class-details-icon-cost{:src => '/images/v2/icon_pricetag.png'}
+            %li.noBullet
+              .class-details 
+                = @course.price
+              .class-alterntives
+
+          %ul.noBullet
+            %li.noBullet
+              %img.class-details-icon-when{:src => '/images/v2/icon_calendar.png'}
+            %li.noBullet
+              .class-details
+                = @course.date.strftime("%B %d, %Y")
+              %p.class-details
+                = @course.time_range
+              .class-alterntives (Add to calendar)
+
+          %ul.noBullet
+            %li.noBullet
+              %img.class-details-icon-where{:src => '../../../images/v2/icon_location.png'}
+            %li.noBullet
+              .class-details
+                = @course.city.name
+              %p.class-details= @course.place
+              .class-alterntives (Map this location)
+
+
+      .class-description-block        
+
+        .confirm-bring-friend Invite people to take your class!
+        
+        %table
+          %tr
+            %td
+              .confirm-copy-url Click to copy URL: 
+            %td
+              %input(type='text' placeholder='http://shorturl.com/33253')
+        
+        %table
+          %tr
+            %td
+              .twshare.left
+              %a.twitter-share-button.left{"data-count" => "horizontal", "data-via" => "fuonrails", :href => "http://twitter.com/share"} Tweet
+              %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+            %td
+              .fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
+              %script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
+              %fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}
+%br
+.page-section-float-left.clearfix
+  %ul
+    %li
+      %p Done?
+      = button_to "Go to class page", @course, :class => "submit-proposal-button", :method => :get
+      %br
+      %br
+      %br
+    %li
+      %p Manage?
+      = button_to "Go to profile", current_user, :class => "edit-form-button", :method => :get

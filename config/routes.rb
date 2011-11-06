@@ -35,6 +35,8 @@ HourschoolV2::Application.routes.draw do
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'
   match '/preview' => 'courses#preview'
+  match '/confirm' => 'courses#confirm'
+  match '/heart' => 'courses#heart'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'
@@ -46,6 +48,9 @@ HourschoolV2::Application.routes.draw do
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
   match '/profile' => 'users#profile'
+  match '/profile-past' => 'users#profile_past'
+  match '/profile-suggest' => 'users#profile_suggest'
+  match '/profile-pending' => 'users#profile_pending'
   
   match '/my_classes' => 'users#my_classes'
   match '/classes_taken' => 'users#classes_taken'
@@ -56,6 +61,7 @@ HourschoolV2::Application.routes.draw do
   
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/organization' => 'home#organization'
+  match '/about_save' => 'home#about_save'
   
   match '/business' => 'home#business'
   root :to => "home#index"

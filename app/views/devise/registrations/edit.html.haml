@@ -1,47 +1,57 @@
-.content
-	%h2= "Edit #{resource_name.to_s.humanize}"
-	= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| 
-		= devise_error_messages! 
-		%div
-			= f.label :name
-			%br/
-			= f.text_field :name
-		%div
-			= f.label :email
-			%br/
-			= f.email_field :email
-		- if resource_name.to_s == "member"
-			%div
-				= f.label :organization
-				%br/
+= render :partial => "home/header"
+.page
+  .content
+    .heading25_ccc Edit your account
+    = form_tag about_save_path, :method => 'post' do
+      = label_tag :about, "About you (Briefly)", :class => 'form-question'
+      %br/
+      = text_area_tag "about","", :class => "form"
+      = submit_tag "save (password not required)"
+          
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages! 
+      %div{:class => "form-question"}
+        = f.label :name
+      %br/
+      = f.text_field :name, :class => "form"
+     
+      %br/
+      %div{:class => "form-question"}
+        = f.label :email
+      %br/
+      = f.email_field :email, :class => "form"
+      - if resource_name.to_s == "member"
+        %div
+          = f.label :organization
+        %br/
 
-				= f.text_field :organization
-		- else
-			%div
-				= f.label "Zipcode"
-				%br/
-				= f.text_field :zipcode, :class => "form"
-		
-		%div
-			= f.label :password
-			= " (leave blank if you don't want to change it)"
-			%br/
-			= f.password_field :password
-		%div
-			= f.label :password_confirmation
-		
-			%br/
-			= f.password_field :password_confirmation
-		%div
-			= f.label :current_password
-			= " (we need your current password to confirm your changes)"
-			= f.password_field :password_confirmation
-		%div
-			= f.submit "Update"
-	%h3= "Cancel my account"
-	%p
-		= "Unhappy? "
-		= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+        = f.text_field :organization
+      - else
+        %div{:class => "form-question"}
+          = f.label "Zipcode"
+        %br/
+        = f.text_field :zipcode, :class => "form"
 
-	= link_to "Back", :back 
+      %div{:class => "form-question"}
+      = f.label :password
+      = " (leave blank if you don't want to change it)"
+      %br/
+      = f.password_field :password, :class => "form"
+      %div{:class => "form-question"}
+        = f.label :password_confirmation
+
+      %br/
+      = f.password_field :password_confirmation, :class => "form"
+      %div{:class => "form-question"}
+        = f.label :current_password
+        = " (we need your current password to confirm your changes)"
+      = f.password_field :password_confirmation, :class => "form"
+      %div
+        = f.submit "Update"
+  %h3= "Cancel my account"
+  %p
+  = "Unhappy? "
+  = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+
+  = link_to "Back", :back 
 

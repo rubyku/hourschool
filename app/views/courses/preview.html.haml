@@ -52,7 +52,7 @@
 	%ul
 		%li
 			%p Like the way things look?
-			= button_to "I'm happy. Publish my class", @course, :class => "submit-proposal-button", :method => :get
+			= button_to "I'm happy. Publish my class", confirm_path({:id => @course.id}), :class => "submit-proposal-button", :method => :put
 			%br
 			%br
 			%br

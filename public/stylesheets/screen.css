@@ -1172,7 +1172,7 @@ td#dropdown-text {
   padding-right: 30px;
 }
 
-/* line 78, ../../app/assets/stylesheets/components/header.scss */
+/* line 74, ../../app/assets/stylesheets/components/header.scss */
 table#menu {
   position: relative;
   float: right;
@@ -1181,7 +1181,7 @@ table#menu {
   margin-bottom: 20px;
 }
 
-/* line 87, ../../app/assets/stylesheets/components/header.scss */
+/* line 83, ../../app/assets/stylesheets/components/header.scss */
 td#menu_teach, td#menu_suggest, td#menu_business {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -1190,7 +1190,7 @@ td#menu_teach, td#menu_suggest, td#menu_business {
   vertical-align: middle;
 }
 
-/* line 95, ../../app/assets/stylesheets/components/header.scss */
+/* line 91, ../../app/assets/stylesheets/components/header.scss */
 td#menu_learn, td#menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -1202,44 +1202,44 @@ td#menu_learn, td#menu_faq {
   vertical-align: middle;
 }
 
-/* line 106, ../../app/assets/stylesheets/components/header.scss */
+/* line 102, ../../app/assets/stylesheets/components/header.scss */
 td#menu_learn {
   width: 176px;
 }
 
-/* line 110, ../../app/assets/stylesheets/components/header.scss */
+/* line 106, ../../app/assets/stylesheets/components/header.scss */
 td#menu_teach {
   width: 170px;
 }
 
-/* line 114, ../../app/assets/stylesheets/components/header.scss */
+/* line 110, ../../app/assets/stylesheets/components/header.scss */
 td#menu_suggest {
   width: 170px;
 }
 
-/* line 118, ../../app/assets/stylesheets/components/header.scss */
+/* line 114, ../../app/assets/stylesheets/components/header.scss */
 td#menu_business {
   width: 235px;
 }
 
-/* line 122, ../../app/assets/stylesheets/components/header.scss */
+/* line 118, ../../app/assets/stylesheets/components/header.scss */
 td#menu_faq {
   width: 67px;
 }
 
-/* line 126, ../../app/assets/stylesheets/components/header.scss */
+/* line 122, ../../app/assets/stylesheets/components/header.scss */
 a#menu {
   color: #8f8f8f;
   text-decoration: none;
 }
 
-/* line 131, ../../app/assets/stylesheets/components/header.scss */
+/* line 127, ../../app/assets/stylesheets/components/header.scss */
 a#menu:hover {
   text-decoration: none;
   color: #ff7733;
 }
 
-/* line 133, ../../app/assets/stylesheets/components/header.scss */
+/* line 129, ../../app/assets/stylesheets/components/header.scss */
 #menu18 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -1249,7 +1249,7 @@ a#menu:hover {
   line-height: 20px;
 }
 
-/* line 142, ../../app/assets/stylesheets/components/header.scss */
+/* line 138, ../../app/assets/stylesheets/components/header.scss */
 #menu9 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -1258,7 +1258,7 @@ a#menu:hover {
   font-size: 10px;
 }
 
-/* line 150, ../../app/assets/stylesheets/components/header.scss */
+/* line 146, ../../app/assets/stylesheets/components/header.scss */
 #menu_faq {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -1268,7 +1268,7 @@ a#menu:hover {
 }
 
 /*......LOGGED IN - ENTERPRISE......*/
-/* line 161, ../../app/assets/stylesheets/components/header.scss */
+/* line 157, ../../app/assets/stylesheets/components/header.scss */
 #enterprise_peer_learning {
   position: relative;
   float: left;
@@ -1281,7 +1281,7 @@ a#menu:hover {
   letter-spacing: 0.1em;
 }
 
-/* line 173, ../../app/assets/stylesheets/components/header.scss */
+/* line 169, ../../app/assets/stylesheets/components/header.scss */
 table#enterprise_menu {
   position: relative;
   width: 100%;
@@ -1291,7 +1291,7 @@ table#enterprise_menu {
   margin-bottom: 20px;
 }
 
-/* line 183, ../../app/assets/stylesheets/components/header.scss */
+/* line 179, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, td#enterprise_menu_community {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -1300,7 +1300,7 @@ td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, 
   vertical-align: middle;
 }
 
-/* line 191, ../../app/assets/stylesheets/components/header.scss */
+/* line 187, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_dashboard, td#enterprise_menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -1312,38 +1312,38 @@ td#enterprise_menu_dashboard, td#enterprise_menu_faq {
   vertical-align: middle;
 }
 
-/* line 203, ../../app/assets/stylesheets/components/header.scss */
+/* line 199, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_dashboard {
   width: 200px;
 }
 
-/* line 207, ../../app/assets/stylesheets/components/header.scss */
+/* line 203, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_learn {
   width: 160px;
 }
 
-/* line 211, ../../app/assets/stylesheets/components/header.scss */
+/* line 207, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_teach {
   width: 160px;
 }
 
-/* line 215, ../../app/assets/stylesheets/components/header.scss */
+/* line 211, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_suggest {
   width: 160px;
 }
 
-/* line 219, ../../app/assets/stylesheets/components/header.scss */
+/* line 215, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_community {
   width: 200px;
 }
 
-/* line 223, ../../app/assets/stylesheets/components/header.scss */
+/* line 219, ../../app/assets/stylesheets/components/header.scss */
 td#enterprise_menu_faq {
   width: 67px;
 }
 
 /*......LOGGED IN - COMMUNITY......*/
-/* line 229, ../../app/assets/stylesheets/components/header.scss */
+/* line 225, ../../app/assets/stylesheets/components/header.scss */
 #peer-learning-at {
   position: relative;
   float: left;
@@ -1355,7 +1355,7 @@ td#enterprise_menu_faq {
   letter-spacing: 0.1em;
 }
 
-/* line 240, ../../app/assets/stylesheets/components/header.scss */
+/* line 236, ../../app/assets/stylesheets/components/header.scss */
 table#community_menu {
   position: relative;
   float: right;
@@ -1364,7 +1364,7 @@ table#community_menu {
   margin-bottom: 20px;
 }
 
-/* line 249, ../../app/assets/stylesheets/components/header.scss */
+/* line 245, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_teach, td#community_menu_suggest, td#community_menu_community {
   border: 1px solid #d0cdcd;
   height: 60px;
@@ -1373,7 +1373,7 @@ td#community_menu_teach, td#community_menu_suggest, td#community_menu_community 
   vertical-align: middle;
 }
 
-/* line 257, ../../app/assets/stylesheets/components/header.scss */
+/* line 253, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_learn, td#community_menu_faq {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
@@ -1385,27 +1385,27 @@ td#community_menu_learn, td#community_menu_faq {
   vertical-align: middle;
 }
 
-/* line 269, ../../app/assets/stylesheets/components/header.scss */
+/* line 265, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_learn {
   width: 176px;
 }
 
-/* line 273, ../../app/assets/stylesheets/components/header.scss */
+/* line 269, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_teach {
   width: 170px;
 }
 
-/* line 277, ../../app/assets/stylesheets/components/header.scss */
+/* line 273, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_suggest {
   width: 170px;
 }
 
-/* line 281, ../../app/assets/stylesheets/components/header.scss */
+/* line 277, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_community {
   width: 235px;
 }
 
-/* line 285, ../../app/assets/stylesheets/components/header.scss */
+/* line 281, ../../app/assets/stylesheets/components/header.scss */
 td#community_menu_faq {
   width: 67px;
 }
@@ -1442,13 +1442,13 @@ p, ol, ul {
 /* line 35, ../../app/assets/stylesheets/components/general.scss */
 a {
   text-decoration: none;
-  color: #ff7733;
+  color: #4f4e4e;
 }
 
 /* line 36, ../../app/assets/stylesheets/components/general.scss */
 a:visited {
   text-decoration: none;
-  color: #ff7733;
+  color: #4f4e4e;
 }
 
 /* line 37, ../../app/assets/stylesheets/components/general.scss */
@@ -1696,7 +1696,7 @@ ul.sub-nav {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 /* line 237, ../../app/assets/stylesheets/components/general.scss */
@@ -1763,19 +1763,27 @@ li.sub-nav-inactive {
 }
 
 /* line 297, ../../app/assets/stylesheets/components/general.scss */
+.dashboard-story-first {
+  float: left;
+  width: 100%;
+  padding: 0px 0px 20px 0px;
+  border-bottom: 1px dashed #ccc;
+}
+
+/* line 304, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-story-last {
   float: left;
   width: 100%;
   padding: 20px 0px 20px 0px;
 }
 
-/* line 303, ../../app/assets/stylesheets/components/general.scss */
+/* line 310, ../../app/assets/stylesheets/components/general.scss */
 ul.dashboard-name {
   list-style: none;
   margin-top: 5px;
 }
 
-/* line 308, ../../app/assets/stylesheets/components/general.scss */
+/* line 315, ../../app/assets/stylesheets/components/general.scss */
 li.dashboard-name {
   float: left;
   top: 0px;
@@ -1783,20 +1791,20 @@ li.dashboard-name {
   vertical-align: middle;
 }
 
-/* line 315, ../../app/assets/stylesheets/components/general.scss */
+/* line 322, ../../app/assets/stylesheets/components/general.scss */
 ul.class {
   float: left;
   top: 0px;
   margin-right: 10px;
 }
 
-/* line 321, ../../app/assets/stylesheets/components/general.scss */
+/* line 328, ../../app/assets/stylesheets/components/general.scss */
 ul.status {
   float: right;
   top: 0px;
 }
 
-/* line 326, ../../app/assets/stylesheets/components/general.scss */
+/* line 333, ../../app/assets/stylesheets/components/general.scss */
 ul.comment {
   float: left;
   position: absolute;
@@ -1805,18 +1813,18 @@ ul.comment {
   margin-left: 125px;
 }
 
-/* line 334, ../../app/assets/stylesheets/components/general.scss */
+/* line 341, ../../app/assets/stylesheets/components/general.scss */
 img.dashboard-icon {
   float: left;
   margin-top: 1px;
 }
 
-/* line 339, ../../app/assets/stylesheets/components/general.scss */
+/* line 346, ../../app/assets/stylesheets/components/general.scss */
 img.dashboard-class {
   float: right;
 }
 
-/* line 343, ../../app/assets/stylesheets/components/general.scss */
+/* line 350, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-name {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -1824,9 +1832,21 @@ img.dashboard-class {
   font-size: 13px;
   float: left;
 }
+/* line 356, ../../app/assets/stylesheets/components/general.scss */
+.dashboard-name a {
+  color: #ff7733;
+}
+/* line 359, ../../app/assets/stylesheets/components/general.scss */
+.dashboard-name:visited {
+  color: #ff7733;
+}
+/* line 362, ../../app/assets/stylesheets/components/general.scss */
+.dashboard-name:hover {
+  color: #ff7733;
+}
 
 /*......LEARN PAGE.....*/
-/* line 353, ../../app/assets/stylesheets/components/general.scss */
+/* line 370, ../../app/assets/stylesheets/components/general.scss */
 ul.searchFilter {
   list-style-type: none;
   margin-bottom: 20px;
@@ -1834,7 +1854,7 @@ ul.searchFilter {
   line-height: 23px;
 }
 
-/* line 360, ../../app/assets/stylesheets/components/general.scss */
+/* line 377, ../../app/assets/stylesheets/components/general.scss */
 .classRow {
   float: left;
   width: 650px;
@@ -1842,7 +1862,7 @@ ul.searchFilter {
   margin-bottom: 20px;
 }
 
-/* line 367, ../../app/assets/stylesheets/components/general.scss */
+/* line 384, ../../app/assets/stylesheets/components/general.scss */
 .classBlock {
   float: left;
   width: 190px;
@@ -1854,7 +1874,7 @@ ul.searchFilter {
   margin-right: 30px;
 }
 
-/* line 378, ../../app/assets/stylesheets/components/general.scss */
+/* line 395, ../../app/assets/stylesheets/components/general.scss */
 .classBlock_last {
   float: left;
   width: 190px;
@@ -1865,7 +1885,7 @@ ul.searchFilter {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 388, ../../app/assets/stylesheets/components/general.scss */
+/* line 405, ../../app/assets/stylesheets/components/general.scss */
 img.class-arrow {
   position: relative;
   float: right;
@@ -1873,25 +1893,25 @@ img.class-arrow {
   margin-right: 10px;
 }
 
-/* line 395, ../../app/assets/stylesheets/components/general.scss */
+/* line 412, ../../app/assets/stylesheets/components/general.scss */
 .class-description {
   padding: 10px;
 }
 
-/* line 399, ../../app/assets/stylesheets/components/general.scss */
+/* line 416, ../../app/assets/stylesheets/components/general.scss */
 table.view-more, tr.view-more {
   float: right;
   margin-right: 10px;
   margin-bottom: 20px;
 }
 
-/* line 405, ../../app/assets/stylesheets/components/general.scss */
+/* line 422, ../../app/assets/stylesheets/components/general.scss */
 ul.view-more-arrow {
   float: left;
   list-style-type: none;
 }
 
-/* line 410, ../../app/assets/stylesheets/components/general.scss */
+/* line 427, ../../app/assets/stylesheets/components/general.scss */
 a.view-more {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -1905,7 +1925,7 @@ a.view-more {
 }
 
 /*......CLASS BLOCK.....*/
-/* line 425, ../../app/assets/stylesheets/components/general.scss */
+/* line 442, ../../app/assets/stylesheets/components/general.scss */
 .heading13-class {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -1913,14 +1933,26 @@ a.view-more {
   font-size: 14px;
   margin-bottom: 5px;
 }
+/* line 448, ../../app/assets/stylesheets/components/general.scss */
+.heading13-class a {
+  color: #ff7733;
+}
+/* line 451, ../../app/assets/stylesheets/components/general.scss */
+.heading13-class:visited {
+  color: #ff7733;
+}
+/* line 454, ../../app/assets/stylesheets/components/general.scss */
+.heading13-class:hover {
+  color: #ff7733;
+}
 
-/* line 433, ../../app/assets/stylesheets/components/general.scss */
+/* line 459, ../../app/assets/stylesheets/components/general.scss */
 .heading9-class {
   font-weight: 400;
   font-size: 9px;
 }
 
-/* line 438, ../../app/assets/stylesheets/components/general.scss */
+/* line 464, ../../app/assets/stylesheets/components/general.scss */
 .heading10-class {
   font-weight: 400;
   font-size: 10px;
@@ -1928,13 +1960,13 @@ a.view-more {
 }
 
 /*......VOTE FOR A CLASS.....*/
-/* line 447, ../../app/assets/stylesheets/components/general.scss */
+/* line 473, ../../app/assets/stylesheets/components/general.scss */
 .vote-class {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
   border-bottom: 1px dashed #ccc;
 }
-/* line 452, ../../app/assets/stylesheets/components/general.scss */
+/* line 478, ../../app/assets/stylesheets/components/general.scss */
 .vote-class a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -1944,17 +1976,17 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 460, ../../app/assets/stylesheets/components/general.scss */
+/* line 486, ../../app/assets/stylesheets/components/general.scss */
 .vote-class a:hover {
-  text-decoration: underline;
+  color: #ff7733;
 }
 
-/* line 466, ../../app/assets/stylesheets/components/general.scss */
+/* line 493, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-last {
   margin-top: 0px;
   padding: 20px 20px 0px 0px;
 }
-/* line 470, ../../app/assets/stylesheets/components/general.scss */
+/* line 497, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -1964,22 +1996,22 @@ a.view-more {
   padding-left: 3px;
   margin-top: 3px;
 }
-/* line 478, ../../app/assets/stylesheets/components/general.scss */
+/* line 505, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a:hover {
   text-decoration: underline;
 }
 
-/* line 484, ../../app/assets/stylesheets/components/general.scss */
+/* line 511, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-title {
   float: left;
 }
 
-/* line 488, ../../app/assets/stylesheets/components/general.scss */
+/* line 515, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-number {
   float: right;
 }
 
-/* line 492, ../../app/assets/stylesheets/components/general.scss */
+/* line 519, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-button {
   /* Disables default styling */
   border: none;
@@ -2002,7 +2034,7 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 513, ../../app/assets/stylesheets/components/general.scss */
+/* line 540, ../../app/assets/stylesheets/components/general.scss */
 .heading35-vote {
   color: #ff7733;
   text-transform: uppercase;
@@ -2014,7 +2046,7 @@ a.view-more {
   margin-bottom: 5px;
 }
 
-/* line 524, ../../app/assets/stylesheets/components/general.scss */
+/* line 551, ../../app/assets/stylesheets/components/general.scss */
 .heading20-vote {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -2023,7 +2055,7 @@ a.view-more {
   padding-bottom: 5px;
 }
 
-/* line 532, ../../app/assets/stylesheets/components/general.scss */
+/* line 559, ../../app/assets/stylesheets/components/general.scss */
 .heading10-vote {
   color: #8f8f8f;
   text-transformnsform: uppercase;
@@ -2035,7 +2067,7 @@ a.view-more {
 }
 
 /*......TEACH PAGE.....*/
-/* line 546, ../../app/assets/stylesheets/components/general.scss */
+/* line 573, ../../app/assets/stylesheets/components/general.scss */
 .claim-class-button {
   margin-top: 5px;
   margin-bottom: 15px;
@@ -2057,25 +2089,25 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-/* line 565, ../../app/assets/stylesheets/components/general.scss */
+/* line 592, ../../app/assets/stylesheets/components/general.scss */
 .why-teach {
   margin-top: 20px;
   padding: 0px 10px 0px 0px;
 }
 
-/* line 570, ../../app/assets/stylesheets/components/general.scss */
+/* line 597, ../../app/assets/stylesheets/components/general.scss */
 .why-teach-short {
   width: 75%;
   float: left;
   margin-bottom: 30px;
 }
 
-/* line 576, ../../app/assets/stylesheets/components/general.scss */
+/* line 603, ../../app/assets/stylesheets/components/general.scss */
 .why-teach-last {
   padding: 0px 20px 10px 0px;
 }
 
-/* line 580, ../../app/assets/stylesheets/components/general.scss */
+/* line 607, ../../app/assets/stylesheets/components/general.scss */
 #create-class-button {
   float: left;
   width: 135px;
@@ -2087,13 +2119,13 @@ a.view-more {
   margin-left: 20px;
 }
 
-/* line 590, ../../app/assets/stylesheets/components/general.scss */
+/* line 617, ../../app/assets/stylesheets/components/general.scss */
 img#create-class-star {
   margin-top: 10px;
   margin-left: 46px;
 }
 
-/* line 596, ../../app/assets/stylesheets/components/general.scss */
+/* line 623, ../../app/assets/stylesheets/components/general.scss */
 .heading15-whyteach {
   /*  color: $brand-background;*/
   /*  text-transform: uppercase;*/
@@ -2103,7 +2135,7 @@ img#create-class-star {
   letter-spacing: 0.1em;
 }
 
-/* line 605, ../../app/assets/stylesheets/components/general.scss */
+/* line 632, ../../app/assets/stylesheets/components/general.scss */
 .create-class-heading {
   float: left;
   padding-top: 5px;
@@ -2116,39 +2148,39 @@ img#create-class-star {
 }
 
 /*......CLASS DETAIL PAGE.....*/
-/* line 619, ../../app/assets/stylesheets/components/general.scss */
+/* line 646, ../../app/assets/stylesheets/components/general.scss */
 .class-logistic-block {
   float: left;
   width: 220px;
   margin-right: 0px;
 }
 
-/* line 625, ../../app/assets/stylesheets/components/general.scss */
+/* line 652, ../../app/assets/stylesheets/components/general.scss */
 .class-logistic-line {
   float: left;
   width: 200px;
   margin-right: 0px;
 }
 
-/* line 631, ../../app/assets/stylesheets/components/general.scss */
+/* line 658, ../../app/assets/stylesheets/components/general.scss */
 .class-description-block {
   float: left;
   width: 400px;
 }
 
-/* line 636, ../../app/assets/stylesheets/components/general.scss */
+/* line 663, ../../app/assets/stylesheets/components/general.scss */
 .class-attendance-block {
   float: left;
   width: 220px;
   padding: 0px 0px 10px 0px;
 }
 
-/* line 642, ../../app/assets/stylesheets/components/general.scss */
+/* line 669, ../../app/assets/stylesheets/components/general.scss */
 img#fb-comment {
   margin-top: 10px;
 }
 
-/* line 646, ../../app/assets/stylesheets/components/general.scss */
+/* line 673, ../../app/assets/stylesheets/components/general.scss */
 hr#class {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -2157,22 +2189,22 @@ hr#class {
   margin-bottom: 10px;
 }
 
-/* line 654, ../../app/assets/stylesheets/components/general.scss */
+/* line 681, ../../app/assets/stylesheets/components/general.scss */
 p.class-detail {
   margin-bottom: 10px;
 }
 
-/* line 658, ../../app/assets/stylesheets/components/general.scss */
+/* line 685, ../../app/assets/stylesheets/components/general.scss */
 ul.withBullets {
   list-style-type: square;
 }
 
-/* line 662, ../../app/assets/stylesheets/components/general.scss */
+/* line 689, ../../app/assets/stylesheets/components/general.scss */
 li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 666, ../../app/assets/stylesheets/components/general.scss */
+/* line 693, ../../app/assets/stylesheets/components/general.scss */
 .class-section-heading {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -2183,7 +2215,7 @@ li.withBullets {
   margin-bottom: 10px;
 }
 
-/* line 676, ../../app/assets/stylesheets/components/general.scss */
+/* line 703, ../../app/assets/stylesheets/components/general.scss */
 .class-details {
   color: #666;
   font-weight: 700;
@@ -2191,7 +2223,7 @@ li.withBullets {
   width: 190px;
 }
 
-/* line 683, ../../app/assets/stylesheets/components/general.scss */
+/* line 710, ../../app/assets/stylesheets/components/general.scss */
 p.class-details {
   color: #666;
   font-weight: 400;
@@ -2199,7 +2231,7 @@ p.class-details {
   width: 180px;
 }
 
-/* line 690, ../../app/assets/stylesheets/components/general.scss */
+/* line 717, ../../app/assets/stylesheets/components/general.scss */
 .class-alterntives {
   font-weight: 400;
   font-size: 9px;
@@ -2207,34 +2239,34 @@ p.class-details {
   margin-bottom: 8px;
 }
 
-/* line 697, ../../app/assets/stylesheets/components/general.scss */
+/* line 724, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-cost {
   margin-right: 3px;
 }
 
-/* line 701, ../../app/assets/stylesheets/components/general.scss */
+/* line 728, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-when {
   margin-right: 7px;
 }
 
-/* line 705, ../../app/assets/stylesheets/components/general.scss */
+/* line 732, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-where {
   margin-right: 10px;
 }
 
-/* line 709, ../../app/assets/stylesheets/components/general.scss */
+/* line 736, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-heart {
   margin-right: 5px;
   margin-top: 2px;
 }
 
-/* line 714, ../../app/assets/stylesheets/components/general.scss */
+/* line 741, ../../app/assets/stylesheets/components/general.scss */
 p.class-details-heart-number {
   font-size: 10px;
   font-weight: 700;
 }
 
-/* line 719, ../../app/assets/stylesheets/components/general.scss */
+/* line 746, ../../app/assets/stylesheets/components/general.scss */
 .class-button {
   float: left;
   text-align: center;
@@ -2254,7 +2286,7 @@ p.class-details-heart-number {
   padding: 7px 10px 7px 10px;
 }
 
-/* line 736, ../../app/assets/stylesheets/components/general.scss */
+/* line 763, ../../app/assets/stylesheets/components/general.scss */
 .class-title-big {
   float: left;
   color: #666;
@@ -2267,7 +2299,7 @@ p.class-details-heart-number {
   margin-bottom: 10px;
 }
 
-/* line 748, ../../app/assets/stylesheets/components/general.scss */
+/* line 775, ../../app/assets/stylesheets/components/general.scss */
 img.steps {
   margin-left: 160px;
   margin-top: -25px;
@@ -2275,7 +2307,7 @@ img.steps {
 }
 
 /*......CONFIRM......*/
-/* line 756, ../../app/assets/stylesheets/components/general.scss */
+/* line 783, ../../app/assets/stylesheets/components/general.scss */
 .confirm-classblock {
   float: left;
   width: 190px;
@@ -2286,13 +2318,13 @@ img.steps {
   margin-right: 30px;
 }
 
-/* line 766, ../../app/assets/stylesheets/components/general.scss */
+/* line 793, ../../app/assets/stylesheets/components/general.scss */
 .confirm-class-description {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 771, ../../app/assets/stylesheets/components/general.scss */
+/* line 798, ../../app/assets/stylesheets/components/general.scss */
 .confirm-first-message {
   text-transform: uppercase;
   color: #ff7733;
@@ -2306,7 +2338,7 @@ img.steps {
   width: 100%;
 }
 
-/* line 784, ../../app/assets/stylesheets/components/general.scss */
+/* line 811, ../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
   color: #ff7733;
@@ -2319,14 +2351,14 @@ img.steps {
   width: 100%;
 }
 
-/* line 796, ../../app/assets/stylesheets/components/general.scss */
+/* line 823, ../../app/assets/stylesheets/components/general.scss */
 .confirm-grasshopper {
   float: right;
   margin-top: -40px;
   margin-right: 10px;
 }
 
-/* line 802, ../../app/assets/stylesheets/components/general.scss */
+/* line 829, ../../app/assets/stylesheets/components/general.scss */
 .confirm-bring-friend {
   text-transform: uppercase;
   color: #666;
@@ -2339,7 +2371,7 @@ img.steps {
   width: 100%;
 }
 
-/* line 814, ../../app/assets/stylesheets/components/general.scss */
+/* line 841, ../../app/assets/stylesheets/components/general.scss */
 .confirm-copy-url {
   float: left;
   text-transform: uppercase;
@@ -2352,7 +2384,7 @@ img.steps {
   margin-top: 21px;
 }
 
-/* line 826, ../../app/assets/stylesheets/components/general.scss */
+/* line 853, ../../app/assets/stylesheets/components/general.scss */
 hr#confirm {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -2361,14 +2393,14 @@ hr#confirm {
   margin-bottom: 30px;
 }
 
-/* line 834, ../../app/assets/stylesheets/components/general.scss */
+/* line 861, ../../app/assets/stylesheets/components/general.scss */
 p.confirm {
   margin-top: 21px;
 }
 
 /*......PROFILE PAGE......*/
-/* line 841, ../../app/assets/stylesheets/components/general.scss */
-.classes-taught {
+/* line 868, ../../app/assets/stylesheets/components/general.scss */
+.big-box-active {
   float: left;
   width: 300px;
   height: 217px;
@@ -2381,8 +2413,8 @@ p.confirm {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 854, ../../app/assets/stylesheets/components/general.scss */
-.classes-taken {
+/* line 881, ../../app/assets/stylesheets/components/general.scss */
+.big-box-inactive {
   float: left;
   width: 300px;
   height: 217px;
@@ -2391,7 +2423,7 @@ p.confirm {
   text-align: center;
 }
 
-/* line 863, ../../app/assets/stylesheets/components/general.scss */
+/* line 890, ../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-active {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -2400,7 +2432,7 @@ p.confirm {
   padding-top: 75px;
 }
 
-/* line 871, ../../app/assets/stylesheets/components/general.scss */
+/* line 898, ../../app/assets/stylesheets/components/general.scss */
 .profile-big-number-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -2409,7 +2441,7 @@ p.confirm {
   padding-top: 75px;
 }
 
-/* line 879, ../../app/assets/stylesheets/components/general.scss */
+/* line 906, ../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-active {
   color: #8f8f8f;
   font-family: futura-pt-1, futura-pt-2;
@@ -2420,7 +2452,7 @@ p.confirm {
   padding-top: 45px;
 }
 
-/* line 889, ../../app/assets/stylesheets/components/general.scss */
+/* line 916, ../../app/assets/stylesheets/components/general.scss */
 .profile-big-words-inactive {
   color: #ededed;
   font-family: futura-pt-1, futura-pt-2;
@@ -2431,14 +2463,14 @@ p.confirm {
   padding-top: 45px;
 }
 
-/* line 900, ../../app/assets/stylesheets/components/general.scss */
+/* line 927, ../../app/assets/stylesheets/components/general.scss */
 a.profile-link {
   color: #ff7733;
   font-weight: 700;
   font-size: 11px;
 }
 
-/* line 906, ../../app/assets/stylesheets/components/general.scss */
+/* line 933, ../../app/assets/stylesheets/components/general.scss */
 a.bio-detail-header {
   float: left;
   color: #8f8f8f;
@@ -2447,7 +2479,7 @@ a.bio-detail-header {
   font-size: 13px;
 }
 
-/* line 914, ../../app/assets/stylesheets/components/general.scss */
+/* line 941, ../../app/assets/stylesheets/components/general.scss */
 .profile-heading10 {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -2458,7 +2490,7 @@ a.bio-detail-header {
   padding-top: 10px;
 }
 
-/* line 924, ../../app/assets/stylesheets/components/general.scss */
+/* line 951, ../../app/assets/stylesheets/components/general.scss */
 ul.avatar {
   float: left;
   list-style-type: none;
@@ -2466,12 +2498,12 @@ ul.avatar {
   line-height: 23px;
 }
 
-/* line 931, ../../app/assets/stylesheets/components/general.scss */
+/* line 958, ../../app/assets/stylesheets/components/general.scss */
 li.avatar {
   float: left;
 }
 
-/* line 935, ../../app/assets/stylesheets/components/general.scss */
+/* line 962, ../../app/assets/stylesheets/components/general.scss */
 .avatar {
   width: 25px;
   height: 25px;
@@ -2481,7 +2513,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 944, ../../app/assets/stylesheets/components/general.scss */
+/* line 971, ../../app/assets/stylesheets/components/general.scss */
 .avatar-30 {
   width: 30px;
   height: 30px;
@@ -2490,7 +2522,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 952, ../../app/assets/stylesheets/components/general.scss */
+/* line 979, ../../app/assets/stylesheets/components/general.scss */
 .avatar-100 {
   width: 100px;
   height: 100px;
@@ -2499,7 +2531,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 960, ../../app/assets/stylesheets/components/general.scss */
+/* line 987, ../../app/assets/stylesheets/components/general.scss */
 .avatar-medium {
   float: left;
   width: 50px;
@@ -2508,7 +2540,7 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 968, ../../app/assets/stylesheets/components/general.scss */
+/* line 995, ../../app/assets/stylesheets/components/general.scss */
 .avatar-big {
   width: 190px;
   height: 190px;
@@ -2519,7 +2551,7 @@ li.avatar {
 }
 
 /*......STUDENT-PREVIEW PAGE......*/
-/* line 979, ../../app/assets/stylesheets/components/general.scss */
+/* line 1006, ../../app/assets/stylesheets/components/general.scss */
 .orange-button {
   /* Disables default styling */
   border: none;
@@ -2542,11 +2574,26 @@ li.avatar {
   letter-spacing: 0.1em;
 }
 
-/* line 999, ../../app/assets/stylesheets/components/general.scss */
+/* line 1026, ../../app/assets/stylesheets/components/general.scss */
 img#amazon {
   float: left;
   margin-top: 80px;
   margin-left: -160px;
+}
+
+/*......EMPTY-LEARN PAGE......*/
+/* line 1034, ../../app/assets/stylesheets/components/general.scss */
+.empty-prompt {
+  color: #cccccc;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 24px;
+  letter-spacing: 0.1em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /*......CREATE A NEW CLASS.....*/
@@ -2812,7 +2859,6 @@ a.tip {
 
 /* line 1, ../../app/assets/stylesheets/components/modal.scss */
 .modal {
-  display: none;
   float: left;
   width: 400px;
   padding: 30px;
@@ -2823,14 +2869,14 @@ a.tip {
   background: white;
 }
 
-/* line 11, ../../app/assets/stylesheets/components/modal.scss */
+/* line 10, ../../app/assets/stylesheets/components/modal.scss */
 img.modal-close {
   float: right;
   margin-top: -55px;
   margin-right: -17px;
 }
 
-/* line 17, ../../app/assets/stylesheets/components/modal.scss */
+/* line 16, ../../app/assets/stylesheets/components/modal.scss */
 .send-message-button {
   /* Disables default styling */
   border: none;

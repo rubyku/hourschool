@@ -1,21 +1,17 @@
 = render :partial => "home/header"	
-
 .page
   .page-content
   
     .page-section-float-left
       %ul.sub-nav
-        %li.sub-nav-active 
-          %a.sub-nav-active(href="/profile") Upcoming
+        %li.sub-nav-inactive 
+          %a.sub-nav-inactive(href="/profile") Upcoming
         %li.sub-nav-inactive 
           %a.sub-nav-inactive(href="/profile-past") Past
-        %li.sub-nav-inactive 
-          %a.sub-nav-inactive(href="/profile-suggest") Suggestions
+        %li.sub-nav-active 
+          %a.sub-nav-active(href="/profile-suggest") Suggestions
         %li.sub-nav-inactive 
           %a.sub-nav-inactive(href="/profile-pending") Pending
-
-
-
     .page-section-float-left
       .big-box-active
         .profile-big-number-active
@@ -28,25 +24,14 @@
         
     .page-section-float-left
       
-      .welcome-header Classes you're taking
+      .welcome-header Classes you requested
       %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-      .classRow
-
-        = render :partial => "classes_top_three", :locals => {:classes_this_week => current_user.top_three_recent_classes_as_student}
-  
-
-    / .page-section-float-right
-    /      %table.view-more
-    /        %tr
-    /          %td
-    /            %img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
-    /          %td
-    /            %a.view-more(href="") View all
+      = render :partial => "suggestions_top_three", :locals => {:suggestions => current_user.top_three_suggestions}
 
 .sidebar
   .sidebar-content
     %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
-    
+
     .sidebar-block
       %ul.noBullet
         %li.noBullet
@@ -68,7 +53,4 @@
           %li.noBullet
             %p.class-details-heart-number
               = current_user.hearts
-        / %li.noBullet
-        /           %a.profile-link(href="")Website
-        /           %a.profile-link(href="")Twitter      
-        /           %a.profile-link(href="")Facebook
+      

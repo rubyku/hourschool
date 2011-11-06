@@ -1,11 +1,13 @@
 /*
 Syntax error: Undefined mixin 'rounded-corners'.
-        on line 7 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss, in `rounded-corners'
-        from line 7 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss
+        on line 6 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss, in `rounded-corners'
+        from line 6 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss
+
+1: /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss
 
 Backtrace:
-/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss:7:in `rounded-corners'
-/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss:7
+/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss:6:in `rounded-corners'
+/Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss:6
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:170:in `visit_mixin'
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/base.rb:37:in `visit'
 /Users/rubyku/.rvm/gems/ruby-1.9.2-p290@hourschool/gems/sass-3.1.8/lib/sass/tree/visitors/perform.rb:18:in `visit'
@@ -80,4 +82,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'rounded-corners'.\A         on line 7 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss, in `rounded-corners'\A         from line 7 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss"; }
+  content: "Syntax error: Undefined mixin 'rounded-corners'.\A         on line 6 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss, in `rounded-corners'\A         from line 6 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss\A \A 1: /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/modal.scss"; }
