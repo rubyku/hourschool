@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart]
   before_filter :must_be_admin, :only => [:index, :approve]
   uses_yui_editor
   
@@ -40,6 +40,13 @@ class CoursesController < ApplicationController
   def preview
     id = params[:id]
     @course = Course.find(id)
+  end
+  
+  def heart
+    @course = Course.find(params["id"])
+    p params
+    p @course
+    current_user.vote_for(@course) unless current_user.voted_on?(@course)
   end
   
   def confirm

@@ -174,5 +174,8 @@ class HomeController < ApplicationController
      
   end
   
+  def about_save
+    p params
+  end
 
 end

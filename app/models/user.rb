@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip
+  attr_accessible :zipcode, :zip, :about
   
   
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
@@ -72,12 +72,78 @@ class User < ActiveRecord::Base
     end
   end
   
+  def hearts
+    sum = 0
+    self.courses.each do |s|
+      sum += s.votes_for
+    end
+    sum
+  end
+  
+  def top_three_recent_classes_as_student
+    date = Date.today
+    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
+    classes = (all_upcoming_classes & all_student_roles)
+    if classes.size > 3 
+      classes = classes[0..2]
+    end
+    return classes
+  end
+  
+  def top_three_past_classes_as_student
+    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_past_classes = self.courses.where(['date < ?', DateTime.now])
+    classes = (all_past_classes & all_student_roles)
+    classes = (all_past_classes & all_student_roles)
+    if classes.size > 3 
+      classes = classes[0..2]
+    end
+    return classes
+  end
+  
+  def top_three_suggestions
+    suggestions = Csuggestion.where(:requested_by => self.id)
+    if suggestions.size > 3
+      suggestions = suggestions[0..2]
+    end
+    return suggestions
+  end
+  
+  def top_three_pending
+    pending = self.courses.where(:status => "proposal")
+    if pending.size > 3
+      pending = pending[0..2]
+    end
+    return pending
+  end
+  
   def student_for
-    return self.croles.where(:role => 'student').count
+    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_past_classes = self.courses.where(['date < ?', DateTime.now])
+    (all_past_classes & all_student_roles).count
+    
   end
 
   def teacher_for
-    return self.croles.where(:role => 'teacher').count
+    
+      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+      all_past_classes = self.courses.where(['date < ?', DateTime.now])
+      (all_past_classes & all_teacher_roles).count
+  end
+  
+  def student_for_up
+    date = Date.today
+    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
+    (all_upcoming_classes & all_student_roles).count
+  end
+  
+  def teacher_for_up
+    date = Date.today
+    all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+    all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
+    (all_upcoming_classes & all_teacher_roles).count
   end
   
   def is_teacher_for?(course)

@@ -39,7 +39,7 @@ class Course < ActiveRecord::Base
   
   attr_accessible :photo
   has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
-  
+  acts_as_voteable
   
   def teacher
     teachers = croles.where(:role => 'teacher')

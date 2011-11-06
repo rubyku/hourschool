@@ -37,12 +37,23 @@
       $("h1#homepage_headline").lettering('words');
     });
   </script>
+  <style type="text/css">
+		   a:visited {
+		  text-decoration: underline;
+		  color: #fff;
+		}
 
+		/* line 35, ../../app/assets/stylesheets/components/homepage.scss */
+		a:active {
+		  text-decoration: underline;
+		  color: #fff;
+		}
+</style
 </head>
 <body id="hasbanner">
 
 <div class="homepage_top_bg">
-  
+  	
   <div id="header">
     <div class="container_16">
 
@@ -51,10 +62,13 @@
         </a>
 
         <div id="login">
+		
+
 		  <%= link_to "Sign up", new_user_registration_path %>
 		 <%= link_to "Sign in", new_user_session_path %>
-          
-        </div>
+			
+
+	    </div>
 
         <table id="homepage_menu">
           <tr id="homepage_menu">

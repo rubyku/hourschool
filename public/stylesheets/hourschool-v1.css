@@ -22,7 +22,7 @@ p, ol, ul {
 	font-family: museo-1,museo-2,sans-serif;	
 	font-size: 14px;
 	color: #3d3d3d;
-	line-height: 28px;
+	line-height: 24px;
 
 }
 
@@ -30,8 +30,6 @@ a { text-decoration: none; color: #686868;}
 a:visited { text-decoration: none; color: #686868;}
 a:active { text-decoration: none; color: #686868;}
 a:hover { color: #35a9e5;}
-
-
 
 
 table#courses {
@@ -63,7 +61,7 @@ table#courses {
 	box-shadow: 1px 1px 1px #c3c3c3;
 	border: 0px solid black;
 	font-family: museo-1,museo-2,serif;
-	font-size: 20px;
+	font-size: 14px;
 
 }
 
@@ -116,7 +114,7 @@ table#courses {
 	left: 0px;
 	width: 880px;
 	padding-top: 30px;
-	padding-left: 20px;
+	padding-left: 0px;
 	background: none;
 	border: 0px solid green;
 
@@ -200,7 +198,7 @@ hr#whiteline {
 	padding: 10px; 
 	background-color: white;
 	border: 1px solid black;
-	}
+}
 
 
 #loginBox2 { 
@@ -227,7 +225,7 @@ span#loginBoxPrompt2{
 #main_nav {
 	float: right;
 	text-align:right;
-	padding-top: 35px;
+	padding-top: 38px;
 	padding-right: 10px;
 	letter-spacing: 1.5px;
 	border: 0px dashed green;
@@ -264,12 +262,14 @@ span#loginBoxPrompt2{
 
 #footer_box{
 	position: relative;
-	text-align: center; 
 	color: white;
 	line-height:2em;
-	padding-top: 10px;
+	padding-top: 20px;
 	padding-bottom: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
 	width: 900px;
+	height: 60px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #808080;
@@ -279,12 +279,54 @@ span#loginBoxPrompt2{
 	-moz-box-shadow: 1px 1px 1px #666666;
 	-webkit-box-shadow: 1px 1px 1px #666666;
 	box-shadow: 1px 1px 1px #666666;
-
 }
 
 #footer_box a { color: #ffffff; } /* white */
 #footer_box a:hover { color: #35a9e5;}
 
+.social-media-icons-fb{
+  margin-bottom: -12px;
+}
+
+.social-media-icons-tw{
+  margin-bottom: -9px;
+}
+
+#footer-left{
+  float: left;
+  width: 400px;
+}
+
+#footer-center{
+  text-align: center;
+  float: left;
+  width: 200px;
+  margin-left: -60px;
+}
+
+#mc_embed_signup{
+  float: right;
+	color: white;
+}
+
+p#mc_embed_signup{
+  float: left;
+	color: white;
+}
+
+.newsletter-signup{
+  border: 1px solid #b5b5b5;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px;
+	font-size: 1em;
+	line-height: 1em;
+	width: 200px;
+	height: 25px;
+	padding-left: 5px;
+	color: #666;
+	font-size: 13px;
+}
 
 #footer_background{
 	position: absolute;
@@ -299,10 +341,37 @@ span#loginBoxPrompt2{
 #about_text{
 	position: relative;
 	float: left;
-	margin-top: 0px;
 	padding-left: 20px;
 	width: 330px;
 	border: 0px solid black;
+}
+
+p#about{
+  margin-bottom: 40px;
+}
+
+#featured-on-homepage{
+  position: relative;
+	float: left;
+	margin-top: 20px;
+	padding-left: 20px;
+	width: 96%;
+}
+
+#getstarted-button-on-homepage{
+	margin-left: 30px;
+	margin-right: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: #35a9e5;
+	color: white;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	font-size: 16px;
 }
 
 #video{
@@ -313,6 +382,14 @@ span#loginBoxPrompt2{
 	float: right;
 	border: 0px dashed green;
 
+}
+
+h2{
+  float: left;
+}
+
+.see-more{
+  float: right;
 }
 
 #step_1{
@@ -396,7 +473,9 @@ a#blackhover:hover{
 
 
 #studentStatus{
-	width: 100px;
+	width: 200px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 	text-align: center;
 	background-color: #bdbdbd;
 	color: white;
@@ -453,7 +532,40 @@ a#blackhover:hover{
 	box-shadow:inset 3px 3px 3px #c3c3c3;
 }
 
+#bluebutton-staticlink{
+	width: 150px;
+	margin-top: 10px;
+	margin-bottom: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: #35a9e5;
+	color: white;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+
 #bluebutton{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 60px;
+	padding-right: 60px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: #35a9e5;
+	color: white;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#bluebutton-takethisclass{
 	width: 150px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -506,7 +618,6 @@ hr#right {
 #class_page_left {
   position: relative;
   float: left;
-  padding-top: 30px;
   margin-right: 40px;
   width: 500px;
   border: 0px dashed green;
@@ -515,7 +626,7 @@ hr#right {
 #class_page_right {
   position: relative;
   float: left;
-  padding-top: 30px;
+  padding-top: 5px;
   margin-left: 20px;
   width: 250px;
   border: 0px dashed green;
@@ -561,6 +672,7 @@ h2#headline{
 	color: #35a9e5;
 	font-family: museo-sans-1,museo-sans-2,sans-serif;
 	font-size: 16px;
+	margin-bottom: 7px;
 	}
 
 
@@ -665,6 +777,10 @@ h3#classtitle{
 	width: 220px;
 	padding-top: 10px;
 
+}
+
+#class-topic{
+ line-height: 28px; 
 }
 
 #white_bg_class_home{

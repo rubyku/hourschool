@@ -1,30 +1,3 @@
-- count = 0
-- classes_this_week.each do |c|
-	- count = count + 1
-	- if count%3 == 0
-		- className = "classBlock_last"
-	- else
-		- className = "classBlock"
-	%div{:class => "#{className}"}
-		- if c.photo.exists?
-			/ Course.find(10).categories.first.name
-			= link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
-			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-		- else
-			- if !c.categories.first.nil?
-				= link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
-			- else
-				= link_to image_tag("/images/v2-courses/112_BakingBread.jpg"), c
-			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-		%br
-			
-			.class-description
-				.heading13-class 
-					= link_to "#{c.title}", c
-				%p= c.description.truncate(50)
-				.heading9-class 
-					= "#{c.seats_left} seats left"
-					= "#{(c.date - Date.today).numerator} days from today"
 
 - if classes_this_week.size < 3 
 	- if classes_this_week.size == 0
@@ -56,24 +29,24 @@
 					- if !c.categories.first.nil?
 						= link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
 					- else
-						= link_to image_tag("/images/v2-courses/112_BakingBread.jpg"), c
+						= link_to image_tag("/images/v2-courses/default_image.jpg"), c
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 				%br
 
 					.class-description
 						.heading13-class 
 							= link_to "#{c.title}", c
-						%p= c.description.truncate(50)
+						%p= c.description.truncate(50).html_safe
 						.heading9-class 
 							= "#{c.seats_left} seats left"
 							= "#{(c.date - Date.today).numerator} days from today"
 		.classBlock
-			= link_to image_tag("/images/GhostClasses__01_v1.png"), teach_path
+			= link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
 			.class-description
 				.empty-prompt
 					= "Teach a class!"
 		.classBlock_last
-			= link_to image_tag("/images/GhostClasses__01_v1.png"), teach_path
+			= link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
 			.class-description
 				.empty-prompt
 					= "Share your passion!"
@@ -88,22 +61,50 @@
 					- if !c.categories.first.nil?
 						= link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
 					- else
-						= link_to image_tag("/images/v2-courses/112_BakingBread.jpg"), c
+						= link_to image_tag("/images/v2-courses/default_image.jpg"), c
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 				%br
 
 					.class-description
 						.heading13-class 
 							= link_to "#{c.title}", c
-						%p= c.description.truncate(50)
+						%p= c.description.truncate(50).html_safe
 						.heading9-class 
 							= "#{c.seats_left} seats left"
 							= "#{(c.date - Date.today).numerator} days from today"
 		.classBlock_last
-			= link_to image_tag("/images/GhostClasses__01_v1.png"), teach_path
+			= link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
 			.class-description
 				.empty-prompt
 					= "Share your passion!"
+- else
+	- count = 0
+	- classes_this_week.each do |c|
+		- count = count + 1
+		- if count%3 == 0
+			- className = "classBlock_last"
+		- else
+			- className = "classBlock"
+		%div{:class => "#{className}"}
+			- if c.photo.exists?
+				/ Course.find(10).categories.first.name
+				= link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
+				%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+			- else
+				- if !c.categories.first.nil?
+					= link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
+				- else
+					= link_to image_tag("/images/v2-courses/default_image.jpg"), c
+				%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+			%br
+
+				.class-description
+					.heading13-class 
+						= link_to "#{c.title}", c
+					%p= c.description.truncate(50).html_safe
+					.heading9-class 
+						= "#{c.seats_left} seats left"
+						= "#{(c.date - Date.today).numerator} days from today"
 		
 .page-section-float-right
 	%table.view-more

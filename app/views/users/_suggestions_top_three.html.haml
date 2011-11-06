@@ -1,0 +1,33 @@
+- suggestions.each do |t|
+	.vote-class.clearfix
+		.vote-class-title
+			.heading20-vote
+				= "#{t.name}"
+			.heading9-class
+				= "Requested by #{get_user_name(t.requested_by)}"
+			%table
+				%tr
+					%td
+						%img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
+					%td  
+						= link_to "I want to teach this class", new_course_path("req" => t.id)
+				%tr
+					%td
+						%img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
+					%td  
+						= link_to "I know someone who can teach this", "#"
+		.vote-class-number
+			.heading35-vote
+				%span{:id => "vote_count_#{t.id}"}
+					= "#{t.votes_for}"
+			.heading10-vote 
+				= "votes"
+			.claim-class-button
+				%span{:id => "vote_link_#{t.id}"}
+					- if user_signed_in?
+						- if !current_user.voted_on?(t)
+							= link_to "Add vote", csvote_path("csid" => t.id), :remote => true
+						- else
+							= "You voted"
+					- else
+						= link_to_function "Add vote", "alert('Please login to vote!')"

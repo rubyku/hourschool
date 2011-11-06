@@ -20,5 +20,14 @@ class UsersController < ApplicationController
   def profile
     
   end
+  
+  def profile_past
+  end
+  
+  def profile_pending
+  end
+  
+  def profile_suggest
+  end
 
 end
