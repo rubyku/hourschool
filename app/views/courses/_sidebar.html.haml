@@ -56,7 +56,7 @@
 					= image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
 				%li.noBullet
 					.class-details
-						= "#{course.price}"
+						= "$" "#{course.price}"
 					.class-alterntives
 						%br/
 			%ul.noBullet
@@ -64,8 +64,8 @@
 					= image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
 				%li.noBullet
 					.class-details
-						= course.date.strftime("%B %d, %Y")
-					.class-details
+						= course.date.strftime("%a %b %d, %Y")
+					%p.class-details
 						= "#{course.time_range}"
 					.class-alterntives
 						%br/

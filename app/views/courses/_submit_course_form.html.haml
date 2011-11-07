@@ -28,12 +28,17 @@
 /     .form-question Ready to submit?
 /     %input.submit-proposal-button(type='submit' value='Submit my proposal')
 / 
-/     
+/ 
+
+.page-section-float-left
+	%img.steps{:src => '../../../images/v2/step2.png'}
+	.welcome-header Hi Abby! Let's get your class up and running
+	%p We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!
 
 .page
 	.page-content
 		.heading25_ccc 
-			= "Enter the class details"
+			= "1. Overview"
 		- @course.errors.full_messages.each do |message|
 			.error
 				%p= "#{message}"
@@ -43,9 +48,9 @@
 			= hidden_field_tag 'req', "#{@reqid}"
 			= f.hidden_field :status, :value => "live"
 			.form-question
-				= f.label :title
-			.form-question-tip
-				= 'Provide an attention grabbing, but a relevant title.'
+				= f.label "Give your class a title"
+			%p.tip
+				= 'Limit 50 characters.'
 			%br
 				- if @reqid.nil?
 					= f.text_field :title, :class => "form-with-margin"
@@ -69,10 +74,15 @@
 						= f.text_area :description, :value => "#{@reqdescription}", :class => "rich_text_editor", :rows => "15", :style => "width : 90%"
 			.form-question
 				= f.label :categories
-			.form-question-tip
+			%p.tip
 				= 'Choose the best category this class falls into '
 				/ = f.text_field :categories, :value => ' ', :class => "form-with-margin"
 				= f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']]) 
+
+			%hr#class
+			%br
+			.heading25_ccc 2. Game Plan
+
 			.form-question
 				= f.label :price
 			.form-question-tip
