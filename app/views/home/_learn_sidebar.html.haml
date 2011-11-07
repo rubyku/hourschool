@@ -23,8 +23,9 @@
 	.sidebar-content
 		.sidebar-heading Classes we like
 		- @classes_we_like.each do |cl|
-			.sidebar-block
-				.heading13-class
-					= link_to "#{cl.title}", cl
-				.heading9-class 
-					= "#{cl.date.day} #{Date::ABBR_MONTHNAMES[cl.date.month]}"
+			- if cl.status == "live"
+				.sidebar-block
+					.heading13-class
+						= link_to "#{cl.title}", cl unless cl.title.nil?
+					.heading9-class 
+						= "#{cl.date.day} #{Date::ABBR_MONTHNAMES[cl.date.month]}" unless cl.date.nil?

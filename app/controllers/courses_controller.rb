@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart]
   before_filter :must_be_admin, :only => [:index, :approve]
+  before_filter :must_be_live, :only => [:show]
   uses_yui_editor
   
   def index
@@ -237,7 +238,14 @@ class CoursesController < ApplicationController
     #if !current_user.try(:admin?) || !current_user.is_admin?
     if !current_user.is_admin?
       p "not admin"
-      redirect_to current_user
+      redirect_to user_root_path
+    end
+  end
+  
+  def must_be_live
+    @course = Course.find(params[:id])
+    if @course.status != "live"
+      redirect_to user_root_path
     end
   end
     
