@@ -33,7 +33,11 @@ class HomeController < ApplicationController
     date = Date.today
     
     city = City.find_by_name(@location)
-    neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
+    neighborhood_30 = []
+    if !city.nil?
+      neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
+    end
+      
     @classes_in_my_location = []
      @suggestions_in_my_location = []
     neighborhood_30.each do |ncity|
@@ -56,10 +60,15 @@ class HomeController < ApplicationController
       #top suggestions has to be the first operator to preserve ranking
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
      # p @top_suggestions
-      @random_course = Course.find(rand(Course.count-1) + 1)
-      @classes_we_like = []
-      (1..2).each do |val|
-        @classes_we_like << Course.find(rand(Course.count-1) + 1)
+     if Course.count > 0
+        @random_course = Course.find(rand(Course.count-1) + 1)
+        @classes_we_like = []
+        (1..2).each do |val|
+          @classes_we_like << Course.find(rand(Course.count-1) + 1)
+        end
+      else
+        @classes_we_like = []
+        
       end
   end
   
@@ -86,7 +95,10 @@ class HomeController < ApplicationController
      end
     
      city = City.find_by_name(@location)
-      neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
+     neighborhood_30 = []
+     if !city.nil?
+       neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
+     end
       
        @suggestions_in_my_location = []
       neighborhood_30.each do |ncity|
@@ -101,11 +113,14 @@ class HomeController < ApplicationController
         })
        # p @top_suggestions
        @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
-       
-        @random_course = Course.find(rand(Course.count-1) + 1)
-        @classes_we_like = []
-        (1..2).each do |val|
-          @classes_we_like << Course.find(rand(Course.count-1) + 1)
+       if Course.count > 0
+          @random_course = Course.find(rand(Course.count-1) + 1)
+          @classes_we_like = []
+          (1..2).each do |val|
+            @classes_we_like << Course.find(rand(Course.count-1) + 1)
+          end
+        else
+          @classes_we_like = []
         end
   end
   

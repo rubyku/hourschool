@@ -32,7 +32,7 @@
 
 .page-section-float-left
 	%img.steps{:src => '../../../images/v2/step2.png'}
-	.welcome-header Hi Abby! Let's get your class up and running
+	.welcome-header= "Hi #{current_user.name} Let's get your class up and running"
 	%p We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!
 
 .page

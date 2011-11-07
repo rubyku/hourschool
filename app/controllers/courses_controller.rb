@@ -38,7 +38,9 @@ class CoursesController < ApplicationController
       @reqtitle = req.name
       @reqdescription = req.description
     end
-    @random_course = Course.find(rand(Course.count-1) + 1)
+    if Course.count > 0
+      @random_course = Course.find(rand(Course.count-1) + 1)
+    end
   end
   
   def preview
@@ -66,6 +68,7 @@ class CoursesController < ApplicationController
     
     @user = current_user
     if @course.save
+      p "course saved #{@course.id}"
       @crole = Crole.find_by_course_id_and_user_id(@course.id, current_user.id) 
       if @crole.nil?
         @crole = @course.croles.create!(:attending => true, :role => 'teacher')

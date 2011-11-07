@@ -10,8 +10,9 @@ class Course < ActiveRecord::Base
   attr_accessible :status, :about, :experience, :coursetag
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
+  validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum, :unless => :proposal? 
   
-  validate :default_validations, :message => "The fields cannot be empty" 
+  validate :default_validations, :message => "The fields cannot be empty"
   validates :terms_of_service, :acceptance => true
   attr_accessible :terms_of_service
   
@@ -123,9 +124,11 @@ class Course < ActiveRecord::Base
          errors[:base] << "All the fields are required!"
        
        end
-     elsif self.status == "approved"
-       validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
      end
+   end
+   
+   def proposal?
+     self.status == "proposal" || self.status.nil?
    end
    
    
