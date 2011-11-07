@@ -40,6 +40,10 @@ class HomeController < ApplicationController
       
     @classes_in_my_location = []
      @suggestions_in_my_location = []
+     if neighborhood_30.size == 0
+       @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? ", "#{city.name}"]).courses unless city.nil?
+       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
+     end 
     neighborhood_30.each do |ncity|
       @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).courses
       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
@@ -48,7 +52,7 @@ class HomeController < ApplicationController
     #get classes this month
     @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 4)).find(:all)
     @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 6)
-    
+    #p @classes_in_my_location
     # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,

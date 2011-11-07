@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
       @reqdescription = req.description
     end
     if Course.count > 0
-      @random_course = Course.find(rand(Course.count-1) + 1)
+      @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
     end
   end
   
@@ -104,9 +104,16 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     p "course is #{params[:course]}"
+    @date = Date.civil(params[:course]["date(1i)"].to_i,
+                             params[:course]["date(2i)"].to_i,
+                             params[:course]["date(3i)"].to_i)
     cat = []
     cat << (params[:course][:categories]).to_s
-    if @course.update_attributes((params[:course]).delete(:categories))
+    params[:course].delete(:categories)
+    params[:course].delete("date(1i)")
+    params[:course].delete("date(2i)")
+    params[:course].delete("date(3i)")
+    if @course.update_attributes(params[:course].merge({:date => @date}))
       
       @course.category_list = cat.join(", ").to_s
       @course.save
