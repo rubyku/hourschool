@@ -3,44 +3,60 @@
       <div class="heading25_ccc">Featured classes</div><br><br>
 
           <div class="classRow-homepage clearfix">
-
+              
               <div class="classBlock-homepage">
-                  <img src="../../../images/v2-courses/112_BakingBread.jpg">
+                <% if @fav1.photo.exists? %>
+                  <%= image_tag @fav1.photo.url, :size => "190x120"%>
+                  <% else %>
+                  <%= image_tag "/images/v2-courses/default_image.jpg"%>
+                  <% end %>
                  <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                 <div class="class-description">
-                  <div class="heading13-class">Putting Techniques</div>
-                  <div class="heading9-class">Oct 3, 6:00P</div>
-                  <p>Sharpen your skills with an hour long class from the master himself!</p>
+                  <div class="heading13-class"><%= link_to @fav1.title, @fav1 %></div>
+                  <div class="heading9-class"><%= @fav1.date.strftime("%a %b %d, %Y") %></div>
+                  <p><%= @fav1.coursetag%></p>
                 </div><!-- /end .class-description -->
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-homepage">
-                  <img src="../../../images/v2-courses/119_DIY.jpg">
+                  <% if @fav2.photo.exists? %>
+                    <%= image_tag @fav2.photo.url, :size => "190x120"%>
+                    <% else %>
+                    <%= image_tag "/images/v2-courses/default_image.jpg"%>
+                    <% end %>
                  <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                 <div class="class-description">
-                  <div class="heading13-class">Putting Techniques</div>
-                  <div class="heading9-class">Oct 3, 6:00P</div>
-                  <p>Sharpen your skills with an hour long class from the master himself!</p>
+                  <div class="heading13-class"><%= link_to @fav2.title, @fav2 %></div>
+                  <div class="heading9-class"><%= @fav2.date.strftime("%a %b %d, %Y") %></div>
+                  <p><%= @fav2.coursetag%></p>
                 </div><!-- /end .class-description -->
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-homepage">
-                  <img src="../../../images/v2-courses/138_child-with-ipad.jpg">
+                  <% if @fav3.photo.exists? %>
+                    <%= image_tag @fav3.photo.url, :size => "190x120"%>
+                    <% else %>
+                    <%= image_tag "/images/v2-courses/default_image.jpg"%>
+                    <% end %>
                  <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                 <div class="class-description">
-                  <div class="heading13-class">Putting Techniques</div>
-                  <div class="heading9-class">Oct 3, 6:00P</div>
-                  <p>Sharpen your skills with an hour long class from the master himself!</p>
+                  <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
+                  <div class="heading9-class"><%= @fav3.date.strftime("%a %b %d, %Y") %></div>
+                  <p><%= @fav3.coursetag%></p>
                 </div><!-- /end .class-description -->
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-last-homepage">
-                  <img src="../../../images/v2-courses/144_Moto.jpg">
+                  <% if @fav4.photo.exists? %>
+                    <%= image_tag @fav4.photo.url, :size => "190x120"%>
+                    <% else %>
+                    <%= image_tag "/images/v2-courses/default_image.jpg"%>
+                    <% end %>
                  <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                 <div class="class-description">
-                  <div class="heading13-class">Putting Techniques</div>
-                  <div class="heading9-class">Oct 3, 6:00P</div>
-                  <p>Sharpen your skills with an hour long class from the master himself!</p>
+                  <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
+                  <div class="heading9-class"><%= @fav4.date.strftime("%a %b %d, %Y") %></div>
+                  <p><%= @fav4.coursetag%></p>
                 </div><!-- /end .class-description -->
               </div><!-- /end .classBlock -->
 
