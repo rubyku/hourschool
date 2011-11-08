@@ -25,16 +25,18 @@
 				= 'We just want a general idea. 1-2 sentences is plenty.'
 				%br
 					- if @reqid.nil?
-						= f.text_area :about, :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						/ = f.text_area :about, :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						= f.text_area :about, :class => "form-with-margin"
 					- else
-						= f.text_area :about, :value => "#{@reqdescription}", :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						/ = f.text_area :about, :value => "#{@reqdescription}", :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						= f.text_area :about, :value => "#{@reqdescription}", :class => "form-with-margin"
 						
 			.form-question
 				= f.label "What is your experience?"
 			.form-question-tip
 				= 'No need to be an expert. Just tell us about your passion for the subject.'
 				%br
-				= f.text_area :experience,  :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+				= f.text_area :experience,  :class => "form-with-margin"
 				
 			.form-question Please read our policy.
 			%p.note This is our pricing policy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.

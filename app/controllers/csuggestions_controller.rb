@@ -19,10 +19,11 @@ class CsuggestionsController < ApplicationController
     @user = current_user
     #need to have validations
     if @csuggestion.save
+      current_user.vote_for(@csuggestion) 
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.csuggestions << @csuggestion
       city.save
-      redirect_to @csuggestion, :notice => "Successfully created csuggestion."
+      redirect_to current_user, :notice => "Successfully created csuggestion."
     else
       render :action => 'new'
     end
@@ -35,7 +36,7 @@ class CsuggestionsController < ApplicationController
   def update
     @csuggestion = Csuggestion.find(params[:id])
     if @csuggestion.update_attributes(params[:csuggestion])
-      redirect_to @csuggestion, :notice  => "Successfully updated csuggestion."
+      redirect_to current_user, :notice  => "Successfully updated csuggestion."
     else
       render :action => 'edit'
     end

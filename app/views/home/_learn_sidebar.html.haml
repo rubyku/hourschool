@@ -4,10 +4,10 @@
 			%li
 				.sidebar-heading Browse By City
 			- if current_user
-				%li= link_to "#{current_user.city}", '#', :remote => true unless current_user.city == "Austin" || current_user.city == "San Francisco"
+				%li= link_to "#{current_user.city}", cities_path(:city => current_user.city) unless current_user.city == "Austin" || current_user.city == "San Francisco"
 				
-			%li= link_to "Austin", '#', :remote => true
-			%li= link_to "San Francisco", "#", :remote => true
+			%li= link_to "Austin", cities_path(:city => "Austin")
+			%li= link_to "San Francisco", cities_path(:city => "San Francisco")
 		%ul.searchFilter
 			%li
 				.sidebar-heading Browse By Time

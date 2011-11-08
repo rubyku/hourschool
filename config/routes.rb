@@ -64,8 +64,11 @@ HourschoolV2::Application.routes.draw do
   match '/search' => 'home#search'
   
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
+  match '/search_by_city' => 'home#search_by_city', :as => "cities"
   match '/organization' => 'home#organization'
   match '/about_save' => 'home#about_save'
+  match '/nominate' => 'home#nominate'
+  match '/nominate_send' => 'home#nominate_send'
   
   match '/business' => 'home#business'
   root :to => "home#index"

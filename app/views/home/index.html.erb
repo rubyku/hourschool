@@ -40,13 +40,13 @@
   <style type="text/css">
 		   a:visited {
 		  text-decoration: underline;
-		  color: #fff;
+		  color: #4F4E4E;
 		}
 
 		/* line 35, ../../app/assets/stylesheets/components/homepage.scss */
 		a:active {
 		  text-decoration: underline;
-		  color: #fff;
+		  color: #4F4E4E;
 		}
 </style>
 </head>
@@ -56,10 +56,9 @@
   	
   <div id="header">
     <div class="container_16">
-
-        <a href="/p/home" id="logo">
-            <img src="../../../images/v2/Logo_White.png">
-        </a>
+				
+				<%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "logo"%>
+        
 
         <div id="login">
 		
@@ -128,9 +127,9 @@
 
         <div id="homeSearchForm-background"></div>
         <%= form_tag search_path, :method => 'post' do %>
-			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.select();', :id =>"homepageSearchForm"%>
+			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.value= "";', :id =>"homepageSearchForm"%>
 			<!--<input type="text" name="search" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/> -->
-	        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+	        <img src = "/images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
 			<br>
 			<input type="submit" value="Search" id="homepageSearchButton" />
 	        
@@ -138,7 +137,7 @@
 		
         <div id="homepage_headline_8"><font size="0.01" style="italic" >or</font> check out our featured classes</div>
          
-         <img src="../../../images/v2/arrow_homepage.png" id="homepage_arrow">
+         <img src="/images/v2/arrow_homepage.png" id="homepage_arrow">
        
        
      </div><!-- /end .twoCol_right-->  

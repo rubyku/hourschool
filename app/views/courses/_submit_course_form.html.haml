@@ -68,7 +68,7 @@
 				%br
 					- if @reqid.nil?
 						
-						= f.text_area :description, :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
+						= f.text_area :description, :class => "form-with-margin"
 					- else
 						
 						= f.text_area :description, :value => "#{@reqdescription}", :class => "rich_text_editor", :rows => "15", :style => "width : 90%"
@@ -86,7 +86,7 @@
 			.form-question
 				= f.label :price
 			.form-question-tip
-				= 'How much are you charging for this class per student. Examples - 15.00, 25.99. A 0.0 is perfectly fine too :)'
+				= 'How much are you charging for this class per student. Examples - 15.00, 25.99. A 0.00 is perfectly fine too :)'
 				= f.text_field :price, :class => "form-with-margin"
 			.form-question
 				= f.label :seats

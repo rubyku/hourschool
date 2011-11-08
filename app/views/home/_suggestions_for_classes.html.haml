@@ -16,7 +16,7 @@
 					%td
 						%img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
 					%td  
-						= link_to "I know someone who can teach this", "#"
+						= link_to "I know someone who can teach this", nominate_path("id" => t.id)
 		.vote-class-number
 			.heading35-vote
 				%span{:id => "vote_count_#{t.id}"}

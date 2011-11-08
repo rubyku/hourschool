@@ -30,5 +30,14 @@ class UserMailer < ActionMailer::Base
      @course = course
      mail(:to => user_email, :subject => "You have registered for a course!")
    end
+   
+   def send_nominate_mail_to_teacher(user_email, current_user, csuggid, message)
+      @email = user_email
+      @user = current_user
+      @req = Csuggestion.find(csuggid)
+      @url = "http://turunga.org/courses/new?req=#{@req.id}"
+      @message = message
+      mail(:to => user_email, :subject => "#{@user.name} has nominated you to teach at HourSchool")
+    end
   
 end

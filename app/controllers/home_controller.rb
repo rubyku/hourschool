@@ -63,7 +63,9 @@ class HomeController < ApplicationController
       
       #top suggestions has to be the first operator to preserve ranking
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
-     # p @top_suggestions
+      p "ts"
+      p @top_suggestions
+      p @suggestions_in_my_location
      if Course.count > 0
        
         @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
@@ -106,6 +108,9 @@ class HomeController < ApplicationController
      end
       
        @suggestions_in_my_location = []
+        if neighborhood_30.size == 0
+          @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
+        end
       neighborhood_30.each do |ncity|
         @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
       end
@@ -129,12 +134,28 @@ class HomeController < ApplicationController
         end
   end
   
+  def nominate
+    @req = Csuggestion.find(params["id"])
+  end
+  
+  def nominate_send
+    UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
+    redirect_to learn_path
+  end
+  
+  def search_by_city
+    date = Date.today
+    @classes_this_week = City.find(:first, :conditions => ["name LIKE ?",params[:city] ]).courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).find(:all).paginate(:page => params[:page], :per_page => 6)
+    p @classes_this_week
+    
+  end
+  
   def search_by_tg
     keyword =  TAGS[params[:index].to_i]
     #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
     date = Date.today
     #find classes tagged with that
-    @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 1)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
+    @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
      @classes_we_like = []
       (1..2).each do |val|
         @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
@@ -157,7 +178,7 @@ class HomeController < ApplicationController
   end
   
   def search
-    p params
+    
     if Course.count > 0
       #default location is austin, if i don't find a location in my session_variable
       date = Date.today
@@ -168,6 +189,7 @@ class HomeController < ApplicationController
       end
     
       @all_courses_in_city = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses
+     
       #the sql query description like "%string%" will return a list of all courses
       #let us return everything and then filter it by city
       search_string = "%#{params[:search]}%"
@@ -180,7 +202,7 @@ class HomeController < ApplicationController
     
       #intersection of all courses in the city and the conditions that the course happens in a week and matches
       #search query
-      @courses_matching_query = Course.find(:all, :conditions => ["description LIKE ? AND date BETWEEN ? AND ?", search_string,date, date.advance(:weeks => 2)])
+      @courses_matching_query = Course.find(:all, :conditions => ["(title LIKE ? OR description LIKE ?) AND date BETWEEN ? AND ?",search_string, search_string,date, date.advance(:weeks => 4)])
     
       p "search string is #{search_string}"
       @courses = (@all_courses_in_city & @courses_matching_query).paginate(:page => params[:page], :per_page => 10)
