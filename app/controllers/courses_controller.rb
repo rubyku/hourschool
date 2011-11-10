@@ -91,7 +91,8 @@ class CoursesController < ApplicationController
       #add to indextank
       #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
       #redirect_to @course, :notice => "Successfully created course."
-      redirect_to current_user, :notice => "Successfully submitted your proposal"
+      #redirect_to current_user, :notice => "Successfully submitted your proposal"
+      redirect_to "/profile-pending"
     else
       render :action => 'new'
     end
@@ -104,29 +105,34 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     p "course is #{params[:course]}"
-    @date = Date.civil(params[:course]["date(1i)"].to_i,
-                             params[:course]["date(2i)"].to_i,
-                             params[:course]["date(3i)"].to_i)
-    cat = []
-    cat << (params[:course][:categories]).to_s
-    params[:course].delete(:categories)
-    params[:course].delete("date(1i)")
-    params[:course].delete("date(2i)")
-    params[:course].delete("date(3i)")
-    if @course.update_attributes(params[:course].merge({:date => @date}))
-      
+    if !params[:course]["date(1i)"].nil? && !params[:course]["date(2i)"].nil? && !params[:course]["date(3i)"].nil?
+      @date = Date.civil(params[:course]["date(1i)"].to_i,
+                               params[:course]["date(2i)"].to_i,
+                               params[:course]["date(3i)"].to_i)
+      cat = []
+      cat << (params[:course][:categories]).to_s
+      params[:course].delete(:categories)
+      params[:course].delete("date(1i)")
+      params[:course].delete("date(2i)")
+      params[:course].delete("date(3i)")
+      params[:course].merge!({:date => @date})
       @course.category_list = cat.join(", ").to_s
-      @course.save
-      if params[:course][:photo].blank?  
-        #redirect_to preview_path(params[:id])
-        redirect_to preview_path(:id => @course.id)
-      else  
-        render :action => 'crop'
-      end
-    else
-      render :action => 'edit'
+      
     end
+      if @course.update_attributes(params[:course])
+        @course.save
+        if params[:course][:photo].blank?  
+          #redirect_to preview_path(params[:id])
+          redirect_to preview_path(:id => @course.id)
+        else  
+          render :action => 'crop'
+        end
+      else
+        render :action => 'edit'
+      end
+   
   end
+  
 
   def destroy
     @course = Course.find(params[:id])
