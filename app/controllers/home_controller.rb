@@ -159,6 +159,15 @@ class HomeController < ApplicationController
     #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
     date = Date.today
     #find classes tagged with that
+     
+      if session[:user_location].nil? || session[:user_location].blank?
+        user_location = "Austin"
+      else
+        user_location = session[:user_location]
+      end
+    
+      #@classes_this_week = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)]).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
+    
     @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
      @classes_we_like = []
       (1..2).each do |val|
@@ -192,11 +201,16 @@ class HomeController < ApplicationController
         user_location = session[:user_location]
       end
     
-      @all_courses_in_city = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses
+      @all_courses_in_city = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)])
      
       #the sql query description like "%string%" will return a list of all courses
       #let us return everything and then filter it by city
-      search_string = "%#{params[:search]}%"
+      if Rails.env == "production"
+        search_string = params[:search]
+      else
+        
+        search_string = "%#{params[:search]}%"
+      end
       if search_string.nil? || search_string.blank?
         search_string = session[:search_string]
       end
@@ -206,8 +220,12 @@ class HomeController < ApplicationController
     
       #intersection of all courses in the city and the conditions that the course happens in a week and matches
       #search query
-      @courses_matching_query = Course.find(:all, :conditions => ["(title LIKE ? OR description LIKE ?) AND date BETWEEN ? AND ?",search_string, search_string,date, date.advance(:weeks => 4)])
-    
+      if Rails.env == "production"
+        #user texticle in production for postgre search
+        @courses_matching_query = Course.search(search_string)
+      else
+        @courses_matching_query = Course.find(:all, :conditions => ["(title LIKE ? OR description LIKE ?) AND date BETWEEN ? AND ?",search_string, search_string,date, date.advance(:weeks => 4)])
+      end
       p "search string is #{search_string}"
       @courses = (@all_courses_in_city & @courses_matching_query).paginate(:page => params[:page], :per_page => 10)
       @top_suggestions =  Csuggestion.tally(
