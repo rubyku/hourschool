@@ -9,7 +9,8 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: hourschool_v2_development
+#  database: hourschool_v2_development
+  database: hourschool_v2_production
   pool: 5
   username: root
   password:

@@ -1,5 +1,6 @@
 development:
-  bucket: hourschool-dev
+  #bucket: hourschool-dev
+  bucket: hourschool-prod
   access_key_id: AKIAIYW3RHXACBNVKNMQ
   secret_access_key: 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
 test:
