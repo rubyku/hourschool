@@ -2,7 +2,7 @@
 	= include_yui_editor_if_used.html_safe 
 	
 = render :partial => "home/header"	
-
+- p "request is #{request.url}"
 .page
 	.page-content
 		.page-section-float-left
@@ -44,7 +44,7 @@
 		.page-section-float-left
 			.class-section-heading 
 				= "This class will cover"
-			%p= sanitize @current_course.description
+			%p= sanitize @current_course.description.gsub(/\n/,'<br/>')
 			%br/
 			- if @current_course.price > 0.0
 				= button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"

@@ -121,12 +121,13 @@ class CoursesController < ApplicationController
     end
       if @course.update_attributes(params[:course])
         @course.save
-        if params[:course][:photo].blank?  
+        #if params[:course][:photo].blank?  
           #redirect_to preview_path(params[:id])
           redirect_to preview_path(:id => @course.id)
-        else  
-          render :action => 'crop'
-        end
+        # else  
+        #           render :action => 'crop'
+        #         end
+        #end
       else
         render :action => 'edit'
       end
