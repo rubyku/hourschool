@@ -22,7 +22,7 @@
 			.form-question
 				= f.label "What will your class cover?"
 			.form-question-tip
-				= 'We just want a general idea. 1-2 sentences is plenty.'
+				= 'We just want a general idea. 1 sentence is plenty.'
 				%br
 					- if @reqid.nil?
 						/ = f.text_area :about, :class => "rich_text_editor",:rows => "15", :style => "width : 90%"

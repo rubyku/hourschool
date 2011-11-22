@@ -16,7 +16,7 @@
 			- if !c.categories.first.nil?
 				= link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), edit_course_path(c.id)
 			- else
-				= link_to image_tag("/images/v2-courses/default_image.jpg"), edit_course_path(c.id)
+				= link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(c.id)
 			%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 		%br
 

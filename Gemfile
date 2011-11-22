@@ -69,7 +69,7 @@ gem 'faker'
 gem "nifty-generators", :group => :development
 
 #search
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+# gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -94,3 +94,5 @@ gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 #   gem 'webrat'
 # end
 gem "mocha", :group => :test
+
+gem "liverelaod"

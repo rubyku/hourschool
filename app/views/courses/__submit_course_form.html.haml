@@ -1,38 +1,6 @@
-/ .page
-/ 
-/   .page-content
-/   
-/     .heading25_ccc Submit your proposal
-/   
-/     .form-question What topic are you teaching? 
-/     .form-question-tip Try to be a little more specific. For example, "typography" is better than "design". "Weeknight quick dinner" is better than "cooking".  
-/     %input.form-with-margin(type='text')
-/     
-/     .form-question What will your class cover?
-/     .form-question-tip We just want a general idea. Please keep this to 1-2 sentences. 
-/     %textarea.form-med-with-margin(type='text')
-/ 
-/     .form-question What is your experience?
-/     .form-question-tip Our community cares less about credentials, but more about why you're passionate about the subject, your experience, and why you want to share this knowledge with more people. 
-/     %textarea.form-med-with-margin(type='text')
-/ 
-/     
-/     .form-question Please read our policy.
-/     %p.note This is our pricing policy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-/       
-/     %p.note Note: This isn't your actual class. Your answers will only be seen by HourSchool staff. We'll respond as soon as we can. Thanks again!
-/     
-/     %p.note
-/       %input(type='checkbox') I understand and I agree!
-/     
-/     .form-question Ready to submit?
-/     %input.submit-proposal-button(type='submit' value='Submit my proposal')
-/ 
-/ 
-
 .page-section-float-left
 	%img.steps{:src => '../../../images/v2/step2.png'}
-	.welcome-header= "Hi #{current_user.name} Let's get your class up and running"
+	.welcome-header= "Hi, #{current_user.name}! Let's get your class up and running"
 	%p We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!
 
 .page
@@ -62,6 +30,7 @@
 			%br/
 			.form-question-tip
 				= f.text_field :coursetag, :class => "form-with-margin"
+			
 			.form-question
 				= f.label :description
 			.form-question-tip

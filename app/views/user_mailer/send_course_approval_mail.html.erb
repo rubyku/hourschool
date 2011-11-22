@@ -10,7 +10,7 @@
 
   <h1 class="email-header">Hello <%= @name %>,</h1>
 
-  <p class="email-body"> You recently submitted a proposal to teach "<%= @course.title %>".We are delighted to inform you that your course has been approved by HourSchool team. Please complete additional details here <%= link_to "here", edit_course_path(:id => @course.id)%></p>
+  <p class="email-body"> You recently submitted a proposal to teach "<%= @course.title %>".We are delighted to inform you that your course has been approved by HourSchool team. Please complete additional details here <%= link_to "here", edit_course_url(:id => @course.id)%></p>
 
  	<p class="email-body"> If for some reason, the above link does not work, you can find the approved courses in your profile page. Happy teaching! </p>
   

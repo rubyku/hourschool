@@ -6,10 +6,6 @@
 .page
 	.page-content
 		.page-section-float-left
-			%ul.sub-nav
-				%li.sub-nav-active
-					= link_to "This class", @current_course, :class => "sub-nav-active"
-		.page-section-float-left
 			.class-logistic-block
 				- if @current_course.photo.exists?
 					= image_tag(@current_course.photo.url(:small), :size => "190x120")
@@ -18,7 +14,7 @@
 					- if !@current_course.categories.first.nil?
 						= image_tag("#{DEF_IMAGES[@current_course.categories.first.name]}",:size => "190x120")
 					- else
-						= image_tag("/images/v2-courses/default_image.jpg",:size => "190x120")
+						= image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 			.class-description-block
 				.class-title-big

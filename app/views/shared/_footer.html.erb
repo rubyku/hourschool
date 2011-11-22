@@ -7,7 +7,7 @@
 		<div class="footer-heading">Recent Blog Post</div>
 		<div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
-		<p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 250, :omission => "..."))%></p><br>
+		<p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
 
 		<% end %>
 
@@ -37,10 +37,10 @@
 
 	     <tr>
 	        <td id="footer"> 
-	          <img src="../../../images/v2/icon_phone.png" class="footer_contact">
+	          <img src="../../../images/v2/icon_star.png" class="footer_contact">
 	        </td>
 	        <td id="footer">
-	          <a href="/p/about" class="footer" target="_blank">Read our mission</a>
+	          <a href="/about" class="footer">Read our mission</a>
 	        </td>
 	      </tr>
 
@@ -78,6 +78,6 @@
 	</div><!-- /end .container_16 -->
 
 	<div class="container_16 clearfix">  
-	    <img src="../../../images/v2/grasshopper-grey.png" class="grasshopper-footer">
+        <!-- <img src="../../../images/v2/grasshopper-grey.png" class="grasshopper-footer"> -->
 	    <div class="heading10-footer">© HourSchool 2011, made in Austin TX</div>
 	</div>

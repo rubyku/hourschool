@@ -1,19 +1,44 @@
 = render :partial => "home/header"	
 
 .page-section-float-left
-	= image_tag("/images/v2/step3.png")
-	.welcome-header Preview your class profile page
-	%p= "This is what potential students will see when they check out your class. Make sure everything is shipshape, then go ahead and publish!"
+	= image_tag("/images/v2/step3.png", :class => "steps")
+	#preview-box
+		.preview-header Preview your class
+		= button_to "Publish now!", confirm_path({:id => @course.id}), :class => "preview-button", :method => :put
+		= button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
+	#preview-box-tall	    
+		.classBlock
+			- if @course.photo.exists?
+				= image_tag(@course.photo.url(:small), :size => "190x120")
+				%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+			- else
+				- if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
+					= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+				- else
+					= image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
+			
+			= image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
+			.class-description
+				.heading13-class 
+					= "#{@course.title}"
+				.heading9-class 
+				%p= "#{@course.about}"
+		#preview-checklist-box
+			.welcome-header Preview CheckList 
+			%ul
+				%li.preview-checklist 1. Check the widget to your left
+				%p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
+				%br
+				%li.preview-checklist 2. Check the class profile page below
+				%p Make sure to check out class specifics on the right hand column and your description.
+				%br
+				%li.preview-checklist 3. Don't worry, you can always come back!
+				%p You can always come back and edit your class widget and profile page at any time.
+				
+        
 
 .page
 	.page-content
-		.page-section-float-left
-			#preview_teacher_class_tab
-				%ul.sub-nav
-					%li.sub-nav-active
-						= link_to "The class", :class => "sub-nav-active"
-					%li.sub-nav-inactive
-						= link_to "The teacher", :class => "sub-nav-inactive"
 		.page-section-float-left
 			.class-logistic-block
 				- if @course.photo.exists?
@@ -23,7 +48,7 @@
 					- if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
 						= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
 					- else
-						= image_tag("/images/v2-courses/default_image.jpg", :size => "190x120")
+						= image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
 				
 				= image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
 			.class-description-block
@@ -44,19 +69,8 @@
 		.page-section-float-left
 			.class-section-heading This class will cover
 			%p.class-detail
-				= "#{@course.about}"
+				= "#{@course.description}"
 
 = render :partial => "sidebar", :locals => {:course => @course}
-%br
-.page-section-float-left.clearfix
-	%ul
-		%li
-			%p Like the way things look?
-			= button_to "I'm happy. Publish my class", confirm_path({:id => @course.id}), :class => "submit-proposal-button", :method => :put
-			%br
-			%br
-			%br
-		%li
-			%p Need to make some changes?
-			= button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
+
 

@@ -4,7 +4,6 @@
   
     .page-section-float-left
       .confirm-second-message Your class is now live!
-      %img.confirm-grasshopper{:src => '/images/v2/grasshopper-orange.png'}
       
     %hr#confirm
       
@@ -18,7 +17,7 @@
             - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
               = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
             - else
-              = image_tag("/images/v2-courses/default_image.jpg", :size => "190x120")
+              = image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
         .confirm-class-description
           .heading13-class
             = @course.title

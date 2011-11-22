@@ -692,10 +692,12 @@ a#menu_homepage {
 }
 
 /* line 90, ../../app/assets/stylesheets/components/homepage.scss */
-#logo {
+
+#homepage_logo {
   position: relative;
   float: left;
 }
+
 
 /* line 95, ../../app/assets/stylesheets/components/homepage.scss */
 table#homepage_menu {
@@ -860,6 +862,7 @@ td#homepage_menu_faq {
   font-size: 100px;
   margin-left: 95px;
   margin-top: -2px;
+  padding-bottom: 30px;
   color: white;
 }
 
@@ -1101,10 +1104,26 @@ img.class-arrow {
 }
 
 /* line 12, ../../app/assets/stylesheets/components/header.scss */
-#logo {
+#homepage_logo {
   position: relative;
   float: left;
 }
+
+#logo {
+  position: relative;
+  float: left;
+  display: block;
+  width: 122px;
+  height: 125px;
+  text-decoration: none;
+  background: url("/images/v2/Logo_Orange_withHover.png");
+}
+
+a#logo:hover {
+	background-position: -122px 0;
+	}
+
+
 
 /* line 17, ../../app/assets/stylesheets/components/header.scss */
 #login {
@@ -1131,6 +1150,7 @@ li#login {
   height: 25px;
   float: left;
   margin-top: -5px;
+  margin-right: 7px;
   background-color: #ccc;
 }
 
@@ -1238,6 +1258,27 @@ a#menu:hover {
   text-decoration: none;
   color: #ff7733;
 }
+
+a.homepage_menu {
+  color: white;
+  text-decoration: none;
+}
+
+a.homepage_menu:hover {
+  text-decoration: none;
+  color: white;
+}
+
+a.homepage_menu:visited {
+  text-decoration: none;
+  color: white;
+}
+
+#signup{
+  padding-right: 10px;
+}
+
+
 
 /* line 129, ../../app/assets/stylesheets/components/header.scss */
 #menu18 {
@@ -1598,6 +1639,7 @@ li.noBullet {
   margin-right: 10px;
   margin-left: 40px;
 }
+
 
 /*......SEARCH......*/
 /* line 161, ../../app/assets/stylesheets/components/general.scss */
@@ -1978,7 +2020,7 @@ a.view-more {
 }
 /* line 486, ../../app/assets/stylesheets/components/general.scss */
 .vote-class a:hover {
-  color: #ff7733;
+  color: #ff7733 ;
 }
 
 /* line 493, ../../app/assets/stylesheets/components/general.scss */
@@ -1998,7 +2040,7 @@ a.view-more {
 }
 /* line 505, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-last a:hover {
-  text-decoration: underline;
+  color: #ff7733 ;
 }
 
 /* line 511, ../../app/assets/stylesheets/components/general.scss */
@@ -2088,6 +2130,18 @@ a.view-more {
   text-decoration: none;
   letter-spacing: 0.1em;
 }
+
+.claim-class-button a{
+  color: white;
+  text-decoration: none;
+}
+
+.claim-class-button a:hover{
+  color: white;
+  text-decoration: none;
+}
+
+
 
 /* line 592, ../../app/assets/stylesheets/components/general.scss */
 .why-teach {
@@ -2232,7 +2286,7 @@ p.class-details {
 }
 
 /* line 717, ../../app/assets/stylesheets/components/general.scss */
-.class-alterntives {
+.class-alternatives {
   font-weight: 400;
   font-size: 9px;
   color: #999;
@@ -2300,13 +2354,108 @@ p.class-details-heart-number {
 }
 
 /* line 775, ../../app/assets/stylesheets/components/general.scss */
+
+/*......COURSE-PREVIEW......*/
 img.steps {
-  margin-left: 160px;
-  margin-top: -25px;
+  margin-left: 20px;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+#preview-box{
+  width: 900px;
+  height: 50px;
+  padding: 30px 30px 0px 30px;
+  background: white;
   margin-bottom: 20px;
 }
 
-/*......CONFIRM......*/
+.preview-header{
+  width: 500px;
+  float: left;
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.preview-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: right;
+  width: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-top: -7px;
+}
+
+.edit-form-button {
+    /* Disables default styling */
+    border: none;
+    background: #00B6FF;
+    color: #fff;
+  float: right;
+  width: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #a9a9a9;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-right: 10px;
+  margin-top: -7px;
+  height: 35px;
+}
+
+#preview-box-tall{
+  width: 880px;
+  height: 280px;
+  padding: 30px 30px 0px 50px;
+  background: white;
+}
+
+#preview-checklist-box{
+  width: 600px;
+  float: right;
+  margin-right: 30px;
+  margin-top: 20px;
+}
+
+li.preview-checklist{
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+/*......COURSE-CONFIRM......*/
 /* line 783, ../../app/assets/stylesheets/components/general.scss */
 .confirm-classblock {
   float: left;
@@ -2689,6 +2838,7 @@ p.form-bg {
   margin-top: 5px;
   margin-bottom: 25px;
   padding-left: 10px;
+  padding-top: 5px;
   border: 1px solid #d2d9dc;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -2719,7 +2869,7 @@ p.form-bg {
   width: 100%;
   height: 150px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
   padding-left: 10px;
   padding-top: 5px;
   border: 1px solid #d2d9dc;
@@ -2754,24 +2904,6 @@ p.form-bg {
   letter-spacing: 0.1em;
 }
 
-/* line 136, ../../app/assets/stylesheets/components/form.scss */
-.edit-form-button {
-  margin-top: 10px;
-  padding: 7px;
-  text-align: center;
-  background-color: #a9a9a9;
-  color: white;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  width: 205px;
-}
 
 /* line 152, ../../app/assets/stylesheets/components/form.scss */
 p.note {
@@ -2862,11 +2994,11 @@ a.tip {
   float: left;
   width: 400px;
   padding: 30px;
-  border: 5px solid #eeeeee;
+/*  border: 5px solid #eeeeee;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  background: white;
+  background: white;*/
 }
 
 /* line 10, ../../app/assets/stylesheets/components/modal.scss */
@@ -3248,6 +3380,18 @@ a.footer {
   text-decoration: underline;
 }
 
+a.footer:hover{
+  color: #999999;
+  text-decoration: underline;
+}
+
+a.footer:visited{
+  color: #999999;
+  text-decoration: underline;
+}
+
+
+
 /* line 77, ../../app/assets/stylesheets/components/footer.scss */
 .newsletterForm {
   border: 1px solid #eeeaea;
@@ -3341,4 +3485,19 @@ h1.email-header {
 /* line 11, ../../app/assets/stylesheets/components/email.scss */
 .email-footer {
   margin-top: 30px;
+}
+
+
+.faq-question {
+  float: left;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.faq-answer {
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  padding-bottom: 20px;
 }

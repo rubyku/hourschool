@@ -8,10 +8,10 @@ class HomeController < ApplicationController
       redirect_to user_root_path
       #redirect_to current_user
     end
-    @fav1 = Course.find(5)
-    @fav2 = Course.find(3)
-    @fav3 = Course.find(4)
-    @fav4 = Course.find(6)
+    # @fav1 = Course.find(5)
+    # @fav2 = Course.find(3)
+    # @fav3 = Course.find(4)
+    # @fav4 = Course.find(6)
   end
   
   def learn
@@ -186,6 +186,9 @@ class HomeController < ApplicationController
   end
   
   def business
+  end
+  
+  def about
   end
   
   def contactus

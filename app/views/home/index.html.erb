@@ -57,14 +57,14 @@
   <div id="header">
     <div class="container_16">
 				
-				<%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "logo"%>
+				<%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "homepage_logo"%>
         
 
         <div id="login">
 		
 
-		  <%= link_to "Sign up", new_user_registration_path %>
-		 <%= link_to "Sign in", new_user_session_path %>
+		  <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
+		 <%= link_to "Sign in", new_user_session_path, :class => "homepage_menu"  %>
 			
 
 	    </div>
@@ -136,18 +136,13 @@
 		<% end %>
 		
         <div id="homepage_headline_8"><font size="0.01" style="italic" >or</font> check out our featured classes</div>
-         
-         <img src="/images/v2/arrow_homepage.png" id="homepage_arrow">
-       
+               
        
      </div><!-- /end .twoCol_right-->  
    
     </div><!-- /end .container16 -->
     
 </div><!-- /end .homepage_top_bg -->
-
-<%= render 'featured'%>
-
 
 
 

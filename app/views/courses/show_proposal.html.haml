@@ -18,7 +18,7 @@
 					- if !@current_course.categories.first.nil?
 						= image_tag("#{DEF_IMAGES[@current_course.categories.first.name]}",:size => "190x120")
 					- else
-						= image_tag("/images/v2-courses/default_image.jpg",:size => "190x120")
+						= image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
 					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
 			.class-description-block
 				.class-title-big
@@ -29,6 +29,10 @@
 			.class-section-heading 
 				= "This class will cover"
 				%p= sanitize @current_course.about
+			.class-section-float-left
+				= "Teacher's name"
+				= image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
+				= "#{@current_course.teacher.name}"
 			.class-section-float-left
 				= "About the teacher"
 				%p= sanitize @current_course.experience

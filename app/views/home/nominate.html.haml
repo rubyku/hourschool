@@ -1,9 +1,10 @@
+= render :partial => "header"
 .modal
   .welcome-header Nominate a teacher
-  %img.modal-close{:src => '/images/v2/modal-close.png'}
+  / %img.modal-close{:src => '/images/v2/modal-close.png'}
   = form_tag nominate_send_path, :method => 'post' do
     .form-question Recipient: 
-    .form-question-tip= "Who do you think can teach #{@req.name}"
+    .form-question-tip= "Who do you think can teach a #{@req.name} class?"
     = hidden_field_tag 'reqid', @req.id
     = text_field_tag 'email', 'Enter his/her email address here', :class => 'form-with-margin', :onclick => 'this.value= "";'
     %br

@@ -20,7 +20,6 @@ HourschoolV2::Application.routes.draw do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
   match 'user_root' => 'users#profile'
-  #match 'user_root' => 'users#show'
   resources :users, :only => [:index, :show] 
   
   resources :payments
@@ -71,6 +70,7 @@ HourschoolV2::Application.routes.draw do
   match '/nominate_send' => 'home#nominate_send'
   
   match '/business' => 'home#business'
+  match '/about' => 'home#about'
   root :to => "home#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.

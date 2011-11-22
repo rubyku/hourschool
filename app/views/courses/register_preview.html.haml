@@ -10,7 +10,7 @@
 					- if !@course.categories.first.nil?
 						= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
 					- else
-						= image_tag("/images/v2-courses/default_image.jpg",:size => "190x120")
+						= image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
 				= image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
 				.confirm-class-description
 					.heading13-class

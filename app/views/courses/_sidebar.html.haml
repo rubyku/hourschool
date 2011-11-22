@@ -24,7 +24,7 @@
 					- else
 						= "You are registered"
 				- elsif course.is_a_teacher?(current_user)
-					= "Teaching"
+					= ""
 		- elsif course.seats_left < course.seats/2
 			= image_tag "/images/v2/ClassMin_Bar_orange_halfFull.png",:size => "200x11"
 			
@@ -57,7 +57,8 @@
 				%li.noBullet
 					.class-details
 						= "$" "#{course.price}"
-					.class-alterntives
+					.class-alternatives
+						Think it's too much? Suggest a new price!
 						%br/
 			%ul.noBullet
 				%li.noBullet
@@ -67,8 +68,8 @@
 						= course.date.strftime("%a %b %d, %Y")
 					%p.class-details
 						= "#{course.time_range}"
-					.class-alterntives
-						%br/
+					.class-alternatives
+						Can't make it? Request a new time!
 						
 			%ul.noBullet
 				%li.noBullet
@@ -77,6 +78,8 @@
 					.class-details
 						= "#{course.place}"
 						= "#{course.city.name}"
+					.class-alternatives
+						Don't live in this city? Request in yours!
 		.sidebar-block
 			.sidebar-heading Teacher
 			
