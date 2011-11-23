@@ -1,0 +1,60 @@
+<div class="featured-content container_16 clearfix">
+    <div class="homepage-header">Hourschool Happenings</div><br><br>
+    
+    <div class="classRow-homepage clearfix">
+        
+        <div class="happeningBlock-homepage">
+            <a href="../../../pdf/handbook-111311.pdf">
+            <img src="../../../images/v2/screenshot_teacherHandbook.png">    
+            <div class="happening-message-header">
+                Want to teach a class?
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Our teacher's handbook is a great guide to help you get started.
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+    
+        <div class="happeningBlock-homepage">     
+            <a href="#" id="try-1"> 
+            <img src="../../../images/v2/screenshot_teacherHandbook.png">
+            <div class="happening-message-header">
+                New partnership
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Chea it's awesome, you should check it out.
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+    
+        <iframe src="http://player.vimeo.com/video/32273421?title=0&amp;byline=0&amp;portrait=0&amp;color=ff7733" width="459" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <div class="happening-message-header">
+            What does HourSchool mean to you?
+        </div>
+        <div class="happening-message-description">
+            A few HourSchool teachers and students tell us their story. <br>
+            Share yours with us as well!
+        </div>
+            
+
+    </div><!-- /end .classRow-homepage -->    
+</div><!-- /end .featured-content -->
+
+
+<div id="lightbox-test">
+  <div class="welcome-header">Nominate a teacher</div>
+  <img src="/images/v2/modal-close.png" class="modal-close" id="lightbox-test-close">
+</div>  
+ 
+
+<script type="text/javascript">
+    $('#try-1').click(function(e) {
+        $('#lightbox-test').lightbox_me({
+            centered: true, 
+            onLoad: function() { 
+                $('#lightbox-test').find('input:first').focus()
+                }
+            });
+        e.preventDefault();
+    });
+</script>

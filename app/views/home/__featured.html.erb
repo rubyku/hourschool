@@ -19,47 +19,47 @@
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-homepage">
-                  <% if @fav2.photo.exists? %>
-                    <%= link_to image_tag("<%= @fav2.photo.url>"), @fav2, :size => "190x120"%>
-                    <% else %>
-                    <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
-                    <% end %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-                <div class="class-description">
-                  <div class="heading13-class"><%= link_to @fav2.title, @fav2 %></div>
-                  <div class="heading9-class"><%= @fav2.date.strftime("%a %b %d, %Y") %></div>
-                  <p><%= @fav2.coursetag%></p>
-                </div><!-- /end .class-description -->
+                      <% if @fav2.photo.exists? %>
+                        <%= link_to image_tag("<%= @fav2.photo.url>"), @fav2, :size => "190x120"%>
+                        <% else %>
+                        <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
+                        <% end %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav2.title, @fav2 %></div>
+                      <div class="heading9-class"><%= @fav2.date.strftime("%a %b %d, %Y") %></div>
+                      <p><%= @fav2.coursetag%></p>
+                    </div><!-- /end .class-description -->
               </div><!-- /end .classBlock -->
 
-              <div class="classBlock-homepage">
-                  <% if @fav3.photo.exists? %>
-                    <%= link_to image_tag("<%= @fav3.photo.url>"), @fav3, :size => "190x120"%>
-                    <% else %>
-                    <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
-                    <% end %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-                <div class="class-description">
-                  <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
-                  <div class="heading9-class"><%= @fav3.date.strftime("%a %b %d, %Y") %></div>
-                  <p><%= @fav3.coursetag%></p>
-                </div><!-- /end .class-description -->
-              </div><!-- /end .classBlock -->
+                  <div class="classBlock-homepage">
+                      <% if @fav3.photo.exists? %>
+                        <%= link_to image_tag("<%= @fav3.photo.url>"), @fav3, :size => "190x120"%>
+                        <% else %>
+                        <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
+                        <% end %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
+                      <div class="heading9-class"><%= @fav3.date.strftime("%a %b %d, %Y") %></div>
+                      <p><%= @fav3.coursetag%></p>
+                    </div><!-- /end .class-description -->
+                  </div><!-- /end .classBlock -->
 
-              <div class="classBlock-last-homepage">
-                  <% if @fav4.photo.exists? %>
-                    <%= link_to image_tag("<%= @fav4.photo.url>"), @fav4, :size => "190x120"%>
-                    <% else %>
-                    <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
-                    <% end %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-                <div class="class-description">
-                  <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
-                  <div class="heading9-class"><%= @fav4.date.strftime("%a %b %d, %Y") %></div>
-                  <p><%= @fav4.coursetag%></p>
-                </div><!-- /end .class-description -->
-              </div><!-- /end .classBlock -->
-
+                  <div class="classBlock-last-homepage">
+                      <% if @fav4.photo.exists? %>
+                        <%= link_to image_tag("<%= @fav4.photo.url>"), @fav4, :size => "190x120"%>
+                        <% else %>
+                        <%= image_tag "/images/v2-courses/DefaultClassPics_Generic.png"%>
+                        <% end %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
+                      <div class="heading9-class"><%= @fav4.date.strftime("%a %b %d, %Y") %></div>
+                      <p><%= @fav4.coursetag%></p>
+                    </div><!-- /end .class-description -->
+                  </div><!-- /end .classBlock -->
+    
           </div><!-- /end .classRow -->
       
     </div><!-- /end .featuredContent -->

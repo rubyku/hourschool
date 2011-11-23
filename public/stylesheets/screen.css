@@ -641,12 +641,16 @@ a:hover {
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
   background-color: #ff7733;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_middle_bg {
   background-image: url(../../../images/v2/BG_grey.png);
+}
+
+.homepage_middle_bg2 {
+  background-image: url(../../../images/v2/BG_grey2.png);
 }
 
 /* line 50, ../../app/assets/stylesheets/components/homepage.scss */
@@ -655,15 +659,16 @@ a:hover {
 }
 
 /* line 55, ../../app/assets/stylesheets/components/homepage.scss */
-.featuredContent {
+/*.featuredContent {
   display: block;
   width: 960px;
   height: 350px;
   padding-top: 40px;
   padding-bottom: 20px;
   margin: 0 auto;
-  position: relative;
+  position: relative;*/
 }
+
 
 /* line 65, ../../app/assets/stylesheets/components/homepage.scss */
 .footerContent {
@@ -795,7 +800,7 @@ td#homepage_menu_faq {
 /*......BANNER CONTENT......*/
 /* line 179, ../../app/assets/stylesheets/components/homepage.scss */
 .featured-content {
-  padding: 30px;
+  padding-top: 35px;
   padding-bottom: 45px;
 }
 
@@ -951,9 +956,8 @@ h1#homepage_headline {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 12px;
-  margin-left: 62px;
-  width: 144px;
-  margin-top: 25px;
+  margin-left: 0px;
+  margin-top: 10px;
   color: white;
 }
 
@@ -1056,11 +1060,21 @@ img.arrow_small_pointright {
   margin-left: 3px;
 }
 
+.homepage-header {
+  color: #999999;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+}
+
 /* line 417, ../../app/assets/stylesheets/components/homepage.scss */
 .classRow-homepage {
   float: left;
   width: 960px;
-  margin-top: -10px;
+  margin-top: -30px;
   margin-bottom: 23px;
 }
 
@@ -1085,6 +1099,30 @@ img.arrow_small_pointright {
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+.happeningBlock-homepage {
+  float: left;
+  width: 220px;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-right: 30px;
+}
+
+.happening-message-header{
+  color: #e4652f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  margin-top: 10px;
+}
+
+.happening-message-description{
+  padding-right: 10px;
+  font-size: 11px;
 }
 
 /* line 444, ../../app/assets/stylesheets/components/homepage.scss */
@@ -1918,17 +1956,19 @@ ul.searchFilter {
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   margin-right: 30px;
+  margin-bottom: 30px;
 }
 
 /* line 395, ../../app/assets/stylesheets/components/general.scss */
 .classBlock_last {
   float: left;
   width: 190px;
-  height: 250px;
+  height: 260px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  margin-bottom: 30px;
 }
 
 /* line 405, ../../app/assets/stylesheets/components/general.scss */
@@ -2148,7 +2188,7 @@ a.view-more {
 
 
 /* line 592, ../../app/assets/stylesheets/components/general.scss */
-.why-teach {
+.why-teach-first {
   margin-top: 20px;
   padding: 0px 10px 0px 0px;
 }
@@ -2161,8 +2201,12 @@ a.view-more {
 }
 
 /* line 603, ../../app/assets/stylesheets/components/general.scss */
+.why-teach {
+  padding: 0px 20px 0px 0px;
+}
+
 .why-teach-last {
-  padding: 0px 20px 10px 0px;
+  padding: 0px 20px 40px 0px;
 }
 
 /* line 607, ../../app/assets/stylesheets/components/general.scss */
@@ -3555,4 +3599,8 @@ td.user-stat-icon{
 
 td.user-stat-number{
   padding-right: 30px;
+}
+
+#lightbox-test{
+  display: none;
 }
