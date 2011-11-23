@@ -8,17 +8,16 @@ class UsersController < ApplicationController
     p current_user
     if params[:id].nil?
       @user = current_user
-    else
-      
+    else  
       @user = User.find(params[:id])
       #p current_user
     end
-    @approved_courses = @user.courses.where(:status => "approved")
-    @pending_courses = @user.courses.where(:status => "pending")
   end
   
   def profile
-    
+    @user = current_user
+    @approved_courses = @user.courses.where(:status => "approved")
+    @pending_courses = @user.courses.where(:status => "proposal")
   end
   
   def profile_past

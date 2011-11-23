@@ -36,10 +36,11 @@
 					.class-description
 						.heading13-class 
 							= link_to "#{c.title}", c
-						%p= c.description.truncate(50).html_safe
 						.heading9-class 
 							= "#{c.seats_left} seats left"
 							= "#{(c.date - Date.today).numerator} days from today"
+						%p= c.about.truncate(100).html_safe
+
 		.classBlock
 			= link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
 			.class-description
@@ -68,10 +69,11 @@
 					.class-description
 						.heading13-class 
 							= link_to "#{c.title}", c
-						%p= c.description.truncate(50).html_safe
 						.heading9-class 
 							= "#{c.seats_left} seats left"
 							= "#{(c.date - Date.today).numerator} days from today"
+						%p= c.about.truncate(100).html_safe
+
 		.classBlock_last
 			= link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
 			.class-description
@@ -101,10 +103,11 @@
 				.class-description
 					.heading13-class 
 						= link_to "#{c.title}", c
-					%p= c.description.truncate(50).html_safe
 					.heading9-class 
 						= "#{c.seats_left} seats left"
 						= "#{(c.date - Date.today).numerator} days from today"
+					%p= c.about
+
 		
 .page-section-float-right
 	%table.view-more

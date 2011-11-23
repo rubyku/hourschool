@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip, :about
-  
+  attr_accessible :zipcode, :zip, :about, :referral, :facebook, :twitter, :web
   
   has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
   
@@ -18,6 +17,16 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :croles
   
   has_many :payments
+  
+  has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => "user/:style/:id/:filename"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  
+  attr_accessible :photo
   
   
   acts_as_voter
@@ -228,6 +237,8 @@ class User < ActiveRecord::Base
     UserMailer.send_registration_mail(self.email, self.name).deliver
    
   end
+  
+
   
   
 end

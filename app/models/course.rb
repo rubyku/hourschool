@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   has_many :payments
   
   attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :minimum
-  attr_accessible :status, :about, :experience, :coursetag
+  attr_accessible :status, :about, :experience, :coursetag, :address, :phonenum, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
   validates_presence_of :title,:description, :price, :seats, :time_range, :place, :minimum, :unless => :proposal? 
@@ -20,10 +20,10 @@ class Course < ActiveRecord::Base
   
   
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
-                      :storage => :s3,
-                          :s3_credentials => "#{Rails.root}/config/s3.yml",
-                          :path => "/:style/:id/:filename",
-                           :processors => [:cropper]
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => "/:style/:id/:filename",
+                    :processors => [:cropper]
                            
                            
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
@@ -36,7 +36,7 @@ class Course < ActiveRecord::Base
   #:processors => [:cropper]
   #:path => "/:style/:id/:filename",
   validates_attachment_size :photo, :less_than => 5.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   
   attr_accessible :photo
   has_friendly_id :title, :use_slug => true, :strip_non_ascii => true

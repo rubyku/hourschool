@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "hello@hourschool.com"
+  default :from => "HourSchool <hello@hourschool.com>"
   
   def contact_all_students(subject,message,course)
     @course = course

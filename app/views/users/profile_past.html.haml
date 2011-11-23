@@ -45,28 +45,4 @@
             %a.view-more(href="") View all
 
 
-.sidebar
-  .sidebar-content
-    %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
-
-    .sidebar-block
-      %ul.noBullet
-        %li.noBullet
-          %p.profile-name-blurb
-            = current_user.name
-        %li.noBullet
-          %p.profile-location-blurb 
-            = current_user.location
-        %li.noBullet
-          %p.profile-bio
-            = current_user.about
-            - if current_user.about.blank?
-              = "You have not added your bio. You can add it now "
-              = link_to "here", edit_user_registration_path(current_user)
-      .sidebar-block-last
-        %ul.noBullet
-          %li.noBullet
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-          %li.noBullet
-            %p.class-details-heart-number
-              = current_user.hearts
+= render :partial => 'sidebar'

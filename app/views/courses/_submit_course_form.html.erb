@@ -6,6 +6,12 @@
              
 <div class="page">
     <div class="page-content">
+    
+    <div class="page-section-float-left">  
+      <% @course.errors.full_messages.each do |message| %>
+  			<div class="error-block"><div class="form-error">*<%= message %></div></div>
+  		<% end %>
+  	</div>
       
     <% form_for @course, :html => { :multipart => true } do |f| %>
     
@@ -27,6 +33,21 @@
      <%= f.text_area :about, :class => "form-with-margin", :value => @reqdescription %>
    	</p>
    	<br><br>
+   	
+    <p>
+     <%= f.label :categories, 'Categories', :class => "form-question" %><br />
+     <p class="tip">Choose the best category this class falls into.</p>  
+     <%= f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']]) %>
+   	</p>
+   	<br><br>
+   	
+   	<p>
+     <%= f.label :photo, 'Upload a photo', :class => "form-question" %><br />
+     <p class="tip">If you don't have time to find a photo, we will auto-populate a default one! Of course you can always come back and change it.</p>  
+     <%= f.file_field :photo %>
+   	</p>
+   	
+		
    	</div>
    	
    	<hr id="class"><br>
@@ -35,11 +56,10 @@
    	<div class="page-section-float-left">
    	    
     <p>
-     <%= f.label :description, 'Feel free to add any additional details here (optional)', :class => "form-question" %><br />
+     <%= f.label :description, 'Describe your class in more details', :class => "form-question" %><br />
      <p class="tip">No character limit</p>  
      <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What kind of material or equipment do they need ahead of time?" %>
    	</p>
-   	<br><br>
    	</div>
  
     <hr id="class"><br>
@@ -71,7 +91,7 @@
                 </div><br><br>
 
         <%= f.date_select :date, :class => "form-short", :placeholder => "Date" %>
-        <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time" %>
+        <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
 
     </div>
 
@@ -85,11 +105,16 @@
                   <a href="" class="tip"><span id="hidetip2" style="width: 200px" >Okay, got it.</span></a>
                 </div><br><br>
 
-            <input type="radio"> Public location<br>
-            <input type="radio"> At someone's house<br>
+          	<p>
+            <%= f.radio_button :public, true %>
+            <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
+            <br>
+            <%= f.radio_button :public, false %>
+            <%= f.label :public, 'Private (ie. your house)' %>
+            </p>
             <br>
             <%= f.text_field :place, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
-            <input class="form" type="textarea" placeholder="Full address of location (ex. Street, Suite, City, State, Zip)"></input>
+            <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (ex. Street, Suite, City, State, Zip" %>
     </div>
 
     <div class="page-section-float-left">
@@ -114,7 +139,7 @@
         <div class="form-question">Experience</div><br>
             <p class="tip">Share your experience about this specific topic. If you just want to use your profile bio, leave this blank!</p>
             <br>
-        <%= f.text_area :experience, :class => "form-tall", :placeholder => "Why are you passionate about this subject? Why do you want to teach?" %>
+        <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to teach?" %>
           
     </div>
 
@@ -123,12 +148,11 @@
 
         <p class="tip">This is for if your students can't find you at the class! Don't worry, your digits won't be shown publicly. This gets emailed to students separately. </p>
         <br><br>
-        <input class="form-short" type="textarea" placeholder="ex. 321-111-1234"></input><br>
+        <%= f.text_field :phonenum, :class => "form-short", :placeholder => "ex. 321-111-1234" %>
     </div>
 
     <br><br>
     
-    <%= f.file_field :photo %>
  
    <%= f.submit "Submit", :class => "submit-proposal-button", :value => "Preview my class profile" %>
      

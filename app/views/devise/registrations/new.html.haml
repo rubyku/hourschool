@@ -1,6 +1,6 @@
 = render :partial => "home/header"
 .page
-	.content
+	.page-content
 		.heading25_ccc
 			- if resource_name.to_s == "member"
 				= "Sign up for Hourschool Enterprise, it is free!"
@@ -45,6 +45,10 @@
 				= f.label "About you (Briefly)"
 				%br/
 				= f.text_area :about, :class => "form"
+			%div{:class => "form-question"}
+				= f.label "How did you hear about us?"
+				%br/
+				= f.text_field :referral, :class => "form"
 			%div
 				= f.submit "Sign up"
 

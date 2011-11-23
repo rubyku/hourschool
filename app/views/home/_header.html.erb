@@ -1,7 +1,8 @@
 <div id="header">
   <div class="container_16">
-        
-    <a href="/" id="logo"></a>
+    
+    <%= link_to "", root_path, :id => "logo" %>    
+    <!-- <a href="www." id="logo"></a> -->
 	
 <div id="login">
 	
@@ -11,14 +12,14 @@
 					<% if user_signed_in? %>
 						
 							<span id="nav-dropdown">
-							    <%= link_to current_user.name, profile_path, :id => "menu"%>
-        						<img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar">
+							    <%= link_to current_user.name, profile_path, :id => "username"%>
+                    <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
 					            <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
 							</span>
 
 							<span id="nav-dropdown-selected" style="display:none;">
-							    <%= link_to current_user.name, profile_path, :id => "menu"%>
-        						<img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar">
+							    <%= link_to current_user.name, profile_path, :id => "username"%>
+                    <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
 					            <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
 				            </span>
 				            

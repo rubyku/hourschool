@@ -47,6 +47,7 @@ class CoursesController < ApplicationController
   def preview
     id = params[:id]
     @course = Course.find(id)
+    @current_course = Course.find(id)
   end
   
   def heart

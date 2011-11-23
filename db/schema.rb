@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111106193011) do
+ActiveRecord::Schema.define(:version => 20111123031229) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20111106193011) do
     t.text     "experience"
     t.text     "about"
     t.string   "coursetag"
+    t.string   "phonenum"
+    t.string   "address"
+    t.boolean  "public"
   end
 
   create_table "croles", :force => true do |t|
@@ -143,6 +146,15 @@ ActiveRecord::Schema.define(:version => 20111106193011) do
   add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id_id"
+    t.integer  "course_id_id"
+    t.string   "alert"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payments", :force => true do |t|
     t.float    "amount"
     t.string   "transaction_id"
@@ -217,6 +229,14 @@ ActiveRecord::Schema.define(:version => 20111106193011) do
     t.boolean  "admin",                                 :default => false
     t.string   "zip"
     t.text     "about"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "referral"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "web"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,7 +1,10 @@
 .sidebar
   .sidebar-content
-    %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
-
+    - if current_user.photo.exists?
+      = image_tag(current_user.photo.url(:small), :size => "190x120")
+    - else
+      %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
+    
     .sidebar-block
       %ul.noBullet
         %li.noBullet
@@ -10,16 +13,37 @@
         %li.noBullet
           %p.profile-location-blurb 
             = current_user.location
-        %li.noBullet
-          %p.profile-bio
-            = current_user.about
-            - if current_user.about.blank?
-              = "You have not added your bio. You can add it now "
-              = link_to "here", edit_user_registration_path(current_user)
-      .sidebar-block-last
-        %ul.noBullet
-          %li.noBullet
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-          %li.noBullet
+
+      %table.user-stat
+        %tr
+          %td.user-stat-icon 
+            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
+          %td.user-stat-number
             %p.class-details-heart-number
-              = current_user.hearts
+              = 4
+          %td.user-stat-icon    
+            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
+          %td.user-stat-number
+            %p.class-details-heart-number
+              = 2
+
+          %td.user-stat-icon        
+            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
+          %td.user-stat-number
+            %p.class-details-heart-number
+              = 5
+              / = current_user.hearts
+
+    .sidebar-block-last
+      .sidebar-heading About 
+      %p.profile-bio
+        = current_user.about
+        - if current_user.about.blank?
+          = "One of the HourSchoolmates!"
+          =# link_to "here", edit_user_registration_path(current_user)
+            
+      %ul.noBullet
+        %li.noBullet
+          %a.profile-link(href="")Website
+          %a.profile-link(href="")Twitter      
+          %a.profile-link(href="")Facebook

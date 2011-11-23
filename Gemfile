@@ -95,4 +95,5 @@ gem "nifty-generators", :group => :development
 # end
 gem "mocha", :group => :test
 
-gem "liverelaod"
+# gem "liverelaod"
+gem 'guard-livereload'

@@ -5,52 +5,16 @@
     .page-section-float-left
       %ul.sub-nav
         %li.sub-nav-inactive 
-          %a.sub-nav-inactive(href="/profile") Upcoming
-        %li.sub-nav-inactive 
-          %a.sub-nav-inactive(href="/profile-past") Past
+          %a.sub-nav-inactive(href="/profile") Classes
         %li.sub-nav-active 
           %a.sub-nav-active(href="/profile-suggest") Suggestions
-        %li.sub-nav-inactive 
-          %a.sub-nav-inactive(href="/profile-pending") Pending
-    .page-section-float-left
-      .big-box-active
-        .profile-big-number-active
-          = current_user.student_for
-        .profile-big-words-active classes taken
-      .big-box-inactive
-        .profile-big-number-inactive 
-          = current_user.teacher_for
-        .profile-big-words-inactive classes taught
         
     .page-section-float-left
       
-      .welcome-header Classes you requested
+      .welcome-header Classes you suggested
       %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
       = render :partial => "suggestions_top_three", :locals => {:suggestions => current_user.top_three_suggestions}
 
-.sidebar
-  .sidebar-content
-    %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
 
-    .sidebar-block
-      %ul.noBullet
-        %li.noBullet
-          %p.profile-name-blurb
-            = current_user.name
-        %li.noBullet
-          %p.profile-location-blurb 
-            = current_user.location
-        %li.noBullet
-          %p.profile-bio
-            = current_user.about
-            - if current_user.about.blank?
-              = "You have not added your bio. You can add it now "
-              = link_to "here", edit_user_registration_path(current_user)
-      .sidebar-block-last
-        %ul.noBullet
-          %li.noBullet
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-          %li.noBullet
-            %p.class-details-heart-number
-              = current_user.hearts
+= render :partial => 'sidebar'
       

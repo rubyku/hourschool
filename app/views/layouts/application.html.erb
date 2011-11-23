@@ -18,7 +18,6 @@
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-  <script type="text/javascript" src="jquery.bpopup-0.6.0.min.js"></script>
   <script type="text/javascript" src="http://localhost:3000/javascripts/jquery.lettering-0.6.1.min.js"></script>
    
   <script type="text/javascript">
@@ -44,6 +43,17 @@
  <%= yield(:head) %> 
 </head>
 <body>
+    
+    <!-- FACEBOOK COMMENTS -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=207459135947339";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    
 	<div class="brand_bg"></div>
 	<div class="container_16 main clearfix">  
 		
