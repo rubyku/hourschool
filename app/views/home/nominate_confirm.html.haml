@@ -1,0 +1,29 @@
+= render :partial => "header"
+
+.modal
+  .welcome-header Thank you for submitting!
+  .form-question-tip= "You've successfully nominated <name> for the <class title> class. Don't forget to vote for it yourself too and get more people to vote for it. The more votes a class has, the more likely it is to be claimed by a teacher!"
+    
+.page
+  .page-content
+
+    .vote-class.clearfix
+      .vote-class-title
+        .heading20-vote A class about conversation Spanish
+        .heading9-class Requested by Ruby Ku
+        %table
+          %tr
+            %td
+              %img.view-more-arrow{:src => '../../../images/v2/arrow_orange_pointright.png'}
+            %td  
+              %a(href="/p/class-proposal") I want to teach this class
+          %tr
+            %td
+              %img.view-more-arrow{:src => '../../../images/v2/arrow_orange_pointright.png'}
+            %td  
+              %a(href="/p/nominate-form") I know somebody who can teach this
+
+      .vote-class-number
+        .heading35-vote 15
+        .heading10-vote votes
+        .claim-class-button Add vote

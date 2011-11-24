@@ -90,7 +90,7 @@
                     <a href="" class="tip"><span id="hidetip1" style="width: 200px">Okay, got it.</span></a>
                 </div><br><br>
 
-        <%= f.date_select :date, :class => "form-short", :placeholder => "Date" %>
+        <%= f.date_select :date, :id => "datepicker" %>
         <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
 
     </div>
@@ -163,6 +163,11 @@
 
 
 <script type="text/javascript">
+
+    $('#datepicker').datepicker({
+    	inline: true
+    });
+
    $("#showtip1").click(function() {
         $(".form-question-tip1").show();
         $("#showtip1").hide();

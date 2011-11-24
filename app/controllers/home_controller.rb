@@ -15,7 +15,7 @@ class HomeController < ApplicationController
   end
   
   def learn
-    
+
     if current_user
       @location = current_user.city
     else
@@ -145,7 +145,12 @@ class HomeController < ApplicationController
   
   def nominate_send
     UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
-    redirect_to learn_path
+    @csuggestion = Csuggestion.find(params[:id])
+    redirect_to @csuggestion
+  end
+  
+  def nominate_confirm
+    # @req = Csuggestion.find(params["id"])
   end
   
   def search_by_city

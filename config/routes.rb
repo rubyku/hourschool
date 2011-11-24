@@ -2,10 +2,11 @@ HourschoolV2::Application.routes.draw do
 
   resources :ecourses, :path => 'classes'
 
-  resources :csuggestions, :path => 'requests'
+  resources :csuggestions# , :path => 'requests'
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
+  resources :csugggestions
 
   devise_for :members 
   resources :members, :only => [:index, :show]
@@ -68,6 +69,7 @@ HourschoolV2::Application.routes.draw do
   match '/about_save' => 'home#about_save'
   match '/nominate' => 'home#nominate'
   match '/nominate_send' => 'home#nominate_send'
+  match '/nominate_confirm' => 'home#nominate_confirm'
   
   match '/business' => 'home#business'
   match '/about' => 'home#about'

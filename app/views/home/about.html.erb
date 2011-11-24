@@ -11,6 +11,13 @@
     </div>
     </center>
   
+    <a href="#" id="dialog-link">Open box</a>
+  
+    <div id="dialog">
+      <div class="welcome-header">Nominate a teacher</div>
+      <a href="#" id="lightbox-test-close"><img src="/images/v2/modal-close.png" class="modal-close"></a>
+    </div>
+    
 
     <div class="grid_7">
         <div class="heading15-marcomm">Our mission:</div>
@@ -94,11 +101,37 @@
         <p class="about-bio-advisor-company">Thinktiv Inc.</p>
       </div>
 
-      
-      
-      
+
     </div>
     
     
   </div>
 </div>
+
+<script>
+
+    //Dialog         
+	$(function() {
+		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+		$( "#dialog" ).dialog({
+			modal: true,
+			autoOpen: false,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+	});
+	
+	    // Dialog Link
+    $('#dialog-link').click(function(){
+     $('#dialog').dialog('open');
+     return false;
+
+    });
+
+
+</script>
