@@ -1828,6 +1828,7 @@ li.sub-nav-inactive {
   padding-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  padding-bottom: 20px;
 }
 
 /* line 277, ../../app/assets/stylesheets/components/general.scss */
@@ -1959,8 +1960,9 @@ ul.searchFilter {
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  margin-right: 23px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 /* line 395, ../../app/assets/stylesheets/components/general.scss */
@@ -1972,7 +1974,8 @@ ul.searchFilter {
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 /* line 405, ../../app/assets/stylesheets/components/general.scss */
@@ -2190,27 +2193,14 @@ a.view-more {
 }
 
 
-
-/* line 592, ../../app/assets/stylesheets/components/general.scss */
-.why-teach-first {
-  margin-top: 20px;
-  padding: 0px 10px 0px 0px;
-}
-
 /* line 597, ../../app/assets/stylesheets/components/general.scss */
 .why-teach-short {
   width: 75%;
   float: left;
-  margin-bottom: 30px;
-}
-
-/* line 603, ../../app/assets/stylesheets/components/general.scss */
-.why-teach {
-  padding: 0px 20px 0px 0px;
 }
 
 .why-teach-last {
-  padding: 0px 20px 40px 0px;
+  margin-top: 20px;
 }
 
 /* line 607, ../../app/assets/stylesheets/components/general.scss */
@@ -2223,7 +2213,10 @@ a.view-more {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-left: 20px;
+  margin-top: 20px;
 }
+
+
 
 /* line 617, ../../app/assets/stylesheets/components/general.scss */
 img#create-class-star {
@@ -2233,12 +2226,13 @@ img#create-class-star {
 
 /* line 623, ../../app/assets/stylesheets/components/general.scss */
 .heading15-whyteach {
-  /*  color: $brand-background;*/
-  /*  text-transform: uppercase;*/
+  color: #ff7733;
+  text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.1em;
+  padding-top: 20px;
 }
 
 /* line 632, ../../app/assets/stylesheets/components/general.scss */
@@ -2251,6 +2245,45 @@ img#create-class-star {
   font-weight: 700;
   color: white;
   font-size: 10;
+}
+
+.heading15-pagenote{
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.pagenote-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+hr#pagenote{
+  float: left;
+  width: 98%;
+  border: 1px dashed #999;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 /*......CLASS DETAIL PAGE.....*/
@@ -2546,7 +2579,7 @@ li.preview-checklist{
   /*  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
     -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
     box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;*/
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 /* line 793, ../../app/assets/stylesheets/components/general.scss */

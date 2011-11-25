@@ -3,7 +3,7 @@
 		.heading25_ccc 
 			= "Your Proposal"
 		- if @reqid.nil?
-			%p So you want to teach a class! That's awesome. Please tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
+			%p So you want to teach a class! That's awesome. Tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
 		- else
 			%p Thanks for claiming a class! All the people who requested it would be thrilled. Please tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
 		%br
@@ -41,15 +41,10 @@
 				= 'No need to be an expert. Just tell us about your passion for the subject.'
 				%br
 				= f.text_area :experience,  :class => "form-with-margin"
-				
-			.form-question Please read our policy.
-			%p.note This is our pricing policy. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-			.page-section-float-left   
-				= f.check_box :terms_of_service
-				= "I understand and I agree!"
-			.form-question
-				= f.label "Done?"
-				%p.note Note: This isn't your actual class. Your answers will only be seen by HourSchool staff. We'll respond as soon as we can. Thanks again!
-			%br/
+			/ 	
+			/ .page-section-float-left   
+			/ 	= f.check_box :terms_of_service
+			/ 	= "I understand and I agree!"
+
 			= f.submit "Submit your proposal", :class => "submit-proposal-button"
 			

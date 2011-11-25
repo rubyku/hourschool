@@ -10,6 +10,12 @@
 		.page-section-float-left
 			.welcome-header Interested in a class? Vote for it!
 			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+			.why-teach-short.clearfix
+				.heading15-pagenote Didn't see one you like?
+			= link_to new_csuggestion_path do
+				.pagenote-button
+					Suggest a class
+			%hr#pagenote
 			= render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
 			
 = render :partial => 'sidebar'

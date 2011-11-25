@@ -8,26 +8,32 @@
 .page
 	.page-content
 		.page-section-float-left
-			.welcome-header Never taught before? Perfect!
+			.welcome-header Teach at HourSchool
 			%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+			
+			.why-teach-short.clearfix
+				.heading15-whyteach Why should I teach?
+				%p You have a lot of skills. Why not share them with people, and make some money doing what you're doing already? Plus, you always end up learning something new when you teach. 
+				
+			= link_to new_course_path do
+				#create-class-button
+					%img#create-class-star{:src => '/images/v2/White Star_create a class.png'}
+					.create-class-heading Create a class
 
-			.why-teach-first.clearfix
-				.why-teach-short.clearfix
-					.heading15-whyteach We love first time teachers
-					%p If you’re passionate, genuine, and excited to share your experience, you’ve got all it takes.
-				= link_to new_course_path do
-					#create-class-button
-						%img#create-class-star{:src => '/images/v2/White Star_create a class.png'}
-						.create-class-heading Create a class
-						
 			.why-teach.clearfix
-				.why-teach-short.clearfix
-					.heading15-whyteach Don't know where to start?
-					%p Check out our Teacher Handbook. Read our blog. Browse some classes. Watch some featured stories.
-					
+				.heading15-whyteach We love first time teachers
+				%p If you’re passionate, genuine, and excited to share your experience, you’ve got all it takes. We want to be there to help make this as successful of an experience for you as possible 
+
+				.heading15-whyteach Don't know where to start?
+				%p No worries. There are plenty of inspirations. Check out our Teacher Handbook, our blog, or watch the videos below from HourSchoolmates who have both taken and taught classes before!
+
+
+			%br
 			.why-teach-last.clearfix
 				= render :partial => "teachers_videos"
         
+
+
 		/ .page-section-float-left
 		/ 	.welcome-header Classes that still need a teacher
 		/ 	%img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}

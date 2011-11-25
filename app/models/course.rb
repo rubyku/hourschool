@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
   validates_presence_of :title,:description, :price, :seats, :time_range, :place, :minimum, :unless => :proposal? 
   
   validate :default_validations, :message => "The fields cannot be empty"
-  validates :terms_of_service, :acceptance => true
+  # validates :terms_of_service, :acceptance => true
   attr_accessible :terms_of_service
   
   acts_as_taggable_on :categories
