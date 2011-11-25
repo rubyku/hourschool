@@ -7,12 +7,11 @@
 		- else
 			%p Thanks for claiming a class! All the people who requested it would be thrilled. Please tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
 		%br
-		- @course.errors.full_messages.each do |message|
-			.error
-				%p= "#{message}"
+			- @course.errors.full_messages.each do |message|
+				.form-error
+					= "*#{message}"
 
 		= form_for @course, :html => { :multipart => true } do |f|
-
 			= hidden_field_tag 'req', "#{@reqid}"
 			= f.hidden_field :status, :value => "proposal"
 			.form-question

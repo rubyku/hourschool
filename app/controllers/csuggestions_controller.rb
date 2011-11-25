@@ -4,6 +4,27 @@ class CsuggestionsController < ApplicationController
   
   def index
     @csuggestions = Csuggestion.all
+    
+  end
+  
+  def suggest
+    @top_suggestions =  Csuggestion.tally(
+       {  :at_least => 1,
+           :at_most => 10000,
+           :limit => 100,
+           :order => "csuggestions.name ASC"
+       })
+      # p @top_suggestions
+      @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 10)
+      if Course.count > 0
+         @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+         @classes_we_like = []
+         (1..2).each do |val|
+           @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
+         end
+       else
+         @classes_we_like = []
+       end
   end
 
   def show

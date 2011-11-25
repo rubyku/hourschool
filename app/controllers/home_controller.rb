@@ -55,8 +55,8 @@ class HomeController < ApplicationController
     end
     
     #get classes this month
-    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 4)).find(:all)
-    @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 6)
+    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 4)).find(:all, :order => "courses.date ASC")
+    @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 9)
     #p @classes_in_my_location
     # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
     @top_suggestions =  Csuggestion.tally(
@@ -155,7 +155,7 @@ class HomeController < ApplicationController
   
   def search_by_city
     date = Date.today
-    @classes_this_week = City.find(:first, :conditions => ["name LIKE ?",params[:city] ]).courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).find(:all).paginate(:page => params[:page], :per_page => 6)
+    @classes_this_week = City.find(:first, :conditions => ["name LIKE ?",params[:city] ]).courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).find(:all).paginate(:page => params[:page], :per_page => 9)
     p @classes_this_week
     
   end
@@ -174,7 +174,7 @@ class HomeController < ApplicationController
     
       #@classes_this_week = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)]).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
     
-    @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
+    @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
      @classes_we_like = []
       (1..2).each do |val|
         @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)

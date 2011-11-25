@@ -78,8 +78,10 @@
 				%li.noBullet
 					.class-details
 						= "$" "#{course.price}"
-					.class-alternatives
-						Think it's too much? Suggest a new price!
+						%br/
+						- if course.is_a_student?(current_user)
+						- else 
+							%a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
 						%br/
 			%ul.noBullet
 				%li.noBullet
@@ -87,11 +89,14 @@
 				%li.noBullet
 					.class-details
 						= course.date.strftime("%a %b %d, %Y")
-					%p.class-details
+					%p
 						= "#{course.time_range}"
-					.class-alternatives
-						Can't make it? Request a new time!
-						
+						%br/
+						- if course.is_a_student?(current_user)
+							%a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
+						- else
+							%a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
+						%br/
 			%ul.noBullet
 				%li.noBullet
 					= image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
@@ -102,8 +107,11 @@
 							= "#{course.address}"
 						- else
 							%p This is at someone's house. We'll email you the address!
-					.class-alternatives
-						Don't live in this city? Request in yours!
+						%br/
+						- if course.is_a_student?(current_user)
+							%a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+						- else
+							%a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
 		.sidebar-block
 			.sidebar-heading Teacher
 			.class-attendance-block
@@ -113,6 +121,8 @@
 					= image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
 				%a.profile-link
 					= link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
+					%br
+					= "#{course.teacher.about}"
 			%ul.noBullet
 			
 				%li.noBullet

@@ -1019,6 +1019,7 @@ h1#homepage_headline {
   font-size: 15px;
   letter-spacing: 0.2em;
   margin-right: -5px;
+  cursor: pointer;
 }
 
 /* line 378, ../../app/assets/stylesheets/components/homepage.scss */
@@ -1146,6 +1147,7 @@ img.class-arrow {
 #homepage_logo {
   position: relative;
   float: left;
+  margin-bottom: 10px;
 }
 
 #logo {
@@ -1155,6 +1157,7 @@ img.class-arrow {
   width: 122px;
   height: 125px;
   text-decoration: none;
+  margin-bottom: 10px;
   background: url("/images/v2/Logo_Orange_withHover.png");
 }
 
@@ -1747,6 +1750,7 @@ li.noBullet {
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.2em;
+  cursor: pointer;
 }
 
 /*......SUB-NAV.....*/
@@ -2319,6 +2323,7 @@ li.withBullets {
 
 /* line 703, ../../app/assets/stylesheets/components/general.scss */
 .class-details {
+  margin-top: 8px;
   color: #666;
   font-weight: 700;
   font-size: 12px;
@@ -2338,22 +2343,24 @@ p.class-details {
   font-weight: 400;
   font-size: 9px;
   color: #999;
-  margin-bottom: 8px;
 }
 
 /* line 724, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-cost {
   margin-right: 3px;
+  margin-top: 8px;
 }
 
 /* line 728, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-when {
   margin-right: 7px;
+  margin-top: 8px;
 }
 
 /* line 732, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-where {
   margin-right: 10px;
+  margin-top: 8px;
 }
 
 /* line 736, ../../app/assets/stylesheets/components/general.scss */
@@ -2433,7 +2440,7 @@ p.class-details-heart-number {
 /*......COURSE-PREVIEW......*/
 img.steps {
   margin-left: 20px;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-bottom: 35px;
 }
 
@@ -3250,6 +3257,7 @@ p.profile-bio {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-decoration: none;
+  cursor: pointer;
 }
 
 /* line 134, ../../app/assets/stylesheets/components/sidebar.scss */
@@ -3503,7 +3511,10 @@ a.footer:visited{
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
+
+.newsletterButton:hover { background-color: #ff7733;}
 
 /* line 114, ../../app/assets/stylesheets/components/footer.scss */
 .heading10-footer {

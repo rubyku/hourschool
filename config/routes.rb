@@ -6,7 +6,6 @@ HourschoolV2::Application.routes.draw do
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
-  resources :csugggestions
 
   devise_for :members 
   resources :members, :only => [:index, :show]
@@ -31,6 +30,7 @@ HourschoolV2::Application.routes.draw do
   get "sites/show"
   match '/learn' => 'home#learn'
   match '/teach' => 'home#teach'
+  match '/suggest' => 'csuggestions#suggest'
   match '/csvote' => 'csuggestions#vote'
   match '/register' => 'courses#register'
   match '/register_with_amazon' => 'courses#register_with_amazon'
@@ -70,6 +70,7 @@ HourschoolV2::Application.routes.draw do
   match '/nominate' => 'home#nominate'
   match '/nominate_send' => 'home#nominate_send'
   match '/nominate_confirm' => 'home#nominate_confirm'
+    match '/contact_teacher' => 'course#contact_teacher'
   
   match '/business' => 'home#business'
   match '/about' => 'home#about'

@@ -248,6 +248,12 @@ class CoursesController < ApplicationController
       #       end
   end
   
+  def contact_teacher
+    @course = Course.find(params[:id])
+  end
+  
+  
+  
   private
   def must_be_admin
     #if !current_user.try(:admin?) || !current_user.is_admin?
