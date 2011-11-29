@@ -42,6 +42,9 @@ class Course < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
   acts_as_voteable
 
+  def self.active
+    where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now.end_of_day, 4.weeks.from_now)
+  end
 
   def teacher
     teachers = croles.where(:role => 'teacher')
