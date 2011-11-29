@@ -48,7 +48,7 @@ class HomeController < ApplicationController
     end
 
     #get classes this month
-    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 4)).find(:all, :order => "courses.date ASC")
+    @classes_this_week = Course.active.order("courses.date ASC")
     @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 9)
     #p @classes_in_my_location
     # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
@@ -61,20 +61,13 @@ class HomeController < ApplicationController
 
       #top suggestions has to be the first operator to preserve ranking
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
-      p "ts"
-      p @top_suggestions
-      p @suggestions_in_my_location
      if Course.count > 0
-
-        @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+        @random_course   = Course.random
+        @classes_we_like = Course.random.first(2)
+     else
         @classes_we_like = []
-        (1..2).each do |val|
-          @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
-        end
-      else
-        @classes_we_like = []
-
-      end
+     end
+     @tags = @classes_this_week.active_tags
   end
 
 
