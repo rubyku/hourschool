@@ -1,14 +1,14 @@
-class EcoursesController < ApplicationController  
+class EcoursesController < ApplicationController
   skip_before_filter :limit_subdomain_access
   before_filter :authenticate_member!, :only => [:create, :edit, :destroy, :update, :new, :register]
-  
+
   def index
     @courses = Ecourse.all
   end
 
   def show
     @course = Ecourse.find(params[:id])
-    
+
   end
 
   def new
@@ -27,9 +27,9 @@ class EcoursesController < ApplicationController
     @member = current_member
     #was it from a request
     from_req = !params[:req].nil?
-    
+
     if @course.save
-      @erole = Erole.find_by_ecourse_id_and_member_id(@course.id, current_member.id) 
+      @erole = Erole.find_by_ecourse_id_and_member_id(@course.id, current_member.id)
       if @erole.nil?
         @erole = @course.eroles.create!(:attending => true, :role => 'teacher')
         @member.eroles << @erole
@@ -40,12 +40,12 @@ class EcoursesController < ApplicationController
       ent = Enterprise.find_or_create_by_name_and_domain(current_member.org, current_member.domain)
       ent.ecourses << @course
       ent.save
-      
+
       if from_req
         #delele the suggestion
         Esuggestion.delete(params[:req].to_s)
         #here email people who voted, etc etc
-        
+
       end
       #add to indextank
       #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
@@ -74,7 +74,7 @@ class EcoursesController < ApplicationController
     @erole = Erole.where(:ecourse_id => @course.id).first
     #@course.destroy
     if current_member.is_teacher_for?(@course)
-      
+
       @member = current_member
       @member.ecourses.delete(@course)
       @member.save
@@ -86,9 +86,9 @@ class EcoursesController < ApplicationController
     else
       redirect_to :back, :alert => "You are not authorized to do this"
     end
-    
+
   end
-  
+
   def register
       @course = Ecourse.find(params[:id])
       @member = current_member
@@ -96,6 +96,6 @@ class EcoursesController < ApplicationController
       @member.eroles << @erole
       @member.ecourses << @course
       @member.save
-     
+
   end
 end

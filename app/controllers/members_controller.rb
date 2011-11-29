@@ -1,7 +1,7 @@
 class MembersController < ApplicationController
   before_filter :authenticate_member!
   before_filter :find_member
-  
+
   def index
      @members = Member.all
    end
@@ -13,7 +13,7 @@ class MembersController < ApplicationController
 
    protected
    def find_member
-     
+
      if params[:id]
        @member = Member.find(params[:id])
        unless current_member == @member

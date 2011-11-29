@@ -6,7 +6,7 @@ class EnterprisesController < ApplicationController
 
   def show
   end
-  
+
   def learn
     @name = current_member.org
     @enterprise = Enterprise.find_by_name(@enterprise)
@@ -24,9 +24,9 @@ class EnterprisesController < ApplicationController
      # p @top_suggestions
       @random_course = @all_classes_this_week[rand(@all_classes_this_week.size-1) + 1]
   end
-  
+
   def teach
-    
+
   end
 
 end

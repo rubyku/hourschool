@@ -1,12 +1,12 @@
 class CsuggestionsController < ApplicationController
   before_filter :authenticate_user!, :only => [:create,:udpate, :vote]
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
-  
+
   def index
     @csuggestions = Csuggestion.all
-    
+
   end
-  
+
   def suggest
     @top_suggestions =  Csuggestion.tally(
        {  :at_least => 1,
@@ -40,7 +40,7 @@ class CsuggestionsController < ApplicationController
     @user = current_user
     #need to have validations
     if @csuggestion.save
-      current_user.vote_for(@csuggestion) 
+      current_user.vote_for(@csuggestion)
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.csuggestions << @csuggestion
       city.save
@@ -71,13 +71,13 @@ class CsuggestionsController < ApplicationController
     @csuggestion.destroy
     redirect_to csuggestions_url, :notice => "Successfully destroyed csuggestion."
   end
-  
+
   def vote
     votefor_id = params[:csid]
     @csuggestion = Csuggestion.find(votefor_id)
     current_user.vote_for(@csuggestion) unless current_user.voted_on?(@csuggestion)
   end
-  
+
   protected
    def has_not_created_suggestion_recently?
      if current_user

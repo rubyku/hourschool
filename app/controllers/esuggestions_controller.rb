@@ -2,7 +2,7 @@ class EsuggestionsController < ApplicationController
   skip_before_filter :limit_subdomain_access
   before_filter :authenticate_member!
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
-  
+
   def index
     @esuggestions = Esuggestion.all
   end
@@ -52,16 +52,16 @@ class EsuggestionsController < ApplicationController
     ent.esuggestions.delete(@esuggestion)
     ent.save
     @esuggestion.destroy
-    
+
     redirect_to esuggestions_url, :notice => "Successfully destroyed request."
   end
-  
+
   def vote
     votefor_id = params[:esid]
     @esuggestion = Esuggestion.find(votefor_id)
     current_member.vote_for(@esuggestion) unless current_member.voted_on?(@esuggestion)
   end
-  
+
   protected
    def has_not_created_suggestion_recently?
       #has to be 30 minutes before requesting a suggestion

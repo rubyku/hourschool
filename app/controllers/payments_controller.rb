@@ -1,11 +1,11 @@
 class PaymentsController < ApplicationController
 
-  
+
   # GET /payments
   # GET /payments.xml
   def index
     @payments = Payment.all
-    @courses = Course.all 
+    @courses = Course.all
     @users = User.all
     respond_to do |format|
       format.html # index.html.erb
@@ -28,7 +28,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new.xml
   def new
     @payment = Payment.new
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @payment }
@@ -83,7 +83,7 @@ class PaymentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
 
-  
+
+
 end
