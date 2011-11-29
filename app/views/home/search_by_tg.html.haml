@@ -1,14 +1,14 @@
 = render :partial => "header"
 .container_16.searchBar.clearfix
-	= render :partial => 'search_form'
-	
+  = render :partial => 'search_form'
+  
 .page
-	.page-content
-		.page-section-float-left
-			.heading25_ccc Search by category
+  .page-content
+    .page-section-float-left
+      .heading25_ccc Search by category
 
-			.classRow
-				= render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes_this_week}
+      .classRow
+        = render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes_this_week}
 
-		
+    
 = render :partial => 'learn_sidebar'

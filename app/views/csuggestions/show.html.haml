@@ -1,18 +1,18 @@
 = render :partial => "home/header"
 
-.content	
-	%h3= "Details"
-	%p
-		%strong Name:
-		= @csuggestion.name
-	%p
-		%strong Description:
-		= @csuggestion.description
-	%p
-		%strong City:
-		= @csuggestion.city_id
+.content  
+  %h3= "Details"
+  %p
+    %strong Name:
+    = @csuggestion.name
+  %p
+    %strong Description:
+    = @csuggestion.description
+  %p
+    %strong City:
+    = @csuggestion.city_id
 
-	%p
-		= link_to "Edit", edit_csuggestion_path(@csuggestion)
-		|
-		= link_to "View All", csuggestions_path
+  %p
+    = link_to "Edit", edit_csuggestion_path(@csuggestion)
+    |
+    = link_to "View All", csuggestions_path

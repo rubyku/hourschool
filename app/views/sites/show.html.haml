@@ -1,22 +1,22 @@
 %h3= "Peer learning at #{current_member.organization}"
 %h4= "Welcome #{current_member.name}, #{current_member.email}"
 .left-link
-	%ul{:class => "hmenu"}
-		
-		%li= link_to "My dashboard", "#"
-		%li= link_to "Learn", '#'
-		%li= link_to "Teach", "#"
-		%li= link_to "Explore", '#'
+  %ul{:class => "hmenu"}
+    
+    %li= link_to "My dashboard", "#"
+    %li= link_to "Learn", '#'
+    %li= link_to "Teach", "#"
+    %li= link_to "Explore", '#'
 .right-link
-	%ul{:class => "hmenu"}
-		= render "devise/menu/member_login_items"
-		= render "devise/menu/member_registration_items"
+  %ul{:class => "hmenu"}
+    = render "devise/menu/member_login_items"
+    = render "devise/menu/member_registration_items"
 .content
 
-	#learn-content
-		%h3= "Classes I am currently registered for"
-		#learn-upcoming-classes
-			= render :partial => 'my_enterprise_classes', :locals => {:my_classes => @my_classes}
-	
-		%h3= "Classes I recently took"
-		#learn-upcoming-classes
+  #learn-content
+    %h3= "Classes I am currently registered for"
+    #learn-upcoming-classes
+      = render :partial => 'my_enterprise_classes', :locals => {:my_classes => @my_classes}
+  
+    %h3= "Classes I recently took"
+    #learn-upcoming-classes

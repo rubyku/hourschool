@@ -1,75 +1,75 @@
-= render :partial => "home/header"	
+= render :partial => "home/header"  
 
 .page-section-float-left
-	= image_tag("/images/v2/step3.png", :class => "steps")
-	#preview-box
-		.preview-header Preview your class
-		= button_to "Publish now!", confirm_path({:id => @course.id}), :class => "preview-button", :method => :put
-		= button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
-	#preview-box-tall	    
-		.classBlock
-			- if @course.photo.exists?
-				= image_tag(@course.photo.url(:small), :size => "190x120")
-				%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-			- else
-				- if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
-					= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-				- else
-					= image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
-			
-			= image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
-			.class-description
-				.heading13-class 
-					= "#{@course.title}"
-				.heading9-class 
-				%p= "#{@course.about}"
-		#preview-checklist-box
-			.welcome-header Preview CheckList 
-			%ul
-				%li.preview-checklist 1. Check the widget to your left
-				%p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
-				%br
-				%li.preview-checklist 2. Check the class profile page below
-				%p Make sure to check out class specifics on the right hand column and your description.
-				%br
-				%li.preview-checklist 3. Don't worry, you can always come back!
-				%p You can always come back and edit your class widget and profile page at any time. 
-				
+  = image_tag("/images/v2/step3.png", :class => "steps")
+  #preview-box
+    .preview-header Preview your class
+    = button_to "Publish now!", confirm_path({:id => @course.id}), :class => "preview-button", :method => :put
+    = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
+  #preview-box-tall      
+    .classBlock
+      - if @course.photo.exists?
+        = image_tag(@course.photo.url(:small), :size => "190x120")
+        %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+      - else
+        - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
+          = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+        - else
+          = image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
+      
+      = image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
+      .class-description
+        .heading13-class 
+          = "#{@course.title}"
+        .heading9-class 
+        %p= "#{@course.about}"
+    #preview-checklist-box
+      .welcome-header Preview CheckList 
+      %ul
+        %li.preview-checklist 1. Check the widget to your left
+        %p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
+        %br
+        %li.preview-checklist 2. Check the class profile page below
+        %p Make sure to check out class specifics on the right hand column and your description.
+        %br
+        %li.preview-checklist 3. Don't worry, you can always come back!
+        %p You can always come back and edit your class widget and profile page at any time. 
+        
         
 
 .page
-	.page-content
-		.page-section-float-left
-			.class-logistic-block
-				- if @course.photo.exists?
-					= image_tag(@course.photo.url(:small), :size => "190x120")
-					%img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-				- else
-					- if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
-						= image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-					- else
-						= image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
-				
-				= image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
-			.class-description-block
-				.class-title-big
-					= @course.title
-				.heading10-class
-					= "Classes are always more fun with a group of friends. Share this class!"
-				%table
-					%tr
-						%td
-							.twshare.left
-							%a.twitter-share-button.left{"data-count" => "horizontal", "data-via" => "fuonrails", :href => "http://twitter.com/share"} Tweet
-							%script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
-						%td
-							.fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
-							%script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
-							%fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}
-		.page-section-float-left
-			.class-section-heading This class will cover
-			%p.class-detail
-				= "#{@course.description}"
+  .page-content
+    .page-section-float-left
+      .class-logistic-block
+        - if @course.photo.exists?
+          = image_tag(@course.photo.url(:small), :size => "190x120")
+          %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+        - else
+          - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
+            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+          - else
+            = image_tag("/images/v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
+        
+        = image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
+      .class-description-block
+        .class-title-big
+          = @course.title
+        .heading10-class
+          = "Classes are always more fun with a group of friends. Share this class!"
+        %table
+          %tr
+            %td
+              .twshare.left
+              %a.twitter-share-button.left{"data-count" => "horizontal", "data-via" => "fuonrails", :href => "http://twitter.com/share"} Tweet
+              %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+            %td
+              .fshare.left{:style => 'padding-left: 0px; margin-left: 0px;'}
+              %script{:src => "http://connect.facebook.net/en_US/all.js#xfbml=1"}
+              %fb:like{:layout => "button_count", :show_faces => "false", :width => "450"}
+    .page-section-float-left
+      .class-section-heading This class will cover
+      %p.class-detail
+        = "#{@course.description}"
 
 = render :partial => "sidebar", :locals => {:course => @course}
 

@@ -1,16 +1,16 @@
-.content	
-	%h3= "Details"
-	%p
-		%strong Name:
-		= @esuggestion.name
-	%p
-		%strong Description:
-		= @esuggestion.description
-	%p
-		%strong Enterprise:
-		
+.content  
+  %h3= "Details"
+  %p
+    %strong Name:
+    = @esuggestion.name
+  %p
+    %strong Description:
+    = @esuggestion.description
+  %p
+    %strong Enterprise:
+    
 
-	%p
-		= link_to "Edit", edit_esuggestion_path(@esuggestion)
-		|
-		= link_to "View All", esuggestions_path
+  %p
+    = link_to "Edit", edit_esuggestion_path(@esuggestion)
+    |
+    = link_to "View All", esuggestions_path

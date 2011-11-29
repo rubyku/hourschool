@@ -1,28 +1,28 @@
 
 .page
-	.page-content
-		.page-section-float-left
-			%ul.sub-nav
-				%li.sub-nav-active
-					= link_to "Upcoming classes", my_classes_path, :val => "upcoming", :remote => true, :class => "sub-nav-active"
-				%li.sub-nav-inactive
-					= link_to "Past classes", my_classes_path, :val => "past", :remote => true, :class => "sub-nav-inactive"
-				%li.sub-nav-inactive
-					= link_to "Learning Queue", my_classes_path, :val => "queue", :remote => true, :class => "sub-nav-inactive"
-		
-		#main_profile_body
-			.page-section-float-left
-				.classes-taken
-					- link_to classes_taken_path, :remote => true do
-						.profile-big-number-active
-							= "#{current_user.student_for}"
-						.profile-big-words-active classes taken
-				.classes-taught
-					- link_to classes_taught_path, :remote => true do
-						.profile-big-number-inactive
-							= "#{current_user.teacher_for}"
-						.profile-big-words-inactive classes taught
-						
+  .page-content
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-active
+          = link_to "Upcoming classes", my_classes_path, :val => "upcoming", :remote => true, :class => "sub-nav-active"
+        %li.sub-nav-inactive
+          = link_to "Past classes", my_classes_path, :val => "past", :remote => true, :class => "sub-nav-inactive"
+        %li.sub-nav-inactive
+          = link_to "Learning Queue", my_classes_path, :val => "queue", :remote => true, :class => "sub-nav-inactive"
+    
+    #main_profile_body
+      .page-section-float-left
+        .classes-taken
+          - link_to classes_taken_path, :remote => true do
+            .profile-big-number-active
+              = "#{current_user.student_for}"
+            .profile-big-words-active classes taken
+        .classes-taught
+          - link_to classes_taught_path, :remote => true do
+            .profile-big-number-inactive
+              = "#{current_user.teacher_for}"
+            .profile-big-words-inactive classes taught
+            
 
 / .page
 /   .page-content

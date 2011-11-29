@@ -3,33 +3,33 @@
     
     <%= link_to "", root_path, :id => "logo" %>    
     <!-- <a href="www." id="logo"></a> -->
-	
+  
 <div id="login">
-	
+  
         <ul id="login">
           <li id="login">Peer learning in Austin</li>
           <li id="login">
-					<% if user_signed_in? %>
-						
-							<span id="nav-dropdown">
-							    <%= link_to current_user.name, profile_path, :id => "username"%>
+          <% if user_signed_in? %>
+            
+              <span id="nav-dropdown">
+                  <%= link_to current_user.name, profile_path, :id => "username"%>
                     <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
-					            <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
-							</span>
+                      <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+              </span>
 
-							<span id="nav-dropdown-selected" style="display:none;">
-							    <%= link_to current_user.name, profile_path, :id => "username"%>
+              <span id="nav-dropdown-selected" style="display:none;">
+                  <%= link_to current_user.name, profile_path, :id => "username"%>
                     <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
-					            <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
-				            </span>
-				            
-					<% else %>
-						<%= link_to "sign in", new_user_session_path, :id => "menu"%>
-					<% end %>
-					
-				</li>
-	
-		  <% if user_signed_in? %>
+                      <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                    </span>
+                    
+          <% else %>
+            <%= link_to "sign in", new_user_session_path, :id => "menu"%>
+          <% end %>
+          
+        </li>
+  
+      <% if user_signed_in? %>
           <div id="dropdown-box" style="display:none;">
             <table id="dropdown-text">
               <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "My profile", profile_path %></td></tr>
@@ -37,7 +37,7 @@
               <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path %></td></tr>
             </table>
           </div>
-		  <% end %>
+      <% end %>
         </ul>
     </div>
 
@@ -48,7 +48,7 @@
             $("#nav-dropdown-selected").show();
             return false;
          });
-    	 $("#nav-dropdown-selected").click(function() {
+       $("#nav-dropdown-selected").click(function() {
              $("#dropdown-box").hide();
              $("#nav-dropdown").show();
              $("#nav-dropdown-selected").hide();
@@ -65,7 +65,7 @@
             $("#nav-dropdown-selected").show();
             return false;
          });
-    	 $("#nav-dropdown-selected").click(function() {
+       $("#nav-dropdown-selected").click(function() {
              $("#dropdown-box").hide();
              $("#nav-dropdown").show();
              $("#nav-dropdown-selected").hide();
@@ -76,12 +76,12 @@
         <table id="menu">
           <tr id="menu">
               <td id="community_menu_learn">
-				<%= link_to learn_path, :id => "menu" do %>
+        <%= link_to learn_path, :id => "menu" do %>
                 <!-- <a href="/p/learn" id="menu"> -->
                   <div id="menu18">Learn</div> 
                   <div id="menu9">something new</div>
                 <!-- </a> -->
-				<% end %>
+        <% end %>
               </td>
               <td id="community_menu_teach">
                 <%= link_to teach_path, :id => "menu" do %>
@@ -90,7 +90,7 @@
                 <% end %>
               </td>
             <td id="community_menu_suggest">
-			<%= link_to suggest_path, :id => "menu" do %>
+      <%= link_to suggest_path, :id => "menu" do %>
               
                 <div id="menu18">Suggest</div>
                 <div id="menu9">a class</div>

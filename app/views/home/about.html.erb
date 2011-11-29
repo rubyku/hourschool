@@ -111,22 +111,22 @@
 <script>
 
     //Dialog
-	$(function() {
-		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+  $(function() {
+    // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+    $( "#dialog:ui-dialog" ).dialog( "destroy" );
 
-		$( "#dialog" ).dialog({
-			modal: true,
-			autoOpen: false,
-			buttons: {
-				Ok: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-		});
-	});
+    $( "#dialog" ).dialog({
+      modal: true,
+      autoOpen: false,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
 
-	    // Dialog Link
+      // Dialog Link
     $('#dialog-link').click(function(){
      $('#dialog').dialog('open');
      return false;

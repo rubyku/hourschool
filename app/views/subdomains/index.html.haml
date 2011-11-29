@@ -1,7 +1,7 @@
 .content
-	%h1= "Subdomains"
+  %h1= "Subdomains"
 
-	- @subdomains.each do |subdomain|
-		%li= link_to subdomain.name, subdomain 
-	
+  - @subdomains.each do |subdomain|
+    %li= link_to subdomain.name, subdomain 
+  
 

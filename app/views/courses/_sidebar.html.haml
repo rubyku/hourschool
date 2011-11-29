@@ -1,156 +1,156 @@
 .sidebar-white
-	.sidebar-content-white
-		- if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
-			- if @current_course.price > 0.0
-				= button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
-				/ = image_tag("/images/amzn-payments.gif")
-				/ = render :partial => "amazon_form", :locals => {:course => @current_course}
-		
-		
-				/ = amazon_simple_pay_form_tag do
-				/ 					= hidden_field_tag 'referenceId', 'Class registration'
-				/ 					= hidden_field_tag 'description', @current_course.title
-				/ 					= submit_tag("Purchase the class through Amazon")
-			- else
-				- if @current_course.is_a_student?(current_user)
-					- if (@current_course.date - Date.today).numerator >= 1
-						= button_to "Drop this class", drop_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
-					- else
-						.submit-proposal-button= "You are registered"
-				- elsif @current_course.is_a_teacher?(current_user)
-					.submit-proposal-button= "Teaching"
-				- else
-					= button_to "Register for this class", register_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
-		- else
-			= button_to "Edit class profile", edit_course_path(:id => @current_course.id), :class => "edit-class-button"
-			
-		.class-details
-			= "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
-		- if course.seats_left > course.seats/2
-			= image_tag "/images/v2/ClassMin_Bar.png",:size => "200x11"
-			
-			- if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
-				- if course.price == 0.0
-					= link_to "Register for this class", register_path(:id => course.id)
-				- else
-					.class-alterntives
-						= "Purchase from Amazon"
-					
-					
-					/ = link_to image_tag("/images/amzn-payments.gif"), register_with_amazon_path(:id => course.id)
-			- else
-				- if course.is_a_student?(current_user)
-					- if (course.date - Date.today).numerator >= 1
-						= link_to "You are registered. Unregister", drop_path(:id => course.id)
-					- else
-						= "You are registered"
-				- elsif course.is_a_teacher?(current_user)
-					= ""
-		- elsif course.seats_left < course.seats/2
-			= image_tag "/images/v2/ClassMin_Bar_orange_halfFull.png",:size => "200x11"
-			
-			- if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
-				= link_to "Register for this class", register_path(:id => course.id)
-			- else
-				- if course.is_a_student?(current_user)
-					- if (course.date - Date.today).numerator >= 1
-						= link_to "You are registered. Unregister", drop_path(:id => course.id)
-					- else
-						= "You are registered"
-				- elsif course.is_a_teacher?(current_user)
-					= "Teaching"
-				
-		- elsif course.seats_left == 0
-			= image_tag "/images/v2/ClassMin_Bar_orange_FULL.png", :size => "200x11"
-			- if course.is_a_student?(current_user)
-				- if (course.date - Date.today).numerator >= 1
-					= link_to "You are registered. Unregister", drop_path(:id => course.id)
-				- else
-					= "You are registered"
-			- elsif course.is_a_teacher?(current_user)
-				= "Teaching"
-			= link_to "Class full. Request a new one!", new_csuggestion_path
-			
-		.sidebar-block
-			%ul.noBullet
-				%li.noBullet
-					= image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-				%li.noBullet
-					.class-details
-						= "$" "#{course.price}"
-						%br/
-						- if course.is_a_student?(current_user)
-						- else 
-							%a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
-						%br/
-			%ul.noBullet
-				%li.noBullet
-					= image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
-				%li.noBullet
-					.class-details
-						= course.date.strftime("%a %b %d, %Y")
-					%p
-						= "#{course.time_range}"
-						%br/
-						- if course.is_a_student?(current_user)
-							%a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
-						- else
-							%a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
-						%br/
-			%ul.noBullet
-				%li.noBullet
-					= image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
-				%li.noBullet
-					.class-details
-						- if "#{course.public?}"
-							= "#{course.place}"
-							= "#{course.address}"
-						- else
-							%p This is at someone's house. We'll email you the address!
-						%br/
-						- if course.is_a_student?(current_user)
-							%a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-						- else
-							%a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
-		.sidebar-block
-			.sidebar-heading Teacher
-			.class-attendance-block
-				- if @current_course.teacher.photo.exists?
-					= image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
-				- else
-					= image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
-				%a.profile-link
-					= link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
-					%br
-					= "#{course.teacher.about}"
-			%ul.noBullet
-			
-				%li.noBullet
-					%img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-				%li.noBullet
-					%p.class-details-heart-number
-						#number_of_hearts
-							= course.votes_for
-					%br/
-		
-			- if course.teacher != current_user
-				%br= link_to "Contact Teacher", '#'
-						
-		.sidebar-block-last
-			.sidebar-heading
-				= "Students (#{course.students.size})"
-			/ .class-attendance-block
-			/ 	- "#{course.students.size}".each do |c|
-			/ 	%ul.avatar-list
-			/ 		%li.avatar-list
-			/ 			- if "#{course.student.photo}.exists?"
-			/ 				= image_tag("#{course.student.photo}".url(:small), :size => "190x120")
-			/ 			- else
-			/ 				= image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
-					
-			- if course.teacher == current_user
-				%ul.noBullet
-					%li.noBullet
-						= link_to "Send a message to all students", '#'
-					%li.noBullet
-						= link_to "Update course", edit_course_path(course.id)
+  .sidebar-content-white
+    - if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
+      - if @current_course.price > 0.0
+        = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+        / = image_tag("/images/amzn-payments.gif")
+        / = render :partial => "amazon_form", :locals => {:course => @current_course}
+    
+    
+        / = amazon_simple_pay_form_tag do
+        /           = hidden_field_tag 'referenceId', 'Class registration'
+        /           = hidden_field_tag 'description', @current_course.title
+        /           = submit_tag("Purchase the class through Amazon")
+      - else
+        - if @current_course.is_a_student?(current_user)
+          - if (@current_course.date - Date.today).numerator >= 1
+            = button_to "Drop this class", drop_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
+          - else
+            .submit-proposal-button= "You are registered"
+        - elsif @current_course.is_a_teacher?(current_user)
+          .submit-proposal-button= "Teaching"
+        - else
+          = button_to "Register for this class", register_path(:id => @current_course.id), :method => :put, :class => "submit-proposal-button"
+    - else
+      = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :class => "edit-class-button"
+      
+    .class-details
+      = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
+    - if course.seats_left > course.seats/2
+      = image_tag "/images/v2/ClassMin_Bar.png",:size => "200x11"
+      
+      - if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
+        - if course.price == 0.0
+          = link_to "Register for this class", register_path(:id => course.id)
+        - else
+          .class-alterntives
+            = "Purchase from Amazon"
+          
+          
+          / = link_to image_tag("/images/amzn-payments.gif"), register_with_amazon_path(:id => course.id)
+      - else
+        - if course.is_a_student?(current_user)
+          - if (course.date - Date.today).numerator >= 1
+            = link_to "You are registered. Unregister", drop_path(:id => course.id)
+          - else
+            = "You are registered"
+        - elsif course.is_a_teacher?(current_user)
+          = ""
+    - elsif course.seats_left < course.seats/2
+      = image_tag "/images/v2/ClassMin_Bar_orange_halfFull.png",:size => "200x11"
+      
+      - if !course.is_a_student?(current_user) && !course.is_a_teacher?(current_user)
+        = link_to "Register for this class", register_path(:id => course.id)
+      - else
+        - if course.is_a_student?(current_user)
+          - if (course.date - Date.today).numerator >= 1
+            = link_to "You are registered. Unregister", drop_path(:id => course.id)
+          - else
+            = "You are registered"
+        - elsif course.is_a_teacher?(current_user)
+          = "Teaching"
+        
+    - elsif course.seats_left == 0
+      = image_tag "/images/v2/ClassMin_Bar_orange_FULL.png", :size => "200x11"
+      - if course.is_a_student?(current_user)
+        - if (course.date - Date.today).numerator >= 1
+          = link_to "You are registered. Unregister", drop_path(:id => course.id)
+        - else
+          = "You are registered"
+      - elsif course.is_a_teacher?(current_user)
+        = "Teaching"
+      = link_to "Class full. Request a new one!", new_csuggestion_path
+      
+    .sidebar-block
+      %ul.noBullet
+        %li.noBullet
+          = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+        %li.noBullet
+          .class-details
+            = "$" "#{course.price}"
+            %br/
+            - if course.is_a_student?(current_user)
+            - else 
+              %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
+            %br/
+      %ul.noBullet
+        %li.noBullet
+          = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+        %li.noBullet
+          .class-details
+            = course.date.strftime("%a %b %d, %Y")
+          %p
+            = "#{course.time_range}"
+            %br/
+            - if course.is_a_student?(current_user)
+              %a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
+            - else
+              %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
+            %br/
+      %ul.noBullet
+        %li.noBullet
+          = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+        %li.noBullet
+          .class-details
+            - if "#{course.public?}"
+              = "#{course.place}"
+              = "#{course.address}"
+            - else
+              %p This is at someone's house. We'll email you the address!
+            %br/
+            - if course.is_a_student?(current_user)
+              %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+            - else
+              %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
+    .sidebar-block
+      .sidebar-heading Teacher
+      .class-attendance-block
+        - if @current_course.teacher.photo.exists?
+          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
+        - else
+          = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
+        %a.profile-link
+          = link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
+          %br
+          = "#{course.teacher.about}"
+      %ul.noBullet
+      
+        %li.noBullet
+          %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
+        %li.noBullet
+          %p.class-details-heart-number
+            #number_of_hearts
+              = course.votes_for
+          %br/
+    
+      - if course.teacher != current_user
+        %br= link_to "Contact Teacher", '#'
+            
+    .sidebar-block-last
+      .sidebar-heading
+        = "Students (#{course.students.size})"
+      / .class-attendance-block
+      /   - "#{course.students.size}".each do |c|
+      /   %ul.avatar-list
+      /     %li.avatar-list
+      /       - if "#{course.student.photo}.exists?"
+      /         = image_tag("#{course.student.photo}".url(:small), :size => "190x120")
+      /       - else
+      /         = image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
+          
+      - if course.teacher == current_user
+        %ul.noBullet
+          %li.noBullet
+            = link_to "Send a message to all students", '#'
+          %li.noBullet
+            = link_to "Update course", edit_course_path(course.id)

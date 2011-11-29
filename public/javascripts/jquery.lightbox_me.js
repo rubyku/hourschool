@@ -59,8 +59,8 @@
             if (opts.showOverlay) {
                 setOverlayHeight(); // pulled this into a function because it is called on window resize.
                 $overlay.css({ position: 'absolute', width: '100%', top: 0, left: 0, right: 0, bottom: 0, zIndex: (opts.zIndex + 2), display: 'none' });
-				if (!$overlay.hasClass('lb_overlay_clear')){
-                	$overlay.css(opts.overlayCSS);
+        if (!$overlay.hasClass('lb_overlay_clear')){
+                  $overlay.css(opts.overlayCSS);
                 }
             }
 
@@ -129,7 +129,7 @@
 
                 $iframe.remove();
                 
-				// clean up events.
+        // clean up events.
                 $self.undelegate(opts.closeSelector, "click");
 
                 $(window).unbind('reposition', setOverlayHeight);

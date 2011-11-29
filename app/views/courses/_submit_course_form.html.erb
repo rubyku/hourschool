@@ -9,9 +9,9 @@
     
     <div class="page-section-float-left">  
       <% @course.errors.full_messages.each do |message| %>
-  			<div class="error-block"><div class="form-error">*<%= message %></div></div>
-  		<% end %>
-  	</div>
+        <div class="error-block"><div class="form-error">*<%= message %></div></div>
+      <% end %>
+    </div>
       
     <% form_for @course, :html => { :multipart => true } do |f| %>
     
@@ -24,43 +24,43 @@
      <%= f.label :title, 'Give your class a title:', :class => "form-question" %><br />
      <p class="tip">Limit 50 characters</p>  
      <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
-   	</p>
-   	<br><br>
+     </p>
+     <br><br>
 
     <p>
      <%= f.label :about, 'Offer a short description', :class => "form-question" %><br />
      <p class="tip">Limit 70 characters</p>  
      <%= f.text_area :about, :class => "form-with-margin", :value => @reqdescription %>
-   	</p>
-   	<br><br>
-   	
+     </p>
+     <br><br>
+     
     <p>
      <%= f.label :categories, 'Categories', :class => "form-question" %><br />
      <p class="tip">Choose the best category this class falls into.</p>  
      <%= f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']]) %>
-   	</p>
-   	<br><br>
-   	
-   	<p>
+     </p>
+     <br><br>
+     
+     <p>
      <%= f.label :photo, 'Upload a photo', :class => "form-question" %><br />
      <p class="tip">If you don't have time to find a photo, we will auto-populate a default one based on the category. Of course you can always come back and change it.</p>  
      <%= f.file_field :photo %>
-   	</p>
-   	
-		
-   	</div>
-   	
-   	<hr id="class"><br>
-   	
-   	<div class="heading25_ccc">2. Game Plan</div>
-   	<div class="page-section-float-left">
-   	    
+     </p>
+     
+    
+     </div>
+     
+     <hr id="class"><br>
+     
+     <div class="heading25_ccc">2. Game Plan</div>
+     <div class="page-section-float-left">
+         
     <p>
      <%= f.label :description, 'Describe your class in more details', :class => "form-question" %><br />
      <p class="tip">No character limit</p>  
      <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What kind of material or equipment do they need ahead of time?" %>
-   	</p>
-   	</div>
+     </p>
+     </div>
  
     <hr id="class"><br>
 
@@ -105,7 +105,7 @@
                   <a href="" class="tip"><span id="hidetip2" style="width: 200px" >Okay, got it.</span></a>
                 </div><br><br>
 
-          	<p>
+            <p>
             <%= f.radio_button :public, true %>
             <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
             <br>
@@ -165,7 +165,7 @@
 <script type="text/javascript">
 
     $('#datepicker').datepicker({
-    	inline: true
+      inline: true
     });
 
    $("#showtip1").click(function() {
@@ -174,7 +174,7 @@
         return false;
      });
 
-	 $("#hidetip1").click(function() {
+   $("#hidetip1").click(function() {
         $(".form-question-tip1").hide();
         $("#showtip1").show();
         return false;
@@ -186,7 +186,7 @@
          return false;
       });
 
- 	 $("#hidetip2").click(function() {
+    $("#hidetip2").click(function() {
          $(".form-question-tip2").hide();
          $("#showtip2").show();
          return false;
@@ -198,7 +198,7 @@
          return false;
       });
 
- 	 $("#hidetip3").click(function() {
+    $("#hidetip3").click(function() {
          $(".form-question-tip3").hide();
          $("#showtip3").show();
          return false;
@@ -210,7 +210,7 @@
          return false;
       });
 
- 	 $("#hidetip4").click(function() {
+    $("#hidetip4").click(function() {
          $(".form-question-tip4").hide();
          $("#showtip4").show();
          return false;

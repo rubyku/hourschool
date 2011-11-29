@@ -887,9 +887,9 @@
         moveto(c.x, c.y);
 
 /*
-			options.drawBorders &&
-				borders.right.css({ left: px(c.w-1) }) &&
-					borders.bottom.css({ top: px(c.h-1) });
+      options.drawBorders &&
+        borders.right.css({ left: px(c.w-1) }) &&
+          borders.bottom.css({ top: px(c.h-1) });
       */
 
         if (seehandles) {

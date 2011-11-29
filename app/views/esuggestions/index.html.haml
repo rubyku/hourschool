@@ -1,26 +1,26 @@
 .content
-	%h3= "Requests"
-	%table
-		%tr
-			%th Name
-			%th Description
+  %h3= "Requests"
+  %table
+    %tr
+      %th Name
+      %th Description
     
-		- for esuggestion in @esuggestions
-			%tr
-				%td= esuggestion.name
-				%td= esuggestion.description
-				%div{:id => "vote_count_csug#{esuggestion.id}"}
-					%td= "#{esuggestion.votes_for} votes"
+    - for esuggestion in @esuggestions
+      %tr
+        %td= esuggestion.name
+        %td= esuggestion.description
+        %div{:id => "vote_count_csug#{esuggestion.id}"}
+          %td= "#{esuggestion.votes_for} votes"
       
-			%td= link_to 'Show', esuggestion
-			%td= link_to 'Edit', edit_esuggestion_path(esuggestion)
-			- if current_member.id != esuggestion.requested_by
-				%div{:id => "vote_csug#{esuggestion.id}"}
-					- if !current_member.voted_on?(esuggestion)
-						%td= link_to 'Vote', esvote_path("esid" => esuggestion.id), :remote => true
-					- else
-						%td= "You voted up"
-			- else
-				%td= "Your request"
-			
-		%p= link_to "Request new class", new_esuggestion_path
+      %td= link_to 'Show', esuggestion
+      %td= link_to 'Edit', edit_esuggestion_path(esuggestion)
+      - if current_member.id != esuggestion.requested_by
+        %div{:id => "vote_csug#{esuggestion.id}"}
+          - if !current_member.voted_on?(esuggestion)
+            %td= link_to 'Vote', esvote_path("esid" => esuggestion.id), :remote => true
+          - else
+            %td= "You voted up"
+      - else
+        %td= "Your request"
+      
+    %p= link_to "Request new class", new_esuggestion_path

@@ -47,36 +47,36 @@
     });
   </script>
   <style type="text/css">
-		   a:visited {
-		  text-decoration: underline;
-		  color: #4F4E4E;
-		}
+       a:visited {
+      text-decoration: underline;
+      color: #4F4E4E;
+    }
 
-		/* line 35, ../../app/assets/stylesheets/components/homepage.scss */
-		a:active {
-		  text-decoration: underline;
-		  color: #4F4E4E;
-		}
+    /* line 35, ../../app/assets/stylesheets/components/homepage.scss */
+    a:active {
+      text-decoration: underline;
+      color: #4F4E4E;
+    }
 </style>
 </head>
 <body id="hasbanner">
 
 <div class="homepage_top_bg">
-  	
+    
   <div id="header">
     <div class="container_16">
-				
-				<%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "homepage_logo"%>
+        
+        <%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "homepage_logo"%>
         
 
         <div id="login">
-		
+    
 
-		  <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
-		 <%= link_to "Sign in", new_user_session_path, :class => "homepage_menu"  %>
-			
+      <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
+     <%= link_to "Sign in", new_user_session_path, :class => "homepage_menu"  %>
+      
 
-	    </div>
+      </div>
 
         <table id="homepage_menu">
           <tr id="homepage_menu">
@@ -136,13 +136,13 @@
 
         <div id="homeSearchForm-background"></div>
         <%= form_tag search_path, :method => 'post' do %>
-			<%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.value= "";', :id =>"homepageSearchForm"%>
-	        <img src = "/images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
-			<br>
-			<input type="submit" value="Search" id="homepageSearchButton" />
-	        
-		<% end %>
-		
+      <%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.value= "";', :id =>"homepageSearchForm"%>
+          <img src = "/images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+      <br>
+      <input type="submit" value="Search" id="homepageSearchButton" />
+          
+    <% end %>
+    
         <div id="homepage_headline_8"><font size="0.01" style="italic" >or</font> check out our featured classes</div>
                
        

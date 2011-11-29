@@ -1,31 +1,31 @@
 .sidebar
-	.sidebar-content
-		%ul.searchFilter
-			%li
-				.sidebar-heading Browse By City
-			- if current_user
-				%li= link_to "#{current_user.city}", cities_path(:city => current_user.city) unless current_user.city == "Austin" || current_user.city == "San Francisco"
-				
-			%li= link_to "Austin", cities_path(:city => "Austin")
-			%li= link_to "San Francisco", cities_path(:city => "San Francisco")
-		%ul.searchFilter
-			%li
-				.sidebar-heading Browse By Time
-			%li= link_to "Upcoming Classes", "#"
-			%li= link_to "Past Classes", "#"
-		%ul.searchFilter
-			%li
-				.sidebar-heading Browse By Category
-			- TAGS.each do |tg|
-				%li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
-	/ 
-	/ %hr#class    
-	/ .sidebar-content
-	/ 	.sidebar-heading Classes we like
-	/ 	- @classes_we_like.each do |cl|
-	/ 		- if cl.status == "live"
-	/ 			.sidebar-block
-	/ 				.heading13-class
-	/ 					= link_to "#{cl.title}", cl unless cl.title.nil?
-	/ 				.heading9-class 
-	/ 					= "#{cl.date.day} #{Date::ABBR_MONTHNAMES[cl.date.month]}" unless cl.date.nil?
+  .sidebar-content
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By City
+      - if current_user
+        %li= link_to "#{current_user.city}", cities_path(:city => current_user.city) unless current_user.city == "Austin" || current_user.city == "San Francisco"
+        
+      %li= link_to "Austin", cities_path(:city => "Austin")
+      %li= link_to "San Francisco", cities_path(:city => "San Francisco")
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By Time
+      %li= link_to "Upcoming Classes", "#"
+      %li= link_to "Past Classes", "#"
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By Category
+      - TAGS.each do |tg|
+        %li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
+  / 
+  / %hr#class    
+  / .sidebar-content
+  /   .sidebar-heading Classes we like
+  /   - @classes_we_like.each do |cl|
+  /     - if cl.status == "live"
+  /       .sidebar-block
+  /         .heading13-class
+  /           = link_to "#{cl.title}", cl unless cl.title.nil?
+  /         .heading9-class 
+  /           = "#{cl.date.day} #{Date::ABBR_MONTHNAMES[cl.date.month]}" unless cl.date.nil?
