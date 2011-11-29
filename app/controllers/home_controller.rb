@@ -147,12 +147,13 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    date = Date.today
-    @classes_this_week = City.find(:first, :conditions => ["name LIKE ?",params[:city] ]).courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).find(:all).paginate(:page => params[:page]||1, :per_page => 9)
-    p @classes_this_week
+    classes            = Course.active.located_in(params[:city])
+    @tags              = classes.active_tags
+    @classes_this_week = classes.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
+    @tags = Course.active_tags
     keyword =  TAGS[params[:index].to_i]
     #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
     date = Date.today
