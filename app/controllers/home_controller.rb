@@ -5,14 +5,6 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
 
   def index
-    if current_user
-      redirect_to user_root_path
-      #redirect_to current_user
-    end
-    # @fav1 = Course.find(5)
-    # @fav2 = Course.find(3)
-    # @fav3 = Course.find(4)
-    # @fav4 = Course.find(6)
   end
 
   def learn
