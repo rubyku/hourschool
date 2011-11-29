@@ -51,11 +51,13 @@ class HomeController < ApplicationController
       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
     end
 
-    #get classes this month
     @classes_this_week = Course.active.order("courses.date ASC")
-    @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 9)
-    #p @classes_in_my_location
-    # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
+
+    @classes = (@classes_in_my_location & @classes_this_week).sort_by! { |course| [course.date, course.time_range] }
+
+    #get classes this month
+    @classes = @classes.paginate(:page => params[:page], :per_page => 9)
+
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,
           :at_most => 10000,
