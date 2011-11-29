@@ -265,6 +265,8 @@ class CoursesController < ApplicationController
   
   def must_be_live
     @course = Course.find(params[:id])
+    Rails.logger.info @course.status.inspect
+    Rails.logger.info "========================"
     if @course.status != "live"
       redirect_to user_root_path
     end

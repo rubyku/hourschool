@@ -19,7 +19,7 @@ HourschoolV2::Application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
-  match 'user_root' => 'home#learn'
+  match 'user_root' => 'home#index'
   resources :users, :only => [:index, :show] 
   
   resources :payments

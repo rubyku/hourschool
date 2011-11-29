@@ -2253,6 +2253,7 @@ img#create-class-star {
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.1em;
+  margin-top: 10px;
 }
 
 .pagenote-button {
@@ -2276,6 +2277,7 @@ img#create-class-star {
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
+  margin-top: 10px;
 }
 
 hr#pagenote{
@@ -2430,6 +2432,7 @@ p.class-details-heart-number {
   font-size: 11px;
   letter-spacing: 0.1em;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .edit-class-button{

@@ -26,7 +26,5 @@
 	%table.view-more
 		%tr
 			%td
-				%img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
-			%td
-				= will_paginate courses
+				= will_paginate courses, :previous_label => "Prev"
 				
