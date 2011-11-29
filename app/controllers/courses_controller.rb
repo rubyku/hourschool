@@ -265,7 +265,7 @@ class CoursesController < ApplicationController
   
   def must_be_live
     @course = Course.find(params[:id])
-    if @course.status != "live"
+    if @course.status.present? && @course.status != "live"
       redirect_to user_root_path
     end
   end
