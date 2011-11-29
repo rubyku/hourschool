@@ -15,10 +15,12 @@ class HomeController < ApplicationController
       #default it
       @location = "Austin"
     end
+
     #if location is requested, assign that
     if !params[:location].nil?
       @location = params[:location]
     end
+
     #if first request, and no pagination exsits, save the location in session
     if params[:page].nil?
       session[:location] = @location
@@ -28,10 +30,12 @@ class HomeController < ApplicationController
     if (params[:location].nil? || params[:location].blank?) && @location.nil? && !params[:page].nil?
       @location = session[:location]
     end
-    date = Date.today
 
+    date = Date.today
     city = City.find_by_name(@location)
+
     neighborhood_30 = []
+
     if !city.nil?
       neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
     end
@@ -47,11 +51,13 @@ class HomeController < ApplicationController
       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
     end
 
-    #get classes this month
     @classes_this_week = Course.active.order("courses.date ASC")
-    @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 9)
-    #p @classes_in_my_location
-    # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
+
+    @classes = (@classes_in_my_location & @classes_this_week).sort_by! { |course| [course.date, course.time_range] }
+
+    #get classes this month
+    @classes = @classes.paginate(:page => params[:page], :per_page => 9)
+
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,
           :at_most => 10000,

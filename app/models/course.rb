@@ -114,14 +114,12 @@ class Course < ActiveRecord::Base
        !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
      end
 
-     def photo_geometry(style = :original)
-       @geometry ||= {}
-       path = (photo.options[:storage] == :s3) ? photo.url(style) : photo.path(style)
-       #@geometry[style] ||= Paperclip::Geometry.from_file(path)
-      @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
-
-     end
-
+   def photo_geometry(style = :original)
+     @geometry ||= {}
+     path = (photo.options[:storage] == :s3) ? photo.url(style) : photo.path(style)
+     #@geometry[style] ||= Paperclip::Geometry.from_file(path)
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
+   end
 
    private
 
