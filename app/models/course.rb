@@ -43,6 +43,10 @@ class Course < ActiveRecord::Base
   acts_as_voteable
 
 
+  def self.random
+    order('rand()')
+  end
+
   def self.located_in(city)
     joins(:city).where("name like ?", city)
   end
