@@ -1,5 +1,9 @@
 module ApplicationHelper
-  
+
+  def count_in_place_sentence(array)
+    array.inject(Hash.new(0)) {|h,i| h[i] += 1; h }.map {|city, count| "#{count} in #{city}"}.to_sentence
+  end
+
   def get_user_name(id)
     User.find(id).name
   end
