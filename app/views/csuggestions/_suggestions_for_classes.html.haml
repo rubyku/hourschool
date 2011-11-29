@@ -1,12 +1,10 @@
-
 - suggestions.each do |t|
   .vote-class.clearfix
     .vote-class-title
       .heading20-vote
         = "#{t.name}"
       .heading9-class
-        / = "Requested by #{get_user_name(t.requested_by)}"
-        = "Requests from: 3 in Austin, 5 in San Francisco, 1 in Tokyo"
+        = "Requested by #{count_in_place_sentence(t.voters_who_voted.map(&:city))}"
       %table
         %tr
           %td
