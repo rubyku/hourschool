@@ -16,8 +16,12 @@
     %ul.searchFilter
       %li
         .sidebar-heading Browse By Category
-      - TAGS.each do |tg|
-        %li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
+      - if @tags.present?
+        - @tags.each do |tg|
+          %li= link_to "#{tg.name}", tags_path("index"=>TAGS.index(tg.name))
+      - else
+        - TAGS.each do |tg|
+          %li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
   / 
   / %hr#class    
   / .sidebar-content

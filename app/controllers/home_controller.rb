@@ -41,25 +41,21 @@ class HomeController < ApplicationController
     end
 
     @classes_in_my_location = []
-    @suggestions_in_my_location = []
-
-    if neighborhood_30.size == 0
-      @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? ", "#{city.name}"]).courses unless city.nil?
-      @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
-    end
-
+     @suggestions_in_my_location = []
+     if neighborhood_30.size == 0
+       @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? ", "#{city.name}"]).courses unless city.nil?
+       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
+     end
     neighborhood_30.each do |ncity|
       @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).courses
       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
     end
 
     #get classes this month
-    @classes_this_week = Course.where('date BETWEEN ? AND ?', date, date.advance(:weeks => 4)).find(:all, :order => "courses.date ASC")
-
-    @classes = (@classes_in_my_location & @classes_this_week).sort_by { |course| course.date }
-    @classes.sort_by { |course| course.time_range }
-    @classes = @classes.paginate(:page => params[:page], :per_page => 9)
-
+    @classes_this_week = Course.active.order("courses.date ASC")
+    @classes = (@classes_in_my_location & @classes_this_week).paginate(:page => params[:page], :per_page => 9)
+    #p @classes_in_my_location
+    # @classes_this_week = @classes_this_week[0..9] unless @classes_this_week.size < 10
     @top_suggestions =  Csuggestion.tally(
       {  :at_least => 1,
           :at_most => 10000,
@@ -69,21 +65,13 @@ class HomeController < ApplicationController
 
       #top suggestions has to be the first operator to preserve ranking
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
-
-      #p "ts"
-      #p @top_suggestions
-      #p @suggestions_in_my_location
-
      if Course.count > 0
-        @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+        @random_course   = Course.random
+        @classes_we_like = Course.random.first(2)
+     else
         @classes_we_like = []
-        (1..2).each do |val|
-          @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
-        end
-      else
-        @classes_we_like = []
-
-      end
+     end
+     @tags = @classes_this_week.active_tags
   end
 
 
@@ -156,12 +144,13 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    date = Date.today
-    @classes_this_week = City.find(:first, :conditions => ["name LIKE ?",params[:city] ]).courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).find(:all).paginate(:page => params[:page]||1, :per_page => 9)
-    p @classes_this_week
+    classes            = Course.active.located_in(params[:city])
+    @tags              = classes.active_tags
+    @classes_this_week = classes.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
+    @tags = Course.active_tags
     keyword =  TAGS[params[:index].to_i]
     #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
     date = Date.today
@@ -175,7 +164,7 @@ class HomeController < ApplicationController
 
       #@classes_this_week = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)]).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
 
-    @classes_this_week = Course.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4)).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
+    @classes_this_week = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
      @classes_we_like = []
       (1..2).each do |val|
         @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)

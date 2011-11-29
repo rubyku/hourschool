@@ -43,6 +43,22 @@ class Course < ActiveRecord::Base
   acts_as_voteable
 
 
+  def self.random
+    order('rand()')
+  end
+
+  def self.located_in(city)
+    joins(:city).where("name like ?", city)
+  end
+
+  def self.active
+    where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now.end_of_day, 4.weeks.from_now)
+  end
+
+  def self.active_tags
+    active.tag_counts_on(:categories)
+  end
+
   def teacher
     teachers = croles.where(:role => 'teacher')
     if teachers.any?
