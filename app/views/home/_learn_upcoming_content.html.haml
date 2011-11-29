@@ -37,7 +37,7 @@
             .heading9-class 
               = "#{c.seats_left} seats left"
               = "#{(c.date - Date.today).numerator} days from today"
-            %p= c.about.truncate(100).html_safe
+            %p= c.about
   
     .classBlock
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
@@ -70,7 +70,7 @@
             .heading9-class 
               = "#{c.seats_left} seats left"
               = "#{(c.date - Date.today).numerator} days from today"
-            %p= c.about.truncate(100).html_safe
+            %p= c.about
   
     .classBlock_last
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
