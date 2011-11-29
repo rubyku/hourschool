@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
-  
+
   protect_from_forgery
   before_filter :limit_subdomain_access
 
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
             redirect_to root_url(:subdomain => false)
           end
       end
-      
+
       def after_sign_in_path_for(resource)
          if resource.is_a?(Member)
             #p "member domain is #{resource.member_domain}"
@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
             user_root_path
           end
       end
-      
-      
-      
-     
+
+
+
+
 end

@@ -6,7 +6,7 @@ class SubdomainsController < ApplicationController
   before_filter :match_member
   #, :except => [:index, :show]
   respond_to :html
-  
+
   def index
     @subdomains = Subdomain.all
 
@@ -31,23 +31,23 @@ class SubdomainsController < ApplicationController
   # GET /subdomains/new.xml
   # def new
   #    @subdomain = Subdomain.new
-  # 
+  #
   #    respond_to do |format|
   #      format.html # new.html.erb
   #      format.xml  { render :xml => @subdomain }
   #    end
   #  end
-  # 
+  #
   #  # GET /subdomains/1/edit
   #  def edit
   #    @subdomain = Subdomain.find(params[:id])
   #  end
-  # 
+  #
   #  # POST /subdomains
   #  # POST /subdomains.xml
   #  def create
   #    @subdomain = Subdomain.new(params[:subdomain])
-  # 
+  #
   #    respond_to do |format|
   #      if @subdomain.save
   #        format.html { redirect_to(@subdomain, :notice => 'Subdomain was successfully created.') }
@@ -58,12 +58,12 @@ class SubdomainsController < ApplicationController
   #      end
   #    end
   # end
-  # 
+  #
   #  # PUT /subdomains/1
   #  # PUT /subdomains/1.xml
   #  def update
   #    @subdomain = Subdomain.find(params[:id])
-  # 
+  #
   #    respond_to do |format|
   #      if @subdomain.update_attributes(params[:subdomain])
   #        format.html { redirect_to(@subdomain, :notice => 'Subdomain was successfully updated.') }
@@ -74,13 +74,13 @@ class SubdomainsController < ApplicationController
   #      end
   #    end
   #  end
-  # 
+  #
   #  # DELETE /subdomains/1
   #  # DELETE /subdomains/1.xml
   #  def destroy
   #    @subdomain = Subdomain.find(params[:id])
   #    @subdomain.destroy
-  # 
+  #
   #    respond_to do |format|
   #      format.html { redirect_to(subdomains_url) }
   #      format.xml  { head :ok }
@@ -94,7 +94,7 @@ class SubdomainsController < ApplicationController
        unless current_member.organization == @enterprise.name
          redirect_to current_member, :alert => "You can only access your organization's hourschool page"
        end
-       
+
      end
-  
+
 end
