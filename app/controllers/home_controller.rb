@@ -1,8 +1,9 @@
 require 'will_paginate/array'
 class HomeController < ApplicationController
   layout nil
-    layout 'application', :except => :index
-    before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
+  layout 'application', :except => :index
+  before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
+
   def index
     if current_user
       redirect_to user_root_path
