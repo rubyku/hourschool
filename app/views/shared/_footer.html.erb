@@ -2,13 +2,13 @@
 
 
   <div class="grid_6">  
-    <% if !get_tumblr_first_regular_post.nil? %>
-    <% tum = get_tumblr_first_regular_post %>
-    <div class="footer-heading">Recent Blog Post</div>
-    <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
+    <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
+        <% tum = get_tumblr_first_regular_post %>
+        <div class="footer-heading">Recent Blog Post</div>
+        <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
-    <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
-
+        <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
+    <%- else -%>
     <% end %>
 
   </div>
