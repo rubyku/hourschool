@@ -68,15 +68,76 @@
         
         <%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "homepage_logo"%>
         
+        
+     <div id="homepage_login">
 
-        <div id="login">
-    
+             <ul id="login">
+            <% if user_signed_in? %>
+               <li id="homepage_login">Peer learning in Austin</li>
+               <li id="homepage_login">   
 
-      <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
-     <%= link_to "Sign in", new_user_session_path, :class => "homepage_menu"  %>
-      
+                   <span id="nav-dropdown">
+                       <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
+                         <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
+                           <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                   </span>
 
-      </div>
+                   <span id="nav-dropdown-selected" style="display:none;">
+                       <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
+                         <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
+                           <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                         </span>
+
+               <% else %>
+                 <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
+                 <%= link_to "sign in", new_user_session_path, :class => "homepage_menu"%>
+               <% end %>
+
+             </li>
+
+           <% if user_signed_in? %>
+               <div id="dropdown-box" style="display:none;">
+                 <table id="dropdown-text">
+                   <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "My profile", profile_path %></td></tr>
+                   <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path %></td></tr>
+                   <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path %></td></tr>
+                 </table>
+               </div>
+           <% end %>
+             </ul>
+         </div>
+
+         <script type="text/javascript">
+             $("#nav-dropdown").click(function() {
+                 $("#dropdown-box").show();
+                 $("#nav-dropdown").hide();
+                 $("#nav-dropdown-selected").show();
+                 return false;
+              });
+            $("#nav-dropdown-selected").click(function() {
+                  $("#dropdown-box").hide();
+                  $("#nav-dropdown").show();
+                  $("#nav-dropdown-selected").hide();
+             });
+         </script> 
+
+         <script type="text/javascript">
+             $("#nav-dropdown").click(function() {
+                 $("#dropdown-box").show();
+                 $("#nav-dropdown").hide();
+                 $("#nav-dropdown-selected").show();
+                 return false;
+              });
+            $("#nav-dropdown-selected").click(function() {
+                  $("#dropdown-box").hide();
+                  $("#nav-dropdown").show();
+                  $("#nav-dropdown-selected").hide();
+                  return false;
+             });
+         </script>
+
+
+
 
         <table id="homepage_menu">
           <tr id="homepage_menu">

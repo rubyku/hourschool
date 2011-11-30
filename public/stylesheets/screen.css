@@ -787,7 +787,7 @@ td#homepage_menu_faq {
 }
 
 /* line 166, ../../app/assets/stylesheets/components/homepage.scss */
-#login {
+#homepage_login {
   position: relative;
   float: right;
   text-transform: uppercase;
@@ -795,6 +795,16 @@ td#homepage_menu_faq {
   font-weight: 700;
   font-size: 10px;
   letter-spacing: 0.1em;
+}
+
+
+/* line 26, ../../app/assets/stylesheets/components/header.scss */
+li#homepage_login {
+  float: left;
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+  top: 0px;
 }
 
 /*......BANNER CONTENT......*/
@@ -1182,7 +1192,7 @@ a#logo:hover {
 
 /* line 26, ../../app/assets/stylesheets/components/header.scss */
 li#login {
-  float: left;
+  float: right;
   color: #8f8f8f;
   text-decoration: none;
   margin-left: 10px;
