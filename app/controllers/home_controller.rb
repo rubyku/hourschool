@@ -8,72 +8,13 @@ class HomeController < ApplicationController
   end
 
   def learn
-
-    if current_user
-      @location = current_user.city
-    else
-      #default it
-      @location = "Austin"
+    if current_user && current_user.zip.present?
+      cities = City.geo_scope(:origin=> current_user.zip, :conditions=>'distance < 30')
+      @courses = Course.active.where(:city_id => cities.map(&:id)).order(:date)
     end
-
-    #if location is requested, assign that
-    if !params[:location].nil?
-      @location = params[:location]
-    end
-
-    #if first request, and no pagination exsits, save the location in session
-    if params[:page].nil?
-      session[:location] = @location
-    end
-
-    #if not the first request
-    if (params[:location].nil? || params[:location].blank?) && @location.nil? && !params[:page].nil?
-      @location = session[:location]
-    end
-
-    date = Date.today
-    city = City.find_by_name(@location)
-
-    neighborhood_30 = []
-
-    if !city.nil?
-      neighborhood_30 = City.geo_scope(:within => "30", :origin => [city.lat,city.lng])
-    end
-
-    @classes_in_my_location = []
-     @suggestions_in_my_location = []
-     if neighborhood_30.size == 0
-       @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? ", "#{city.name}"]).courses unless city.nil?
-       @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
-     end
-    neighborhood_30.each do |ncity|
-      @classes_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).courses
-      @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
-    end
-
-    @classes_this_week = Course.active.order("courses.date ASC")
-
-    @classes = (@classes_in_my_location & @classes_this_week).sort_by! { |course| [course.date, course.time_range] }
-
-    #get classes this month
-    @classes = @classes.paginate(:page => params[:page], :per_page => 9)
-
-    @top_suggestions =  Csuggestion.tally(
-      {  :at_least => 1,
-          :at_most => 10000,
-          :limit => 100,
-          :order => "csuggestions.name DESC"
-      })
-
-      #top suggestions has to be the first operator to preserve ranking
-      @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
-     if Course.count > 0
-        @random_course   = Course.random
-        @classes_we_like = Course.random.first(2)
-     else
-        @classes_we_like = []
-     end
-     @tags = @classes_this_week.active_tags
+    @courses ||= Course.active.order(:date, :time)
+    @tags    = @courses.active_tags
+    @courses = @courses.paginate(:page => params[:page]||1, :per_page => 20)
   end
 
 
@@ -146,9 +87,9 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    classes            = Course.active.located_in(params[:city]).order(:date)
-    @tags              = classes.active_tags
-    @classes_this_week = classes.paginate(:page => params[:page]||1, :per_page => 9)
+    classes  = Course.active.located_in(params[:city]).order(:date)
+    @tags    = classes.active_tags
+    @courses = classes.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
@@ -163,14 +104,7 @@ class HomeController < ApplicationController
       else
         user_location = session[:user_location]
       end
-
-      #@classes_this_week = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)]).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
-
-    @classes_this_week = Course.active.tagged_with("#{keyword}").order(:date).find(:all).paginate(:page => params[:page], :per_page => 9)
-     @classes_we_like = []
-      (1..2).each do |val|
-        @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
-      end
+    @courses = Course.active.tagged_with("#{keyword}").order(:date).find(:all).paginate(:page => params[:page], :per_page => 9)
   end
 
   def organization
