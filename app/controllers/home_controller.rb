@@ -146,7 +146,7 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    classes            = Course.active.located_in(params[:city])
+    classes            = Course.active.located_in(params[:city]).order(:date)
     @tags              = classes.active_tags
     @classes_this_week = classes.paginate(:page => params[:page]||1, :per_page => 9)
   end
@@ -166,7 +166,7 @@ class HomeController < ApplicationController
 
       #@classes_this_week = City.find(:first, :conditions => ["name LIKE ?", "#{user_location}"]).courses.find(:all,:conditions => ['date between ? and ?', date, date.advance(:weeks => 4)]).tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 6)
 
-    @classes_this_week = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
+    @classes_this_week = Course.active.tagged_with("#{keyword}").order(:date).find(:all).paginate(:page => params[:page], :per_page => 9)
      @classes_we_like = []
       (1..2).each do |val|
         @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
