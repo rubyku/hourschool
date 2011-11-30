@@ -15,7 +15,7 @@ gem 'haml'
 gem 'rake', '0.8.7'
 gem 'jquery-rails', '>= 1.0.12'
 
-gem 'friendly_id', '3.2.1'
+gem 'friendly_id', '4.0.0.beta14'
 # uncomment the next line if you wish to deploy to Heroku
 gem 'heroku', :group => :development
 

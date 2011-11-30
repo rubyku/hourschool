@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
   attr_accessible :zipcode, :zip, :about, :referral, :facebook, :twitter, :web
 
-  has_friendly_id :name, :use_slug => true, :strip_non_ascii => true
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 
   has_many :croles, :dependent => :destroy
   has_many :courses, :through => :croles

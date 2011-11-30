@@ -6,5 +6,7 @@ class Csuggestion < ActiveRecord::Base
 
   acts_as_voteable
 
+  extend FriendlyId
+  friendly_id :name, :use => :history
 
 end
