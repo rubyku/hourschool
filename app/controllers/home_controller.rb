@@ -13,8 +13,7 @@ class HomeController < ApplicationController
       @courses = Course.active.where(:city_id => cities.map(&:id)).order(:date)
     end
     @courses ||= Course.active.order(:date, :time)
-    @tags    = @courses.active_tags
-    @courses = @courses.paginate(:page => params[:page]||1, :per_page => 20)
+    @courses = @courses.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
 
@@ -88,12 +87,10 @@ class HomeController < ApplicationController
 
   def search_by_city
     classes  = Course.active.located_in(params[:city]).order(:date)
-    @tags    = classes.active_tags
     @courses = classes.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
-    @tags = Course.active_tags
     keyword =  TAGS[params[:index].to_i]
     #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
     date = Date.today
