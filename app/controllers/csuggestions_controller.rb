@@ -44,7 +44,7 @@ class CsuggestionsController < ApplicationController
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.csuggestions << @csuggestion
       city.save
-      redirect_to current_user, :notice => "Successfully created csuggestion."
+      redirect_to @csuggestion, :notice => "Successfully created csuggestion."
     else
       render :action => 'new'
     end
