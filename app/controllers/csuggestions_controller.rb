@@ -76,6 +76,9 @@ class CsuggestionsController < ApplicationController
     votefor_id = params[:csid]
     @csuggestion = Csuggestion.find(votefor_id)
     current_user.vote_for(@csuggestion) unless current_user.voted_on?(@csuggestion)
+    respond_to do |format|
+      format.html {redirect_to :back}
+    end
   end
 
   protected
