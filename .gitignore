@@ -4,3 +4,4 @@ db/seeds.rb
 log/*.log
 tmp/
 .rvmrc
+.DS_Store
