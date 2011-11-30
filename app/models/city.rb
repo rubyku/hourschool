@@ -10,4 +10,8 @@ class City < ActiveRecord::Base
   #include Geokit::Mappable
   acts_as_mappable
 
+  def name_state
+    "#{name}, #{state}"
+  end
+
 end
