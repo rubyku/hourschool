@@ -15,7 +15,7 @@
         .confirm-class-description
           .heading13-class
             = @course.title
-          %p 
+          %p
             - if @course.coursetag.blank?
               = @course.about
             - else
@@ -58,8 +58,8 @@
       .heading9-class Purchase this class through Amazon
       / = render "amazon_form"
       = button_to "Yes I'm in!", register_path, :class => "register-class-button"
-      
-      
+
+
 .sidebar
   .tipbox
     %img.tape{:src => '../../../images/v2/Tape_White.png'}

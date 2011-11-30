@@ -1,12 +1,12 @@
-= render :partial => "home/header"  
+= render :partial => "home/header"
 .page
   .page-content
-  
+
     .page-section-float-left
       .confirm-second-message Your class is now live!
-      
+
     %hr#confirm
-      
+
     .page-section-float-left
       .confirm-classblock
         - link_to @course do
@@ -24,12 +24,12 @@
           %p= @course.about
 
         .sidebar-block-last
-        
+
           %ul.noBullet
             %li.noBullet
               %img.class-details-icon-cost{:src => '/images/v2/icon_pricetag.png'}
             %li.noBullet
-              .class-details 
+              .class-details
                 = @course.price
               .class-alterntives
 
@@ -53,17 +53,17 @@
               .class-alterntives (Map this location)
 
 
-      .class-description-block        
+      .class-description-block
 
         .confirm-bring-friend Invite people to take your class!
-        
+
         %table
           %tr
             %td
-              .confirm-copy-url Click to copy URL: 
+              .confirm-copy-url Click to copy URL:
             %td
               %input(type='text' placeholder='http://shorturl.com/33253')
-        
+
         %table
           %tr
             %td

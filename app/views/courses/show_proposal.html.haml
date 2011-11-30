@@ -1,7 +1,7 @@
 %head
-  = include_yui_editor_if_used.html_safe 
-  
-= render :partial => "home/header"  
+  = include_yui_editor_if_used.html_safe
+
+= render :partial => "home/header"
 
 .page
   .page-content
@@ -23,10 +23,10 @@
       .class-description-block
         .class-title-big
           = "#{@current_course.title}"
-        
-              
+
+
     .page-section-float-left
-      .class-section-heading 
+      .class-section-heading
         = "This class will cover"
         %p= sanitize @current_course.about
       .class-section-float-left
@@ -36,11 +36,11 @@
       .class-section-float-left
         = "About the teacher"
         %p= sanitize @current_course.experience
-        
+
     .page-section-float-left
       - if user_admin?
         %p= "Welcome, #{current_user.name}"
         = button_to "Approve this course", approve_path(:id => @current_course.id), :class => "submit-proposal-button", :method => :put
-        
-      
-    
+
+
+

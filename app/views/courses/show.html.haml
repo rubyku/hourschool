@@ -1,7 +1,7 @@
 %head
-  = include_yui_editor_if_used.html_safe 
-  
-= render :partial => "home/header"  
+  = include_yui_editor_if_used.html_safe
+
+= render :partial => "home/header"
 - p "request is #{request.url}"
 .page
   .page-content
@@ -37,10 +37,10 @@
           /   - else
           /     = "You have hearted this class!"
     .page-section-float-left
-      .class-section-heading 
+      .class-section-heading
         = "This class will cover"
       %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
-        
+
     %hr#class
     %br
       .class-section-heading Join the conversation
@@ -48,4 +48,4 @@
 
 
 = render :partial => "sidebar", :locals => {:course => @course}
-    
+
