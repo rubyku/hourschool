@@ -1,11 +1,11 @@
 .page
   .page-content
-    .heading25_ccc 
+    .heading25_ccc
       = "Your Proposal"
     - if @reqid.nil?
-      %p So you want to teach a class! That's awesome. Tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
+      %p So you want to teach a class! That's awesome. Tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so.
     - else
-      %p Thanks for claiming a class! All the people who requested it would be thrilled. Please tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so. 
+      %p Thanks for claiming a class! All the people who requested it would be thrilled. Please tell us a little more about what you're thinking of teaching. We review these really quickly and will get back to you within a day or so.
     %br
       - @course.errors.full_messages.each do |message|
         .form-error
@@ -34,17 +34,16 @@
           - else
             / = f.text_area :about, :value => "#{@reqdescription}", :class => "rich_text_editor",:rows => "15", :style => "width : 90%"
             = f.text_area :about, :value => "#{@reqdescription}", :class => "form-with-margin"
-            
+
       .form-question
         = f.label "What is your experience?"
       .form-question-tip
         = 'No need to be an expert. Just tell us about your passion for the subject.'
         %br
         = f.text_area :experience,  :class => "form-with-margin"
-      /   
-      / .page-section-float-left   
+      /
+      / .page-section-float-left
       /   = f.check_box :terms_of_service
       /   = "I understand and I agree!"
 
       = f.submit "Submit your proposal", :class => "submit-proposal-button"
-      

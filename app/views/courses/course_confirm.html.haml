@@ -18,7 +18,7 @@
         .confirm-class-description
           .heading13-class
             = @course.title
-          %p 
+          %p
             - if @course.coursetag.blank?
               = @course.about
             - else
@@ -56,8 +56,8 @@
     .class-description-block
       = render :partial => "social_share"
     %br= button_to "Go to course page", @course, :method => :get, :class => "submit-proposal-button"
-      
-      
+
+
 .sidebar
   .tipbox
     %img.tape{:src => '../../../images/v2/Tape_White.png'}

@@ -5,15 +5,15 @@
 
 .page
   .page-content
-    .heading25_ccc 
+    .heading25_ccc
       = "1. Overview"
     - @course.errors.full_messages.each do |message|
       .error
         %p= "#{message}"
-        
+
     = form_for @course, :html => { :multipart => true } do |f|
       - for attribute in [:crop_x, :crop_y, :crop_w, :crop_h]
-        = f.hidden_field attribute, :id => attribute 
+        = f.hidden_field attribute, :id => attribute
       = hidden_field_tag 'req', "#{@reqid}"
       = f.hidden_field :status, :value => "live"
       .form-question
@@ -30,24 +30,24 @@
       %br/
       .form-question-tip
         = f.text_field :coursetag, :class => "form-with-margin"
-      
+
       .form-question
         = f.label :description
       .form-question-tip
         = 'Try to be a little more specific. For example, "typography" is better than "design". "Weeknight quick dinner" is better than "cooking".'
         %br
           - if @reqid.nil?
-            
+
             = f.text_area :description, :class => "form-with-margin"
           - else
-            
+
             = f.text_area :description, :value => "#{@reqdescription}", :class => "rich_text_editor", :rows => "15", :style => "width : 90%"
       .form-question
         = f.label :categories
       %p.tip
         = 'Choose the best category this class falls into '
         / = f.text_field :categories, :value => ' ', :class => "form-with-margin"
-        = f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']]) 
+        = f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking']])
 
       %hr#class
       %br
@@ -94,4 +94,3 @@
         = f.label "Done?"
       %br/
       = f.submit
-      

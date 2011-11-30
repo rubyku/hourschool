@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
-  
+
   validates_presence_of :amount
   validates_presence_of :transaction_id
 
@@ -18,5 +18,5 @@ class Payment < ActiveRecord::Base
     def parse(currency_and_amount)
       @parsed ||= currency_and_amount.split
     end
-  
+
 end
