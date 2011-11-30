@@ -15,7 +15,6 @@ class Ecourse < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   attr_accessible :photo
-  has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
 
   def teacher
      teachers = eroles.where(:role => 'teacher')

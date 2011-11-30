@@ -39,8 +39,18 @@ class Course < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   attr_accessible :photo
-  has_friendly_id :title, :use_slug => true, :strip_non_ascii => true
+
+  extend FriendlyId
+  friendly_id :pretty_slug, :use => :history
   acts_as_voteable
+
+  def pretty_slug
+    if city.present?
+      "#{title}-in-#{city.name_state}"
+    else
+      "#{title}"
+    end
+  end
 
 
   def self.random
