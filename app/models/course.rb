@@ -56,7 +56,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active_tags
-    active.tag_counts_on(:categories)
+    active.tag_counts_on(:categories).order(:name)
   end
 
   def teacher
