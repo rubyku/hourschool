@@ -58,7 +58,11 @@ class Course < ActiveRecord::Base
   end
 
   def self.located_in(city)
-    joins(:city).where("name like ?", city)
+    if city.downcase == "all"
+      where("")
+    else
+      joins(:city).where("name like ?", city)
+    end
   end
 
   def self.active

@@ -86,8 +86,7 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    classes  = Course.active.located_in(params[:city]).order(:date)
-    @courses = classes.paginate(:page => params[:page]||1, :per_page => 9)
+    @courses = Course.active.located_in(params[:city]).order(:date).paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
