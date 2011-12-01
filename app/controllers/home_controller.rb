@@ -176,19 +176,10 @@ class HomeController < ApplicationController
   def organization
   end
 
-  def community
-  end
-
-  def community_faq
-  end
-
   def business
   end
 
   def about
-  end
-
-  def contactus
   end
 
   def search
