@@ -72,7 +72,9 @@ HourschoolV2::Application.routes.draw do
   match '/nominate_confirm' => 'home#nominate_confirm'
   match '/contact_teacher' => 'courses#contact_teacher'
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
-    
+  match '/contact_all_students' => 'courses#contact_all_students'
+  match '/contact_all_students_send' => 'courses#contact_all_students_send'
+      
   match '/business' => 'home#business'
   match '/about' => 'home#about'
   root :to => "home#index"

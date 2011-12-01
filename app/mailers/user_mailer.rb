@@ -1,9 +1,10 @@
 class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
 
-  def contact_all_students(subject,message,course)
+  def contact_all_students(current_user,message,course)
     @course = course
-    mail(:to => course.students.map(&:email), :subject => subject)
+    @message = message
+    mail(:to => course.students.map(&:email), :subject => "Your teacher sent you a message!")
   end
 
 

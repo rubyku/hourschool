@@ -151,6 +151,6 @@
       - if course.teacher == current_user
         %ul.noBullet
           %li.noBullet
-            = link_to "Send a message to all students", '#'
+            = link_to "Send a message to all students", contact_all_students_path(:id => course.id)
           %li.noBullet
             = link_to "Update course", edit_course_path(course.id)

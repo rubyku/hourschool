@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart]
   before_filter :must_be_admin, :only => [:index, :approve]
-  before_filter :must_be_live, :only => [:show]
+  # before_filter :must_be_live, :only => [:show]
   uses_yui_editor
 
   def index
@@ -255,6 +255,17 @@ class CoursesController < ApplicationController
   def contact_teacher_send
     @course = Course.find(params[:id])
     UserMailer.contact_teacher(current_user, @course, params[:message]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
+  
+  def contact_all_students
+    @course = Course.find(params[:id])
+  end
+
+  def contact_all_students_send
+    @course = Course.find(params[:id])
+    UserMailer.contact_all_students(current_user, @course, params[:message]).deliver
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end
