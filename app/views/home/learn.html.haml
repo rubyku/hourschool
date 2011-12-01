@@ -10,7 +10,7 @@
       .welcome-header Latest classes in your city
       %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 
-        = render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @classes}
+        = render :partial => 'learn_upcoming_content', :locals => {:classes_this_week => @courses}
 
     / - if @suggestions.size > 0
     /   .page-section-float-left

@@ -1,30 +1,30 @@
 - count = 0
-- courses.each do |c|
+- courses.each do |course|
   - count = count + 1
   - if count%3 == 0
     - className = "classBlock_last"
   - else
     - className = "classBlock"
   %div{:class => "#{className}"}
-    - if c.photo.exists?
-      = image_tag(c.photo.url(:small), :size => "190x120")
+    - if course.photo.exists?
+      = image_tag(course.photo.url(:small), :size => "190x120")
       %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
     - else
       = image_tag("/images/v2-courses/112_BakingBread.jpg")
       %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
     %br
-      
+
       .class-description
-        .heading13-class 
-          = link_to "#{c.title}", c
-        %p= c.description.truncate(50)
-        .heading9-class 
-          = "#{c.seats_left} seats left"
-          = "#{(c.date - Date.today).numerator} days from today"
+        .heading13-class
+          = link_to "#{course.title}", course
+        %p= course.description.truncate(50) unless course.description.blank?
+        .heading9-class
+          = "#{course.seats_left} seats left"
+          = "#{(course.date - Date.today).numerator} days from today"
 
 .page-section-float-right
   %table.view-more
     %tr
       %td
         = will_paginate courses, :previous_label => "Prev"
-        
+
