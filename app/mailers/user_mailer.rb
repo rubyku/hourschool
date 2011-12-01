@@ -6,9 +6,15 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.students.map(&:email), :subject => subject)
   end
 
-  def contact_teacher(subject, message, course)
+
+  # course = Course.find(params[:id])
+  # UserMailer.contact_teacher(user, course, "hello there").deliver
+  def contact_teacher(current_user, course, message)
+    @email = course.teacher.email
+    @user = current_user
     @course = course
-    mail(:to => course.teacher.email, :subject => subject)
+    @message = message
+    mail(:to => course.teacher.email, :subject => "A student sent you a message!")
   end
 
   def send_registration_mail(user_email,user_name)

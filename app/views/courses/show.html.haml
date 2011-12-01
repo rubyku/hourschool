@@ -3,6 +3,11 @@
 
 = render :partial => "home/header"
 - p "request is #{request.url}"
+
+- if "#{notice}"
+  %p#notice
+    = "#{notice}"
+
 .page
   .page-content
     .page-section-float-left

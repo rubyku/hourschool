@@ -134,7 +134,7 @@
           %br/
 
       - if course.teacher != current_user
-        %br= link_to "Contact Teacher", '#'
+        %br= link_to "Contact teacher", contact_teacher_path(:id => course.id)
 
     .sidebar-block-last
       .sidebar-heading

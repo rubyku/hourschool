@@ -1,5 +1,6 @@
-Hi,
+Hi <%= @course.teacher.name %>,
 
-This is a test mail to the teacher of the class <%= @course.title %>
-
-Thanks!
+This is a message for you from <%= @user.name %>, who is a student from you <%= @course.title %> class. 
+  
+<%= @message %>
+  

@@ -252,6 +252,12 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def contact_teacher_send
+    @course = Course.find(params[:id])
+    UserMailer.contact_teacher(current_user, @course, params[:message]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
 
 
   private

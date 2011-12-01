@@ -141,10 +141,6 @@ class HomeController < ApplicationController
     redirect_to @csuggestion
   end
 
-  def nominate_confirm
-    # @req = Csuggestion.find(params["id"])
-  end
-
   def search_by_city
     classes            = Course.active.located_in(params[:city]).order(:date)
     @tags              = classes.active_tags
