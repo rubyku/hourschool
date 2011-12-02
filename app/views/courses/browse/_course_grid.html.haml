@@ -1,0 +1,16 @@
+- courses.in_groups_of(3) do |group|
+  - group.each do |course|
+    - if course.present?
+      .classBlock
+        = link_to_image_for_course(course)
+        .class-description
+          .heading13-class
+            = link_to course.title, course
+          .heading9-class
+            = "#{course.seats_left} seats left"
+            = "#{(course.date - Date.today).numerator} days remaining"
+          %p= course.about
+    - else
+      .classBlock
+      // do nothing
+

@@ -1,0 +1,19 @@
+%head
+  = include_yui_editor_if_used
+= render :partial => "header"
+
+.page
+  .page-content
+    - if @teaser_courses.present?
+      = render :layout => 'shared/page/section', :locals => {:header => "Latest classes in your city"} do
+        = render :partial => 'courses/browse/course_grid', :locals => {:courses => @teaser_courses}
+    = render :layout => 'shared/page/section', :locals => {:header => "Check out these classes"} do
+      = render :partial => 'courses/browse/course_grid', :locals => {:courses => @courses}
+      .page-section-float-right
+        %table.view-more
+          %tr
+            %td
+              = will_paginate @courses, :previous_label => "Prev"
+
+- content_for :sidebar do
+  = render :partial => 'courses/browse/sidebar'

@@ -9,10 +9,16 @@ class HomeController < ApplicationController
 
   def learn
     if current_user && current_user.zip.present?
-      @local_courses = Course.near(:zip => current_user.zip).active
+      teaser_courses = Course.near(:zip => current_user.zip).active.paginate(:page => params[:page]||1)
     end
-    @courses ||= Course.active
-    @courses = @courses.paginate(:page => params[:page]||1, :per_page => 9)
+
+    if teaser_courses && teaser_courses.total_entries >= Course::DEFAULT_PER_PAGE
+      @courses  = teaser_courses
+    else
+      @teaser_courses = teaser_courses
+      @courses        = Course.active.exclude(@teaser_courses).paginate(:page => params[:page]||1)
+    end
+    render 'courses/browse/index'
   end
 
 

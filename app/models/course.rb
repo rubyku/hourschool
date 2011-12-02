@@ -19,6 +19,7 @@ class Course < ActiveRecord::Base
   acts_as_taggable_on :categories
 
   default_scope order(:date, :time)
+  self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
                     :storage => :s3,
@@ -50,6 +51,14 @@ class Course < ActiveRecord::Base
       "#{title}-in-#{city.name_state}"
     else
       "#{title}"
+    end
+  end
+
+  def self.exclude(resource)
+    if resource.present?
+      where("id not in (?)", resource.map(&:id))
+    else
+      where("")
     end
   end
 
