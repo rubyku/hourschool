@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       cities = City.geo_scope(:origin=> current_user.zip, :conditions=>'distance < 30')
       @courses = Course.active.where(:city_id => cities.map(&:id)).order(:date)
     end
-    @courses ||= Course.active.order(:date, :time)
+    @courses ||= Course.active
     @courses = @courses.paginate(:page => params[:page]||1, :per_page => 9)
   end
 
@@ -82,7 +82,7 @@ class HomeController < ApplicationController
   end
 
   def search_by_city
-    @courses = Course.active.located_in(params[:city]).order(:date).paginate(:page => params[:page]||1, :per_page => 9)
+    @courses = Course.active.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
@@ -96,7 +96,7 @@ class HomeController < ApplicationController
       else
         user_location = session[:user_location]
       end
-    @courses = Course.active.tagged_with("#{keyword}").order(:date).find(:all).paginate(:page => params[:page], :per_page => 9)
+    @courses = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
   end
 
   def organization

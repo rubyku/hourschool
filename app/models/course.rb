@@ -18,6 +18,7 @@ class Course < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
+  default_scope order(:date, :time)
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
                     :storage => :s3,
