@@ -15,27 +15,25 @@
           %td
             %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
           %td  
-            = link_to "I know someone who can teach this", nominate_path("id" => t.id)
+            = link_to "I want to nominate someone to teach this class", nominate_path("id" => t.id)
     .vote-class-number
       .heading35-vote
         %span{:id => "vote_count_#{t.id}"}
           = "#{t.votes_for}"
       .heading10-vote 
         = "people"
-      .claim-class-button
-        %span{:id => "vote_link_#{t.id}"}
-          - if user_signed_in?
-            - if !current_user.voted_on?(t)
-              = link_to "Vote", csvote_path("csid" => t.id)
-            - else
-              = "You voted"
+      %span{:id => "vote_link_#{t.id}"}
+        - if user_signed_in?
+          - if !current_user.voted_on?(t)
+            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-class-button"
           - else
-            = link_to_function "Vote", "alert('Please login to vote!')"
+            .voted-button
+              = "Voted"
+        - else
+          = link_to_function "Vote", "alert('Please login to vote!')"
 .page-section-float-right
   %table.view-more
     %tr
-      %td
-        %img.view-more-arrow{:src => '/images/v2/arrow_grey_pointright.png'}
       %td
         = will_paginate suggestions, :previous_label => "Prev"
         

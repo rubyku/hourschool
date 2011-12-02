@@ -22,12 +22,12 @@
           = "#{t.votes_for}"
       .heading10-vote 
         = "votes"
-      .claim-class-button
-        %span{:id => "vote_link_#{t.id}"}
-          - if user_signed_in?
-            - if !current_user.voted_on?(t)
-              = link_to "Add vote", csvote_path("csid" => t.id), :remote => true
-            - else
-              = "You voted"
+      %span{:id => "vote_link_#{t.id}"}
+        - if user_signed_in?
+          - if !current_user.voted_on?(t)
+            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-class-button"
           - else
-            = link_to_function "Add vote", "alert('Please login to vote!')"
+            .voted-button
+              = "Voted"
+        - else
+          = link_to_function "Add vote", "alert('Please login to vote!')"

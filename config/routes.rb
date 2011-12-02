@@ -23,6 +23,7 @@ HourschoolV2::Application.routes.draw do
   resources :users, :only => [:index, :show] 
   
   resources :payments
+  match 'confirm_payment' => 'payments#confirm'
   
   # match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   # match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }

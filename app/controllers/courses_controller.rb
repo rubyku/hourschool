@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart]
   before_filter :must_be_admin, :only => [:index, :approve]
-  # before_filter :must_be_live, :only => [:show]
+  before_filter :must_be_live, :only => [:show]
   uses_yui_editor
 
   def index
@@ -48,6 +48,10 @@ class CoursesController < ApplicationController
     id = params[:id]
     @course = Course.find(id)
     @current_course = Course.find(id)
+    if @course.save
+      @course.update_attribute :status, "live"
+      redirect_to @course
+    end
   end
 
   def heart
@@ -181,40 +185,6 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
-  def register_with_amazon
-     @course = Course.find(params[:referenceId])
-
-     if @course.price > 0.0
-       @payment = Payment.new(
-           :transaction_amount => params[:transactionAmount],
-           :transaction_id     => params[:transactionId]
-         )
-         if @payment.save
-           @payment.update_attributes(:user => current_user, :course => @course)
-             @user = current_user
-             @crole = @course.croles.create!(:attending => true, :role => 'student')
-             @user.croles << @crole
-             @user.courses << @course
-             @user.save
-           # @course.roles.create(:user => current_user, :role => 'student')
-           #            UserMailer.newStudent_email(@course, course_url(@course), current_user).deliver
-           #            UserMailer.newStudentToTeacher_email(@course, course_url(@course), current_user).deliver
-           #            UserMailer.newStudentToStudent_email(@course, course_url(@course), current_user).deliver
-           p "made it"
-           redirect_to confirm_path(:id => @course.id)
-           #redirect_to @course, :notice => 'You have succesfully signed up for the class.'
-         else
-           p "did not make it"
-           redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
-         end
-     end
-
-
-  end
-  def course_confirm
-    @course = Course.find(params[:id])
-  end
-
   def register
      @course = Course.find(params[:id])
 
@@ -246,6 +216,34 @@ class CoursesController < ApplicationController
       #       else
       #         render :action => 'new'
       #       end
+  end
+
+  def register_with_amazon
+     @course = Course.find(params[:id])
+     
+     @payment = Payment.new(
+       :transaction_amount => params[:transactionAmount],
+       :transaction_id     => params[:transactionId]
+     )
+      if @payment.save
+         @payment.update_attributes(:user => current_user, :course => @course)
+         # @user = current_user
+         # @crole = @course.croles.create!(:attending => true, :role => 'student')
+         # @user.croles << @crole
+         # @user.courses << @course
+         # @user.save
+             
+       p "made it"
+       redirect_to course_confirm_path(:id => @course.id)
+     else
+       p "did not make it"
+       redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
+     end
+  
+  end
+
+  def course_confirm
+    @course = Course.find(params[:id])
   end
 
   def contact_teacher

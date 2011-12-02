@@ -36,7 +36,6 @@
           .class-alterntives
             = "Purchase from Amazon"
 
-
           / = link_to image_tag("/images/amzn-payments.gif"), register_with_amazon_path(:id => course.id)
       - else
         - if course.is_a_student?(current_user)
@@ -115,16 +114,15 @@
     .sidebar-block
       .sidebar-heading Teacher
       .class-attendance-block
-        - if @current_course.teacher.photo.exists?
-          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
-        - else
-          = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
+        / - if @current_course.teacher.photo.exists?
+        /   = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
+        / - else
+        /   = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         %a.profile-link
           = link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
           %br
           = "#{course.teacher.about}"
       %ul.noBullet
-
         %li.noBullet
           %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
         %li.noBullet
@@ -137,16 +135,13 @@
         %br= link_to "Contact teacher", contact_teacher_path(:id => course.id)
 
     .sidebar-block-last
-      .sidebar-heading
-        = "Students (#{course.students.size})"
-      / .class-attendance-block
-      /   - "#{course.students.size}".each do |c|
-      /   %ul.avatar-list
-      /     %li.avatar-list
-      /       - if "#{course.student.photo}.exists?"
-      /         = image_tag("#{course.student.photo}".url(:small), :size => "190x120")
-      /       - else
-      /         = image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
+      .sidebar-heading Students
+      .class-attendance-block
+        - course.students.each do |student|
+          %a.profile-link
+            = link_to student.name, profile_path(student), :class => "profile-link"
+
+        
 
       - if course.teacher == current_user
         %ul.noBullet

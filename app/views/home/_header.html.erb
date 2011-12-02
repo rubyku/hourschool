@@ -7,9 +7,10 @@
 <div id="login">
   
         <ul id="login">
+        <% if user_signed_in? %>
           <li id="login">Peer learning in Austin</li>
           <li id="login">
-          <% if user_signed_in? %>
+          
             
               <span id="nav-dropdown">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
@@ -24,7 +25,8 @@
                     </span>
                     
           <% else %>
-            <%= link_to "sign in", new_user_session_path, :id => "menu"%>
+            <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "signup" %>
+            <%= link_to "Sign in", new_user_session_path, :class => "menu"%>
           <% end %>
           
         </li>

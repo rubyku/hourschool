@@ -1,4 +1,13 @@
-<form action="https://authorize.payments-sandbox.amazon.com/pba/paypipeline" method="post">
+<%= amazon_simple_pay_form_tag do %>
+    <input type="hidden" name="referenceId" value="<%= @course.id %>" >
+    <%= hidden_field_tag 'description', @course.title %>
+    <%= image_submit_tag('../../../images/yesbutton.png') %>
+    <br><br>
+    <img src ="../../../images/amzn-payments.gif">
+<% end %>
+
+
+<!-- <form action="https://authorize.payments-sandbox.amazon.com/pba/paypipeline" method="post">
 <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
   <input type="hidden" name="referenceId" value="<%= @course.id %>" >
   <input type="hidden" name="amount" value="<%= @course.price %>" >
@@ -17,4 +26,4 @@
   <input type="hidden" name="cobrandingStyle" value="logo" >
 
   <input type="image" src="http://g-ecx.images-amazon.com/images/G/01/asp/beige_small_paynow_withmsg_whitebg.gif" border="0">
-</form>
+</form> -->

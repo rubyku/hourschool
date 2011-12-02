@@ -1,5 +1,18 @@
 class PaymentsController < ApplicationController
 
+  def confirm
+    @payment = Payment.new(
+      :transaction_amount => params[:transactionAmount],
+      :transaction_id     => params[:transactionId]
+    )
+    if @payment.save
+      @payment.update_attributes(:user => current_user, :course => @course)
+      redirect_to(@payment, :notice => 'Payment was successfully created.')
+    else
+      redirect_to :action => "index"
+    end
+  end
+
 
   # GET /payments
   # GET /payments.xml
