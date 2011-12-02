@@ -81,9 +81,14 @@ class HomeController < ApplicationController
   end
 
   def nominate_send
+    if invalid_email? || params[:message].blank? then
+      flash[:error] = "Invalid Recipient and/or Message. Can not be blank!"
+      redirect_to :action => 'nominate', :id => params[:reqid]
+    else
     UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
     @csuggestion = Csuggestion.find(params[:reqid])
     redirect_to @csuggestion
+  end
   end
 
   def search_by_city
@@ -172,4 +177,9 @@ class HomeController < ApplicationController
     redirect_to current_user
   end
 
+  private
+
+  def invalid_email?
+    (params[:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/).nil?
+  end
 end
