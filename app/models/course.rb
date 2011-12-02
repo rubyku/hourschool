@@ -58,6 +58,14 @@ class Course < ActiveRecord::Base
     order('rand()')
   end
 
+  def self.near(options = {})
+    origin = options[:zip]
+    radius = options[:radius]||options[:distance]||30
+    cities = City.geo_scope(:origin=> origin, :conditions=>"distance < #{radius}")
+    self.where(:city_id => cities.map(&:id))
+  end
+
+
   def self.located_in(city)
     if city.downcase == "all"
       where("")

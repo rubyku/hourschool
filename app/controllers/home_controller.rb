@@ -9,8 +9,7 @@ class HomeController < ApplicationController
 
   def learn
     if current_user && current_user.zip.present?
-      cities = City.geo_scope(:origin=> current_user.zip, :conditions=>'distance < 30')
-      @courses = Course.active.where(:city_id => cities.map(&:id)).order(:date)
+      @local_courses = Course.near(:zip => current_user.zip).active
     end
     @courses ||= Course.active
     @courses = @courses.paginate(:page => params[:page]||1, :per_page => 9)
