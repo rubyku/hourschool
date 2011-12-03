@@ -13,11 +13,11 @@
 
     .page-section-float-left
 
-      - if @approved_courses.last.description.blank? || @pending_courses.count != 0 || !current_user.photo.exists?
+      - if @approved_courses.last.try(:description).blank? || @pending_courses.count != 0 || !current_user.photo.exists?
 
         .notification-center
           .sidebar-heading Notifications
-          - if @approved_courses.last.description.blank?
+          - if @approved_courses.last.try(:description).blank?
             %p Your class has been approved! Go fill out the profile.
           - else
             %p ! Your class has been approved! Go fill out the profile.
