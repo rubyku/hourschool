@@ -1,5 +1,29 @@
 module ApplicationHelper
 
+  module LayoutHelpers
+    def id_for_body(body_id=nil)
+      !body_id.blank? ? body_id : sanitized_controller_path.sub('/', '-') + '-' + action_name
+    end
+
+    def sanitized_controller_path
+      controller_path
+    end
+
+    def classes_for_body(*body_classes)
+      body_classes << sanitized_controller_path.split('/').first
+      body_classes << sanitized_controller_path.sub('/', '-') if sanitized_controller_path.match('/')
+      body_classes << action_name
+      body_classes.join(' ')
+    end
+
+    def id_for_body(body_id=nil)
+      !body_id.blank? ? body_id : sanitized_controller_path.sub('/', '-') + '-' + action_name
+    end
+  end
+
+  include LayoutHelpers
+
+
   def count_in_place_sentence(array)
     array.inject(Hash.new(0)) {|h,i| h[i] += 1; h }.map {|city, count| "#{count} in #{city}"}.to_sentence
   end

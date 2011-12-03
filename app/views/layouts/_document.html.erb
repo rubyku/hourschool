@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 ie"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 ie"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 ie"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9 ie"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:document_title) ? yield(:document_title) : "Hourschool" %></title>
+
+    <link rel="icon"
+          type="image/png"
+          href="/images/favicon.png">
+
+    <%= csrf_meta_tag %>
+    <%= yield :head_analytics %>
+    <%= yield :head_stylesheets %>
+    <%= yield :head_scripts %>
+    <%= yield :head %>
+  </head>
+
+  <body id="<%= id_for_body(yield :body_id) %>"
+        class="<%= classes_for_body(yield :body_class) %>
+        <%= current_user ? 'logged-in' : 'not-logged-in' %>"
+        data-controller="<%= sanitized_controller_path.sub('/', '-') %>"
+        data-action="<%= action_name %>">
+        ">
+
+    <div class="brand_bg"></div>
+    <div class="container_16 main clearfix">
+      <%= yield %>
+    </div>
+    <%= yield :foot %>
+    <%= yield :foot_libraries %>
+    <%= yield :foot_scripts %>
+    <%= yield :foot_analytics %>
+  </body>
+</html>

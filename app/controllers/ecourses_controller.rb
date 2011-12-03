@@ -13,7 +13,6 @@ class EcoursesController < ApplicationController
 
   def new
     @course = Ecourse.new
-    p current_member
     @reqid = params[:req]
     if !@reqid.nil?
       req = Esuggestion.find(@reqid.to_i)
