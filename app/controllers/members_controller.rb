@@ -8,7 +8,6 @@ class MembersController < ApplicationController
 
    def show
      @member = Member.find(params[:id])
-     #p "member is #{@member}"
    end
 
    protected

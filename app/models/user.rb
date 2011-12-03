@@ -54,10 +54,6 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
-    p data
-    #@graph = Koala::Facebook::GraphAPI.new(access_token["credentials"]["token"])
-    #profile = @graph.get_object("me")
-    #p profile
     if user = User.find_by_email(data["email"])
       user
     else # Create a user with a stub password.
