@@ -1,5 +1,3 @@
-
-
 - count = 0
 - pending.each do |c|
   - count = count + 1
@@ -8,19 +6,10 @@
   - else
     - className = "classBlock"
   %div{:class => "#{className}"}
-    - if c.photo.exists?
-      / Course.find(10).categories.first.name
-      = link_to (image_tag(c.photo.url(:small), :size => "190x120")), edit_course_path(c.id)
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-    - else
-      - if !c.categories.first.nil?
-        = link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), edit_course_path(c.id)
-      - else
-        = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(c.id)
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-    %br
-
-      .class-description
-        .heading13-class 
-          = link_to "#{c.title}", edit_course_path(c.id)
-        %p= c.about.truncate(50).html_safe
+    = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(c.id)
+    %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+    = button_to "Complete class profile", edit_course_path(c.id), :class => "complete-class-button", :method => :get
+    .class-description
+      .heading13-class 
+        = link_to "#{c.title}", edit_course_path(c.id)
+      %p= c.about.truncate(50).html_safe

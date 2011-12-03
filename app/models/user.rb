@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
+    p data
+    #@graph = Koala::Facebook::GraphAPI.new(access_token["credentials"]["token"])
+    #profile = @graph.get_object("me")
+    #p profile
     if user = User.find_by_email(data["email"])
       user
     else # Create a user with a stub password.
@@ -86,67 +90,49 @@ class User < ActiveRecord::Base
     sum
   end
 
-  def top_three_recent_classes_as_student
+  def recent_classes_as_student
     date = Date.today
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
     classes = (all_upcoming_classes & all_student_roles)
-    # if classes.size > 3
-    #   classes = classes[0..2]
-    # end
     return classes
   end
 
-  def top_three_recent_classes_as_teacher
+  def recent_classes_as_teacher
      date = Date.today
      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
      all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
      classes = (all_upcoming_classes & all_teacher_roles)
-     # if classes.size > 3
-     #   classes = classes[0..2]
-     # end
      return classes
    end
 
-  def top_three_past_classes_as_student
+  def past_classes_as_student
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     classes = (all_past_classes & all_student_roles)
     classes = (all_past_classes & all_student_roles)
-    if classes.size > 3
-      classes = classes[0..2]
-    end
     return classes
   end
 
-  def top_three_past_classes_as_teacher
+  def past_classes_as_teacher
      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
      all_past_classes = self.courses.where(['date < ?', DateTime.now])
      classes = (all_past_classes & all_teacher_roles)
-     classes = (all_past_classes & all_teacger_roles)
-     if classes.size > 3
-       classes = classes[0..2]
-     end
+     classes = (all_past_classes & all_teacher_roles)
      return classes
    end
 
-  def top_three_suggestions
+  def suggestions
     suggestions = Csuggestion.where(:requested_by => self.id)
-    if suggestions.size > 3
-      suggestions = suggestions[0..2]
-    end
     return suggestions
   end
 
-  def top_three_pending
+  def pending
     if self.is_admin?
       #if user is admin return all pending in the dashbboard
       Course.where(:status => "proposal")
     else
       pending = self.courses.where(:status => "proposal")
-      if pending.size > 3
-        pending = pending[0..2]
-      end
       return pending
     end
   end

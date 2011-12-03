@@ -7,18 +7,19 @@
           %a.sub-nav-inactive(href="/profile") Classes attending
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile_teaching") Classes teaching  
-        %li.sub-nav-active
-          %a.sub-nav-active(href="/profile-suggest") Suggestions
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/profile-suggest") Suggestions
         - if current_user.is_admin?
           %li.sub-nav-inactive 
             %a.sub-nav-inactive(href="/profile-pending") Admin
 
-
     .page-section-float-left
-
-      .welcome-header Classes you suggested
+    
+      .welcome-header Classes you've taught
       %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-      = render :partial => "suggestions", :locals => {:suggestions => current_user.suggestions}
+      .classRow
+        = render :partial => "classes", :locals => {:classes_this_week => current_user.past_classes_as_teacher}
+
 
 
 = render :partial => 'sidebar'

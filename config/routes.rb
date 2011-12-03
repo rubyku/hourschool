@@ -53,9 +53,12 @@ HourschoolV2::Application.routes.draw do
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
   match '/profile' => 'users#profile'
-  match '/profile-past' => 'users#profile_past'
+  match '/profile_teaching' => 'users#profile_teaching'
+  match '/profile_past_taught' => 'users#profile_past_taught'
+  match '/profile_past_attended' => 'users#profile_past_attended'
   match '/profile-suggest' => 'users#profile_suggest'
   match '/profile-pending' => 'users#profile_pending'
+  match '/profile-approved' => 'users#profile_approved'
   
   match '/my_classes' => 'users#my_classes'
   match '/classes_taken' => 'users#classes_taken'
