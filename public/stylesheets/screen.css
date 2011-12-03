@@ -2143,7 +2143,10 @@ a.view-more {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
+
+.vote-class-button:hover { background-color: #e46f28;}
 
 .voted-button {
   /* Disables default styling */
@@ -2256,7 +2259,10 @@ a.view-more {
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 8px;
+  cursor: pointer;
 }
+
+#create-class-button:hover { background-color: #e46f28;}
 
 
 
@@ -2477,6 +2483,8 @@ p.class-details-heart-number {
   cursor: pointer;
 }
 
+.register-class-button:hover { background-color: #e46f28;}
+
 .edit-class-button{
   border: none;
   background: #00B6FF;
@@ -2498,7 +2506,10 @@ p.class-details-heart-number {
   font-size: 11px;
   letter-spacing: 0.1em;
   margin-bottom: 20px;
+  cursor: pointer;
 }
+
+.edit-class-button:hover { background-color: #949393;}
 
 /* line 763, ../../app/assets/stylesheets/components/general.scss */
 .class-title-big {
@@ -2564,33 +2575,11 @@ img.steps {
   font-size: 11px;
   letter-spacing: 0.1em;
   margin-top: -7px;
+  cursor: pointer;
 }
 
-.edit-form-button {
-    /* Disables default styling */
-    border: none;
-    background: #00B6FF;
-    color: #fff;
-  float: right;
-  width: 120px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  background-color: #a9a9a9;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  margin-right: 10px;
-  margin-top: -7px;
-  height: 35px;
-}
+.register-class-button:hover { background-color: #e46f28;}
+
 
 #preview-box-tall{
   width: 880px;
@@ -2860,28 +2849,6 @@ li.avatar {
 }
 
 /*......STUDENT-PREVIEW PAGE......*/
-/* line 1006, ../../app/assets/stylesheets/components/general.scss */
-.orange-button {
-  /* Disables default styling */
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: left;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-}
 
 /* line 1026, ../../app/assets/stylesheets/components/general.scss */
 img#amazon {
@@ -3062,7 +3029,11 @@ p.form-bg {
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
+
+.submit-proposal-button:hover { background-color: #e46f28;}
+
 
 
 /* line 152, ../../app/assets/stylesheets/components/form.scss */
@@ -3148,6 +3119,8 @@ a.tip {
   cursor: pointer;
 }
 
+.loginButton:hover { background-color: #949393;}
+
 
 /* line 1, ../../app/assets/stylesheets/components/modal.scss */
 .modal {
@@ -3189,7 +3162,11 @@ img.modal-close {
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.1em;
+  cursor: pointer;
 }
+
+.send-message-button:hover { background-color: #e46f28;}
+
 
 /*......SIDEBAR.....*/
 /* line 2, ../../app/assets/stylesheets/components/sidebar.scss */
@@ -3337,6 +3314,8 @@ p.profile-bio {
   text-decoration: none;
   cursor: pointer;
 }
+
+#tipboxButton:hover { background-color: #949393;}
 
 /* line 134, ../../app/assets/stylesheets/components/sidebar.scss */
 .heading10 {
@@ -3592,7 +3571,7 @@ a.footer:visited{
   cursor: pointer;
 }
 
-.newsletterButton:hover { background-color: #ff7733;}
+.newsletterButton:hover { background-color: #949393;}
 
 /* line 114, ../../app/assets/stylesheets/components/footer.scss */
 .heading10-footer {
