@@ -168,7 +168,6 @@ class User < ActiveRecord::Base
   end
 
   def teacher_for
-
       all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
       all_past_classes = self.courses.where(['date < ?', DateTime.now])
       (all_past_classes & all_teacher_roles).count
