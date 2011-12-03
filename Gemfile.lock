@@ -69,6 +69,11 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    factory_girl (2.3.2)
+      activesupport
+    factory_girl_rails (1.4.0)
+      factory_girl (~> 2.3.0)
+      railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
     faraday (0.7.4)
@@ -193,6 +198,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     random_data (1.5.2)
+    rb-fsevent (0.4.3.1)
     rdoc (3.9.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -230,6 +236,7 @@ DEPENDENCIES
   aws-s3
   delayed_job
   devise!
+  factory_girl_rails
   faker
   forgery
   friendly_id (= 4.0.0.beta14)
@@ -247,6 +254,7 @@ DEPENDENCIES
   rails (= 3.0.9)
   rake (= 0.8.7)
   random_data
+  rb-fsevent
   thumbs_up
   tumblr-api
   use_tinymce

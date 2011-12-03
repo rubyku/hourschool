@@ -57,14 +57,6 @@ gem 'aws-s3'
 #gem "active_paypal_adaptive_payment"
 #gem "active_merchant", :require => 'active_merchant'
 
-#dev gems
-# gem 'forgery', :group => :development
-# gem 'random_data', :group => :development
-# gem 'faker', :group => :development
-gem 'forgery'
-gem 'random_data'
-gem 'faker'
-
 #generators
 gem "nifty-generators", :group => :development
 
@@ -96,4 +88,13 @@ gem "nifty-generators", :group => :development
 gem "mocha", :group => :test
 
 # gem "liverelaod"
-gem 'guard-livereload'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
+  gem 'forgery'
+  gem 'random_data'
+  gem 'faker'
+end
+

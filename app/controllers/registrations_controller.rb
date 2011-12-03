@@ -4,15 +4,17 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def update
-    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-
-    if resource.update_with_password(params[resource_name])
-      set_flash_message :notice, :updated if is_navigational_format?
+    resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    # Override Devise to use update_attributes instead of update_with_password.
+    # This is the only change we make.
+    if resource.update_attributes(params[resource_name])
+      set_flash_message :notice, :updated
+      # Line below required if using Devise >= 1.2.0
       sign_in resource_name, resource, :bypass => true
-      respond_with resource, :location => after_update_path_for(resource)
+      redirect_to after_update_path_for(resource)
     else
       clean_up_passwords(resource)
-      respond_with_navigational(resource){ render_with_scope :edit }
+      render_with_scope :edit
     end
   end
 

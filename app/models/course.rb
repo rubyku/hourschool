@@ -18,6 +18,8 @@ class Course < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
+  default_scope order(:date, :time)
+  self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
                     :storage => :s3,
@@ -54,10 +56,26 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.exclude(resource)
+    if resource.present?
+      where("id not in (?)", resource.map(&:id))
+    else
+      where("")
+    end
+  end
+
 
   def self.random
     order('rand()')
   end
+
+  def self.near(options = {})
+    origin = options[:zip]
+    radius = options[:radius]||options[:distance]||30
+    cities = City.geo_scope(:origin=> origin, :conditions=>"distance < #{radius}")
+    self.where(:city_id => cities.map(&:id))
+  end
+
 
   def self.located_in(city)
     if city.downcase == "all"

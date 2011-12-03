@@ -9,11 +9,16 @@ class HomeController < ApplicationController
 
   def learn
     if current_user && current_user.zip.present?
-      cities = City.geo_scope(:origin=> current_user.zip, :conditions=>'distance < 30')
-      @courses = Course.active.where(:city_id => cities.map(&:id)).order(:date)
+      teaser_courses = Course.near(:zip => current_user.zip).active.paginate(:page => params[:page]||1)
     end
-    @courses ||= Course.active.order(:date, :time)
-    @courses = @courses.paginate(:page => params[:page]||1, :per_page => 9)
+
+    if teaser_courses && teaser_courses.total_entries >= Course::DEFAULT_PER_PAGE
+      @courses  = teaser_courses
+    else
+      @teaser_courses = teaser_courses
+      @courses        = Course.active.exclude(@teaser_courses).paginate(:page => params[:page]||1)
+    end
+    render 'courses/browse/index'
   end
 
 
@@ -76,23 +81,17 @@ class HomeController < ApplicationController
   end
 
   def nominate_send
+    if invalid_email? || params[:message].blank? then
+      flash[:error] = "Invalid Recipient and/or Message. Can not be blank!"
+      redirect_to :action => 'nominate', :id => params[:reqid]
+    else
     UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
-    @csuggestion = Csuggestion.find(params[:reqid])
-    redirect_to @csuggestion
-  end
-  
-  def nominate_reject
-    @req = Csuggestion.find(params["id"])
-  end
-
-  def nominate_reject_send
-    UserMailer.send_nominate_reject(params[:email],current_user,params[:reqid],params[:message]).deliver
     @csuggestion = Csuggestion.find(params[:reqid])
     redirect_to @csuggestion
   end
 
   def search_by_city
-    @courses = Course.active.located_in(params[:city]).order(:date).paginate(:page => params[:page]||1, :per_page => 9)
+    @courses = Course.active.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
   end
 
   def search_by_tg
@@ -106,7 +105,7 @@ class HomeController < ApplicationController
       else
         user_location = session[:user_location]
       end
-    @courses = Course.active.tagged_with("#{keyword}").order(:date).find(:all).paginate(:page => params[:page], :per_page => 9)
+    @courses = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
   end
 
   def organization
@@ -177,4 +176,9 @@ class HomeController < ApplicationController
     redirect_to current_user
   end
 
+  private
+
+  def invalid_email?
+    (params[:email] =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/).nil?
+  end
 end
