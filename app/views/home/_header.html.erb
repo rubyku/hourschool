@@ -8,10 +8,10 @@
   
         <ul id="login">
         <% if user_signed_in? %>
-          <li id="login">Peer learning in Austin</li>
+             <% if current_user.zip.present? %>
+                 <li id="login">Peer learning in <%= current_user.city %></li>
+            <% end %>
           <li id="login">
-          
-            
               <span id="nav-dropdown">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
                     <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->

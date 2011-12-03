@@ -12,28 +12,19 @@
 
 
     .page-section-float-left
-
-      / 
-      / - if @approved_courses.last.description.blank? || @pending_courses.count != 0 || !current_user.photo.exists?
-      /           
-      /   .notification-center
-      /     .sidebar-heading Notifications 
-      /     - if @approved_courses.last.description.blank?
-      /       %p Your class has been approved! Go fill out the profile. 
-      /     - else 
-      /       %p ! Your class has been approved! Go fill out the profile. 
-      /       %br
-      /     
-      /     - if @pending_courses.count != 0
-      /       %p Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime, check out our teacher's handbook. Read our teacher handbook [here].
-      /     - else 
-      /       %p ! Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime, check out our teacher's handbook. Read our teacher handbook [here].
-      /     %br
-      /     
-      /     - if current_user.photo.exists?
-      /     - else
-      /       %p ! Upload a profile pic
-      / - else
+      
+      - if @approved_courses.any? || @pending_courses.count != 0 || !current_user.photo.exists?
+        .notification-center
+          .sidebar-heading Notifications 
+          - if @approved_courses.any?
+            = "Your class has been approved! Go fill out the profile."
+          - if @pending_courses.count != 0
+            = "Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime, check out our teacher's handbook. Read our teacher handbook [here]."
+          - if current_user.photo.exists?
+          - else
+            = "Upload a profile pic"
+      - else
+        /do nothing
 
 
 
@@ -48,7 +39,6 @@
       %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
       .classRow
         = render :partial => "classes_top_three", :locals => {:classes_this_week => current_user.top_three_recent_classes_as_teacher}
-        = render :partial => "classes_top_three_pending", :locals => {:pending => current_user.top_three_pending}
         = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
 
 

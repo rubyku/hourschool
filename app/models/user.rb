@@ -95,9 +95,9 @@ class User < ActiveRecord::Base
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
     classes = (all_upcoming_classes & all_student_roles)
-    if classes.size > 3
-      classes = classes[0..2]
-    end
+    # if classes.size > 3
+    #   classes = classes[0..2]
+    # end
     return classes
   end
 
@@ -106,9 +106,9 @@ class User < ActiveRecord::Base
      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
      all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
      classes = (all_upcoming_classes & all_teacher_roles)
-     if classes.size > 3
-       classes = classes[0..2]
-     end
+     # if classes.size > 3
+     #   classes = classes[0..2]
+     # end
      return classes
    end
 

@@ -73,7 +73,9 @@
 
              <ul id="login">
             <% if user_signed_in? %>
-               <li id="homepage_login">Peer learning in Austin</li>
+                <% if current_user.zip.present? %>
+                    <li id="homepage_login">Peer learning in <%= current_user.city %></li>
+               <% end %>
                <li id="homepage_login">   
 
                    <span id="nav-dropdown">
@@ -88,10 +90,10 @@
                            <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
                          </span>
 
-               <% else %>
-                 <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
-                 <%= link_to "sign in", new_user_session_path, :class => "homepage_menu"%>
-               <% end %>
+            <% else %>
+                <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
+                <%= link_to "sign in", new_user_session_path, :class => "homepage_menu"%>
+            <% end %>
 
              </li>
 

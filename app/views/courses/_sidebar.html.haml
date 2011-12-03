@@ -1,22 +1,32 @@
 .sidebar-white
   .sidebar-content-white
+
     .class-details
-    - if (@current_course.date - Date.today).numerator <= 1
-      = link_to "Class has passed. Request a new one!", new_csuggestion_path
+      = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
+  
+    .class-details
+    - if (@current_course.date - Date.today).numerator < 1
+      - if @current_course.teacher == current_user
+        = "Class has passed. Teach again!"
+      - else 
+        = link_to "Class has passed. Request a new one!", new_csuggestion_path
     - elsif @current_course.students.size >= course.seats
-      = link_to "Class is full. Request a new one!", new_csuggestion_path
+      - if @current_course.teacher == current_user
+        = "Your class is sold out. Teach another one!"
+        = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
+      - elsif @current_course.is_a_student?(current_user)
+        = "Registered"
+      - else
+        = link_to "Class is full. Request a new one!", new_csuggestion_path
     - else 
       - if @current_course.teacher == current_user
-        = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :class => "edit-class-button"
+        = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
         = "Registered."
       - else 
         = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
         
       
-    .class-details
-      = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
-
     .sidebar-block
       %ul.noBullet
         %li.noBullet
@@ -88,7 +98,7 @@
           %a.profile-link
             = link_to student.name, profile_path(student), :class => "profile-link"
 
-              - if course.teacher == current_user
+      - if course.teacher == current_user
         %ul.noBullet
           %li.noBullet
             = link_to "Send a message to all students", contact_all_students_path(:id => course.id)
