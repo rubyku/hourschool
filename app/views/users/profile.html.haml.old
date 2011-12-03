@@ -1,6 +1,6 @@
-= render :partial => "home/header"  
+
 .container_16.searchBar.clearfix
   = render :partial => 'home/search_form'
-  
+
 
 = render :partial => "profile_body"
