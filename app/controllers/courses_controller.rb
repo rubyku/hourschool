@@ -52,8 +52,6 @@ class CoursesController < ApplicationController
 
   def heart
     @course = Course.find(params["id"])
-    p params
-    p @course
     current_user.vote_for(@course) unless current_user.voted_on?(@course)
   end
 
