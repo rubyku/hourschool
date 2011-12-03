@@ -1182,6 +1182,14 @@ li#login {
   top: 0px;
 }
 
+li#login_peerlearning {
+  float: left;
+  color: #8f8f8f;
+  text-decoration: none;
+  margin-left: 10px;
+  top: 0px;
+}
+
 /* line 166, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_login {
   position: relative;
@@ -3648,14 +3656,38 @@ h1.email-header {
 .notification-center{
   float: left;
   width: 600px;
-  padding: 0px 0px 20px 20px;
-  border: 5px solid #fdcdb5;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background: #fef7f4;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid #cecfd1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fdfdfd;
   margin-bottom: 60px;
 }
+
+#notification-header{
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+tr.notification{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted #8f8f8f;
+}
+
+td.notification{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted red;
+}
+
 
 table.user-stat{
   float: left;

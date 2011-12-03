@@ -1,5 +1,3 @@
-
-
 .page
   .page-content
 
@@ -14,17 +12,22 @@
             %a.sub-nav-inactive(href="/profile-pending") Admin
 
 
-    .page-section-float-left
-      
+    .page-section-float-left  
       - if @approved_courses.any? || @pending_courses.count != 0 || !current_user.photo.exists?
         .notification-center
-          .sidebar-heading Notifications 
+          #notification-header Notifications 
           - if @approved_courses.any?
+            %img{:src => '/images/v2/notification_bolt.png'}
             = "Your class has been approved! Go fill out the profile."
+            %br
+            %br
           - if @pending_courses.count != 0
-            = "Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime, check out our teacher's handbook. Read our teacher handbook [here]."
-          - if current_user.photo.exists?
-          - else
+            %img{:src => '/images/v2/notification_bolt.png'}
+            = "Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime, check out our teacher's handbook."
+            %br
+            %br
+          - if !current_user.photo.exists?
+            %img{:src => '/images/v2/notification_bolt.png'}
             = "Upload a profile pic"
       - else
         /do nothing
