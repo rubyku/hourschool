@@ -101,6 +101,10 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
+    if @course.teacher == current_user || current_user.is_admin?
+    else
+       redirect_to @course
+    end
   end
 
   def update
