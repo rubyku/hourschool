@@ -68,7 +68,6 @@ class CoursesController < ApplicationController
 
     @user = current_user
     if @course.save
-      p "course saved #{@course.id}"
       @crole = Crole.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @crole.nil?
         @crole = @course.croles.create!(:attending => true, :role => 'teacher')
@@ -107,7 +106,6 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    p "course is #{params[:course]}"
       cat = []
       cat << (params[:course][:categories]).to_s
       params[:course].delete(:categories)
@@ -215,10 +213,8 @@ class CoursesController < ApplicationController
          @user.courses << @course
          @user.save
              
-       p "made it"
        redirect_to course_confirm_path(:id => @course.id)
      else
-       p "did not make it"
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
      end
   
@@ -255,7 +251,6 @@ class CoursesController < ApplicationController
   def must_be_admin
     #if !current_user.try(:admin?) || !current_user.is_admin?
     if !current_user.is_admin?
-      p "not admin"
       redirect_to user_root_path
     end
   end

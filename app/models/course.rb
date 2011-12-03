@@ -143,8 +143,6 @@ class Course < ActiveRecord::Base
 
 
    def cropping?
-       p "cropping? = #{!crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?}"
-       p "crop_x = #{crop_x}, crop_y = #{crop_y}, crop_w = #{crop_w}, crop_h = #{crop_h}"
        !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
      end
 
@@ -158,7 +156,6 @@ class Course < ActiveRecord::Base
    private
 
     def reprocess_photo
-      p "hello world"
       photo.reprocess!
     end
 

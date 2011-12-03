@@ -63,7 +63,6 @@ class HomeController < ApplicationController
             :limit => 100,
             :order => "csuggestions.name DESC"
         })
-       # p @top_suggestions
        @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
        if Course.count > 0
           @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
@@ -154,7 +153,6 @@ class HomeController < ApplicationController
       else
         @courses_matching_query = Course.find(:all, :conditions => ["(title LIKE ? OR description LIKE ?) AND date BETWEEN ? AND ?",search_string, search_string,date, date.advance(:weeks => 4)])
       end
-      p "search string is #{search_string}"
       @courses = (@all_courses_in_city & @courses_matching_query).paginate(:page => params[:page], :per_page => 10)
       @top_suggestions =  Csuggestion.tally(
         {  :at_least => 1,
@@ -162,7 +160,6 @@ class HomeController < ApplicationController
             :limit => 10,
             :order => "csuggestions.name DESC"
         })
-       # p @top_suggestions
         @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
     else
       redirect_to root_path
