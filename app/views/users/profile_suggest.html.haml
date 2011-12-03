@@ -4,10 +4,14 @@
   
     .page-section-float-left
       %ul.sub-nav
-        %li.sub-nav-inactive 
+        %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile") Classes
-        %li.sub-nav-active 
+        %li.sub-nav-active
           %a.sub-nav-active(href="/profile-suggest") Suggestions
+        - if current_user.is_admin?
+          %li.sub-nav-inactive 
+            %a.sub-nav-inactive(href="/profile-pending") Admin
+
         
     .page-section-float-left
       

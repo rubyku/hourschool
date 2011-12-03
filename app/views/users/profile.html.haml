@@ -9,6 +9,9 @@
           %a.sub-nav-active(href="/profile") Classes
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile-suggest") Suggestions
+        - if current_user.is_admin?
+          %li.sub-nav-inactive 
+            %a.sub-nav-inactive(href="/profile-pending") Admin
 
 
     .page-section-float-left
