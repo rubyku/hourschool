@@ -71,6 +71,8 @@ HourschoolV2::Application.routes.draw do
   match '/nominate' => 'home#nominate'
   match '/nominate_send' => 'home#nominate_send'
   match '/nominate_confirm' => 'home#nominate_confirm'
+  match '/nominate_reject' => 'home#nominate_reject'
+  match '/nominate_reject_send' => 'home#nominate_reject_send'
   match '/contact_teacher' => 'courses#contact_teacher'
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
   match '/contact_all_students' => 'courses#contact_all_students'

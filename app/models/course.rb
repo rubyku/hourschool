@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   attr_accessible :status, :about, :experience, :coursetag, :address, :phonenum, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
-  validates_presence_of :title,:description, :price, :seats, :time_range, :place, :minimum, :unless => :proposal?
+  validates_presence_of :title, :description, :price, :seats, :time_range, :place, :minimum, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
   # validates :terms_of_service, :acceptance => true
@@ -26,7 +26,8 @@ class Course < ActiveRecord::Base
                     :processors => [:cropper]
 
 
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h  
+
   #before_update :reprocess_photo, :if => :cropping?
   after_update :reprocess_photo, :if => :cropping?
 
@@ -43,6 +44,7 @@ class Course < ActiveRecord::Base
   extend FriendlyId
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
+
 
   def pretty_slug
     if city.present?

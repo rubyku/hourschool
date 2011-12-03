@@ -48,10 +48,6 @@ class CoursesController < ApplicationController
     id = params[:id]
     @course = Course.find(id)
     @current_course = Course.find(id)
-    if @course.save
-      @course.update_attribute :status, "live"
-      redirect_to @course
-    end
   end
 
   def heart
@@ -110,33 +106,17 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     p "course is #{params[:course]}"
-    if !params[:course]["date(1i)"].nil? && !params[:course]["date(2i)"].nil? && !params[:course]["date(3i)"].nil?
-      @date = Date.civil(params[:course]["date(1i)"].to_i,
-                               params[:course]["date(2i)"].to_i,
-                               params[:course]["date(3i)"].to_i)
       cat = []
       cat << (params[:course][:categories]).to_s
       params[:course].delete(:categories)
-      params[:course].delete("date(1i)")
-      params[:course].delete("date(2i)")
-      params[:course].delete("date(3i)")
-      params[:course].merge!({:date => @date})
       @course.category_list = cat.join(", ").to_s
-
-    end
       if @course.update_attributes(params[:course])
-        @course.save
-        #if params[:course][:photo].blank?
-          #redirect_to preview_path(params[:id])
-          redirect_to preview_path(:id => @course.id)
-        # else
-        #           render :action => 'crop'
-        #         end
-        #end
+        puts "saved"
+        redirect_to preview_path(:id => @course.id)
       else
         render :action => 'edit'
       end
-
+      puts @course.errors
   end
 
 
@@ -227,11 +207,11 @@ class CoursesController < ApplicationController
      )
       if @payment.save
          @payment.update_attributes(:user => current_user, :course => @course)
-         # @user = current_user
-         # @crole = @course.croles.create!(:attending => true, :role => 'student')
-         # @user.croles << @crole
-         # @user.courses << @course
-         # @user.save
+         @user = current_user
+         @crole = @course.croles.create!(:attending => true, :role => 'student')
+         @user.croles << @crole
+         @user.courses << @course
+         @user.save
              
        p "made it"
        redirect_to course_confirm_path(:id => @course.id)

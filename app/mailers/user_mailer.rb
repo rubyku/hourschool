@@ -46,5 +46,14 @@ class UserMailer < ActionMailer::Base
       @message = message
       mail(:to => user_email, :subject => "#{@user.name} has nominated you to teach at HourSchool")
     end
+    
+    def send_nominate_reject(user_email, current_user, csuggid, message)
+       @email = user_email
+       @user = current_user
+       @req = Csuggestion.find(csuggid)
+       @url = "http://turunga.org/courses/new?req=#{@req.id}"
+       @message = message
+       mail(:to => user_email, :subject => "#{@user.name} has nominated you to teach at HourSchool")
+     end
 
 end

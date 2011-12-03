@@ -80,6 +80,16 @@ class HomeController < ApplicationController
     @csuggestion = Csuggestion.find(params[:reqid])
     redirect_to @csuggestion
   end
+  
+  def nominate_reject
+    @req = Csuggestion.find(params["id"])
+  end
+
+  def nominate_reject_send
+    UserMailer.send_nominate_reject(params[:email],current_user,params[:reqid],params[:message]).deliver
+    @csuggestion = Csuggestion.find(params[:reqid])
+    redirect_to @csuggestion
+  end
 
   def search_by_city
     @courses = Course.active.located_in(params[:city]).order(:date).paginate(:page => params[:page]||1, :per_page => 9)
