@@ -1,7 +1,6 @@
 class EnterprisesController < ApplicationController
   before_filter :authenticate_member!
   def index
-    p current_member
   end
 
   def show
