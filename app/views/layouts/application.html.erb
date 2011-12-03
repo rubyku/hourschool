@@ -49,8 +49,13 @@
 
   <div class="brand_bg"></div>
   <div class="container_16 main clearfix">
+    <% if flash[:error].present? %>
+      <div class="page-section-float-left">
+          <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
+      </div>
+    <%- end -%>
+
     <%= yield %>
-    <%= yield :sidebar %>
   </div>
 
 <div class="bottom_bg">
