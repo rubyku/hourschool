@@ -1,16 +1,15 @@
-= render :partial => "home/header"  
 .page
   .page-content
-  
+
     .page-section-float-left
       %ul.sub-nav
-        %li.sub-nav-inactive 
+        %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile") Upcoming
-        %li.sub-nav-active 
+        %li.sub-nav-active
           %a.sub-nav-active(href="/profile-past") Past
-        %li.sub-nav-inactive 
+        %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile-suggest") Suggestions
-        %li.sub-nav-inactive 
+        %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile-pending") Pending
     .page-section-float-left
       .big-box-active
@@ -18,15 +17,15 @@
           = current_user.student_for
         .profile-big-words-active classes taken
       .big-box-inactive
-        .profile-big-number-inactive 
+        .profile-big-number-inactive
           = current_user.teacher_for
         .profile-big-words-inactive classes taught
-        
+
     .page-section-float-left
-      
+
       .welcome-header Classes you've taken
       %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-   
+
       .classRow
 
         = render :partial => "classes_top_three", :locals => {:classes_this_week => current_user.top_three_past_classes_as_student}
