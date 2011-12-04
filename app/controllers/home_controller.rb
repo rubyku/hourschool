@@ -68,7 +68,7 @@ class HomeController < ApplicationController
           @random_course = Course.random
           @classes_we_like = []
           (1..2).each do |val|
-            @classes_we_like << Course.rand(Course
+            @classes_we_like << Course.random
           end
         else
           @classes_we_like = []
