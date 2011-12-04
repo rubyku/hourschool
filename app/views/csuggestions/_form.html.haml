@@ -9,8 +9,6 @@
         = f.label "What do you want to learn?"
       .form-question-tip Try to be specific. For example, "Weeknight quick dinner" is better than "cooking". 
       = f.text_field :name, :class => "form-with-margin"
-      .form-question
-        = f.label "Description (1-2 Sentences)"
-      = f.text_area :description, :class => "form-with-margin"
+      
       %p.note Note: Your request will be posted after you hit submit. People can then vote if they are interested in taking the class, or claim to teach the class.
       = f.submit "Request this class", :class => "submit-proposal-button"

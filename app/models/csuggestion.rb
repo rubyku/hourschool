@@ -1,6 +1,6 @@
 class Csuggestion < ActiveRecord::Base
   belongs_to :city
-  validates_presence_of :name, :description, :requested_by
+  validates_presence_of :name, :requested_by
 
   attr_accessible :name, :description, :requested_by
 

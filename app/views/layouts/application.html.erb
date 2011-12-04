@@ -33,13 +33,17 @@
 <%- end -%>
 
 
-
-
 <%= render :layout => 'layouts/document' do %>
   <%= render 'layouts/application/header' %>
   <%- if flash[:error].present? -%>
     <div class="page-section-float-left">
         <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
+    </div>
+  <%- end -%>
+  
+  <%- if flash[:notice].present? -%>
+    <div class="page-section-float-left">
+        <%= flash[:notice] %>
     </div>
   <%- end -%>
 

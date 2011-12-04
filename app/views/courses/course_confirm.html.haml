@@ -1,9 +1,8 @@
-
 .page
   .page-content
     .confirm-second-message You have successfully signed up!
     %hr#confirm
-  .page-content
+
     .confirm-classblock
       - link_to @course do
         - if @course.photo.exists?
@@ -18,45 +17,51 @@
         .confirm-class-description
           .heading13-class
             = @course.title
-          %p
-            - if @course.coursetag.blank?
-              = @course.about
-            - else
-              = @course.coursetag
-      .sidebar-block-last
-        %ul.noBullet
-          %li.noBullet
+
+      %table
+        %tr
+          %td
             = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %li.noBullet
+          %td
             .class-details
-              = "#{@course.price}"
-            .class-alterntives
-              %br/
-        %ul.noBullet
-          %li.noBullet
+              = "$ #{@course.price}"
+        %tr
+          %td
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
-          %li.noBullet
+          %td
             .class-details
               = @course.date.strftime("%B %d, %Y")
-            .class-details
+            .class-address-details
               = "#{@course.time_range}"
-            .class-alterntives
-              %br/
 
-        %ul.noBullet
-          %li.noBullet
+        %tr
+          %td
             = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
-          %li.noBullet
+          %td
             .class-details
               = "#{@course.place}"
+            .class-address-details
               = "#{@course.city.name}"
-    .class-description-block
-      .confirm-bring-friend Bring a friend or two
-    %br
-    .class-description-block
-      = render :partial => "social_share"
-    %br= button_to "Go to course page", @course, :method => :get, :class => "submit-proposal-button"
 
+
+    .confirm-description-block
+      .confirm-bring-friend Bring a friend or two
+      %p It's always more fun to learn with friends. Share this with people you think might be interested.
+
+    .confirm-description-block
+      = render :partial => "social_share"
+        
+    .confirm-description-block
+      %p What would you like to do now? 
+      %br     
+      %span.list-number 1
+      = link_to "Go to the class page", @course, :class => "orange-checklist"
+      %br
+      %span.list-number 2
+      = link_to "View your profile", "/profile", :class => "orange-checklist"
+      %br
+      %span.list-number 3
+      = link_to "Browse for more classes", "/learn", :class => "orange-checklist"
 
 .sidebar
   .tipbox

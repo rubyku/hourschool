@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts "~~~~~~~~~~~~~~~~~~~~~~~"
-    puts flash.inspect
     if params[:id].nil?
       @user = current_user
     else
@@ -36,6 +34,13 @@ class UsersController < ApplicationController
   end
 
   def profile_suggest
+    @top_suggestions =  Csuggestion.tally(
+       {  :at_least => 1,
+           :at_most => 10000,
+           :limit => 100,
+           :order => "csuggestions.name ASC"
+       })
+      @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
   end
   
   def profile_approved

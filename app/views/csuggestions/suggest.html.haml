@@ -18,4 +18,9 @@
       %hr#pagenote
       = render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
       
-= render :partial => 'sidebar'
+.sidebar
+  .tipbox
+    %img.tape{:src => '../../../images/v2/Tape_White.png'}
+    .heading10 Have questions?
+    %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
+      #tipboxButton Contact us!

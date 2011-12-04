@@ -15,15 +15,6 @@ class CsuggestionsController < ApplicationController
            :order => "csuggestions.name ASC"
        })
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
-      if Course.count > 0
-         @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
-         @classes_we_like = []
-         (1..2).each do |val|
-           @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
-         end
-       else
-         @classes_we_like = []
-       end
   end
 
   def show
@@ -43,8 +34,9 @@ class CsuggestionsController < ApplicationController
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.csuggestions << @csuggestion
       city.save
-      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @csuggestion).deliver     
-      redirect_to @csuggestion, :notice => "Successfully created csuggestion."
+      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @csuggestion).deliver 
+      flash[:notice] = "Thanks for suggesting a class!"
+      redirect_to "/suggest"
     else
       render :action => 'new'
     end
@@ -87,10 +79,10 @@ class CsuggestionsController < ApplicationController
         cuser_suggestions = Csuggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
         if !cuser_suggestions.nil?
           wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
-          if wait_time < 5
+          if wait_time < 1
             puts "=================================="
-            flash[:error] = "Please wait for another #{5 - wait_time} minutes before requesting another class"
-            redirect_to current_user
+            flash[:error] = "Please wait for another #{5 - wait_time} minute before requesting another class"
+            redirect_to "/suggest"
           end
         end
     end

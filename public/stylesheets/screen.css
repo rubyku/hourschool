@@ -2138,6 +2138,10 @@ a.view-more {
   color: white ;
 }
 
+.vote-class a:visited {
+  color: white ;
+}
+
 /* line 493, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-last {
   margin-top: 0px;
@@ -2215,6 +2219,10 @@ a.view-more {
   font-size: 12px;
   letter-spacing: 0.1em;
 }
+
+a.vote-link:hover{color: #ff7733}
+a.vote-link:visited{color: #666}
+
 
 /* line 540, ../../app/assets/stylesheets/components/general.scss */
 .heading35-vote {
@@ -2457,7 +2465,7 @@ li.withBullets {
   color: #666;
   font-weight: 700;
   font-size: 12px;
-  width: 190px;
+  width: 160px;
 }
 
 /* line 710, ../../app/assets/stylesheets/components/general.scss */
@@ -2722,22 +2730,41 @@ li.preview-checklist{
   letter-spacing: 0.1em;
 }
 
+a.orange-checklist{
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+a.orange-checklist:hover{color: #ff7733}
+a.orange-checklist:visited{color:#ff7733}
+
 /*......COURSE-CONFIRM......*/
 /* line 783, ../../app/assets/stylesheets/components/general.scss */
 .confirm-classblock {
   float: left;
   width: 190px;
   background-color: white;
-  /*  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-    -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-    box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;*/
-  margin-right: 20px;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  padding-bottom: 20px;
+  margin-right: 30px;
 }
 
 /* line 793, ../../app/assets/stylesheets/components/general.scss */
 .confirm-class-description {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.confirm-description-block{
+  float: left;
+  width: 360px;
+  margin-bottom: 20px;
 }
 
 /* line 798, ../../app/assets/stylesheets/components/general.scss */
@@ -2785,6 +2812,7 @@ li.preview-checklist{
   float: left;
   letter-spacing: 0.15em;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 /* line 841, ../../app/assets/stylesheets/components/general.scss */
@@ -2805,7 +2833,7 @@ hr#confirm {
   border: 1px dashed #ededed;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 30px;
 }
 
@@ -3163,6 +3191,7 @@ a.tip {
   margin-bottom: 20px;
   width: 600px;
 }
+
 
 /* Sign up form */
 .loginButton {
