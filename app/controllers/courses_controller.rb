@@ -90,6 +90,9 @@ class CoursesController < ApplicationController
       #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
       #redirect_to @course, :notice => "Successfully created course."
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
+      UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+      
       redirect_to "/profile"
     else
       render :action => 'new'
@@ -173,7 +176,10 @@ class CoursesController < ApplicationController
       @user.croles << @crole
       @user.courses << @course
       if @user.save
-        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
+        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
+        UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
+        UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver        
+        
       end
 
       respond_to do |format|

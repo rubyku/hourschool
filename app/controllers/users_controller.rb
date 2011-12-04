@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    puts "~~~~~~~~~~~~~~~~~~~~~~~"
+    puts flash.inspect
     if params[:id].nil?
       @user = current_user
     else

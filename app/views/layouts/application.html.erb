@@ -37,7 +37,12 @@
 
 <%= render :layout => 'layouts/document' do %>
   <%= render 'layouts/application/header' %>
-  <%= render 'layouts/application/flash', :locals => {:flash => flash} %>
+  <%- if flash[:error].present? -%>
+    <div class="page-section-float-left">
+        <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
+    </div>
+  <%- end -%>
+
   <%= yield %>
   <%= yield :sidebar %>
 <%- end -%>

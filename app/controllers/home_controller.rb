@@ -85,6 +85,7 @@ class HomeController < ApplicationController
       redirect_to :action => 'nominate', :id => params[:reqid]
     else
     UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
+    UserMailer.send_nominate_mail_to_hourschool(params[:email],current_user,params[:reqid],params[:message]).deliver
     @csuggestion = Csuggestion.find(params[:reqid])
     redirect_to @csuggestion
     end

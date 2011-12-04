@@ -43,6 +43,7 @@ class CsuggestionsController < ApplicationController
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.csuggestions << @csuggestion
       city.save
+      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @csuggestion).deliver     
       redirect_to @csuggestion, :notice => "Successfully created csuggestion."
     else
       render :action => 'new'
@@ -83,12 +84,13 @@ class CsuggestionsController < ApplicationController
   protected
    def has_not_created_suggestion_recently?
      if current_user
-        #has to be 30 minutes before requesting a suggestion
         cuser_suggestions = Csuggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
         if !cuser_suggestions.nil?
           wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
           if wait_time < 5
-            redirect_to current_user, :alert => "Please wait for another #{5 - wait_time} minutes before requesting"
+            puts "=================================="
+            flash[:error] = "Please wait for another #{5 - wait_time} minutes before requesting another class"
+            redirect_to current_user
           end
         end
     end
