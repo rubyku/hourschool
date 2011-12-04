@@ -7,27 +7,27 @@ HourschoolV2::Application.routes.draw do
 
   resources :courses
 
-  devise_for :members 
+  devise_for :members
   resources :members, :only => [:index, :show]
-  
-  
-   resources :enterprises, :only => [:index, :show]  do 
+
+
+   resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
   end
-  
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
   match 'user_root' => 'home#index'
-  resources :users, :only => [:index, :show] 
-  
+  resources :users, :only => [:index, :show]
+
   resources :payments
   match 'confirm_payment' => 'payments#confirm'
-  
+
   # match '/' => 'home#index', :constraints => { :subdomain => 'www' }
   # match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
-  
+
   get "sites/show"
   match '/learn' => 'home#learn'
   match '/teach' => 'home#teach'
@@ -49,7 +49,7 @@ HourschoolV2::Application.routes.draw do
   match '/eregister' => 'ecourses#register'
 
   match '/approve' => 'courses#approve'
-  
+
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
   match '/profile' => 'users#profile'
@@ -59,14 +59,14 @@ HourschoolV2::Application.routes.draw do
   match '/profile-suggest' => 'users#profile_suggest'
   match '/profile-pending' => 'users#profile_pending'
   match '/profile-approved' => 'users#profile_approved'
-  
+
   match '/my_classes' => 'users#my_classes'
   match '/classes_taken' => 'users#classes_taken'
   match '/classes_taught' => 'users#classes_taught'
-  
+
   match '/contact' => 'home#contactus'
   match '/search' => 'home#search'
-  
+
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/search_by_city' => 'home#search_by_city', :as => "cities"
   match '/organization' => 'home#organization'
@@ -80,11 +80,11 @@ HourschoolV2::Application.routes.draw do
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
-      
+
   match '/business' => 'home#business'
   match '/about' => 'home#about'
   root :to => "home#index"
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
