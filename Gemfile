@@ -17,7 +17,7 @@ gem 'jquery-rails', '>= 1.0.12'
 
 gem 'friendly_id', '4.0.0.beta14'
 # uncomment the next line if you wish to deploy to Heroku
-gem 'heroku', :group => :development
+# gem 'heroku', :group => :development
 
 gem 'mysql2', '~> 0.2.6'
 

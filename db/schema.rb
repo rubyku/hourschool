@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130191711) do
+ActiveRecord::Schema.define(:version => 20111204042906) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20111130191711) do
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.float    "price"
+    t.integer  "price"
     t.integer  "seats"
     t.date     "date"
     t.time     "time"

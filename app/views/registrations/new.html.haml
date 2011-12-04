@@ -1,20 +1,26 @@
-
 .page
   .page-content
-    .heading25_ccc
-      - if resource_name.to_s == "member"
-        = "Sign up for Hourschool Enterprise, it is free!"
-        = link_to "is my company participating?", "#"
-      - else
-        = "Sign up"
-    
+
+    / - if resource_name.to_s == "member"
+    /   = "Sign up for Hourschool Enterprise, it is free!"
+    /   = link_to "is my company participating?", "#"
+    / - else
+    /   = "Sign up"
+
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-active
+          %a.sub-nav-active(href="/users/sign_up") Register
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/users/sign_in") Sign in
+             
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       %div{:class => "form-question"}
         = f.label :name
         %br/
 
-        = f.text_field :name, :class => "form"
+        = f.text_field :name, :class => "form-short-with-margin"
       - if resource_name.to_s == "member"
         %div{:class => "form-question"}
           = f.label :organization
@@ -25,32 +31,27 @@
         %div{:class => "form-question"}
           = f.label "Zipcode"
           %br/
-          = f.text_field :zipcode, :class => "form"
+          = f.text_field :zipcode, :class => "form-short-with-margin"
           / = f.text_field :location
           / = f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
       %div{:class => "form-question"}
         = f.label :email
         %br/
-        = f.email_field :email, :class => "form"
+        = f.email_field :email, :class => "form-short-with-margin"
       %div{:class => "form-question"}
         = f.label :password
         %br/
-        = f.password_field :password, :class => "form"
+        = f.password_field :password, :class => "form-short-with-margin"
   
       %div{:class => "form-question"}
         = f.label :password_confirmation
         %br/
-        = f.password_field :password_confirmation, :class => "form"
-      %div{:class => "form-question"}
-        = f.label "About you (Briefly)"
-        %br/
-        = f.text_area :about, :class => "form"
-      %div{:class => "form-question"}
-        = f.label "How did you hear about us?"
-        %br/
-        = f.text_field :referral, :class => "form"
-      %div
-        = f.submit "Sign up"
+        = f.password_field :password_confirmation, :class => "form-short-with-margin"
+    
+      .page-section-float-left
+        = f.submit "Sign up", :class => "loginButton"
 
-    = render :partial => "devise/shared/links"
+    
+    .page-section-float-left
+      = render :partial => "devise/shared/links"
 

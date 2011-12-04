@@ -1,43 +1,64 @@
 <div class="page">
   <div class="page-content">
       
-  <div class= "heading25_ccc">
-  <%  if resource_name.to_s == "member" %>
-  <h2>Sign in with your work email</h2>
-  <% else %>
-  <h2> Sign in </h2>
-  <% end%>
+      <!-- <%  if resource_name.to_s == "member" %>
+      <h2>Sign in with your work email</h2>
+      <% else %>
+      <h2> Sign in </h2>
+      <% end %> -->
+
+  <div class="page-section-float-left"> 
+    <ul class="sub-nav">
+      <li class="sub-nav-inactive">
+        <a class="sub-nav-inactive" href="/users/sign_up">Register</a>
+      </li>
+      <li class="sub-nav-active">
+        <a class="sub-nav-active" href="/users/sign_in">Sign in</a>
+      </li>
+    </ul>  
   </div>
 
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class="form-question">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, :class => "form" %>
-    </div>
+  <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
+  <div class="page-section-float-left">            
+    <%  if resource_name.to_s == "user" %>
+    <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
+    <% end %>
+  </div>
+  
+  <hr>
+  <br>
+  <p> Or sign in with email:</p>
+  <br>
+  
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="form-question">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, :class => "form-short" %>
+        </div>
 
-    <div class="form-question"><%= f.label :password %><br />
-      <%= f.password_field :password , :class => "form"%></div>
+        <div class="form-question"><%= f.label :password %><br />
+          <%= f.password_field :password , :class => "form-short"%>
+        </div>
+
+        <div class="page-section-float-left">
+          <% if devise_mapping.rememberable? -%>
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>  
+          <% end -%>
+        </div>
+        
+        <div class="page-section-float-left">
+          <div><%= f.submit "Sign in", :class => "loginButton" %></div>
+        </div>
+    <% end %>
     
-    <div class="page-section-float-left">
-      <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>  
-      <% end -%>
-    </div>
-    <div class="page-section-float-left">
-      <div><%= f.submit "Sign in", :class => "loginButton" %></div>
-      <% end %>
-    </div>
+    
     <div class="page-section-float-left">      
       <%= render :partial => "devise/shared/links" %>
     </div>
-    <div class="page-section-float-left">            
-      <div>
-      <%  if resource_name.to_s == "user" %>
-      <p> Or login with Facebook. It only takes few seconds.</p>
-      <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
-      <% end %>
-      </div>
-    </div>
+    
+
+    
+    
   </div>
 </div>

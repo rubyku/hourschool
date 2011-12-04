@@ -35,71 +35,80 @@
           .class-details
             = "$" "#{course.price}"
             %br/
-            - if course.is_a_student?(current_user)
-            - else
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
+            / - if course.is_a_student?(current_user)
+            / - else
+            /   %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
             %br/
+
       %ul.noBullet
         %li.noBullet
           = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
         %li.noBullet
           .class-details
             = course.date.strftime("%a %b %d, %Y")
-          %p
+          .class-sidebar-details
             = "#{course.time_range}"
+            %br
+          - if course.is_a_student?(current_user)
+            / %a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
+            %br
+          - else
+            %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
             %br/
-            - if course.is_a_student?(current_user)
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
-            - else
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
-            %br/
+
       %ul.noBullet
         %li.noBullet
           = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
         %li.noBullet
-          .class-details
-            - if "#{course.public?}"
-              = "#{course.place}"
-              = "#{course.address}"
-            - else
-              %p Private Address
-            %br/
-            - if course.is_a_student?(current_user)
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-            - else
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
-    .sidebar-block
+          .class-sidebar-details
+            = course.place
+          - if course.public?
+            .class-sidebar-details
+              = course.address
+          - else
+            %p Private Address
+          - if course.is_a_student?(current_user)
+            - if course.public?
+              / %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+          - else
+            %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
+            %br
+
+    .sidebar-block-last
       .sidebar-heading Teacher
       .class-attendance-block
         / - if @current_course.teacher.photo.exists?
         /   = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
         / - else
         /   = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
-        %a.profile-link
-          = link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
-          %br
-          = "#{course.teacher.about}"
-      %ul.noBullet
-        %li.noBullet
-          %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-        %li.noBullet
-          %p.class-details-heart-number
-            #number_of_hearts
-              = course.votes_for
-          %br/
 
-      - if course.teacher != current_user
-        %br= link_to "Contact teacher", contact_teacher_path(:id => course.id)
-
-    .sidebar-block-last
-      .sidebar-heading Students
-      .class-attendance-block
-        - course.students.each do |student|
+        .class-details
           %a.profile-link
-            = link_to student.name, profile_path(student), :class => "profile-link"
+          = link_to "#{course.teacher.name}", profile_path(course.teacher), :class => "profile-link"
+        / .class-details
+        /   %ul.noBullet
+        /     %li.noBullet
+        /       %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
+        /     %li.noBullet
+        /       %p.class-details-heart-number
+        /         = course.votes_for
+        %p.class-details
+          = "#{course.teacher.about}"
 
-      - if course.teacher == current_user
-        %ul.noBullet
-          %li.noBullet
-            = link_to "Send a message to all students", contact_all_students_path(:id => course.id)
+        
+      - if course.teacher != current_user
+        %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
+        = link_to "Contact teacher", contact_teacher_path(:id => course.id)
+
+    - if course.students.any?
+      .sidebar-block-last
+        .sidebar-heading Students
+        .class-attendance-block
+          - course.students.each do |student|
+            %a.profile-link
+              = link_to student.name, profile_path(student), :class => "profile-link"
+
+        - if course.teacher == current_user
+          %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
+          = link_to "Send a message to all students", contact_all_students_path(:id => course.id)
 

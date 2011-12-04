@@ -934,6 +934,7 @@ h1#homepage_headline {
   font-weight: 700;
   font-size: 25px;
   margin-top: 50px;
+  margin-left: 80px;
   letter-spacing: 0.1em;
   color: white;
 }
@@ -943,13 +944,45 @@ h1#homepage_headline {
   position: relative;
   float: left;
   letter-spacing: 0.1em;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 10px;
+  margin-left: 120px;
+  margin-top: 20px;
+  color: white;
+}
+
+#homepage_headline_9 {
+  position: relative;
+  float: left;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 12px;
-  margin-left: 0px;
-  margin-top: 10px;
+  font-size: 13px;
+  margin-left: 5px;
+  margin-top: 20px;
   color: white;
+}
+
+#homepage_headline_10 {
+  position: relative;
+  float: left;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  margin-left: -135px;
+  margin-top: 40px;
+  color: white;
+}
+
+
+img#fb-signup{
+  margin-top: 20px;
+  margin-left: 76px;
 }
 
 /* line 327, ../../app/assets/stylesheets/components/homepage.scss */
@@ -2419,6 +2452,7 @@ li.withBullets {
 
 /* line 703, ../../app/assets/stylesheets/components/general.scss */
 .class-details {
+  float: left;
   margin-top: 8px;
   color: #666;
   font-weight: 700;
@@ -2432,6 +2466,11 @@ p.class-details {
   font-weight: 400;
   font-size: 12px;
   width: 180px;
+}
+
+.class-sidebar-details{
+  width: 150px;
+  line-height: 14px;
 }
 
 /* line 717, ../../app/assets/stylesheets/components/general.scss */
@@ -2461,14 +2500,21 @@ img.class-details-icon-where {
 
 /* line 736, ../../app/assets/stylesheets/components/general.scss */
 img.class-details-icon-heart {
-  margin-right: 5px;
-  margin-top: 2px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+img.class-details-icon-email{
+  margin-bottom: -5px;
 }
 
 /* line 741, ../../app/assets/stylesheets/components/general.scss */
 p.class-details-heart-number {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
+  margin-left: 7px;
+  margin-top: -1px;
+  color: #8f8f8f;
 }
 
 .register-class-button{
@@ -2523,6 +2569,34 @@ p.class-details-heart-number {
 }
 
 .edit-class-button:hover { background-color: #949393;}
+
+.edit-form-button {
+    /* Disables default styling */
+    border: none;
+    background: #00B6FF;
+    color: #fff;
+  float: right;
+  width: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #a9a9a9;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-right: 10px;
+  margin-top: -7px;
+  height: 35px;
+}
+
+.edit-form-button:hover { background-color: #949393;}
 
 .complete-class-button{
     /* Disables default styling */
@@ -2622,7 +2696,7 @@ img.steps {
   cursor: pointer;
 }
 
-.register-class-button:hover { background-color: #e46f28;}
+.preview-button:hover { background-color: #e46f28;}
 
 
 #preview-box-tall{
@@ -2746,7 +2820,7 @@ p.confirm {
 a.profile-link {
   color: #ff7733;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* line 933, ../../app/assets/stylesheets/components/general.scss */
@@ -2912,6 +2986,20 @@ p.form-bg {
   width: 30%;
   height: 30px;
   margin-bottom: 5px;
+  margin-right: 20px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.form-short-with-margin {
+  position: relative;
+  float: left;
+  width: 30%;
+  height: 30px;
+  margin-bottom: 20px;
   margin-right: 20px;
   padding-left: 10px;
   border: 1px solid #d2d9dc;
@@ -3086,7 +3174,7 @@ a.tip {
   float: left;
   width: 84px;
   height: 33px;
-  background-color: #999;
+  background-color: #ff7733;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -3100,7 +3188,7 @@ a.tip {
   cursor: pointer;
 }
 
-.loginButton:hover { background-color: #949393;}
+.loginButton:hover { background-color: #e46f28;}
 
 
 /* line 1, ../../app/assets/stylesheets/components/modal.scss */
