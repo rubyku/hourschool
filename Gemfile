@@ -12,7 +12,7 @@ gem "omniauth"
 #gem "koala"
 
 gem 'haml'
-gem 'rake', '0.8.7'
+gem 'rake', '~> 0.9.2'
 gem 'jquery-rails', '>= 1.0.12'
 
 gem 'friendly_id', '4.0.0.beta14'
