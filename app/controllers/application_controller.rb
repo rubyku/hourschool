@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :limit_subdomain_access
 
   protected
-
     def limit_subdomain_access
         if request.subdomain.present?
           # this error handling could be more sophisticated!
@@ -32,11 +31,15 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def store_location
+      if request.url != request.referrer
+        session[:return_to] = request.referrer
+      end
+    end
 
-    # uncomment me for custom redirect after login
-    # def after_sign_in_path_for(resource)
-    #
-    # end
 
+    def after_sign_in_path_for(resource)
+      previous_path_or(resource)
+    end
 
 end

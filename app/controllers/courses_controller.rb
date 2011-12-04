@@ -40,7 +40,7 @@ class CoursesController < ApplicationController
       @reqdescription = req.description
     end
     if Course.count > 0
-      @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+      @random_course = Course.random
     end
   end
 

@@ -65,10 +65,10 @@ class HomeController < ApplicationController
         })
        @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
        if Course.count > 0
-          @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+          @random_course = Course.random
           @classes_we_like = []
           (1..2).each do |val|
-            @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
+            @classes_we_like << Course.random
           end
         else
           @classes_we_like = []
@@ -161,7 +161,7 @@ class HomeController < ApplicationController
             :limit => 10,
             :order => "csuggestions.name DESC"
         })
-        @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
+        @random_course = Course.random
     else
       redirect_to root_path
     end
