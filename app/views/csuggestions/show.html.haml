@@ -1,5 +1,14 @@
 .page
-  .page-content.vote-class.clearfix
+  .page-content
+  
+    .vote-show-block
+      %p The more votes a suggestion has, the more likely it is to be claimed by a teacher. Get more people to vote for the class you want today!
+    .vote-share-block
+      = render :partial => "/courses/social_share"
+    %br
+    %br  
+    %hr#confirm
+   
     .vote-class-title
       .heading20-vote
         = @csuggestion.name
@@ -31,3 +40,11 @@
               = "Voted"
         - else
           = link_to_function "Vote", "alert('Please login to vote!')"
+
+
+.sidebar
+  .tipbox
+    %img.tape{:src => '../../../images/v2/Tape_White.png'}
+    .heading10 Have questions?
+    %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
+      #tipboxButton Contact us!

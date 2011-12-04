@@ -2064,8 +2064,11 @@ ul.view-more-arrow {
 }
 
 img.view-more-arrow{
-  padding-left: 7px;
-  padding-top: 4px;
+  padding-left: 0px;
+}
+
+img.view-more{
+  padding-left: 10px;
 }
 
 /* line 427, ../../app/assets/stylesheets/components/general.scss */
@@ -2128,9 +2131,8 @@ a.view-more {
 .vote-class a {
   font-family: verdana,sans-serif;
   font-size: 11px;
-  line-height: 20px;
   text-decoration: none;
-  padding-left: 3px;
+  padding-left: 10px;
   margin-top: 3px;
 }
 /* line 486, ../../app/assets/stylesheets/components/general.scss */
@@ -2465,7 +2467,7 @@ li.withBullets {
   color: #666;
   font-weight: 700;
   font-size: 12px;
-  width: 160px;
+  width: 190px;
 }
 
 /* line 710, ../../app/assets/stylesheets/components/general.scss */
@@ -2748,9 +2750,9 @@ a.orange-checklist:visited{color:#ff7733}
   float: left;
   width: 190px;
   background-color: white;
-  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+/*  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;*/
   padding-bottom: 20px;
   margin-right: 30px;
 }
@@ -2763,7 +2765,20 @@ a.orange-checklist:visited{color:#ff7733}
 
 .confirm-description-block{
   float: left;
-  width: 360px;
+  width: 380px;
+  margin-bottom: 20px;
+}
+
+.vote-show-block{
+  float: left;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.vote-share-block{
+  float: right;
+  width: 150px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -2842,7 +2857,25 @@ p.confirm {
   margin-top: 21px;
 }
 
+.form-short-edit-profile{
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 30px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
 /*......PROFILE PAGE......*/
+
+td.edit-profile{
+  width: 250px;
+}
 
 /* line 927, ../../app/assets/stylesheets/components/general.scss */
 a.profile-link {
@@ -3192,6 +3225,17 @@ a.tip {
   width: 600px;
 }
 
+.flash-notice{
+  text-transform: uppercase;
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 0px;
+  float: left;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
 
 /* Sign up form */
 .loginButton {

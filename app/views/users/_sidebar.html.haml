@@ -20,19 +20,19 @@
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
           %td.user-stat-number
             %p.class-details-heart-number
-              = 4
+              = current_user.recent_classes_as_student.count + current_user.past_classes_as_student.count
           %td.user-stat-icon    
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
           %td.user-stat-number
             %p.class-details-heart-number
-              = 2
-
-          %td.user-stat-icon        
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
-          %td.user-stat-number
-            %p.class-details-heart-number
-              = 5
-              / = current_user.hearts
+              = current_user.recent_classes_as_teacher.count + current_user.past_classes_as_teacher.count
+          / 
+          / %td.user-stat-icon        
+          /   %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
+          / %td.user-stat-number
+          /   %p.class-details-heart-number
+          /     = 5
+          /     = current_user.hearts
 
     .sidebar-block-last
       .sidebar-heading About 
@@ -44,6 +44,5 @@
             
       %ul.noBullet
         %li.noBullet
-          %a.profile-link(href="")Website
-          %a.profile-link(href="")Twitter      
-          %a.profile-link(href="")Facebook
+          %a.profile-link
+            = link_to "Website", current_user.web, :class => "profile-link"

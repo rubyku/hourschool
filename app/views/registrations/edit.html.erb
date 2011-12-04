@@ -1,3 +1,89 @@
 <%= devise_error_messages! %>
 
-<%= render :partial => 'form' %>
+<div class="page">
+  <div class="page-content">
+    <div class="heading25_ccc">Edit your profile</div>
+
+    <% form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
+
+    <table>
+      <tr>
+        <td class="edit-profile">
+          <p>
+           <%= f.label :name, 'Name', :class => "form-question" %><br />
+           <%= f.text_field :name, :class => "form-short-edit-profile" %>
+          </p>
+          <br><br>
+        </td>
+        <td class="edit-profile">
+          <p>
+           <%= f.label :email, 'Email', :class => "form-question" %><br />
+           <%= f.text_field :email, :class => "form-short-edit-profile" %>
+          </p>
+          <br><br>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="edit-profile">
+          <p>
+           <%= f.label :password, 'Password', :class => "form-question" %><br />
+           <%= f.password_field :password, :class => "form-short-edit-profile" %>
+          </p>
+          <br><br>
+        </td>
+        <td class="edit-profile">
+          <p>
+           <%= f.label :password, 'Confirm Password', :class => "form-question"  %><br />
+           <%= f.password_field :password, :class => "form-short-edit-profile" %>
+          </p>
+          <br><br>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="edit-profile">
+          <p>
+           <%= f.label :zip, 'Zip Code / Postal Code', :class => "form-question" %><br />
+           <%= f.text_field :zip, :class => "form-short-edit-profile"  %>
+          </p>
+          <br><br>
+        </td>
+        <td id="edit-profile">
+          <p>
+           <%= f.label :web, 'Website', :class => "form-question"  %><br />
+           <%= f.text_field :web, :class => "form-short-edit-profile"   %>
+          </p>
+          <br><br>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="edit-profile">
+          <p>
+           <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+           <%= f.file_field :photo %>
+          </p>
+          <br><br>
+        </td>
+      </tr>
+      
+      <tr>
+        <td id="edit-profile">
+          <p>
+           <%= f.label :about, 'Short Bio', :class => "form-question" %><br />
+           <%= f.text_area :about, :class => "form-med-with-margin" %>
+          </p>
+          <br><br>
+        </td>
+      </tr>
+    </table>
+    
+    
+    <br>
+    <%= f.submit "Update", :class => "loginButton" %>
+
+    <% end %>
+    
+  </div>
+</div>

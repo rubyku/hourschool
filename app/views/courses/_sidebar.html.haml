@@ -1,28 +1,30 @@
 .sidebar-white
   .sidebar-content-white
 
-    .class-details
-      = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
-  
-    .class-details
+    = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
+    %br
+    %br
     - if (@current_course.date - Date.today).numerator < 1
       - if @current_course.teacher == current_user
-        = "Class has passed. Teach again!"
+        %p= "This class has passed."
+        = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else 
-        = link_to "Class has passed. Request a new one!", new_csuggestion_path
+        %p= "This class has passed."
+        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
     - elsif @current_course.students.size >= course.seats
       - if @current_course.teacher == current_user
-        = "Your class is sold out. Teach another one!"
+        = "Yay! Your class is sold out!"
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
-        = "Registered"
+        .edit-class-button= "You're already registered"
       - else
-        = link_to "Class is full. Request a new one!", new_csuggestion_path
+        = "Class is full already!"
+        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
     - else 
       - if @current_course.teacher == current_user
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
-        = "Registered."
+        .edit-class-button= "You're already registered"
       - else 
         = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
         
@@ -107,8 +109,9 @@
           - course.students.each do |student|
             %a.profile-link
               = link_to student.name, profile_path(student), :class => "profile-link"
+              %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-          = link_to "Send a message to all students", contact_all_students_path(:id => course.id)
+          = link_to "Contact students", contact_all_students_path(:id => course.id)
 

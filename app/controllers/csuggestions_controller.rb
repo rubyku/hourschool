@@ -43,7 +43,7 @@ class CsuggestionsController < ApplicationController
       city.save
       UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @csuggestion).deliver 
       flash[:notice] = "Thanks for suggesting a class!"
-      redirect_to "/suggest"
+      redirect_to @csuggestion
     else
       render :action => 'new'
     end
@@ -87,7 +87,6 @@ class CsuggestionsController < ApplicationController
         if !cuser_suggestions.nil?
           wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
           if wait_time < 1
-            puts "=================================="
             flash[:error] = "Please wait for another #{5 - wait_time} minute before requesting another class"
             redirect_to "/suggest"
           end

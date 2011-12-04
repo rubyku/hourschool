@@ -1,4 +1,3 @@
-
 .page
   .page-content
     .confirm-classblock
@@ -21,34 +20,30 @@
             - else
               = @course.coursetag
 
-        .sidebar-block-last
+      %table
+        %tr
+          %td
+            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+          %td
+            .class-details
+              = "$ #{@course.price}"
+        %tr
+          %td
+            = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+          %td
+            .class-details
+              = @course.date.strftime("%B %d, %Y")
+            .class-address-details
+              = "#{@course.time_range}"
 
-          %ul.noBullet
-            %li.noBullet
-              %img.class-details-icon-cost{:src => '/images/v2/icon_pricetag.png'}
-            %li.noBullet
-              .class-details
-                = @course.price
-              .class-alterntives
-
-          %ul.noBullet
-            %li.noBullet
-              %img.class-details-icon-when{:src => '/images/v2/icon_calendar.png'}
-            %li.noBullet
-              .class-details
-                = @course.date.strftime("%B %d, %Y")
-              %p.class-details
-                = @course.time_range
-              .class-alterntives (Add to calendar)
-
-          %ul.noBullet
-            %li.noBullet
-              %img.class-details-icon-where{:src => '../../../images/v2/icon_location.png'}
-            %li.noBullet
-              .class-details
-                = @course.city.name
-              %p.class-details= @course.place
-              .class-alterntives (Map this location)
+        %tr
+          %td
+            = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+          %td
+            .class-details
+              = "#{@course.place}"
+            .class-address-details
+              = "#{@course.address}"
 
 
     .class-description-block
@@ -59,12 +54,12 @@
       %br
       %p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
       %br  
-      = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button" 
-      / - if @course.price == 0
-      /   = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
-      / - else 
-      /   .heading9-class Purchase this class through Amazon
-      /   = render "amazon_form"
+      %br
+      - if @course.price == 0
+        = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
+      - else 
+        .heading9-class Purchase this class through Amazon
+        = render "amazon_form"
 
 
 .sidebar
