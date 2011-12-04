@@ -16,11 +16,9 @@ class CsuggestionsController < ApplicationController
        })
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
       if Course.count > 0
-         @random_course = Course.find(Integer(rand(Course.count-1)) + 1)
-         @classes_we_like = []
-         (1..2).each do |val|
-           @classes_we_like << Course.find(Integer(rand(Course.count-1)) + 1)
-         end
+         @random_course = Course.random
+
+         @classes_we_like = Course.random.first(3)
        else
          @classes_we_like = []
        end
