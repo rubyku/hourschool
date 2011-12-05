@@ -65,8 +65,8 @@
         .welcome-header Upcoming classes teaching
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => current_user.recent_classes_as_teacher}
-          = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+          = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_teacher}
+          = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
       .page-section-float-right
         %table.view-more
@@ -82,39 +82,39 @@
 
         .welcome-header Classes suggested
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        = render :partial => "suggestions", :locals => {:suggestions => current_user.suggestions}
+        = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
  
     
     #approved.section{:style => 'display:none;'}
       .page-section-float-left
         .welcome-header Classes Approved
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
 
     #pending.section{:style => 'display:none;'}        
       .page-section-float-left
         .welcome-header Classes pending approval
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        = render :partial => "classes_pending", :locals => {:pending => current_user.pending}
+        = render :partial => "classes_pending", :locals => {:pending => @user.pending}
       .page-section-float-left
         .welcome-header Classes Approved
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
     #past-attended.section{:style => 'display:none;'}    
       .page-section-float-left
         .welcome-header Classes taken
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => current_user.past_classes_as_student}
+          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_student}
 
     #past-taught.section{:style => 'display:none;'}    
       .page-section-float-left
         .welcome-header Classes taught
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => current_user.past_classes_as_student}
+          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_student}
 
 
 = render :partial => 'sidebar'
