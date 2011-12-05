@@ -3,13 +3,16 @@
 
     .page-section-float-left
       %ul.sub-nav
-        %li.sub-nav-active
-          %a.sub-nav-acinactive(href="/profile") Classes
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/profile") Classes attending
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/profile_teaching") Classes teaching  
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/profile-suggest") Suggestions
         - if current_user.is_admin?
-          %li.sub-nav-active
-            %a.sub-nav-active(href="/profile-pending") Admin
+          %li.sub-nav-inactive 
+            %a.sub-nav-inactive(href="/profile-pending") Admin
+
 
     .page-section-float-left
       .welcome-header Classes Approved
