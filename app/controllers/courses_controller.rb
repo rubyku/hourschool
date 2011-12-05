@@ -53,9 +53,11 @@ class CoursesController < ApplicationController
   def confirm
     id = params[:id]
     @course = Course.find(id)
-    @course.update_attribute :status, "live"
-    UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-    UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+    if @course.status == "approved"
+      @course.update_attribute :status, "live"
+      UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+      UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+    end
   end
 
   def heart
