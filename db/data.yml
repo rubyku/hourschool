@@ -1,0 +1,1466 @@
+
+---
+cities:
+  columns:
+  - id
+  - zip
+  - area
+  - name
+  - state
+  - created_at
+  - updated_at
+  - lat
+  - lng
+  records:
+  - - 1
+    -
+    -
+    - Austin
+    - TX
+    - 2011-11-11 18:46:39 Z
+    - 2011-11-11 18:46:39 Z
+    - 30.4014
+    - -97.7525
+  - - 2
+    -
+    -
+    - Austin
+    - Texas
+    - 2011-11-29 17:39:51 Z
+    - 2011-11-29 17:39:51 Z
+    -
+    -
+  - - 3
+    -
+    -
+    - Sherrills Ford
+    - NC
+    - 2011-11-30 22:33:45 Z
+    - 2011-11-30 22:33:45 Z
+    - 35.6111
+    - -80.9982
+
+---
+courses:
+  columns:
+  - id
+  - title
+  - description
+  - price
+  - seats
+  - date
+  - time
+  - place
+  - city_id
+  - created_at
+  - updated_at
+  - minimum
+  - photo_file_name
+  - photo_content_type
+  - photo_file_size
+  - time_range
+  - status
+  - experience
+  - about
+  - coursetag
+  - phonenum
+  - address
+  - public
+  - slug
+  records:
+  - - 1
+    - I might jump an
+    - |+
+      I might jump an open drawbridge or Tarzan from a vine, beause I'm the unknown stuntman that makes Eastwood look so fine. Excepteur sint occaecat cupidatat non proident  sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      Every stop I make I make a new friend; Can't stay for long just turn around and I'm gone again. Off to New Orleans or who knows where. Ulysses, fighting evil and tyranny with all his power and with all of his might. He's going everywhere, B.J. McKay and his best friend Bear.
+
+    - 7.11
+    - 7
+    - 2011-11-29
+    -
+    - 3784 Oak Rdg
+    - 1
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-30 21:36:33 Z
+    - 3
+    -
+    -
+    -
+    - 9-11pm
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - i-might-jump-an-in-austin-tx
+  - - 2
+    - Lorem ipsum dolor sit
+    - |+
+      Lorem ipsum dolor sit amet  consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+      Ulysses, fighting evil and tyranny with all his power and with all of his might. Every stop I make I make a new friend; Can't stay for long just turn around and I'm gone again. Always fighting all the evil forces bringing peace and justice to all. Down the road that's where I'll always be.
+
+    - 6.02
+    - 9
+    - 2011-12-01
+    -
+    - 12040 Highland Trl
+    - 1
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-30 21:36:33 Z
+    - 1
+    -
+    -
+    -
+    - 9-11pm
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor-sit-in-austin-tx
+  - - 3
+    - Every day is better
+    - |+
+      Every day is better than the last, with new dreams and better scenes and best of all I don't pay property tax. He's going everywhere, B.J. McKay and his best friend Bear. No-one else can do the things you do, like a bolt of thunder from the blue. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+      Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. Off to New Orleans or who knows where. I might jump an open drawbridge or Tarzan from a vine, beause I'm the unknown stuntman that makes Eastwood look so fine. Who says you have to call just one place home?. No-one else can do the things you do, like a bolt of thunder from the blue.
+
+    - 16.57
+    - 11
+    - 2011-11-24
+    -
+    - 19953 Jackson St
+    - 1
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-30 21:36:33 Z
+    - 2
+    -
+    -
+    -
+    - 9-11pm
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - every-day-is-better-in-austin-tx
+  - - 4
+    - Every stop I make
+    - |+
+      Every stop I make I make a new friend; Can't stay for long just turn around and I'm gone again. Off to New Orleans or who knows where. Always fighting all the evil forces bringing peace and justice to all.
+
+      Always fighting all the evil forces bringing peace and justice to all. Ulysses, fighting evil and tyranny with all his power and with all of his might.
+
+    - 17.49
+    - 10
+    - 2011-11-18
+    -
+    - 15985 Pine St
+    - 1
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-30 21:36:33 Z
+    - 2
+    -
+    -
+    -
+    - 9-11pm
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - every-stop-i-make-in-austin-tx
+  - - 5
+    - Maybe tomorrow I'll want
+    - |+
+      Maybe tomorrow I'll want to settle down - until tomorrow I'll just keep moving on. Hong Kong Phooey number one super guy, Hong Kong Phooey quicker than the human eye. Always fighting all the evil forces bringing peace and justice to all. Excepteur sint occaecat cupidatat non proident  sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+      Always fighting all the evil forces bringing peace and justice to all. He's got style, a groovy style, and a car that just won't stop. Every day is better than the last, with new dreams and better scenes and best of all I don't pay property tax. Excepteur sint occaecat cupidatat non proident  sunt in culpa qui officia deserunt mollit anim id est laborum. Maybe tomorrow I'll want to settle down - until tomorrow I'll just keep moving on.
+
+    - 5.98
+    - 10
+    - 2011-11-26
+    -
+    - 35967 1st St
+    - 1
+    - 2011-11-11 18:46:52 Z
+    - 2011-11-30 21:36:33 Z
+    - 4
+    -
+    -
+    -
+    - 9-11pm
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - maybe-tomorrow-i-ll-want-in-austin-tx
+  - - 6
+    - lorem ipsum
+    - foo
+    - 1.0
+    - 3
+    - 2011-12-22
+    - 2000-01-01 23:06:45 Z
+    - idk
+    - 1
+    - 2011-11-30 19:29:15 Z
+    - 2011-12-01 23:11:14 Z
+    - 2
+    -
+    -
+    -
+    - "1"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-in-austin-tx
+  - - 8
+    - lorem
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in
+    - 62.0
+    - 8
+    - 2011-12-23
+    - 2000-01-01 22:19:29 Z
+    - who ville
+    -
+    - 2011-12-02 22:22:53 Z
+    - 2011-12-02 22:22:53 Z
+    - 3
+    -
+    -
+    -
+    - "2"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem--2
+  - - 9
+    - lorem ipsum dolor
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit
+    - 98.0
+    - 2
+    - 2011-12-23
+    - 2000-01-01 22:19:29 Z
+    - who ville
+    -
+    - 2011-12-02 22:23:24 Z
+    - 2011-12-02 22:23:24 Z
+    - 1
+    -
+    -
+    -
+    - "1"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor
+  - - 15
+    - foo foo
+    -
+    -
+    - 3
+    - 2011-12-05
+    -
+    -
+    -
+    - 2011-12-02 22:42:54 Z
+    - 2011-12-02 23:32:24 Z
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    - false
+    - foo-foo
+  - - 16
+    - lorem ipsum dolor sit
+    - lorem ipsum dolor sit amet
+    - 73.0
+    - 2
+    - 2011-11-11
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:35:58 Z
+    - 2011-12-03 01:49:57 Z
+    - 4
+    -
+    -
+    -
+    - "0"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor-sit--5
+  - - 17
+    - lorem ipsum dolor
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non
+    - 24.0
+    - 7
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:00 Z
+    - 2011-12-02 23:36:00 Z
+    - 2
+    -
+    -
+    -
+    - "1"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor--2
+  - - 18
+    - lorem
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius
+    - 97.0
+    - 7
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:00 Z
+    - 2011-12-02 23:36:00 Z
+    - 1
+    -
+    -
+    -
+    - "1"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem--3
+  - - 22
+    - lorem
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus
+    - 3.0
+    - 6
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:03 Z
+    - 2011-12-02 23:36:03 Z
+    - 2
+    -
+    -
+    -
+    - "3"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem--4
+  - - 23
+    - lorem ipsum dolor
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus
+    - 76.0
+    - 5
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:04 Z
+    - 2011-12-02 23:36:04 Z
+    - 0
+    -
+    -
+    -
+    - "1"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor--3
+  - - 24
+    - lorem ipsum dolor sit
+    - lorem ipsum dolor sit amet consectetuer
+    - 31.0
+    - 9
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:05 Z
+    - 2011-12-02 23:36:05 Z
+    - 2
+    -
+    -
+    -
+    - "4"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor-sit--2
+  - - 25
+    - lorem ipsum dolor
+    - lorem ipsum dolor
+    - 70.0
+    - 9
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:05 Z
+    - 2011-12-02 23:36:05 Z
+    - 3
+    -
+    -
+    -
+    - "4"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor--4
+  - - 27
+    - lorem ipsum dolor sit
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in
+    - 83.0
+    - 8
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:06 Z
+    - 2011-12-02 23:36:06 Z
+    - 0
+    -
+    -
+    -
+    - "3"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor-sit--3
+  - - 28
+    - lorem ipsum dolor sit
+    - lorem ipsum dolor sit amet consectetuer
+    - 46.0
+    - 7
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:07 Z
+    - 2011-12-02 23:36:07 Z
+    - 3
+    -
+    -
+    -
+    - "0"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor-sit--4
+  - - 29
+    - lorem ipsum dolor
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit
+    - 32.0
+    - 1
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:07 Z
+    - 2011-12-02 23:36:07 Z
+    - 3
+    -
+    -
+    -
+    - "0"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor--5
+  - - 30
+    - lorem ipsum dolor
+    - lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum
+    - 98.0
+    - 1
+    - 2011-12-23
+    - 2000-01-01 22:25:28 Z
+    - who ville
+    -
+    - 2011-12-02 23:36:07 Z
+    - 2011-12-02 23:36:07 Z
+    - 1
+    -
+    -
+    -
+    - "3"
+    - live
+    -
+    -
+    -
+    -
+    -
+    - false
+    - lorem-ipsum-dolor--6
+
+---
+croles:
+  columns:
+  - id
+  - user_id
+  - course_id
+  - created_at
+  - updated_at
+  - role
+  - attending
+  records:
+  - - 1
+    - 1
+    - 1
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-11 18:46:40 Z
+    - teacher
+    - true
+  - - 2
+    - 1
+    -
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-11 18:46:40 Z
+    -
+    - false
+  - - 3
+    - 2
+    - 2
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-11 18:46:43 Z
+    - teacher
+    - true
+  - - 4
+    - 2
+    -
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-11 18:46:43 Z
+    -
+    - false
+  - - 5
+    - 3
+    - 3
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-11 18:46:46 Z
+    - teacher
+    - true
+  - - 6
+    - 3
+    -
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-11 18:46:46 Z
+    -
+    - false
+  - - 7
+    - 4
+    - 4
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-11 18:46:49 Z
+    - teacher
+    - true
+  - - 8
+    - 4
+    -
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-11 18:46:49 Z
+    -
+    - false
+  - - 9
+    - 5
+    - 5
+    - 2011-11-11 18:46:52 Z
+    - 2011-11-11 18:46:52 Z
+    - teacher
+    - true
+  - - 10
+    - 5
+    -
+    - 2011-11-11 18:46:52 Z
+    - 2011-11-11 18:46:52 Z
+    -
+    - false
+  - - 11
+    - 6
+    - 2
+    - 2011-11-30 22:05:30 Z
+    - 2011-11-30 22:05:30 Z
+    - student
+    - true
+  - - 12
+    - 6
+    - 6
+    - 2011-11-30 22:05:30 Z
+    - 2011-12-01 23:14:58 Z
+    - teacher
+    - false
+
+---
+csuggestions:
+  columns:
+  - id
+  - name
+  - description
+  - city_id
+  - created_at
+  - updated_at
+  - requested_by
+  - slug
+  records:
+  - - 1
+    - Ut enim ad
+    - |+
+      Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+    - 1
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-30 19:21:07 Z
+    - 1
+    -
+  - - 2
+    - Off to New
+    - |+
+      Off to New Orleans or who knows where.
+
+    - 1
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-30 19:21:07 Z
+    - 2
+    -
+  - - 3
+    - Excepteur sint occaecat
+    - |+
+      Excepteur sint occaecat cupidatat non proident  sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    - 1
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-30 19:21:07 Z
+    - 3
+    -
+  - - 4
+    - foo
+    - |+
+      No-one else can do the things you do, like a bolt of thunder from the blue.
+
+    - 1
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-30 19:21:36 Z
+    - 4
+    -
+
+---
+friendly_id_slugs:
+  columns:
+  - id
+  - slug
+  - sluggable_id
+  - sluggable_type
+  - created_at
+  records:
+  - - 1
+    - i-might-jump-an-in-austin-tx
+    - 1
+    - Course
+    - 2011-11-30 21:36:33 Z
+  - - 2
+    - lorem-ipsum-dolor-sit-in-austin-tx
+    - 2
+    - Course
+    - 2011-11-30 21:36:33 Z
+  - - 3
+    - every-day-is-better-in-austin-tx
+    - 3
+    - Course
+    - 2011-11-30 21:36:33 Z
+  - - 4
+    - every-stop-i-make-in-austin-tx
+    - 4
+    - Course
+    - 2011-11-30 21:36:33 Z
+  - - 5
+    - maybe-tomorrow-i-ll-want-in-austin-tx
+    - 5
+    - Course
+    - 2011-11-30 21:36:33 Z
+  - - 7
+    - lorem-ipsum
+    - 6
+    - Course
+    - 2011-12-01 23:06:36 Z
+  - - 8
+    - lorem-ipsum-in-austin-tx
+    - 6
+    - Course
+    - 2011-12-01 23:08:41 Z
+  - - 10
+    - lorem--2
+    - 8
+    - Course
+    - 2011-12-02 22:22:53 Z
+  - - 11
+    - lorem-ipsum-dolor
+    - 9
+    - Course
+    - 2011-12-02 22:23:24 Z
+  - - 19
+    - ""
+    - 15
+    - Course
+    - 2011-12-02 23:31:59 Z
+  - - 20
+    - foo-foo
+    - 15
+    - Course
+    - 2011-12-02 23:32:24 Z
+  - - 21
+    - lorem-ipsum-dolor-sit
+    - 16
+    - Course
+    - 2011-12-02 23:35:58 Z
+  - - 22
+    - lorem-ipsum-dolor--2
+    - 17
+    - Course
+    - 2011-12-02 23:36:00 Z
+  - - 23
+    - lorem--3
+    - 18
+    - Course
+    - 2011-12-02 23:36:00 Z
+  - - 27
+    - lorem--4
+    - 22
+    - Course
+    - 2011-12-02 23:36:03 Z
+  - - 28
+    - lorem-ipsum-dolor--3
+    - 23
+    - Course
+    - 2011-12-02 23:36:04 Z
+  - - 29
+    - lorem-ipsum-dolor-sit--2
+    - 24
+    - Course
+    - 2011-12-02 23:36:05 Z
+  - - 30
+    - lorem-ipsum-dolor--4
+    - 25
+    - Course
+    - 2011-12-02 23:36:05 Z
+  - - 32
+    - lorem-ipsum-dolor-sit--3
+    - 27
+    - Course
+    - 2011-12-02 23:36:06 Z
+  - - 33
+    - lorem-ipsum-dolor-sit--4
+    - 28
+    - Course
+    - 2011-12-02 23:36:07 Z
+  - - 34
+    - lorem-ipsum-dolor--5
+    - 29
+    - Course
+    - 2011-12-02 23:36:07 Z
+  - - 35
+    - lorem-ipsum-dolor--6
+    - 30
+    - Course
+    - 2011-12-02 23:36:07 Z
+  - - 36
+    - lorem-ipsum-dolor-sit--5
+    - 16
+    - Course
+    - 2011-12-03 01:49:57 Z
+
+---
+slugs:
+  columns:
+  - id
+  - name
+  - sluggable_id
+  - sequence
+  - sluggable_type
+  - scope
+  - created_at
+  records:
+  - - 1
+    - robert-q-thompson
+    - 1
+    - 1
+    - User
+    -
+    - 2011-11-11 18:46:35 Z
+  - - 2
+    - i-might-jump-an
+    - 1
+    - 1
+    - Course
+    -
+    - 2011-11-11 18:46:40 Z
+  - - 3
+    - richard-u-anderson
+    - 2
+    - 1
+    - User
+    -
+    - 2011-11-11 18:46:40 Z
+  - - 4
+    - lorem-ipsum-dolor-sit
+    - 2
+    - 1
+    - Course
+    -
+    - 2011-11-11 18:46:43 Z
+  - - 5
+    - ruth-d-rodriguez
+    - 3
+    - 1
+    - User
+    -
+    - 2011-11-11 18:46:43 Z
+  - - 6
+    - every-day-is-better
+    - 3
+    - 1
+    - Course
+    -
+    - 2011-11-11 18:46:46 Z
+  - - 7
+    - jessica-w-peterson
+    - 4
+    - 1
+    - User
+    -
+    - 2011-11-11 18:46:46 Z
+  - - 8
+    - every-stop-i-make
+    - 4
+    - 1
+    - Course
+    -
+    - 2011-11-11 18:46:49 Z
+  - - 9
+    - sandra-g-kirk
+    - 5
+    - 1
+    - User
+    -
+    - 2011-11-11 18:46:49 Z
+  - - 10
+    - maybe-tomorrow-ill-want
+    - 5
+    - 1
+    - Course
+    -
+    - 2011-11-11 18:46:52 Z
+  - - 11
+    - richard-schneeman
+    - 6
+    - 1
+    - User
+    -
+    - 2011-11-29 17:39:41 Z
+  - - 12
+    - foos-5
+    - 4
+    - 1
+    - Csuggestion
+    -
+    - 2011-11-30 18:44:33 Z
+  - - 13
+    - foo
+    - 7
+    - 1
+    - User
+    -
+    - 2011-11-30 22:33:13 Z
+  - - 14
+    - foo
+    - 8
+    - 2
+    - User
+    -
+    - 2011-11-30 22:33:41 Z
+
+---
+taggings:
+  columns:
+  - id
+  - tag_id
+  - taggable_id
+  - taggable_type
+  - tagger_id
+  - tagger_type
+  - context
+  - created_at
+  records:
+  - - 1
+    - 1
+    - 1
+    - Course
+    -
+    -
+    - categories
+    - 2011-11-11 18:46:40 Z
+  - - 2
+    - 1
+    - 2
+    - Course
+    -
+    -
+    - categories
+    - 2011-11-11 18:46:43 Z
+  - - 3
+    - 1
+    - 3
+    - Course
+    -
+    -
+    - categories
+    - 2011-11-11 18:46:46 Z
+  - - 4
+    - 1
+    - 5
+    - Course
+    -
+    -
+    - categories
+    - 2011-11-11 18:46:52 Z
+
+---
+tags:
+  columns:
+  - id
+  - name
+  records:
+  - - 1
+    - Maintainance
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - name
+  - created_at
+  - updated_at
+  - location
+  - fb_token
+  - admin
+  - zip
+  - about
+  - photo_file_name
+  - photo_content_type
+  - photo_file_size
+  - photo_updated_at
+  - referral
+  - twitter
+  - facebook
+  - web
+  - slug
+  records:
+  - - 1
+    - people_1@test.com
+    - $2a$10$6Q92dFNtuxS.0tt4cOlgb.WG.4r5M7A/dxPdBmIk5Q7Eb4j7mkDsm
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - Robert Q Thompson
+    - 2011-11-11 18:46:35 Z
+    - 2011-11-11 18:46:35 Z
+    - Austin, TX
+    -
+    - false
+    - "78759"
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 2
+    - people_2@test.com
+    - $2a$10$hCgg/sJbJZviWbV2g5nMI.1g39yj72drumDAom2juWSaR..6iRapu
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - Richard U Anderson
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-11 18:46:40 Z
+    - Austin, TX
+    -
+    - false
+    - "78759"
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 3
+    - people_3@test.com
+    - $2a$10$SMssp1WRsEKD.U/H2HzGg.xejEulbPG9O//oh9sSxtSAS6UTSoe7O
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - Ruth D Rodriguez
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-11 18:46:43 Z
+    - Austin, TX
+    -
+    - false
+    - "78759"
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 4
+    - people_4@test.com
+    - $2a$10$iWvX7xKHMoz7xfd428ZB.OLw7WqQBPR440BknGnL/4C2mLTi3YR/6
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - Jessica W Peterson
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-11 18:46:46 Z
+    - Austin, TX
+    -
+    - false
+    - "78759"
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 5
+    - people_5@test.com
+    - $2a$10$qX8lXFEKQWZ4.rrxQziBIuXEFq3Gx3EbxyhXXWMcas4sBPl5Mfaj.
+    -
+    -
+    -
+    - 0
+    -
+    -
+    -
+    -
+    - Sandra G Kirk
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-11 18:46:49 Z
+    - Austin, TX
+    -
+    - false
+    - "78759"
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 6
+    - richard.schneeman@gmail.com
+    - $2a$10$aGUaJ1IhqADoqsFGsfqUj.v9E8ngisD12xaGWwj4ycHa/rnxKfDIu
+    - 56CNgxz2kxyhYjRuRnoV
+    - 2011-12-03 16:51:35 Z
+    -
+    - 1
+    - 2011-11-29 17:39:51 Z
+    - 2011-11-29 17:39:51 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - Richard Schneeman
+    - 2011-11-29 17:39:41 Z
+    - 2011-12-03 16:51:35 Z
+    - Austin, Texas
+    - AAABpqwgIZBm0BAL7RNZAacZAcZAWqnY0DOZBM1QFNxqBFTqFb020F0fJXPvFBmKtqpyoGRKk5e9h66cfpqbVolxnG4AnkjP0ZD
+    - false
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+    -
+  - - 7
+    - bar@foo.com
+    - $2a$10$cAUnGExSSR0UFYnuRGzo5OsTcWI13TWXLT7dPr503PB2w/sKG9.oK
+    -
+    -
+    -
+    - 1
+    - 2011-11-30 22:33:19 Z
+    - 2011-11-30 22:33:19 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - foo
+    - 2011-11-30 22:33:13 Z
+    - 2011-11-30 22:33:19 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - nope
+    -
+    -
+    -
+    -
+    - nope
+    -
+    -
+    -
+    -
+  - - 8
+    - bars@foo.com
+    - $2a$10$z6vGHAtG1r7HyzKSKML4Pu/p.554.L9Ibz3DuIn2LlZB88SHcHU1G
+    -
+    -
+    -
+    - 1
+    - 2011-11-30 22:33:45 Z
+    - 2011-11-30 22:33:45 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - foo
+    - 2011-11-30 22:33:41 Z
+    - 2011-11-30 22:33:45 Z
+    - Sherrills Ford, NC
+    -
+    - false
+    - "28673"
+    - nope
+    -
+    -
+    -
+    -
+    - nope
+    -
+    -
+    -
+    -
+  - - 9
+    - woot@woo.com
+    - $2a$10$biIlH7V9Xf9AkWeolJSG8OVnVkdBS3TZaTgryOdXrVX59.ZOShube
+    -
+    -
+    -
+    - 1
+    - 2011-12-01 22:39:09 Z
+    - 2011-12-01 22:39:09 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - foo
+    - 2011-12-01 22:39:03 Z
+    - 2011-12-01 22:39:09 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - ""
+    -
+    -
+    -
+    -
+    - ""
+    -
+    -
+    -
+    - foo
+  - - 10
+    - bar@what.com
+    - $2a$10$ogWlfQGunnRJ6LgIMhh3m.kT25XApU6Fu/An8HCbXNx8aVfhfoWnq
+    -
+    -
+    -
+    - 1
+    - 2011-12-01 22:45:16 Z
+    - 2011-12-01 22:45:16 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - alskdjfalskdfj
+    - 2011-12-01 22:45:10 Z
+    - 2011-12-01 22:45:16 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - ""
+    -
+    -
+    -
+    -
+    - ""
+    -
+    -
+    -
+    - alskdjfalskdfj
+  - - 11
+    - alskdfjlasdkjf@lkajsdf.com
+    - $2a$10$5vyn6rY/keYVjPgFbRoj8.RhqH.ayXBPri5E5ETezO9zErdv8GeCW
+    -
+    -
+    -
+    - 1
+    - 2011-12-01 23:00:42 Z
+    - 2011-12-01 23:00:42 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - bhhasldkfjasldkjf
+    - 2011-12-01 23:00:38 Z
+    - 2011-12-01 23:00:42 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - ""
+    -
+    -
+    -
+    -
+    - ""
+    -
+    -
+    -
+    - bhhasldkfjasldkjf
+  - - 12
+    - alskdfjlasdkjf@lkaasdfjsdf.com
+    - $2a$10$GdHl11Baqtn2x5ALFrrY9On17.9Rvt8ku5s3yitkoT6gC4WEA0.cW
+    -
+    -
+    -
+    - 1
+    - 2011-12-01 23:02:16 Z
+    - 2011-12-01 23:02:16 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - bhhasldkfjasldkjf
+    - 2011-12-01 23:02:12 Z
+    - 2011-12-01 23:02:16 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - ""
+    -
+    -
+    -
+    -
+    - ""
+    -
+    -
+    -
+    - bhhasldkfjasldkjf--2
+  - - 13
+    - foo@foo.com
+    - $2a$10$LTpJd3qi6YyyZZZm5dF7yul/Aq/7e1LYu15diKD.oBRG8spJXcYZ.
+    -
+    -
+    -
+    - 1
+    - 2011-12-03 00:38:39 Z
+    - 2011-12-03 00:38:39 Z
+    - 127.0.0.1
+    - 127.0.0.1
+    - asldkfjasldkfj
+    - 2011-12-03 00:38:35 Z
+    - 2011-12-03 00:43:28 Z
+    - Austin, TX
+    -
+    - false
+    - "78727"
+    - ""
+    -
+    -
+    -
+    -
+    - foo
+    - ""
+    - ""
+    - ""
+    - asldkfjasldkfj
+
+---
+votes:
+  columns:
+  - id
+  - vote
+  - voteable_id
+  - voteable_type
+  - voter_id
+  - voter_type
+  - created_at
+  - updated_at
+  records:
+  - - 1
+    - true
+    - 1
+    - Csuggestion
+    - 1
+    - User
+    - 2011-11-11 18:46:40 Z
+    - 2011-11-11 18:46:40 Z
+  - - 2
+    - true
+    - 2
+    - Csuggestion
+    - 2
+    - User
+    - 2011-11-11 18:46:43 Z
+    - 2011-11-11 18:46:43 Z
+  - - 3
+    - true
+    - 3
+    - Csuggestion
+    - 3
+    - User
+    - 2011-11-11 18:46:46 Z
+    - 2011-11-11 18:46:46 Z
+  - - 4
+    - true
+    - 4
+    - Csuggestion
+    - 4
+    - User
+    - 2011-11-11 18:46:49 Z
+    - 2011-11-11 18:46:49 Z
+  - - 5
+    - true
+    - 3
+    - Csuggestion
+    - 6
+    - User
+    - 2011-11-30 16:13:00 Z
+    - 2011-11-30 16:13:00 Z
+  - - 6
+    - true
+    - 4
+    - Csuggestion
+    - 6
+    - User
+    - 2011-11-30 16:13:17 Z
+    - 2011-11-30 16:13:17 Z

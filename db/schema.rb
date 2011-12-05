@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205012305) do
+ActiveRecord::Schema.define(:version => 20111205014410) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(:version => 20111205012305) do
     t.string   "fb_token"
     t.boolean  "admin",                                 :default => false
     t.string   "zip"
-    t.text     "about"
+    t.text     "bio"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -255,6 +255,8 @@ ActiveRecord::Schema.define(:version => 20111205012305) do
     t.string   "facebook"
     t.string   "web"
     t.string   "slug"
+    t.string   "legacy_password_hash"
+    t.string   "legacy_password_salt"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
