@@ -1,6 +1,6 @@
 class City < ActiveRecord::Base
   has_many :courses, :dependent => :destroy
-  has_many :csuggestions, :dependent => :destroy
+  has_many :suggestions, :dependent => :destroy
 
   validates_presence_of :name, :state
 

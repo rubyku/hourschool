@@ -1,0 +1,7 @@
+var learn_temp = '#vote_count_' + "<%= "#{@suggestion.id}" %>"
+var learn_result = "<%= @suggestion.votes_for.to_s %>"
+$(learn_temp).html(learn_result)
+
+var learn_temp = '#vote_link_' + "<%= "#{@suggestion.id}" %>"
+var learn_result = "You voted"
+$(learn_temp).html(learn_result)

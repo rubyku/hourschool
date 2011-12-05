@@ -12,15 +12,13 @@
             = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), course
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         %br
-
           .class-description
             .heading13-class
               = link_to course.title, course
-            %p= course.about
+            %p= course.teaser
             .heading9-class
               = "#{course.seats_left} seats left"
-              = "#{(course.date - Date.today).numerator} days remaining"
-
+              = "#{course.days_left} days remaining"
     - else
       .classBlock
       // do nothing

@@ -2,7 +2,7 @@ HourschoolV2::Application.routes.draw do
 
   resources :ecourses, :path => 'classes'
 
-  resources :csuggestions# , :path => 'requests'
+  resources :suggestions# , :path => 'requests'
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
@@ -33,8 +33,8 @@ HourschoolV2::Application.routes.draw do
   get "sites/show"
   match '/learn' => 'home#learn'
   match '/teach' => 'home#teach'
-  match '/suggest' => 'csuggestions#suggest'
-  match '/csvote' => 'csuggestions#vote'
+  match '/suggest' => 'suggestions#suggest'
+  match '/csvote' => 'suggestions#vote'
   match '/register' => 'courses#register'
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'

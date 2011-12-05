@@ -34,11 +34,11 @@ class UsersController < ApplicationController
   end
 
   def profile_suggest
-    @top_suggestions =  Csuggestion.tally(
+    @top_suggestions =  Suggestion.tally(
        {  :at_least => 1,
            :at_most => 10000,
            :limit => 100,
-           :order => "csuggestions.name ASC"
+           :order => "suggestions.name ASC"
        })
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
   end

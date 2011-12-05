@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204042906) do
+ActiveRecord::Schema.define(:version => 20111205022455) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -27,50 +27,29 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.string   "title"
     t.text     "description"
     t.integer  "price"
-    t.integer  "seats"
-    t.date     "date"
+    t.integer  "max_seats"
+    t.datetime "date"
     t.time     "time"
-    t.string   "place"
+    t.string   "place_name"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "minimum"
+    t.integer  "min_seats"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.string   "time_range"
     t.string   "status"
     t.text     "experience"
-    t.text     "about"
+    t.text     "teaser"
     t.string   "coursetag"
-    t.string   "phonenum"
+    t.string   "phone_number"
     t.string   "address"
     t.boolean  "public"
     t.string   "slug"
   end
 
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
-
-  create_table "croles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "role"
-    t.boolean  "attending"
-  end
-
-  create_table "csuggestions", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "requested_by"
-    t.string   "slug"
-  end
-
-  add_index "csuggestions", ["slug"], :name => "index_csuggestions_on_slug", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -181,6 +160,15 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.datetime "updated_at"
   end
 
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.boolean  "attending"
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -209,6 +197,18 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "suggestions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requested_by"
+    t.string   "slug"
+  end
+
+  add_index "suggestions", ["slug"], :name => "index_csuggestions_on_slug", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.string   "fb_token"
     t.boolean  "admin",                                 :default => false
     t.string   "zip"
-    t.text     "about"
+    t.text     "bio"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -255,6 +255,8 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.string   "facebook"
     t.string   "web"
     t.string   "slug"
+    t.string   "legacy_password_hash"
+    t.string   "legacy_password_salt"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
