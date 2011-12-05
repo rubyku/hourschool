@@ -11,7 +11,7 @@
     = @course.price
   %p
     %strong Seats:
-    = @course.seats
+    = @course.max_seats
   %p
     %strong Date:
     = @course.date

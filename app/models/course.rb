@@ -6,14 +6,12 @@ class Course < ActiveRecord::Base
 
   has_many :payments
 
-  attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
+  attr_accessible :title,:description, :price, :max_seats, :date, :time_range, :place, :min_seats
   attr_accessible :status, :teaser, :experience, :coursetag, :address, :phone_number, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
-  #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
-  validates_presence_of :title, :description, :price, :seats, :time_range, :place, :min_seats, :unless => :proposal?
+  validates_presence_of :title, :description, :price, :max_seats, :time_range, :place, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
-  # validates :terms_of_service, :acceptance => true
   attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
@@ -30,14 +28,8 @@ class Course < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h  
 
-  #before_update :reprocess_photo, :if => :cropping?
   after_update :reprocess_photo, :if => :cropping?
 
-  #:url => "/images/courses/:id/:style/:basename.:extension"
-  #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-  #:s3_credentials => S3_CREDENTIALS,
-  #:processors => [:cropper]
-  #:path => "/:style/:id/:filename",
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
@@ -126,7 +118,7 @@ class Course < ActiveRecord::Base
   end
 
   def seats_left
-    self.seats - self.students.count
+    self.max_seats - self.students.count
   end
 
    def future?

@@ -7,7 +7,7 @@ FactoryGirl.define do
     place       "who ville"
     time_range  {rand(5).to_s}
     price       { rand(100) }
-    seats       { rand(10) }
+    max_seats       { rand(10) }
     time        3.weeks.from_now
     date        3.weeks.from_now
     min_seats     { rand(5) }

@@ -11,7 +11,7 @@
       - else 
         %p= "This class has passed."
         = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
-    - elsif @current_course.students.size >= course.seats
+    - elsif @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
