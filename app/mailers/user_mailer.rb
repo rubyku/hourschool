@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def contact_all_students(current_user,course,message)
     @course = course
     @message = message
-    mail(:to => course.students.map(&:email), :subject => "Your teacher sent you a message!")
+    mail(:to => course.students.map(&:email), :reply_to => course.teacher.email, :subject => "Your teacher sent you a message!")
   end
 
 
@@ -86,7 +86,7 @@ class UserMailer < ActionMailer::Base
       @req = Suggestion.find(csuggid)
       @url = "http://turunga.org/courses/new?req=#{@req.id}"
       @message = message
-      mail(:to => user_email, :subject => "#{@user.name} has nominated you to teach at HourSchool")
+      mail(:to => user_email, :reply_to => @user.email, :bcc => "alex@hourschool.com, ruby@hourschool.com", :subject => "#{@user.name} has nominated you to teach at HourSchool")
    end
    
    def send_nominate_mail_to_hourschool(user_email, current_user, csuggid, message)

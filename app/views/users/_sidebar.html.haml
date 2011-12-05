@@ -44,5 +44,6 @@
             
       %ul.noBullet
         %li.noBullet
-          %a.profile-link
-            = link_to "Website", current_user.web, :class => "profile-link"
+          - if !current_user.web.blank?
+            %a.profile-link
+              = link_to "Website", current_user.web, :class => "profile-link"
