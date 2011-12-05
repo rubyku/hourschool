@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip, :about, :referral, :facebook, :twitter, :web
+  attr_accessible :zipcode, :zip, :bio, :referral, :facebook, :twitter, :web
 
   extend FriendlyId
   friendly_id :name, :use => :slugged
