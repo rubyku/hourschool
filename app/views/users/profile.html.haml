@@ -20,14 +20,14 @@
           #notification-header Notifications 
           - if @approved_courses.any?
             %img{:src => '/images/v2/notification_bolt.png'}
-            = "Your class(s) has been approved!" 
+            = "Your class has been approved!" 
             %a.notification(href="/profile-approved") Fill out the class profile
             = "to post it live!"
             %br
             %br
           - if @pending_courses.count != 0
             %img{:src => '/images/v2/notification_bolt.png'}
-            = "Your proposal(s) has been submitted successfully. We'll get back to you very soon. In the meantime,"
+            = "Your proposal has been submitted successfully. We'll get back to you very soon. In the meantime,"
             %a.notification(href="/pdf/handbook-111311.pdf") check out our teacher's handbook.
             %br
             %br

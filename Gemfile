@@ -11,6 +11,10 @@ gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
 gem "omniauth"
 #gem "koala"
 
+
+gem 'yaml_db'
+
+
 gem 'haml'
 gem 'rake', '~> 0.9.2'
 gem 'jquery-rails', '>= 1.0.12'

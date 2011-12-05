@@ -21,8 +21,10 @@
       .class-description
         .heading13-class
           = "#{@course.title}"
-        .heading9-class
         %p= "#{@course.teaser}"
+        .heading9-class
+          = "#{@course.seats_left} seats left"
+          = "#{@course.days_left} days from today"
     #preview-checklist-box
       .welcome-header Preview CheckList
       %ul

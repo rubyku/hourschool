@@ -93,33 +93,29 @@ class User < ActiveRecord::Base
   def recent_classes_as_student
     date = Date.today
     all_student_roles = self.roles.where(:role => "student").map(&:course)
-    all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
-    classes = (all_upcoming_classes & all_student_roles)
-    return classes
+    classes = all_student_roles
+    return classes.sort_by {|course| course.date }
   end
 
   def recent_classes_as_teacher
      date = Date.today
      all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
-     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
-     classes = (all_upcoming_classes & all_teacher_roles)
-     return classes
+     classes = all_teacher_roles
+     return classes.sort_by {|course| course.date }
    end
 
   def past_classes_as_student
     all_student_roles = self.roles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     classes = (all_past_classes & all_student_roles)
-    classes = (all_past_classes & all_student_roles)
-    return classes
+    return classes.sort_by {|course| course.date }
   end
 
   def past_classes_as_teacher
      all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
      all_past_classes = self.courses.where(['date < ?', DateTime.now])
      classes = (all_past_classes & all_teacher_roles)
-     classes = (all_past_classes & all_teacher_roles)
-     return classes
+     return classes.sort_by {|course| course.date }
    end
 
   def suggestions

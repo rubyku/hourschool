@@ -6,8 +6,7 @@
     - if @teaser_courses.present?
       = render :layout => 'shared/page/section', :locals => {:header => "Latest classes in your city"} do
         = render :partial => 'courses/browse/course_grid', :locals => {:courses => @teaser_courses}
-
-    = render :layout => 'shared/page/section', :locals => {:header => "Check out these classes"} do
+    = render :layout => 'shared/page/section', :locals => {:header => "Check out all our classes"} do
       = render :partial => 'courses/browse/course_grid', :locals => {:courses => @courses}
       .page-section-float-right
         %table.view-more

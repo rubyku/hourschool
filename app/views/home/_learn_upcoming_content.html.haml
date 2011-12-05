@@ -34,11 +34,11 @@
           .class-description
             .heading13-class
               = link_to "#{course.title}", course
+            %p= course.teaser
             .heading9-class
               = "#{course.seats_left} seats left"
               = "#{course.days_left} days from today"
             %p= course.teaser
-
     .classBlock
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
       .class-description
@@ -67,11 +67,10 @@
           .class-description
             .heading13-class
               = link_to "#{course.title}", course
+            %p= course.teaser
             .heading9-class
               = "#{course.seats_left} seats left"
               = "#{course.days_left} days from today"
-            %p= course.teaser
-
     .classBlock_last
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
       .class-description
@@ -107,11 +106,10 @@
       .class-description
         .heading13-class
           = link_to "#{course.title}", course
+        %p= course.teaser
         .heading9-class
           = "#{course.seats_left} seats left"
           = "#{course.days_left} days from today"
-        %p= course.teaser
-
 
 .page-section-float-right
   %table.view-more
