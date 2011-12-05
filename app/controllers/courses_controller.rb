@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
 
     #send email and other stuff here to the teacher
     UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
-    redirect_to "/profile-pending"
+      redirect_to profile_path(:show => 'pending')
 
   end
 
@@ -92,9 +92,8 @@ class CoursesController < ApplicationController
       #redirect_to @course, :notice => "Successfully created course."
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      
-      redirect_to "/profile_teaching"
+      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver  
+      redirect_to profile_path(:show => 'teaching')
     else
       render :action => 'new'
     end

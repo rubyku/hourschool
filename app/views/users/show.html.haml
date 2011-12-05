@@ -43,7 +43,7 @@
         /do nothing
 
 
-    #attending.section
+    #attending.section{:style => ('display:none;' if params[:show])}
       .page-section-float-left
         .welcome-header Upcoming classes attending
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
@@ -60,7 +60,7 @@
               %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
 
 
-    #teaching.section{:style => 'display:none;'}
+    #teaching.section{:style => ('display:none;' unless params[:show] == 'teaching')}
       .page-section-float-left
         .welcome-header Upcoming classes teaching
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
@@ -77,12 +77,12 @@
               %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
 
 
-    #suggestions.section{:style => 'display:none;'}
-      .page-section-float-left
-
-        .welcome-header Classes suggested
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
+    / #suggestions.section{:style => 'display:none;'}
+    /   .page-section-float-left
+    / 
+    /     .welcome-header Classes suggested
+    /     %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+    /     = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
  
     
     #approved.section{:style => 'display:none;'}
@@ -92,7 +92,7 @@
         = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
 
-    #pending.section{:style => 'display:none;'}        
+    #pending.section{:style => ('display:none;' unless params[:show] == 'pending')}
       .page-section-float-left
         .welcome-header Classes pending approval
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
