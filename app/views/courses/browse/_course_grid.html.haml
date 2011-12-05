@@ -2,7 +2,7 @@
   - group.each do |course|
     - if course.present?
       .classBlock
-        = link_to_image_for_course(course)
+        = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
         .class-description
           .heading13-class
             = link_to course.title, course

@@ -93,7 +93,7 @@ class CoursesController < ApplicationController
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       
-      redirect_to "/profile"
+      redirect_to "/profile_teaching"
     else
       render :action => 'new'
     end

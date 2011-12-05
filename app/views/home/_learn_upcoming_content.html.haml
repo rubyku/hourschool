@@ -67,10 +67,10 @@
           .class-description
             .heading13-class 
               = link_to "#{c.title}", c
+            %p= c.about
             .heading9-class 
               = "#{c.seats_left} seats left"
               = "#{(c.date - Date.today).numerator} days from today"
-            %p= c.about
   
     .classBlock_last
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path

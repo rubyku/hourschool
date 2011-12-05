@@ -95,7 +95,10 @@
         /       %p.class-details-heart-number
         /         = course.votes_for
         %p.class-details
-          = "#{course.teacher.about}"
+          - if course.experience.blank?
+            = "#{course.teacher.about}"
+          - else
+            = course.experience
 
         
       - if course.teacher != current_user

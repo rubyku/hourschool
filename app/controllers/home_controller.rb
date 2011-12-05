@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
 
   def index
-    
   end
 
   def learn
