@@ -68,7 +68,8 @@
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
           = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_teacher}
-          = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
+          - if current_user == @user
+            = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
       .page-section-float-right
         %table.view-more

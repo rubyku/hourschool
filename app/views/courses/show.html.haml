@@ -32,7 +32,13 @@
       .class-section-heading
         = "This class will cover"
       %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
-
+    
+    %br
+    %br
+    .page-section-float-left
+      .class-section-heading
+        = "Join the conversation"
+      = render :partial => "disqus"
 
 
 = render :partial => "sidebar", :locals => {:course => @course}
