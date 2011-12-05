@@ -49,14 +49,7 @@
       %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
 
     .confirm-description-block
-      %table
-        %tr
-          %td
-            .twshare.left
-            %a.twitter-share-button.left{"data-count" => "horizontal", "data-text" => "Check out this class I'm teaching:", "data-via" => "hourschool", :href => "http://twitter.com/share"} Tweet
-            %script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
-          %td
-            .fb-like{ "data-send" => "true", "data-layout" = "button_count", "data-width" => "450", "data-show-faces" => "false" }
+      = render :partial => "social_share_teach"
         
     .confirm-description-block
       %p What would you like to do now? 
