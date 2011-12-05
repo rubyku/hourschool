@@ -8,7 +8,7 @@
             = link_to course.title, course
           .heading9-class
             = "#{course.seats_left} seats left"
-            = "#{(course.date - Date.today).numerator} days remaining"
+            = "#{course.days_left} days remaining"
           %p= course.teaser
     - else
       .classBlock

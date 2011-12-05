@@ -40,6 +40,10 @@ class Course < ActiveRecord::Base
   acts_as_voteable
 
 
+  def days_left
+    (date.to_date - Time.now.to_date).to_i
+  end
+
   def pretty_slug
     if city.present?
       "#{title}-in-#{city.name_state}"
