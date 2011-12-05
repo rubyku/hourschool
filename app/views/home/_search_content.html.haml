@@ -17,7 +17,7 @@
       .class-description
         .heading13-class
           = link_to "#{course.title}", course
-        %p= course.description.truncate(50) unless course.description.blank?
+        %p= course.description.truncate(70) unless course.description.blank?
         .heading9-class
           = "#{course.seats_left} seats left"
           = "#{(course.date - Date.today).numerator} days from today"

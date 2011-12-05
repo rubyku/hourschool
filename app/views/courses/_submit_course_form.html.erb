@@ -22,14 +22,14 @@
 
     <p>
      <%= f.label :title, 'Give your class a title:', :class => "form-question" %><br />
-     <p class="tip">Limit 50 characters</p>
-     <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
+     <p class="tip">Max. length is 50 characters</p>
+     <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle, :maxlength => "36" %>
      </p>
      <br><br>
 
     <p>
      <%= f.label :teaser, 'Offer a short description', :class => "form-question" %><br />
-     <p class="tip">Limit 70 characters</p>
+     <p class="tip">Only the first 70 characters will show</p>
      <%= f.text_area :teaser, :class => "form-with-margin", :value => @reqdescription %>
      </p>
      <br><br>

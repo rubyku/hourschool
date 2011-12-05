@@ -2351,37 +2351,28 @@ img#create-class-star {
   font-size: 10;
 }
 
-.heading15-pagenote{
+.pagenote-box{
+  border: 1px solid #ccc;
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+.pagenote-header{
+  text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 15px;
+  margin-bottom: 10px;
+  float: left;
   letter-spacing: 0.1em;
-  margin-top: 10px;
+  width: 100%;
 }
 
-.pagenote-button {
-  /* Disables default styling */
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: left;
-  margin-top: -8px;
-  margin-bottom: 10px;
-  padding: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  margin-top: 10px;
+a.pagenote-link{
+  color: #ff7733;
 }
 
 hr#pagenote{
@@ -3236,6 +3227,7 @@ a.tip {
   letter-spacing: 0.05em;
   width: 100%;
 }
+
 
 /* Sign up form */
 .loginButton {

@@ -4,8 +4,20 @@
 .page
   .page-content
     - if @teaser_courses.present?
+    
+    
       = render :layout => 'shared/page/section', :locals => {:header => "Latest classes in your city"} do
+      
+        .pagenote-box.clearfix
+          .pagenote-header Want more classes in your city?
+          = "Currently, there are only a few classes in your city. "
+          = link_to "Create one now", new_course_path, :class => "pagenote-link"
+          = "or"
+          = link_to "contact us", "http://help.hourschool.com/customer/portal/emails/new", :class => "pagenote-link"
+          = "to find out other ways to be involved!"
+        
         = render :partial => 'courses/browse/course_grid', :locals => {:courses => @teaser_courses}
+          
     = render :layout => 'shared/page/section', :locals => {:header => "Check out all our classes"} do
       = render :partial => 'courses/browse/course_grid', :locals => {:courses => @courses}
       .page-section-float-right

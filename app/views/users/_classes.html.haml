@@ -23,7 +23,7 @@
       .class-description
         .heading13-class 
           = link_to "#{c.title}", c
-        %p= c.description.try(:truncate , 50).try(:html_safe)
+        %p= c.description.try(:truncate , 70).try(:html_safe)
         .heading9-class 
           - unless c.max_seats.nil?
             = "#{ c.seats_left } seats left"
