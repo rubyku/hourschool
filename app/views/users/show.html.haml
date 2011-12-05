@@ -35,6 +35,8 @@
             %img{:src => '/images/v2/notification_bolt.png'}
             = "You don't have a profile photo." 
             %a.notification(href="/users/edit") Upload one now!
+            %br
+            %br
           - if @user.zip.blank? || @user.location.blank?
             %img{:src => '/images/v2/notification_bolt.png'}
             = "Want to get notified when new classes happen in your city?" 
