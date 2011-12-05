@@ -2776,8 +2776,8 @@ a.orange-checklist:visited{color:#ff7733}
 }
 
 .vote-share-block{
-  float: right;
-  width: 150px;
+  float: left;
+  width: 400px;
   margin-top: 10px;
   margin-bottom: 20px;
 }
