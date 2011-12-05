@@ -20,7 +20,7 @@
         %p= course.description.truncate(70) unless course.description.blank?
         .heading9-class
           = "#{course.seats_left} seats left"
-          = "#{(course.date - Date.today).numerator} days from today"
+          = "#{course.days_left} days from today"
 
 .page-section-float-right
   %table.view-more
