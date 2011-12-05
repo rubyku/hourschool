@@ -1,7 +1,7 @@
 <%= amazon_simple_pay_form_tag do %>
     <input type="hidden" name="referenceId" value="<%= @course.id %>" >
     <%= hidden_field_tag 'description', @course.title %>
-    <%= image_submit_tag('../../../images/yesbutton.png') %>
+    <%= submit_tag "Yes I'm in!", :class => 'send-message-button %>
     <br><br>
     <img src ="../../../images/amzn-payments.gif">
 <% end %>
