@@ -94,9 +94,11 @@ gem "mocha", :group => :test
 # gem "liverelaod"
 
 group :development, :test do
+  gem "rspec-rails", "~> 2.6"
   gem 'factory_girl_rails'
   gem 'rb-fsevent'
   gem 'guard-livereload'
+  gem 'guard-rspec'
   gem 'forgery'
   gem 'random_data'
   gem 'faker'
