@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205014410) do
+ActiveRecord::Schema.define(:version => 20111205021546) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -50,15 +50,6 @@ ActiveRecord::Schema.define(:version => 20111205014410) do
   end
 
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
-
-  create_table "croles", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "role"
-    t.boolean  "attending"
-  end
 
   create_table "csuggestions", :force => true do |t|
     t.string   "name"
@@ -179,6 +170,15 @@ ActiveRecord::Schema.define(:version => 20111205014410) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role"
+    t.boolean  "attending"
   end
 
   create_table "sessions", :force => true do |t|

@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
-  has_many :croles, :dependent => :destroy
-  has_many :courses, :through => :croles
+  has_many :roles, :dependent => :destroy
+  has_many :courses, :through => :roles
 
   has_many :payments
 
@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
 
   def recent_classes_as_student
     date = Date.today
-    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_student_roles = self.roles.where(:role => "student").map(&:course)
     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
     classes = (all_upcoming_classes & all_student_roles)
     return classes
@@ -100,14 +100,14 @@ class User < ActiveRecord::Base
 
   def recent_classes_as_teacher
      date = Date.today
-     all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+     all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
      all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
      classes = (all_upcoming_classes & all_teacher_roles)
      return classes
    end
 
   def past_classes_as_student
-    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_student_roles = self.roles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     classes = (all_past_classes & all_student_roles)
     classes = (all_past_classes & all_student_roles)
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
 
   def past_classes_as_teacher
-     all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+     all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
      all_past_classes = self.courses.where(['date < ?', DateTime.now])
      classes = (all_past_classes & all_teacher_roles)
      classes = (all_past_classes & all_teacher_roles)
@@ -143,34 +143,34 @@ class User < ActiveRecord::Base
   end
 
   def student_for
-    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_student_roles = self.roles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     (all_past_classes & all_student_roles).count
 
   end
 
   def teacher_for
-      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+      all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
       all_past_classes = self.courses.where(['date < ?', DateTime.now])
       (all_past_classes & all_teacher_roles).count
   end
 
   def student_for_up
     date = Date.today
-    all_student_roles = self.croles.where(:role => "student").map(&:course)
+    all_student_roles = self.roles.where(:role => "student").map(&:course)
     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
     (all_upcoming_classes & all_student_roles).count
   end
 
   def teacher_for_up
     date = Date.today
-    all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
+    all_teacher_roles = self.roles.where(:role => "teacher").map(&:course)
     all_upcoming_classes = self.courses.where('(date BETWEEN ? AND ?) ', date, date.advance(:weeks => 4))
     (all_upcoming_classes & all_teacher_roles).count
   end
 
   def is_teacher_for?(course)
-    teaching_courses = self.croles.where(:role => 'teacher').collect{|c| c.course_id}
+    teaching_courses = self.roles.where(:role => 'teacher').collect{|c| c.course_id}
     return teaching_courses.include?(course.id)
   end
 

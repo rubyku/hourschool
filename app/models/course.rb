@@ -1,8 +1,8 @@
 class Course < ActiveRecord::Base
   belongs_to :city
 
-  has_many :croles, :dependent => :destroy
-  has_many :users, :through => :croles
+  has_many :roles, :dependent => :destroy
+  has_many :users, :through => :roles
 
   has_many :payments
 
@@ -86,7 +86,7 @@ class Course < ActiveRecord::Base
   end
 
   def teacher
-    teachers = croles.where(:role => 'teacher')
+    teachers = roles.where(:role => 'teacher')
     if teachers.any?
       teachers.first.user
     else
@@ -95,7 +95,7 @@ class Course < ActiveRecord::Base
   end
 
   def students
-    students = croles.where(:role => 'student')
+    students = roles.where(:role => 'student')
     if students.any?
       students.collect(&:user)
     else
@@ -104,7 +104,7 @@ class Course < ActiveRecord::Base
   end
 
   def is_a_student?(user)
-    students = croles.where(:role => 'student')
+    students = roles.where(:role => 'student')
     if students.any?
       return students.collect(&:user).include?(user)
     else
