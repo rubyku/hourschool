@@ -85,7 +85,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now.end_of_day, 4.weeks.from_now)
+    where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now.end_of_day, 52.weeks.from_now)
   end
 
   def self.active_tags
