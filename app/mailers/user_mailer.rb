@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
     @user = current_user
     @course = course
     @message = message
-    mail(:to => course.teacher.email, :subject => "A student sent you a message!")
+    mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
 
   def send_registration_mail(user_email,user_name)
