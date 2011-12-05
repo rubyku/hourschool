@@ -10,6 +10,6 @@ FactoryGirl.define do
     seats       { rand(10) }
     time        3.weeks.from_now
     date        3.weeks.from_now
-    minimum     { rand(5) }
+    min_seats     { rand(5) }
   end
 end

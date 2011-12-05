@@ -21,7 +21,7 @@
         %td= course.time
         %td= course.place
         
-        %td= course.minimum
+        %td= course.min_seats
         %td= link_to 'Show', course
         %td= link_to 'Edit', edit_ecourse_path(course)
         %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete

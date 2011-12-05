@@ -35,7 +35,7 @@ TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintai
   tags = []
   tags << TAGS[rand(8)] 
   course = Course.create! :title => title, :description => description, :price => price, :seats => seats, 
-                  :date => date, :time_range => time, :place => address, :minimum => minimum
+                  :date => date, :time_range => time, :place => address, :min_seats => minimum
   course.category_list = tags.join(", ").to_s
   
   if course.save

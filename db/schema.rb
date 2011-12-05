@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204042906) do
+ActiveRecord::Schema.define(:version => 20111205012305) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -27,23 +27,23 @@ ActiveRecord::Schema.define(:version => 20111204042906) do
     t.string   "title"
     t.text     "description"
     t.integer  "price"
-    t.integer  "seats"
-    t.date     "date"
+    t.integer  "max_seats"
+    t.datetime "date"
     t.time     "time"
-    t.string   "place"
+    t.string   "place_name"
     t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "minimum"
+    t.integer  "min_seats"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.string   "time_range"
     t.string   "status"
     t.text     "experience"
-    t.text     "about"
+    t.text     "teaser"
     t.string   "coursetag"
-    t.string   "phonenum"
+    t.string   "phone_number"
     t.string   "address"
     t.boolean  "public"
     t.string   "slug"

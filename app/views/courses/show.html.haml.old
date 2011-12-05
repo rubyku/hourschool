@@ -26,7 +26,7 @@
     = @course.city.name
   %p
     %strong Minimum:
-    = @course.minimum
+    = @course.min_seats
 
   / %p
   /   = link_to "Edit", edit_course_path(@course)

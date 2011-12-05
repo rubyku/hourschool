@@ -1,7 +1,7 @@
 .sidebar-white
   .sidebar-content-white
 
-    = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
+    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.seats}"
     %br
     %br
     - if (@current_course.date - Date.today).numerator < 1

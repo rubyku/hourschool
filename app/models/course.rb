@@ -6,11 +6,11 @@ class Course < ActiveRecord::Base
 
   has_many :payments
 
-  attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :minimum
+  attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
   attr_accessible :status, :about, :experience, :coursetag, :address, :phonenum, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
-  #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :minimum
-  validates_presence_of :title, :description, :price, :seats, :time_range, :place, :minimum, :unless => :proposal?
+  #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
+  validates_presence_of :title, :description, :price, :seats, :time_range, :place, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
   # validates :terms_of_service, :acceptance => true
