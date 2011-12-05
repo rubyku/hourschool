@@ -94,28 +94,28 @@ class User < ActiveRecord::Base
     date = Date.today
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     classes = all_student_roles
-    return classes
+    return classes.sort_by {|course| course.date }
   end
 
   def recent_classes_as_teacher
      date = Date.today
      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
      classes = all_teacher_roles
-     return classes
+     return classes.sort_by {|course| course.date }
    end
 
   def past_classes_as_student
     all_student_roles = self.croles.where(:role => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     classes = (all_past_classes & all_student_roles)
-    return classes
+    return classes.sort_by {|course| course.date }
   end
 
   def past_classes_as_teacher
      all_teacher_roles = self.croles.where(:role => "teacher").map(&:course)
      all_past_classes = self.courses.where(['date < ?', DateTime.now])
      classes = (all_past_classes & all_teacher_roles)
-     return classes
+     return classes.sort_by {|course| course.date }
    end
 
   def suggestions
