@@ -6,10 +6,11 @@
         .class-description
           .heading13-class
             = link_to course.title, course
+          %p= course.about
           .heading9-class
             = "#{course.seats_left} seats left"
             = "#{(course.date - Date.today).numerator} days remaining"
-          %p= course.about
+
     - else
       .classBlock
       // do nothing
