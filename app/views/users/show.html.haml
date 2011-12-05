@@ -62,6 +62,14 @@
               %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
 
 
+    #past-attended.section{:style => 'display:none;'}    
+      .page-section-float-left
+        .welcome-header Classes taken
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_student}
+
+
     #teaching.section{:style => ('display:none;' unless params[:show] == 'teaching')}
       .page-section-float-left
         .welcome-header Upcoming classes teaching
@@ -78,6 +86,15 @@
               =link_to_function 'Classes I taught in the past', "$('.section').hide(); $('#past-taught').show()", :class => 'view-more'
             %td
               %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
+
+
+    #past-taught.section{:style => 'display:none;'}    
+      .page-section-float-left
+        .welcome-header Classes taught
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          - if current_user == @user
+            = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
 
 
     #suggestions.section{:style => 'display:none;'}
@@ -104,20 +121,5 @@
         .welcome-header Classes Approved
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
-
-    #past-attended.section{:style => 'display:none;'}    
-      .page-section-float-left
-        .welcome-header Classes taken
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_student}
-
-    #past-taught.section{:style => 'display:none;'}    
-      .page-section-float-left
-        .welcome-header Classes taught
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
-
 
 = render :partial => 'sidebar'
