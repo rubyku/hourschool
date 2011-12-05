@@ -9,7 +9,7 @@
           .heading9-class
             = "#{course.seats_left} seats left"
             = "#{(course.date - Date.today).numerator} days remaining"
-          %p= course.about
+          %p= course.teaser
     - else
       .classBlock
       // do nothing

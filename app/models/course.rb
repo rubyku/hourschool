@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   has_many :payments
 
   attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
-  attr_accessible :status, :about, :experience, :coursetag, :address, :phonenum, :public
+  attr_accessible :status, :teaser, :experience, :coursetag, :address, :phonenum, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
   validates_presence_of :title, :description, :price, :seats, :time_range, :place, :min_seats, :unless => :proposal?
@@ -163,9 +163,9 @@ class Course < ActiveRecord::Base
    def default_validations
 
      if self.status == "proposal"
-       if self.title.blank? || self.about.blank? || self.experience.blank?
+       if self.title.blank? || self.teaser.blank? || self.experience.blank?
          #errors.add(:title, "Title cannot be blank!") unless !self.title.blank?
-         #errors.add(:about, "About field cannot be blank!") unless !self.about.blank?
+         #errors.add(:teaser, "About field cannot be blank!") unless !self.teaser.blank?
          #errors.add(:experience, "Experience field cannot be blank!") unless !self.experience.blank?
          errors[:base] << "All the fields are required!"
 
