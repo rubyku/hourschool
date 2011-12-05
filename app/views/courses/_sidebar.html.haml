@@ -1,10 +1,10 @@
 .sidebar-white
   .sidebar-content-white
 
-    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.seats}"
+    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.max_seats}"
     %br
     %br
-    - if (@current_course.date - Date.today).numerator < 1
+    - if @current_course.days_left < 1
       - if @current_course.teacher == current_user
         %p= "This class has passed."
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"

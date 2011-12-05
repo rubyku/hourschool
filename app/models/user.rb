@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
   after_save :update_location_database
   after_create :send_reg_email
 
+  def self.random
+    order('rand()')
+  end
+
   def zipcode
     self.zip
   end
