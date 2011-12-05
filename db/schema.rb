@@ -10,8 +10,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205022455) do
 
+ActiveRecord::Schema.define(:version => 20111205022455) do
   create_table "cities", :force => true do |t|
     t.integer  "zip"
     t.string   "area"
