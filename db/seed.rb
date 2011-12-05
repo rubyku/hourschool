@@ -27,7 +27,7 @@ TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintai
   seats = 10 unless seats != 0
   date = Random.date(0..21)
   time = "9-11pm"
-  place = random_text
+  place_name = random_text
   address = Random.address_line_1
   minimum = rand(5)
   minimum = 1 unless minimum < seats && minimum != 0
@@ -35,7 +35,7 @@ TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintai
   tags = []
   tags << TAGS[rand(8)] 
   course = Course.create! :title => title, :description => description, :price => price, :seats => seats, 
-                  :date => date, :time_range => time, :place => address, :min_seats => minimum
+                  :date => date, :time_range => time, :place_name => address, :min_seats => minimum
   course.category_list = tags.join(", ").to_s
   
   if course.save

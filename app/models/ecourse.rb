@@ -3,8 +3,8 @@ class Ecourse < ActiveRecord::Base
   has_many :members, :through => :eroles, :dependent => :destroy
   has_many :eroles, :dependent => :destroy
 
-  attr_accessible :title,:description, :price, :max_seats, :date, :time, :place, :min_seats
-  validates_presence_of :title,:description, :price, :max_seats, :date, :time, :place, :min_seats
+  attr_accessible :title,:description, :price, :max_seats, :date, :time, :place_name, :min_seats
+  validates_presence_of :title,:description, :price, :max_seats, :date, :time, :place_name, :min_seats
 
   acts_as_taggable_on :categories
 

@@ -20,7 +20,7 @@
     = @course.time
   %p
     %strong Place:
-    = @course.place
+    = @course.place_name
   %p
     %strong City:
     = @course.city.name
