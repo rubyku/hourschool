@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
     @course = Course.new
     @reqid = params[:req]
     if !@reqid.nil?
-      req = Csuggestion.find(@reqid.to_i)
+      req = Suggestion.find(@reqid.to_i)
       @reqtitle = req.name
       @reqdescription = req.description
     end
@@ -82,7 +82,7 @@ class CoursesController < ApplicationController
 
       if from_req
         #delele the suggestion
-        Csuggestion.delete(params[:req].to_s)
+        Suggestion.delete(params[:req].to_s)
         #here email people who voted, etc etc
 
       end

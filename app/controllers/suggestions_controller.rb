@@ -1,18 +1,18 @@
-class CsuggestionsController < ApplicationController
+class SuggestionsController < ApplicationController
   before_filter :authenticate_user!, :only => [:create,:udpate, :vote]
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
 
   def index
-    @csuggestions = Csuggestion.all
+    @suggestions = Suggestion.all
 
   end
 
   def suggest
-    @top_suggestions =  Csuggestion.tally(
+    @top_suggestions =  Suggestion.tally(
        {  :at_least => 1,
            :at_most => 10000,
            :limit => 100,
-           :order => "csuggestions.name ASC"
+           :order => "suggestions.name ASC"
        })
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
       if Course.count > 0
@@ -25,56 +25,56 @@ class CsuggestionsController < ApplicationController
   end
 
   def show
-    @csuggestion = Csuggestion.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
   end
 
   def new
-    @csuggestion = Csuggestion.new
+    @suggestion = Suggestion.new
   end
 
   def create
-    @csuggestion = Csuggestion.new(params[:csuggestion].merge({:requested_by => current_user.id}))
+    @suggestion = Suggestion.new(params[:suggestion].merge({:requested_by => current_user.id}))
     @user = current_user
     #need to have validations
-    if @csuggestion.save
-      current_user.vote_for(@csuggestion)
+    if @suggestion.save
+      current_user.vote_for(@suggestion)
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-      city.csuggestions << @csuggestion
+      city.suggestions << @suggestion
       city.save
-      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @csuggestion).deliver 
+      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver 
       flash[:notice] = "Thanks for suggesting a class!"
-      redirect_to @csuggestion
+      redirect_to @suggestion
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @csuggestion = Csuggestion.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
   end
 
   def update
-    @csuggestion = Csuggestion.find(params[:id])
-    if @csuggestion.update_attributes(params[:csuggestion])
-      redirect_to current_user, :notice  => "Successfully updated csuggestion."
+    @suggestion = Suggestion.find(params[:id])
+    if @suggestion.update_attributes(params[:suggestion])
+      redirect_to current_user, :notice  => "Successfully updated suggestion."
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    @csuggestion = Csuggestion.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-      city.csuggestions.delete(@csuggestion)
+      city.suggestions.delete(@suggestion)
       city.save
-    @csuggestion.destroy
-    redirect_to csuggestions_url, :notice => "Successfully destroyed csuggestion."
+    @suggestion.destroy
+    redirect_to suggestions_url, :notice => "Successfully destroyed suggestion."
   end
 
   def vote
     votefor_id = params[:csid]
-    @csuggestion = Csuggestion.find(votefor_id)
-    current_user.vote_for(@csuggestion) unless current_user.voted_on?(@csuggestion)
+    @suggestion = Suggestion.find(votefor_id)
+    current_user.vote_for(@suggestion) unless current_user.voted_on?(@suggestion)
     respond_to do |format|
       format.html {redirect_to :back}
     end
@@ -83,7 +83,7 @@ class CsuggestionsController < ApplicationController
   protected
    def has_not_created_suggestion_recently?
      if current_user
-        cuser_suggestions = Csuggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
+        cuser_suggestions = Suggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
         if !cuser_suggestions.nil?
           wait_time = ((Time.now - cuser_suggestions.created_at)/60).ceil
           if wait_time < 1

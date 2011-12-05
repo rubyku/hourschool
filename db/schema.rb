@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111205021546) do
+ActiveRecord::Schema.define(:version => 20111205022455) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -50,18 +50,6 @@ ActiveRecord::Schema.define(:version => 20111205021546) do
   end
 
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
-
-  create_table "csuggestions", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "city_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "requested_by"
-    t.string   "slug"
-  end
-
-  add_index "csuggestions", ["slug"], :name => "index_csuggestions_on_slug", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -209,6 +197,18 @@ ActiveRecord::Schema.define(:version => 20111205021546) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "suggestions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "city_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requested_by"
+    t.string   "slug"
+  end
+
+  add_index "suggestions", ["slug"], :name => "index_csuggestions_on_slug", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

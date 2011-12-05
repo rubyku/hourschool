@@ -52,17 +52,17 @@ class HomeController < ApplicationController
 
        @suggestions_in_my_location = []
         if neighborhood_30.size == 0
-          @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).csuggestions unless city.nil?
+          @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ?", "#{city.name}"]).suggestions unless city.nil?
         end
       neighborhood_30.each do |ncity|
-        @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).csuggestions
+        @suggestions_in_my_location += City.find(:first, :conditions => ["name LIKE ? AND state LIKE ?", "#{ncity.name}", "#{ncity.state}"]).suggestions
       end
 
-     @top_suggestions =  Csuggestion.tally(
+     @top_suggestions =  Suggestion.tally(
         {  :at_least => 1,
             :at_most => 10000,
             :limit => 100,
-            :order => "csuggestions.name DESC"
+            :order => "suggestions.name DESC"
         })
        @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 3)
        if Course.count > 0
@@ -77,7 +77,7 @@ class HomeController < ApplicationController
   end
 
   def nominate
-    @req = Csuggestion.find(params["id"])
+    @req = Suggestion.find(params["id"])
   end
 
   def nominate_send
@@ -87,8 +87,8 @@ class HomeController < ApplicationController
     else
     UserMailer.send_nominate_mail_to_teacher(params[:email],current_user,params[:reqid],params[:message]).deliver
     UserMailer.send_nominate_mail_to_hourschool(params[:email],current_user,params[:reqid],params[:message]).deliver
-    @csuggestion = Csuggestion.find(params[:reqid])
-    redirect_to @csuggestion
+    @suggestion = Suggestion.find(params[:reqid])
+    redirect_to @suggestion
     end
   end
 
@@ -156,11 +156,11 @@ class HomeController < ApplicationController
         @courses_matching_query = Course.find(:all, :conditions => ["(title LIKE ? OR description LIKE ?) AND date BETWEEN ? AND ?",search_string, search_string,date, date.advance(:weeks => 4)])
       end
       @courses = (@all_courses_in_city & @courses_matching_query).paginate(:page => params[:page], :per_page => 10)
-      @top_suggestions =  Csuggestion.tally(
+      @top_suggestions =  Suggestion.tally(
         {  :at_least => 1,
             :at_most => 10000,
             :limit => 10,
-            :order => "csuggestions.name DESC"
+            :order => "suggestions.name DESC"
         })
         @random_course = Course.random
     else

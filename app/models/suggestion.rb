@@ -1,4 +1,4 @@
-class Csuggestion < ActiveRecord::Base
+class Suggestion < ActiveRecord::Base
   belongs_to :city
   validates_presence_of :name, :requested_by
 

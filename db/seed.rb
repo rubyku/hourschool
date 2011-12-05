@@ -61,7 +61,7 @@ TAGS = ["Art, Design and Philosophy","Health and Wellness", "Language", "Maintai
   csugg = Csuggestion.create! :name => sugg_name, :description => sugg_desc, :requested_by => sugg_requested_by
   user.vote_for(csugg)
   city = City.find_by_name(user.city)
-   city.csuggestions << csugg
+   city.suggestions << csugg
    city.save
   #create courses randomly
 end

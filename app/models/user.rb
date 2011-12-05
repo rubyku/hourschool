@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
    end
 
   def suggestions
-    suggestions = Csuggestion.where(:requested_by => self.id)
+    suggestions = Suggestion.where(:requested_by => self.id)
     return suggestions
   end
 

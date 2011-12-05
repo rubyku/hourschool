@@ -83,7 +83,7 @@ class UserMailer < ActionMailer::Base
    def send_nominate_mail_to_teacher(user_email, current_user, csuggid, message)
       @email = user_email
       @user = current_user
-      @req = Csuggestion.find(csuggid)
+      @req = Suggestion.find(csuggid)
       @url = "http://turunga.org/courses/new?req=#{@req.id}"
       @message = message
       mail(:to => user_email, :subject => "#{@user.name} has nominated you to teach at HourSchool")
@@ -92,16 +92,16 @@ class UserMailer < ActionMailer::Base
    def send_nominate_mail_to_hourschool(user_email, current_user, csuggid, message)
       @email = user_email
       @user = current_user
-      @req = Csuggestion.find(csuggid)
+      @req = Suggestion.find(csuggid)
       @url = "http://turunga.org/courses/new?req=#{@req.id}"
       @message = message
       mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A nomination!")
    end
   
-   def send_suggestion_received_to_hourschool_mail(user_email, user_name, csuggestion)
+   def send_suggestion_received_to_hourschool_mail(user_email, user_name, suggestion)
      @email = user_email
      @name = user_name
-     @csuggestion = csuggestion
+     @suggestion = suggestion
      mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A suggestion has been submitted!")
    end
 
