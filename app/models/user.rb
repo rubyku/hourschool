@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def zipcode=(zip)
-    if !zip.nil? && !zip.blank?
+    if !zip.blank?
       loc = Geokit::Geocoders::GoogleGeocoder.geocode "#{zip}"
       if !loc.city.nil? && !loc.state.nil?
         self.location = loc.city + ", " + loc.state
@@ -183,8 +183,8 @@ class User < ActiveRecord::Base
   end
 
   def state
-    nil
-    location.split(',')[1].strip unless location.nil?
+    loc = location.split(',')[1]
+    loc.strip unless loc.blank?
   end
 
   def is_admin?
@@ -248,12 +248,10 @@ class User < ActiveRecord::Base
 
   def update_location_database
     cities = City.where(:name => self.city, :state => self.state)
-    if cities.first.nil?
-      #add the city in our database. One user can trigger a city
+    if cities.blank?
       g = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.zip}"
-      City.create!(:name => self.city, :state => self.state, :lat => g.lat, :lng => g.lng)
+      City.create(:name => self.city, :state => self.state, :lat => g.lat, :lng => g.lng)
     end
-
   end
 
   def send_reg_email
