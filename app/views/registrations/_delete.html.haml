@@ -2,10 +2,10 @@
 .page
   .page-content
     .heading25_ccc Edit your account
-    = form_tag about_save_path, :method => 'post' do
-      = label_tag :about, "About you (Briefly)", :class => 'form-question'
+    = form_tag bio_save_path, :method => 'post' do
+      = label_tag :bio, "About you (Briefly)", :class => 'form-question'
       %br/
-      = text_area_tag "about","", :class => "form"
+      = text_area_tag "bio","", :class => "form"
       = submit_tag "save (password not required)"
           
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|

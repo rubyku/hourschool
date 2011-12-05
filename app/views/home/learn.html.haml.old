@@ -37,7 +37,7 @@
       
     #nav-misc-category
       %h3= "Can't find a class you want?"
-      %li= link_to "Request a class", new_csuggestion_path
+      %li= link_to "Request a class", new_suggestion_path
     #nav-misc-category
       %h3= "Show me a something awesome"
       %li= link_to "Inspire me", @random_course

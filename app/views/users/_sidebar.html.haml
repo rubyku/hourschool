@@ -37,8 +37,8 @@
     .sidebar-block-last
       .sidebar-heading About 
       %p.profile-bio
-        = current_user.about
-        - if current_user.about.blank?
+        = current_user.bio
+        - if current_user.bio.blank?
           = "One of the HourSchoolmates!"
           =# link_to "here", edit_user_registration_path(current_user)
             

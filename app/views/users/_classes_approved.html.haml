@@ -1,15 +1,15 @@
 - count = 0
-- pending.each do |c|
+- pending.each do |course|
   - count = count + 1
   - if count%3 == 0
     - className = "classBlock_last"
   - else
     - className = "classBlock"
   %div{:class => "#{className}"}
-    = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(c.id)
+    = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(course.id)
     %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-    = button_to "Complete class profile", edit_course_path(c.id), :class => "complete-class-button", :method => :get
+    = button_to "Complete class profile", edit_course_path(course.id), :class => "complete-class-button", :method => :get
     .class-description
       .heading13-class 
-        = link_to "#{c.title}", edit_course_path(c.id)
-      %p= c.about.truncate(50).html_safe
+        = link_to "#{course.title}", edit_course_path(course.id)
+      %p= course.teaser.truncate(50).html_safe

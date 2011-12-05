@@ -1,18 +1,17 @@
 class Course < ActiveRecord::Base
   belongs_to :city
 
-  has_many :croles, :dependent => :destroy
-  has_many :users, :through => :croles
+  has_many :roles, :dependent => :destroy
+  has_many :users, :through => :roles
 
   has_many :payments
 
-  attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :minimum
-  attr_accessible :status, :about, :experience, :address, :phonenum, :public, :categories, :photo
+  attr_accessible :title,:description, :price, :max_seats, :date, :time_range, :place_name, :min_seats
+  attr_accessible :status, :teaser, :experience, :coursetag, :address, :phone_number, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
-  validates_presence_of :title, :description, :price, :seats, :time_range, :place, :address, :public, :minimum, :unless => :proposal?
+  validates_presence_of :title, :description, :price, :max_seats, :time_range, :place_name, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
-  # validates :terms_of_service, :acceptance => true
   attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
@@ -29,14 +28,8 @@ class Course < ActiveRecord::Base
 
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h  
 
-  #before_update :reprocess_photo, :if => :cropping?
   after_update :reprocess_photo, :if => :cropping?
 
-  #:url => "/images/courses/:id/:style/:basename.:extension"
-  #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-  #:s3_credentials => S3_CREDENTIALS,
-  #:processors => [:cropper]
-  #:path => "/:style/:id/:filename",
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
@@ -46,6 +39,10 @@ class Course < ActiveRecord::Base
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
+
+  def days_left
+    (date.to_date - Time.now.to_date).to_i
+  end
 
   def pretty_slug
     if city.present?
@@ -93,7 +90,7 @@ class Course < ActiveRecord::Base
   end
 
   def teacher
-    teachers = croles.where(:role => 'teacher')
+    teachers = roles.where(:role => 'teacher')
     if teachers.any?
       teachers.first.user
     else
@@ -102,7 +99,7 @@ class Course < ActiveRecord::Base
   end
 
   def students
-    students = croles.where(:role => 'student')
+    students = roles.where(:role => 'student')
     if students.any?
       students.collect(&:user)
     else
@@ -111,7 +108,7 @@ class Course < ActiveRecord::Base
   end
 
   def is_a_student?(user)
-    students = croles.where(:role => 'student')
+    students = roles.where(:role => 'student')
     if students.any?
       return students.collect(&:user).include?(user)
     else
@@ -125,7 +122,7 @@ class Course < ActiveRecord::Base
   end
 
   def seats_left
-    self.seats - self.students.count
+    self.max_seats - self.students.count
   end
 
    def future?
@@ -162,9 +159,9 @@ class Course < ActiveRecord::Base
    def default_validations
 
      if self.status == "proposal"
-       if self.title.blank? || self.about.blank? || self.experience.blank?
+       if self.title.blank? || self.teaser.blank? || self.experience.blank?
          #errors.add(:title, "Title cannot be blank!") unless !self.title.blank?
-         #errors.add(:about, "About field cannot be blank!") unless !self.about.blank?
+         #errors.add(:teaser, "About field cannot be blank!") unless !self.teaser.blank?
          #errors.add(:experience, "Experience field cannot be blank!") unless !self.experience.blank?
          errors[:base] << "All the fields are required!"
 

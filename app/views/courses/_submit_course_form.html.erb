@@ -28,9 +28,9 @@
      <br><br>
 
     <p>
-     <%= f.label :about, 'Offer a short description', :class => "form-question" %><br />
+     <%= f.label :teaser, 'Offer a short description', :class => "form-question" %><br />
      <p class="tip">Limit 70 characters</p>
-     <%= f.text_area :about, :class => "form-with-margin", :value => @reqdescription %>
+     <%= f.text_area :teaser, :class => "form-with-margin", :value => @reqdescription %>
      </p>
      <br><br>
 
@@ -76,8 +76,8 @@
                     <a href="" class="tip"><span id="hidetip4" style="width: 200px">Okay, got it.</span></a><br>
                 </div><br><br>
 
-             <%= f.text_field :minimum, :class => "form-short", :placeholder => "Min. # for me to have the class" %>
-             <%= f.text_field :seats, :class => "form-short", :placeholder => "Max. # I want to have" %>
+             <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to have the class" %>
+             <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I want to have" %>
     </div>
 
     <div class="page-section-float-left">
@@ -113,7 +113,7 @@
             <%= f.label :public, 'Private (ie. your house)' %>
             </p>
             <br>
-            <%= f.text_field :place, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+            <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
             <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
     </div>
 
@@ -148,7 +148,7 @@
 
         <p class="tip">This is for if your students can't find you at the class! Don't worry, your digits won't be shown publicly. This gets emailed to students separately. </p>
         <br><br>
-        <%= f.text_field :phonenum, :class => "form-short", :placeholder => "ex. 321-111-1234" %>
+        <%= f.text_field :phone_number, :class => "form-short", :placeholder => "ex. 321-111-1234" %>
     </div>
 
     <br><br>

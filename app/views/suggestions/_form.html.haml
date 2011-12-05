@@ -1,0 +1,14 @@
+.page
+  .page-content
+    .heading25_ccc
+      = "Suggest a class"
+    %p Didn't see a class you like? Suggest one and let others vote for it too. Someone's gotta be able to teach it!
+    %br
+    = form_for @suggestion do |f|
+      .form-question
+        = f.label "What do you want to learn?"
+      .form-question-tip Try to be specific. For example, "Weeknight quick dinner" is better than "cooking". 
+      = f.text_field :name, :class => "form-with-margin"
+      
+      %p.note Note: Your request will be posted after you hit submit. People can then vote if they are interested in taking the class, or claim to teach the class.
+      = f.submit "Request this class", :class => "submit-proposal-button"

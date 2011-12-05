@@ -1,17 +1,17 @@
 .sidebar-white
   .sidebar-content-white
 
-    = "Class min. of #{@current_course.minimum}, max. of #{@current_course.seats}"
+    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.seats}"
     %br
     %br
     - if (@current_course.date - Date.today).numerator < 1
       - if @current_course.teacher == current_user
         %p= "This class has passed."
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
-      - else 
+      - else
         %p= "This class has passed."
         = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
-    - elsif @current_course.students.size >= course.seats
+    - elsif @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
@@ -20,15 +20,15 @@
       - else
         = "Class is full already!"
         = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
-    - else 
+    - else
       - if @current_course.teacher == current_user
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
-      - else 
+      - else
         = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
-        
-      
+
+
     .sidebar-block
       %ul.noBullet
         %li.noBullet
@@ -63,7 +63,7 @@
           = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
         %li.noBullet
           .class-sidebar-details
-            = course.place
+            = course.place_name
           - if course.public?
             .class-sidebar-details
               = course.address
@@ -96,11 +96,11 @@
         /         = course.votes_for
         %p.class-details
           - if course.experience.blank?
-            = "#{course.teacher.about}"
+            = "#{course.teacher.bio}"
           - else
             = course.experience
 
-        
+
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
         = link_to "Contact teacher", contact_teacher_path(:id => course.id)
