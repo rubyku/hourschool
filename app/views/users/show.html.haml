@@ -77,12 +77,12 @@
               %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
 
 
-    / #suggestions.section{:style => 'display:none;'}
-    /   .page-section-float-left
-    / 
-    /     .welcome-header Classes suggested
-    /     %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-    /     = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
+    #suggestions.section{:style => 'display:none;'}
+      .page-section-float-left
+    
+        .welcome-header Classes suggested
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
  
     
     #approved.section{:style => 'display:none;'}
