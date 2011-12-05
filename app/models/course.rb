@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
   has_many :payments
 
   attr_accessible :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
-  attr_accessible :status, :teaser, :experience, :coursetag, :address, :phonenum, :public
+  attr_accessible :status, :teaser, :experience, :coursetag, :address, :phone_number, :public
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   #validates_presence_of :title,:description, :price, :seats, :date, :time_range, :place, :min_seats
   validates_presence_of :title, :description, :price, :seats, :time_range, :place, :min_seats, :unless => :proposal?
