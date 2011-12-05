@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
     @course = Course.new
     @reqid = params[:req]
     if !@reqid.nil?
-      req = Csuggestion.find(@reqid.to_i)
+      req = Suggestion.find(@reqid.to_i)
       @reqtitle = req.name
       @reqdescription = req.description
     end
@@ -68,10 +68,10 @@ class CoursesController < ApplicationController
 
     @user = current_user
     if @course.save
-      @crole = Crole.find_by_course_id_and_user_id(@course.id, current_user.id)
-      if @crole.nil?
-        @crole = @course.croles.create!(:attending => true, :role => 'teacher')
-        @user.croles << @crole
+      @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
+      if @role.nil?
+        @role = @course.roles.create!(:attending => true, :role => 'teacher')
+        @user.roles << @role
         @user.courses << @course
         @user.save
       end
@@ -82,7 +82,7 @@ class CoursesController < ApplicationController
 
       if from_req
         #delele the suggestion
-        Csuggestion.delete(params[:req].to_s)
+        Suggestion.delete(params[:req].to_s)
         #here email people who voted, etc etc
 
       end
@@ -126,14 +126,14 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
-    @crole = Crole.where(:course_id => @course.id).first
+    @role = Role.where(:course_id => @course.id).first
     #@course.destroy
     if current_user.is_teacher_for?(@course)
 
       @user = current_user
       @user.courses.delete(@course)
       @user.save
-      Crole.delete(@crole.id)
+      Role.delete(@role.id)
       Slug.delete(@slug.id)
       Course.delete(@course.id)
       INDEX.document("course_#{@course.id}").delete()
@@ -149,8 +149,8 @@ class CoursesController < ApplicationController
 
       @user = current_user
 
-       # #remove the relevant crole from user
-       #        @user.croles.delete(@user.croles.where(:course_id => @course.id).first)
+       # #remove the relevant role from user
+       #        @user.roles.delete(@user.roles.where(:course_id => @course.id).first)
 
       #remove the course
       @user.courses.delete(@user.courses.where(:id => @course.id).first)
@@ -172,8 +172,8 @@ class CoursesController < ApplicationController
      @course = Course.find(params[:id])
 
       @user = current_user
-      @crole = @course.croles.create!(:attending => true, :role => 'student')
-      @user.croles << @crole
+      @role = @course.roles.create!(:attending => true, :role => 'student')
+      @user.roles << @role
       @user.courses << @course
       if @user.save
         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
@@ -191,10 +191,10 @@ class CoursesController < ApplicationController
 
       # @user = current_user
       #       if @course.save
-      #         @crole = Crole.find_by_course_id_and_user_id(@course.id, current_user.id)
-      #         if @crole.nil?
-      #           @crole = @course.croles.create!(:attending => true, :role => 'teacher')
-      #           @user.croles << @crole
+      #         @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
+      #         if @role.nil?
+      #           @role = @course.roles.create!(:attending => true, :role => 'teacher')
+      #           @user.roles << @role
       #           @user.courses << @course
       #           @user.save
       #         end
@@ -214,8 +214,8 @@ class CoursesController < ApplicationController
       if @payment.save
          @payment.update_attributes(:user => current_user, :course => @course)
          @user = current_user
-         @crole = @course.croles.create!(:attending => true, :role => 'student')
-         @user.croles << @crole
+         @role = @course.roles.create!(:attending => true, :role => 'student')
+         @user.roles << @role
          @user.courses << @course
          @user.save
              

@@ -17,7 +17,7 @@
     .page-section-float-left
       - @courses.each do |course|
         %p= "#{course.title}"
-        %p= "#{course.about}"
+        %p= "#{course.teaser}"
         %p= "#{course.experience}"
         %p= link_to "Approve", approve_path(:id => course.id), :method => "POST"
 

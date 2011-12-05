@@ -16,7 +16,7 @@
             = @course.title
           %p
             - if @course.coursetag.blank?
-              = @course.about
+              = @course.teaser
             - else
               = @course.coursetag
 
@@ -41,7 +41,7 @@
             = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
           %td
             .class-details
-              = "#{@course.place}"
+              = "#{@course.place_name}"
             .class-address-details
               = "#{@course.address}"
 
