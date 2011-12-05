@@ -41,32 +41,6 @@ class User < ActiveRecord::Base
   end
 
 
-
-  def has_legacy_password?
-    legacy_password_hash.present? && legacy_password_salt.present?
-  end
-
-  def valid_legacy_password?(password)
-    calculated_hash =  BCrypt::Engine.hash_secret(password, legacy_password_salt)
-    Devise.secure_compare(legacy_password_hash, calculated_hash)
-  end
-
-  def convert_legacy_password!(password)
-    self.password = password if has_legacy_password? && valid_legacy_password?(password)
-    reload!
-    legacy_password_hash = nil and legacy_password_salt = nil if encrypted_password.present
-  end
-
-
-  def valid_password?(password)
-    convert_legacy_password!(password) if has_legacy_password?
-
-    return false if encrypted_password.blank?
-    bcrypt   = ::BCrypt::Password.new(self.encrypted_password)
-    password = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt.salt)
-    Devise.secure_compare(password, self.encrypted_password)
-  end
-
   def zipcode
     self.zip
   end
@@ -218,6 +192,44 @@ class User < ActiveRecord::Base
     email = self.email
     email == "saranyan13@gmail.com" || email == "alex@hourschool.com" || email == "ruby@hourschool.com" || email == "saranyan@hourschool.com"
   end
+
+
+  # ================================
+  # User Conversion Code
+  # Used to convert legacy passwords
+  # Can remove in a few months
+  # December, 5 2011
+  # ================================
+
+  def has_legacy_password?
+    legacy_password_hash.present? && legacy_password_salt.present?
+  end
+
+  def valid_legacy_password?(password)
+    calculated_hash =  BCrypt::Engine.hash_secret(password, legacy_password_salt)
+    Devise.secure_compare(legacy_password_hash, calculated_hash)
+  end
+
+  def convert_legacy_password!(password)
+    return false if !has_legacy_password? || !valid_legacy_password?(password)
+    self.password = password
+    if encrypted_password.present?
+      self.legacy_password_hash = nil
+      self.legacy_password_salt = nil
+      self.save
+    end
+  end
+
+
+  def valid_password?(password)
+    convert_legacy_password!(password) if has_legacy_password?
+    return false if encrypted_password.blank?
+    bcrypt   = ::BCrypt::Password.new(self.encrypted_password)
+    password = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt.salt)
+    Devise.secure_compare(password, self.encrypted_password)
+  end
+
+  # ================================
 
   private
   # def supported_location
