@@ -55,12 +55,11 @@
       %p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
       %br  
       %br
-      / = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
-      - if @course.price == 0
-        = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
-      - else 
-        .heading9-class Purchase this class through Amazon
-        = render "amazon_form"
+      = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
+      / - if @course.price == 0
+      /   = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
+      / - else 
+      /   = render "amazon_form"
 
 
 .sidebar
