@@ -222,7 +222,6 @@ class User < ActiveRecord::Base
 
 
   def valid_password?(password)
-    convert_legacy_password!(password) if has_legacy_password?
     return false if encrypted_password.blank?
     bcrypt   = ::BCrypt::Password.new(self.encrypted_password)
     password = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt.salt)
