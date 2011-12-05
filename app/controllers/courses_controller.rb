@@ -47,15 +47,15 @@ class CoursesController < ApplicationController
   def preview
     id = params[:id]
     @course = Course.find(id)
-    @current_course = Course.find(id)
+    @current_course = @course
   end
 
   def confirm
     id = params[:id]
     @course = Course.find(id)
     @course.update_attribute :status, "live"
-    UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name,@course).deliver
-    UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name,@course).deliver
+    UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+    UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
   end
 
   def heart
