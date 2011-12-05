@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
         if request.subdomain.present?
           # this error handling could be more sophisticated!
           # please make a suggestion :-)
-          redirect_to root_url(:subdomain => false)
+          # redirect_to root_url(:subdomain => false)
         end
     end
 
