@@ -23,7 +23,7 @@
       .class-description
         .heading13-class 
           = link_to "#{c.title}", c
-        %p= c.description.try(:truncate , 70).try(:html_safe)
+        %p= c.teaser.try(:truncate , 70).try(:html_safe)
         .heading9-class 
           - if c.days_left > 0
             = "#{ c.seats_left } seats left"
