@@ -93,9 +93,9 @@
         .welcome-header Classes taught
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
           - if current_user == @user
-            = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
-
+            = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
     #suggestions.section{:style => 'display:none;'}
       .page-section-float-left
