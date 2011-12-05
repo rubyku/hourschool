@@ -50,14 +50,15 @@ class CoursesController < ApplicationController
     @current_course = Course.find(id)
   end
 
-  def heart
-    @course = Course.find(params["id"])
-    current_user.vote_for(@course) unless current_user.voted_on?(@course)
-  end
-
   def confirm
     id = params[:id]
     @course = Course.find(id)
+    @course.update_attribute :status, "live"
+  end
+
+  def heart
+    @course = Course.find(params["id"])
+    current_user.vote_for(@course) unless current_user.voted_on?(@course)
   end
 
   def create
