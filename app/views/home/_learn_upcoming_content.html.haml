@@ -1,5 +1,5 @@
-- if classes_this_week.size < 3 
-  - if classes_this_week.size == 0    
+- if classes_this_week.size < 3
+  - if classes_this_week.size == 0
     .classBlock
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
       .class-description
@@ -16,7 +16,7 @@
         .empty-prompt
           = "Share your passion!"
   - elsif classes_this_week.size == 1
-    
+
     - classes_this_week.each do |c|
       .classBlock
         - if c.photo.exists?
@@ -30,15 +30,15 @@
             = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), c
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         %br
-  
+
           .class-description
-            .heading13-class 
+            .heading13-class
               = link_to "#{c.title}", c
-            .heading9-class 
+            .heading9-class
               = "#{c.seats_left} seats left"
               = "#{(c.date - Date.today).numerator} days from today"
             %p= c.teaser
-  
+
     .classBlock
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
       .class-description
@@ -63,15 +63,15 @@
             = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), c
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         %br
-  
+
           .class-description
-            .heading13-class 
+            .heading13-class
               = link_to "#{c.title}", c
-            .heading9-class 
+            .heading9-class
               = "#{c.seats_left} seats left"
               = "#{(c.date - Date.today).numerator} days from today"
             %p= c.teaser
-  
+
     .classBlock_last
       = link_to image_tag("/images/v2-courses/GhostClasses__01_v1.png"), teach_path
       .class-description
@@ -80,7 +80,7 @@
 
 
 
-- if classes_this_week.size < 3 
+- if classes_this_week.size < 3
   / - count = 0
   .why-teach-short.clearfix
     .heading15-pagenote There aren't any classes in your city yet. Be the first!
@@ -91,12 +91,6 @@
 - else
 
 - classes_this_week.each do |c|
-  / - count = 3
-  / - if count%3 == 0
-  /   - className = "classBlock_last"
-  / - else
-  /   - className = "classBlock"
-  / %div{:class => "#{className}"}
   .classBlock
     - if c.photo.exists?
       / Course.find(10).categories.first.name
@@ -111,17 +105,16 @@
     %br
 
       .class-description
-        .heading13-class 
+        .heading13-class
           = link_to "#{c.title}", c
-        .heading9-class 
+        .heading9-class
           = "#{c.seats_left} seats left"
           = "#{(c.date - Date.today).numerator} days from today"
         %p= c.teaser
 
-    
+
 .page-section-float-right
   %table.view-more
     %tr
       %td
         = will_paginate classes_this_week, :previous_label => "Prev"
-        
