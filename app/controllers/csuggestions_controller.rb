@@ -14,14 +14,14 @@ class CsuggestionsController < ApplicationController
            :limit => 100,
            :order => "csuggestions.name ASC"
        })
-      @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
-      if Course.count > 0
-         @random_course = Course.random
-
-         @classes_we_like = Course.random.first(3)
-       else
-         @classes_we_like = []
-       end
+      # @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
+      # if Course.count > 0
+      #    @random_course = Course.random
+      # 
+      #    @classes_we_like = Course.random.first(3)
+      #  else
+      #    @classes_we_like = []
+      #  end
   end
 
   def show
