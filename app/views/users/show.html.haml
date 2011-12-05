@@ -1,32 +1,120 @@
-/ .content
-/   %h1= @user.name
-/   %ul{:class => "hmenu"}
-/     = render 'devise/menu/user_registration_items'
-/     = render 'devise/menu/user_login_items'
-/   %p= @user.email
-/   %p= "Student = #{@user.student_for}"
-/   %p= "Teacher = #{@user.teacher_for}"
-
-/ .container_16.searchBar.clearfix
-/   = render :partial => 'home/search_form'
-
 .page
   .page-content
-    .page-section-float-left.clearfix
-      .welcome-header
-        ="Welcome back, #{@user.name}"
-      %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
-      %ul.sub-nav.clearfix
-        %li.sub-nav-inactive
-          %a.sub-nav-nactive(href="") News feed
-
-
 
     .page-section-float-left
-      #user_show_main_content
+      %ul.sub-nav
+        %li.sub-nav-inactive
+          =link_to_function 'Classes Attending', "$('.section').hide(); $('#attending').show()", :class => 'sub-nav-inactive'
+        %li.sub-nav-inactive
+          =link_to_function 'Classes Teaching', "$('.section').hide(); $('#teaching').show()", :class => 'sub-nav-inactive'
+        %li.sub-nav-inactive
+          =link_to_function 'Suggestions', "$('.section').hide(); $('#suggestions').show()", :class => 'sub-nav-inactive'
+        - if current_user.is_admin?
+          %li.sub-nav-inactive 
+            =link_to_function 'Admin', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
 
 
+    .page-section-float-left  
+      - if (@approved_courses.any? || @pending_courses.count != 0 || !@user.photo.exists? || @user.zip.blank? || @user.location.blank?) && current_user == @user
+        .notification-center
+          #notification-header Notifications 
+          - if @approved_courses.any?
+            %img{:src => '/images/v2/notification_bolt.png'}
+            = "Your class has been approved!" 
+            =link_to_function 'Fill out your class profile', "$('.section').hide(); $('#approved').show()", :class => 'notification'
+            = "to post it live!"
+            %br
+            %br
+          - if @pending_courses.count != 0
+            %img{:src => '/images/v2/notification_bolt.png'}
+            = "Your proposal has been submitted successfully. We'll get back to you very soon. In the meantime,"
+            %a.notification(href="/pdf/handbook-111311.pdf") check out our teacher's handbook.
+            %br
+            %br
+          - if !@user.photo.exists?
+            %img{:src => '/images/v2/notification_bolt.png'}
+            = "You don't have a profile photo." 
+            %a.notification(href="/users/edit") Upload one now!
+          - if @user.zip.blank? || @user.location.blank?
+            %img{:src => '/images/v2/notification_bolt.png'}
+            = "Want to get notified when new classes happen in your city?" 
+            %a.notification(href="/users/edit") Tell us where you live!
+      - else
+        /do nothing
+
+
+    #attending.section
+      .page-section-float-left
+        .welcome-header Upcoming classes attending
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+
+          = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_student}
+
+      .page-section-float-right
+        %table.view-more
+          %tr
+            %td
+              =link_to_function 'Classes I attended in the past', "$('.section').hide(); $('#past-attended').show()", :class => 'view-more'
+            %td
+              %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
+
+
+    #teaching.section{:style => 'display:none;'}
+      .page-section-float-left
+        .welcome-header Upcoming classes teaching
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => current_user.recent_classes_as_teacher}
+          = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+
+      .page-section-float-right
+        %table.view-more
+          %tr
+            %td
+              =link_to_function 'Classes I taught in the past', "$('.section').hide(); $('#past-attended').show()", :class => 'view-more'
+            %td
+              %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
+
+
+    #suggestions.section{:style => 'display:none;'}
+      .page-section-float-left
+
+        .welcome-header Classes suggested
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        = render :partial => "suggestions", :locals => {:suggestions => current_user.suggestions}
+ 
+    
+    #approved.section{:style => 'display:none;'}
+      .page-section-float-left
+        .welcome-header Classes Approved
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+
+
+    #pending.section{:style => 'display:none;'}        
+      .page-section-float-left
+        .welcome-header Classes pending approval
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        = render :partial => "classes_pending", :locals => {:pending => current_user.pending}
+      .page-section-float-left
+        .welcome-header Classes Approved
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        = render :partial => "classes_approved", :locals => {:pending => current_user.approved_classes}
+
+    #past-attended.section{:style => 'display:none;'}    
+      .page-section-float-left
+        .welcome-header Classes taken
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => current_user.past_classes_as_student}
+
+    #past-taught.section{:style => 'display:none;'}    
+      .page-section-float-left
+        .welcome-header Classes taught
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => current_user.past_classes_as_student}
 
 
 = render :partial => 'sidebar'
-
