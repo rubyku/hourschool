@@ -9,7 +9,7 @@
                  <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav1.title, @fav1 %></div>
-                  <p><%= @fav1.teaser %></p>
+                  <p><%= @fav1.teaser.truncate(70) unless @fav1.teaser.blank? %></p>
                   <div class="heading9-class">
                   <%= "#{@fav1.seats_left} seats | #{@fav1.days_left} days | #{@fav1.city.name}" %>
                   </div>
@@ -21,7 +21,7 @@
                      <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav2.title, @fav2 %></div>
-                      <p><%= @fav2.teaser %></p>
+                      <p><%= @fav2.teaser.truncate(70) unless @fav1.teaser.blank? %></p>
                       <div class="heading9-class">
                       <%= "#{@fav2.seats_left} seats | #{@fav2.days_left} days | #{@fav2.city.name}" %>
                       </div>
@@ -33,7 +33,7 @@
                      <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
-                      <p><%= @fav3.teaser %></p>
+                      <p><%= @fav3.teaser.truncate(70) unless @fav1.teaser.blank?%></p>
                       <div class="heading9-class">
                       <%= "#{@fav3.seats_left} seats | #{@fav3.days_left} days | #{@fav3.city.name}" %>
                       </div>
@@ -45,7 +45,7 @@
                      <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
-                      <p><%= @fav4.teaser %></p>
+                      <p><%= @fav4.teaser.truncate(70) unless @fav1.teaser.blank? %></p>
                       <div class="heading9-class">
                       <%= "#{@fav4.seats_left} seats | #{@fav4.days_left} days | #{@fav4.city.name}" %>
                       </div>
