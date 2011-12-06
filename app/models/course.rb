@@ -65,10 +65,11 @@ class Course < ActiveRecord::Base
     order('rand()')
   end
 
+
   def self.near(options = {})
     origin = options[:zip]
     radius = options[:radius]||options[:distance]||30
-    cities = City.geo_scope(:origin=> origin, :conditions=>"distance < #{radius}")
+    cities = City.geo_scope(:origin=> origin, :conditions=>"distance < #{radius}", :order => 'distance')
     self.where(:city_id => cities.map(&:id))
   end
 

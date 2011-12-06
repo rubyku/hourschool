@@ -1,22 +1,27 @@
 
 
-<div class="container_16 clearfix">  
+<div class="container_16 clearfix">
 
-  <div class="grid_6">  
-    <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
-        <% tum = get_tumblr_first_regular_post %>
-        <div class="footer-heading">Recent Blog Post</div>
-        <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
+  <div class="grid_6">
+    <% begin %>
+      <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
+          <% tum = get_tumblr_first_regular_post %>
+          <div class="footer-heading">Recent Blog Post</div>
+          <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
-        <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
-    <%- else -%>
-        <div class="footer-heading">Our mission</div>
-        <div class="footer-blog-title">HourSchool started because...</div><br>
+          <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
+
+      <%- else -%>
+          <div class="footer-heading">Our mission</div>
+          <div class="footer-blog-title">HourSchool started because...</div><br>
+      <% end %>
+    <% rescue => ex %>
+      <% Rails.logger.error "Tumblr Failed: #{ex}" %>
     <% end %>
 
   </div>
 
-  <div class="grid_6">  
+  <div class="grid_6">
     <div class="footer-heading">Newsletter sign up</div>
       <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
         <div id="mc_embed_signup">
@@ -37,7 +42,7 @@
        <table id="footer">
 
        <tr>
-          <td id="footer"> 
+          <td id="footer">
             <img src="../../../images/v2/icon_star.png" class="footer_contact">
           </td>
           <td id="footer">
@@ -55,7 +60,7 @@
          </tr>
 
          <tr>
-            <td id="footer"> 
+            <td id="footer">
                <img src="../../../images/v2/icon_twitter.png" class="footer_contact">
             </td>
             <td id="footer">
@@ -78,9 +83,9 @@
 
   </div><!-- /end .container_16 -->
 
-  <div class="container_16 clearfix">  
+  <div class="container_16 clearfix">
         <!-- <img src="../../../images/v2/grasshopper-grey.png" class="grasshopper-footer"> -->
       <div class="heading10-footer">© HourSchool 2011, made in Austin TX</div>
   </div>
-  
+
 
