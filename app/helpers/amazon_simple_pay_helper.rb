@@ -6,7 +6,7 @@ module AmazonSimplePayHelper
 
   def amazon_simple_pay_form_tag(options = {}, &block)
     sandbox = '-sandbox' unless Rails.env == 'production'
-    pipeline_url = "https://authorize.payments#{sandbox}.amazon.com/pba/paypipeline"
+    pipeline_url = "https://authorize.payments.amazon.com/pba/paypipeline"
     html_options = { :action => pipeline_url, :method => :post }.merge(options)
     content = capture(&block)
     output = ActiveSupport::SafeBuffer.new
