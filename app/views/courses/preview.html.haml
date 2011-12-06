@@ -62,7 +62,7 @@
     .page-section-float-left
       .class-section-heading This class will cover
       %p.class-detail
-        = "#{@course.description}"
+        = sanitize @course.description.gsub(/\n/,'<br/>')
 
 = render :partial => "sidebar", :locals => {:course => @course}
 

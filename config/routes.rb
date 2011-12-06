@@ -22,7 +22,8 @@ HourschoolV2::Application.routes.draw do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
   match 'user_root' => 'home#index'
-  resources :users, :only => [:index, :show]
+  resources :users do
+  end
 
   resources :payments
   match 'confirm_payment' => 'payments#confirm'
@@ -54,8 +55,8 @@ HourschoolV2::Application.routes.draw do
 
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
-  match '/profile' => 'users#profile'
-  match '/profile_teaching' => 'users#profile_teaching'
+  
+  match '/profile' => 'users#show', :id => 'current'
   match '/profile_past_taught' => 'users#profile_past_taught'
   match '/profile_past_attended' => 'users#profile_past_attended'
   match '/profile-suggest' => 'users#profile_suggest'

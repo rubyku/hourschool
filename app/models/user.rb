@@ -246,6 +246,7 @@ class User < ActiveRecord::Base
   end
 
   def update_location_database
+    return true unless self.zip_changed?
     cities = City.where(:name => self.city, :state => self.state)
     if cities.blank?
       g = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.zip}"

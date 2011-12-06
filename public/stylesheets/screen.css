@@ -1692,6 +1692,15 @@ a:hover {
   padding-bottom: 20px;
 }
 
+.comment-section{
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px dashed #ccc;
+}
+
 /* line 114, ../../app/assets/stylesheets/components/general.scss */
 .page-section-float-right {
   float: right;
@@ -3342,8 +3351,7 @@ li.avatar-list {
 .sidebar-block {
   float: left;
   width: 220px;
-  padding-bottom: 10px;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 0px 20px 0px;
   border-bottom: 1px dashed #ccc;
 }
 
@@ -3351,7 +3359,6 @@ li.avatar-list {
 .sidebar-block-last {
   float: left;
   width: 220px;
-  padding-bottom: 10px;
   padding: 10px 0px 10px 0px;
   border-bottom: 0px dashed #ccc;
   padding-bottom: 20px;
@@ -3611,7 +3618,7 @@ span.list-number {
   color: #999999;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.1em;
 }
 

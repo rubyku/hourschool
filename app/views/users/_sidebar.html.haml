@@ -1,7 +1,7 @@
 .sidebar
   .sidebar-content
-    - if current_user.photo.exists?
-      = image_tag(current_user.photo.url(:small), :size => "190x120")
+    - if @user.photo.exists?
+      = image_tag(@user.photo.url(:small), :size => "190x120")
     - else
       %img.avatar-big{:src => '/images/v2/Avatars_04_V1.png'}
     
@@ -9,10 +9,10 @@
       %ul.noBullet
         %li.noBullet
           %p.profile-name-blurb
-            = current_user.name
+            = @user.name
         %li.noBullet
           %p.profile-location-blurb 
-            = current_user.location
+            = @user.location
 
       %table.user-stat
         %tr
@@ -20,30 +20,30 @@
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
           %td.user-stat-number
             %p.class-details-heart-number
-              = current_user.recent_classes_as_student.count + current_user.past_classes_as_student.count
+              = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
           %td.user-stat-icon    
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
           %td.user-stat-number
             %p.class-details-heart-number
-              = current_user.recent_classes_as_teacher.count + current_user.past_classes_as_teacher.count
+              = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
           / 
           / %td.user-stat-icon        
           /   %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
           / %td.user-stat-number
           /   %p.class-details-heart-number
           /     = 5
-          /     = current_user.hearts
+          /     = @user.hearts
 
     .sidebar-block-last
       .sidebar-heading About 
       %p.profile-bio
-        = current_user.bio
-        - if current_user.bio.blank?
+        = @user.bio
+        - if @user.bio.blank?
           = "One of the HourSchoolmates!"
-          =# link_to "here", edit_user_registration_path(current_user)
+          =# link_to "here", edit_user_registration_path(@user)
             
       %ul.noBullet
         %li.noBullet
-          - if !current_user.web.blank?
+          - if !@user.web.blank?
             %a.profile-link
-              = link_to "Website", current_user.web, :class => "profile-link"
+              = link_to "Website", @user.web, :class => "profile-link"
