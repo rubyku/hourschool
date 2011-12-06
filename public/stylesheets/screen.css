@@ -1737,6 +1737,11 @@ ul.noBullet {
   list-style-type: none;
 }
 
+ul.noBullet.course-when{
+  list-style-type: none;
+  padding-bottom: 40px;
+}
+
 /* line 144, ../../app/assets/stylesheets/components/general.scss */
 li.noBullet {
   float: left;
@@ -2012,6 +2017,11 @@ ul.searchFilter {
 }
 
 /* line 377, ../../app/assets/stylesheets/components/general.scss */
+
+td.icon{
+  vertical-align: top;
+}
+
 .classRow {
   float: left;
   width: 650px;
