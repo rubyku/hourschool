@@ -17,8 +17,7 @@
           = link_to "#{course.title}", course
         %p= course.teaser
         .heading9-class
-          = "#{course.seats_left} seats left"
-          = "#{course.days_left} days from today"
+          = "#{course.seats_left} seats | #{course.days_left} days | #{course.city.name}"
 
 .page-section-float-right
   %table.view-more

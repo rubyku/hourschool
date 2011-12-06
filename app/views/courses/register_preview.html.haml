@@ -41,8 +41,11 @@
           %td
             .class-details
               = "#{@course.place_name}"
-            .class-address-details
-              = "#{@course.address}"
+            - if @course.public?
+              .class-sidebar-details
+                = "#{@course.address}"
+            - else
+              %p Private Address
 
 
     .class-description-block
