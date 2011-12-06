@@ -16,7 +16,7 @@ module AmazonSimplePayHelper
     output.safe_concat(hidden_field_tag('amazonPaymentsAccountId', AMAZON_PAYMENTS_ACCOUNT_ID))
     output.safe_concat(hidden_field_tag('amount', @course.price))
     output.safe_concat(hidden_field_tag('immediateReturn', '1'))
-    output.safe_concat(hidden_field_tag('processImmediate', '0'))
+    output.safe_concat(hidden_field_tag('processImmediate', '1'))
     output.safe_concat(hidden_field_tag('cobrandingStyle', 'logo'))
     output.safe_concat(hidden_field_tag('returnUrl', register_with_amazon_url(:id => @course)))
     output.safe_concat("</form>")
