@@ -1,0 +1,33 @@
+<% if current_user && current_user.admin? %> 
+
+<table>
+  <tr>
+	<th>ID</th>
+	<th>Topic</th>
+  <th>Class date</th>
+  <th>Created on</th>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= course.id %>
+    <td><%= link_to course.title, course %></td>
+    <td><%= course.date.strftime("%b %d, %Y") %></td>
+    <td><%= course.created_at.strftime("%b %d, %Y") %></td>
+
+    <td><%= link_to 'Show', course %></td>
+    <td><%= link_to 'Edit', edit_course_path(course) %></td>
+    <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<% else %>
+
+Sorry, you don't have admin access to this page. <br>
+Have a question? Please email us at hello at hourschool dot com.
+
+<% end %>
+
+

@@ -9,6 +9,10 @@ class CoursesController < ApplicationController
     @courses = Course.where(:status => "proposal")
     @user = current_user
   end
+  
+  def all
+    @courses = Course.all
+  end
 
   def approve
     @course = Course.find(params[:id])
