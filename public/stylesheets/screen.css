@@ -1692,6 +1692,15 @@ a:hover {
   padding-bottom: 20px;
 }
 
+.comment-section{
+  float: left;
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-top: 1px dashed #ccc;
+}
+
 /* line 114, ../../app/assets/stylesheets/components/general.scss */
 .page-section-float-right {
   float: right;

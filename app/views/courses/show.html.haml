@@ -33,9 +33,7 @@
         = "This class will cover"
       %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
     
-    %br
-    %br
-    .page-section-float-left
+    .comment-section
       .class-section-heading
         = "Join the conversation"
       = render :partial => "disqus"
