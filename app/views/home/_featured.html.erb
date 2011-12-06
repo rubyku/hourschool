@@ -1,50 +1,59 @@
 <div class="featured-content container_16 clearfix">
 
-      <div class="homepage-header">Featured classes</div><br><br>
+      <div class="heading25_ccc">Featured classes</div><br><br>
 
-      <div class="classRow-homepage clearfix">
+          <div class="classRow-homepage clearfix">
+              
+              <div class="classBlock-homepage">
+                  <%= link_to (image_tag(@fav1.photo.url(:small), :size => "190x120")), @fav1 %>
+                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav1.title, @fav1 %></div>
+                  <p><%= @fav1.teaser %></p>
+                  <div class="heading9-class">
+                  <%= "#{@fav1.seats_left} seats | #{@fav1.days_left} days | #{@fav1.city.name}" %>
+                  </div>
+                </div><!-- /end .class-description -->
+              </div><!-- /end .classBlock -->
 
-          <div class="classBlock-homepage">
-              <img src="../../../images/v2-courses/112_BakingBread.jpg">
-             <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-            <div class="class-description">
-              <div class="heading13-class">Putting Techniques</div>
-              <div class="heading9-class">Oct 3, 6:00P</div>
-              <p>Sharpen your skills with an hour long class from the master himself!</p>
-            </div><!-- /end .class-description -->
-          </div><!-- /end .classBlock -->
+              <div class="classBlock-homepage">
+                        <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav2.title, @fav2 %></div>
+                      <p><%= @fav2.teaser %></p>
+                      <div class="heading9-class">
+                      <%= "#{@fav2.seats_left} seats | #{@fav2.days_left} days | #{@fav2.city.name}" %>
+                      </div>
+                    </div><!-- /end .class-description -->
+              </div><!-- /end .classBlock -->
 
-          <div class="classBlock-homepage">
-              <img src="../../../images/v2-courses/119_DIY.jpg">
-             <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-            <div class="class-description">
-              <div class="heading13-class">Putting Techniques</div>
-              <div class="heading9-class">Oct 3, 6:00P</div>
-              <p>Sharpen your skills with an hour long class from the master himself!</p>
-            </div><!-- /end .class-description -->
-          </div><!-- /end .classBlock -->
+                  <div class="classBlock-homepage">
+                        <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
+                      <p><%= @fav3.teaser %></p>
+                      <div class="heading9-class">
+                      <%= "#{@fav3.seats_left} seats | #{@fav3.days_left} days | #{@fav3.city.name}" %>
+                      </div>
+                    </div><!-- /end .class-description -->
+                  </div><!-- /end .classBlock -->
 
-          <div class="classBlock-homepage">
-              <img src="../../../images/v2-courses/138_child-with-ipad.jpg">
-             <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-            <div class="class-description">
-              <div class="heading13-class">Putting Techniques</div>
-              <div class="heading9-class">Oct 3, 6:00P</div>
-              <p>Sharpen your skills with an hour long class from the master himself!</p>
-            </div><!-- /end .class-description -->
-          </div><!-- /end .classBlock -->
-
-          <div class="classBlock-last-homepage">
-              <img src="../../../images/v2-courses/144_Moto.jpg">
-             <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-            <div class="class-description">
-              <div class="heading13-class">Putting Techniques</div>
-              <div class="heading9-class">Oct 3, 6:00P</div>
-              <p>Sharpen your skills with an hour long class from the master himself!</p>
-            </div><!-- /end .class-description -->
-          </div><!-- /end .classBlock -->
-
-      </div><!-- /end .classRow-homepage -->
+                  <div class="classBlock-last-homepage">
+                      <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
+                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
+                      <p><%= @fav4.teaser %></p>
+                      <div class="heading9-class">
+                      <%= "#{@fav4.seats_left} seats | #{@fav4.days_left} days | #{@fav4.city.name}" %>
+                      </div>
+                    </div><!-- /end .class-description -->
+                  </div><!-- /end .classBlock -->
+    
+          </div><!-- /end .classRow -->
       
-</div><!-- /end .featured-content -->
+    </div><!-- /end .featuredContent -->
 
+</div><!-- /end .homepage_middle_bg -->

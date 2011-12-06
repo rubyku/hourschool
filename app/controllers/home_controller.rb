@@ -5,6 +5,10 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
 
   def index
+    @fav1 = Course.find(171)
+    @fav2 = Course.find(164)
+    @fav3 = Course.find(157)
+    @fav4 = Course.find(163)
   end
 
   def learn

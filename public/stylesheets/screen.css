@@ -2117,12 +2117,14 @@ a.view-more {
   color: #ff7733;
 }
 /* line 451, ../../app/assets/stylesheets/components/general.scss */
-.heading13-classs a:visited {
+.heading13-class a:visited {
   color: #ff7733;
+  text-decoration: none;
 }
 /* line 454, ../../app/assets/stylesheets/components/general.scss */
-.heading13-classa a:hover {
+.heading13-class a:hover {
   color: #ff7733;
+  text-decoration: none;
 }
 
 /* line 459, ../../app/assets/stylesheets/components/general.scss */
