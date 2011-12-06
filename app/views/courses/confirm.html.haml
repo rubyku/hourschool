@@ -20,13 +20,13 @@
 
       %table
         %tr
-          %td
+          %td.icon
             = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
           %td
             .class-details
               = "$ #{@course.price}"
         %tr
-          %td
+          %td.icon
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
           %td
             .class-details
@@ -35,7 +35,7 @@
               = "#{@course.time_range}"
 
         %tr
-          %td
+          %td.icon
             = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
           %td
             .class-details

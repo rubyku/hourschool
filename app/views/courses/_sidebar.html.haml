@@ -53,7 +53,7 @@
               %br
             - if course.is_a_student?(current_user)
               / %a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
-              %br
+              / %br
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
               %br/
@@ -71,6 +71,7 @@
             - if course.is_a_student?(current_user)
               - if course.public?
                 / %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+                / %br
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
