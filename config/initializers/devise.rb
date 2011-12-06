@@ -200,7 +200,7 @@ Devise.setup do |config|
   if Rails.env == "development"
     config.omniauth :facebook, "116183295130221", "83d6e8f67cf05b1710d073ac1af99a70", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
   else
-    config.omniauth :facebook, "193570644023207", "59060320b34e4f44c682fc5a647ed098", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
+    config.omniauth :facebook, "144671482261988", "a7f47f266872b6ce3847c9b7720bcdf4", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
