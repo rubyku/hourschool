@@ -4,6 +4,7 @@
   <tr>
 	<th>ID</th>
 	<th>Topic</th>
+	<th>Teacher</th>
   <th>Class date</th>
   <th>Created on</th>
   </tr>
@@ -12,6 +13,7 @@
   <tr>
     <td><%= course.id %>
     <td><%= link_to course.title, course %></td>
+    <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
     <td><%= course.date.strftime("%b %d, %Y") %></td>
     <td><%= course.created_at.strftime("%b %d, %Y") %></td>
 

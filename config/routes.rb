@@ -52,7 +52,7 @@ HourschoolV2::Application.routes.draw do
   match '/eregister' => 'ecourses#register'
 
   match '/approve' => 'courses#approve'
-  match '/courses/all' => 'courses#all'
+  match '/courses-all' => 'courses#all'
 
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
