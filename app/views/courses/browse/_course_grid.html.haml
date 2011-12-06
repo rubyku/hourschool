@@ -19,6 +19,8 @@
             .heading9-class
               = "#{course.seats_left} seats left"
               = "#{course.days_left} days remaining"
+            .heading9-class
+              = "In #{course.city.name}"
     - else
       .classBlock
       // do nothing
