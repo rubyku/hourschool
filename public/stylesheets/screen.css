@@ -1145,6 +1145,10 @@ img.arrow_small_pointright {
   margin-top: 10px;
 }
 
+.happening-message-header a:hover {color: #e4652f; text-decoration: none}
+.happening-message-header a:active {color: #e4652f; text-decoration: none}
+.happening-message-header a:visited {color: #e4652f; text-decoration: none}
+
 .happening-message-description{
   padding-right: 10px;
   font-size: 11px;
