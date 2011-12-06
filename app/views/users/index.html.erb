@@ -1,12 +1,38 @@
-<h1>Users</h1>
-<ul class="hmenu">
-    <%= render 'devise/menu/user_registration_items' %>
-    <%= render 'devise/menu/user_login_items' %>
+<% if current_user && current_user.admin? %> 
+  <h1>Users</h1>
+  <ul class="hmenu">
+      <%= render 'devise/menu/user_registration_items' %>
+      <%= render 'devise/menu/user_login_items' %>
   </ul>
-<table>
-<% @users.each do |user| %>
-  <tr>
-    <td><%= link_to user.name, user %></td>
-  </tr>
+
+  <table>
+    <tr>
+  	<th>ID</th>
+  	<th>Name</th>
+  	<th>Email</th>
+    <th>Created on</th>
+    </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %>
+      <td><%= link_to user.name, user_path(user.id) %></td>     
+      <td><%= user.email %></td>
+      <td><%= user.created_at.strftime("%b %d, %Y") %></td>
+
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+
+
+<% else %>
+
+  Sorry, you don't have admin access to this page. <br>
+  Have a question? Please email us at hello at hourschool dot com.
+
 <% end %>
-</table>
+
+
