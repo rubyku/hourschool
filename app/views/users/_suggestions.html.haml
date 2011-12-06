@@ -1,3 +1,6 @@
+- if suggestions.size == 0 
+  %p= "No suggestions yet."
+
 - suggestions.each do |t|
   .vote-class.clearfix
     .vote-class-title
@@ -25,4 +28,4 @@
             .voted-button
               = "Voted"
         - else
-          = link_to_function "Add vote", "alert('Please login to vote!')"
+          = link_to_function "Add vote", "alert('Please login to vote!')", :class => "vote-class-button"

@@ -31,7 +31,7 @@
               .voted-button
                 = "Voted"
           - else
-            = link_to_function "Vote", "alert('Please login to vote!')"
+            = link_to_function "Vote", "alert('Please login to vote!')", :class => "vote-class-button"
   .page-section-float-right
     %table.view-more
       %tr
