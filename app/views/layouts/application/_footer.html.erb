@@ -3,19 +3,20 @@
 <div class="container_16 clearfix">
 
   <div class="grid_6">
-    <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
-      <% begin %>
-        <% tum = get_tumblr_first_regular_post %>
-        <div class="footer-heading">Recent Blog Post</div>
-        <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
+    <% begin %>
+      <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
+          <% tum = get_tumblr_first_regular_post %>
+          <div class="footer-heading">Recent Blog Post</div>
+          <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
-        <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
-        <% rescue => ex %>
-          <% Rails.logger.error "Tumblr Failed: #{ex}" %>
-        <% end %>
-    <%- else -%>
-        <div class="footer-heading">Our mission</div>
-        <div class="footer-blog-title">HourSchool started because...</div><br>
+          <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 330, :omission => "..."))%></p><br>
+
+      <%- else -%>
+          <div class="footer-heading">Our mission</div>
+          <div class="footer-blog-title">HourSchool started because...</div><br>
+      <% end %>
+    <% rescue => ex %>
+      <% Rails.logger.error "Tumblr Failed: #{ex}" %>
     <% end %>
 
   </div>
