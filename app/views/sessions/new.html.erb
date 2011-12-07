@@ -1,13 +1,13 @@
 <div class="page">
   <div class="page-content">
-      
+
       <!-- <%  if resource_name.to_s == "member" %>
       <h2>Sign in with your work email</h2>
       <% else %>
       <h2> Sign in </h2>
       <% end %> -->
 
-  <div class="page-section-float-left"> 
+  <div class="page-section-float-left">
     <ul class="sub-nav">
       <li class="sub-nav-inactive">
         <a class="sub-nav-inactive" href="/users/sign_up">Register</a>
@@ -15,21 +15,27 @@
       <li class="sub-nav-active">
         <a class="sub-nav-active" href="/users/sign_in">Sign in</a>
       </li>
-    </ul>  
+    </ul>
   </div>
 
   <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
-  <div class="page-section-float-left">            
+  <div class="page-section-float-left">
     <%  if resource_name.to_s == "user" %>
     <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
     <% end %>
   </div>
-  
+
   <hr>
   <br>
   <p> Or sign in with email:</p>
   <br>
-  
+
+  <%- if resource.present? && resource.email.present? -%>
+    <div class="page-section-float-left">
+        <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
+    </div>
+  <%- end -%>
+
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class="form-question">
         <%= f.label :email %><br />
@@ -43,22 +49,22 @@
         <div class="page-section-float-left">
           <% if devise_mapping.rememberable? -%>
           <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>  
+          <%= f.label :remember_me %>
           <% end -%>
         </div>
-        
+
         <div class="page-section-float-left">
           <div><%= f.submit "Sign in", :class => "loginButton" %></div>
         </div>
     <% end %>
-    
-    
-    <div class="page-section-float-left">      
+
+
+    <div class="page-section-float-left">
       <%= render :partial => "devise/shared/links" %>
     </div>
-    
 
-    
-    
+
+
+
   </div>
 </div>

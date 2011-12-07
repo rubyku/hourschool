@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   after_save :update_location_database
   after_create :send_reg_email
 
+  def self.rk; where(:email => 'ruby@hourschool.com').first; end
+  def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
+
   def self.random
     order('rand()')
   end
