@@ -76,6 +76,13 @@
          <a href="mailto:hello@hourschool.com" class="footer" target="_blank">Email us</a>
            </td>
          </tr>
+         
+         <tr>
+         <% if current_user && current_user.admin? %>
+          <%= Time.now %>
+          <%= Time.now - 7.hours %>
+          <% end %>
+          </tr>
 
        </table>
 

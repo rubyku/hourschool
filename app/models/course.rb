@@ -83,11 +83,11 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now.end_of_day - 7.hours, 52.weeks.from_now)
+    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now , 52.weeks.from_now)
   end
   
   def active?
-    self.date < 52.weeks.from_now && self.date > Time.now.end_of_day - 7.hours
+    self.date < 52.weeks.from_now && self.date > Time.now
   end
 
   def self.active_tags
