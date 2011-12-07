@@ -4,9 +4,9 @@
     = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.max_seats}"
     %br
     %br
-    - if @current_course.active?
+    - if !@current_course.active?
       - if @current_course.teacher == current_user
-        %p= "This class has passed."
+        %p= "It's too late to register"
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else
         %p= "This class has passed."
