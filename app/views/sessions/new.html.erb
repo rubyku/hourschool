@@ -30,7 +30,7 @@
   <p> Or sign in with email:</p>
   <br>
 
-  <%- if resource.present? -%>
+  <%- if resource.present? && resource.email.present? -%>
     <div class="page-section-float-left">
         <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
     </div>
