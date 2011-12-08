@@ -196,7 +196,7 @@
      <div class="grid_8">
        
         <div id="homepage_headline_7">Join us today!</div>
-        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), user_omniauth_authorize_path(:facebook) %>
+        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"),"#{root_url(:subdomain => nil)}#{user_omniauth_authorize_path(:facebook)}"%>
 
        
         <!-- <div id="homepage_headline_7">Find a class</div>
