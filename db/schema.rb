@@ -10,8 +10,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+ActiveRecord::Schema.define(:version => 20111208034556) do
 
-ActiveRecord::Schema.define(:version => 20111205022455) do
   create_table "cities", :force => true do |t|
     t.integer  "zip"
     t.string   "area"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(:version => 20111205022455) do
     t.string   "slug"
     t.string   "legacy_password_hash"
     t.string   "legacy_password_salt"
+    t.string   "time_zone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

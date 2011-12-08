@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
 
   acts_as_voter
 
-
+  before_save :update_time_zone
   after_save :update_location_database
   after_create :send_reg_email
 
@@ -41,6 +41,22 @@ class User < ActiveRecord::Base
 
   def self.random
     order('rand()')
+  end
+
+  def update_time_zone
+    if time_zone.blank? || zip_changed?
+      self.time_zone = Timezone::Zone.new(:latlon => [lat, lng]).zone
+    end
+  end
+
+  def lat
+    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
+    @geocode.lat
+  end
+
+  def lng
+    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
+    @geocode.lng
   end
 
 

@@ -14,6 +14,7 @@ gem "omniauth"
 
 gem 'yaml_db'
 
+gem 'timezone'
 
 gem 'haml'
 gem 'rake', '~> 0.9.2'
