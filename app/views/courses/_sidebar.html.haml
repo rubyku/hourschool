@@ -6,7 +6,7 @@
     %br
     - if !@current_course.active?
       - if @current_course.teacher == current_user
-        %p= "It's too late to register"
+        %p= "This class has passed."
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else
         %p= "This class has passed."

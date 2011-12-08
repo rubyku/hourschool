@@ -83,7 +83,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now , 52.weeks.from_now)
+    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now, 52.weeks.from_now)
   end
   
   def active?
