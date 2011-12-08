@@ -1,16 +1,19 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
 
+  before_filter :set_timezone
   protect_from_forgery
-  before_filter :limit_subdomain_access
+
+
 
   protected
-    def limit_subdomain_access
-        if request.subdomain.present?
-          # this error handling could be more sophisticated!
-          # please make a suggestion :-)
-          # redirect_to root_url(:subdomain => false)
-        end
+
+    def skip_if_logged_in
+      redirect_to learn_path if current_user.present?
+    end
+
+    def set_timezone
+      Time.zone = current_user.time_zone if current_user.present? && current_user.time_zone.present?
     end
 
     def after_sign_in_path_for(resource)

@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   layout 'application', :except => :index
   before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
 
+  before_filter :skip_if_logged_in, :only => :index
+
   def index
     @fav1 = Course.find(171)
     @fav2 = Course.find(176)

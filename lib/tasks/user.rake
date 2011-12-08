@@ -12,4 +12,14 @@ namespace :user do
       sleep 2
     end
   end
+
+
+  desc "finds missing time_zones and populates them"
+  task :populate_missing_time_zones => :environment do
+    User.find_each(:conditions => "time_zone is null") do  |user|
+      user.update_time_zone
+      user.save
+      sleep 2
+    end
+  end
 end

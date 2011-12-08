@@ -2,30 +2,30 @@
 <html>
 <head>
   <title>HourSchool</title>
-  
-  <link rel="icon" 
-        type="image/png" 
+
+  <link rel="icon"
+        type="image/png"
         href="/images/favicon.png">
-      
+
   <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
-  
+
   <!-- <%= javascript_include_tag :all %> -->
   <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery_ujs.js", "jquery.lightbox_me.js" %>
 
   <%= csrf_meta_tag %>
-  
+
   <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
- 
+
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-  
+
   <script type="text/javascript" src="javascripts/jquery-1.6.2.min.js"></script>
   <script type="text/javascript" src="javascripts/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript" src="javascripts/jquery.lightbox_me.js"></script>
-    
+
   <script type="text/javascript" src="http://localhost:3000/javascripts/jquery.lettering-0.6.1.min.js"></script>
-   
+
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -40,7 +40,7 @@
 
   </script>
 
-  
+
   <script>
     $(document).ready(function() {
       $("h1#homepage_headline").lettering('words');
@@ -62,13 +62,13 @@
 <body id="hasbanner">
 
 <div class="homepage_top_bg">
-    
+
   <div id="header">
     <div class="container_16">
-        
+
         <%= link_to image_tag("/images/v2/Logo_White.png"), root_path, :id => "homepage_logo"%>
-        
-        
+
+
      <div id="homepage_login">
 
              <ul id="login">
@@ -76,7 +76,7 @@
                 <% if current_user.zip.present? %>
                     <li id="homepage_login">Peer learning in <%= current_user.city %></li>
                <% end %>
-               <li id="homepage_login">   
+               <li id="homepage_login">
 
                    <span id="nav-dropdown">
                        <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
@@ -121,7 +121,7 @@
                   $("#nav-dropdown").show();
                   $("#nav-dropdown-selected").hide();
              });
-         </script> 
+         </script>
 
          <script type="text/javascript">
              $("#nav-dropdown").click(function() {
@@ -145,7 +145,7 @@
           <tr id="homepage_menu">
             <td id="homepage_menu_learn">
               <a href="/learn" id="menu_homepage">
-                <div id="menu18">Learn</div> 
+                <div id="menu18">Learn</div>
                 <div id="menu9">something new</div>
               </a>
             </td>
@@ -179,42 +179,41 @@
 
     </div><!-- /end .container_16 -->
   </div><!-- /end #header -->
-  
+
     <div class="container_16">
 
      <div class="grid_8">
-       
+
        <div id="homepage_headline_1">We believe everybody can</div>
        <div id="homepage_headline_2">explore,</div>
-       <div id="homepage_headline_3"> teach,</div> 
+       <div id="homepage_headline_3"> teach,</div>
        <div id="homepage_headline_4">learn</div>
        <div id="homepage_headline_5">&</div>
-       <div id="homepage_headline_6">grow.</div> 
+       <div id="homepage_headline_6">grow.</div>
 
      </div><!-- /end .twoCol_left -->
-   
-     <div class="grid_8">
-       
-        <div id="homepage_headline_7">Join us today!</div>
-        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), user_omniauth_authorize_path(:facebook) %>
 
-       
+     <div class="grid_8">
+
+        <div id="homepage_headline_7">Join us today!</div>
+        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+
         <!-- <div id="homepage_headline_7">Find a class</div>
         <div id="homeSearchForm-background"></div>
         <%= form_tag search_path, :method => 'post' do %>
         <%= text_field_tag 'search', 'Nutrition, boxing conditioning, typography... and more!', :onclick => 'this.value= "";', :id =>"homepageSearchForm"%>
         <img src = "/images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
         <br>
-        <input type="submit" value="Search" id="homepageSearchButton" />     
+        <input type="submit" value="Search" id="homepageSearchButton" />
         <% end %> -->
-        <div id="homepage_headline_8">or</div> 
+        <div id="homepage_headline_8">or</div>
         <div id="homepage_headline_9">check out our </div>
         <div id="homepage_headline_10">featured classes!</div>
-               
-     </div><!-- /end .twoCol_right-->  
-   
+
+     </div><!-- /end .twoCol_right-->
+
     </div><!-- /end .container16 -->
-    
+
 </div><!-- /end .homepage_top_bg -->
 
 <%= render :partial => 'featured' %>

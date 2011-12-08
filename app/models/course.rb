@@ -26,7 +26,7 @@ class Course < ActiveRecord::Base
                     :processors => [:cropper]
 
 
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h  
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   after_update :reprocess_photo, :if => :cropping?
 
@@ -41,7 +41,7 @@ class Course < ActiveRecord::Base
 
 
   def days_left
-    (date.to_date - Time.now.to_date).to_i
+    (date.in_time_zone.to_date - Time.current.to_date).to_i
   end
 
   def pretty_slug
@@ -83,11 +83,15 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.now, 52.weeks.from_now)
+    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
+  end
+
+  def starts_at
+    date.in_time_zone
   end
-  
+
   def active?
-    self.date < 52.weeks.from_now && self.date > Time.now
+    self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
   end
 
   def self.active_tags
