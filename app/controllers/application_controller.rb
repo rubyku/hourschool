@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_timezone
-      Time.zone = current_user.time_zone if current_user.present?
+      Time.zone = current_user.time_zone if current_user.present? && current_user.time_zone.present?
     end
 
     def after_sign_in_path_for(resource)
