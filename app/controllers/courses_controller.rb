@@ -186,8 +186,7 @@ class CoursesController < ApplicationController
       if @user.save
         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-        UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver        
-        
+        UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver               
       end
 
       respond_to do |format|
@@ -226,6 +225,10 @@ class CoursesController < ApplicationController
          @user.roles << @role
          @user.courses << @course
          @user.save
+         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
+         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
+         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver        
+         
              
        redirect_to course_confirm_path(:id => @course.id)
      else
