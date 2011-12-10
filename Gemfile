@@ -12,6 +12,8 @@ gem "omniauth"
 #gem "koala"
 
 
+gem 'newrelic_rpm'
+
 gem 'yaml_db'
 
 gem 'timezone'
