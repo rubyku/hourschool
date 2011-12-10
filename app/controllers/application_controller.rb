@@ -1,12 +1,48 @@
 class ApplicationController < ActionController::Base
+  rescue_from Exception, :with => :render_error unless Rails.env.development?
+
   include UrlHelper
 
   before_filter :set_timezone
   protect_from_forgery
 
-
-
   protected
+    def log_error(exception)
+      message = "#{exception.class} (#{exception.message}):\n  "
+      message += Rails.backtrace_cleaner.clean(exception.backtrace).join("\\n")
+      Rails.logger.fatal(message)
+    end
+
+    def render_error(exception)
+      @exception = exception
+      log_error(@exception)
+      send_error_to_new_relic(@exception)
+      respond_to do |format|
+        format.html do
+          case exception
+          when ArgumentError, ActionView::MissingTemplate, ActiveRecord::RecordNotFound, ActionController::UnknownController, ActionController::UnknownAction
+            render 'pages/show/errors/404', :status => 404
+          else
+            render 'pages/show/errors/404', :status => 500
+          end
+        end
+      end
+    end
+
+    def send_error_to_new_relic(exception)
+      rack_env = ENV.to_hash.merge(request.env)
+      rack_env.delete('rack.session.options')
+
+      opts = {
+        :request_params => params,
+        :custom_params => {
+          :session => session,
+          :rack => rack_env
+        }
+      }
+      NewRelic::Agent.notice_error(exception, opts)
+    end
+
 
     def skip_if_logged_in
       redirect_to learn_path if current_user.present?

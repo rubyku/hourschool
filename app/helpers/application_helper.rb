@@ -1,5 +1,17 @@
 module ApplicationHelper
 
+  module ExceptionHelpers
+    def pretty_backtrace(exception)
+      bc = ActiveSupport::BacktraceCleaner.new
+      bc.add_filter { |line| line.gsub(Rails.root.to_s, '') }
+      bc.add_filter { |line| line.gsub("\n", '<br/>') }
+      clean_backtrace = bc.clean(exception.backtrace)
+      clean_backtrace.join('<br />').html_safe
+    end
+  end
+  include ExceptionHelpers
+
+
   module LayoutHelpers
     def id_for_body(body_id=nil)
       !body_id.blank? ? body_id : sanitized_controller_path.sub('/', '-') + '-' + action_name
