@@ -3,7 +3,6 @@ production:
   error_collector:
     capture_source: true
     enabled: true
-    ignore_errors: ActionController::RoutingError
   apdex_t: 0.5
   ssl: false
   monitor_mode: true
