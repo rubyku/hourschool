@@ -1,5 +1,27 @@
-%br
+%div
+  %p
+    = "Revenue To Date: #{ number_to_currency @revenue}"
+  %p
+    = "Avg revenue per user: #{ number_to_currency avg_revenue_per_user = @revenue/@total_users}"
+  %p
+    = "Avg revenue per student: #{number_to_currency @revenue/@total_students}"
+
+  %p
+    = "Avg revenue per course: #{number_to_currency @revenue/ @total_courses}"
+  %p
+    = "Estimated cumulative revenue in 6 months #{number_to_currency @estimated_user_count_six_months * @revenue/@total_users }"
+  %p
+    Paying 30k employees 30k per year requires
+    = "#{number_to_currency 30000/2.0 * 3} of _profit_ per 6 months"
+
+%hr
+%div
+  %p
+    = "Total Courses: #{@total_courses} | "
+    = "Total Users: #{@total_users} | "
+    = "Total Students: #{@total_students}"
+
+%hr
 - @users.first(30).each do |date, count|
   %p
     = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
-  
