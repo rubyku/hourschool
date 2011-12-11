@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable
 
-  validates_presence_of :name, :location
+
+  validates_presence_of :name, :email
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
@@ -19,22 +20,26 @@ class User < ActiveRecord::Base
 
   has_many :payments
 
-  has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
-                    :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "user/:style/:id/:filename"
+  has_attached_file :photo, :styles => {
+      :small => ["190x120#", :jpg],
+      :large => ["570x360>", :jpg ]
+      },
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   attr_accessible :photo
 
 
   acts_as_voter
 
-  before_save :update_time_zone
-  after_save :update_location_database
+  before_save  :update_time_zone
+  after_save   :update_location_database
   after_create :send_reg_email
+
+  include User::Omniauth
 
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
@@ -221,17 +226,9 @@ class User < ActiveRecord::Base
   end
 
   # ================================
-
+  # End user conversion Code
+  # ================================
   private
-  # def supported_location
-  #     SUPPORTED_CITIES.each do |sc|
-  #       #city within 30 miles of supported
-  #       if City.distance_between("#{sc}", location) <= 30
-  #          return
-  #       end
-  #     end
-  #    errors.add(:location, "- Hourschool is not operating yet in your location")
-  #   end
 
   def location_format
     errors.add(:location, "- Should be City, State") unless location.include?(',') && location.split(',').size == 2
@@ -250,8 +247,4 @@ class User < ActiveRecord::Base
     UserMailer.send_registration_mail(self.email, self.name).deliver
 
   end
-
-
-
-
 end
