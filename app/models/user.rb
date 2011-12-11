@@ -44,17 +44,19 @@ class User < ActiveRecord::Base
   end
 
   def update_time_zone
-    if time_zone.blank? || zip_changed?
+    if time_zone.blank? && zip.present? && zip_changed?
       self.time_zone = Timezone::Zone.new(:latlon => [lat, lng]).zone
     end
   end
 
   def lat
+    return nil if zip.blank?
     @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
     @geocode.lat
   end
 
   def lng
+    return nil if zip.blank?
     @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
     @geocode.lng
   end
@@ -65,46 +67,17 @@ class User < ActiveRecord::Base
   end
 
   def zipcode=(zip)
-    if !zip.blank?
-      loc = Geokit::Geocoders::GoogleGeocoder.geocode "#{zip}"
-      if !loc.city.nil? && !loc.state.nil?
-        self.location = loc.city + ", " + loc.state
-        self.zip = zip
-      end
+    return nil if zip.blank?
+    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
+    if !loc.city.nil? && !loc.state.nil?
+      self.location = loc.city + ", " + loc.state
+      self.zip = zip
     end
-    nil
   end
 
 
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = access_token['extra']['user_hash']
-    p data
-    #@graph = Koala::Facebook::GraphAPI.new(access_token["credentials"]["token"])
-    #profile = @graph.get_object("me")
-    #p profile
-    if user = User.find_by_email(data["email"])
-      user
-    else # Create a user with a stub password.
-      if data["location"].nil?
-        return nil
-      else
-        # SUPPORTED_CITIES.each do |sc|
-        #           #city within 30 miles of supported
-        #           if City.distance_between("#{sc}", "#{data["location"]["name"]}") <= 30
-        #              return User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => data["name"],
-        #                             :location => sc, :fb_token => access_token["credentials"]["token"])
-        #           end
-        #         end
-        #        return "ec-not-supported"
-        if data["location"]["name"].nil?
-          return nil
-        else
-          return User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => data["name"],
-                                     :location => data["location"]["name"], :fb_token => access_token["credentials"]["token"])
-        end
-      end
-    end
-  end
+
+
 
   def hearts
     sum = 0
