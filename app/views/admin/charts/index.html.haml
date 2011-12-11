@@ -1,0 +1,5 @@
+%br
+- @users.first(30).each do |date, count|
+  %p
+    = "#{date}: #{count} new users & #{@courses[date]||0} new courses"
+  

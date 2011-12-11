@@ -1,5 +1,9 @@
 HourschoolV2::Application.routes.draw do
 
+  scope :path => '/admin', :module => 'admin', :as => 'admin' do
+    resources :charts
+  end
+
   resources :ecourses, :path => 'classes'
 
   resources :suggestions# , :path => 'requests'
