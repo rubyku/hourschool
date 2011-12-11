@@ -5,15 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id].nil?
-      @user = current_user
-    else
-      @user = User.find(params[:id])
-    end
-  end
-  
-  def show
-    @user = User.find_by_id(params[:id]) || current_user
+    @user = User.me_or_find(params[:id], current_user)
     # render :text => @user.name
     @approved_courses = @user.courses.where(:status => "approved")
     @pending_courses = @user.courses.where(:status => "proposal")

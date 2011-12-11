@@ -41,6 +41,15 @@ class User < ActiveRecord::Base
 
   include User::Omniauth
 
+  def self.me_or_find(id, current_user)
+    user_id = id.try(:to_s)
+    if user_id.blank? || user_id == 'me'
+      current_user
+    else
+      User.find(user_id)
+    end
+  end
+
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 
