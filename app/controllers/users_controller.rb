@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   def profile_past_taught
   end
-  
+
   def profile_past_attending
   end
 
@@ -35,10 +35,10 @@ class UsersController < ApplicationController
        })
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
   end
-  
+
   def profile_approved
   end
-  
+
   def admin_dashboard
   end
 
