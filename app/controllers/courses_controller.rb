@@ -109,7 +109,7 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
-    if @course.teacher == current_user || current_user.is_admin?
+    if @course.teacher == current_user || current_user.admin?
     else
        redirect_to @course
     end
@@ -266,8 +266,8 @@ class CoursesController < ApplicationController
 
   private
   def must_be_admin
-    #if !current_user.try(:admin?) || !current_user.is_admin?
-    if !current_user.is_admin?
+    #if !current_user.try(:admin?) || !current_user.admin?
+    if !current_user.admin?
       redirect_to user_root_path
     end
   end
