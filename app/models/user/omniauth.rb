@@ -1,6 +1,4 @@
 module User::Omniauth
-  MissingLocation = "Unknown"
-
   extend ActiveSupport::Concern
 
   module ClassMethods
