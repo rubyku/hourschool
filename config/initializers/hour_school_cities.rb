@@ -11,8 +11,10 @@ TAGS = [
   "Health and Wellness", 
   "Language", 
   "Maintainance", 
-  "Technology"
+  "Technology",
+  "Music"
   ]
+  
 DEF_IMAGE_PATH_STRING = "/images/v2-courses/DefaultClassPics_"
 DEF_IMAGES = {
   "Art" => "#{DEF_IMAGE_PATH_STRING}Design_02.png",
@@ -22,5 +24,6 @@ DEF_IMAGES = {
   "Health and Wellness" => "#{DEF_IMAGE_PATH_STRING}HealthWellness.png",
   "Language" => "#{DEF_IMAGE_PATH_STRING}Language.png",
   "Maintainance" => "#{DEF_IMAGE_PATH_STRING}repair.png",
-  "Technology" => "#{DEF_IMAGE_PATH_STRING}Computer.png"
+  "Technology" => "#{DEF_IMAGE_PATH_STRING}Computer.png",
+  "Music" => "#{DEF_IMAGE_PATH_STRING}Generic.png"
 }
