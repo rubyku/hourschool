@@ -89,16 +89,23 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
-
-
   def hearts
     sum = 0
     self.courses.each do |s|
       sum += s.votes_for
     end
     sum
+  end
+  
+  def user_avatar
+    default_avatar = [
+      "/images/v2/Avatars_01_V1.png",
+      "/images/v2/Avatars_02_V1.png",
+      "/images/v2/Avatars_03_V1.png",
+      "/images/v2/Avatars_04_V1.png",
+      "/images/v2/Avatars_05_V1.png"
+    ]
+    @random_avatar = default_avatar.random
   end
 
   def recent_classes_as_student
