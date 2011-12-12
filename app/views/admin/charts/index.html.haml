@@ -2,16 +2,16 @@
   .page-content
     %div
       %p Last 7 days
-      - @users.first(30).each do |date, count|
+      - @users.first(7).each do |date, count|
         %p
           = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
   
-    / %hr
-    / %div
-    /   %h3 Month over month
-    /   - @users_by_month.each do |month, count|
-    /     %p
-    /       = "#{Date::MONTHNAMES[month]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students"
+    %hr
+    %div
+      %h3 Month over month
+      - @users_by_month.each do |month, count|
+        %p
+          = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students"
 
 
 = content_for :sidebar do
