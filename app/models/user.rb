@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   def self.me_or_find(id, current_user)
     user_id = id.try(:to_s)
-    if user_id.blank? || user_id == 'me'
+    if user_id.blank? || user_id == 'me' || user_id == 'current'
       current_user
     else
       User.find(user_id)
