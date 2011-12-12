@@ -196,7 +196,7 @@ class User < ActiveRecord::Base
   def is_admin?
     #ideally should check the admin column
     email = self.email
-    email == "saranyan13@gmail.com" || email == "alex@hourschool.com" || email == "ruby@hourschool.com" || email == "saranyan@hourschool.com"
+    email == "richard.schneeman@gmail.com" || email == "alex@hourschool.com" || email == "ruby@hourschool.com" || email == "saranyan@hourschool.com"
   end
 
 
