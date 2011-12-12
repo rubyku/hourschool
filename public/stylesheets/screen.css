@@ -2071,6 +2071,12 @@ img.class-arrow {
 /* line 412, ../../app/assets/stylesheets/components/general.scss */
 .class-description {
   padding: 10px;
+  height: 90px;
+}
+
+.class-note{
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* line 416, ../../app/assets/stylesheets/components/general.scss */
