@@ -14,8 +14,8 @@
     <td><%= course.id %>
     <td><%= link_to course.title, course %></td>
     <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
-    <td><%= course.date.strftime("%b %d, %Y") %></td>
-    <td><%= course.created_at.strftime("%b %d, %Y") %></td>
+    <td><%= course.date %></td>
+    <td><%= course.created_at %></td>
 
     <td><%= link_to 'Show', course %></td>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>

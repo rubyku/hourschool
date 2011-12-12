@@ -1,10 +1,7 @@
 .sidebar
   .sidebar-content
-    - if @user.photo.exists?
-      = image_tag(@user.photo.url(:small), :size => "190x120")
-    - else
-      %img.avatar-big{:src => '/images/v2/Avatars_01_V1.png'}
-    
+    = avatar_for(@user)
+
     .sidebar-block
       %ul.noBullet
         %li.noBullet
