@@ -1,27 +1,50 @@
-%div
-  %p
-    = "Revenue To Date: #{ number_to_currency @revenue}"
-  %p
-    = "Avg revenue per user: #{ number_to_currency avg_revenue_per_user = @revenue/@total_users}"
-  %p
-    = "Avg revenue per student: #{number_to_currency @revenue/@total_students}"
+.page
+  .page-content
+    %div
+      %p Last 7 days
+      - @users.first(7).each do |date, count|
+        %p
+          = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
+  
+    %hr
+    %div
+      %h3 Month over month
+      - @users_by_month.each do |month, count|
+        %p
+          = "#{Date::MONTHNAMES[month]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students"
 
-  %p
-    = "Avg revenue per course: #{number_to_currency @revenue/ @total_courses}"
-  %p
-    = "Estimated cumulative revenue in 6 months #{number_to_currency @estimated_user_count_six_months * @revenue/@total_users }"
-  %p
-    Paying 3 employees 30k per year requires
-    = "#{number_to_currency 30000/2.0 * 3} of _profit_ per 6 months"
 
-%hr
-%div
-  %p
-    = "Total Courses: #{@total_courses} | "
-    = "Total Users: #{@total_users} | "
-    = "Total Students: #{@total_students}"
+= content_for :sidebar do
+  %div
+    %p
+      = "Total Courses: #{@total_courses}"
+    %p
+      = "Paying Courses: #{@paying_courses}"
+    %p
+      = "Free Courses: #{@free_courses}"
 
-%hr
-- @users.first(30).each do |date, count|
-  %p
-    = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
+  %hr
+  %div
+    %p
+      = "Total Users: #{@total_users}"
+    %p
+      = "Total Students: #{@total_students}"
+    %p
+      = "Total Teachers: #{@total_teachers}"
+
+
+  %hr
+  %div
+    %p
+      = "Transaction To Date: #{ number_to_currency @transaction}"
+    %p
+      = "Revenue To Date: #{ number_to_currency @transaction - @amazon_fees - @teachers_share}"
+    %p
+      = "Avg Revenue per course: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_courses}"
+    %p
+      = "Avg Revenue per student: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_students}"
+
+  %hr
+  %div
+    %p
+      = "To make $1000/month we need: #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_courses)).floor} courses & #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_students)).floor} users"

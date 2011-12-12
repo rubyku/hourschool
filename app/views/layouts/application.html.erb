@@ -47,8 +47,12 @@
   <%- end -%>
 
   <%= yield %>
-  <%= yield :sidebar %>
 
+  <div class='sidebar'>
+    <div class='sidebar-content'>
+      <%= yield :sidebar %>
+    </div>
+  </div>
 <%- end -%>
 
 <div class="bottom_bg">
