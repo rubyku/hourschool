@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
   end
 
   def pending
-    if self.is_admin?
+    if self.admin?
       #if user is admin return all pending in the dashbboard
       Course.where(:status => "proposal")
     else
@@ -191,12 +191,6 @@ class User < ActiveRecord::Base
   def state
     loc = location.split(',')[1]
     loc.strip unless loc.blank?
-  end
-
-  def is_admin?
-    #ideally should check the admin column
-    email = self.email
-    email == "richard.schneeman@gmail.com" || email == "alex@hourschool.com" || email == "ruby@hourschool.com" || email == "saranyan@hourschool.com"
   end
 
 

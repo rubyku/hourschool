@@ -9,7 +9,7 @@
           =link_to_function 'Classes Teaching', "$('.section').hide(); $('#teaching').show()", :class => 'sub-nav-inactive'
         %li.sub-nav-inactive
           =link_to_function 'Suggestions', "$('.section').hide(); $('#suggestions').show()", :class => 'sub-nav-inactive'
-        - if current_user.is_admin?
+        - if current_user.admin?
           %li.sub-nav-inactive 
             =link_to_function 'Admin', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
 
