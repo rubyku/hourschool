@@ -1,7 +1,11 @@
 <div class="page-section-float-left">
     <img src="../../../images/v2/step2.png" class="steps">
+    <% if @course.status != "live" %>
     <div class="welcome-header">Hi, <%= current_user.name %>! Let's get your class up and running!</div>
     <p> We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!</p>
+    <% else %>
+    <div class="welcome-header">Edit your course</div>
+    <% end %>
 </div>
 
 <div class="page">
