@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable
 
-  validates_presence_of :name, :location
+
+  validates_presence_of :name, :email
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
@@ -19,22 +20,35 @@ class User < ActiveRecord::Base
 
   has_many :payments
 
-  has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
-                    :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "user/:style/:id/:filename"
+  has_attached_file :photo, :styles => {
+      :small => ["190x120#", :jpg],
+      :large => ["570x360>", :jpg ]
+      },
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   attr_accessible :photo
 
 
   acts_as_voter
 
-  before_save :update_time_zone
-  after_save :update_location_database
+  before_save  :update_time_zone
+  after_save   :update_location_database
   after_create :send_reg_email
+
+  include User::Omniauth
+
+  def self.me_or_find(id, current_user)
+    user_id = id.try(:to_s)
+    if user_id.blank? || user_id == 'me' || user_id == 'current'
+      current_user
+    else
+      User.find(user_id)
+    end
+  end
 
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
@@ -44,17 +58,19 @@ class User < ActiveRecord::Base
   end
 
   def update_time_zone
-    if time_zone.blank? || zip_changed?
+    if time_zone.blank? && zip.present? && zip_changed?
       self.time_zone = Timezone::Zone.new(:latlon => [lat, lng]).zone
     end
   end
 
   def lat
+    return nil if zip.blank?
     @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
     @geocode.lat
   end
 
   def lng
+    return nil if zip.blank?
     @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
     @geocode.lng
   end
@@ -65,46 +81,17 @@ class User < ActiveRecord::Base
   end
 
   def zipcode=(zip)
-    if !zip.blank?
-      loc = Geokit::Geocoders::GoogleGeocoder.geocode "#{zip}"
-      if !loc.city.nil? && !loc.state.nil?
-        self.location = loc.city + ", " + loc.state
-        self.zip = zip
-      end
+    return nil if zip.blank?
+    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
+    if !loc.city.nil? && !loc.state.nil?
+      self.location = loc.city + ", " + loc.state
+      self.zip = zip
     end
-    nil
   end
 
 
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
-    data = access_token['extra']['user_hash']
-    p data
-    #@graph = Koala::Facebook::GraphAPI.new(access_token["credentials"]["token"])
-    #profile = @graph.get_object("me")
-    #p profile
-    if user = User.find_by_email(data["email"])
-      user
-    else # Create a user with a stub password.
-      if data["location"].nil?
-        return nil
-      else
-        # SUPPORTED_CITIES.each do |sc|
-        #           #city within 30 miles of supported
-        #           if City.distance_between("#{sc}", "#{data["location"]["name"]}") <= 30
-        #              return User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => data["name"],
-        #                             :location => sc, :fb_token => access_token["credentials"]["token"])
-        #           end
-        #         end
-        #        return "ec-not-supported"
-        if data["location"]["name"].nil?
-          return nil
-        else
-          return User.create!(:email => data["email"], :password => Devise.friendly_token[0,20], :name => data["name"],
-                                     :location => data["location"]["name"], :fb_token => access_token["credentials"]["token"])
-        end
-      end
-    end
-  end
+
+
 
   def hearts
     sum = 0
@@ -248,17 +235,9 @@ class User < ActiveRecord::Base
   end
 
   # ================================
-
+  # End user conversion Code
+  # ================================
   private
-  # def supported_location
-  #     SUPPORTED_CITIES.each do |sc|
-  #       #city within 30 miles of supported
-  #       if City.distance_between("#{sc}", location) <= 30
-  #          return
-  #       end
-  #     end
-  #    errors.add(:location, "- Hourschool is not operating yet in your location")
-  #   end
 
   def location_format
     errors.add(:location, "- Should be City, State") unless location.include?(',') && location.split(',').size == 2
@@ -277,8 +256,4 @@ class User < ActiveRecord::Base
     UserMailer.send_registration_mail(self.email, self.name).deliver
 
   end
-
-
-
-
 end

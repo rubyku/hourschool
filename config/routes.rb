@@ -1,5 +1,9 @@
 HourschoolV2::Application.routes.draw do
 
+  scope :path => '/admin', :module => 'admin', :as => 'admin' do
+    resources :charts
+  end
+
   resources :ecourses, :path => 'classes'
 
   resources :suggestions# , :path => 'requests'
@@ -28,8 +32,9 @@ HourschoolV2::Application.routes.draw do
   resources :payments
   match 'confirm_payment' => 'payments#confirm'
 
-  # match '/' => 'home#index', :constraints => { :subdomain => 'www' }
-  # match '/' => 'sites#show', :constraints => { :subdomain => /.+/ }
+
+  match   'oh-no/404'     => 'pages#show',        :id => 'errors/404'
+  match   'oh-no/500'     => 'pages#show',        :id => 'errors/404'
 
   get "sites/show"
   match '/learn' => 'home#learn'
@@ -145,4 +150,6 @@ HourschoolV2::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+
+  match ":bad_route", :to => "pages#show", :id => "errors/404"
 end
