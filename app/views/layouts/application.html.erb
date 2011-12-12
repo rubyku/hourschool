@@ -48,11 +48,13 @@
 
   <%= yield %>
 
-  <div class='sidebar'>
-    <div class='sidebar-content'>
-      <%= yield :sidebar %>
+  <% if content_for?(:sidebar) %>
+    <div class='sidebar'>
+      <div class='sidebar-content'>
+        <%= yield :sidebar %>
+      </div>
     </div>
-  </div>
+  <%- end -%>
 <%- end -%>
 
 <div class="bottom_bg">

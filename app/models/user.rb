@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :photo, :styles => {
       :small => ["190x120#", :jpg],
-      :large => ["570x360>", :jpg ]
+      :large => ["570x360>", :jpg]
       },
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
