@@ -1,7 +1,7 @@
 module UsersHelper
 
   def avatar_for(user)
-    if !@user.photo.exists?
+    if @user.photo.exists?
       return image_tag(@user.photo.url(:small), :size => "190x120")
     else
       avatar_url = ['/images/v2/Avatars_01_V1.png',
