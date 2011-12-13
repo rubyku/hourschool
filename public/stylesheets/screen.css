@@ -2208,11 +2208,12 @@ a.view-more {
 /* line 519, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-button {
   /* Disables default styling */
-  border: none;
-  background: #00B6FF;
-  color: #fff;
+    border: none;
+    background: #00B6FF;
+    color: #fff;
   padding-top: 7px;
-  width: 70px;
+  padding-right: 10px;
+  width: 54px;
   height: 27px;
   background-color: #ff7733;
   -moz-border-radius: 5px;
@@ -2237,7 +2238,7 @@ a.view-more {
   background: #00B6FF;
   color: #fff;
   padding-top: 7px;
-  width: 70px;
+  width: 75px;
   height: 27px;
   background-color: #ccc;
   -moz-border-radius: 5px;
