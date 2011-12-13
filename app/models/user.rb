@@ -20,15 +20,15 @@ class User < ActiveRecord::Base
 
   has_many :payments
 
-  has_attached_file :photo, :styles => {
-      :small => ["190x120#", :jpg],
-      :large => ["570x360>", :jpg],
-      :thumb_large => ["50x50#", :jpg],
-      :thumb_small => ["25x25#", :jpg]
-      },
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :path => "user/:style/:id/:filename"
+  has_attached_file :photo, :styles => {:small => ["120x120", :jpg],
+                                        :large => ["570x360>", :jpg],
+                                        :thumbnail => ["50x50>", :jpg],
+                                        :thumb_small => ["25x25#", :jpg]
+                                        },
+                            :convert_options => {:thumb => "-gravity Center -crop 200x200+0+0 +repage -resize 100x100^" },
+                            :storage => :s3,
+                            :s3_credentials => "#{Rails.root}/config/s3.yml",
+                            :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
 
@@ -97,17 +97,6 @@ class User < ActiveRecord::Base
       sum += s.votes_for
     end
     sum
-  end
-  
-  def user_avatar
-    default_avatar = [
-      "/images/v2/Avatars_01_V1.png",
-      "/images/v2/Avatars_02_V1.png",
-      "/images/v2/Avatars_03_V1.png",
-      "/images/v2/Avatars_04_V1.png",
-      "/images/v2/Avatars_05_V1.png"
-    ]
-    @random_avatar = default_avatar.random
   end
 
   def recent_classes_as_student
