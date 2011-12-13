@@ -1,0 +1,33 @@
+<%
+  message = local_assigns[:message]
+  link    = local_assigns[:link]
+  name    = local_assigns[:name]
+ -%>
+
+
+
+<div class='facebookShare'>
+    <img src="<%= "http://graph.facebook.com/#{friend['id']}/picture?type=square" %>"
+      width="40" height="40" />
+
+    <p class="name">
+      <a href="<%= "http://www.facebook.com/profile.php?id=#{friend['id']}"  %>" class="friend_name">
+        <%= friend['name'] %>
+      </a>
+    </p>
+
+    <p class="buttons">
+      <a href="#"
+        data-url="<%= users_facebook_share_index_path %>"
+        data-fb_id="<%= friend['id'] %>"
+        data-message="<%= message %>"
+        data-link="<%= link %>"
+        data-name="<%= name %>"
+         class="btn fit action small button_accept facebookShareSubmit">Share</a>
+    </p>
+
+    <a href="#"
+       data-url="<%= users_facebook_share_path(:next) %>"
+       class="close button_decline facebookShareDecline" data-tooltip="#">x</a>
+  </div>
+</div>

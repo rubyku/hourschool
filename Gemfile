@@ -4,13 +4,18 @@ gem 'rails', '3.0.9'
 gem 'pg'
 
 
+gem "koala", '~> 1.2.1' # For the facebook
+gem "dalli", '~> 1.1.4' # for memcache
+
+gem 'method_cacheable', '0.0.3' # cache helper
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
-#gem 'devise', '1.4.7'
+# gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
+gem 'devise', '~> 1.4.9'
 #gem "oa-oauth", :require => "omniauth/oauth"
-gem "omniauth"
+gem "omniauth", '~> 0.3.2'
 #gem "koala"
 
 
@@ -22,7 +27,7 @@ gem 'timezone'
 
 gem 'haml'
 gem 'rake', '~> 0.9.2'
-gem 'jquery-rails', '>= 1.0.12'
+gem 'jquery-rails', '>= 1.0.19'
 
 gem 'friendly_id', '4.0.0.beta14'
 # uncomment the next line if you wish to deploy to Heroku

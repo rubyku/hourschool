@@ -8,7 +8,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def must_be_signed_in
+      store_location
+      redirect_to root_path, :notice => "Please sign in" unless signed_in?
+    end
+
     def must_be_admin
+      store_location
       redirect_to root_path unless current_user.try(:admin?)
     end
 
@@ -58,12 +64,7 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
-       if resource.is_a?(Member)
-          #p "member domain is #{resource.member_domain}"
-          root_url(:subdomain => resource.member_domain )
-        else
-          user_root_path
-        end
+      previous_path_or(resource)
     end
 
 
