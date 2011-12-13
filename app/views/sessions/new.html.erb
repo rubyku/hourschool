@@ -48,7 +48,7 @@
 
         <div class="page-section-float-left">
           <% if devise_mapping.rememberable? -%>
-          <%= f.check_box :remember_me %>
+          <%= f.check_box :remember_me, :checked => true %>
           <%= f.label :remember_me %>
           <% end -%>
         </div>
