@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   protected
+
+    def must_be_admin
+      redirect_to root_path unless current_user.try(:admin?)
+    end
+
     def log_error(exception)
       message = "#{exception.class} (#{exception.message}):\n  "
       message += Rails.backtrace_cleaner.clean(exception.backtrace).join("\\n")
