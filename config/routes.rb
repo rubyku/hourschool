@@ -10,6 +10,10 @@ HourschoolV2::Application.routes.draw do
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
+  
+  namespace :courses do
+    resources :browse
+  end
 
   devise_for :members
   resources :members, :only => [:index, :show]

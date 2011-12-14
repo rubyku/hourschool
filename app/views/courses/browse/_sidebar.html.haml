@@ -12,6 +12,12 @@
 
 %ul.searchFilter
   %li
+    .sidebar-heading Browse By Time
+  %li= link_to "Upcoming classes", "/learn"
+  %li= link_to "Past classes", courses_browse_path(:past)
+
+%ul.searchFilter
+  %li
     .sidebar-heading Browse By Category
   - if @tags.present?
     - @tags.each do |tg|
