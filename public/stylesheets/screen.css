@@ -640,7 +640,7 @@ a:hover {
 /*......HOMEPAGE PAGE BREAKDOWN......*/
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
-  background-color: #ff7733;
+  background-image: url(../../../images/v2/hp_bg1.png);
   padding-bottom: 60px;
 }
 
@@ -795,71 +795,47 @@ td#homepage_menu_faq {
   padding-bottom: 45px;
 }
 
-/* line 184, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_1 {
+  position: relative;
+  float: left;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 18px;
-  margin-left: 66px;
+  font-size: 25px;
+  margin-top: 60px;
+  margin-bottom: 10px;
+  margin-left: 30px;
   color: white;
 }
 
 /* line 195, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_2 {
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 60px;
-  margin-bottom: 48px;
-  margin-left: 92px;
+  font-size: 25px;
+  margin-bottom: 18px;
+  margin-left: 30px;
   color: white;
 }
 
 /* line 205, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_3 {
-  text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 100px;
-  margin-bottom: 45px;
-  margin-left: 13px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
   color: white;
 }
 
-/* line 215, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage_headline_4 {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 40px;
-  margin-bottom: 45px;
-  margin-left: 190px;
-  color: white;
-}
-
-/* line 225, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage_headline_5 {
-  text-transform: uppercase;
-  font-family: bello-pro-1, bello-pro-2;
-  font-size: 100px;
-  margin-left: 13px;
-  margin-top: -18px;
-  color: white;
-}
-
-/* line 234, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage_headline_6 {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 100px;
-  margin-left: 95px;
-  margin-top: -2px;
-  padding-bottom: 30px;
-  color: white;
+#hp_transparent{
+  z-index: 99;
+  margin-top: -232px;
+  margin-bottom: -64px;
 }
 
 /* line 245, ../../app/assets/stylesheets/components/homepage.scss */
@@ -868,62 +844,6 @@ h1#homepage_headline {
   color: white;
 }
 
-/* line 250, ../../app/assets/stylesheets/components/homepage.scss */
-.word1, .word2, .word3, .word4 {
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 40px;
-}
-
-/* line 257, ../../app/assets/stylesheets/components/homepage.scss */
-.word5 {
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 60px;
-  line-height: 20px;
-  margin-left: 62px;
-}
-
-/* line 265, ../../app/assets/stylesheets/components/homepage.scss */
-.word7 {
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 80px;
-  line-height: 40px;
-  margin-left: 13px;
-}
-
-/* line 273, ../../app/assets/stylesheets/components/homepage.scss */
-.word9 {
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 100px;
-  top: 2em;
-}
-
-/* line 281, ../../app/assets/stylesheets/components/homepage.scss */
-.word6, .word8, .word12 {
-  font-family: bello-pro-1, bello-pro-2;
-  font-size: 100px;
-}
-
-/* line 286, ../../app/assets/stylesheets/components/homepage.scss */
-.word10 {
-  font-family: bello-pro-1, bello-pro-2;
-  font-size: 100px;
-  margin-left: -320px;
-}
-
-/* line 293, ../../app/assets/stylesheets/components/homepage.scss */
-.word11 {
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 100px;
-  line-height: 90px;
-}
 
 /* line 301, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_7 {
@@ -932,10 +852,10 @@ h1#homepage_headline {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 25px;
-  margin-top: 50px;
+  font-size: 18px;
+  margin-top: 115px;
   margin-left: 80px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.25em;
   color: white;
 }
 
@@ -944,11 +864,12 @@ h1#homepage_headline {
   position: relative;
   float: left;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-style: italic;
   font-size: 10px;
-  margin-left: 120px;
+  margin-left: 80px;
   margin-top: 20px;
   color: white;
 }
@@ -978,7 +899,6 @@ h1#homepage_headline {
   margin-top: 40px;
   color: white;
 }
-
 
 img#fb-signup{
   margin-top: 20px;
