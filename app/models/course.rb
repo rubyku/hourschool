@@ -97,10 +97,6 @@ class Course < ActiveRecord::Base
   def active?
     self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
   end
-  
-  def past?
-    self.starts_at < Time.current
-  end
 
   def self.active_tags
     active.tag_counts_on(:categories).order(:name)
