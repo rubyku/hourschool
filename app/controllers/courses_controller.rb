@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
     @courses = Course.where(:status => "proposal")
     @user = current_user
   end
-  
+
   def all
     @courses = Course.all
   end
@@ -98,7 +98,7 @@ class CoursesController < ApplicationController
       #redirect_to @course, :notice => "Successfully created course."
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver  
+      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to profile_path(:show => 'teaching')
     else
       render :action => 'new'
@@ -194,7 +194,7 @@ class CoursesController < ApplicationController
 
   def register_with_amazon
      @course = Course.find(params[:id])
-     
+
      @payment = Payment.new(
        :transaction_amount => params[:transactionAmount],
        :transaction_id     => params[:transactionId]
@@ -203,16 +203,16 @@ class CoursesController < ApplicationController
          @payment.update_attributes(:user => current_user, :course => @course)
          @user = current_user
          @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
-         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
+         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver        
-         
-             
+         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
+
+
        redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
      end
-  
+
   end
 
   def course_confirm
@@ -229,7 +229,7 @@ class CoursesController < ApplicationController
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end
-  
+
   def contact_all_students
     @course = Course.find(params[:id])
   end
