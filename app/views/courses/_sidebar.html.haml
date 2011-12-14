@@ -9,7 +9,7 @@
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else
         %p= "This class has passed."
-        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
+        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - elsif @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
@@ -18,7 +18,7 @@
         .edit-class-button= "You're already registered"
       - else
         = "Class is full already!"
-        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
+        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - else
       - if @current_course.teacher == current_user
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
