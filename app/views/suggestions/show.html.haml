@@ -38,7 +38,7 @@
               .voted-button
                 = "Voted"
           - else
-            = link_to_function "Vote", "alert('Please login to vote!')"
+            = link_to_function "Vote", "alert('Please login to vote!')", :class => "vote-button"
     
     .page-section-float-left
       - @suggestion.votes.each do |vote| 
