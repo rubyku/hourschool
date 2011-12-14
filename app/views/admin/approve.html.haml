@@ -1,0 +1,13 @@
+- pending.each do |course|
+  - count = count + 1
+  - if count%3 == 0
+    - className = "classBlock_last"
+  - else
+    - className = "classBlock"
+  %div{:class => "#{className}"}
+      = link_to image_tag("/images/v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
+    %br
+      .class-description
+        .heading13-class 
+          = link_to "#{course.title}", proposal_path(:id => course.id)
+        %p= course.teaser.truncate(70).html_safe

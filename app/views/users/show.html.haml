@@ -1,13 +1,6 @@
 .page
   .page-content
 
-    .page-section-float-left
-      %ul.sub-nav
-        - if current_user.admin?
-          %li.sub-nav-inactive 
-            =link_to_function 'Admin', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
-
-
     .page-section-float-left  
       - if (@approved_courses.any? || @pending_courses.count != 0 || !@user.photo.exists? || @user.zip.blank? || @user.location.blank?) && current_user == @user
         .notification-center
@@ -41,7 +34,7 @@
     #teaching.section
       .page-section-float-left
         .welcome-header 
-          = "#{@user.name} teaches"
+          = "Classes #{@user.name} teaches"
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
           = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_teacher}
@@ -50,9 +43,10 @@
             = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
 
-    #attending.section{:style => ('display:none;' if params[:show])}
+    #attending.section
       .page-section-float-left
-        .welcome-header Upcoming classes attending
+        .welcome-header
+          = "#{@user.name} wants to learn"
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
           = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_student}
