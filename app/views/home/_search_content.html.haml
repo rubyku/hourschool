@@ -19,7 +19,7 @@
           = link_to "#{course.title}", course
         %p= course.teaser.truncate(70) unless course.teaser.blank?
         .heading9-class
-          = "#{course.seats_left} seats | #{course.days_left} days | #{course.city.name}"
+          = "#{course.seats_left} seats left | #{course.city.try(:name)}"
 
 .page-section-float-right
   %table.view-more
