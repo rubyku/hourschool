@@ -79,7 +79,7 @@
       .sidebar-heading Teacher
       .class-attendance-block
         - if @current_course.teacher.photo.exists?
-          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
+          = image_tag(@current_course.teacher.photo.url(:thumb_large)
         - else
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
@@ -112,7 +112,7 @@
               %tr
                 %td
                   - if student.photo.exists?
-                    = image_tag(student.photo.url(:small), :size => "50x50", :class => "avatar-medium")
+                    = image_tag(student.photo.url(:thumb_large)
                   - else
                     = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
                 %td

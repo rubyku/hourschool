@@ -20,12 +20,11 @@ class User < ActiveRecord::Base
 
   has_many :payments
 
-  has_attached_file :photo, :styles => {:small => ["120x120", :jpg],
+  has_attached_file :photo, :styles => {:small => ["190x120", :jpg],
                                         :large => ["570x360>", :jpg],
-                                        :thumbnail => ["50x50>", :jpg],
+                                        :thumb_large => ["50x50>", :jpg],
                                         :thumb_small => ["25x25#", :jpg]
                                         },
-                            :convert_options => {:thumb => "-gravity Center -crop 200x200+0+0 +repage -resize 100x100^" },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",
                             :path => "user/:style/:id/:filename"

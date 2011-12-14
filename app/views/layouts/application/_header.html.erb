@@ -15,13 +15,13 @@
             
               <span id="nav-dropdown">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
-                  <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %>
+                  <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
                   <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
               </span>
 
               <span id="nav-dropdown-selected" style="display:none;">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
-                  <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %>
+                  <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
                   <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
               </span>
                     
