@@ -3,12 +3,6 @@
 
     .page-section-float-left
       %ul.sub-nav
-        %li.sub-nav-inactive
-          =link_to_function 'Classes Attending', "$('.section').hide(); $('#attending').show()", :class => 'sub-nav-inactive'
-        %li.sub-nav-inactive
-          =link_to_function 'Classes Teaching', "$('.section').hide(); $('#teaching').show()", :class => 'sub-nav-inactive'
-        %li.sub-nav-inactive
-          =link_to_function 'Suggestions', "$('.section').hide(); $('#suggestions').show()", :class => 'sub-nav-inactive'
         - if current_user.admin?
           %li.sub-nav-inactive 
             =link_to_function 'Admin', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
@@ -44,60 +38,28 @@
       - else
         /do nothing
 
+    #teaching.section
+      .page-section-float-left
+        .welcome-header 
+          = "#{@user.name} teaches"
+        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
+        .classRow
+          = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_teacher}
+          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
+          - if current_user == @user
+            = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
+
 
     #attending.section{:style => ('display:none;' if params[:show])}
       .page-section-float-left
         .welcome-header Upcoming classes attending
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
-
           = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_student}
-
-      .page-section-float-right
-        %table.view-more
-          %tr
-            %td
-              =link_to_function 'Classes I attended in the past', "$('.section').hide(); $('#past-attended').show()", :class => 'view-more'
-            %td
-              %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
-
-
-    #past-attended.section{:style => 'display:none;'}    
-      .page-section-float-left
-        .welcome-header Classes taken
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        .classRow
           = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_student}
 
 
-    #teaching.section{:style => ('display:none;' unless params[:show] == 'teaching')}
-      .page-section-float-left
-        .welcome-header Upcoming classes teaching
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => @user.recent_classes_as_teacher}
-          - if current_user == @user
-            = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
-
-      .page-section-float-right
-        %table.view-more
-          %tr
-            %td
-              =link_to_function 'Classes I taught in the past', "$('.section').hide(); $('#past-taught').show()", :class => 'view-more'
-            %td
-              %img.view-more{:src => '/images/v2/arrow_grey_pointright.png'}
-
-
-    #past-taught.section{:style => 'display:none;'}    
-      .page-section-float-left
-        .welcome-header Classes taught
-        %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
-        .classRow
-          = render :partial => "classes", :locals => {:classes_this_week => @user.past_classes_as_teacher}
-          - if current_user == @user
-            = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
-
-    #suggestions.section{:style => 'display:none;'}
+    #suggestions.section
       .page-section-float-left
     
         .welcome-header Classes suggested
