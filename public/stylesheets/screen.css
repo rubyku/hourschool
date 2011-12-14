@@ -640,7 +640,7 @@ a:hover {
 /*......HOMEPAGE PAGE BREAKDOWN......*/
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
-  background-image: url(../../../images/v2/hp_bg1.png);
+  background-image: url(../../../images/v2/hp_bg2.jpg);
   padding-bottom: 60px;
 }
 
@@ -799,7 +799,7 @@ td#homepage_menu_faq {
   position: relative;
   float: left;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
@@ -812,7 +812,7 @@ td#homepage_menu_faq {
 /* line 195, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_2 {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
@@ -874,31 +874,7 @@ h1#homepage_headline {
   color: white;
 }
 
-#homepage_headline_9 {
-  position: relative;
-  float: left;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 13px;
-  margin-left: 5px;
-  margin-top: 20px;
-  color: white;
-}
-
-#homepage_headline_10 {
-  position: relative;
-  float: left;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 13px;
-  margin-left: -135px;
-  margin-top: 40px;
-  color: white;
-}
+a#homepage_headline_8:hover{color: #ffbd9c;}
 
 img#fb-signup{
   margin-top: 20px;
@@ -1288,13 +1264,13 @@ a#menu:hover {
 }
 
 a.homepage_menu {
-  color: white;
+  color: #ffbd9c;
   text-decoration: none;
 }
 
 a.homepage_menu:hover {
   text-decoration: none;
-  color: white;
+  color: #ffbd9c;
 }
 
 a.homepage_menu:visited {
