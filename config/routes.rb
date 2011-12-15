@@ -29,6 +29,10 @@ HourschoolV2::Application.routes.draw do
   resources :users do
   end
 
+  scope :module => 'users' do
+    resources :wizard, :only => [:show, :update]
+  end
+
   resources :payments
   match 'confirm_payment' => 'payments#confirm'
 
