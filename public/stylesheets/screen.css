@@ -690,6 +690,10 @@ a:hover {
   color: white;
 }
 
+.login-text{
+  color: black;
+}
+
 /* line 85, ../../app/assets/stylesheets/components/homepage.scss */
 a#menu_homepage {
   color: white;

@@ -17,7 +17,7 @@
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       %div{:class => "form-question"}
-        = f.label :name
+        = f.label :name, :class => "login-text"
         %br/
 
         = f.text_field :name, :class => "form-short-with-margin"
@@ -29,22 +29,22 @@
           = f.text_field :organization, :class => "form"
       - else
         %div{:class => "form-question"}
-          = f.label "Zipcode"
+          = f.label "Zipcode", :class => "login-text"
           %br/
           = f.text_field :zipcode, :class => "form-short-with-margin"
           / = f.text_field :location
           / = f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
       %div{:class => "form-question"}
-        = f.label :email
+        = f.label :email, :class => "login-text"
         %br/
         = f.email_field :email, :class => "form-short-with-margin"
       %div{:class => "form-question"}
-        = f.label :password
+        = f.label :password, :class => "login-text"
         %br/
         = f.password_field :password, :class => "form-short-with-margin"
   
       %div{:class => "form-question"}
-        = f.label :password_confirmation
+        = f.label :password_confirmation, :class => "login-text"
         %br/
         = f.password_field :password_confirmation, :class => "form-short-with-margin"
     
