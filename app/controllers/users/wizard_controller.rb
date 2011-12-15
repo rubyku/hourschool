@@ -6,6 +6,12 @@ class Users::WizardController < ApplicationController
     @user = current_user
     @step = params[:id].to_sym
     @next_step = next_step(@step)||:finish
+    case @step
+    when :confirm_password
+      redirect_to_next(@next_step) and return nil unless @user.facebook?
+    when :invite_fb
+      redirect_to_next(@next_step) and return nil unless @user.facebook?
+    end
     render_step @step
   end
 
