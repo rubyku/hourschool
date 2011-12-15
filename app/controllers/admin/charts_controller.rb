@@ -8,9 +8,9 @@ class Admin::ChartsController < Admin::AdminController
     
     
     # Per month  
-    #@users_by_month = User.group("extract( month from DATE(created_at)) ").count
-    #@courses_by_month = Course.group("MONTH(created_at)").count
-    #@students_by_month = Role.where(:role => 'student').group("MONTH(created_at)").count
+    @users_by_month = User.order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
+    @courses_by_month = Course.unscoped.group("extract( month from DATE(created_at)) ").count
+    @students_by_month = Role.where(:role => 'student').group("extract( month from DATE(created_at)) ").count
 
     # Week over week calculations
     wow_users = @users.clone.to_a

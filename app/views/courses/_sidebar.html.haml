@@ -9,7 +9,7 @@
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else
         %p= "This class has passed."
-        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
+        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - elsif @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
@@ -18,7 +18,7 @@
         .edit-class-button= "You're already registered"
       - else
         = "Class is full already!"
-        = button_to "Request a new one", "http://bit.ly/rAtf6o", :method => :get, :class => "register-class-button"
+        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - else
       - if @current_course.teacher == current_user
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
@@ -78,11 +78,10 @@
     .sidebar-block
       .sidebar-heading Teacher
       .class-attendance-block
-        / - if @current_course.teacher.photo.exists?
-        /   = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50")
-        / - else
-        /   = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
-
+        - if @current_course.teacher.photo.exists?
+          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50", :class => "avatar-medium")
+        - else
+          = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
           %a.profile-link
           = link_to "#{course.teacher.name}", user_path(course.teacher.id), :class => "profile-link"
@@ -99,19 +98,26 @@
           - else
             = course.experience
 
-
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
         = link_to "Contact teacher", contact_teacher_path(:id => course.id)
+
 
     - if course.students.any?
       .sidebar-block-last
         .sidebar-heading Students
         .class-attendance-block
           - course.students.each do |student|
-            %a.profile-link
-              = link_to student.name, user_path(student.id), :class => "profile-link"
-              %br
+            %table
+              %tr
+                %td
+                  - if student.photo.exists?
+                    = image_tag(student.photo.url(:small), :size => "50x50", :class => "avatar-medium")
+                  - else
+                    = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
+                %td
+                  = link_to student.name, user_path(student.id), :class => "profile-link"
+            %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}

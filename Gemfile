@@ -8,6 +8,7 @@ gem "koala", '~> 1.2.1' # For the facebook
 gem "dalli", '~> 1.1.4' # for memcache
 
 gem 'method_cacheable', '0.0.3' # cache helper
+gem 'taps'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

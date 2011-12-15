@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
     @courses = Course.where(:status => "proposal")
     @user = current_user
   end
-  
+
   def all
     @courses = Course.all
   end
@@ -79,9 +79,7 @@ class CoursesController < ApplicationController
     if @course.save
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
-        @role = @course.roles.create!(:attending => true, :role => 'teacher')
-        @user.roles << @role
-        @user.courses << @course
+        @role = @course.roles.create!(:attending => true, :role => 'teacher', :user => current_user)
         @user.save
       end
       #now the course has been saved add it to a city where it belongs
@@ -100,7 +98,7 @@ class CoursesController < ApplicationController
       #redirect_to @course, :notice => "Successfully created course."
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver  
+      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to profile_path(:show => 'teaching')
     else
       render :action => 'new'
@@ -177,43 +175,26 @@ class CoursesController < ApplicationController
   end
 
   def register
-     @course = Course.find(params[:id])
+    @course = Course.find(params[:id])
+    @user = current_user
+    @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
+    if @user.save
+      UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
+      UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
+      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
+    end
 
-      @user = current_user
-      @role = @course.roles.create!(:attending => true, :role => 'student')
-      @user.roles << @role
-      @user.courses << @course
-      if @user.save
-        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
-        UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-        UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver               
-      end
-
-      respond_to do |format|
-        format.html {
-          redirect_to course_confirm_path(:id => @course.id)
-          }
-        format.js { }
-      end
-
-      # @user = current_user
-      #       if @course.save
-      #         @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
-      #         if @role.nil?
-      #           @role = @course.roles.create!(:attending => true, :role => 'teacher')
-      #           @user.roles << @role
-      #           @user.courses << @course
-      #           @user.save
-      #         end
-      #         redirect_to @course, :notice => "Successfully created course."
-      #       else
-      #         render :action => 'new'
-      #       end
+    respond_to do |format|
+      format.html {
+        redirect_to course_confirm_path(:id => @course.id)
+        }
+      format.js { }
+    end
   end
 
   def register_with_amazon
      @course = Course.find(params[:id])
-     
+
      @payment = Payment.new(
        :transaction_amount => params[:transactionAmount],
        :transaction_id     => params[:transactionId]
@@ -221,20 +202,17 @@ class CoursesController < ApplicationController
       if @payment.save
          @payment.update_attributes(:user => current_user, :course => @course)
          @user = current_user
-         @role = @course.roles.create!(:attending => true, :role => 'student')
-         @user.roles << @role
-         @user.courses << @course
-         @user.save
-         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver        
+         @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
+         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver        
-         
-             
+         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
+
+
        redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
      end
-  
+
   end
 
   def course_confirm
@@ -251,7 +229,7 @@ class CoursesController < ApplicationController
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end
-  
+
   def contact_all_students
     @course = Course.find(params[:id])
   end

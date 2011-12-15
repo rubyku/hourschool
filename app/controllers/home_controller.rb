@@ -25,6 +25,7 @@ class HomeController < ApplicationController
       @courses        = Course.active.exclude(@teaser_courses).paginate(:page => params[:page]||1)
     end
     render 'courses/browse/index'
+    
   end
 
 

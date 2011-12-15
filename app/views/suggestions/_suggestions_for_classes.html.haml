@@ -2,19 +2,18 @@
   - suggestions.each do |suggestion|
     .vote-class.clearfix
       .vote-class-title
-        .heading20-vote
-          = "#{suggestion.name}"
+        = link_to "#{suggestion.name}", suggestion, :class => "heading20-vote"
         .heading9-class
           = "Requested in: #{count_in_place_sentence(suggestion.voters_who_voted.map(&:city))}"
         %table
           %tr
             %td
-              %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
+              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
             %td  
               = link_to "I want to teach this class", new_course_path("req" => suggestion.id), :class => "vote-link"
           %tr
             %td
-              %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
+              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
             %td  
               = link_to "I want to nominate someone to teach this class", nominate_path("id" => suggestion.id), :class => "vote-link"
       .vote-class-number
@@ -26,12 +25,12 @@
         %span{:id => "vote_link_#{suggestion.id}"}
           - if user_signed_in?
             - if !current_user.voted_on?(suggestion)
-              = link_to "Vote", csvote_path("csid" => suggestion.id), :class => "vote-class-button"
+              = link_to "Vote", csvote_path("csid" => suggestion.id), :class => "vote-button"
             - else
               .voted-button
                 = "Voted"
           - else
-            = link_to_function "Vote", "alert('Please login to vote!')", :class => "vote-class-button"
+            = link_to_function "Vote", "alert('Please login to vote!')", :class => "vote-button"
   .page-section-float-right
     %table.view-more
       %tr

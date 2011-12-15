@@ -2,7 +2,7 @@
   <div class="container_16">
     
     <%= link_to "", root_path, :id => "logo" %>    
-    <!-- <a href="www." id="logo"></a> -->
+
   
 <div id="login">
   
@@ -15,15 +15,15 @@
             
               <span id="nav-dropdown">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
-                    <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
-                      <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                  <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
+                  <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
               </span>
 
               <span id="nav-dropdown-selected" style="display:none;">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
-                    <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
-                      <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
-                    </span>
+                  <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
+                  <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+              </span>
                     
           <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "signup" %>
@@ -102,7 +102,7 @@
             <td id="community_menu_community">
               <%= link_to business_path, :id => "menu" do %>
                 <div id="menu9">HourSchool for</div>
-                <div id="menu18">Organization</div>
+                <div id="menu18">Organizations</div>
               <% end %>
             </td>
             <td id="community_menu_faq">
