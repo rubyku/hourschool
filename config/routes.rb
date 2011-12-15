@@ -98,7 +98,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'home#business'
   match '/about' => 'home#about'
-  root :to => "home#index"
+  root :to => "home#learn"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

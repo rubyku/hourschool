@@ -35,7 +35,7 @@
       .page-section-float-left
         .welcome-header 
           - if current_user == @user
-            = "Classes I teach"
+            = "Classes you teach"
           - else
             = "Classes #{@user.name} teaches"
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
@@ -50,7 +50,7 @@
       .page-section-float-left
         .welcome-header
           - if current_user == @user
-            = "Classes I take"
+            = "Classes you take"
           - else
             = "Classes #{@user.name} takes"
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
@@ -63,7 +63,7 @@
       .page-section-float-left
         .welcome-header 
           - if current_user == @user
-            = "Classes I suggested"
+            = "Classes you suggested"
           - else
             = "Classes #{@user.name} suggested"
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}

@@ -616,25 +616,25 @@ p, ol, ul {
 /* line 33, ../../app/assets/stylesheets/components/homepage.scss */
 a {
   text-decoration: underline;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 34, ../../app/assets/stylesheets/components/homepage.scss */
 a:visited {
   text-decoration: underline;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 35, ../../app/assets/stylesheets/components/homepage.scss */
 a:active {
   text-decoration: underline;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 36, ../../app/assets/stylesheets/components/homepage.scss */
 a:hover {
   text-decoration: underline;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /*......HOMEPAGE PAGE BREAKDOWN......*/
@@ -1364,7 +1364,7 @@ a#menu {
 /* line 127, ../../app/assets/stylesheets/components/header.scss */
 a#menu:hover {
   text-decoration: none;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 a.homepage_menu {
@@ -1422,7 +1422,7 @@ a.homepage_menu:visited {
   position: relative;
   float: left;
   margin-left: 10px;
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -1591,32 +1591,32 @@ p, ol, ul {
 /* line 35, ../../app/assets/stylesheets/components/general.scss */
 a {
   text-decoration: none;
-  color: #4f4e4e;
+  color: #1b5225;
 }
 
 /* line 36, ../../app/assets/stylesheets/components/general.scss */
 a:visited {
   text-decoration: none;
-  color: #4f4e4e;
+  color: #1b5225;
 }
 
 /* line 37, ../../app/assets/stylesheets/components/general.scss */
 a:active {
   text-decoration: underline;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 38, ../../app/assets/stylesheets/components/general.scss */
 a:hover {
   text-decoration: none;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /*......PAGE BREAKDOWN......*/
 /* line 43, ../../app/assets/stylesheets/components/general.scss */
 .brand_bg {
-  background-color: #ff7733;
-  height: 3px;
+  background-color: #1b5225;
+  height: 7px;
 }
 
 /* line 48, ../../app/assets/stylesheets/components/general.scss */
@@ -1844,13 +1844,13 @@ a.sub-nav-inactive {
 /* line 224, ../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-active:hover {
   text-decoration: none;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 225, ../../app/assets/stylesheets/components/general.scss */
 a.sub-nav-inactive:hover {
   text-decoration: none;
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /* line 227, ../../app/assets/stylesheets/components/general.scss */
@@ -1873,7 +1873,7 @@ li.sub-nav-active, li.sub-nav-inactive {
 
 /* line 243, ../../app/assets/stylesheets/components/general.scss */
 li.sub-nav-active {
-  border-bottom: 3px solid #ff7733;
+  border-bottom: 3px solid #1b5225;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -1992,7 +1992,7 @@ img.dashboard-class {
 
 /* line 350, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-name {
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 13px;
@@ -2000,15 +2000,15 @@ img.dashboard-class {
 }
 /* line 356, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-name a {
-  color: #ff7733;
+  color: #1b5225;
 }
 /* line 359, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-name:visited {
-  color: #ff7733;
+  color: #1b5225;
 }
 /* line 362, ../../app/assets/stylesheets/components/general.scss */
 .dashboard-name:hover {
-  color: #ff7733;
+  color: #1b5225;
 }
 
 /*......LEARN PAGE.....*/
@@ -2116,7 +2116,7 @@ a.view-more {
 /*......CLASS BLOCK.....*/
 /* line 442, ../../app/assets/stylesheets/components/general.scss */
 .heading13-class {
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 14px;
@@ -2124,16 +2124,16 @@ a.view-more {
 }
 /* line 448, ../../app/assets/stylesheets/components/general.scss */
 .heading13-class a {
-  color: #ff7733;
+  color: #1b5225;
 }
 /* line 451, ../../app/assets/stylesheets/components/general.scss */
 .heading13-class a:visited {
-  color: #ff7733;
+  color: #1b5225;
   text-decoration: none;
 }
 /* line 454, ../../app/assets/stylesheets/components/general.scss */
 .heading13-class a:hover {
-  color: #ff7733;
+  color: #1b5225;
   text-decoration: none;
 }
 
@@ -2186,7 +2186,7 @@ a.heading20-vote {
 img.view-more-arrow-orange{margin-right: 10px;}
 
 .vote-link{font-size: 11px;}
-.vote-link a:hover{color: #ff7733;}
+.vote-link a:hover{color: #1b5225;}
 .vote-link a:visited{color: #666;}
 
 .vote-class-number {
@@ -2194,7 +2194,7 @@ img.view-more-arrow-orange{margin-right: 10px;}
 }
 
 .heading35-vote {
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -2224,7 +2224,7 @@ a.vote-button {
   padding-right: 0px;
   width: 75px;
   height: 27px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -2274,7 +2274,7 @@ a.vote-button:hover { background-color: #e46f28; color: white;}
   padding-bottom: 7px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   color: white;
   text-align: center;
   -moz-border-radius: 5px;
@@ -2314,7 +2314,7 @@ a.vote-button:hover { background-color: #e46f28; color: white;}
   float: left;
   width: 135px;
   height: 85px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -2336,7 +2336,7 @@ img#create-class-star {
 
 /* line 623, ../../app/assets/stylesheets/components/general.scss */
 .heading15-whyteach {
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -2367,7 +2367,7 @@ img#create-class-star {
 
 .pagenote-header{
   text-transform: uppercase;
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 15px;
@@ -2378,7 +2378,7 @@ img#create-class-star {
 }
 
 a.pagenote-link{
-  color: #ff7733;
+  color: #1b5225;
 }
 
 hr#pagenote{
@@ -2533,7 +2533,7 @@ p.class-details-heart-number {
   width: 220px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -2615,7 +2615,7 @@ p.class-details-heart-number {
   margin-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -2669,7 +2669,7 @@ img.steps {
 .preview-header{
   width: 500px;
   float: left;
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 20px;
@@ -2687,7 +2687,7 @@ img.steps {
   width: 120px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -2721,7 +2721,7 @@ img.steps {
 }
 
 li.preview-checklist{
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -2730,7 +2730,7 @@ li.preview-checklist{
 }
 
 a.orange-checklist{
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -2738,8 +2738,8 @@ a.orange-checklist{
   letter-spacing: 0.1em;
 }
 
-a.orange-checklist:hover{color: #ff7733}
-a.orange-checklist:visited{color:#ff7733}
+a.orange-checklist:hover{color: #1b5225}
+a.orange-checklist:visited{color:#1b5225}
 
 /*......COURSE-CONFIRM......*/
 /* line 783, ../../app/assets/stylesheets/components/general.scss */
@@ -2782,7 +2782,7 @@ a.orange-checklist:visited{color:#ff7733}
 /* line 798, ../../app/assets/stylesheets/components/general.scss */
 .confirm-first-message {
   text-transform: uppercase;
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 40px;
@@ -2796,7 +2796,7 @@ a.orange-checklist:visited{color:#ff7733}
 /* line 811, ../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
@@ -2876,7 +2876,7 @@ td.edit-profile{
 
 /* line 927, ../../app/assets/stylesheets/components/general.scss */
 a.profile-link {
-  color: #ff7733;
+  color: #1b5225;
   font-weight: 700;
   font-size: 12px;
 }
@@ -3144,7 +3144,7 @@ p.form-bg {
   width: 220px;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -3224,7 +3224,7 @@ a.tip {
 
 .flash-notice{
   text-transform: uppercase;
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 14px;
@@ -3245,7 +3245,7 @@ a.tip {
   float: left;
   width: 84px;
   height: 33px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -3290,7 +3290,7 @@ img.modal-close {
   float: left;
   margin-top: 10px;
   padding: 10px;
-  background-color: #ff7733;
+  background-color: #1b5225;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -3388,7 +3388,7 @@ p.similar-class-description {
 
 /* line 72, ../../app/assets/stylesheets/components/sidebar.scss */
 p.profile-name-blurb {
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 13px;
@@ -3499,7 +3499,7 @@ p.profile-bio {
 
 /* line 29, ../../app/assets/stylesheets/components/marcomm.scss */
 .heading15-marcomm {
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -3541,7 +3541,7 @@ span.list-number {
 
 /* line 66, ../../app/assets/stylesheets/components/marcomm.scss */
 .about-bio-team-name {
-  color: #ff7733;
+  color: #1b5225;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 15px;
@@ -3797,7 +3797,7 @@ h1.email-header {
 }
 
 #notification-header{
-  color: #ff7733;
+  color: #1b5225;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -3808,11 +3808,11 @@ h1.email-header {
 }
 
 a.notification{
-  color: #ff7733;
+  color: #1b5225;
 }
 
 a.notification:hover{
-  color: #ff7733;
+  color: #1b5225;
 }
 
 tr.notification{

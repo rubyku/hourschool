@@ -2,15 +2,11 @@ require 'will_paginate/array'
 class HomeController < ApplicationController
   layout nil
   layout 'application', :except => :index
-  before_filter :authenticate_user!, :only => [:nominate, :nominate_send]
+  before_filter :authenticate_user!, :only => [:nominate, :nominate_send, :learn]
 
   before_filter :skip_if_logged_in, :only => :index
 
   def index
-    @fav1 = Course.find(178)
-    @fav2 = Course.find(174)
-    @fav3 = Course.find(177)
-    @fav4 = Course.find(176)
   end
 
   def learn

@@ -1,14 +1,13 @@
 <div id="header">
   <div class="container_16">
-    
-    <%= link_to "", root_path, :id => "logo" %>    
-
   
+
+<div id="enterprise_peer_learning">Peer learning at Greendoors</li>
+
 <div id="login">
   
-        <ul id="login">
-              <li id="login_peerlearning">Peer learning in Greendoors</li>
-  
+        <ul id="login">              
+
            <% if user_signed_in? %>
                <li id="login">
             
@@ -75,44 +74,47 @@
         });
     </script>
     
-        <table id="menu">
-          <tr id="menu">
-              <td id="community_menu_learn">
-        <%= link_to learn_path, :id => "menu" do %>
-                <!-- <a href="/p/learn" id="menu"> -->
-                  <div id="menu18">Learn</div> 
-                  <div id="menu9">something new</div>
-                <!-- </a> -->
-        <% end %>
-              </td>
-              <td id="community_menu_teach">
-                <%= link_to teach_path, :id => "menu" do %>
-                  <div id="menu9">Offer to</div>
-                  <div id="menu18">teach</div>
-                <% end %>
-              </td>
-            <td id="community_menu_suggest">
-      <%= link_to suggest_path, :id => "menu" do %>
-              
-                <div id="menu18">Suggest</div>
-                <div id="menu9">a class</div>
-              <% end %>
-            </td>
-            <td id="community_menu_community">
-              <%= link_to business_path, :id => "menu" do %>
-                <div id="menu9">HourSchool for</div>
-                <div id="menu18">Organizations</div>
-              <% end %>
-            </td>
-            <td id="community_menu_faq">
-              <a href="http://help.hourschool.com/" id="menu">
-                <div id="menu_faq">F</div>
-                <div id="menu_faq">A</div>
-                <div id="menu_faq">Q</div>
-              
-            </td>
-          </tr>
-        </table>
+    <table id="enterprise_menu">
+      <tr id="menu">
+        <td id="enterprise_menu_dashboard">
+          <a href="/learn" id="menu">
+            <div id="menu9">My</div>
+            <div id="menu18">Dashboard</div>
+          </a>
+        </td>
+        <td id="enterprise_menu_learn">
+          <a href="/learn" id="menu">
+            <div id="menu18">Learn</div> 
+            <div id="menu9">something new</div>
+          </a>
+        </td>
+        <td id="enterprise_menu_teach">
+          <a href="/teach" id="menu">
+            <div id="menu9">Offer to</div>
+            <div id="menu18">teach</div>
+          </a>
+        </td>
+        <td id="enterprise_menu_suggest">
+          <a href="/suggest" id="menu">
+            <div id="menu18">Suggest</div>
+            <div id="menu9">a class</div>
+          </a>
+        </td>
+        <td id="enterprise_menu_community">
+          <a href="/community" id="menu">
+            <div id="menu9">Help build your</div>
+            <div id="menu18">Community</div>
+          </a>
+        </td>
+        <td id="menu_faq">
+          <a href="/faq" id="menu">
+            <div id="menu_faq">F</div>
+            <div id="menu_faq">A</div>
+            <div id="menu_faq">Q</div>
+          </a>
+        </td>
+      </tr>
+    </table>
 
 
   </div><!-- /end .container_16 -->
