@@ -3,6 +3,8 @@ HourschoolV2::Application.routes.draw do
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :charts
   end
+  
+  match '/approve' => 'admin#approve'
 
   resources :ecourses, :path => 'classes'
 
@@ -10,6 +12,10 @@ HourschoolV2::Application.routes.draw do
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
+  
+  namespace :courses do
+    resources :browse
+  end
 
   devise_for :members
   resources :members, :only => [:index, :show]

@@ -44,3 +44,8 @@
           - if !@user.web.blank?
             %a.profile-link
               = link_to "Website", @user.web, :class => "profile-link"
+
+    - if current_user.admin?
+      .sidebar-block-last
+        .sidebar-heading Admin Panel 
+        =link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'

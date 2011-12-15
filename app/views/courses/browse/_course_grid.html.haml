@@ -16,9 +16,10 @@
             .heading13-class
               = link_to course.title, course
             %p= course.teaser.truncate(70) unless course.teaser.blank?
+
           .class-note
             .heading9-class
-              = "#{course.seats_left} seats left | #{course.city.name}"
+              = "#{course.seats_left} seats left | #{course.city.try(:name)}" unless params[:id] == "past"
               
     - else
       .classBlock

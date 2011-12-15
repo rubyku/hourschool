@@ -1107,7 +1107,7 @@ img.arrow_small_pointright {
 .classBlock-homepage {
   float: left;
   width: 190px;
-  height: 250px;
+  height: 260px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -1119,7 +1119,7 @@ img.arrow_small_pointright {
 .classBlock-last-homepage {
   float: left;
   width: 190px;
-  height: 250px;
+  height: 260px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -2151,68 +2151,78 @@ a.view-more {
 }
 
 /*......VOTE FOR A CLASS.....*/
-/* line 473, ../../app/assets/stylesheets/components/general.scss */
+
 .vote-class {
   margin-top: 0px;
   margin: 20px 20px 20px 0px;
   padding-bottom: 20px;
   border-bottom: 1px dashed #ccc;
 }
-/* line 478, ../../app/assets/stylesheets/components/general.scss */
-.vote-class a {
-  font-family: verdana,sans-serif;
-  font-size: 11px;
-  text-decoration: none;
-  padding-left: 10px;
-  margin-top: 3px;
-}
-/* line 486, ../../app/assets/stylesheets/components/general.scss */
-.vote-class a:hover {
-  color: white ;
-}
 
-.vote-class a:visited {
-  color: white ;
-}
-
-/* line 493, ../../app/assets/stylesheets/components/general.scss */
-.vote-class-last {
-  margin-top: 0px;
-  padding: 20px 20px 0px 0px;
-}
-/* line 497, ../../app/assets/stylesheets/components/general.scss */
-.vote-class-last a {
-  font-family: verdana,sans-serif;
-  font-size: 11px;
-  color: #4f4e4e;
-  line-height: 20px;
-  text-decoration: none;
-  padding-left: 3px;
-  margin-top: 3px;
-}
-/* line 505, ../../app/assets/stylesheets/components/general.scss */
-.vote-class-last a:hover {
-  color: white ;
-}
-
-/* line 511, ../../app/assets/stylesheets/components/general.scss */
 .vote-class-title {
   float: left;
 }
 
-/* line 515, ../../app/assets/stylesheets/components/general.scss */
+.heading20-vote {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+a.heading20-vote {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.heading20-vote a:hover {color: #666;}
+.heading20-vote a:visited{color: #666;}
+.heading20-vote a:active{color: #666;}
+
+img.view-more-arrow-orange{margin-right: 10px;}
+
+.vote-link{font-size: 11px;}
+.vote-link a:hover{color: #ff7733;}
+.vote-link a:visited{color: #666;}
+
 .vote-class-number {
   float: right;
 }
 
-/* line 519, ../../app/assets/stylesheets/components/general.scss */
-.vote-class-button {
+.heading35-vote {
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 35px;
+  text-align: center;
+  margin-left: -5px;
+  margin-bottom: 5px;
+}
+
+.heading10-vote {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+a.vote-button {
   /* Disables default styling */
-  border: none;
-  background: #00B6FF;
-  color: #fff;
+    border: none;
+    background: #00B6FF;
+    color: #fff;
   padding-top: 7px;
-  width: 70px;
+  padding-right: 0px;
+  width: 75px;
   height: 27px;
   background-color: #ff7733;
   -moz-border-radius: 5px;
@@ -2229,7 +2239,7 @@ a.view-more {
   cursor: pointer;
 }
 
-.vote-class-button:hover { background-color: #e46f28;}
+a.vote-button:hover { background-color: #e46f28; color: white;}
 
 .voted-button {
   /* Disables default styling */
@@ -2237,7 +2247,7 @@ a.view-more {
   background: #00B6FF;
   color: #fff;
   padding-top: 7px;
-  width: 70px;
+  width: 75px;
   height: 27px;
   background-color: #ccc;
   -moz-border-radius: 5px;
@@ -2253,42 +2263,7 @@ a.view-more {
   letter-spacing: 0.1em;
 }
 
-a.vote-link:hover{color: #ff7733}
-a.vote-link:visited{color: #666}
 
-
-/* line 540, ../../app/assets/stylesheets/components/general.scss */
-.heading35-vote {
-  color: #ff7733;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 35px;
-  text-align: center;
-  margin-left: -5px;
-  margin-bottom: 5px;
-}
-
-/* line 551, ../../app/assets/stylesheets/components/general.scss */
-.heading20-vote {
-  color: #666;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 20px;
-  padding-bottom: 5px;
-}
-
-/* line 559, ../../app/assets/stylesheets/components/general.scss */
-.heading10-vote {
-  color: #8f8f8f;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-align: center;
-  margin-bottom: 3px;
-}
 
 /*......TEACH PAGE.....*/
 /* line 573, ../../app/assets/stylesheets/components/general.scss */
@@ -2793,8 +2768,8 @@ a.orange-checklist:visited{color:#ff7733}
 
 .vote-show-block{
   float: left;
-  width: 400px;
-  margin-bottom: 20px;
+  width: 600px;
+  margin-bottom: 15px;
 }
 
 .vote-share-block{
@@ -3344,6 +3319,7 @@ img.modal-close {
   letter-spacing: 0.2em;
   line-height: 26px;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* line 13, ../../app/assets/stylesheets/components/sidebar.scss */

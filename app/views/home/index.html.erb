@@ -76,15 +76,13 @@
 
                    <span id="nav-dropdown">
                        <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-                         <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
                            <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
                    </span>
 
                    <span id="nav-dropdown-selected" style="display:none;">
                        <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-                         <!-- <img src=" /images/v2/Avatars_04_V1.png" class="profile-avatar"> -->
                            <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
-                         </span>
+                   </span>
 
             <% else %>
                 <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "signup" %>
@@ -160,7 +158,7 @@
             <td id="homepage_menu_business">
               <a href="/business" id="menu_homepage">
                 <div id="menu9">Hourschool for</div>
-                <div id="menu18">Organization</div>
+                <div id="menu18">Organizations</div>
               </a>
             </td>
             <td id="homepage_menu_faq">

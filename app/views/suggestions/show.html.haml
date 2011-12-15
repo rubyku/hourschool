@@ -1,46 +1,54 @@
 .page
   .page-content
   
-    .vote-show-block
-      %p The more votes a suggestion has, the more likely it is to be claimed by a teacher. Get more people to vote for the class you want today!
-    .vote-share-block
-      = render :partial => "/courses/social_share_suggest"
-    %br
-    %br
-    %br  
-    %hr#confirm
-   
-    .vote-class-title
-      .heading20-vote
-        = @suggestion.name
-      .heading9-class
-        = "Requested in: #{count_in_place_sentence(@suggestion.voters_who_voted.map(&:city))}"
-      %table
-        %tr
-          %td
-            %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
-          %td  
-            = link_to "I want to teach this class", new_course_path("req" => @suggestion.id), :class => "vote-link"
-        %tr
-          %td
-            %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
-          %td  
-            = link_to "I want to nominate someone to teach this class", nominate_path("id" => @suggestion.id), :class => "vote-link"
-    .vote-class-number
-      .heading35-vote
-        %span{:id => "vote_count_#{@suggestion.id}"}
-          = "#{@suggestion.votes_for}"
-      .heading10-vote 
-        = "people"
-      %span{:id => "vote_link_#{@suggestion.id}"}
-        - if user_signed_in?
-          - if !current_user.voted_on?(@suggestion)
-            = link_to "Vote", csvote_path("csid" => @suggestion.id), :class => "vote-class-button"
+    .page-section-float-left
+      .vote-show-block
+        %p The more votes a suggestion has, the more likely it is to be claimed by a teacher. Get more people to vote for the class you want today!
+      .vote-share-block
+        = render :partial => "/courses/social_share_suggest"
+
+    .page-section-float-left   
+      .vote-class-title
+        .heading20-vote
+          = @suggestion.name
+        .heading9-class
+          = "Requested in: #{count_in_place_sentence(@suggestion.voters_who_voted.map(&:city))}"
+        %table
+          %tr
+            %td
+              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
+            %td  
+              = link_to "I want to teach this class", new_course_path("req" => @suggestion.id), :class => "vote-link"
+          %tr
+            %td
+              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
+            %td  
+              = link_to "I want to nominate someone to teach this class", nominate_path("id" => @suggestion.id), :class => "vote-link"
+      .vote-class-number
+        .heading35-vote
+          %span{:id => "vote_count_#{@suggestion.id}"}
+            = "#{@suggestion.votes_for}"
+        .heading10-vote 
+          = "people"
+        %span{:id => "vote_link_#{@suggestion.id}"}
+          - if user_signed_in?
+            - if !current_user.voted_on?(@suggestion)
+              = link_to "Vote", csvote_path("csid" => @suggestion.id), :class => "vote-button"
+            - else
+              .voted-button
+                = "Voted"
           - else
-            .voted-button
-              = "Voted"
-        - else
-          = link_to_function "Vote", "alert('Please login to vote!')"
+            = link_to_function "Vote", "alert('Please login to vote!')", :class => "vote-button"
+    
+    .page-section-float-left
+      - @suggestion.votes.each do |vote| 
+        %p
+          / - if User.find(id = vote.voter_id).photo.exist?
+          /   = image_tag(User.find(id = vote.voter_id).photo.url(:small), :size => "25x25", :class => "profile-avatar")
+          / - else
+          /   = image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
+          = link_to "#{User.find(id = vote.voter_id).name}", user_path(id = vote.voter_id), :class => "profile-link" 
+          = "in #{User.find(id = vote.voter_id).location} voted"
 
 
 .sidebar
@@ -49,3 +57,5 @@
     .heading10 Have questions?
     %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
       #tipboxButton Contact us!
+      
+      

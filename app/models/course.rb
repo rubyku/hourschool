@@ -62,7 +62,7 @@ class Course < ActiveRecord::Base
 
 
   def self.random
-    order('rand()')
+    unscoped.order('random()')
   end
 
 
@@ -85,6 +85,10 @@ class Course < ActiveRecord::Base
   def self.active
     where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
   end
+
+  def self.past
+    where(:status => 'live').where("DATE(date) < (?)", Time.current)
+  end
 
   def starts_at
     date.in_time_zone

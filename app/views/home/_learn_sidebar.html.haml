@@ -11,11 +11,11 @@
       %li= link_to "All", cities_path(:city => "All")
       %li= link_to "Austin", cities_path(:city => "Austin")
       %li= link_to "San Francisco", cities_path(:city => "San Francisco")
-    / %ul.searchFilter
-    /   %li
-    /     .sidebar-heading Browse By Time
-    /   %li= link_to "Upcoming Classes", "#"
-    /   %li= link_to "Past Classes", "#"
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By Time
+      %li= link_to "Upcoming classes", "/learn"
+      %li= link_to "Past classes", courses_browse_path(:past)
     %ul.searchFilter
       %li
         .sidebar-heading Browse By Category
