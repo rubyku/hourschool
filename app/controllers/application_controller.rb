@@ -70,7 +70,9 @@ class ApplicationController < ActionController::Base
 
     def previous_path_or(url)
       if session[:return_to].present? && session[:return_to] != '/'
-        session[:return_to]
+        return_to = session[:return_to]
+        session[:return_to] = nil
+        return_to
       else
         url
       end
