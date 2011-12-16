@@ -1,7 +1,8 @@
-<div class="featured-content container_16 clearfix">
+<div class="container_16">
 
+  <div class="featured-content clearfix">
       <div class="homepage-header">Featured classes</div><br><br>
-
+      
           <div class="classRow-homepage clearfix">
               
               <div class="classBlock-homepage">
@@ -32,36 +33,83 @@
                     </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
 
-                  <div class="classBlock-homepage">
-                        <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
-                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-                    <div class="class-description">
-                      <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
-                      <p><%= @fav3.teaser.truncate(70) unless @fav3.teaser.blank?%></p>
-                    </div><!-- /end .class-description -->
-                    <div class="class-note">
-                      <div class="heading9-class">
-                      <%= "#{@fav3.seats_left} seats left | #{@fav3.city.name}" %>
-                      </div>
-                    </div><!-- /end .class-note -->
-                  </div><!-- /end .classBlock -->
+              <div class="classBlock-homepage">
+                    <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav3.title, @fav3 %></div>
+                  <p><%= @fav3.teaser.truncate(70) unless @fav3.teaser.blank?%></p>
+                </div><!-- /end .class-description -->
+                <div class="class-note">
+                  <div class="heading9-class">
+                  <%= "#{@fav3.seats_left} seats left | #{@fav3.city.name}" %>
+                  </div>
+                </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
 
-                  <div class="classBlock-last-homepage">
-                      <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
-                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
-                    <div class="class-description">
-                      <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
-                      <p><%= @fav4.teaser.truncate(70) unless @fav4.teaser.blank? %></p>
-                    </div><!-- /end .class-description -->
-                    <div class="class-note">
-                      <div class="heading9-class">
-                      <%= "#{@fav4.seats_left} seats left | #{@fav4.city.name}" %>
-                      </div>
-                    </div><!-- /end .class-note -->
-                  </div><!-- /end .classBlock -->
+              <div class="classBlock-last-homepage">
+                  <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
+                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav4.title, @fav4 %></div>
+                  <p><%= @fav4.teaser.truncate(70) unless @fav4.teaser.blank? %></p>
+                </div><!-- /end .class-description -->
+                <div class="class-note">
+                  <div class="heading9-class">
+                  <%= "#{@fav4.seats_left} seats left | #{@fav4.city.name}" %>
+                  </div>
+                </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
     
           </div><!-- /end .classRow -->
       
-    </div><!-- /end .featuredContent -->
+  </div><!-- /end .featured-content -->
 
-</div><!-- /end .homepage_middle_bg -->
+  <div class="featured-content clearfix">
+    <div class="homepage-header">Hourschool Happenings</div><br><br>
+    
+    <div class="classRow-homepage clearfix">
+        
+        <div class="happeningBlock-homepage">
+            <a href="../../../pdf/handbook-111311.pdf">
+            <img src="../../../images/v2/screenshot_teacherHandbook.png">    
+            <div class="happening-message-header">
+                Want to teach a class?
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Our teacher's handbook is a great guide to help you get started.
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+    
+        <div class="happeningBlock-homepage">     
+            <a href="http://www.facebook.com/events/177997848962447/" target="_blank">
+            <img src="../../../images/v2/HappyHour_Jan23_v2.png">
+            <div class="happening-message-header">
+                Austin Happy Hour
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Come hang out with some HourSchoolmates and have a beer!
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+    
+        <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="438" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>        
+        <a href="http://vimeo.com/user7331787" target="_blank">
+        <div class="happening-message-header">
+            What is HourSchool?
+        </div>
+        </a>
+        <div class="happening-message-description">
+            Learning with your network, one hour at a time.<br>
+        </div>
+            
+
+    </div><!-- /end .classRow-homepage -->    
+  </div><!-- /end .featured-content -->
+
+  <%= image_tag("/images/v2/hp_white.png", :id => "hp_white") %>
+
+</div>
+
+

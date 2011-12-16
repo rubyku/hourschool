@@ -640,7 +640,7 @@ a:hover {
 /*......HOMEPAGE PAGE BREAKDOWN......*/
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
-  background-image: url(../../../images/v2/hp_bg8.jpg);
+  background-image: url(../../../images/v2/hp_bg1.jpg);
   padding-bottom: 60px;
 }
 
@@ -790,10 +790,6 @@ td#homepage_menu_faq {
 
 /*......BANNER CONTENT......*/
 /* line 179, ../../app/assets/stylesheets/components/homepage.scss */
-.featured-content {
-  padding-top: 35px;
-  padding-bottom: 45px;
-}
 
 #homepage_headline_1 {
   position: relative;
@@ -811,18 +807,22 @@ td#homepage_menu_faq {
 
 /* line 195, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_2 {
+  position: relative;
+  float: left;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   margin-left: 30px;
   color: white;
 }
 
 /* line 205, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_3 {
+  position: relative;
+  float: left;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 300;
   font-size: 18px;
@@ -832,18 +832,6 @@ td#homepage_menu_faq {
   color: white;
 }
 
-#hp_transparent{
-  margin-top: 0px;
-  margin-bottom: -80px;
-}
-
-/* line 245, ../../app/assets/stylesheets/components/homepage.scss */
-h1#homepage_headline {
-  text-transform: uppercase;
-  color: white;
-}
-
-
 /* line 301, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_headline_7 {
   position: relative;
@@ -852,7 +840,7 @@ h1#homepage_headline {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 18px;
-  margin-top: 115px;
+  margin-top: 120px;
   margin-left: 80px;
   letter-spacing: 0.25em;
   color: white;
@@ -873,12 +861,41 @@ h1#homepage_headline {
   color: white;
 }
 
-a#homepage_headline_8:hover{color: #ffbd9c;}
+a#menu_homepage:hover{color: #fae4da;}
+a#homepage_menu:hover{color: black;}
+a#homepage_headline_8:hover{color: #fae4da;}
 
 img#fb-signup{
+  position: relative;
+  float: left;
   margin-top: 20px;
   margin-left: 76px;
+  z-index: 1;
 }
+
+img#fb-signup-bg{
+  position: relative;
+  float: left;
+  margin-top: -52px;
+  margin-left: 71px;
+}
+
+#hp_transparent{
+  margin-top: -100px;
+  margin-bottom: -314px;
+}
+
+#hp_white{
+  margin-top: -783px;
+  margin-bottom: 45px;
+}
+
+.featured-content {
+  position: relative;
+  float: left;
+  padding-bottom: 20px;
+}
+
 
 /* line 327, ../../app/assets/stylesheets/components/homepage.scss */
 #homeSearchForm-background {
@@ -1016,9 +1033,6 @@ img.arrow_small_pointright {
 .happeningBlock-homepage {
   float: left;
   width: 220px;
-  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   margin-right: 10px;
 }
 
@@ -1269,8 +1283,11 @@ a.homepage_menu:visited {
   color: white;
 }
 
-#signup{
+#not_logged_in{
+  position: relative;
+  float: left;
   padding-right: 10px;
+  color: white;
 }
 
 
@@ -1804,6 +1821,7 @@ li.sub-nav-inactive {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-left: 30px;
+  padding-top: 35px;
 }
 
 /* line 277, ../../app/assets/stylesheets/components/general.scss */
