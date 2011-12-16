@@ -1262,6 +1262,11 @@ a#menu {
   text-decoration: none;
 }
 
+a#menu:visited {
+  color: #8f8f8f;
+  text-decoration: none;
+}
+
 /* line 127, ../../app/assets/stylesheets/components/header.scss */
 a#menu:hover {
   text-decoration: none;
@@ -1283,16 +1288,33 @@ a.homepage_menu:hover {
   color: #ffbd9c;
 }
 
-a#not_logged_in:hover{
+a#not_logged_in_homepage{
+  text-decoration: none;
+  color: white;
+}
+
+a#not_logged_in_homepage:hover{
   text-decoration: none;
   color: #ffbd9c;
+}
+
+#not_logged_in_homepage{
+  position: relative;
+  float: left;
+  padding-right: 10px;
+  color: white;
+}
+
+a#not_logged_in{
+  text-decoration: none;
+  color: #4f4e4e;
 }
 
 #not_logged_in{
   position: relative;
   float: left;
   padding-right: 10px;
-  color: white;
+  color: #4f4e4e;
 }
 
 

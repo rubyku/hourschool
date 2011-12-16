@@ -84,8 +84,8 @@
            <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
         </span>
       <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "not_logged_in" %>
-          <span id="not_logged_in">|</span>
+          <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "not_logged_in_homepage" %>
+          <span id="not_logged_in_homepage">|</span>
           <%= link_to "sign in", new_user_session_path, :class => "homepage_menu" %>
       <% end %>
        </li>
