@@ -640,7 +640,7 @@ a:hover {
 /*......HOMEPAGE PAGE BREAKDOWN......*/
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
-  background-image: url(../../../images/v2/hp_bg3.jpg);
+  background-image: url(../../../images/v2/hp_bg8.jpg);
   padding-bottom: 60px;
 }
 
@@ -833,9 +833,8 @@ td#homepage_menu_faq {
 }
 
 #hp_transparent{
-  z-index: 99;
-  margin-top: -232px;
-  margin-bottom: -64px;
+  margin-top: 0px;
+  margin-bottom: -80px;
 }
 
 /* line 245, ../../app/assets/stylesheets/components/homepage.scss */
@@ -981,23 +980,15 @@ img.arrow_small_pointright {
   margin-left: 3px;
 }
 
-.homepage-header {
-  color: #999999;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 25px;
-  letter-spacing: 0.1em;
-  margin-bottom: 25px;
-}
-
 /* line 417, ../../app/assets/stylesheets/components/homepage.scss */
 .classRow-homepage {
   float: left;
-  width: 960px;
+  width: 900px;
   margin-top: -30px;
-  margin-bottom: 23px;
+  margin-bottom: 0px;
+  margin-left: 30px;
 }
+
 
 /* line 423, ../../app/assets/stylesheets/components/homepage.scss */
 .classBlock-homepage {
@@ -1008,7 +999,7 @@ img.arrow_small_pointright {
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  margin-right: 65px;
+  margin-right: 45px;
 }
 
 /* line 434, ../../app/assets/stylesheets/components/homepage.scss */
@@ -1028,7 +1019,7 @@ img.arrow_small_pointright {
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  margin-right: 30px;
+  margin-right: 10px;
 }
 
 .happening-message-header{
@@ -1802,6 +1793,17 @@ li.sub-nav-inactive {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding-bottom: 20px;
+}
+
+.homepage-header {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-left: 30px;
 }
 
 /* line 277, ../../app/assets/stylesheets/components/general.scss */
