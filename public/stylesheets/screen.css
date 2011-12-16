@@ -1293,6 +1293,11 @@ a#not_logged_in_homepage{
   color: white;
 }
 
+a#not_logged_in_homepage:visited{
+  text-decoration: none;
+  color: white;
+}
+
 a#not_logged_in_homepage:hover{
   text-decoration: none;
   color: #ffbd9c;
@@ -1308,6 +1313,16 @@ a#not_logged_in_homepage:hover{
 a#not_logged_in{
   text-decoration: none;
   color: #4f4e4e;
+}
+
+a#not_logged_in:visited{
+  text-decoration: none;
+  color: #4f4e4e;
+}
+
+a#not_logged_in:hover{
+  text-decoration: none;
+  color: #ff7733;
 }
 
 #not_logged_in{
