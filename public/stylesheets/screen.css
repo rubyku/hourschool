@@ -641,7 +641,7 @@ a:hover {
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
   background-image: url(../../../images/v2/hp_bg1.jpg);
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
@@ -798,11 +798,12 @@ td#homepage_menu_faq {
   letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 24px;
   margin-top: 60px;
   margin-bottom: 10px;
   margin-left: 30px;
   color: white;
+  padding-right: -30px;
 }
 
 /* line 195, ../../app/assets/stylesheets/components/homepage.scss */
@@ -813,7 +814,7 @@ td#homepage_menu_faq {
   letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 24px;
   margin-bottom: 24px;
   margin-left: 30px;
   color: white;
