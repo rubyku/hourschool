@@ -1269,7 +1269,7 @@ a#menu:hover {
 }
 
 a.homepage_menu {
-  color: #ffbd9c;
+  color: white;
   text-decoration: none;
 }
 
@@ -1290,6 +1290,10 @@ a.homepage_menu:visited {
   color: white;
 }
 
+a#not_logged_in:hover{
+  text-decoration: none;
+  color: #ffbd9c;
+}
 
 
 /* line 129, ../../app/assets/stylesheets/components/header.scss */
