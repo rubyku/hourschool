@@ -1273,14 +1273,19 @@ a.homepage_menu {
   text-decoration: none;
 }
 
+a.homepage_menu:visited {
+  text-decoration: none;
+  color: white;
+}
+
 a.homepage_menu:hover {
   text-decoration: none;
   color: #ffbd9c;
 }
 
-a.homepage_menu:visited {
+a#not_logged_in:hover{
   text-decoration: none;
-  color: white;
+  color: #ffbd9c;
 }
 
 #not_logged_in{
@@ -1290,10 +1295,7 @@ a.homepage_menu:visited {
   color: white;
 }
 
-a#not_logged_in:hover{
-  text-decoration: none;
-  color: #ffbd9c;
-}
+
 
 
 /* line 129, ../../app/assets/stylesheets/components/header.scss */
@@ -2106,8 +2108,8 @@ a.heading20-vote {
 img.view-more-arrow-orange{margin-right: 10px;}
 
 .vote-link{font-size: 11px;}
-.vote-link a:hover{color: #ff7733;}
 .vote-link a:visited{color: #666;}
+.vote-link a:hover{color: #ff7733;}
 
 .vote-class-number {
   float: right;
