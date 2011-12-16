@@ -10,4 +10,9 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  def index
+    store_location
+    super
+  end
+
 end

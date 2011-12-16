@@ -7,7 +7,7 @@
           #notification-header Notifications 
           - if @approved_courses.any?
             %img{:src => '/images/v2/notification_bolt.png'}
-            %p Your class has been approved!
+            = "Your class has been approved!"
             =link_to_function 'Fill out your class profile', "$('.section').hide(); $('#approved').show()", :class => 'notification'
             = "to post it live!"
             %br
@@ -20,7 +20,7 @@
             %br
           - if !@user.photo.exists?
             %img{:src => '/images/v2/notification_bolt.png'}
-            %p You don't have a profile photo.
+            = "You don't have a profile photo."
             %a.notification(href="/users/edit") Upload one now!
             %br
             %br

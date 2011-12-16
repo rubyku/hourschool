@@ -6,7 +6,7 @@ HourschoolV2::Application.routes.draw do
 
   resources :ecourses, :path => 'classes'
 
-  resources :suggestions# , :path => 'requests'
+  resources :suggestions
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
@@ -96,7 +96,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'home#business'
   match '/about' => 'home#about'
-  root :to => "home#learn"
+  root :to => "users#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
