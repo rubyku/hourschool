@@ -2303,6 +2303,8 @@ a.vote-button:hover { background-color: #e46f28; color: white;}
 .why-teach-short {
   width: 75%;
   float: left;
+  margin-top: 25px;
+  margin-bottom: 30px;
 }
 
 .why-teach-last {
@@ -2311,7 +2313,7 @@ a.vote-button:hover { background-color: #e46f28; color: white;}
 
 /* line 607, ../../app/assets/stylesheets/components/general.scss */
 #create-class-button {
-  float: left;
+  float: right;
   width: 135px;
   height: 85px;
   background-color: #ff7733;
@@ -2319,8 +2321,8 @@ a.vote-button:hover { background-color: #e46f28; color: white;}
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 8px;
+  margin-top: 25px;
+  margin-bottom: 30px;
   cursor: pointer;
 }
 
