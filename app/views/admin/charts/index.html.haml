@@ -1,5 +1,12 @@
 .page
   .page-content
+  
+    %div
+      - @teachers.each do |teacher|
+        %p= teacher.name
+        %p= teacher.email
+        
+  
     %div
       %p Last 7 days
       - @users.first(7).each do |date, count|

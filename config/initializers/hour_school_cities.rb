@@ -4,26 +4,16 @@ SUPPORTED_CITIES = [
   ]
   
 TAGS = [
-  "Art",
-  "Design",
-  "Photography",
-  "Cooking",
-  "Health and Wellness", 
-  "Language", 
-  "Maintainance", 
-  "Technology",
-  "Music"
+  "Presentation",
+  "Round Table",
+  "Demo",
+  "Hands on",
   ]
   
 DEF_IMAGE_PATH_STRING = "/images/v2-courses/DefaultClassPics_"
 DEF_IMAGES = {
-  "Art" => "#{DEF_IMAGE_PATH_STRING}Design_02.png",
-  "Design" => "#{DEF_IMAGE_PATH_STRING}Design.png",
-  "Photography" => "#{DEF_IMAGE_PATH_STRING}photography.png",
-  "Cooking" => "#{DEF_IMAGE_PATH_STRING}Cooking.png",
-  "Health and Wellness" => "#{DEF_IMAGE_PATH_STRING}HealthWellness.png",
-  "Language" => "#{DEF_IMAGE_PATH_STRING}Language.png",
-  "Maintainance" => "#{DEF_IMAGE_PATH_STRING}repair.png",
-  "Technology" => "#{DEF_IMAGE_PATH_STRING}Computer.png",
-  "Music" => "#{DEF_IMAGE_PATH_STRING}Generic.png"
+  "Presentation" => "#{DEF_IMAGE_PATH_STRING}Generic.png",
+  "Round Table" => "#{DEF_IMAGE_PATH_STRING}Generic.png",
+  "Demo" => "#{DEF_IMAGE_PATH_STRING}Generic.png",
+  "Studio" => "#{DEF_IMAGE_PATH_STRING}Generic.png"
 }
