@@ -27,8 +27,6 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @current_course = @course
-    #p current_user
-
   end
 
   def show_proposal
