@@ -14,10 +14,9 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-
-    @suggestions = (@top_suggestions & @suggestions_in_my_location)
+    @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
     if !params[:order].nil?
-      order_suggestions params[:order]
+      order_suggestions(params[:order])
     end
   end
 
@@ -96,13 +95,12 @@ class SuggestionsController < ApplicationController
 
   def order_suggestions(order_type)
     case order_type
-      when "votes"
-        @suggestions = @suggestions.sort! { |a,b| b.votes.size <=> a.votes.size }
-      when "new"
-        @suggestions = @suggestions.sort! { |a,b| b.created_at <=> a.created_at }
-      when "old"
-        @suggestions = @suggestions.sort! { |a,b| a.created_at <=> b.created_at }
+    when "votes"
+      @suggestions = @suggestions.sort! { |a,b| b.votes.size <=> a.votes.size }
+    when "new"
+      @suggestions = @suggestions.sort! { |a,b| b.created_at <=> a.created_at }
+    when "old"
+      @suggestions = @suggestions.sort! { |a,b| a.created_at <=> b.created_at }
     end
   end
-
 end
