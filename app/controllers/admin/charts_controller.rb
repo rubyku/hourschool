@@ -5,7 +5,7 @@ class Admin::ChartsController < Admin::AdminController
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @students = Role.where(:role => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
-    
+    @teachers   =   Role.where(:role => 'teacher')
     
     # Per month  
     @users_by_month = User.order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
@@ -30,5 +30,6 @@ class Admin::ChartsController < Admin::AdminController
     @amazon_fees    = @transaction * 0.029 + 0.3
     @teachers_share = @transaction * 0.85
   end
+
 
 end
