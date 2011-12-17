@@ -14,13 +14,10 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-      @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 20)
-      # if Course.count > 0
-      #    @random_course = Course.random 
-      #    @classes_we_like = Course.random.first(3)
-      #  else
-      #    @classes_we_like = []
-      #  end
+    @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
+    if !params[:order].nil?
+      order_suggestions(params[:order])
+    end
   end
 
   def show
@@ -40,7 +37,7 @@ class SuggestionsController < ApplicationController
       city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
       city.suggestions << @suggestion
       city.save
-      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver 
+      UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver
       flash[:notice] = "Thanks for suggesting a class!"
       redirect_to @suggestion
     else
@@ -80,6 +77,7 @@ class SuggestionsController < ApplicationController
   end
 
   protected
+
    def has_not_created_suggestion_recently?
      if current_user
         cuser_suggestions = Suggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
@@ -90,6 +88,19 @@ class SuggestionsController < ApplicationController
             redirect_to "/suggest"
           end
         end
+    end
+  end
+
+  private
+
+  def order_suggestions(order_type)
+    case order_type
+    when "votes"
+      @suggestions = @suggestions.sort! { |a,b| b.votes.size <=> a.votes.size }
+    when "new"
+      @suggestions = @suggestions.sort! { |a,b| b.created_at <=> a.created_at }
+    when "old"
+      @suggestions = @suggestions.sort! { |a,b| a.created_at <=> b.created_at }
     end
   end
 end
