@@ -13,6 +13,12 @@
         %p
           = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students"
 
+    %hr
+    %div
+      %h2 Teachers' emails
+      - @teachers.each do |teacher|
+        %p= teacher.email
+
 
 = content_for :sidebar do
   %div
@@ -48,9 +54,3 @@
   %div
     %p
       = "To make $1000/month we need: #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_courses)).floor} courses & #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_students)).floor} users"
-  %hr
-  %div
-    %h2 Teachers
-    - @teachers.first(10).each do |teacher|
-      %p= teacher.name
-      %p= teacher.email
