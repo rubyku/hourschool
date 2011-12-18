@@ -1,18 +1,11 @@
 .page
   .page-content
-  
-    %div
-      - @teachers.each do |teacher|
-        %p= teacher.name
-        %p= teacher.email
-        
-  
     %div
       %p Last 7 days
       - @users.first(7).each do |date, count|
         %p
           = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
-  
+
     %hr
     %div
       %h3 Month over month
@@ -55,3 +48,9 @@
   %div
     %p
       = "To make $1000/month we need: #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_courses)).floor} courses & #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_students)).floor} users"
+  %hr
+  %div
+    %h2 Teachers
+    - @teachers.first(10).each do |teacher|
+      %p= teacher.name
+      %p= teacher.email
