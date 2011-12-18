@@ -17,7 +17,12 @@
     %div
       %h2 Teachers' emails
       - @teachers.each do |teacher|
-        %p= teacher.email
+        %table
+          %tr
+            %td
+              = teacher.name
+            %td
+              = teacher.email
 
 
 = content_for :sidebar do
