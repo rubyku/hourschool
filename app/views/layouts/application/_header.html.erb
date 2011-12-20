@@ -26,7 +26,8 @@
               </span>
                     
           <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "signup" %>
+          <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "not_logged_in" %>
+          <span id="not_logged_in">|</span>
           <%= link_to "sign in", new_user_session_path, :class => "menu"%>
           <% end %>
           

@@ -13,12 +13,14 @@
         = "If there's something you have always wanted to learn but don't see it on HourSchool, "
         = link_to "request one!", new_suggestion_path, :class => "pagenote-link"
         = "It's very likely that someone near you can can teach it."
-        
+
       = render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
-      
+
 .sidebar
   .tipbox
     %img.tape{:src => '../../../images/v2/Tape_White.png'}
     .heading10 Have questions?
     %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
       #tipboxButton Contact us!
+
+= render :partial => 'suggest_sidebar'

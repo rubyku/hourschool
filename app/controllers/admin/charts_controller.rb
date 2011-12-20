@@ -5,9 +5,11 @@ class Admin::ChartsController < Admin::AdminController
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @students = Role.where(:role => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
-    
-    
-    # Per month  
+
+
+    @teachers = User.joins(:roles).where("role = 'teacher'").order('DATE(roles.created_at) DESC')
+
+    # Per month
     @users_by_month = User.order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     @courses_by_month = Course.unscoped.group("extract( month from DATE(created_at)) ").count
     @students_by_month = Role.where(:role => 'student').group("extract( month from DATE(created_at)) ").count
@@ -23,12 +25,12 @@ class Admin::ChartsController < Admin::AdminController
     @total_students = Role.where(:role => 'student').count
     @total_teachers = Role.where(:role => 'teacher').count
     @estimated_user_count_six_months = (user_count_last_week * 4 * 6) + @total_users
-    
-    #
+
     @paying_courses = Course.where('price != 0').count
     @free_courses   = Course.where('price = 0').count
     @amazon_fees    = @transaction * 0.029 + 0.3
     @teachers_share = @transaction * 0.85
   end
+
 
 end

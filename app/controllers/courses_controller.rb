@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview]
   before_filter :must_be_admin, :only => [:index, :approve]
   before_filter :must_be_live, :only => [:show]
   uses_yui_editor
@@ -27,8 +27,6 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @current_course = @course
-    #p current_user
-
   end
 
   def show_proposal

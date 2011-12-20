@@ -49,7 +49,9 @@ class ApplicationController < ActionController::Base
     end
 
     def set_timezone
-      Time.zone = current_user.time_zone if current_user.present? && current_user.time_zone.present?
+      Time.zone = TZInfo::Timezone.get(current_user.time_zone) if current_user.present? && current_user.time_zone.present?
+    rescue => ex
+      send_error_to_new_relic(ex)
     end
 
     def after_sign_in_path_for(resource)
@@ -64,7 +66,9 @@ class ApplicationController < ActionController::Base
 
     def previous_path_or(url)
       if session[:return_to].present? && session[:return_to] != '/'
-        session[:return_to]
+        return_to = session[:return_to]
+        session[:return_to] = nil
+        return_to
       else
         url
       end
