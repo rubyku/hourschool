@@ -14,7 +14,7 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-    @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
+    @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 20)
     if !params[:order].nil?
       order_suggestions(params[:order])
     end
