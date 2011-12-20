@@ -17,7 +17,7 @@
       .class-description
         .heading13-class
           = link_to "#{course.title}", course
-        %p= course.teaser.truncate(70) unless course.teaser.blank?
+        %p= course.teaser.truncate(60) unless course.teaser.blank?
         .heading9-class
           = "#{course.seats_left} seats left | #{course.city.try(:name)}"
 
