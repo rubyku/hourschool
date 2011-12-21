@@ -1,15 +1,83 @@
-<script type='text/javascript'>
+<% unless content_for?(:facebugger_javascript) %>
+  <%= content_for :facebugger_javascript do %>
+    <script type='text/javascript'>
+      var FaceBugger = (function() {
+        var setup = function() {
+            // set up main insertion points
+            $('.facebookShareMainContent').each(function() {
+              target = $(this);
+              FaceBugger.index(target, target.data());
+              })
 
-  $(document).ready(function(){
-    $('.facebookShareMainContent').each(function() {
-      target = $(this);
-      $.ajax({
-        url:      target.data('url'),
-        dataType: 'html',
-        success:  function(html) { $('.facebookShareMainContent').first().replaceWith(html) },
-        error:    function(html) { target.replaceWith('There was an error loading this element') }
-      })
-    })
-  });
+            // setup submit action
+            $('.facebookShareMain').delegate('a.facebookShareSubmit', 'click', function(event){
+              container = $(this).closest('.facebookShare');
+              container.fadeOut(3000);
+              FaceBugger.create(container, container.data());
+              return false;
+            });
 
-</script>
+            // setup decline action
+            $('.facebookShareMain').delegate('a.facebookShareDecline', 'click', function(event){
+              container = $(this).closest('.facebookShare');
+              container.fadeOut(2000);
+              FaceBugger.show(container, container.data());
+              return false;
+            });
+        };
+
+        var show = function(container, options) {
+          $.ajax({
+            url:      options.url,
+            dataType: 'html',
+            data:     options,
+            success:  function(html) { container.replaceWith(html) },
+            error:    function(html) { container.replaceWith('There was an error loading this element') }
+          })
+        };
+
+        var create = function(container, options){
+          if (container.data('clicked')) {
+            return false;
+          }
+          else {
+            container.data('clicked', true);
+          }
+
+          $.ajax({
+            url:      options.url,
+            dataType: 'html',
+            type:     'POST',
+            data:     options,
+            success:  function(html) { container.replaceWith(html) },
+            error:    function(html) { container.replaceWith('There was an error loading this element') }
+          })
+        };
+
+        var index = function(container, options) {
+          $.ajax({
+            url:      options.url,
+            dataType: 'html',
+            success:  function(html) { container.replaceWith(html) },
+            error:    function(html) { container.replaceWith('There was an error loading this element') }
+          })
+        };
+
+        return {
+          index:  index,
+          create: create,
+          show:   show,
+          setup:  setup
+        };
+      })();
+
+      $(document).ready(function(){
+        FaceBugger.setup();
+      });
+
+    </script>
+  <% end %>
+  <%= content_for :foot_scripts do %>
+    <%= yield :facebugger_javascript %>
+  <% end %>
+<% end %>
