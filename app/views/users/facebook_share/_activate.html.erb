@@ -1,11 +1,15 @@
 <script type='text/javascript'>
-  $('.facebookShareMain').each(function() {
-    target = $(this);
-    $.ajax({
-      url:      target.data('url'),
-      dataType: 'html',
-      success:  function(html) { $('.facebookShareMain').first().replaceWith(html) },
-      error:    function(html) { target.replaceWith('There was an error loading this element') }
+
+  $(document).ready(function(){
+    $('.facebookShareMainContent').each(function() {
+      target = $(this);
+      $.ajax({
+        url:      target.data('url'),
+        dataType: 'html',
+        success:  function(html) { $('.facebookShareMainContent').first().replaceWith(html) },
+        error:    function(html) { target.replaceWith('There was an error loading this element') }
+      })
     })
-  })
+  });
+
 </script>
