@@ -105,7 +105,7 @@ class UserMailer < ActionMailer::Base
    end
 
    def simple(options)
-     @body = options[:body]
+     @body = options[:body].to_s
      mail(options)
    end
 
