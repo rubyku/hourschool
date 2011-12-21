@@ -4,6 +4,7 @@
   $('.facebookShare').delegate('a.facebookShareSubmit', 'click', function(event){
     target    = $(this);
     container = target.closest('.facebookShare');
+    id        = target.data('id');
     url       = target.data('url');
     message   = target.data('message');
     link      = target.data('link');
@@ -13,7 +14,7 @@
       url:      target.data('url'),
       dataType: 'html',
       type:     'POST',
-      data:     {message: message, link: link, name: name},
+      data:     {id: id, message: message, link: link, name: name},
       success:  function(html) { container.replaceWith(html) },
       error:    function(html) { console.log('error')  }
     })
