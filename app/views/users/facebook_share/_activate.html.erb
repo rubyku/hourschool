@@ -12,7 +12,7 @@
             // setup submit action
             $('.facebookShareMain').delegate('a.facebookShareSubmit', 'click', function(event){
               container = $(this).closest('.facebookShare');
-              container.fadeOut(2000);
+              container.fadeOut(3000);
               FaceBugger.create(container, container.data());
               return false;
             });
@@ -20,7 +20,7 @@
             // setup decline action
             $('.facebookShareMain').delegate('a.facebookShareDecline', 'click', function(event){
               container = $(this).closest('.facebookShare');
-              container.fadeOut(1000);
+              container.fadeOut(2000);
               FaceBugger.show(container, container.data());
               return false;
             });
