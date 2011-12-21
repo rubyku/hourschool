@@ -5,35 +5,35 @@
   name    = local_assigns[:name]
  -%>
 
-<div class='facebookShare'>
+<div class='facebookShare'
+  data-url="<%= users_facebook_share_index_path %>"
+  data-id="<%= friend['id'] %>"
+  data-message="<%= message %>"
+  data-link="<%= link %>"
+  data-name="<%= name %>">
+
   <table class="fb_share_table">
     <tr class="fb_share_table">
       <td>
         <img src="<%= "http://graph.facebook.com/#{friend['id']}/picture?type=square" %>" width="40" height="40" class ="fb_friend_picture"/>
       </td>
-    
+
       <td class="fb_share_table_name_column">
         <a href="<%= "http://www.facebook.com/profile.php?id=#{friend['id']}"  %>" class="fb_friend_name">
             <%= friend['name'] %>
         </a>
       </td>
-    
-      <td class="fb_share_table">  
-          <a href="#"
-            data-url="<%= users_facebook_share_index_path %>"
-            data-id="<%= friend['id'] %>"
-            data-message="<%= message %>"
-            data-link="<%= link %>"
-            data-name="<%= name %>"
-            class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
+
+      <td class="fb_share_table">
+          <a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
       </td>
-      
+
       <td class="fb_share_table">
         <a href="#"
            data-url="<%= users_facebook_share_path(:next) %>"
            class="close button_decline facebookShareDecline" data-tooltip="#">x</a>
       </td>
-       
+
       </tr>
   </table>
 </div>
