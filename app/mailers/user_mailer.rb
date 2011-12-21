@@ -83,7 +83,7 @@ class UserMailer < ActionMailer::Base
       @email = user_email
       @user = current_user
       @req = Suggestion.find(csuggid)
-      @url = "http://turunga.org/courses/new?req=#{@req.id}"
+      @url = "http://www.hourschool.com/courses/new?req=#{@req.id}"
       @message = message
       mail(:to => user_email, :reply_to => @user.email, :bcc => "alex@hourschool.com, ruby@hourschool.com", :subject => "#{@user.name} has nominated you to teach at HourSchool")
    end
@@ -92,7 +92,7 @@ class UserMailer < ActionMailer::Base
       @email = user_email
       @user = current_user
       @req = Suggestion.find(csuggid)
-      @url = "http://turunga.org/courses/new?req=#{@req.id}"
+      @url = "http://www.hourschool.com/courses/new?req=#{@req.id}"
       @message = message
       mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A nomination!")
    end

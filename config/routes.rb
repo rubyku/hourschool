@@ -8,7 +8,6 @@ HourschoolV2::Application.routes.draw do
     resources :charts
   end
   
-  match '/approve' => 'admin#approve'
 
   resources :ecourses, :path => 'classes'
 

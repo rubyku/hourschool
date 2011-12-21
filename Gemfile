@@ -110,8 +110,11 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'guard-livereload'
   gem 'guard-rspec'
+  gem 'guard-spork'
   gem 'forgery'
   gem 'random_data'
   gem 'faker'
+  gem 'timecop'
+  gem 'spork'
 end
 

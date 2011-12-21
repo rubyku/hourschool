@@ -93,6 +93,7 @@ class Course < ActiveRecord::Base
   def starts_at
     date.in_time_zone
   end
+  alias :start_at :starts_at
 
   def active?
     self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current

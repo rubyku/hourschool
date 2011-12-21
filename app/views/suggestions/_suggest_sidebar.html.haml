@@ -1,0 +1,9 @@
+.sidebar
+  .sidebar-content
+
+    %ul.searchFilter
+      %li
+        .sidebar-heading Sort By
+      %li= link_to "Votes", suggest_path(:order => "votes")
+      %li= link_to "Newest", suggest_path(:order => "new")
+      %li= link_to "Oldest", suggest_path(:order => "old")

@@ -62,7 +62,9 @@ class ApplicationController < ActionController::Base
     end
 
     def set_timezone
-      Time.zone = current_user.time_zone if current_user.present? && current_user.time_zone.present?
+      Time.zone = TZInfo::Timezone.get(current_user.time_zone) if current_user.present? && current_user.time_zone.present?
+    rescue => ex
+      send_error_to_new_relic(ex)
     end
 
     def previous_path_or(url)
