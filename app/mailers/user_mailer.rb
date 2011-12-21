@@ -104,4 +104,9 @@ class UserMailer < ActionMailer::Base
      mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A suggestion has been submitted!")
    end
 
+   def simple(options)
+     @body = options[:body]
+     mail(options)
+   end
+
 end
