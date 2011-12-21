@@ -1,39 +1,48 @@
 <%= yield %>
 
 <script type='text/javascript'>
-  $('.facebookShare').delegate('a.facebookShareSubmit', 'click', function(event){
+  $('.facebookShareMain').delegate('a.facebookShareSubmit', 'click', function(event){
     target    = $(this);
+    target.removeClass('facebookShareSubmit'); // ensure we don't send it two requests
     container = target.closest('.facebookShare');
-    url       = target.data('url');
-    message   = target.data('message');
-    link      = target.data('link');
-    name      = target.data('name');
+    id        = container.data('id');
+    url       = container.data('url');
+    message   = container.data('message');
+    link      = container.data('link');
+    name      = container.data('name');
+
+    container.fadeOut(3000);
 
     $.ajax({
-      url:      target.data('url'),
+      url:      url,
       dataType: 'html',
       type:     'POST',
-      data:     {message: message, link: link, name: name},
-      success:  function(html) { container.replaceWith(html) },
+      data:     {id: id, message: message, link: link, name: name},
+      success:  function(html) { container.replaceWith(html).show() },
       error:    function(html) { console.log('error')  }
     })
     return false;
   });
-  $('.facebookShare').delegate('a.facebookShareDecline', 'click', function(event){
+
+  $('.facebookShareMain').delegate('a.facebookShareDecline', 'click', function(event){
     target    = $(this);
     container = target.closest('.facebookShare');
-    url       = target.data('url');
+    id        = container.data('id');
+    url       = container.data('url');
+    message   = container.data('message');
+    link      = container.data('link');
+    name      = container.data('name');
+
     $.ajax({
-      url:      target.data('url'),
+      url:      url,
       dataType: 'html',
+      data:     {id: id, message: message, link: link, name: name, limit: 1},
       success:  function(html) { container.replaceWith(html) },
       error:    function(html) { console.log('error')  }
     })
 
     return false;
   })
-
-
 
 </script>
 
