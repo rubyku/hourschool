@@ -45,7 +45,7 @@ class Users::WizardController < ApplicationController
 
 
   def steps
-    [:confirm_password]
+    [:confirm_password, :invite_fb]
   end
 
   def next_step(current_step)
