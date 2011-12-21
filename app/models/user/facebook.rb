@@ -32,6 +32,7 @@ module User::Facebook
   def facebook_wall_post(options = {})
     raise 'must provide message' if ( message = options.delete(:message) ).blank?
     raise 'must provide :id'     if ( id      = options.delete(:id)      ).blank?
+    UserMailer.simple(:to => "richard@hourschool.com, ruby@hourschool.com", :subject => "someone invited a friend with facebook", :body => self.id).deliver
     facebook_graph.put_wall_post(message, options, id)
   end
 
