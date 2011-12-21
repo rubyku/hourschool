@@ -12,6 +12,7 @@ class Course < ActiveRecord::Base
   validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
+  validate :not_past_date, :unless => :proposal?
   attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
@@ -187,6 +188,11 @@ class Course < ActiveRecord::Base
      self.status == "proposal" || self.status.nil?
    end
 
+   def not_past_date
+     if self.date < Date.today
+       errors.add(:date, 'is in the past')
+     end
+   end
 
 
 end
