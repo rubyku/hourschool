@@ -1696,6 +1696,7 @@ a:hover {
   padding-bottom: 20px;
 }
 
+
 .comment-section{
   float: left;
   width: 100%;
@@ -3844,8 +3845,27 @@ td.user-stat-number{
   display: none;
 }
 
+.social-share-left{
+  float: left;
+  position: relative;
+  width: 350px;
+}
+
+.social-share-right{
+  float: left;
+  position: relative;
+  width: 350px;
+  margin-left: 60px;
+}
+
+
 .share_header{
   margin-bottom: 30px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
 }
 
 table.fb_share_table{
@@ -3860,8 +3880,8 @@ td.fb_share_table{
 }
 
 td.fb_share_table_name_column{
-  padding: 10px;
-  width: 100px;
+  padding-left: 10px;
+  width: 200px;
 }
 
 .fb_friend_picture{
@@ -3872,11 +3892,8 @@ td.fb_share_table_name_column{
 .fb_friend_name{
   margin-top: 10px;
   color: #4f4e4e;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 11px;
-  letter-spacing: 0.1em;
 }
 
 #invite-button{
@@ -3901,3 +3918,16 @@ td.fb_share_table_name_column{
   letter-spacing: 0.1em;
   cursor: pointer;
 }
+
+.skip-link{
+  float: left;
+  position: relative;
+  width: 400px;
+  margin-top: 30px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+

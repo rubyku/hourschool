@@ -1,8 +1,15 @@
-%h2.share_header Help spread Hourschool by sharing with your friends!
+.full-page
+  .page-content
 
+    %h2.share_header Help build Hourschool by sharing with your friends!
 
-= render :partial => "users/facebook_share/share", :locals => {:limit   => 8, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me, so we can Learn Together", }
+    .social-share-left
+      = render :partial => "users/facebook_share/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me, so we can Learn Together"}
+    
+    .social-share-right
+      = render :partial => "users/facebook_share/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me, so we can Learn Together"}
 
+    .page-content-float-left
+      = link_to "Skip for now", wizard_path(@next_step), :class => "skip-link"
 
-%div
-  = link_to "Finish", wizard_path(@next_step)
+= render :partial => "users/facebook_share/activate"

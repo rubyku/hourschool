@@ -2,14 +2,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     # You need to implement the method below in your model
     @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
-    if @user && @user != "ec-not-supported"
+    sign_in(@user, :bypass => true) # needed for devise
+
+    if @user.zip.present?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      sign_in_and_redirect @user, :event => :authentication
+      redirect_to after_sign_in_path_for @user
     else
-      if @user.nil?
-        session["devise.facebook_data"] = env["omniauth.auth"]
-        redirect_to new_user_registration_url, :alert => "Your facebook profile does not contain all the necessary information for creating your account. Please register."
-      end
+      flash[:notice] = "Thanks for signing up!"
+      redirect_to wizard_path(:confirm_password)
     end
   end
 

@@ -9,8 +9,10 @@ class ApplicationController < ActionController::Base
   protected
 
     def must_be_signed_in
-      store_location
-      redirect_to root_path, :notice => "Please sign in" unless signed_in?
+      unless signed_in?
+        store_location
+        redirect_to root_path, :notice => "Please sign in" 
+      end
     end
 
     def must_be_admin
@@ -63,13 +65,9 @@ class ApplicationController < ActionController::Base
       Time.zone = current_user.time_zone if current_user.present? && current_user.time_zone.present?
     end
 
-    def after_sign_in_path_for(resource)
-      previous_path_or(resource)
-    end
-
-
     def previous_path_or(url)
       if session[:return_to].present? && session[:return_to] != '/'
+        puts session[:return_to]
         return_to = session[:return_to]
         session[:return_to] = nil
         return_to
@@ -81,12 +79,13 @@ class ApplicationController < ActionController::Base
     def store_location
       if request.url != request.referrer
         session[:return_to] = request.referrer
+        puts session[:return_to]
       end
     end
 
 
     def after_sign_in_path_for(resource)
-      previous_path_or(resource)
+      previous_path_or(learn_path)
     end
 
 end

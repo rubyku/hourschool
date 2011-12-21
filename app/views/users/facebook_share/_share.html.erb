@@ -1,15 +1,4 @@
-<span class='facebookShare' data-url="<%= users_facebook_share_index_path(:limit => local_assigns[:limit], :message => local_assigns[:message], :link => local_assigns[:link], :name => local_assigns[:name]) %>">
+<span class='facebookShareMain' data-url="<%= users_facebook_share_index_path(:limit => local_assigns[:limit], :message => local_assigns[:message], :link => local_assigns[:link], :name => local_assigns[:name]) %>">
 </span>
 
 
-<script type='text/javascript'>
-  $('.facebookShare').each(function() {
-    target = $(this);
-    $.ajax({
-      url:      target.data('url'),
-      dataType: 'html',
-      success:  function(html) { target.append(html) },
-      error:    function(html) { target.append('There was an error loading this element') }
-    })
-  })
-</script>

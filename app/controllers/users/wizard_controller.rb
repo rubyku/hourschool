@@ -45,7 +45,7 @@ class Users::WizardController < ApplicationController
 
 
   def steps
-    [:confirm_password, :confirm_profile, :invite_fb]
+    [:confirm_password, :invite_fb]
   end
 
   def next_step(current_step)
@@ -67,6 +67,7 @@ class Users::WizardController < ApplicationController
   end
 
   def redirect_to_finish
-    redirect_to @user
+    puts "================="
+    redirect_to previous_path_or(learn_path)
   end
 end
