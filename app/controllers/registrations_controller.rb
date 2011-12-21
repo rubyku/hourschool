@@ -3,7 +3,6 @@ class RegistrationsController < Devise::RegistrationsController
   # If you're calling any other action you can leave it blank, or call super on it
 
   def new
-    store_location
     super
   end
 

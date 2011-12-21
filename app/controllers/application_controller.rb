@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def must_be_signed_in
-      unless signed_in?
-        store_location
-        redirect_to root_path, :notice => "Please sign in" 
-      end
+    alias :devise_authenticate_user! :authenticate_user!
+
+    def authenticate_user!
+      store_location unless signed_in?
+      devise_authenticate_user!
     end
 
     def must_be_admin
@@ -67,7 +67,6 @@ class ApplicationController < ActionController::Base
 
     def previous_path_or(url)
       if session[:return_to].present? && session[:return_to] != '/'
-        puts session[:return_to]
         return_to = session[:return_to]
         session[:return_to] = nil
         return_to
@@ -77,10 +76,7 @@ class ApplicationController < ActionController::Base
     end
 
     def store_location
-      if request.url != request.referrer
-        session[:return_to] = request.referrer
-        puts session[:return_to]
-      end
+      session[:return_to] = request.url
     end
 
 
