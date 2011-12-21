@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip, :bio, :referral, :facebook, :twitter, :web
+  attr_accessible :zipcode, :zip, :bio, :referral, :facebook_id, :twitter_id, :web
 
+  include MethodCacheable
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
   after_create :send_reg_email
 
   include User::Omniauth
+  include User::Facebook
 
   def self.me_or_find(id, current_user)
     user_id = id.try(:to_s)

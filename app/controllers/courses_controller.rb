@@ -241,13 +241,6 @@ class CoursesController < ApplicationController
 
 
   private
-  def must_be_admin
-    #if !current_user.try(:admin?) || !current_user.admin?
-    if !current_user.admin?
-      redirect_to user_root_path
-    end
-  end
-
   def must_be_live
     @course = Course.find(params[:id])
     if @course.status.present? && @course.status != "live"
