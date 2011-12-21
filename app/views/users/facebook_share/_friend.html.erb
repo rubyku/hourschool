@@ -1,4 +1,3 @@
-
 <%
   message = local_assigns[:message]
   link    = local_assigns[:link]
@@ -7,6 +6,7 @@
 
 <div class='facebookShare'
   data-url="<%= users_facebook_share_index_path %>"
+  data-limit=1
   data-id="<%= friend['id'] %>"
   data-message="<%= message %>"
   data-link="<%= link %>"
