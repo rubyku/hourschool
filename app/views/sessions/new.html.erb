@@ -43,12 +43,12 @@
         </div>
 
         <div class="form-question"><%= f.label :password %><br />
-          <%= f.password_field :password , :class => "form-short"%>
+          <%= f.password_field :password , :class => "form-short" %>
         </div>
 
         <div class="page-section-float-left">
           <% if devise_mapping.rememberable? -%>
-          <%= f.check_box :remember_me %>
+          <%= f.check_box :remember_me, :checked => true %>
           <%= f.label :remember_me %>
           <% end -%>
         </div>
