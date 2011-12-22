@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   def index
     @fav2 = Course.find(179)
     @fav1 = Course.find(180)
-    @fav3 = Course.find(175)
+    @fav3 = Course.find(187)
     @fav4 = Course.find(168)
   end
 
