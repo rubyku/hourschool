@@ -105,6 +105,9 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'home#business'
   match '/about' => 'home#about'
+  
+  match '/start' => 'home#index'
+  
   root :to => "home#index"
 
   resources :test
