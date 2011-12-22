@@ -46,12 +46,4 @@
       = "Transaction To Date: #{ number_to_currency @transaction}"
     %p
       = "Revenue To Date: #{ number_to_currency @transaction - @amazon_fees - @teachers_share}"
-    %p
-      = "Avg Revenue per course: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_courses}"
-    %p
-      = "Avg Revenue per student: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_students}"
 
-  %hr
-  %div
-    %p
-      = "To make $1000/month we need: #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_courses)).floor} courses & #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_students)).floor} users"
