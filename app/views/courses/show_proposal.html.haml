@@ -17,14 +17,24 @@
       = "#{@current_course.teaser}"
 
     .form-question
+      = "Date:"
+    .form-question-tip     
+      = "#{@current_course.date}"
+      
+    .form-question
+      = "Time:"
+    .form-question-tip     
+      = "#{@current_course.time_range}"
+          
+    .form-question
+      = "Location:"
+    .form-question-tip     
+      = "#{@current_course.place_name}"
+        
+    .form-question
       = "Teacher's name:"
     .form-question-tip
       = "#{@current_course.teacher.name}"
-      
-    .form-question
-      = "Teacher's city:"
-    .form-question-tip
-      = "#{@current_course.teacher.location}"
     
     .form-question
       = "Teacher's experience:"

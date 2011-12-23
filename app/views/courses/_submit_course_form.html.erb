@@ -84,42 +84,6 @@
              <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I want to have" %>
     </div>
 
-    <div class="page-section-float-left">
-        <div class="class-form-question">When</div><br>
-           <a href="#" class="tip"><span id="showtip1">HourSchool tip
-               <img src="../../../images/v2/arrow_grey_profile.png"></span>
-           </a>
-                <div class="form-question-tip1" style="display:none;">
-                    <p class="tip">We recommend scheduling your class at least 2 weeks in advanced to give enough time for people to sign up!</p><br>
-                    <a href="" class="tip"><span id="hidetip1" style="width: 200px">Okay, got it.</span></a>
-                </div><br><br>
-
-        <%= f.date_select :date, :start_year => 2011, :end_year => 2012, :minute_step => 30 %><br><br>
-        <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
-
-    </div>
-
-    <div class="page-section-float-left">
-        <div class="class-form-question">Where</div><br>
-            <a href="#" class="tip"><span id="showtip2">HourSchool tip
-                <img src="../../../images/v2/arrow_grey_profile.png"></span>
-            </a>
-                <div class="form-question-tip2" style="display:none;">
-                  <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p><br><br>
-                  <a href="" class="tip"><span id="hidetip2" style="width: 200px" >Okay, got it.</span></a><br>
-                </div><br><br>
-
-            <p>
-            <%= f.radio_button :public, true %>
-            <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
-            <br>
-            <%= f.radio_button :public, false %>
-            <%= f.label :public, 'Private (ie. your house)' %>
-            </p>
-            <br>
-            <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
-            <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
-    </div>
 
     <div class="page-section-float-left">
         <div class="class-form-question">Cover Charge</div><br>
