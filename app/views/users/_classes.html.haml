@@ -23,8 +23,3 @@
         .heading13-class 
           = link_to "#{c.title}", c
         %p= c.teaser.try(:truncate , 70).try(:html_safe)
-      .class-note
-        .heading9-class 
-          - if c.days_left > 0
-            = "#{ c.seats_left } seats left"
-            = "#{ c.days_left } days from today"
