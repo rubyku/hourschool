@@ -60,7 +60,7 @@ description = local_assigns[:description]
     var populateAutocomplete = function(target) {
       $.ajax({ url: target.data('source-url'),
                dataType: 'json',
-               success: function(friends) {console.log('foo'); addFriendsToAutocomplete(target, friends)}
+               success: function(friends) {addFriendsToAutocomplete(target, friends)}
       });
     };
 

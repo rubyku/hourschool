@@ -1,7 +1,9 @@
 HourschoolV2::Application.routes.draw do
 
   namespace :users do
-    resources :facebook_share
+    namespace :facebook do
+      resources :share
+    end
   end
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
