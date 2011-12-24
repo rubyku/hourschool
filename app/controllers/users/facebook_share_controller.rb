@@ -5,7 +5,10 @@ class Users::FacebookShareController < ApplicationController
   def index
     @friends = current_user.cache(:fetch, :expire => 12.hours).full_facebook_friends.shuffle
     @friends = @friends.pop(params[:limit].to_i) if params[:limit].present?
-    render :partial => 'friend', :collection => @friends, :locals => locals_from_params
+    respond_to do |format|
+      format.html { render :partial => 'friend', :collection => @friends, :locals => locals_from_params }
+      format.json { render :json  => @friends.to_json }
+    end
   end
 
   def show
