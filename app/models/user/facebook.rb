@@ -13,6 +13,18 @@ module User::Facebook
     @raw_facebook_friends ||= facebook_graph.get_connections("me", "friends")
   end
 
+  def full_facebook_friends
+    cache(:expires_in => 12.hours).
+      raw_facebook_friends.
+      each_with_object([]) {|raw, collection|
+      collection << {'label'      => raw['name'],
+                     'id'         => raw['id'],
+                     'name'       => raw['name'],
+                     'image_url'  => "http://graph.facebook.com/#{raw['id']}/picture?type=square"
+                     }
+      }
+  end
+
   def facebook_friend_ids
     @facebook_friend_ids ||= raw_facebook_friends.map {|user_hash| user_hash["id"] }
   end
