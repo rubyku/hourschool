@@ -50,7 +50,7 @@ HourschoolV2::Application.routes.draw do
   match   'oh-no/500'     => 'pages#show',        :id => 'errors/404'
 
   get "sites/show"
-  match '/learn' => 'home#learn'
+  match '/learn' => 'Courses::Browse#index'
   match '/teach' => 'home#teach'
   match '/suggest' => 'suggestions#suggest'
   match '/csvote' => 'suggestions#vote'

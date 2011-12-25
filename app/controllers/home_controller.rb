@@ -13,22 +13,6 @@ class HomeController < ApplicationController
     @fav4 = Course.find(168)
   end
 
-  def learn
-    if current_user && current_user.zip.present?
-      teaser_courses = Course.near(:zip => current_user.zip).active.paginate(:page => params[:page]||1)
-    end
-
-    if teaser_courses && teaser_courses.total_entries >= Course::DEFAULT_PER_PAGE
-      @courses  = teaser_courses
-    else
-      @teaser_courses = teaser_courses
-      @courses        = Course.active.exclude(@teaser_courses).paginate(:page => params[:page]||1)
-    end
-    render 'courses/browse/index'
-    
-  end
-
-
   def teach
      if current_user
        @location = current_user.city
@@ -97,24 +81,6 @@ class HomeController < ApplicationController
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @suggestion
     end
-  end
-
-  def search_by_city
-    @courses = Course.active.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
-  end
-
-  def search_by_tg
-    keyword =  TAGS[params[:index].to_i]
-    #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
-    date = Date.today
-    #find classes tagged with that
-
-      if session[:user_location].nil? || session[:user_location].blank?
-        user_location = "Austin"
-      else
-        user_location = session[:user_location]
-      end
-    @courses = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
   end
 
   def organization
