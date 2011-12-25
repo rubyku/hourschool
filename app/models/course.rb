@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
-  default_scope order(:date, :time)
+  default_scope order('date DESC')
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
@@ -83,9 +83,13 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.live
+    where(:status => 'live')
+  end
+
   def self.active
-    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
-  end
+    live.where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
+  end
 
   def self.past
     where(:status => 'live').where("DATE(date) < (?)", Time.current)
@@ -97,6 +101,7 @@ class Course < ActiveRecord::Base
   alias :start_at :starts_at
 
   def active?
+    return false if date.blank?
     self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
   end
 
