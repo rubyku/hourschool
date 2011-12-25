@@ -1,106 +1,12 @@
-<%
-
-friends     = local_assigns[:friends]
-message     = local_assigns[:message]
-link        = local_assigns[:link]
-name        = local_assigns[:name]
-description = local_assigns[:description]
-
- %>
-
-  <script type='text/javascript'>
-  var FaceTypeAhead = (function(){
-    
-    // callback
-    var afterInvite = function(target) {
-    };
-    
-    var create = function(event, ui, target) {
-      options = { message:     target.data('message'),     // message above link
-                  description: target.data('description'), // description under link
-                  link:        target.data('link'),        // url for link
-                  name:        target.data('name'),        // text on link
-                  id:          ui.item.id                  // id of user
-                }
-
-      $.ajax({
-        url:      target.data('create-url'),
-        dataType: 'html',
-        type:     'POST',
-        data:     options,
-        success:  function(html) { afterInvite(target) },
-        error:    function(html) { console.log('error') }
-      })
-    };
-
-
-    var addFriendsToAutocomplete = function(target, friends){
-      target.autocomplete({
-        minLength: 3,
-        source: friends,
-        select: function(event, ui) {
-          FaceTypeAhead.create(event, ui, target);
-        }
-      }).data('autocomplete').
-      _renderItem = function(ul,item) {
-        var itemElement = $('<li></li>')
-        .data("item.autocomplete", item)
-        .addClass("ui-helper-clearfix")
-        .append( "<a>" +
-                   "<img height='50' width=50' src='" +
-                     item.image_url +
-                     "' />" +
-                   "<span>" +
-                     item.name +
-                   "</span>"  +
-                 "</a>" )
-        .appendTo(ul);
-    }};
-
-    var populateAutocomplete = function(target) {
-      $.ajax({ url: target.data('source-url'),
-               dataType: 'json',
-               success: function(friends) {addFriendsToAutocomplete(target, friends)}
-      });
-    };
-
-    var setup = function(){
-      $('.facebookTypeAheadShare').each(function(){
-        populateAutocomplete($(this));
-      })
-    };
-
-    return {
-      create: create,
-      setup: setup,
-      afterInvite: afterInvite,
-    };
-    })();
-
-  $(document).ready( function(){
-    FaceTypeAhead.setup();
-  });
-  </script>
-
-
 <div class="ui-widget">
   <input class="facebookTypeAheadShare"
     data-source-url="<%= users_facebook_share_index_path %>"
     data-create-url="<%= users_facebook_share_index_path %>"
-    data-message="<%= message %>"
-    data-link="<%= link %>"
-    data-name="<%= name %> %>"
-    data-description="<%= description %>"
+    data-message="<%= local_assigns[:message] %>"
+    data-link="<%= local_assigns[:link] %>"
+    data-name="<%= local_assigns[:name] %>"
+    data-description="<%= local_assigns[:description] %>"
   />
 </div>
 
-<div class="ui-widget">
-  <input class="facebookTypeAheadShare"
-    data-source-url="<%= users_facebook_share_index_path %>"
-    data-create-url="<%= users_facebook_share_index_path %>"
-    data-message="<%= message %>"
-    data-link="<%= link %>"
-    data-name="<%= name %>"
-    data-description="<%= description %>"
-  />
-</div>
+<%= render :partial => 'users/facebook/autocomplete/activate' %>
