@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     end
 
     def must_be_admin
-      store_location
-      redirect_to root_path unless current_user.try(:admin?)
+      authenticate_user!
+      redirect_to root_path unless current_user.admin?
     end
 
     def log_error(exception)
