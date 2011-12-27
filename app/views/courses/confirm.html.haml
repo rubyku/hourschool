@@ -1,74 +1,87 @@
-.page
+.full-page
   .page-content
     .confirm-second-message Your class is now live!
     %hr#confirm
 
-    .confirm-classblock
-      - link_to @course do
-        - if @course.photo.exists?
-          = image_tag(@course.photo.url(:small), :size => "190x120")
-          %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-        - else
-          - if !@course.categories.first.nil?
-            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-          - else
-            = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
-        = image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
-        .confirm-class-description
-          .heading13-class
-            = @course.title
-
-      %table
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %td
-            .class-details
-              = "$ #{@course.price}"
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
-          %td
-            .class-details
-              = @course.date.strftime("%B %d, %Y")
-            .class-address-details
-              = "#{@course.time_range}"
-
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
-          %td
-            .class-details
-              = "#{@course.place_name}"
-            - if @course.public?
-              .class-sidebar-details
-                = "#{@course.address}"
-            - else
-              %p Private Address
-
-
-    .confirm-description-block
+    .confirm-messageBlock
       .confirm-bring-friend Invite people to take your class
       %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
+    
+    .confirm-description-block    
+      .confirm-description-share-block
+        %span.list-number 1
+        = "Invite some friends from Facebook"
+        = render :partial => "users/facebook/grid/share", :locals => {:limit => 3, :message => "I am teaching an HourSchool class. Check it out!", :link => root_url}
+        %br
+        %p= "Have someone in mind? Type in their name here:"
+        = render :partial => "users/facebook/autocomplete/share"
+        %br
+    
+      .confirm-description-share-block
+        %span.list-number 2
+        %p= "Tweet about it"
+        #tweet-for-teacher
+          = render :partial => "social_share_teach"
 
     .confirm-description-block
-      = render :partial => "social_share_teach"
+      .confirm-description-share-block
+        %span.list-number 3
+        %p= "Embed this widget on your blog"
         
-    .confirm-description-block
-      %p What would you like to do now? 
-      %br     
-      %span.list-number 1
-      = link_to "Check out the teacher's handbook", "/pdf/handbook.pdf", :class => "orange-checklist"
-      %br
-      %span.list-number 2
-      = link_to "Go to the class page", @course, :class => "orange-checklist"
-      %br
-      %span.list-number 3
-      = link_to "View your profile", "/profile", :class => "orange-checklist"
+        .confirm-classblock
+          - link_to @course do
+            - if @course.photo.exists?
+              = image_tag(@course.photo.url(:small), :size => "190x120")
+              %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+            - else
+              - if !@course.categories.first.nil?
+                = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+              - else
+                = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+            = image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
+            .confirm-class-description
+              .heading13-class
+                = @course.title
+              %p= @course.teaser.truncate(60) unless @course.teaser.blank?
+              
+              %table
+                %tr
+                  %td.icon
+                    = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+                  %td
+                    .class-details
+                      = "$ #{@course.price}"
+                %tr
+                  %td.icon
+                    = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+                  %td
+                    .class-details
+                      = @course.date.strftime("%B %d, %Y")
+                    .class-address-details
+                      = "#{@course.time_range}"
 
-.sidebar
-  .tipbox
-    %img.tape{:src => '../../../images/v2/Tape_White.png'}
-    .heading10 Have questions?
-    %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
-      #tipboxButton Contact us!
+                %tr
+                  %td.icon
+                    = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+                  %td
+                    .class-details
+                      = "#{@course.place_name}"
+                    - if @course.public?
+                      .class-sidebar-details
+                        = "#{@course.address}"
+                    - else
+                      %p Private Address
+
+
+    .confirm-description-block
+      .confirm-description-share-block
+        %span.list-number 4
+        %p= "Print some flyers!"
+        .flyer-preview
+        .print-flyer-button Print Flyer
+
+
+
+
+
+
