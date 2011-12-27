@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
 
     alias :devise_authenticate_user! :authenticate_user!
 
-    def authenticate_user!
+    def authenticate_user!(*args)
       store_location unless signed_in?
-      devise_authenticate_user!
+      devise_authenticate_user!(*args)
     end
 
     def must_be_admin
