@@ -4,6 +4,7 @@ gem 'rails', '3.0.9'
 gem 'pg'
 
 
+gem 'wicked', :git => 'git://github.com/schneems/wicked.git'
 gem "koala", '~> 1.2.1' # For the facebook
 gem "dalli", '~> 1.1.4' # for memcache
 
