@@ -5,6 +5,18 @@ module User::Facebook
     fb_token.present?
   end
 
+  def facebook_permissions
+    @facebook_permissions ||= facebook_graph.get_connections('me', 'permissions').first
+  end
+
+  def facebook_permissions_include?(perm)
+    facebook_permissions[perm] == 1
+  end
+
+  def require_permission!(perm)
+    raise "User does not have permission:#{perm}" unless facebook_permissions_include? perm
+  end
+
   def facebook_graph
     @facebook_graph ||= Koala::Facebook::API.new(fb_token)
   end
