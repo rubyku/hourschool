@@ -3922,6 +3922,15 @@ td.fb_share_table_name_column{
   border-radius: 5px;
 }
 
+#fb-autocomplete{
+  background-color: white;
+  width: 370px;
+}
+
+.ui-state-hover{
+  background-color: black;
+}
+
 #tweet-for-teacher{
   float: left;
   margin-top: 5px;
