@@ -183,9 +183,9 @@ class CoursesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to course_confirm_path(:id => @course.id)
-        }
+      end
       format.js { }
     end
   end
