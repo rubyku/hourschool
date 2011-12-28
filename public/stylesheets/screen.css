@@ -2710,7 +2710,7 @@ a.orange-checklist:visited{color:#ff7733}
 .confirm-messageBlock{
   float: left;
   width: 628px;
-  height: 170px;
+  height: 130px;
   padding: 20px;
   margin-bottom: 20px;
   background-color: #f9f8f8;
@@ -2734,8 +2734,9 @@ a.orange-checklist:visited{color:#ff7733}
 
 .confirm-description-block{
   float: left;
-  width: 550px;
+  width: 390px;
   margin-bottom: 30px;
+  margin-left: 20px;
 }
 
 .confirm-description-share-block{
@@ -3899,10 +3900,10 @@ td.fb_share_table_name_column{
 .facebookTypeAheadShare{
   position: relative;
   float: left;
-  width: 100%;
-  height: 25px;
-  margin-top: 10px;
-  margin-bottom: 40px;
+  width: 250px;
+  height: 29px;
+  margin-bottom: 20px;
+  margin-right: 10px;
   padding-left: 10px;
   border: 1px solid #d2d9dc;
   -moz-border-radius: 5px;
@@ -3910,13 +3911,21 @@ td.fb_share_table_name_column{
   border-radius: 5px;
 }
 
-#fb-autocomplete{
-  background-color: white;
-  width: 370px;
+.ui-corner-all{
+  margin-top: 10px;
+  cursor: pointer;
+  height: 54px;
+  width: 260px;
+  z-index: 0;
 }
 
-.ui-state-hover{
-  background-color: black;
+#fb-autocomplete{
+  background-color: white;
+  z-index: 0;
+}
+
+#fb-name{
+  margin-left: 10px;
 }
 
 #tweet-for-teacher{

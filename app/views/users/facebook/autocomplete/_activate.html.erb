@@ -28,7 +28,7 @@
 
         var addFriendsToAutocomplete = function(target, friends){
           target.autocomplete({
-            minLength: 3,
+            minLength: 6,
             source: friends,
             select: function(event, ui) {
               create(event, ui, target);
@@ -38,16 +38,14 @@
             var itemElement = $('<li></li>')
             .data("item.autocomplete", item)
             .addClass("ui-helper-clearfix")
-            .append( //"<div id='fb-autocomplete'>" + 
-            "<a>" +
+            .append(  "<div id='fb-autocomplete'>" + "<a>" + 
                        "<img height='50' width=50' src='" +
                          item.image_url +
                          "' />" +
-                       "<span>" +
+                       "<span id='fb-name'>" +
                          item.name +
-                       "</span>"  +
-                      "</a>" 
-                      //+ "</div>"
+                       "</span>" +
+                     "</a>" + "</div>"
                      )
             .appendTo(ul);
         }};
