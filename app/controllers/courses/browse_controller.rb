@@ -24,16 +24,7 @@ class Courses::BrowseController < ApplicationController
     when 'city'
       @courses = Course.unscoped.order("date DESC").live.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
     when 'tags'
-       keyword =  TAGS[params[:tag].to_i]
-        #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
-        date = Date.today
-        #find classes tagged with that
-          if session[:user_location].nil? || session[:user_location].blank?
-            user_location = "Austin"
-          else
-            user_location = session[:user_location]
-          end
-        @courses = Course.active.tagged_with("#{keyword}").find(:all).paginate(:page => params[:page], :per_page => 9)
+       @courses = Course.active.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 9)
     end
   end
 
