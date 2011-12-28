@@ -17,3 +17,8 @@
   </tr>
 </table>
 
+<%= content_for :head do %>
+  <%- if local_assigns[:url] -%>
+    <meta property="og:url" content="<%= local_assigns[:url] %>"/>
+  <%- end -%>
+<%- end -%>
