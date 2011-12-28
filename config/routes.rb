@@ -53,7 +53,7 @@ HourschoolV2::Application.routes.draw do
   match   'oh-no/500'     => 'pages#show',        :id => 'errors/404'
 
   get "sites/show"
-  match '/learn' => 'home#learn'
+  match '/learn' => 'Courses::Browse#index'
   match '/teach' => 'home#teach'
   match '/suggest' => 'suggestions#suggest'
   match '/csvote' => 'suggestions#vote'
@@ -95,7 +95,6 @@ HourschoolV2::Application.routes.draw do
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/search_by_city' => 'home#search_by_city', :as => "cities"
   match '/organization' => 'home#organization'
-  match '/about_save' => 'home#about_save'
   match '/nominate' => 'home#nominate'
   match '/nominate_send' => 'home#nominate_send'
   match '/nominate_confirm' => 'home#nominate_confirm'
@@ -106,9 +105,9 @@ HourschoolV2::Application.routes.draw do
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
 
-  match '/business' => 'home#business'
-  match '/about' => 'home#about'
-
+  match '/business' => 'pages#show', :id => 'business'
+  match '/about' => 'pages#show', :id => 'about'
+  
   match '/start' => 'home#index'
 
   root :to => "home#index"
