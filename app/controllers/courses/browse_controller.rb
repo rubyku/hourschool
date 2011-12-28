@@ -22,7 +22,7 @@ class Courses::BrowseController < ApplicationController
     when 'past'
       @courses = Course.past.random.paginate(:page => params[:page]||1)
     when 'city'
-      @courses = Course.live.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
+      @courses = Course.unscoped.order("date DESC").live.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
     when 'tags'
        keyword =  TAGS[params[:tag].to_i]
         #results = TBACKUP.search "tags:#{keyword}", {:fetch => 'cid'}
