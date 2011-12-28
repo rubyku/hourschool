@@ -1,5 +1,8 @@
 HourschoolV2::Application.routes.draw do
 
+  # temp hack, remove after Febuary 2011
+  match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
+
   namespace :users do
     resources :facebook_share
   end
@@ -62,7 +65,7 @@ HourschoolV2::Application.routes.draw do
   match '/heart' => 'courses#heart'
   match '/proposal' => 'courses#show_proposal'
   match '/payment_preview' => 'courses#register_preview'
-  match '/course_confirm' => 'courses#course_confirm'
+  match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'
