@@ -52,7 +52,7 @@
       %p It's always more fun to learn with friends. Share this with people you think might be interested.
 
     .confirm-description-block
-      = render :partial => "social_share"
+      = render :partial => "social_share", :locals => {:url => course_url(@course)}
         
     .confirm-description-block
       %p What would you like to do now? 

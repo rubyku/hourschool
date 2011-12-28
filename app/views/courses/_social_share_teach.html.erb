@@ -1,7 +1,14 @@
 <table>
   <tr>
     <td>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out this class I'm teaching:" data-count="horizontal" data-via="hourschool">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+      <a href="https://twitter.com/share"
+         class="twitter-share-button"
+         data-text="Check out this class I'm teaching:"
+         <%- if local_assigns[:url] -%>
+           data-url="<%= local_assigns[:url] %>"
+         <%- end -%>
+         data-count="horizontal"
+         data-via="hourschool">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     </td>
 
     <td>
