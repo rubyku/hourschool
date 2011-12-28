@@ -1,6 +1,7 @@
 .full-page
   .page-content
     .confirm-second-message Your class is now live!
+    = image_tag("/images/v2/grasshopper-hop.png", :class => "confirm-grasshopper")
     %hr#confirm
 
     .confirm-classblock
@@ -20,22 +21,13 @@
           %p= @course.teaser.truncate(60) unless @course.teaser.blank?
 
 
-    .confirm-description-block
+    .confirm-messageBlock
       .confirm-bring-friend Invite people to take your class
-      %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
-
-    .confirm-description-block
-      = render :partial => "social_share_teach"
+      %p.confirm We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
         
-    .confirm-description-block
-      %p What would you like to do now? 
-      %br     
-      %span.list-number 1
-      = link_to "Check out the teacher's handbook", "/pdf/handbook.pdf", :class => "orange-checklist"
-      %br
-      %span.list-number 2
-      = link_to "Go to the class page", @course, :class => "orange-checklist"
-      %br
-      %span.list-number 3
-      = link_to "View your profile", "/profile", :class => "orange-checklist"
+      = render :partial => "social_share_teach"
 
+      
+      = render :partial => "users/facebook/grid/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me so we can learn together!"}
+      
+      = render :partial => "users/facebook/autocomplete/share"

@@ -2709,14 +2709,16 @@ a.orange-checklist:visited{color:#ff7733}
 
 .confirm-messageBlock{
   float: left;
-  width: 800px;
+  width: 628px;
+  height: 170px;
+  padding: 20px;
   margin-bottom: 20px;
+  background-color: #f9f8f8;
 }
 
 .confirm-classblock {
   float: left;
   width: 190px;
-  margin-top: 20px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -2754,20 +2756,6 @@ a.orange-checklist:visited{color:#ff7733}
   margin-bottom: 20px;
 }
 
-/* line 798, ../../app/assets/stylesheets/components/general.scss */
-.confirm-first-message {
-  text-transform: uppercase;
-  color: #ff7733;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  float: left;
-  letter-spacing: 0.05em;
-  width: 100%;
-}
-
 /* line 811, ../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
@@ -2775,17 +2763,26 @@ a.orange-checklist:visited{color:#ff7733}
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
-  margin-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   float: left;
   letter-spacing: 0.05em;
-  width: 100%;
 }
 
 /* line 823, ../../app/assets/stylesheets/components/general.scss */
 .confirm-grasshopper {
   float: right;
-  margin-top: -40px;
   margin-right: 10px;
+  margin-top: -10px;
+}
+
+
+/* line 853, ../../app/assets/stylesheets/components/general.scss */
+hr#confirm {
+  float: right;
+  border: 1px dashed #ededed;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 /* line 829, ../../app/assets/stylesheets/components/general.scss */
@@ -2795,7 +2792,6 @@ a.orange-checklist:visited{color:#ff7733}
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 0px;
   float: left;
   letter-spacing: 0.15em;
   width: 100%;
@@ -2815,18 +2811,10 @@ a.orange-checklist:visited{color:#ff7733}
   margin-top: 21px;
 }
 
-/* line 853, ../../app/assets/stylesheets/components/general.scss */
-hr#confirm {
-  border: 1px dashed #ededed;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
 
 /* line 861, ../../app/assets/stylesheets/components/general.scss */
 p.confirm {
-  margin-top: 21px;
+  margin-bottom: 20px;
 }
 
 .form-short-edit-profile{
