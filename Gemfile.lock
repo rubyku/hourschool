@@ -276,7 +276,7 @@ DEPENDENCIES
   awesome_print
   aws-s3
   dalli (~> 1.1.4)
-  delayed_job
+  delayed_job (~> 2.1.4)
   devise (~> 1.4.9)
   factory_girl_rails
   faker

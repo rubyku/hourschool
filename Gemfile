@@ -54,7 +54,7 @@ gem 'indextank'
 gem 'geokit-rails3', :git =>  'git://github.com/jlecour/geokit-rails3.git'
 
 #delayed job
-gem 'delayed_job'
+gem 'delayed_job', '~> 2.1.4'
 
 #rails-tinymce
 gem 'use_tinymce'
