@@ -19,8 +19,10 @@
 
           .class-note
             .heading9-class
-              = "#{course.seats_left} seats left | #{course.city.try(:name)}" unless params[:id] == "past"
-              
+              - if course.active?
+                = "#{course.seats_left} seats left | "
+              = "#{course.city.try(:name)}"
+
     - else
       .classBlock
       // do nothing

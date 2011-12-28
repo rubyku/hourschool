@@ -25,7 +25,7 @@
       %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
 
     .confirm-description-block
-      = render :partial => "social_share_teach"
+      = render :partial => "social_share_teach", :locals => {:url => course_url(@course)}
         
     .confirm-description-block
       %p What would you like to do now? 
