@@ -7,7 +7,7 @@ HourschoolV2::Application.routes.draw do
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :charts
   end
-  
+
 
   resources :ecourses, :path => 'classes'
 
@@ -15,7 +15,7 @@ HourschoolV2::Application.routes.draw do
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
-  
+
   namespace :courses do
     resources :browse
   end
@@ -28,7 +28,7 @@ HourschoolV2::Application.routes.draw do
     resources :subdomains, :shallow => true
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks", 
+  devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
                                        :sessions            => 'sessions' }
   devise_scope :user do
@@ -74,7 +74,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
-  
+
   match '/profile' => 'users#show', :id => 'current'
   match '/profile_past_taught' => 'users#profile_past_taught'
   match '/profile_past_attended' => 'users#profile_past_attended'
@@ -105,9 +105,9 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'home#business'
   match '/about' => 'home#about'
-  
+
   match '/start' => 'home#index'
-  
+
   root :to => "home#index"
 
   resources :test
