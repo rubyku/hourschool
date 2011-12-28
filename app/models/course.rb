@@ -129,11 +129,18 @@ class Course < ActiveRecord::Base
     else
       return false
     end
+  end
 
+  def is_not_a_student?(user)
+    !is_a_student?(user)
   end
 
   def is_a_teacher?(user)
     self.teacher == user
+  end
+
+  def is_not_a_teacher?(user)
+    !is_a_teacher?(user)
   end
 
   def seats_left
