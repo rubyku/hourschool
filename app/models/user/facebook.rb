@@ -1,6 +1,7 @@
 module User::Facebook
   extend ActiveSupport::Concern
 
+
   def facebook?
     fb_token.present?
   end
@@ -26,29 +27,19 @@ module User::Facebook
   end
 
   def facebook_friends
-    cache(:expires_in => 12.hours).
-      raw_facebook_friends.
-      each_with_object([]) {|raw, collection|
-      collection << {'label'      => raw['name'],
-                     'id'         => raw['id'],
-                     'name'       => raw['name'],
-                     'image_url'  => "http://graph.facebook.com/#{raw['id']}/picture?type=square"
-                     }
-      }
+    @facebook_friends ||= cache(:expires_in => 12.hours).
+                            raw_facebook_friends.
+                            each_with_object([]) {|raw, collection|
+                            collection << {'label'      => raw['name'],
+                                           'id'         => raw['id'],
+                                           'name'       => raw['name'],
+                                           'image_url'  => "http://graph.facebook.com/#{raw['id']}/picture?type=square"
+                                           }
+                            }
   end
 
   def facebook_friend_ids
     @facebook_friend_ids ||= raw_facebook_friends.map {|user_hash| user_hash["id"] }
-  end
-
-  def fetch_facebook_friend_ids
-    cache(:fetch, :expires_in => 12.hours).facebook_friend_ids
-  end
-
-  def get_interests_for_friends
-    fetch_facebook_friend_ids.each do |facebook_id|
-      facebook_graph.get_connections(friend_id, "likes")
-    end
   end
 
   # :name is name of link
@@ -69,23 +60,49 @@ module User::Facebook
   #
   module ExpensiveMethods
 
+
+    def warm_facebook_expensive_cache
+      cache(:fetch, :expires_in => 12.hours).facebook_friend_locations
+      cache(:fetch, :expires_in => 12.hours).facebook_friend_interests
+      cache(:fetch, :expires_in => 12.hours).facebook_friend_likes
+      cache(:fetch, :expires_in => 12.hours).facebook_friend_activities
+      cache(:fetch, :expires_in => 12.hours).full_facebook_friends
+      true
+    end
+
+    # zomg this takes a long time ~ 2 minutes for 1000 friends
+    def force_refresh_facebook_expensive_cache
+      cache(:write, :expires_in => 12.hours).facebook_friend_locations
+      cache(:write, :expires_in => 12.hours).facebook_friend_interests
+      cache(:write, :expires_in => 12.hours).facebook_friend_likes
+      cache(:write, :expires_in => 12.hours).facebook_friend_activities
+      cache(:write, :expires_in => 12.hours).full_facebook_friends
+      true
+    end
+
     def fetch_facebook_friend_locations
-      cache(:expires_in => 12.hours).facebook_friend_locations
+      @fetch_facebook_friend_locations  ||= cache(:expires_in => 12.hours).facebook_friend_locations
     end
 
     def fetch_facebook_friend_interests
-      cache(:expires_in => 12.hours).facebook_friend_interests
+      @fetch_facebook_friend_interests  ||= cache(:expires_in => 12.hours).facebook_friend_interests
     end
 
     def fetch_facebook_friend_likes
-      cache(:expires_in => 12.hours).facebook_friend_likes
+      @fetch_facebook_friend_likes      ||= cache(:expires_in => 12.hours).facebook_friend_likes
     end
 
     def fetch_facebook_friend_activities
-      cache(:expires_in => 12.hours).facebook_friend_activities
+      @fetch_facebook_friend_activities ||= cache(:expires_in => 12.hours).facebook_friend_activities
+    end
+
+    def fetch_full_facebook_friends
+      @fetch_full_facebook_friends      ||= cache(:expires_in => 12.hours).full_facebook_friends
     end
 
     protected
+
+    # automatically yields top a block all of your friends in groups of 50 and re-assembles the results
     def batch_facebook_request_on_friends
       result = []
       facebook_friends.in_groups_of(50, false) do |facebook_friends|
@@ -98,35 +115,75 @@ module User::Facebook
       result.flatten(1)
     end
 
-    def _get_batch_friend_data(options = {})
+
+    # calls get_object on all of a user's friends
+    def get_batch_friend_data(options = {})
       batch_facebook_request_on_friends do |batch_api, friend|
         batch_api.get_object(friend['id'], options)
       end
     end
 
-    def _get_batch_connections_for_friends(connection_name, options = {})
+    # calls get_connections on all of a user's friends for a give connection_name
+    def get_batch_connections_for_friends(connection_name, options = {})
       batch_facebook_request_on_friends do |batch_api, friend|
         batch_api.get_connections(friend['id'], connection_name, options)
       end
     end
 
     def facebook_friend_locations
-      _get_batch_friend_data(:fields => 'location')
+      get_batch_friend_data(:fields => 'location').map    {|element| element.nil? ? {} : element}
     end
 
     def facebook_friend_interests
-      _get_batch_connections_for_friends('interests')
+      get_batch_connections_for_friends('interests').map  {|element| element.nil? ? [] : element}
     end
 
     def facebook_friend_activities
-      _get_batch_connections_for_friends('activities')
+      get_batch_connections_for_friends('activities').map {|element| element.nil? ? [] : element}
     end
 
     def facebook_friend_likes
-      _get_batch_connections_for_friends('likes')
+      get_batch_connections_for_friends('likes').map      {|element| element.nil? ? [] : element}
+    end
+
+    def full_facebook_friends
+      @full_facebook_friends = []
+      facebook_friends.each_with_index do |friend, index|
+        name        = friend['name']
+        id          = friend['id']
+        image_url   = friend['image_url']
+        interests   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
+        activities  = fetch_facebook_friend_activities[index].map {|x| x['name']}
+        likes       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
+        location    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
+        @full_facebook_friends << HashWithIndifferentAccess.new(name:       name,
+                                                                id:         id,
+                                                                image_url:  image_url,
+                                                                interests:  interests,
+                                                                activities: activities,
+                                                                likes:      likes,
+                                                                location:   location,
+                                                                )
+      end
+      return @full_facebook_friends
     end
   end
   include ExpensiveMethods
+
+  # User::FacebookFullWarm.new()
+  class FullCacheWarm
+    attr_accessor :user_id
+
+    def initialize(user_id)
+      self.user_id = user_id
+    end
+
+
+    def perform
+      user = User.find(user_id)
+      user.warm_facebook_expensive_cache
+    end
+  end
 
   #### Likes
   # [{"name"=>"IndieGoGo.com",
@@ -141,7 +198,5 @@ module User::Facebook
   #  "created_time"=>"2011-04-28T05:39:13+0000"}
 
 
-  module ClassMethods
 
-  end
 end

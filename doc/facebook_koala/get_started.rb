@@ -26,7 +26,7 @@ likes = @graph.get_connections("me", "likes")
 # me = @graph.get_object("me")
 
 user = User.rs
-facebook_friends = user.cache.full_facebook_friends
+facebook_friends = user.cache.facebook_friends
 mass_facebook_data_key = "users:#{user.id}:mass_facebook_data"
 
 
