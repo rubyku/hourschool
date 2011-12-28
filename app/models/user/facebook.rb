@@ -25,7 +25,7 @@ module User::Facebook
     @raw_facebook_friends ||= facebook_graph.get_connections("me", "friends")
   end
 
-  def full_facebook_friends
+  def facebook_friends
     cache(:expires_in => 12.hours).
       raw_facebook_friends.
       each_with_object([]) {|raw, collection|
@@ -88,7 +88,7 @@ module User::Facebook
     protected
     def batch_facebook_request_on_friends
       result = []
-      full_facebook_friends.in_groups_of(50, false) do |facebook_friends|
+      facebook_friends.in_groups_of(50, false) do |facebook_friends|
         result << facebook_graph.batch do |batch_api|
           facebook_friends.each do |friend|
             yield batch_api, friend

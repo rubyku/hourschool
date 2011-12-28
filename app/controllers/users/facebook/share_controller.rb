@@ -3,7 +3,7 @@ class Users::Facebook::ShareController < ApplicationController
   before_filter :verify_facebook
 
   def index
-    @friends = current_user.cache(:fetch, :expire => 12.hours).full_facebook_friends.shuffle
+    @friends = current_user.cache(:fetch, :expire => 12.hours).facebook_friends.shuffle
     @friends = @friends.pop(params[:limit].to_i) if params[:limit].present?
     respond_to do |format|
       format.html { render :partial => 'users/facebook/grid/friend', :collection => @friends, :locals => locals_from_params }
@@ -32,7 +32,7 @@ class Users::Facebook::ShareController < ApplicationController
     end
 
     def next_facebook_friend_for_current
-      current_user.cache(:fetch, :expire => 12.hours).full_facebook_friends.sample(1).first
+      current_user.cache(:fetch, :expire => 12.hours).facebook_friends.sample(1).first
     end
 
     def locals_from_params
