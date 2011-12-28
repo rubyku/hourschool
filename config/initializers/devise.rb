@@ -84,7 +84,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.years
 
   # If true, a valid remember token can be re-used between multiple browsers.
   # config.remember_across_browsers = true
@@ -198,9 +198,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   if Rails.env == "development"
-    config.omniauth :facebook, "116183295130221", "83d6e8f67cf05b1710d073ac1af99a70", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
+    config.omniauth :facebook, "116183295130221", "83d6e8f67cf05b1710d073ac1af99a70", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location,friends_location,friends_activities,friends_likes,friends_interests'}
   else
-    config.omniauth :facebook, "144671482261988", "a7f47f266872b6ce3847c9b7720bcdf4", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location'}
+    config.omniauth :facebook, "144671482261988", "a7f47f266872b6ce3847c9b7720bcdf4", {:scope => 'publish_stream,offline_access,email,user_about_me,user_location,friends_location,friends_activities,friends_likes,friends_interests'}
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
