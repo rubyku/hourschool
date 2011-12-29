@@ -25,10 +25,10 @@
     <% end %>
   </div>
 
-  <hr>
-  <br>
+  <hr />
+  <br />
   <p> Or sign in with email:</p>
-  <br>
+  <br />
 
   <%- if resource.present? && resource.email.present? -%>
     <div class="page-section-float-left">
@@ -43,12 +43,12 @@
         </div>
 
         <div class="form-question"><%= f.label :password %><br />
-          <%= f.password_field :password , :class => "form-short"%>
+          <%= f.password_field :password , :class => "form-short" %>
         </div>
 
         <div class="page-section-float-left">
           <% if devise_mapping.rememberable? -%>
-          <%= f.check_box :remember_me %>
+          <%= f.check_box :remember_me, :checked => true %>
           <%= f.label :remember_me %>
           <% end -%>
         </div>

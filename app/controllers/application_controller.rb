@@ -7,6 +7,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   protected
+
+    alias :devise_authenticate_user! :authenticate_user!
+
+    def authenticate_user!(*args)
+      store_location unless signed_in?
+      devise_authenticate_user!(*args)
+    end
+
+    def must_be_admin
+      store_location
+      redirect_to root_path unless current_user.try(:admin?)
+    end
+
     def log_error(exception)
       message = "#{exception.class} (#{exception.message}):\n  "
       message += Rails.backtrace_cleaner.clean(exception.backtrace).join("\\n")
@@ -54,16 +67,6 @@ class ApplicationController < ActionController::Base
       send_error_to_new_relic(ex)
     end
 
-    def after_sign_in_path_for(resource)
-       if resource.is_a?(Member)
-          #p "member domain is #{resource.member_domain}"
-          root_url(:subdomain => resource.member_domain )
-        else
-          user_root_path
-        end
-    end
-
-
     def previous_path_or(url)
       if session[:return_to].present? && session[:return_to] != '/'
         return_to = session[:return_to]
@@ -75,14 +78,12 @@ class ApplicationController < ActionController::Base
     end
 
     def store_location
-      if request.url != request.referrer
-        session[:return_to] = request.referrer
-      end
+      session[:return_to] = request.url
     end
 
 
     def after_sign_in_path_for(resource)
-      previous_path_or(resource)
+      previous_path_or(learn_path)
     end
 
 end

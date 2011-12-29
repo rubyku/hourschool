@@ -1,9 +1,16 @@
 HourschoolV2::Application.routes.draw do
 
+  # temp hack, remove after Febuary 2011
+  match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
+
+  namespace :users do
+    resources :facebook_share
+  end
+
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :charts
   end
-  
+
 
   resources :ecourses, :path => 'classes'
 
@@ -11,7 +18,7 @@ HourschoolV2::Application.routes.draw do
   resources :esuggestions, :path => 'suggestions'
 
   resources :courses
-  
+
   namespace :courses do
     resources :browse
   end
@@ -24,7 +31,7 @@ HourschoolV2::Application.routes.draw do
     resources :subdomains, :shallow => true
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks", 
+  devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
                                        :sessions            => 'sessions' }
   devise_scope :user do
@@ -46,7 +53,7 @@ HourschoolV2::Application.routes.draw do
   match   'oh-no/500'     => 'pages#show',        :id => 'errors/404'
 
   get "sites/show"
-  match '/learn' => 'home#learn'
+  match '/learn' => 'Courses::Browse#index'
   match '/teach' => 'home#teach'
   match '/suggest' => 'suggestions#suggest'
   match '/csvote' => 'suggestions#vote'
@@ -58,7 +65,7 @@ HourschoolV2::Application.routes.draw do
   match '/heart' => 'courses#heart'
   match '/proposal' => 'courses#show_proposal'
   match '/payment_preview' => 'courses#register_preview'
-  match '/course_confirm' => 'courses#course_confirm'
+  match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
   match '/enterprise-learn' => 'enterprises#learn'
   match '/enterprise-teach' => 'enterprise#teach'
@@ -70,7 +77,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
-  
+
   match '/profile' => 'users#show', :id => 'current'
   match '/profile_past_taught' => 'users#profile_past_taught'
   match '/profile_past_attended' => 'users#profile_past_attended'
@@ -88,7 +95,6 @@ HourschoolV2::Application.routes.draw do
   match '/search_by_tg' => 'home#search_by_tg', :as => "tags"
   match '/search_by_city' => 'home#search_by_city', :as => "cities"
   match '/organization' => 'home#organization'
-  match '/about_save' => 'home#about_save'
   match '/nominate' => 'home#nominate'
   match '/nominate_send' => 'home#nominate_send'
   match '/nominate_confirm' => 'home#nominate_confirm'
@@ -99,66 +105,13 @@ HourschoolV2::Application.routes.draw do
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
 
-  match '/business' => 'home#business'
-  match '/about' => 'home#about'
+  match '/business' => 'pages#show', :id => 'business'
+  match '/about' => 'pages#show', :id => 'about'
+  
+  match '/start' => 'home#index'
+
   root :to => "home#index"
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
-
+  resources :test
   match ":bad_route", :to => "pages#show", :id => "errors/404"
 end

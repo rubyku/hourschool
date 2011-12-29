@@ -55,11 +55,17 @@ class CoursesController < ApplicationController
   def confirm
     id = params[:id]
     @course = Course.find(id)
-    if @course.status == "approved"
-      @course.update_attribute :status, "live"
-      UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      post_to_twitter(@course)
+
+    # temp twitter_hack
+    if current_user.blank? || @course.is_not_a_teacher?(current_user)
+      redirect_to @course
+    else
+      if @course.status == "approved"
+        @course.update_attribute :status, "live"
+        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        post_to_twitter(@course)
+      end
     end
   end
 
@@ -184,9 +190,9 @@ class CoursesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to course_confirm_path(:id => @course.id)
-        }
+      end
       format.js { }
     end
   end
@@ -216,6 +222,11 @@ class CoursesController < ApplicationController
 
   def course_confirm
     @course = Course.find(params[:id])
+
+    # don't show this page to twitter followers, etc.
+    if current_user.blank? || @course.is_not_a_student?(current_user)
+      redirect_to @course
+    end
   end
 
   def contact_teacher
@@ -242,13 +253,6 @@ class CoursesController < ApplicationController
 
 
   private
-  def must_be_admin
-    #if !current_user.try(:admin?) || !current_user.admin?
-    if !current_user.admin?
-      redirect_to user_root_path
-    end
-  end
-
   def must_be_live
     @course = Course.find(params[:id])
     if @course.status.present? && @course.status != "live"

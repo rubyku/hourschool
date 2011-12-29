@@ -12,11 +12,12 @@ class Course < ActiveRecord::Base
   validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
+  validate :not_past_date, :unless => :proposal?
   attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
 
-  default_scope order(:date, :time)
+  default_scope order('date')
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
@@ -82,9 +83,13 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.live
+    where(:status => 'live')
+  end
+
   def self.active
-    where(:status => 'live').where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
-  end
+    live.where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
+  end
 
   def self.past
     where(:status => 'live').where("DATE(date) < (?)", Time.current)
@@ -96,6 +101,7 @@ class Course < ActiveRecord::Base
   alias :start_at :starts_at
 
   def active?
+    return false if date.blank?
     self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
   end
 
@@ -128,11 +134,18 @@ class Course < ActiveRecord::Base
     else
       return false
     end
+  end
 
+  def is_not_a_student?(user)
+    !is_a_student?(user)
   end
 
   def is_a_teacher?(user)
     self.teacher == user
+  end
+
+  def is_not_a_teacher?(user)
+    !is_a_teacher?(user)
   end
 
   def seats_left
@@ -187,6 +200,11 @@ class Course < ActiveRecord::Base
      self.status == "proposal" || self.status.nil?
    end
 
+   def not_past_date
+     if self.date < Date.today
+       errors.add(:date, 'is in the past')
+     end
+   end
 
 
 end

@@ -3,7 +3,6 @@ class RegistrationsController < Devise::RegistrationsController
   # If you're calling any other action you can leave it blank, or call super on it
 
   def new
-    store_location
     super
   end
 
@@ -29,6 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
     
     def after_sign_up_path_for(resource)
-      previous_path_or(resource)
+      # previous_path_or(resource)
+      wizard_path(:confirm_password)
     end
 end
