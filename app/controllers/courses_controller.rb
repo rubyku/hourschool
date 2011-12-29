@@ -59,6 +59,7 @@ class CoursesController < ApplicationController
       @course.update_attribute :status, "live"
       UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+      post_to_twitter(@course)
     end
   end
 
@@ -253,6 +254,11 @@ class CoursesController < ApplicationController
     if @course.status.present? && @course.status != "live"
       redirect_to user_root_path
     end
+  end
+
+  def post_to_twitter(course)
+    client = Twitter::Client.new
+    client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
   end
 
 end
