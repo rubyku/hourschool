@@ -50,6 +50,7 @@ GEM
       rails
     addressable (2.2.6)
     arel (2.0.10)
+    awesome_print (1.0.2)
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -280,6 +281,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
+  awesome_print
   aws-s3
   dalli (~> 1.1.4)
   delayed_job

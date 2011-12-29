@@ -5,6 +5,7 @@ gem 'pg'
 
 
 gem 'wicked', :git => 'git://github.com/schneems/wicked.git'
+gem 'awesome_print'     # for the printing
 gem "koala", '~> 1.2.1' # For the facebook
 gem "dalli", '~> 1.1.4' # for memcache
 
