@@ -25,10 +25,14 @@
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-        = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+        - if current_user.nil? || @current_course.city.name == current_user.city
+          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+        - else
+          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+
 
     .sidebar-block
-    
+
       %table
         %tr
           %td.icon
