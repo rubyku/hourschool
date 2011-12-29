@@ -25,4 +25,10 @@ class Users::AfterRegisterController < Wicked::WizardController
     sign_in(@user, :bypass => true) # needed for devise
     render_wizard @user
   end
+
+  protected
+    def finish_wizard_path
+      previous_path_or(learn_path)
+    end
+
 end
