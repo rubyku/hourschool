@@ -11,7 +11,7 @@
       %h3 Month over month
       - @users_by_month.each do |month, count|
         %p
-          = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students & #{number_to_currency @transaction_by_month[month] || 0}"
+          = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses (#{@courses_by_month_austin [month]||0} in austin) & #{@students_by_month[month] ||0} new students & #{number_to_currency @transaction_by_month[month] || 0}"
 
     %hr
     %div

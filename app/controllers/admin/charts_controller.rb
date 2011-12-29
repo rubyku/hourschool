@@ -12,6 +12,7 @@ class Admin::ChartsController < Admin::AdminController
     # Per month
     @users_by_month = User.order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     @courses_by_month = Course.unscoped.group("extract( month from DATE(created_at)) ").count
+    @courses_by_month_austin = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
     @students_by_month = Role.where(:role => 'student').group("extract( month from DATE(created_at)) ").count
     @transaction_by_month = Payment.group("extract( month from DATE(created_at))").sum('amount')
 
