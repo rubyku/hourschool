@@ -13,7 +13,7 @@ TAGS = [
   "Substance Abuse Resources", 
   "Cooking & Canning",
   "Gardening",
-  "Keeping your home"
+  "Keeping your home",
   "Exercise classes",
   "Arts, Crafts, Photography",
   "Parenting",
