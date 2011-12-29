@@ -1,5 +1,5 @@
 <div class="ui-widget">
-  <input class="facebookTypeAheadShare"
+  <input class="facebookTypeAheadShare" placeholder="Type a friend's name..."
     data-source-url="<%= users_facebook_share_index_path %>"
     data-create-url="<%= users_facebook_share_index_path %>"
     data-message="<%= local_assigns[:message] %>"
@@ -8,5 +8,7 @@
     data-description="<%= local_assigns[:description] %>"
   />
 </div>
+
+<a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
 
 <%= render :partial => 'users/facebook/autocomplete/activate' %>
