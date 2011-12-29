@@ -41,7 +41,23 @@
     <p>
      <%= f.label :categories, 'Categories', :class => "form-question" %><br />
      <p class="tip">Choose the best category this class falls into.</p>
-     <%= f.select :categories, options_for_select([['Art', 'Art'],['Design', 'Design'], ['Health and Wellness','Health and Wellness'],['Language','Language'],['Maintenance','Maintenance'],['Technology','Technology'], ['Photography', 'Photography'],['Cooking','Cooking'],['Music','Music']]) %>
+     <%= f.select :categories, options_for_select([
+                                ['Computers', 'Computers'],
+                                ['Money & Budgeting', 'Money & Budgeting'], 
+                                ['Accessing Benefits','Accessing Benefits'],
+                                ['Job Search','Job Search'],
+                                ['Educational Opportunities','Educational Opportunities'],
+                                ['Nutrition & Health','Nutrition & Health'], 
+                                ['Substance Abuse Resources', 'Substance Abuse Resources'],
+                                ['Cooking & Canning','Cooking & Canning'],
+                                ['Gardening','Gardening']
+                                ['Keeping your home', 'Keeping your home'],
+                                ['Exercise classes', 'Exercise classes'], 
+                                ['Arts, Crafts, Photography','Arts, Crafts, Photography'],
+                                ['Parenting','Parenting'],
+                                ['Family Conflict Resolution','Family Conflict Resolution'],
+                                ['Spanish/English Exchange','Spanish/English Exchange']
+                              ]) %>
      </p>
      <br><br>
 
