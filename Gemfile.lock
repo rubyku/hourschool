@@ -89,7 +89,7 @@ GEM
       faraday (~> 0.6)
     ffi (1.0.11)
     forgery (0.5.0)
-    friendly_id (4.0.0.beta14)
+    friendly_id (4.0.0)
     geokit (1.6.0)
     guard (0.9.1)
       ffi (>= 0.5.0)
@@ -289,7 +289,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   forgery
-  friendly_id (= 4.0.0.beta14)
+  friendly_id (= 4.0.0)
   geokit-rails3!
   guard-livereload
   guard-rspec
