@@ -78,6 +78,32 @@
         <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I want to have" %>
     </div>
 
+    <div class="page-section-float-left">
+        <div class="class-form-question">When</div><br>
+           <p class="tip">We recommend scheduling your class at least 2 weeks in advanced to give enough time for people to sign up!</p><br>
+           <br><br>
+
+        <%= f.date_select :date, :start_year => 2011, :end_year => 2012, :minute_step => 30 %><br><br>
+        <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
+
+    </div>
+
+    <div class="page-section-float-left">
+        <div class="class-form-question">Where</div><br>
+            <p class="tip">For community space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. <br><br>
+
+            <p>
+            <%= f.radio_button :public, true %>
+            <%= f.label :public, 'Community space' %>
+            <br>
+            <%= f.radio_button :public, false %>
+            <%= f.label :public, 'My house' %>
+            </p>
+            <br>
+            <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+            <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Name of location (ex. Community Room, Garden Area, Business Center, Picnic Pavaillion"   %>
+    </div>
+
 
     <hr id="class"><br>
 
