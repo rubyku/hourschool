@@ -1,15 +1,17 @@
-%ul.searchFilter
-  %li
-    .sidebar-heading Browse By Time
-  %li= link_to "Upcoming classes", "/learn"
-  %li= link_to "Past classes", courses_browse_path(:past)
+.sidebar
+  .sidebar-content
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By Time
+      %li= link_to "Upcoming classes", "/learn"
+      %li= link_to "Past classes", courses_browse_path(:past)
 
-%ul.searchFilter
-  %li
-    .sidebar-heading Browse By Category
-  - if @tags.present?
-    - @tags.each do |tg|
-      %li= link_to "#{tg.name}", tags_path("index"=>TAGS.index(tg.name))
-  - else
-    - TAGS.each do |tg|
-      %li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
+    %ul.searchFilter
+      %li
+        .sidebar-heading Browse By Category
+      - if @tags.present?
+        - @tags.each do |tg|
+          %li= link_to "#{tg.name}", tags_path("index"=>TAGS.index(tg.name))
+      - else
+        - TAGS.each do |tg|
+          %li= link_to "#{tg}", tags_path("index"=>TAGS.index(tg))
