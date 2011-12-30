@@ -15,11 +15,11 @@
   <table class="fb_share_table">
     <tr class="fb_share_table">
       <td>
-        <img src="<%= "http://graph.facebook.com/#{friend['id']}/picture?type=square" %>" width="40" height="40" class ="fb_friend_picture"/>
+        <img src="<%= friend['image_url'] %>" width="40" height="40" class ="fb_friend_picture"/>
       </td>
 
       <td class="fb_share_table_name_column">
-        <a href="<%= "http://www.facebook.com/profile.php?id=#{friend['id']}"  %>" class="fb_friend_name">
+        <a href="<%= friend['image_url'] %>" class="fb_friend_name">
             <%= friend['name'] %>
         </a>
       </td>

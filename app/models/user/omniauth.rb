@@ -6,8 +6,10 @@ module User::Omniauth
       email =    auth_hash['extra']['user_hash']['email']
       user  =    User.find_by_email(email)
       user  ||=  User.create_from_omniauth(auth_hash)
-      if user && (user.fb_token.blank? || user.facebook_id.blank?)
-        user.update_attributes(:fb_token => auth_hash["credentials"]["token"], :facebook_id => auth_hash["uid"])
+      fb_token_from_hash    = auth_hash["credentials"]["token"]
+      facebook_id_from_hash = auth_hash["uid"]
+      if user && (user.fb_token != fb_token_from_hash || user.facebook_id != facebook_id_from_hash)
+        user.update_attributes(:fb_token => fb_token_from_hash, :facebook_id => facebook_id_from_hash)
       end
       user
     end

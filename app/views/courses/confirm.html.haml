@@ -1,6 +1,7 @@
-.page
+.full-page
   .page-content
     .confirm-second-message Your class is now live!
+    = image_tag("/images/v2/grasshopper-hop.png", :class => "confirm-grasshopper")
     %hr#confirm
 
     .confirm-classblock
@@ -17,58 +18,15 @@
         .confirm-class-description
           .heading13-class
             = @course.title
-
-      %table
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %td
-            .class-details
-              = "$ #{@course.price}"
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
-          %td
-            .class-details
-              = @course.date.strftime("%B %d, %Y")
-            .class-address-details
-              = "#{@course.time_range}"
-
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
-          %td
-            .class-details
-              = "#{@course.place_name}"
-            - if @course.public?
-              .class-sidebar-details
-                = "#{@course.address}"
-            - else
-              %p Private Address
+          %p= @course.teaser.truncate(60) unless @course.teaser.blank?
 
 
-    .confirm-description-block
+    .confirm-messageBlock
       .confirm-bring-friend Invite people to take your class
-      %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
-
-    .confirm-description-block
+      %p.confirm We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
       = render :partial => "social_share_teach", :locals => {:url => course_url(@course)}
-        
-    .confirm-description-block
-      %p What would you like to do now? 
-      %br     
-      %span.list-number 1
-      = link_to "Check out the teacher's handbook", "/pdf/handbook.pdf", :class => "orange-checklist"
-      %br
-      %span.list-number 2
-      = link_to "Go to the class page", @course, :class => "orange-checklist"
-      %br
-      %span.list-number 3
-      = link_to "View your profile", "/profile", :class => "orange-checklist"
 
-.sidebar
-  .tipbox
-    %img.tape{:src => '../../../images/v2/Tape_White.png'}
-    .heading10 Have questions?
-    %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
-      #tipboxButton Contact us!
+    .confirm-description-block
+      %p.confirm Have someone in mind you want to invite? Leave a message on their Facebook wall!
+
+      = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"}
