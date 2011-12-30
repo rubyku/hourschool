@@ -4,7 +4,9 @@ HourschoolV2::Application.routes.draw do
   match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
 
   namespace :users do
-    resources :facebook_share
+    namespace :facebook do
+      resources :share
+    end
   end
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
