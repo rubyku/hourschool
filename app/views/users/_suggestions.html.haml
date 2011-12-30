@@ -1,5 +1,6 @@
 - if suggestions.size == 0 
-  %p= "No suggestions yet."
+  = "You haven't made any suggestions yet. "
+  = link_to "What have you always wanted to learn?", suggest_path, :class => "pagenote-link"
 
 - suggestions.each do |t|
   .vote-class.clearfix
