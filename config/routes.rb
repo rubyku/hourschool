@@ -44,7 +44,7 @@ HourschoolV2::Application.routes.draw do
   end
 
   scope :module => 'users' do
-    resources :wizard, :only => [:show, :update]
+    resources :after_register, :only => [:show, :update]
   end
 
   resources :payments
@@ -109,7 +109,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
-  
   match '/start' => 'home#index'
 
   root :to => "home#index"

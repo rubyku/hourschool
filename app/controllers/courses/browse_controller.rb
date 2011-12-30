@@ -1,16 +1,8 @@
 class Courses::BrowseController < ApplicationController
 
   def index
-    if current_user && current_user.zip.present?
-      teaser_courses = Course.near(:zip => current_user.zip).active.paginate(:page => params[:page]||1)
-    end
-
-    if teaser_courses && teaser_courses.total_entries >= Course::DEFAULT_PER_PAGE
-      @courses  = teaser_courses
-    else
-      @teaser_courses = teaser_courses
-      @courses        = Course.active.exclude(@teaser_courses).paginate(:page => params[:page]||1)
-    end
+    @courses = Course.active.paginate(:page => params[:page]||1)
+    @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{@current_user.city}'").count == 0
   end
 
 
@@ -18,6 +10,7 @@ class Courses::BrowseController < ApplicationController
 
 
   def show
+    @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{@current_user.city}'").count == 0
     case params[:id]
     when 'past'
       @courses = Course.past.random.paginate(:page => params[:page]||1)

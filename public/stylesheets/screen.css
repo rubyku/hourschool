@@ -2122,6 +2122,7 @@ a.view-more {
 
 .vote-class-title {
   float: left;
+  width: 500px;
 }
 
 .heading20-vote {

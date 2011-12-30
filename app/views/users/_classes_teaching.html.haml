@@ -1,0 +1,30 @@
+- count = 0
+- if classes_teaching.blank?
+  = "Aw..you haven't taught any classes yet."
+  = link_to "Teach your first class!", new_course_path, :class => "pagenote-link"
+- classes_teaching.each do |c|
+  - count = count + 1
+  - if count%3 == 0
+    - className = "classBlock_last"
+  - else
+    - className = "classBlock"
+  %div{:class => "#{className}"}
+    - if c.photo.exists?
+      = link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
+      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+    - else
+      - if !c.categories.first.nil?
+        = link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
+      - else
+        = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), c
+      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+    %br
+      .class-description
+        .heading13-class 
+          = link_to "#{c.title}", c
+        %p= c.teaser.try(:truncate , 70).try(:html_safe)
+      .class-note
+        .heading9-class 
+          - if c.days_left > 0
+            = "#{ c.seats_left } seats left"
+            = "#{ c.days_left } days from today"

@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   acts_as_voter
 
   before_save  :update_time_zone
+  before_save  :update_user_location
   after_save   :update_location_database
   after_create :send_reg_email
 
@@ -84,12 +85,7 @@ class User < ActiveRecord::Base
   end
 
   def zipcode=(zip)
-    return nil if zip.blank?
-    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
-    if !@geocode.city.nil? && !@geocode.state.nil?
-      self.location = [@geocode.city, @geocode.state].join(", ")
-      self.zip = zip
-    end
+    self.zip = zip
   end
 
   def hearts
@@ -231,6 +227,14 @@ class User < ActiveRecord::Base
   # End user conversion Code
   # ================================
   private
+  def update_user_location
+    return true if zip.blank?
+    return true unless self.zip_changed?
+    @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
+    if !@geocode.city.nil? && !@geocode.state.nil?
+      self.location = [@geocode.city, @geocode.state].join(", ")
+    end
+  end
 
   def location_format
     errors.add(:location, "- Should be City, State") unless location.include?(',') && location.split(',').size == 2

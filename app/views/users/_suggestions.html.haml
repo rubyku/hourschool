@@ -1,5 +1,6 @@
 - if suggestions.size == 0 
-  %p= "No suggestions yet."
+  = "You haven't made any suggestions yet. "
+  = link_to "What have you always wanted to learn?", suggest_path, :class => "pagenote-link"
 
 - suggestions.each do |t|
   .vote-class.clearfix
@@ -23,9 +24,9 @@
       %span{:id => "vote_link_#{t.id}"}
         - if user_signed_in?
           - if !current_user.voted_on?(t)
-            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-class-button"
+            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-button"
           - else
             .voted-button
               = "Voted"
         - else
-          = link_to_function "Add vote", "alert('Please login to vote!')", :class => "vote-class-button"
+          = link_to_function "Add vote", "alert('Please login to vote!')", :class => "vote-button"
