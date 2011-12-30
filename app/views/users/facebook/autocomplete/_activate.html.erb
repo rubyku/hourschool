@@ -20,12 +20,13 @@
                       name:        target.data('name'),        // text on link
                       id:          ui.item.id                  // id of user
                     }
+          afterInvite(target, ui); // show success before it posts, no waiting...no fuss!!
           $.ajax({
             url:      target.data('create-url'),
             dataType: 'html',
             type:     'POST',
             data:     options,
-            success:  function(html) { afterInvite(target, ui) },
+            success:  function(html) {  },
             error:    function(html) { console.log('error') }
           })
         };
