@@ -1,9 +1,9 @@
-if Rails.env.production
+if Rails.env.production?
   Twitter.configure do |config|
-    config.consumer_key       = ""
-    config.consumer_secret    = ""
-    config.oauth_token        = ""
-    config.oauth_token_secret = ""
+    config.consumer_key       = "LK2Zf4LH6ro4rtmZDQ37pg"
+    config.consumer_secret    = "6hFNduoaepyEUZoqG4KbLRkdeWe5lCikUQw22hSY"
+    config.oauth_token        = "258214567-tO8MewgqGEQKDP7i67hqyeLu9AiAKUrqfmbIQZCT"
+    config.oauth_token_secret = "SHOozsXky8iUrFwwoZpcxgYYF5LOq5n7DBDRe6eUk"
   end
 else
   Twitter.configure do |config|
