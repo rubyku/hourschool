@@ -7,8 +7,9 @@
 
         // callback
         var afterInvite = function(target, ui) {
-          success_div = $("<div class='clearfix'><p class='flash-notice'>Successfully Sent Invite to " + ui.item.name + ",</p><p class='flash-notice'>Invite another friend!</p></div>");
+          success_div = $("<div class='clearfix'><p class='flash-notice'>Successfully Sent Invite to " + ui.item.name + ",</p><p class='flash-notice'>Invite another friend!</p></div>").hide();
           target.first().nextAll('.success').append(success_div);
+          success_div.fadeIn(500);
           success_div.fadeOut(10000);
 
         };
