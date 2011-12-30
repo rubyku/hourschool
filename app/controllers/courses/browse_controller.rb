@@ -5,7 +5,7 @@ class Courses::BrowseController < ApplicationController
     if current_user
       @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
     else
-      @no_courses_in_user_city = true
+      @no_courses_in_user_city = false
     end
   end
 
@@ -17,7 +17,7 @@ class Courses::BrowseController < ApplicationController
     if current_user
       @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
     else
-      @no_courses_in_user_city = true
+      @no_courses_in_user_city = false
     end
     case params[:id]
     when 'past'
