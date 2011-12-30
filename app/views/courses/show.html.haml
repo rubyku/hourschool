@@ -42,5 +42,9 @@
       = render :partial => "disqus"
 
 
-= render :partial => "sidebar", :locals => {:course => @course}
+= content_for :head do
+  :erb
+    <meta property="og:description" content="<%= @course.description %>"/>
+    <meta property="og:image" content="<%= @course.photo.url(:small) %>"/>
+
 
