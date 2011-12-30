@@ -21,6 +21,7 @@ gem 'devise', '~> 1.4.9'
 gem "omniauth", '~> 0.3.2'
 #gem "koala"
 
+gem 'twitter'
 
 gem 'newrelic_rpm'
 
