@@ -164,9 +164,10 @@ class Course < ActiveRecord::Base
      date - Date.today < 0
    end
 
+
    def cropping?
-     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
-   end
+       !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+     end
 
    def photo_geometry(style = :original)
      @geometry ||= {}
@@ -175,11 +176,8 @@ class Course < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
    end
 
-   def sanitize_price(price)
-     self.update_attributes(:price => price.gsub(/\$/, ''))
-   end
-
    private
+
     def reprocess_photo
       photo.reprocess!
     end

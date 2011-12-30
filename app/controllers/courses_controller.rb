@@ -119,12 +119,12 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
+    sanitize_price(params[:course][:price].to_s)
     cat = []
     cat << (params[:course][:categories]).to_s
     params[:course].delete(:categories)
     @course.category_list = cat.join(", ").to_s
     if @course.update_attributes(params[:course])
-      @course.sanitize_price(params[:course][:price].to_s)
       redirect_to preview_path(:id => @course.id)
     else
       render :action => 'edit'
@@ -249,6 +249,12 @@ class CoursesController < ApplicationController
     if @course.status.present? && @course.status != "live"
       redirect_to user_root_path
     end
+  end
+
+  def sanitize_price(price)
+    if !(price =~ /\$/).nil?
+        params[:course][:price] = price.gsub(/\$/, '')
+      end
   end
 
 end
