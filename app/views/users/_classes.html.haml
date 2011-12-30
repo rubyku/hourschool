@@ -13,16 +13,13 @@
       = link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
       %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
     - else
-      - if !c.categories.first.nil?
-        = link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
-      - else
         = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), c
       %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
     %br
       .class-description
         .heading13-class 
-          = link_to "#{c.title}", c
-        %p= c.teaser.try(:truncate , 70).try(:html_safe)
+          = link_to c.title.truncate(36), c
+        %p= c.teaser.truncate(60) unless c.teaser.blank?
       .class-note
         .heading9-class 
           - if c.days_left > 0
