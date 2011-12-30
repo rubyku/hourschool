@@ -38,6 +38,8 @@
             source: friends,
             select: function(event, ui) {
               create(event, ui, target);
+              target.val(''); // remove name from box`
+              return false;   // don't set value of text box
             }
           }).data('autocomplete').
           _renderItem = function(ul,item) {
