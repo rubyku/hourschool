@@ -2707,27 +2707,42 @@ a.orange-checklist:visited{color:#ff7733}
 
 /*......COURSE-CONFIRM......*/
 /* line 783, ../../app/assets/stylesheets/components/general.scss */
+
+.confirm-messageBlock{
+  float: left;
+  width: 628px;
+  height: 130px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f8f8;
+}
+
 .confirm-classblock {
   float: left;
   width: 190px;
   background-color: white;
-/*  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
-  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;*/
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   padding-bottom: 20px;
-  margin-right: 30px;
+  margin-right: 40px;
 }
 
 /* line 793, ../../app/assets/stylesheets/components/general.scss */
 .confirm-class-description {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .confirm-description-block{
   float: left;
-  width: 380px;
-  margin-bottom: 20px;
+  width: 390px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+.confirm-description-share-block{
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .vote-show-block{
@@ -2743,20 +2758,6 @@ a.orange-checklist:visited{color:#ff7733}
   margin-bottom: 20px;
 }
 
-/* line 798, ../../app/assets/stylesheets/components/general.scss */
-.confirm-first-message {
-  text-transform: uppercase;
-  color: #ff7733;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  float: left;
-  letter-spacing: 0.05em;
-  width: 100%;
-}
-
 /* line 811, ../../app/assets/stylesheets/components/general.scss */
 .confirm-second-message {
   text-transform: uppercase;
@@ -2764,17 +2765,26 @@ a.orange-checklist:visited{color:#ff7733}
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 25px;
-  margin-bottom: 0px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   float: left;
   letter-spacing: 0.05em;
-  width: 100%;
 }
 
 /* line 823, ../../app/assets/stylesheets/components/general.scss */
 .confirm-grasshopper {
   float: right;
-  margin-top: -40px;
   margin-right: 10px;
+  margin-top: -10px;
+}
+
+
+/* line 853, ../../app/assets/stylesheets/components/general.scss */
+hr#confirm {
+  float: right;
+  border: 1px dashed #ededed;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 /* line 829, ../../app/assets/stylesheets/components/general.scss */
@@ -2784,7 +2794,6 @@ a.orange-checklist:visited{color:#ff7733}
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 0px;
   float: left;
   letter-spacing: 0.15em;
   width: 100%;
@@ -2804,18 +2813,10 @@ a.orange-checklist:visited{color:#ff7733}
   margin-top: 21px;
 }
 
-/* line 853, ../../app/assets/stylesheets/components/general.scss */
-hr#confirm {
-  border: 1px dashed #ededed;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
 
 /* line 861, ../../app/assets/stylesheets/components/general.scss */
 p.confirm {
-  margin-top: 21px;
+  margin-bottom: 20px;
 }
 
 .form-short-edit-profile{
@@ -3063,6 +3064,7 @@ p.form-bg {
   border-radius: 5px;
 }
 
+
 /* line 86, ../../app/assets/stylesheets/components/form.scss */
 .form-med-with-margin {
   position: relative;
@@ -3186,7 +3188,7 @@ a.tip {
   width: 600px;
 }
 
-.flash-notice{
+.flash-notice {
   text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -3197,7 +3199,6 @@ a.tip {
   letter-spacing: 0.05em;
   width: 100%;
 }
-
 
 /* Sign up form */
 .loginButton {
@@ -3486,6 +3487,7 @@ li.noBullet-marcomm {
 
 /* line 49, ../../app/assets/stylesheets/components/marcomm.scss */
 span.list-number {
+  float: left;
   font-size: 20px;
   margin-right: 5px;
 }
@@ -3894,3 +3896,93 @@ td.fb_share_table_name_column{
   letter-spacing: 0.1em;
 }
 
+.facebookShareSubmit {
+  margin-left: 10px;
+}
+
+.facebookTypeAheadShare{
+  padding : 0;
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 29px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.ui-corner-all{
+  z-index: 0;
+}
+
+ul.ui-autocomplete {
+  width: 260px;
+  height: 300px; /* i _hate_ jquery ui styling */
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 10px;
+}
+
+ul.ui-autocomplete span {
+  position: relative;
+  bottom: 20px;
+  left:   10px;
+}
+
+ul.ui-autocomplete  a {
+  background-color: white;
+  border-bottom: 1px solid #d2d9dc;
+  padding: 5px;
+  display: block;
+}
+
+ul.ui-autocomplete a.ui-state-hover {
+  cursor: pointer;
+  background-color: #f8f8ff;
+  border: 1px solid #d2d9dc;
+}
+
+#tweet-for-teacher{
+  float: left;
+  margin-top: 5px;
+  margin-left: 18px;
+}
+
+.flyer-preview{
+  width: 170px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #999;
+  margin-top: 20px;
+}
+
+.print-flyer-button {
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 150px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.print-flyer-button:hover { background-color: #e46f28;}

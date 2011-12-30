@@ -18,6 +18,5 @@
   - if signed_in?  && current_user.facebook?
     .sidebar-content
       .sidebar-heading Help build Hourschool
-      = render :partial => "users/facebook_share/share", :locals => {:limit   => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me, so we can Learn Together"}
+      = render :partial => "users/facebook/grid/share", :locals => {:limit   => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me, so we can Learn Together"}
 
-= render :partial => "users/facebook_share/activate"

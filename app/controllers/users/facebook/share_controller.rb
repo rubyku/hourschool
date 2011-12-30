@@ -1,21 +1,24 @@
-class Users::FacebookShareController < ApplicationController
+class Users::Facebook::ShareController < ApplicationController
 
   before_filter :verify_facebook
 
   def index
-    @friends = current_user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.shuffle
+    @friends = current_user.cache(:fetch, :expire => 12.hours).facebook_friends.shuffle
     @friends = @friends.pop(params[:limit].to_i) if params[:limit].present?
-    render :partial => 'friend', :collection => @friends, :locals => locals_from_params
+    respond_to do |format|
+      format.html { render :partial => 'users/facebook/grid/friend', :collection => @friends, :locals => locals_from_params }
+      format.json { render :json  => @friends.to_json }
+    end
   end
 
   def show
-    render :partial => 'friend', :object => next_facebook_friend_for_current,  :locals => locals_from_params
+    render :partial => 'users/facebook/grid/friend', :object => next_facebook_friend_for_current,  :locals => locals_from_params
   end
 
   def create
     options = format_parameters_for_facebook(params)
     current_user.facebook_wall_post(options) if Rails.env.production? ## don't send in development
-    render :partial => 'friend', :object => next_facebook_friend_for_current,  :locals => locals_from_params
+    render :partial => 'users/facebook/grid/friend', :object => next_facebook_friend_for_current,  :locals => locals_from_params
   end
 
   private
@@ -29,7 +32,7 @@ class Users::FacebookShareController < ApplicationController
     end
 
     def next_facebook_friend_for_current
-      current_user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.sample(1).first
+      current_user.cache(:fetch, :expire => 12.hours).facebook_friends.sample(1).first
     end
 
     def locals_from_params
