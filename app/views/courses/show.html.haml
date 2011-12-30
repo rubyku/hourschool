@@ -5,34 +5,28 @@
   .page-content
     .page-section-float-left
       .class-logistic-block
-        - if @current_course.photo.exists?
-          = image_tag(@current_course.photo.url(:small), :size => "190x120")
+        - if @course.photo.exists?
+          = image_tag(@course.photo.url(:small), :size => "190x120")
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
-          - if !@current_course.categories.first.nil?
-            = image_tag("#{DEF_IMAGES[@current_course.categories.first.name]}",:size => "190x120")
+          - if !@course.categories.first.nil?
+            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
           - else
             = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
       .class-description-block
         .class-title-big
-          = "#{@current_course.title}"
+          = "#{@course.title}"
         .happening-message-header
-          = "#{@current_course.city.try(:name)}, #{@current_course.city.try(:state)}"
+          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
         %br
         .heading10-class Classes are always more fun with a group of friends. Share this class!
         = render :partial => "social_share"
-        / #link_to_heart_this_class
-        /   - if !@current_course.past? && @current_course.is_a_student?(current_user)
-        /     - if !current_user.voted_on?(@current_course)
-        /       = link_to "Heart this class", heart_path(:id => @current_course.id), :remote => true
-        /     - else
-        /       = "You have hearted this class!"
 
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
-      %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
+      %p= sanitize @course.description.gsub(/\n/,'<br/>')
 
     .comment-section
       .class-section-heading
