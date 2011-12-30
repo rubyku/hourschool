@@ -5,6 +5,16 @@
   .page-content    
           
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at HourSchool"} do
+    
+      .pagenote-box.clearfix
+        .pagenote-header 
+          = "We haven't made it to #{@current_user.city} yet!"
+        = "Want more classes in your city? "
+        = link_to "Create one now", new_course_path, :class => "pagenote-link"
+        = "or"
+        = link_to "contact us", "http://help.hourschool.com/customer/portal/emails/new", :class => "pagenote-link"
+        = "to find out other ways to be involved!"
+      
       = render :partial => 'courses/browse/course_grid', :locals => {:courses => @courses}
       .page-section-float-right
         %table.view-more
