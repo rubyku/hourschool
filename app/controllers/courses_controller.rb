@@ -119,17 +119,16 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-      cat = []
-      cat << (params[:course][:categories]).to_s
-      params[:course].delete(:categories)
-      @course.category_list = cat.join(", ").to_s
-      if @course.update_attributes(params[:course])
-        puts "saved"
-        redirect_to preview_path(:id => @course.id)
-      else
-        render :action => 'edit'
-      end
-      puts @course.errors
+    sanitize_price(params[:course][:price].to_s)
+    cat = []
+    cat << (params[:course][:categories]).to_s
+    params[:course].delete(:categories)
+    @course.category_list = cat.join(", ").to_s
+    if @course.update_attributes(params[:course])
+      redirect_to preview_path(:id => @course.id)
+    else
+      render :action => 'edit'
+    end
   end
 
 
@@ -139,7 +138,6 @@ class CoursesController < ApplicationController
     @role = Role.where(:course_id => @course.id).first
     #@course.destroy
     if current_user.is_teacher_for?(@course)
-
       @user = current_user
       @user.courses.delete(@course)
       @user.save
@@ -156,7 +154,6 @@ class CoursesController < ApplicationController
 
   def drop
       @course = Course.find(params[:id])
-
       @user = current_user
 
        # #remove the relevant role from user
@@ -164,14 +161,12 @@ class CoursesController < ApplicationController
 
       #remove the course
       @user.courses.delete(@user.courses.where(:id => @course.id).first)
-
       @user.save
 
       respond_to do |format|
         format.html { redirect_to @course }
         format.js { }
       end
-
   end
 
   def register_preview
@@ -210,13 +205,10 @@ class CoursesController < ApplicationController
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
-
-
-       redirect_to course_confirm_path(:id => @course.id)
+         redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
      end
-
   end
 
   def course_confirm
@@ -257,6 +249,12 @@ class CoursesController < ApplicationController
     if @course.status.present? && @course.status != "live"
       redirect_to user_root_path
     end
+  end
+
+  def sanitize_price(price)
+    if !(price =~ /\$/).nil?
+        params[:course][:price] = price.gsub(/\$/, '')
+      end
   end
 
 end
