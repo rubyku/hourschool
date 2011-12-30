@@ -29,6 +29,4 @@
     .confirm-description-block
       %p.confirm Have someone in mind you want to invite? Leave a message on their Facebook wall!
 
-      = render :partial => "users/facebook/autocomplete/share"
-      
-      .flash-notice Invite successfully sent!
+      = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"}

@@ -7,8 +7,9 @@
     data-name="<%= local_assigns[:name] %>"
     data-description="<%= local_assigns[:description] %>"
   />
-</div>
 
-<a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
+  <a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
+  <span class='success'></span>
+</div>
 
 <%= render :partial => 'users/facebook/autocomplete/activate' %>

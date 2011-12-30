@@ -1,11 +1,17 @@
 <% unless content_for?(:facebugger_autocomplete_javascript) %>
   <%= content_for :facebugger_autocomplete_javascript do %>
+
     <script type='text/javascript'>
       if (typeof FaceBugger === 'undefined') var FaceBugger = {} ;
       FaceBugger.Autocomplete = (function(){
 
         // callback
-        var afterInvite = function(target, ui) {};
+        var afterInvite = function(target, ui) {
+          success_div = $("<div class='clearfix'><p class='flash-notice'>Successfully Sent Invite to " + ui.item.name + ",</p><p class='flash-notice'>Invite another friend!</p></div>");
+          target.first().nextAll('.success').append(success_div);
+          success_div.fadeOut(10000);
+
+        };
 
         var create = function(event, ui, target) {
           options = { message:     target.data('message'),     // message above link
@@ -14,7 +20,6 @@
                       name:        target.data('name'),        // text on link
                       id:          ui.item.id                  // id of user
                     }
-
           $.ajax({
             url:      target.data('create-url'),
             dataType: 'html',
@@ -28,7 +33,7 @@
 
         var addFriendsToAutocomplete = function(target, friends){
           target.autocomplete({
-            minLength: 6,
+            minLength: 3,
             source: friends,
             select: function(event, ui) {
               create(event, ui, target);
@@ -38,14 +43,14 @@
             var itemElement = $('<li></li>')
             .data("item.autocomplete", item)
             .addClass("ui-helper-clearfix")
-            .append(  "<div id='fb-autocomplete'>" + "<a>" + 
+            .append("<a>" +
                        "<img height='50' width=50' src='" +
                          item.image_url +
                          "' />" +
-                       "<span id='fb-name'>" +
+                       "<span>" +
                          item.name +
                        "</span>" +
-                     "</a>" + "</div>"
+                     "</a>"
                      )
             .appendTo(ul);
         }};
@@ -53,7 +58,9 @@
         var populateAutocomplete = function(target) {
           $.ajax({ url: target.data('source-url'),
                    dataType: 'json',
-                   success: function(friends) {addFriendsToAutocomplete(target, friends)}
+                   success: function(friends) {
+                     addFriendsToAutocomplete(target, friends)
+                    }
           });
         };
 
@@ -61,6 +68,7 @@
           $('.facebookTypeAheadShare').each(function(){
             populateAutocomplete($(this));
           })
+          return true;
         };
 
         return {

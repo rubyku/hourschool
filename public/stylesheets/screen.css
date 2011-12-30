@@ -3187,7 +3187,7 @@ a.tip {
   width: 600px;
 }
 
-.flash-notice{
+.flash-notice {
   text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -3198,7 +3198,6 @@ a.tip {
   letter-spacing: 0.05em;
   width: 100%;
 }
-
 
 /* Sign up form */
 .loginButton {
@@ -3896,14 +3895,17 @@ td.fb_share_table_name_column{
   letter-spacing: 0.1em;
 }
 
+.facebookShareSubmit {
+  margin-left: 10px;
+}
 
 .facebookTypeAheadShare{
+  padding : 0;
   position: relative;
   float: left;
   width: 250px;
   height: 29px;
   margin-bottom: 20px;
-  margin-right: 10px;
   padding-left: 10px;
   border: 1px solid #d2d9dc;
   -moz-border-radius: 5px;
@@ -3912,20 +3914,36 @@ td.fb_share_table_name_column{
 }
 
 .ui-corner-all{
-  margin-top: 10px;
-  cursor: pointer;
-  height: 54px;
+  z-index: 0;
+}
+
+ul.ui-autocomplete {
   width: 260px;
-  z-index: 0;
+  height: 300px; /* i _hate_ jquery ui styling */
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 10px;
 }
 
-#fb-autocomplete{
+ul.ui-autocomplete span {
+  position: relative;
+  bottom: 20px;
+  left:   10px;
+}
+
+ul.ui-autocomplete  a {
   background-color: white;
-  z-index: 0;
+  border-bottom: 1px solid #d2d9dc;
+  padding: 5px;
+  display: block;
 }
 
-#fb-name{
-  margin-left: 10px;
+ul.ui-autocomplete a.ui-state-hover {
+  cursor: pointer;
+  background-color: #f8f8ff;
+  border: 1px solid #d2d9dc;
 }
 
 #tweet-for-teacher{
