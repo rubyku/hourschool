@@ -4,6 +4,7 @@ gem 'rails', '3.0.9'
 gem 'pg'
 
 
+gem 'wicked', :git => 'git://github.com/schneems/wicked.git'
 gem 'awesome_print'     # for the printing
 gem "koala", '~> 1.2.1' # For the facebook
 gem "dalli", '~> 1.1.4' # for memcache
@@ -32,7 +33,7 @@ gem 'haml'
 gem 'rake', '~> 0.9.2'
 gem 'jquery-rails', '>= 1.0.19'
 
-gem 'friendly_id', '4.0.0.beta14'
+gem 'friendly_id', '4.0.0'
 # uncomment the next line if you wish to deploy to Heroku
 # gem 'heroku', :group => :development
 
