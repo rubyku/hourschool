@@ -14,7 +14,7 @@
         %br
           .class-description
             .heading13-class
-              = link_to course.title, course
+              = link_to course.title.truncate(36), course
             %p= course.teaser.truncate(60) unless course.teaser.blank?
 
           .class-note
