@@ -2,7 +2,11 @@ class Courses::BrowseController < ApplicationController
 
   def index
     @courses = Course.active.paginate(:page => params[:page]||1)
-    @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{@current_user.city}'").count == 0
+    if current_user
+      @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
+    else
+      @no_courses_in_user_city = true
+    end
   end
 
 
@@ -10,7 +14,11 @@ class Courses::BrowseController < ApplicationController
 
 
   def show
-    @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{@current_user.city}'").count == 0
+    if current_user
+      @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
+    else
+      @no_courses_in_user_city = true
+    end
     case params[:id]
     when 'past'
       @courses = Course.past.random.paginate(:page => params[:page]||1)
