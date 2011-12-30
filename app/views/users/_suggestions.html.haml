@@ -1,7 +1,9 @@
 - if suggestions.size == 0 
-  = "You haven't made any suggestions yet. "
-  = link_to "What have you always wanted to learn?", suggest_path, :class => "pagenote-link"
-
+  - if current_user == @user
+    = "You haven't made any suggestions yet. "
+    = link_to "What have you always wanted to learn?", suggest_path, :class => "pagenote-link"
+  - else 
+    = "#{@user.name} has not made any suggestions yet!"
 - suggestions.each do |t|
   .vote-class.clearfix
     .vote-class-title
