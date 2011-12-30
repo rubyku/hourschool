@@ -23,9 +23,9 @@
       %span{:id => "vote_link_#{t.id}"}
         - if user_signed_in?
           - if !current_user.voted_on?(t)
-            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-class-button"
+            = link_to "Vote", csvote_path("csid" => t.id), :class => "vote-button"
           - else
             .voted-button
               = "Voted"
         - else
-          = link_to_function "Add vote", "alert('Please login to vote!')", :class => "vote-class-button"
+          = link_to_function "Add vote", "alert('Please login to vote!')", :class => "vote-button"
