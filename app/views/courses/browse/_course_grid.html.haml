@@ -21,7 +21,7 @@
             .heading9-class
               - if course.active?
                 = "#{course.seats_left} seats left | "
-              = "#{course.city.try(:name)}"
+              = "#{course.city.try(:name)}, #{course.city.try(:state)}"
 
     - else
       .classBlock
