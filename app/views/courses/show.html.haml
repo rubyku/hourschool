@@ -1,8 +1,6 @@
 %head
   = include_yui_editor_if_used.html_safe
 
-- p "request is #{request.url}"
-
 .page
   .page-content
     .page-section-float-left
@@ -30,12 +28,12 @@
         /       = link_to "Heart this class", heart_path(:id => @current_course.id), :remote => true
         /     - else
         /       = "You have hearted this class!"
-              
+
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
       %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
-    
+
     .comment-section
       .class-section-heading
         = "Join the conversation"
@@ -47,4 +45,6 @@
     <meta property="og:description" content="<%= @course.description %>"/>
     <meta property="og:image" content="<%= @course.photo.url(:small) %>"/>
 
+= content_for :sidebar do
+  = render :partial => "sidebar", :locals => {:course => @course}
 
