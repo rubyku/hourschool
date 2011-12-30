@@ -38,6 +38,7 @@ class SuggestionsController < ApplicationController
       city.suggestions << @suggestion
       city.save
       UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver
+      post_to_twitter(@suggestion)
       flash[:notice] = "Thanks for suggesting a class!"
       redirect_to @suggestion
     else
@@ -102,5 +103,10 @@ class SuggestionsController < ApplicationController
     when "old"
       @suggestions = @suggestions.sort! { |a,b| a.created_at <=> b.created_at }
     end
+  end
+
+  def post_to_twitter(suggestion)
+    client = Twitter::Client.new
+    client.update("New class suggestion! \"#{suggestion.name}\" - Vote for it here: #{url_for(suggestion)}")
   end
 end
