@@ -4,37 +4,19 @@ feature "Acceptance Sessions" do
   let(:visitor)  {Factory.create(:user)}
 
   before(:all) do
-    # User.destroy_all # spork + factory_girl + capybara weirdness
   end
 
-  describe 'create' do
+  describe 'manual creation' do
     scenario 'gets redirected back to original path after signin' do
       user = Factory.create(:user, :admin => true)
       original_path = admin_charts_path
-      visit original_path                          # requires authentication
-      current_path.should == new_user_session_path # redirect
-      fill_in('user_email',    :with => user.email)
-      fill_in('user_password', :with => user.password )
-      click_on('user_submit')
-      current_path.should == original_path         # send em' back
+      visit original_path                               # requires authentication
+      current_path.should == new_user_session_path      # redirect to sign in path
+      fill_in  'user_email',    :with => user.email
+      fill_in  'user_password', :with => user.password
+      click_on 'user_submit'
+      current_path.should == original_path              # send em' back
     end
   end
 
-  describe "index" do
-
-  end
-
-  # describe "show" do
-  #   before(:all) do
-  #     @url = web_guide_path(guide)
-  #   end
-  #   scenario "logged out users can view a guide" do
-  #      visit @url
-  #      successfully_renders(page)
-  #   end
-  #   scenario "logged in users can view a guide" do
-  #     as_user(visitor).visit @url
-  #     successfully_renders(page)
-  #   end
-  # end
 end
