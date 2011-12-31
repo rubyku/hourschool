@@ -1,6 +1,5 @@
 .page
   .page-content
-
     .page-section-float-left  
       - if (@approved_courses.any? || @pending_courses.count != 0 || !@user.photo.exists? || @user.zip.blank? || @user.location.blank?) && current_user == @user
         .notification-center
