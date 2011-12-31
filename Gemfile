@@ -108,12 +108,14 @@ gem "mocha", :group => :test
 # gem "liverelaod"
 
 group :development, :test do
+  gem 'capybara', '~> 1.1.2'
   gem "rspec-rails", "~> 2.6"
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 1.4.0'
   gem 'rb-fsevent'
   gem 'guard-livereload'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'guard-bundler'
   gem 'forgery'
   gem 'random_data'
   gem 'faker'

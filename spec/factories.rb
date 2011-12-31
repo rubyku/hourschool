@@ -1,5 +1,3 @@
-
-
 FactoryGirl.define do
   sequence :email do |n|
     "person_#{Time.now.to_i }@example.com"
@@ -28,7 +26,7 @@ FactoryGirl.define do
     email     { FactoryGirl.generate(:email) }
     zip       { Forgery(:address).zip }
     location  { "#{Forgery(:address).city}, #{Forgery(:address).state}" }
-
+    time_zone "America/Chicago"
     password  { Forgery(:basic).password }
     bio       { Forgery(:lorem_ipsum).words(rand(10)) }
   end
