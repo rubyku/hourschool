@@ -41,7 +41,7 @@
     <p>
      <%= f.label :categories, 'Categories', :class => "form-question" %><br />
      <p class="tip">Choose the best category this class falls into.</p>
-     <%= f.select :categories, options_for_select([['Presentation', 'Presentation'],['Round Table', 'Round Table'], ['Demo','Demo'],['Hands-on','Hands-on']]) %>
+     <%= f.select :categories, options_for_select([['Presentation', 'Presentation'],['Round Table', 'Round Table'], ['Demo','Demo'],['Hands-on','Hands-on']], :selected => @course.category_list.first) %>
      </p>
      <br><br>
 
