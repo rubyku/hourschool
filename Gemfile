@@ -117,6 +117,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'guard-bundler'
   gem 'forgery'
+  gem 'launchy', '~> 2.0.5'
   gem 'random_data'
   gem 'faker'
   gem 'timecop'

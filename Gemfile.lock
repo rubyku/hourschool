@@ -132,6 +132,8 @@ GEM
     koala (1.2.1)
       faraday (~> 0.7.0)
       multi_json (~> 1.0)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
     log4r (1.1.9)
     macaddr (1.5.0)
       systemu (>= 2.4.0)
@@ -326,6 +328,7 @@ DEPENDENCIES
   indextank
   jquery-rails (>= 1.0.19)
   koala (~> 1.2.1)
+  launchy (~> 2.0.5)
   method_cacheable (= 0.0.3)
   mocha
   mysql2 (~> 0.2.6)
