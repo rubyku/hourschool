@@ -1,19 +1,20 @@
 %ul.searchFilter
-  - if current_user 
+  - if current_user
     %li
       .sidebar-heading My Location
       %li= link_to "#{current_user.city}, #{current_user.state}", courses_browse_path(:city, :city => current_user.city)
 %ul.searchFilter
-  %li
-    .sidebar-heading Browse By City
-  %li= link_to "All", courses_browse_path(:city, :city => "All")
-  %li= link_to "Ann Arbor, MI", courses_browse_path(:city, :city => "Ann Arbor") unless current_user.city == "Ann Arbor"
-  %li= link_to "Austin, TX", courses_browse_path(:city, :city => "Austin") unless current_user.city == "Austin"
-  %li= link_to "New York, NY", courses_browse_path(:city, :city => "New York") unless current_user.city == "New York"
-  %li= link_to "San Francisco, CA", courses_browse_path(:city, :city => "San Francisco") unless current_user.city == "San Francisco"
-  %li= link_to "Santa Monica, CA", courses_browse_path(:city, :city => "Santa Monica") unless current_user.city == "Santa Monica"
-  %li= link_to "Toronto, ON", courses_browse_path(:city, :city => "Toronto") unless current_user.city == "Toronto"
-  %li= link_to "Windsor, CO", courses_browse_path(:city, :city => "Windsor") unless current_user.city == "Windsor"
+  - if current_user
+    %li
+      .sidebar-heading Browse By City
+      %li= link_to "All", courses_browse_path(:city, :city => "All")
+      %li= link_to "Ann Arbor, MI", courses_browse_path(:city, :city => "Ann Arbor") unless current_user.city == "Ann Arbor"
+      %li= link_to "Austin, TX", courses_browse_path(:city, :city => "Austin") unless current_user.city == "Austin"
+      %li= link_to "New York, NY", courses_browse_path(:city, :city => "New York") unless current_user.city == "New York"
+      %li= link_to "San Francisco, CA", courses_browse_path(:city, :city => "San Francisco") unless current_user.city == "San Francisco"
+      %li= link_to "Santa Monica, CA", courses_browse_path(:city, :city => "Santa Monica") unless current_user.city == "Santa Monica"
+      %li= link_to "Toronto, ON", courses_browse_path(:city, :city => "Toronto") unless current_user.city == "Toronto"
+      %li= link_to "Windsor, CO", courses_browse_path(:city, :city => "Windsor") unless current_user.city == "Windsor"
 
 %ul.searchFilter
   %li
