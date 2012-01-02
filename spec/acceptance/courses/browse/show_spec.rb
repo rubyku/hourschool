@@ -8,7 +8,7 @@ feature "Acceptance courses/browse" do
       as_visitor.visit learn_path
       successfully_renders
     end
-    
+
     scenario 'works while logged in' do
       as_user.visit learn_path
       successfully_renders
