@@ -170,7 +170,7 @@ module User::Facebook
     def full_facebook_friends
       @full_facebook_friends = []
       facebook_friends.each_with_index do |friend, index|
-        hash = HashWithIndifferentAccess.new(name:friend['name'], id: friend['id'], image_url: friend['image_url'])
+        hash = HashWithIndifferentAccess.new(name:friend['name'], id: friend['id'], image_url: friend['image_url'], label: friend['name'])
         # hash[:interests]   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
         # hash[:activities]  = fetch_facebook_friend_activities[index].map {|x| x['name']}
         # hash[:likes]       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
