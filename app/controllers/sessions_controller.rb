@@ -1,4 +1,7 @@
 class SessionsController < Devise::SessionsController
+  
+  layout 'application', :except => :new
+  
   def new
     store_location
     super

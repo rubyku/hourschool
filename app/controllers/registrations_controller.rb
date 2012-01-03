@@ -2,6 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   # Over-riding update, all other actions are handled by Devise::RegistrationsController (the parent)
   # If you're calling any other action you can leave it blank, or call super on it
 
+  layout 'application', :except => :new
+  
   def new
     store_location
     super
