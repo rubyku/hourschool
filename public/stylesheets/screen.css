@@ -4028,3 +4028,8 @@ a.closeButton:hover {
   min-height: 20px;
   width: 100%;
 }
+
+.friendLocation {
+  font-size:0.8em;
+  color: #A19A95;
+}
