@@ -161,24 +161,17 @@ module User::Facebook
       get_batch_connections_for_friends('likes').map      {|element| element.nil? ? [] : element}
     end
 
+
+
     def full_facebook_friends
       @full_facebook_friends = []
       facebook_friends.each_with_index do |friend, index|
-        name        = friend['name']
-        id          = friend['id']
-        image_url   = friend['image_url']
-        interests   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
-        activities  = fetch_facebook_friend_activities[index].map {|x| x['name']}
-        likes       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
-        location    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
-        @full_facebook_friends << HashWithIndifferentAccess.new(name:       name,
-                                                                id:         id,
-                                                                image_url:  image_url,
-                                                                interests:  interests,
-                                                                activities: activities,
-                                                                likes:      likes,
-                                                                location:   location,
-                                                                )
+        hash = HashWithIndifferentAccess.new(name:friend['name'], id: friend['id'], image_url: friend['image_url'])
+        # hash[:interests]   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
+        # hash[:activities]  = fetch_facebook_friend_activities[index].map {|x| x['name']}
+        # hash[:likes]       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
+        hash[:location]    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
+        @full_facebook_friends << hash
       end
       return @full_facebook_friends
     end
