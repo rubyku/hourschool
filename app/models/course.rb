@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   validates_presence_of :title, :teaser, :experience, :date, :time_range, :public, :place_name, :if => :proposal?
   
-  validates_presence_of :min_seats, :max_seats
+  validates_presence_of :min_seats, :max_seats, :description, :unless => :proposal?
   
   validate :default_validations, :message => "The fields cannot be empty"
   attr_accessible :terms_of_service
