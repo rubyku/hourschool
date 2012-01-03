@@ -49,6 +49,9 @@ GEM
     acts-as-taggable-on (2.1.1)
       rails
     addressable (2.2.6)
+    airbrake (3.0.9)
+      activesupport
+      builder
     arel (2.0.10)
     awesome_print (1.0.2)
     aws-s3 (0.6.2)
@@ -309,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
+  airbrake
   awesome_print
   aws-s3
   capybara (~> 1.1.2)

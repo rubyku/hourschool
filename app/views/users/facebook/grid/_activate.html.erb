@@ -46,7 +46,7 @@
             dataType: 'html',
             data:     options,
             success:  function(html) { container.replaceWith(html) },
-            error:    function(html) { container.replaceWith('Could not load element') }
+            error:    function(html) { container.replaceWith('') }
           })
         };
 
@@ -66,7 +66,7 @@
             type:     'POST',
             data:     options,
             success:  function(html) { container.replaceWith(html) },
-            error:    function(html) { container.replaceWith('Could not load element') }
+            error:    function(html) { container.replaceWith('') }
           })
         };
 
@@ -75,7 +75,7 @@
             url:      url,
             dataType: 'html',
             success:  function(html) { container.replaceWith(html) },
-            error:    function(html) { container.replaceWith('Could not load element') }
+            error:    function(html) { container.replaceWith('') }
           })
         };
 
