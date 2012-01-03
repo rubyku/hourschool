@@ -88,7 +88,7 @@ module User::Facebook
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_interests
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_likes
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_activities
-      cache(:write, :expires_in => 4.hours).full_facebook_friends
+      #full_facebook_friends
       true
     end
 
@@ -98,7 +98,7 @@ module User::Facebook
       cache(:write, :expires_in => DefaultExpires).facebook_friend_interests
       cache(:write, :expires_in => DefaultExpires).facebook_friend_likes
       cache(:write, :expires_in => DefaultExpires).facebook_friend_activities
-      cache(:write, :expires_in => 4.hours).full_facebook_friends
+      #full_facebook_friends
       true
     end
 
@@ -141,7 +141,22 @@ module User::Facebook
     end
 
     def fetch_full_facebook_friends
-      @fetch_full_facebook_friends      ||= cache(:expires_in => 4.hours).full_facebook_friends
+      @fetch_full_facebook_friends      ||= full_facebook_friends
+    end
+
+    # full_facebook_friends method should always be quickish since it relies on other cached methods
+    # however it cannot be cashed itself since it is too big to fit into memcache
+    def full_facebook_friends
+      @full_facebook_friends = []
+      facebook_friends.each_with_index do |friend, index|
+        hash = HashWithIndifferentAccess.new(name: friend['name'], id: friend['id'], image_url: friend['image_url'], label: friend['name'])
+        hash[:interests]   = read_facebook_friend_interests[index]  ||[]
+        hash[:activities]  = read_facebook_friend_activities[index] ||[]
+        hash[:likes]       = read_facebook_friend_likes[index]      ||[]
+        hash[:location]    = read_facebook_friend_locations[index]  ||""
+        @full_facebook_friends << hash
+      end
+      return @full_facebook_friends
     end
 
     protected
@@ -194,19 +209,6 @@ module User::Facebook
       fb_likes.map {|likes| likes.map {|like| like['name']}}
     end
 
-
-    def full_facebook_friends
-      @full_facebook_friends = []
-      facebook_friends.each_with_index do |friend, index|
-        hash = HashWithIndifferentAccess.new(name: friend['name'], id: friend['id'], image_url: friend['image_url'], label: friend['name'])
-        hash[:interests]   = read_facebook_friend_interests[index]      ||[]
-        hash[:activities]  = read_facebook_friend_activities[index]     ||[]
-        hash[:likes]       = read_facebook_friend_likes[index]          ||[]
-        hash[:location]    = read_facebook_friend_locations[index]      ||""
-        @full_facebook_friends << hash
-      end
-      return @full_facebook_friends
-    end
   end
   include ExpensiveMethods
 
