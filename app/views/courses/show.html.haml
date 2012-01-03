@@ -38,6 +38,9 @@
   :erb
     <meta property="og:description" content="<%= @course.description %>"/>
     <meta property="og:image" content="<%= @course.photo.url(:small) %>"/>
+    <meta property="og:title"       content="<%= @course.title %>"              />
+    <meta property="og:url"         content="<%= course_url(@course) %>"        />
+
 
 = content_for :sidebar do
   = render :partial => "sidebar", :locals => {:course => @course}
