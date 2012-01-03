@@ -1,7 +1,10 @@
 <div class="share_header">Help spread Hourschool by sharing with your friends!</div>
 
+<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'custom', :display => nil} do %>
+  contentz
+<%- end -%>
 
-<%= render :partial => "users/facebook/autocomplete/share" %>
+<%# render :partial => "users/facebook/autocomplete/share" %>
 
 
 <p>This is the main content. To display a lightbox click
@@ -9,16 +12,10 @@
     here</a>
 </p>
 
-<div class='modal' style='display:block'>
-  <div class="overlay"></div>
-  <div class="content">
-    <h2>
-      <a herf='javascript:void(0)' onclick="$('.modal').hide()" class='closeButton'>
-        X
-      </a>
-    </h2>
-    This is the lightbox content.
-    <br />
-  </div>
-</div>
 
+<% @course = Course.first %>
+
+<%= render :partial => "users/facebook/grid/share", :locals => {:message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me so we can learn together!", :same_city => true , :limit => 5 } %>
+
+<%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
+ %>

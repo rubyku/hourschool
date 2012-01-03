@@ -1,16 +1,22 @@
 module User::Omniauth
   extend ActiveSupport::Concern
 
+
+  def update_facebook_from_oauth(auth_hash)
+    fb_token_from_hash    = auth_hash["credentials"]["token"]
+    facebook_id_from_hash = auth_hash["uid"]
+    if (fb_token != fb_token_from_hash || facebook_id != facebook_id_from_hash)
+      update_attributes(:fb_token => fb_token_from_hash, :facebook_id => facebook_id_from_hash)
+    end
+    self
+  end
+
   module ClassMethods
     def find_for_facebook_oauth(auth_hash, signed_in_resource=nil)
       email =    auth_hash['extra']['user_hash']['email']
       user  =    User.find_by_email(email)
       user  ||=  User.create_from_omniauth(auth_hash)
-      fb_token_from_hash    = auth_hash["credentials"]["token"]
-      facebook_id_from_hash = auth_hash["uid"]
-      if user && (user.fb_token != fb_token_from_hash || user.facebook_id != facebook_id_from_hash)
-        user.update_attributes(:fb_token => fb_token_from_hash, :facebook_id => facebook_id_from_hash)
-      end
+      user.update_facebook_from_oauth(auth_hash)
       user
     end
 

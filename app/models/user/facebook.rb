@@ -1,9 +1,28 @@
 module User::Facebook
   extend ActiveSupport::Concern
 
+  # facebook stores their states in full name ex. Texas not Tx
+  def in_the_same_state_fb?(friend_hash)
+    return false if friend_hash['location'].blank?
+    friend_hash['location'].include? full_state
+  end
+
+  def not_in_the_same_state_fb?(friend_hash)
+    !in_the_same_state_fb?(friend_hash)
+  end
+
+  def in_the_same_city_fb?(friend_hash)
+    return false if friend_hash['location'].blank?
+    friend_hash['location'].include?(city) && in_the_same_state_fb?(friend_hash)
+  end
+
 
   def facebook?
     fb_token.present?
+  end
+
+  def fetch_facebook_permissions
+    @facebook_permissions ||= cache(:expires_in => 24.hours).fetch_facebook_permissions
   end
 
   def facebook_permissions
@@ -11,7 +30,7 @@ module User::Facebook
   end
 
   def facebook_permissions_include?(perm)
-    facebook_permissions[perm] == 1
+    fetch_facebook_permissions[perm] == 1
   end
 
   def require_permission!(perm)
@@ -146,24 +165,17 @@ module User::Facebook
       get_batch_connections_for_friends('likes').map      {|element| element.nil? ? [] : element}
     end
 
+
+
     def full_facebook_friends
       @full_facebook_friends = []
       facebook_friends.each_with_index do |friend, index|
-        name        = friend['name']
-        id          = friend['id']
-        image_url   = friend['image_url']
-        interests   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
-        activities  = fetch_facebook_friend_activities[index].map {|x| x['name']}
-        likes       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
-        location    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
-        @full_facebook_friends << HashWithIndifferentAccess.new(name:       name,
-                                                                id:         id,
-                                                                image_url:  image_url,
-                                                                interests:  interests,
-                                                                activities: activities,
-                                                                likes:      likes,
-                                                                location:   location,
-                                                                )
+        hash = HashWithIndifferentAccess.new(name:friend['name'], id: friend['id'], image_url: friend['image_url'])
+        # hash[:interests]   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
+        # hash[:activities]  = fetch_facebook_friend_activities[index].map {|x| x['name']}
+        # hash[:likes]       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
+        hash[:location]    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
+        @full_facebook_friends << hash
       end
       return @full_facebook_friends
     end

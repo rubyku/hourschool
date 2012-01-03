@@ -3966,7 +3966,6 @@ ul.ui-autocomplete a.ui-state-hover {
 }
 
 .print-flyer-button:hover { background-color: #e46f28;}
-=======
 .modal .overlay{
   display: block;
   position: absolute;
@@ -4027,4 +4026,9 @@ a.closeButton:hover {
   padding: 0 5px 5px;
   min-height: 20px;
   width: 100%;
+}
+
+.friendLocation {
+  font-size:0.8em;
+  color: #A19A95;
 }

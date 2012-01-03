@@ -1,40 +1,31 @@
-<%
-  message = local_assigns[:message]
-  link    = local_assigns[:link]
-  name    = local_assigns[:name]
- -%>
+<%- unless friend.blank? -%>
+  <div class='facebookShare' data-id="<%= friend['id'] %>" data-limit=1>
+    <table class="fb_share_table">
+      <tr class="fb_share_table">
+        <td>
+          <img src="<%= friend['image_url'] %>" width="40" height="40" class ="fb_friend_picture"/>
+        </td>
 
-<div class='facebookShare'
-  data-url="<%= users_facebook_share_index_path %>"
-  data-limit=1
-  data-id="<%= friend['id'] %>"
-  data-message="<%= message %>"
-  data-link="<%= link %>"
-  data-name="<%= name %>">
+        <td class="fb_share_table_name_column">
+          <a href="<%= friend['image_url'] %>" class="fb_friend_name">
+              <%= friend['name'] %>
+          </a>
+          <%- if friend['location'] -%>
+            <p class='friendLocation'><%= friend['location'] %></p>
+          <%- end -%>
+        </td>
 
-  <table class="fb_share_table">
-    <tr class="fb_share_table">
-      <td>
-        <img src="<%= friend['image_url'] %>" width="40" height="40" class ="fb_friend_picture"/>
-      </td>
+        <td class="fb_share_table">
+            <a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
+        </td>
 
-      <td class="fb_share_table_name_column">
-        <a href="<%= friend['image_url'] %>" class="fb_friend_name">
-            <%= friend['name'] %>
-        </a>
-      </td>
+        <td class="fb_share_table">
+          <a href="#"
+             data-url="<%= users_facebook_share_path(:next) %>"
+             class="close button_decline facebookShareDecline" data-tooltip="#">x</a>
+        </td>
 
-      <td class="fb_share_table">
-          <a href="#" class="btn fit action small button_accept facebookShareSubmit" id="invite-button">Invite</a>
-      </td>
-
-      <td class="fb_share_table">
-        <a href="#"
-           data-url="<%= users_facebook_share_path(:next) %>"
-           class="close button_decline facebookShareDecline" data-tooltip="#">x</a>
-      </td>
-
-      </tr>
-  </table>
-</div>
-
+        </tr>
+    </table>
+  </div>
+<%- end -%>

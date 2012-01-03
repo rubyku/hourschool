@@ -81,6 +81,10 @@ class ApplicationController < ActionController::Base
       session[:return_to] = request.url
     end
 
+    def store_referrer
+      session[:return_to] = request.referrer
+    end
+
 
     def after_sign_in_path_for(resource)
       previous_path_or(learn_path)

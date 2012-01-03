@@ -1,0 +1,7 @@
+.modal{:class => local_assigns[:modal_class], :style => "display:#{local_assigns[:display]||'none'}"}
+  .overlay
+  .content
+    %h2
+      %a(herf='javascript:void(0)' onclick="$('.modal').hide()" class='closeButton')
+        X
+    = yield

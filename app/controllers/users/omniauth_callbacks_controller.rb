@@ -1,7 +1,12 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     # You need to implement the method below in your model
-    @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
+    if current_user
+      @user = current_user
+      @user.update_facebook_from_oauth(env["omniauth.auth"])
+    else
+      @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
+    end
     sign_in(@user, :bypass => true) # needed for devise
     @user.remember_me!
     if @user.zip.present?
@@ -14,6 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def passthru
+    store_referrer if session[:return_to].blank?
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
   end
 end

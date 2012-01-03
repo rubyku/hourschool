@@ -53,21 +53,29 @@
 
     .confirm-description-block
       = render :partial => "social_share", :locals => {:url => course_url(@course), :text => "Check out this course I'm teaching ", :description => @course.description}
-      %p.confirm Have someone in mind you want to invite? Leave a message on their Facebook wall!
 
-      = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
-
+    / .confirm-description-block
+    /   %p What would you like to do now?
+    /   %br
+    /   %span.list-number 1
+    /   = link_to "Go to the class page", @course, :class => "orange-checklist"
+    /   %br
+    /   %span.list-number 2
+    /   = link_to "View your profile", "/profile", :class => "orange-checklist"
+    /   %br
+    /   %span.list-number 3
+    /   = link_to "Browse for more classes", "/learn", :class => "orange-checklist"
     .confirm-description-block
-      %p What would you like to do now?
-      %br
-      %span.list-number 1
-      = link_to "Go to the class page", @course, :class => "orange-checklist"
-      %br
-      %span.list-number 2
-      = link_to "View your profile", "/profile", :class => "orange-checklist"
-      %br
-      %span.list-number 3
-      = link_to "Browse for more classes", "/learn", :class => "orange-checklist"
+      - if current_user.facebook?
+        %p.confirm Classes are more fun with friends! Invite a friend from Facebook!
+
+        = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
+
+        = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm taking this class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
+
+      - else
+        %p.confirm Classes are more fun with friends! Connect Facebook to your account today!
+        = render :partial => 'users/facebook/connect_button'
 
 - content_for :sidebar do
   .tipbox

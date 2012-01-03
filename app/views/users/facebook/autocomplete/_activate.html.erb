@@ -40,6 +40,7 @@
             select: function(event, ui) {
               create(event, ui, target);
               target.val(''); // remove name from box`
+              target.focus();
               return false;   // don't set value of text box
             }
           }).data('autocomplete').
