@@ -1,16 +1,4 @@
-<%
-  message = local_assigns[:message]
-  link    = local_assigns[:link]
-  name    = local_assigns[:name]
- -%>
-
-<div class='facebookShare'
-  data-url="<%= users_facebook_share_index_path %>"
-  data-limit=1
-  data-id="<%= friend['id'] %>"
-  data-message="<%= message %>"
-  data-link="<%= link %>"
-  data-name="<%= name %>">
+<div class='facebookShare' data-id="<%= friend['id'] %>"">
 
   <table class="fb_share_table">
     <tr class="fb_share_table">
@@ -22,6 +10,9 @@
         <a href="<%= friend['image_url'] %>" class="fb_friend_name">
             <%= friend['name'] %>
         </a>
+        <%- if friend['location'] -%>
+          <p><%= friend['location'] %></p>
+        <%- end -%>
       </td>
 
       <td class="fb_share_table">

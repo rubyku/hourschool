@@ -4,32 +4,45 @@
       if (typeof FaceBugger === 'undefined') var FaceBugger = {} ;
       FaceBugger.Grid = (function() {
         var setup = function() {
+            $body = $('body');
+
             // set up main insertion points
             $('.facebookShareMainContent').each(function() {
               target = $(this);
-              index(target, target.data());
+              url    = target.closest('.facebookShareMain').data().url
+              index(target, url);
               })
 
             // setup submit action
             $('.facebookShareMain').delegate('a.facebookShareSubmit', 'click', function(event){
               container = $(this).closest('.facebookShare');
-              container.fadeOut(3000);
-              create(container, container.data());
+              url       = container.closest('.facebookShareMain').data().url
+              create(container, url, container.data());
               return false;
             });
 
             // setup decline action
             $('.facebookShareMain').delegate('a.facebookShareDecline', 'click', function(event){
               container = $(this).closest('.facebookShare');
-              container.fadeOut(2000);
-              show(container, container.data());
+              url       = container.closest('.facebookShareMain').data().url
+              show(container, url, container.data());
               return false;
             });
         };
 
-        var show = function(container, options) {
+
+        var dismiss_id = function(id, options) {
+          dismissed_ids = $body.data('fb_exclude_ids')|| [];
+          dismissed_ids.push(id)
+          $body.data('fb_exclude_ids', dismissed_ids);
+          options.dismissed_ids = dismissed_ids
+        }
+
+        var show = function(container, url, options) {
+          dismiss_id(options.id, options);
+          container.fadeOut(2000);
           $.ajax({
-            url:      options.url,
+            url:      url,
             dataType: 'html',
             data:     options,
             success:  function(html) { container.replaceWith(html) },
@@ -37,16 +50,18 @@
           })
         };
 
-        var create = function(container, options){
+        var create = function(container, url, options){
           if (container.data('clicked')) {
             return false;
           }
           else {
             container.data('clicked', true);
           }
-
+          dismiss_id(options.id, options);
+          options.dismissed_ids = dismissed_ids;
+          container.fadeOut(3000);
           $.ajax({
-            url:      options.url,
+            url:      url,
             dataType: 'html',
             type:     'POST',
             data:     options,
@@ -55,9 +70,9 @@
           })
         };
 
-        var index = function(container, options) {
+        var index = function(container, url) {
           $.ajax({
-            url:      options.url,
+            url:      url,
             dataType: 'html',
             success:  function(html) { container.replaceWith(html) },
             error:    function(html) { container.replaceWith('There was an error loading this element') }
