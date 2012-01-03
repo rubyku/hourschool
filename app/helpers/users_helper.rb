@@ -2,8 +2,9 @@ module UsersHelper
 
   def avatar_for(user, options = {})
     options[:class]||="avatar-big"
+    size = options.delete(:size)||:small
     if user.photo.exists?
-      return image_tag(user.photo.url(:small), options)
+      return image_tag(user.photo.url(size), options)
     else
       avatar_url = ['/images/v2/Avatars_01_V1.png',
                     '/images/v2/Avatars_02_V1.png',
