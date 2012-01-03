@@ -24,8 +24,13 @@ module User::Facebook
     fb_token.present?
   end
 
+  def needs_facebook_reconnect?(permissions)
+    return true if no_facebook?
+    facebook_permissions_mismatch? permissions
+  end
+
   def fetch_facebook_permissions
-    @facebook_permissions ||= cache(:expires_in => 24.hours).fetch_facebook_permissions
+    @facebook_permissions ||= cache(:expires_in => 24.hours).facebook_permissions
   end
 
   def facebook_permissions
@@ -34,6 +39,15 @@ module User::Facebook
 
   def facebook_permissions_include?(perm)
     fetch_facebook_permissions[perm] == 1
+  end
+
+  def facebook_permissions_mismatch?(permissions)
+    raise "expecting array got #{permissions.class}" unless permissions.is_a? Array
+    permissions.map {|perm| facebook_permissions_include? perm }.include? false
+  end
+
+  def facebook_permissions_match?(permissions)
+    !facebook_permissions_mismatch?(permissions)
   end
 
   def require_permission!(perm)
