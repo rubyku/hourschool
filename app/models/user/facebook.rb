@@ -21,12 +21,16 @@ module User::Facebook
     fb_token.present?
   end
 
+  def fetch_facebook_permissions
+    @facebook_permissions ||= cache(:expires_in => 24.hours).fetch_facebook_permissions
+  end
+
   def facebook_permissions
     @facebook_permissions ||= facebook_graph.get_connections('me', 'permissions').first
   end
 
   def facebook_permissions_include?(perm)
-    facebook_permissions[perm] == 1
+    fetch_facebook_permissions[perm] == 1
   end
 
   def require_permission!(perm)
