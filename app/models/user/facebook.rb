@@ -150,19 +150,19 @@ module User::Facebook
     end
 
     def facebook_friend_locations
-      get_batch_friend_data(:fields => 'location').map    {|element| element.nil? ? {} : element}
+      get_batch_friend_data(:fields => 'location').map    {|element| element.blank? ? {} : element}
     end
 
     def facebook_friend_interests
-      get_batch_connections_for_friends('interests').map  {|element| element.nil? ? [] : element}
+      get_batch_connections_for_friends('interests').map  {|element| element.blank? ? [] : element}
     end
 
     def facebook_friend_activities
-      get_batch_connections_for_friends('activities').map {|element| element.nil? ? [] : element}
+      get_batch_connections_for_friends('activities').map {|element| element.blank? ? [] : element}
     end
 
     def facebook_friend_likes
-      get_batch_connections_for_friends('likes').map      {|element| element.nil? ? [] : element}
+      get_batch_connections_for_friends('likes').map      {|element| element.blank? ? [] : element}
     end
 
 
