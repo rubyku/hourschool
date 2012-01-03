@@ -32,11 +32,11 @@ class Users::Facebook::ShareController < ApplicationController
 
 
     def populate_friends
-      if params[:same_city].present?
-        friends = current_user.fetch_full_facebook_friends
-      else
+      # if params[:same_city].present?
+      #   friends = current_user.fetch_full_facebook_friends
+      # else
         friends = current_user.cache(:fetch, :expire => 12.hours).facebook_friends
-      end
+      # end
       friends = friends.shuffle # unfreeze from cache, and randomize
       friends = friends.select {|fb_friend| current_user.in_the_same_city_fb?(fb_friend) }        if params[:same_city].present?
       friends = friends.select {|fb_friend| !params[:dismissed_ids].include? fb_friend['id']}     if params[:dismissed_ids].present?
