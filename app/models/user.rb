@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def full_state
+    StateAbreviations[state.upcase]
+  end
+
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 

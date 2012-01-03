@@ -1,6 +1,21 @@
 module User::Facebook
   extend ActiveSupport::Concern
 
+  # facebook stores their states in full name ex. Texas not Tx
+  def in_the_same_state_fb?(friend_hash)
+    return false if friend_hash['location'].blank?
+    friend_hash['location'].include? full_state
+  end
+
+  def not_in_the_same_state_fb?(friend_hash)
+    !in_the_same_state_fb?(friend_hash)
+  end
+
+  def in_the_same_city_fb?(friend_hash)
+    return false if friend_hash['location'].blank?
+    friend_hash['location'].include?(city) && in_the_same_state_fb?(friend_hash)
+  end
+
 
   def facebook?
     fb_token.present?
