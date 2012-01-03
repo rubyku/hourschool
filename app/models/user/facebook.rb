@@ -78,45 +78,67 @@ module User::Facebook
   # Ideally these caches will be warmed in a background process
   #
   module ExpensiveMethods
-
+    DefaultExpires = 36.hours
 
     def warm_facebook_expensive_cache
-      cache(:fetch, :expires_in => 12.hours).facebook_friend_locations
-      cache(:fetch, :expires_in => 12.hours).facebook_friend_interests
-      cache(:fetch, :expires_in => 12.hours).facebook_friend_likes
-      cache(:fetch, :expires_in => 12.hours).facebook_friend_activities
-      cache(:fetch, :expires_in => 12.hours).full_facebook_friends
+      cache(:fetch, :expires_in => DefaultExpires).facebook_friend_locations
+      cache(:fetch, :expires_in => DefaultExpires).facebook_friend_interests
+      cache(:fetch, :expires_in => DefaultExpires).facebook_friend_likes
+      cache(:fetch, :expires_in => DefaultExpires).facebook_friend_activities
+      cache(:fetch, :expires_in => 4.hours).full_facebook_friends
       true
     end
 
     # zomg this takes a long time ~ 2 minutes for 1000 friends
     def force_refresh_facebook_expensive_cache
-      cache(:write, :expires_in => 12.hours).facebook_friend_locations
-      cache(:write, :expires_in => 12.hours).facebook_friend_interests
-      cache(:write, :expires_in => 12.hours).facebook_friend_likes
-      cache(:write, :expires_in => 12.hours).facebook_friend_activities
-      cache(:write, :expires_in => 12.hours).full_facebook_friends
+      cache(:write, :expires_in => DefaultExpires).facebook_friend_locations
+      cache(:write, :expires_in => DefaultExpires).facebook_friend_interests
+      cache(:write, :expires_in => DefaultExpires).facebook_friend_likes
+      cache(:write, :expires_in => DefaultExpires).facebook_friend_activities
+      cache(:write, :expires_in => 4.hours).full_facebook_friends
       true
     end
 
-    def fetch_facebook_friend_locations
-      @fetch_facebook_friend_locations  ||= cache(:expires_in => 12.hours).facebook_friend_locations
+    def read_facebook_friend_locations
+      @read_facebook_friend_locations  ||= cache(:read).facebook_friend_locations
+      @read_facebook_friend_locations  ||= []
     end
 
+    def read_facebook_friend_interests
+      @read_facebook_friend_interests  ||= cache(:read).facebook_friend_interests
+      @read_facebook_friend_interests  ||= []
+    end
+
+    def read_facebook_friend_likes
+      @read_facebook_friend_likes      ||= cache(:read).facebook_friend_likes
+      @read_facebook_friend_likes      ||= []
+    end
+
+    def read_facebook_friend_activities
+      @read_facebook_friend_activities ||=  cache(:read).facebook_friend_activities
+      @read_facebook_friend_likes      ||= []
+    end
+
+
+    def fetch_facebook_friend_locations
+      @fetch_facebook_friend_locations  ||= cache(:expires_in => DefaultExpires).facebook_friend_locations
+    end
+
+
     def fetch_facebook_friend_interests
-      @fetch_facebook_friend_interests  ||= cache(:expires_in => 12.hours).facebook_friend_interests
+      @fetch_facebook_friend_interests  ||= cache(:expires_in => DefaultExpires).facebook_friend_interests
     end
 
     def fetch_facebook_friend_likes
-      @fetch_facebook_friend_likes      ||= cache(:expires_in => 12.hours).facebook_friend_likes
+      @fetch_facebook_friend_likes      ||= cache(:expires_in => DefaultExpires).facebook_friend_likes
     end
 
     def fetch_facebook_friend_activities
-      @fetch_facebook_friend_activities ||= cache(:expires_in => 12.hours).facebook_friend_activities
+      @fetch_facebook_friend_activities ||= cache(:expires_in => DefaultExpires).facebook_friend_activities
     end
 
     def fetch_full_facebook_friends
-      @fetch_full_facebook_friends      ||= cache(:expires_in => 12.hours).full_facebook_friends
+      @fetch_full_facebook_friends      ||= cache(:expires_in => 4.hours).full_facebook_friends
     end
 
     protected
@@ -150,31 +172,34 @@ module User::Facebook
     end
 
     def facebook_friend_locations
-      get_batch_friend_data(:fields => 'location').map    {|element| element.blank? ? {} : element}
+      friend_data = get_batch_friend_data(:fields => 'location').map {|element| element.blank? ? {} : element}
+      friend_data.map {|friend| friend['location'].try(:[], 'name')||"" }
     end
 
     def facebook_friend_interests
-      get_batch_connections_for_friends('interests').map  {|element| element.blank? ? [] : element}
+      fb_interests = get_batch_connections_for_friends('interests').map {|element| element.blank? ? [] : element}
+      fb_interests.map {|interests| interests.map {|interest| interest['name']}}
     end
 
     def facebook_friend_activities
-      get_batch_connections_for_friends('activities').map {|element| element.blank? ? [] : element}
+      fb_activities = get_batch_connections_for_friends('activities').map {|element| element.blank? ? [] : element}
+      fb_activities.map {|activities| activities.map {|activity| activity['name']}}
     end
 
     def facebook_friend_likes
-      get_batch_connections_for_friends('likes').map      {|element| element.blank? ? [] : element}
+      fb_likes = get_batch_connections_for_friends('likes').map {|element| element.blank? ? [] : element}
+      fb_likes.map {|likes| likes.map {|like| like['name']}}
     end
-
 
 
     def full_facebook_friends
       @full_facebook_friends = []
       facebook_friends.each_with_index do |friend, index|
-        hash = HashWithIndifferentAccess.new(name:friend['name'], id: friend['id'], image_url: friend['image_url'], label: friend['name'])
-        # hash[:interests]   = fetch_facebook_friend_interests[index].map  {|x| x['name']}
-        # hash[:activities]  = fetch_facebook_friend_activities[index].map {|x| x['name']}
-        # hash[:likes]       = fetch_facebook_friend_likes[index].map      {|x| x['name']}
-        hash[:location]    = fetch_facebook_friend_locations[index]['location']['name'] if fetch_facebook_friend_locations[index]['location'].present?
+        hash = HashWithIndifferentAccess.new(name: friend['name'], id: friend['id'], image_url: friend['image_url'], label: friend['name'])
+        hash[:interests]   = read_facebook_friend_interests[index]      ||[]
+        hash[:activities]  = read_facebook_friend_activities[index]     ||[]
+        hash[:likes]       = read_facebook_friend_likes[index]          ||[]
+        hash[:location]    = read_facebook_friend_locations[index]      ||""
         @full_facebook_friends << hash
       end
       return @full_facebook_friends
