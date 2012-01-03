@@ -38,7 +38,9 @@
 
     <div class="brand_bg"></div>
     <div class="container_16 main clearfix">
+      <%= yield :before_main %>
       <%= yield %>
+      <%= yield :after_main %>
     </div>
     <%= yield :foot %>
     <%= yield :foot_libraries %>
