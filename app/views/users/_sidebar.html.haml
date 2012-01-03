@@ -8,23 +8,23 @@
           %p.profile-name-blurb
             = @user.name
         %li.noBullet
-          %p.profile-location-blurb 
+          %p.profile-location-blurb
             = @user.location
 
       %table.user-stat
         %tr
-          %td.user-stat-icon 
+          %td.user-stat-icon
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
           %td.user-stat-number
             %p.class-details-heart-number
               = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
-          %td.user-stat-icon    
+          %td.user-stat-icon
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
           %td.user-stat-number
             %p.class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
-          / 
-          / %td.user-stat-icon        
+          /
+          / %td.user-stat-icon
           /   %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
           / %td.user-stat-number
           /   %p.class-details-heart-number
@@ -32,20 +32,25 @@
           /     = @user.hearts
 
     .sidebar-block-last
-      .sidebar-heading About 
+      .sidebar-heading About
       %p.profile-bio
         = @user.bio
         - if @user.bio.blank?
           = "One of the HourSchoolmates!"
           =# link_to "here", edit_user_registration_path(@user)
-            
+
       %ul.noBullet
         %li.noBullet
           - if !@user.web.blank?
             %a.profile-link
               = link_to "Website", @user.web, :class => "profile-link"
+          %br
+        %li.noBullet
+          - if !@user.twitter_id.blank?
+            %a.profile-link
+              = link_to "Twitter", @user.twitter_url, :class => "profile-link"
 
     - if current_user.admin?
       .sidebar-block-last
-        .sidebar-heading Admin Panel 
+        .sidebar-heading Admin Panel
         =link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'

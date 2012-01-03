@@ -192,6 +192,9 @@ class User < ActiveRecord::Base
     loc.strip unless loc.blank?
   end
 
+  def twitter_url
+    "http://twitter.com/#!/#{self.twitter_id}"
+  end
 
   # ================================
   # User Conversion Code

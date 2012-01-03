@@ -28,8 +28,9 @@ class ApplicationController < ActionController::Base
 
     def render_error(exception)
       @exception = exception
-      log_error(@exception)
-      send_error_to_new_relic(@exception)
+      log_error(exception)
+      send_error_to_new_relic(exception)
+      notify_airbrake(exception)
       respond_to do |format|
         format.html do
           case exception

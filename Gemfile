@@ -24,6 +24,7 @@ gem "omniauth", '~> 0.3.2'
 gem 'twitter'
 
 gem 'newrelic_rpm'
+gem "airbrake"
 
 gem 'yaml_db'
 
