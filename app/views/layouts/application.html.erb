@@ -4,6 +4,10 @@
 <%- end %>
 
 
+<%= content_for :head do %>
+  <meta property="fb:app_id" content="<%= FacebookConfig::ID %>" />
+<%- end -%>
+
 <% content_for :head_scripts do -%>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
