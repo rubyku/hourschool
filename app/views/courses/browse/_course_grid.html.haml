@@ -20,7 +20,10 @@
           .class-note
             .heading9-class
               - if course.active?
-                = "#{course.seats_left} seats left | "
+                - if course.seats_left == 0 
+                  = link_to "Full! Request it again |", course
+                - else 
+                  = link_to "#{course.seats_left} seats left |", course
               = "#{course.city.try(:name)}, #{course.city.try(:state)}"
 
     - else

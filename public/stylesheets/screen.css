@@ -640,8 +640,27 @@ a:hover {
 /*......HOMEPAGE PAGE BREAKDOWN......*/
 /* line 41, ../../app/assets/stylesheets/components/homepage.scss */
 .homepage_top_bg {
-  background-image: url(../../../images/v2/hp_bg1.jpg);
   padding-bottom: 40px;
+}
+
+.homePageBackgroundImage1 {
+  background-image: url(/images/v2/hp-bg1.jpg);
+}
+
+.homePageBackgroundImage2 {
+  background-image: url(/images/v2/hp-bg12.jpg);
+}
+
+.homePageBackgroundImage3 {
+  background-image: url(/images/v2/hp-bg13.png);
+}
+
+.homePageBackgroundImage4 {
+  background-image: url(/images/v2/hp-bg14.png);
+}
+
+.homePageBackgroundImage5 {
+  background-image: url(/images/v2/hp-bg15.png);
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
@@ -871,7 +890,7 @@ img#fb-signup{
   float: left;
   margin-top: 20px;
   margin-left: 76px;
-  z-index: 1;
+  z-index: 2;
 }
 
 img#fb-signup-bg{
@@ -884,6 +903,7 @@ img#fb-signup-bg{
 #hp_transparent{
   margin-top: -100px;
   margin-bottom: -314px;
+  z-index: 1;
 }
 
 #hp_white{
