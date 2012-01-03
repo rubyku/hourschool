@@ -45,6 +45,41 @@
 <%- end -%>
 
 
+<%- content_for :after_main do  -%>
+
+  <% if cookies[:ignoreFacebookReconnect].blank? && current_user && !current_user.needs_facebook_reconnect?(FacebookPermissions) %>
+    <%= render :layout => 'shared/page/modal', :locals => {
+               :display        => 'block',
+               :modal_class    => 'facebookReconnect',
+               :after_close_js => %Q{$.cookie('ignoreFacebookReconnect',
+                                     true,
+                                     {domain: "#{URI.parse(root_url(:subdomain => nil)).host}",
+                                      path: '/', expires: 365})}} do %>
+      <div>
+        <p>
+          Thanks for using Hourschool, we're trying a new way to make
+          course recommendations and need some permissions from facebook.
+        </p>
+        <br />
+        <p>
+          To take advantage of these new features you can please click on the facebook button:
+        </p>
+        <br />
+        <%= render :partial => 'users/facebook/connect_button' %>
+        <br />
+        <p>
+          You can connect later on your <%= link_to 'settings', edit_user_registration_path %> page.
+        </p>
+        <p>
+          Closing this window to ignore this message
+        </p>
+      </div>
+    <%- end -%>
+  <%- end -%>
+
+<%- end -%>
+
+
 <%= render :layout => 'layouts/document' do %>
   <%= render 'layouts/application/header' %>
 
