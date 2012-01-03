@@ -111,6 +111,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
     if @course.teacher == current_user || current_user.admin?
     else
@@ -171,6 +172,7 @@ class CoursesController < ApplicationController
   end
 
   def register_preview
+    enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
   end
 

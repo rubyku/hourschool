@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def enqueue_warm_facebook_cache
+      return true if current_user.blank? || current_user.no_facebook?
+      return true if current_user.cache.exist?(:facebook_friend_locations)
+      Rails.logger.warn '==== run `rake jobs:work` to ensure facebook cache is getting set' unless Rails.env.production?
+      job = User::Facebook::FullCacheWarm.new(current_user.id)
+      Delayed::Job.enqueue(job)
+    end
+
     alias :devise_authenticate_user! :authenticate_user!
 
     def authenticate_user!(*args)

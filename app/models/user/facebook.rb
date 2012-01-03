@@ -16,6 +16,9 @@ module User::Facebook
     friend_hash['location'].include?(city) && in_the_same_state_fb?(friend_hash)
   end
 
+  def no_facebook?
+    !facebook?
+  end
 
   def facebook?
     fb_token.present?
@@ -85,7 +88,7 @@ module User::Facebook
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_interests
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_likes
       cache(:fetch, :expires_in => DefaultExpires).facebook_friend_activities
-      cache(:fetch, :expires_in => 4.hours).full_facebook_friends
+      cache(:write, :expires_in => 4.hours).full_facebook_friends
       true
     end
 
@@ -116,7 +119,7 @@ module User::Facebook
 
     def read_facebook_friend_activities
       @read_facebook_friend_activities ||=  cache(:read).facebook_friend_activities
-      @read_facebook_friend_likes      ||= []
+      @read_facebook_friend_activities ||= []
     end
 
 
@@ -207,7 +210,8 @@ module User::Facebook
   end
   include ExpensiveMethods
 
-  # User::FacebookFullWarm.new()
+  # Delayed::Job.enqueue User::Facebook::FullCacheWarm.new(User.rs.id)
+  # rake jobs:work
   class FullCacheWarm
     attr_accessor :user_id
 
