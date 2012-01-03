@@ -35,6 +35,8 @@
     %p
       = "Total Users: #{@total_users}"
     %p
+      = "Facebook %: #{number_to_percentage(@total_fb_users/@total_users.to_f * 100)}"
+    %p
       = "Total Students: #{@total_students}"
     %p
       = "Total Teachers: #{@total_teachers}"

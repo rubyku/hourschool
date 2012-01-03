@@ -35,7 +35,7 @@
 
         var addFriendsToAutocomplete = function(target, friends){
           target.autocomplete({
-            minLength: 3,
+            minLength: 2,
             source: friends,
             select: function(event, ui) {
               create(event, ui, target);

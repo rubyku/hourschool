@@ -24,6 +24,7 @@ class Admin::ChartsController < Admin::AdminController
     # Totals
     @transaction    = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_users    = User.count
+    @total_fb_users = User.where("fb_token is not null").count
     @total_courses  = Course.count
     @total_students = Role.where(:role => 'student').count
     @total_teachers = Role.where(:role => 'teacher').count

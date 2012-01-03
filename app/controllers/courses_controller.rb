@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview]
-  before_filter :must_be_admin, :only => [:index, :approve]
+  before_filter :authenticate_admin!, :only => [:index, :approve]
   before_filter :must_be_live, :only => [:show]
   uses_yui_editor
 
@@ -174,14 +174,23 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+
+  # TODO, make this a [POST] action
+  # TODO, validate user has paid
   def register
     @course = Course.find(params[:id])
-    @user = current_user
-    @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
-    if @user.save
+    @user   = current_user
+    @role   = @course.roles.new(:attending => true, :role => 'student', :user => current_user)
+    if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
+    else
+      if @course.is_a_student? @user
+        flash[:error] = "You are already registered for this course"
+      else
+        flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
+      end
     end
 
     respond_to do |format|

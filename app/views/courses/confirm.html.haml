@@ -24,8 +24,7 @@
     .confirm-messageBlock
       .confirm-bring-friend Invite people to take your class
       %p.confirm We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
-      = render :partial => "social_share_teach", :locals => {:url => course_url(@course)}
-
+      = render :partial => "social_share", :locals => {:url => course_url(@course),  :text  => 'Check out this course I just signed up for ', :description => @course.description}
     .confirm-description-block
       %p.confirm Have someone in mind you want to invite? Leave a message on their Facebook wall!
 

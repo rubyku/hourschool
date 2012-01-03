@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       devise_authenticate_user!(*args)
     end
 
-    def must_be_admin
+    def authenticate_admin!
       authenticate_user!
       redirect_to root_path unless current_user.admin?
     end

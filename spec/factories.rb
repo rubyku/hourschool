@@ -1,11 +1,9 @@
-
-
 FactoryGirl.define do
   sequence :email do |n|
     "person_#{Time.now.to_i }@example.com"
   end
 
-  sequence :class_name do
+  sequence :course_name do
     hour_markov ||= %W{ have make a grow build community freedom
                         design programming color technique tables
                         chart grid salsa cook love you can today
@@ -17,8 +15,8 @@ FactoryGirl.define do
 
 
   factory :role do
-    user
-    course
+    association :user
+    association :course
     role  { ['teacher', 'student'].sample }
   end
 
@@ -28,7 +26,7 @@ FactoryGirl.define do
     email     { FactoryGirl.generate(:email) }
     zip       { Forgery(:address).zip }
     location  { "#{Forgery(:address).city}, #{Forgery(:address).state}" }
-
+    time_zone "America/Chicago"
     password  { Forgery(:basic).password }
     bio       { Forgery(:lorem_ipsum).words(rand(10)) }
   end
@@ -36,7 +34,7 @@ FactoryGirl.define do
 
 
   factory :course do
-    title       { FactoryGirl.generate(:class_name) }
+    title       { FactoryGirl.generate(:course_name) }
     description { Forgery(:lorem_ipsum).words(rand(30) + 1) }
     status      "live"
     place_name  { Forgery::Name.location }
