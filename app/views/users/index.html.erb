@@ -1,27 +1,25 @@
+<div class="full-page">
+  <div class="page-content">
+
 <% if current_user && current_user.admin? %> 
-  <h1>Users</h1>
-  <ul class="hmenu">
-      <%= render 'devise/menu/user_registration_items' %>
-      <%= render 'devise/menu/user_login_items' %>
-  </ul>
+<div class="welcome-header">All Greendoors Users</div>
 
   <table>
     <tr>
-  	<th>ID</th>
-  	<th>Name</th>
-  	<th>Email</th>
-    <th>Created on</th>
+  	<th class="adminHeader">ID</th>
+  	<th class="adminHeader">Name</th>
+  	<th class="adminHeader">Email</th>
+    <th class="adminHeader">Created on</th>
     </tr>
 
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.id %>
-      <td><%= link_to user.name, user_path(user.id) %></td>     
-      <td><%= user.email %></td>
-      <td><%= user.created_at.strftime("%b %d, %Y") %></td>
-
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td class="admin"><%= user.id %>
+      <td class="admin"><%= link_to user.name, user_path(user.id) %></td>     
+      <td class="admin"><%= user.email %></td>
+      <td class="admin"><%= user.created_at.strftime("%b %d, %Y") %></td>
+      <td class="admin"><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td class="admin"><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
   </table>
@@ -35,3 +33,5 @@
 <% end %>
 
 
+</div>
+</div>

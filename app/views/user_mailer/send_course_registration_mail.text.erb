@@ -3,9 +3,8 @@ Hello <%= @name %>,
 Thank you for signing up for <%= @course.title %>! Check out some handy details:
 
 Class: <%= @course.title %>
-Cover Charge: $ <%= @course.price %>
 When: <%= @course.date %>, <%= @course.time %>
-Where: <%= @course.place_name %> - <%= @course.address %>
+Where: <%= @course.place_name %> 
 
 Got questions? You can message your teacher at <%= course_url(@course) %>
 
@@ -13,6 +12,3 @@ Remember, classes are always more fun with friends. Share this class with people
   
 Cheers!
 Hour School
-
----
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com

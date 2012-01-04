@@ -69,7 +69,7 @@
         = link_to "Contact teacher", contact_teacher_path(:id => course.id)
 
 
-    - if course.students.any?
+    - if course.students.any? && current_user.admin?
       .sidebar-block-last
         .sidebar-heading Students
         .class-attendance-block

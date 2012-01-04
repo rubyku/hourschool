@@ -5,8 +5,7 @@ class CoursesController < ApplicationController
   uses_yui_editor
 
   def index
-    #authenticate admin - change this.
-    @courses = Course.where(:status => "proposal")
+    @courses = Course.all
     @user = current_user
   end
 

@@ -1,13 +1,6 @@
 .page
   .page-content
     %div
-      %p Last 7 days
-      - @users.first(7).each do |date, count|
-        %p
-          = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
-  
-    %hr
-    %div
       %h3 Month over month
       - @users_by_month.each do |month, count|
         %p
@@ -18,10 +11,6 @@
   %div
     %p
       = "Total Courses: #{@total_courses}"
-    %p
-      = "Paying Courses: #{@paying_courses}"
-    %p
-      = "Free Courses: #{@free_courses}"
 
   %hr
   %div
@@ -32,19 +21,3 @@
     %p
       = "Total Teachers: #{@total_teachers}"
 
-
-  %hr
-  %div
-    %p
-      = "Transaction To Date: #{ number_to_currency @transaction}"
-    %p
-      = "Revenue To Date: #{ number_to_currency @transaction - @amazon_fees - @teachers_share}"
-    %p
-      = "Avg Revenue per course: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_courses}"
-    %p
-      = "Avg Revenue per student: #{ number_to_currency (@transaction - @amazon_fees - @teachers_share) /@total_students}"
-
-  %hr
-  %div
-    %p
-      = "To make $1000/month we need: #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_courses)).floor} courses & #{(1000 / ((@transaction - @amazon_fees - @teachers_share) /@total_students)).floor} users"

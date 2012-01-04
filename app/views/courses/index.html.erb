@@ -1,0 +1,40 @@
+<div class="full-page">
+  <div class="page-content">
+
+<% if current_user && current_user.admin? %> 
+<div class="welcome-header">All Greendoors Courses</div>
+
+
+<table>
+  <tr>
+	<th class="adminHeader">ID</th>
+	<th class="adminHeader">Topic</th>
+	<th class="adminHeader">Teacher</th>
+  <th class="adminHeader">Class date</th>
+  <th class="adminHeader">Created on</th>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td class="admin"><%= course.id %>
+    <td class="admin"><%= link_to course.title, course %></td>
+    <td class="admin"><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
+    <td class="admin"><%= "#{course.date.strftime('%m/%d/%Y')} at #{course.time_range}"  %></td>
+    <td class="admin"><%= course.created_at.strftime('%m/%d/%Y at %I:%M%p') %></td>
+    <td class="admin"><%= link_to 'Show', course %></td>
+    <td class="admin"><%= link_to 'Edit', edit_course_path(course) %></td>
+    <td class="admin"><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<% else %>
+
+Sorry, you don't have admin access to this page. <br>
+Have a question? Please email us at hello at hourschool dot com.
+
+<% end %>
+
+</div>
+</div>
