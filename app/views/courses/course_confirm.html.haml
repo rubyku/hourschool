@@ -1,4 +1,4 @@
-.page
+.full-page
   .page-content
     .confirm-second-message You have successfully signed up!
     %hr#confirm
@@ -77,9 +77,3 @@
         %p.confirm Classes are more fun with friends! Connect Facebook to your account today!
         = render :partial => 'users/facebook/connect_button'
 
-- content_for :sidebar do
-  .tipbox
-    %img.tape{:src => '../../../images/v2/Tape_White.png'}
-    .heading10 Have questions?
-    %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
-      #tipboxButton Contact us!
