@@ -1,11 +1,12 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    # You need to implement the method below in your model
+
     if current_user
       @user = current_user
       @user.update_facebook_from_oauth(env["omniauth.auth"])
       cookies[:ignoreFacebookReconnect] = true
     else
+      # You need to implement the method below in your model
       @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     end
     sign_in(@user, :bypass => true) # needed for devise
