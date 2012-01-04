@@ -1,6 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-
+    Rails.logger.error("=== login happening, via facebook ===")
+    Rails.logger.error("-- current user: #{current_user.inspect}")
+    Rails.logger.error("~~ omniauth: #{env["omniauth.auth"].inspect}")
     if current_user
       @user = current_user
       @user.update_facebook_from_oauth(env["omniauth.auth"])
