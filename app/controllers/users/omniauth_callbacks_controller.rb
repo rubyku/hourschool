@@ -4,6 +4,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if current_user
       @user = current_user
       @user.update_facebook_from_oauth(env["omniauth.auth"])
+      cookies[:ignoreFacebookReconnect] = true
     else
       @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     end
