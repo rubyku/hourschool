@@ -6,7 +6,7 @@
     - if @teaser_courses.present?
     
     
-      = render :layout => 'shared/page/section', :locals => {:header => "Latest classes in your city"} do
+      = render :layout => 'shared/page/section', :locals => {:header => "Learn at Greendoors"} do
               
         = render :partial => 'courses/browse/course_grid', :locals => {:courses => @teaser_courses}
           

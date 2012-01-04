@@ -40,19 +40,12 @@
           %td
             .class-details
               = "#{@course.place_name}"
-            - if @course.public?
-              .class-sidebar-details
-                = "#{@course.address}"
-            - else
-              %p Private Address
 
 
     .confirm-description-block
       .confirm-bring-friend Bring a friend or two
       %p It's always more fun to learn with friends. Share this with people you think might be interested.
 
-    .confirm-description-block
-      = render :partial => "social_share"
         
     .confirm-description-block
       %p What would you like to do now? 

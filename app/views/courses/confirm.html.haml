@@ -9,22 +9,14 @@
           = image_tag(@course.photo.url(:small), :size => "190x120")
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
-          - if !@course.categories.first.nil?
-            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-          - else
-            = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+          = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
         = image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
         .confirm-class-description
           .heading13-class
             = @course.title
 
       %table
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %td
-            .class-details
-              = "$ #{@course.price}"
+
         %tr
           %td.icon
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
@@ -40,19 +32,11 @@
           %td
             .class-details
               = "#{@course.place_name}"
-            - if @course.public?
-              .class-sidebar-details
-                = "#{@course.address}"
-            - else
-              %p Private Address
-
 
     .confirm-description-block
       .confirm-bring-friend Invite people to take your class
       %p We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
 
-    .confirm-description-block
-      = render :partial => "social_share_teach"
         
     .confirm-description-block
       %p What would you like to do now? 

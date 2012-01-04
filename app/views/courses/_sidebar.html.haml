@@ -44,10 +44,7 @@
             = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
           %td
             .class-details
-              - if course.public?
-                = course.place_name
-              - else
-                = "#{@current_course.teacher.name}'s house" 
+              = course.place_name
 
 
     .sidebar-block
