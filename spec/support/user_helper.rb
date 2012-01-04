@@ -1,5 +1,9 @@
-include Devise::TestHelpers
 # gives us the sign_in(@user) method
+include Devise::TestHelpers
+
+# gives us the login_as(@user) method when request object is not present
+include Warden::Test::Helpers
+Warden.test_mode!
 
 # Will run the given code as the user passed in
 def as_user(user=nil, &block)
@@ -7,9 +11,9 @@ def as_user(user=nil, &block)
   if request.present?
     sign_in(current_user)
   else
-    ApplicationController.stub(:current_user => current_user)
+    login_as(current_user, :scope => :user)
   end
-  block.call(current_user) if block.present?
+  block.call if block.present?
   return self
 end
 
@@ -19,9 +23,9 @@ def as_visitor(user=nil, &block)
   if request.present?
     sign_out(current_user)
   else
-    ApplicationController.stub(:current_user => nil)
+    logout(:user)
   end
-  block.call(current_user) if block.present?
+  block.call if block.present?
   return self
 end
 
