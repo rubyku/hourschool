@@ -16,18 +16,26 @@ class UserMailer < ActionMailer::Base
     @message = message
     mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
+  
+  def reject_proposal(current_user, course, message)
+    @email = course.teacher.email
+    @user = current_user
+    @course = course
+    @message = message
+    mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "Your proposal was not approved")
+  end
 
   def send_registration_mail(user_email,user_name)
     @email = user_email
     @name = user_name
-    mail(:to => user_email, :subject => "Welcome to HourSchool!")
+    mail(:to => user_email, :cc => "adavis@greendoors.org", :subject => "Welcome to HourSchool!")
   end
 
    def send_course_registration_mail(user_email, user_name, course)
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => user_email, :subject => "You've signed up for #{@course.title}!")
+     mail(:to => user_email, :cc => "adavis@greendoors.org", :subject => "You've signed up for #{@course.title}!")
    end
    
    def send_course_registration_to_teacher_mail(user_email, user_name, course)
@@ -55,7 +63,7 @@ class UserMailer < ActionMailer::Base
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A proposal has been submitted!")
+     mail(:to => "ruby@hourschool.com, alex@hourschool.com, adavis@greendoors.org", :subject => "A proposal has been submitted!")
    end
    
    def send_course_approval_mail(user_email, user_name, course)
@@ -76,7 +84,7 @@ class UserMailer < ActionMailer::Base
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.title} is live!")
+     mail(:to => "ruby@hourschool.com, alex@hourschool.com, adavis@greendoors.org", :subject => "#{@course.title} is live!")
    end
 
    def send_nominate_mail_to_teacher(user_email, current_user, csuggid, message)
@@ -101,7 +109,7 @@ class UserMailer < ActionMailer::Base
      @email = user_email
      @name = user_name
      @suggestion = suggestion
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A suggestion has been submitted!")
+     mail(:to => "ruby@hourschool.com, alex@hourschool.com, adavis@greendoors.org", :subject => "A suggestion has been submitted!")
    end
 
 end

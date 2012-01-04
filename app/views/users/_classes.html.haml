@@ -1,7 +1,7 @@
 - count = 0
-- if classes_this_week.size == 0 
-  %p= ""
-- classes_this_week.each do |c|
+- if classes.blank?
+  %p= "No classes yet"
+- classes.each do |c|
   - count = count + 1
   - if count%3 == 0
     - className = "classBlock_last"

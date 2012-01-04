@@ -1,0 +1,7 @@
+Hi <%= @course.teacher.name %>,
+
+Your proposal was not approved. Here's maybe why:
+  
+<%= @message %>
+
+To edit your class proposal, visit this link <%= edit_course_url(@course) %>

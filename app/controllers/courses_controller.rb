@@ -120,7 +120,12 @@ class CoursesController < ApplicationController
       @course.category_list = cat.join(", ").to_s
       if @course.update_attributes(params[:course])
         puts "saved"
-        redirect_to preview_path(:id => @course.id)
+        if @course.status == "approved"
+          redirect_to preview_path(:id => @course.id)
+        elsif @course.status == "proposal"
+          UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+          redirect_to profile_path
+        end
       else
         render :action => 'edit'
       end
@@ -133,7 +138,7 @@ class CoursesController < ApplicationController
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
     @role = Role.where(:course_id => @course.id).first
     #@course.destroy
-    if current_user.is_teacher_for?(@course)
+    if current_user.admin?
 
       @user = current_user
       @user.courses.delete(@course)
@@ -239,7 +244,17 @@ class CoursesController < ApplicationController
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end
+  
+  def reject_proposal
+    @course = Course.find(params[:id])
+  end
 
+  def reject_proposal_send
+    @course = Course.find(params[:id])
+    UserMailer.reject_proposal(current_user, @course, params[:message]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
 
   private
   def must_be_admin

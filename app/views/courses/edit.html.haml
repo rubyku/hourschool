@@ -1,13 +1,6 @@
-%head
-  = include_yui_editor_if_used.html_safe
-= render 'submit_course_form'
-= render  :partial => 'home/teach_sidebar', :locals => {:random_course => @random_course}
+- if @course.status == "approved"
+  = render 'submit_course_form'
+- else 
+  = render 'submit_proposal_form'
 
-/ .content
-/   %h3= "Edit course"
-/   = render 'form'
-/
-/   %p
-/     = link_to "Show", @course
-/     |
-/     = link_to "View All", courses_path
+

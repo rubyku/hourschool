@@ -23,7 +23,7 @@
     <td class="admin"><%= course.created_at.strftime('%m/%d/%Y at %I:%M%p') %></td>
     <td class="admin"><%= link_to 'Show', course %></td>
     <td class="admin"><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td class="admin"><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="admin"><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :action => :destroy %></td>
   </tr>
 <% end %>
 </table>

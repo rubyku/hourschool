@@ -41,11 +41,9 @@
     .form-question-tip     
       = "#{@current_course.place_name}"
         
-
-    
-
-
       = button_to "Approve this course", approve_path(:id => @current_course.id), :class => "submit-proposal-button", :method => :put
+
+      = button_to "Reject & Contact teacher", reject_proposal_path(:id => @current_course.id), :class => "submit-proposal-button", :method => :get
 
 
 

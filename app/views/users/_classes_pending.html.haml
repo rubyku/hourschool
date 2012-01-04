@@ -6,18 +6,13 @@
   - else
     - className = "classBlock"
   %div{:class => "#{className}"}
-    - if course.photo.exists?
-      = link_to (image_tag(course.photo.url(:small), :size => "190x120")), proposal_path(:id => course.id)
+    - if current_user.admin?
+      = link_to image_tag("/images/v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
+    - else 
+      = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), edit_course_path(course.id)
       %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-    - else
-      - if !course.categories.first.nil?
-        = link_to image_tag("#{DEF_IMAGES[course.categories.first.name]}"), proposal_path(:id => course.id)
-      - else
-        = link_to image_tag("/images/v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
-    %br
-
-      .class-description
-        .heading13-class 
-          = link_to "#{course.title}", proposal_path(:id => course.id)
-        %p= course.teaser.truncate(70).html_safe
+      = button_to "Edit my proposal", edit_course_path(course.id), :class => "complete-class-button", :method => :get
+    .class-description
+      .heading13-class 
+        = "#{course.title}"
+      %p= course.teaser.truncate(70).html_safe

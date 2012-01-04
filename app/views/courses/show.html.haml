@@ -15,12 +15,12 @@
         .class-title-big
           = "#{@current_course.title}"
 
-              
+            
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
       %p= sanitize @current_course.description.gsub(/\n/,'<br/>')
-    
+  
     .comment-section
       .class-section-heading
         = "Join the conversation"
@@ -28,4 +28,3 @@
 
 
 = render :partial => "sidebar", :locals => {:course => @course}
-

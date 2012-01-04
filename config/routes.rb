@@ -94,6 +94,9 @@ HourschoolV2::Application.routes.draw do
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
 
+  match '/reject_proposal' => 'courses#reject_proposal'
+  match '/reject_proposal_send' => 'courses#reject_proposal_send'
+  
   match '/business' => 'home#community'
   match '/about' => 'home#about'
   root :to => "users#show"
