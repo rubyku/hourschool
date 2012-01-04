@@ -24,12 +24,15 @@
     .confirm-messageBlock
       .confirm-bring-friend Invite people to take your class
       %p.confirm We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
-      = render :partial => "social_share", :locals => {:url => course_url(@course),  :text  => 'Check out this class I am teaching:', :description => @course.description}
+      = render :partial => "add_this"
+      
+      / = render :partial => "social_share", :locals => {:url => course_url(@course),  :text  => 'Check out this class I am teaching:', :description => @course.description}
+
     .confirm-description-block
 
       - if current_user.facebook?
         %p.confirm Invite Facebook friends to take your class!
-
+        
         = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"}
 
         = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
