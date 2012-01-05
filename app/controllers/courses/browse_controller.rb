@@ -21,11 +21,11 @@ class Courses::BrowseController < ApplicationController
     end
     case params[:id]
     when 'past'
-      @courses = Course.past.random.paginate(:page => params[:page]||1)
+      @courses = Course.past.random.paginate(:page => params[:page])
     when 'city'
-      @courses = Course.unscoped.order("date DESC").live.located_in(params[:city]).paginate(:page => params[:page]||1, :per_page => 9)
+      @courses = Course.unscoped.order("date DESC").live.located_in(params[:city]).paginate(:page => params[:page])
     when 'tags'
-       @courses = Course.active.tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 9)
+       @courses = Course.active.tagged_with(params[:tag]).paginate(:page => params[:page])
     end
   end
 
