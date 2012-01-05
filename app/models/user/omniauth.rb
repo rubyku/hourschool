@@ -16,8 +16,10 @@ module User::Omniauth
       email =    auth_hash['extra']['user_hash']['email']
       Rails.logger.error("=== User trying to log in with Facebook id: #{auth_hash["uid"]} and email: #{email}")
       user  =    User.where(:facebook_id => auth_hash["uid"]).first || User.find_by_email(email)
+      Rails.logger.error("=== User found #{user}")
       user  ||=  User.create_from_omniauth(auth_hash)
       user.update_facebook_from_oauth(auth_hash)
+      Rails.logger.error("=== User updated #{user}")
       user
     end
 
