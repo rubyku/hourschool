@@ -2,7 +2,7 @@
   - group.each do |course|
     - if course.present?
       .classBlock
-        - if course.photo.exists?
+        - if course.photo.present?
           = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
