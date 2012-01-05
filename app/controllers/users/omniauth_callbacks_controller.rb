@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     Rails.logger.error("=== User zip: #{@user.zip.present?}")
 
 
-    sign_in_path = learn_path # after_sign_in_path_for @user
+    sign_in_path = after_sign_in_path_for @user
     Rails.logger.error("=== after_sign_in_path: remembered #{sign_in_path}")
 
 
