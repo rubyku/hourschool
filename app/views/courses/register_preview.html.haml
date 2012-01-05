@@ -14,38 +14,34 @@
         .confirm-class-description
           .heading13-class
             = @course.title
-          %p
-            - if @course.coursetag.blank?
-            - else
-              = @course.coursetag
+            
+          %table
+            %tr
+              %td.icon
+                = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+              %td
+                .class-details
+                  = "$ #{@course.price}"
+            %tr
+              %td.icon
+                = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+              %td
+                .class-details
+                  = @course.date.strftime("%a %b %d, %Y")
+                .class-address-details
+                  = "#{@course.time_range}"
 
-      %table
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %td
-            .class-details
-              = "$ #{@course.price}"
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
-          %td
-            .class-details
-              = @course.date.strftime("%B %d, %Y")
-            .class-address-details
-              = "#{@course.time_range}"
-
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
-          %td
-            .class-details
-              = "#{@course.place_name}"
-            - if @course.public?
-              .class-sidebar-details
-                = "#{@course.address}"
-            - else
-              %p Private Address
+            %tr
+              %td.icon
+                = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+              %td
+                .class-details
+                  = "#{@course.place_name}"
+                - if @course.public?
+                  .class-sidebar-details
+                    = "#{@course.address}"
+                - else
+                  %p Private Address
 
 
     .class-description-block
