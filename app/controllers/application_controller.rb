@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def debug
-      Rails.error.log("-- Current user is: #{current_user.inspect}")
+      Rails.logger.error("-- Current user is: #{current_user.inspect}")
     end
 
     def enqueue_warm_facebook_cache
