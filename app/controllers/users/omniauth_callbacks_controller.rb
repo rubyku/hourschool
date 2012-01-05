@@ -10,6 +10,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # end
     @user.remember_me!
 
+
+    sign_in :user, @user
     sign_in(@user, :bypass => true) # needed for devise
     Rails.logger.error("=== User remembered #{@user}")
     Rails.logger.error("=== User zip: #{@user.zip.present?}")
