@@ -21,6 +21,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.zip.present?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+      Rails.logger.error("-- valid? #{@user.valid?}")
+      Rails.logger.error("-- Save: #{@user.save}")
+      Rails.logger.error("-- current_user: #{current_user.inspect}")
       redirect_to  sign_in_path # after_sign_in_path_for @user
     else
       flash[:notice] = "Thanks for signing up!"
