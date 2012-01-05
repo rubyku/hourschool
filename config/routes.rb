@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :tracks
+
   # temp hack, remove after Febuary 2011
   match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
 
