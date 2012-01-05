@@ -26,6 +26,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       Rails.logger.error("-- valid? #{@user.valid?}")
       Rails.logger.error("-- Save: #{@user.save}")
       Rails.logger.error("-- current_user: #{current_user.inspect}")
+      Rails.logger.error("-- Signed in: #{signed_in?}")
       redirect_to  sign_in_path # after_sign_in_path_for @user
     else
       flash[:notice] = "Thanks for signing up!"
