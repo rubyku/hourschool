@@ -27,7 +27,7 @@ class TracksController < ApplicationController
   # GET /tracks/new.xml
   def new
     @track = Track.new
-    @courses = @track.courses
+    @courses = []
 
     respond_to do |format|
       format.html # new.html.erb
