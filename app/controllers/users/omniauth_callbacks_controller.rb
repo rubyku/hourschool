@@ -10,9 +10,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # end
     sign_in(@user, :bypass => true) # needed for devise
     @user.remember_me!
+
+    Rails.logger.error("=== User remembered #{@user}")
+    Rails.logger.error("=== User zip: #{@user.zip.present?}")
+
+
+    sign_in_path = after_sign_in_path_for @user
+    Rails.logger.error("=== after_sign_in_path: remembered #{sign_in_path}")
+
+
     if @user.zip.present?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      redirect_to after_sign_in_path_for @user
+      redirect_to  sign_in_path # after_sign_in_path_for @user
     else
       flash[:notice] = "Thanks for signing up!"
       redirect_to after_register_path(:confirm_password)
