@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229224208) do
+ActiveRecord::Schema.define(:version => 20120105031622) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20111229224208) do
     t.text     "description"
     t.integer  "price"
     t.integer  "max_seats"
-    t.datetime "date"
     t.time     "time"
     t.string   "place_name"
     t.integer  "city_id"
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20111229224208) do
     t.string   "address"
     t.boolean  "public"
     t.string   "slug"
+    t.date     "date"
   end
 
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true

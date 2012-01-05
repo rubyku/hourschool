@@ -42,7 +42,7 @@ class Course < ActiveRecord::Base
 
 
   def days_left
-    (date.in_time_zone.to_date - Time.current.to_date).to_i
+    (date - Time.current.to_date).to_i
   end
 
   def pretty_slug
@@ -88,7 +88,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    live.where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
+    live.where('date <= ?', 1.year.from_now).where('date >= ?', Time.now)
   end
 
   def self.past
@@ -96,13 +96,13 @@ class Course < ActiveRecord::Base
   end
 
   def starts_at
-    date.in_time_zone
+    date
   end
   alias :start_at :starts_at
 
   def active?
     return false if date.blank?
-    self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
+    self.starts_at < 52.weeks.from_now.to_date && self.starts_at >= Date.today
   end
 
   def self.active_tags

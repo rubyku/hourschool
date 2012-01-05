@@ -50,7 +50,7 @@
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
           %td
             .class-details
-              = course.starts_at.strftime("%a %b %d, %Y")
+              = course.date.strftime("%a %b %d, %Y")
             .class-sidebar-details
               = "#{course.time_range}"
               %br
