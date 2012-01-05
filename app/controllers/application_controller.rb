@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def debug
+      Rails.logger.error("-- Yo i'm at: #{request.url}")
       Rails.logger.error("-- Current user is: #{current_user.inspect}")
     end
 
