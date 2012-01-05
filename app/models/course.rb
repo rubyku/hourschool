@@ -102,7 +102,7 @@ class Course < ActiveRecord::Base
 
   def active?
     return false if date.blank?
-    self.starts_at < 52.weeks.from_now.to_date && self.starts_at < Date.tomorrow
+    self.starts_at < 52.weeks.from_now.to_date && self.starts_at >= Date.today
   end
 
   def self.active_tags
