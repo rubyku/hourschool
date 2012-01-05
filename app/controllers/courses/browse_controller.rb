@@ -1,7 +1,7 @@
 class Courses::BrowseController < ApplicationController
 
   def index
-    @courses = Course.active.paginate(:page => params[:page]||1)
+    @courses = Course.active.paginate(:page => params[:page])
     if current_user
       @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
     else
