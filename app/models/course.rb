@@ -88,7 +88,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    live.where('date <= ?', 1.year.from_now).where('date >= ?', Time.now)
+    live.where('date <= ?', 1.year.from_now.to_date).where('date >= ?', Date.today)
   end
 
   def self.past
@@ -102,7 +102,7 @@ class Course < ActiveRecord::Base
 
   def active?
     return false if date.blank?
-    self.starts_at < 52.weeks.from_now.to_date && self.starts_at >= Date.today
+    self.starts_at < 1.year.from_now.to_date && self.starts_at >= Date.today
   end
 
   def self.active_tags
