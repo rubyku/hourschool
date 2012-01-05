@@ -8,9 +8,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # You need to implement the method below in your model
       @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     # end
-    sign_in(@user, :bypass => true) # needed for devise
     @user.remember_me!
 
+    sign_in(@user, :bypass => true) # needed for devise
     Rails.logger.error("=== User remembered #{@user}")
     Rails.logger.error("=== User zip: #{@user.zip.present?}")
 
