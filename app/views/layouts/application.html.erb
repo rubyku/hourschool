@@ -47,7 +47,8 @@
 
 <%- content_for :after_main do  -%>
 
-  <% if cookies[:ignoreFacebookReconnect].blank? && current_user && current_user.needs_facebook_reconnect?(FacebookPermissions) %>
+  <% if false %>
+  <%# if cookies[:ignoreFacebookReconnect].blank? && current_user && current_user.needs_facebook_reconnect?(FacebookPermissions) && !Rails.env.test? %>
     <%= render :layout => 'shared/page/modal', :locals => {
                :display        => 'block',
                :modal_class    => 'facebookReconnect',

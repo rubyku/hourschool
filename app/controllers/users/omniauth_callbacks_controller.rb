@@ -1,16 +1,13 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    Rails.logger.error("=== login happening, via facebook ===")
-    Rails.logger.error("-- current user: #{current_user.inspect}")
-    Rails.logger.error("~~ omniauth: #{env["omniauth.auth"].inspect}")
-    if current_user
-      @user = current_user
-      @user.update_facebook_from_oauth(env["omniauth.auth"])
-      cookies[:ignoreFacebookReconnect] = true
-    else
+    # if current_user
+    #   @user = current_user
+    #   @user.update_facebook_from_oauth(env["omniauth.auth"])
+    #   cookies[:ignoreFacebookReconnect] = true
+    # else
       # You need to implement the method below in your model
       @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
-    end
+    # end
     sign_in(@user, :bypass => true) # needed for devise
     @user.remember_me!
     if @user.zip.present?
