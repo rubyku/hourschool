@@ -3,14 +3,12 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :set_timezone, :debug
+  before_filter :set_timezone
   protect_from_forgery
 
   protected
 
     def debug
-      Rails.logger.error("-- Signed in?     : #{signed_in?}")
-      Rails.logger.error("-- Current user is: #{current_user.inspect}")
     end
 
     def enqueue_warm_facebook_cache
