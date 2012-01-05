@@ -3,10 +3,14 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :set_timezone
+  before_filter :set_timezone, :debug
   protect_from_forgery
 
   protected
+
+    def debug
+      Rails.error.log("-- Current user is: #{current_user.inspect}")
+    end
 
     def enqueue_warm_facebook_cache
       return true if current_user.blank? || current_user.no_facebook?
