@@ -104,7 +104,7 @@ gem "nifty-generators", :group => :development
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "mocha", :group => :test
+# gem "mocha", :group => :test
 
 # gem "liverelaod"
 
@@ -124,5 +124,9 @@ group :development, :test do
   gem 'faker'
   gem 'timecop'
   gem 'spork'
+end
+
+group :test do
+  gem 'webmock', :require => false
 end
 

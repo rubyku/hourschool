@@ -3,8 +3,6 @@ require 'spec_acceptance_helper'
 feature "Acceptance Sessions" do
   let(:visitor)  {Factory.create(:user)}
 
-  before(:all) do
-  end
 
   describe 'manual creation' do
     scenario 'gets redirected back to original path after signin' do

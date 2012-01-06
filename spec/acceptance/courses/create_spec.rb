@@ -1,9 +1,6 @@
 require 'spec_acceptance_helper'
 
 feature "Acceptance courses#create" do
-  after(:each) do
-    Warden.test_reset!
-  end
   let(:user) {Factory.create(:user)}
 
   describe 'teach page' do
