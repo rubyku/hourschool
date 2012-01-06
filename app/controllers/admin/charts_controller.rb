@@ -4,16 +4,16 @@ class Admin::ChartsController < Admin::AdminController
     # Per day
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @students = Role.where(:role => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
+    @students = Role.where(:name => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
 
 
-    @teachers = User.joins(:roles).where("role = 'teacher'").order('DATE(roles.created_at) DESC')
+    @teachers = User.joins(:roles).where("roles.name = 'teacher'").order('DATE(roles.created_at) DESC')
 
     # Per month
     @users_by_month = User.order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     @courses_by_month = Course.unscoped.group("extract( month from DATE(created_at)) ").count
     @courses_by_month_austin = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
-    @students_by_month = Role.where(:role => 'student').group("extract( month from DATE(created_at)) ").count
+    @students_by_month = Role.where(:name => 'student').group("extract( month from DATE(created_at)) ").count
     @transaction_by_month = Payment.group("extract( month from DATE(created_at))").sum('amount')
 
 
@@ -26,8 +26,8 @@ class Admin::ChartsController < Admin::AdminController
     @total_users    = User.count
     @total_fb_users = User.where("fb_token is not null").count
     @total_courses  = Course.count
-    @total_students = Role.where(:role => 'student').count
-    @total_teachers = Role.where(:role => 'teacher').count
+    @total_students = Role.where(:name => 'student').count
+    @total_teachers = Role.where(:name => 'teacher').count
     @estimated_user_count_six_months = (user_count_last_week * 4 * 6) + @total_users
 
     @paying_courses = Course.where('price != 0').count
