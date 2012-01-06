@@ -14,10 +14,7 @@ HourschoolV2::Application.routes.draw do
   end
 
 
-  resources :ecourses, :path => 'classes'
-
   resources :suggestions# , :path => 'requests'
-  resources :esuggestions, :path => 'suggestions'
 
   resources :courses
 
@@ -68,11 +65,6 @@ HourschoolV2::Application.routes.draw do
   match '/proposal' => 'courses#show_proposal'
   match '/payment_preview' => 'courses#register_preview'
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
-
-  match '/enterprise-learn' => 'enterprises#learn'
-  match '/enterprise-teach' => 'enterprise#teach'
-  match '/esvote' => 'esuggestions#vote'
-  match '/eregister' => 'ecourses#register'
 
   match '/approve' => 'courses#approve'
   match '/courses-all' => 'courses#all'
