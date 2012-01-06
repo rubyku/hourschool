@@ -35,6 +35,8 @@ FactoryGirl.define do
 
   factory :course do
     title       { FactoryGirl.generate(:course_name) }
+    teaser      { Forgery(:lorem_ipsum).words(rand(5) + 1) }
+    experience  { Forgery(:lorem_ipsum).words(rand(30) + 1) }
     description { Forgery(:lorem_ipsum).words(rand(30) + 1) }
     status      "live"
     place_name  { Forgery::Name.location }
