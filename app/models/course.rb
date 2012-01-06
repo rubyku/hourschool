@@ -110,7 +110,7 @@ class Course < ActiveRecord::Base
   end
 
   def teacher
-    teachers = roles.where(:role => 'teacher')
+    teachers = roles.where(:name => 'teacher')
     if teachers.any?
       teachers.first.user
     else
@@ -119,7 +119,7 @@ class Course < ActiveRecord::Base
   end
 
   def students
-    students = roles.where(:role => 'student')
+    students = roles.where(:name => 'student')
     if students.any?
       students.collect(&:user)
     else
@@ -128,7 +128,7 @@ class Course < ActiveRecord::Base
   end
 
   def is_a_student?(user)
-    students = roles.where(:role => 'student')
+    students = roles.where(:name => 'student')
     if students.any?
       return students.collect(&:user).include?(user)
     else

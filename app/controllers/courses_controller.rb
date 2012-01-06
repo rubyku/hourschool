@@ -84,7 +84,7 @@ class CoursesController < ApplicationController
     if @course.save
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
-        @role = @course.roles.create!(:attending => true, :role => 'teacher', :user => current_user)
+        @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
       #now the course has been saved add it to a city where it belongs
@@ -182,7 +182,7 @@ class CoursesController < ApplicationController
   def register
     @course = Course.find(params[:id])
     @user   = current_user
-    @role   = @course.roles.new(:attending => true, :role => 'student', :user => current_user)
+    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
     if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
@@ -213,7 +213,7 @@ class CoursesController < ApplicationController
       if @payment.save
          @payment.update_attributes(:user => current_user, :course => @course)
          @user = current_user
-         @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
+         @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver

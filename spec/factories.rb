@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :role do
     association :user
     association :course
-    role  { ['teacher', 'student'].sample }
+    name  { ['teacher', 'student'].sample }
   end
 
 
