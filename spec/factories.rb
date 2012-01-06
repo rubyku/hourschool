@@ -38,7 +38,9 @@ FactoryGirl.define do
     teaser      { Forgery(:lorem_ipsum).words(rand(5) + 1) }
     experience  { Forgery(:lorem_ipsum).words(rand(30) + 1) }
     description { Forgery(:lorem_ipsum).words(rand(30) + 1) }
+    public      { [true, false].sample }
     status      "live"
+    address     { Faker::Address.street_address }
     place_name  { Forgery::Name.location }
     time_range  {c = rand(5); "#{c} - #{c + rand(2)}}"}
     price       { rand(100) }

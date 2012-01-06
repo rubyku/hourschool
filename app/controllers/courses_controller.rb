@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      redirect_to profile_path(:show => 'teaching')
+      redirect_to current_user
     else
       render :action => 'new'
     end
@@ -127,7 +127,7 @@ class CoursesController < ApplicationController
     params[:course].delete(:categories)
     @course.category_list = cat.join(", ").to_s
     if @course.update_attributes(params[:course])
-      redirect_to preview_path(:id => @course.id)
+      redirect_to preview_path(@course)
     else
       render :action => 'edit'
     end
