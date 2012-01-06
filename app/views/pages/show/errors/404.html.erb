@@ -1,6 +1,6 @@
 <%= link_to image_tag("/images/v2/404.png", :title => "Error"), root_path %>
 <p>There was an Error</p>
-<% if @exception.present? && current_user.try(:admin?) %>
+<% if @exception.present? && current_user.try(:admin?) || !Rails.env.production? %>
   <div id="error-code" style="margin-top:15px;">
     <h3><%= h @exception.message %></h3><br /><a href="#" onclick="document.getElementById('error-details').style.display = 'block';">Details</a>
     <div id="error-details" style="">
