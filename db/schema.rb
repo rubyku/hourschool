@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20120105202304) do
     t.boolean  "public"
     t.string   "slug"
     t.date     "date"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
   end
 
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true

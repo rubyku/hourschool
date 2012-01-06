@@ -10,5 +10,12 @@ class ConvertCoursesDateToDate < ActiveRecord::Migration
   end
 
   def self.down
+    add_column :courses, :start_date, :datetime
+    Course.find_each do |course|
+      Time.zone = course.teacher.time_zone
+      course.update_attribute(:start_date, course.date) unless course.date.nil?
+    end
+    remove_column :courses, :date
+    rename_column :courses, :start_date, :date
   end
 end
