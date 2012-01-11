@@ -20,7 +20,7 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <% Course.order('created_at desc').each do |course| %>
+    <% Course.order('created_at asc').each do |course| %>
       <label>
         <%= check_box_tag 'track[course_ids][]', course.id, @courses.include?(course) %>
         <%= course.title %>
