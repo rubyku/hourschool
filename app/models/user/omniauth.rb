@@ -14,7 +14,7 @@ module User::Omniauth
   module ClassMethods
     def find_for_facebook_oauth(auth_hash, signed_in_resource=nil)
       email =    auth_hash['extra']['user_hash']['email']
-      user  =    User.find_by_email(email)
+      user  =    User.where(:facebook_id => auth_hash["uid"]).first || User.find_by_email(email)
       user  ||=  User.create_from_omniauth(auth_hash)
       user.update_facebook_from_oauth(auth_hash)
       user

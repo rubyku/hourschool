@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
-  default_scope order('date')
+  default_scope order(:date, :created_at)
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
@@ -42,7 +42,7 @@ class Course < ActiveRecord::Base
 
 
   def days_left
-    (date.in_time_zone.to_date - Time.current.to_date).to_i
+    (date - Time.current.to_date).to_i
   end
 
   def pretty_slug
@@ -88,7 +88,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    live.where("DATE(date) BETWEEN DATE(?) AND DATE(?)", Time.current , 52.weeks.from_now.in_time_zone)
+    live.where('date <= ?', 1.year.from_now.to_date).where('date >= ?', Date.today)
   end
 
   def self.past
@@ -101,7 +101,7 @@ class Course < ActiveRecord::Base
 
   def active?
     return false if date.blank?
-    self.starts_at < 52.weeks.from_now.in_time_zone && self.starts_at > Time.current
+    self.starts_at < 1.year.from_now.to_date && self.starts_at >= Date.today
   end
 
   def self.active_tags
@@ -109,7 +109,7 @@ class Course < ActiveRecord::Base
   end
 
   def teacher
-    teachers = roles.where(:role => 'teacher')
+    teachers = roles.where(:name => 'teacher')
     if teachers.any?
       teachers.first.user
     else
@@ -118,7 +118,7 @@ class Course < ActiveRecord::Base
   end
 
   def students
-    students = roles.where(:role => 'student')
+    students = roles.where(:name => 'student')
     if students.any?
       students.collect(&:user)
     else
@@ -127,7 +127,7 @@ class Course < ActiveRecord::Base
   end
 
   def is_a_student?(user)
-    students = roles.where(:role => 'student')
+    students = roles.where(:name => 'student')
     if students.any?
       return students.collect(&:user).include?(user)
     else

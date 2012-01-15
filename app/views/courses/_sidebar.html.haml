@@ -50,7 +50,7 @@
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
           %td
             .class-details
-              = course.starts_at.strftime("%a %b %d, %Y")
+              = course.date.strftime("%a %b %d, %Y")
             .class-sidebar-details
               = "#{course.time_range}"
               %br
@@ -79,10 +79,10 @@
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
 
-    .sidebar-block
+    .sidebar-block-last
       .sidebar-heading Teacher
       .class-attendance-block
-        - if @current_course.teacher.photo.exists?
+        - if @current_course.teacher.photo.present?
           = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50", :class => "avatar-medium")
         - else
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"

@@ -79,6 +79,7 @@ GEM
     childprocess (0.2.4)
       ffi (~> 1.0.6)
     cocaine (0.2.1)
+    crack (0.3.1)
     daemons (1.1.5)
     dalli (1.1.4)
     delayed_job (2.1.4)
@@ -134,6 +135,11 @@ GEM
       spork (>= 0.8.4)
     haml (3.1.4)
     has_scope (0.5.1)
+    heroku (2.17.0)
+      launchy (>= 0.3.2)
+      rest-client (~> 1.6.1)
+      rubyzip
+      term-ansicolor (~> 1.0.5)
     httparty (0.8.1)
       multi_json
       multi_xml
@@ -172,13 +178,10 @@ GEM
       activerecord (~> 3.0.2)
       activesupport (~> 3.0.2)
       arel (~> 2.0.2)
-    metaclass (0.0.1)
     method_cacheable (0.0.4)
       activesupport
       keytar
     mime-types (1.17.2)
-    mocha (0.10.0)
-      metaclass (~> 0.0.1)
     multi_json (1.0.4)
     multi_xml (0.4.1)
     multipart-post (1.1.4)
@@ -234,6 +237,8 @@ GEM
       mime-types
     pg (0.12.0)
       rake-compiler (~> 0.7)
+    pgbackup-tasks (0.2.2)
+      heroku (>= 2.17.0)
     polyglot (0.3.3)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.5)
@@ -307,6 +312,7 @@ GEM
       sequel (~> 3.20.0)
       sinatra (~> 1.0.0)
       sqlite3-ruby (~> 1.2)
+    term-ansicolor (1.0.7)
     thor (0.14.6)
     thumbs_up (0.4.5)
       activerecord
@@ -329,6 +335,9 @@ GEM
       macaddr (~> 1.0)
     warden (1.0.6)
       rack (>= 1.0)
+    webmock (1.7.10)
+      addressable (~> 2.2, > 2.2.5)
+      crack (>= 0.1.7)
     will_paginate (3.0.pre2)
     xml-simple (1.1.1)
     xpath (0.1.4)
@@ -364,13 +373,13 @@ DEPENDENCIES
   koala (~> 1.2.1)
   launchy (~> 2.0.5)
   method_cacheable (= 0.0.4)
-  mocha
   mysql2 (~> 0.2.6)
   newrelic_rpm
   nifty-generators
   omniauth (~> 0.3.2)
   paperclip
   pg
+  pgbackup-tasks
   rails (= 3.0.9)
   rake (~> 0.9.2)
   random_data
@@ -384,6 +393,7 @@ DEPENDENCIES
   tumblr-api
   twitter
   use_tinymce
+  webmock
   wicked!
   will_paginate (= 3.0.pre2)
   yaml_db

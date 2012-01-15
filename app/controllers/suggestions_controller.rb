@@ -14,9 +14,10 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-    @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 20)
+    suggestions_to_display = @top_suggestions & @suggestions_in_my_location
+    @suggestions = suggestions_to_display.paginate(:page => params[:page], :per_page => 20)
     if !params[:order].nil?
-      order_suggestions(params[:order])
+      order_suggestions(suggestions_to_display, params[:order])
     end
   end
 
@@ -94,15 +95,16 @@ class SuggestionsController < ApplicationController
 
   private
 
-  def order_suggestions(order_type)
+  def order_suggestions(suggestions_to_display, order_type)
     case order_type
     when "votes"
-      @suggestions = @suggestions.sort! { |a,b| b.votes.size <=> a.votes.size }
+      @suggestions = suggestions_to_display.sort! { |a,b| b.votes.size <=> a.votes.size }
     when "new"
-      @suggestions = @suggestions.sort! { |a,b| b.created_at <=> a.created_at }
+      @suggestions = suggestions_to_display.sort! { |a,b| b.created_at <=> a.created_at }
     when "old"
-      @suggestions = @suggestions.sort! { |a,b| a.created_at <=> b.created_at }
+      @suggestions = suggestions_to_display.sort! { |a,b| a.created_at <=> b.created_at }
     end
+    @suggestions = @suggestions.paginate(:page => params[:page], :per_page => 20)
   end
 
   def post_to_twitter(suggestion)

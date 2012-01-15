@@ -273,6 +273,17 @@ ActiveRecord::Schema.define(:version => 20120115204246) do
     t.string "name"
   end
 
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.text     "course_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracks", ["slug"], :name => "index_tracks_on_slug", :unique => true
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false

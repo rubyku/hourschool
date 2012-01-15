@@ -1,0 +1,47 @@
+:css
+  .classRow {
+    width: 100%;
+    overflow: hidden;
+  }
+  .classBlock {
+    width: 100%;
+    padding-bottom: 10px;
+    box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
+    overflow: hidden;
+    height: auto;
+  }
+  .classBlock img { float: left; }
+  .classBlock .class-description {
+    float: left; 
+    width: 650px; 
+    margin-top: -20px; 
+    padding-left: 20px;
+    height: auto;
+  }
+  .intext_link { color: #FF7733; }
+
+.page{:style => "width: 100%"}
+  .page-content
+    .page-section-float-left
+      .section#teaching
+        .page-section-float-left
+
+        .welcome-header
+          = @track.title
+        = image_tag('v2/greyheader_half.png', :class => 'greyheader_half')
+
+        %div
+          = simple_format(@track.description)
+
+        -@courses.each do |course|
+          .classRow
+            .classBlock
+              = link_to image_tag(course.photo.url(:small), :size => "190x120"), course
+              = image_tag('v2/arrow_white_pointup.png', :class => 'class-arrow')
+              %br
+              .class-description
+                .heading13-class
+                  = link_to course.title, course
+                %p
+                  = sanitize course.description.gsub(/\n/,'<br/>')
+                  = link_to 'Sign up here!', course

@@ -43,7 +43,7 @@
         %li.noBullet
           - if !@user.web.blank?
             %a.profile-link
-              = link_to "Website", @user.web, :class => "profile-link"
+              = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
           %br
         %li.noBullet
           - if !@user.twitter_id.blank?

@@ -2,7 +2,7 @@
   = image_tag("/images/v2/step3.png", :class => "steps")
   #preview-box
     .preview-header Preview your class
-    = button_to "Publish now!", confirm_path({:id => @course.id}), :class => "preview-button", :method => :put
+    = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
     = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
   #preview-box-tall
     .classBlock
@@ -18,11 +18,11 @@
       = image_tag "/images/v2/arrow_white_pointup.png", :class => "class-arrow"
       .class-description
         .heading13-class
-          = "#{@course.title}"
-        %p= "#{@course.teaser}"
+          = "#{@course.title.truncate(45)}"
+        %p= "#{@course.teaser.truncate(70)}"
+      .class-note
         .heading9-class
           = "#{@course.seats_left} seats left"
-          = "#{@course.days_left} days from today"
     #preview-checklist-box
       .welcome-header Preview CheckList
       %ul
@@ -62,6 +62,5 @@
       %p.class-detail
         = sanitize @course.description.gsub(/\n/,'<br/>')
 
-= render :partial => "sidebar", :locals => {:course => @course}
-
-
+= content_for :sidebar do
+  = render :partial => "sidebar", :locals => {:course => @course}

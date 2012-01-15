@@ -1,11 +1,8 @@
-%head
-  = include_yui_editor_if_used.html_safe
-
 .page
   .page-content
     .page-section-float-left
       .class-logistic-block
-        - if @course.photo.exists?
+        - if @course.photo.present?
           = image_tag(@course.photo.url(:small), :size => "190x120")
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
@@ -21,7 +18,7 @@
           = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
         %br
         .heading10-class Classes are always more fun with a group of friends. Share this class!
-        = render :partial => "social_share"
+        = render :partial => "add_this_small"
 
     .page-section-float-left
       .class-section-heading

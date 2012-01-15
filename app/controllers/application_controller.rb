@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
+    def debug
+    end
+
     def enqueue_warm_facebook_cache
       return true if current_user.blank? || current_user.no_facebook?
       return true if current_user.cache.exist?(:facebook_friend_locations)
@@ -77,8 +80,9 @@ class ApplicationController < ActionController::Base
     end
 
     def previous_path_or(url)
-      if session[:return_to].present? && session[:return_to] != '/'
-        return_to = session[:return_to]
+      return_to = session[:return_to]
+      return_to.gsub!('//www.', '//') unless return_to.blank?
+      if return_to.present? && return_to != '/'
         session[:return_to] = nil
         return_to
       else
