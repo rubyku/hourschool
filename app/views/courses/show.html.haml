@@ -2,7 +2,7 @@
   .page-content
     .page-section-float-left
       .class-logistic-block
-        - if @course.photo.exists?
+        - if @course.photo.present?
           = image_tag(@course.photo.url(:small), :size => "190x120")
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
@@ -28,7 +28,7 @@
     .comment-section
       .class-section-heading
         = "Join the conversation"
-      = render :partial => "disqus"
+      = render :partial => "comments", :locals => {:course => @course}
 
 
 = content_for :head do
