@@ -7,10 +7,10 @@ class HomeController < ApplicationController
   before_filter :skip_if_logged_in, :only => :index
 
   def index
-    @fav2 = Course.find(170)
-    @fav1 = Course.find(214)
-    @fav3 = Course.find(187)
-    @fav4 = Course.find(177)
+    @fav2 = Course.find(236)
+    @fav1 = Course.find(244)
+    @fav3 = Course.find(240)
+    @fav4 = Course.find(237)
   end
 
   def teach
