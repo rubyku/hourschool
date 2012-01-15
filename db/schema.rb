@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105031622) do
+ActiveRecord::Schema.define(:version => 20120105202304) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -226,6 +226,17 @@ ActiveRecord::Schema.define(:version => 20120105031622) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.text     "course_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracks", ["slug"], :name => "index_tracks_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false
