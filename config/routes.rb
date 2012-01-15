@@ -27,10 +27,6 @@ HourschoolV2::Application.routes.draw do
     resources :browse
   end
 
-  devise_for :members
-  resources :members, :only => [:index, :show]
-
-
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
   end
