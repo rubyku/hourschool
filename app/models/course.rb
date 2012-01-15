@@ -96,9 +96,8 @@ class Course < ActiveRecord::Base
   end
 
   def starts_at
-    date.in_time_zone
+    date
   end
-  alias :start_at :starts_at
 
   def active?
     return false if date.blank?
