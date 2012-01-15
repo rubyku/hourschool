@@ -11,7 +11,6 @@ ActiveAdmin.register Course do
     f.buttons
   end
 
-
   index do
     column :title
     column :teaser
