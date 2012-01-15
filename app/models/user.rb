@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 
   def self.random
-    order('rand()')
+    order('random()')
   end
 
   def update_time_zone
