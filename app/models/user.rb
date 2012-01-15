@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email
   # Setup accessible (or protected) attributes for your model
   #validate :supported_location, :location_format
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip, :bio, :referral, :facebook_id, :twitter_id, :web
 
   include MethodCacheable
   extend FriendlyId
