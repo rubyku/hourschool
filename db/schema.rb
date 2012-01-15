@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105193336) do
+ActiveRecord::Schema.define(:version => 20120106152143) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20120105193336) do
     t.datetime "updated_at"
     t.float    "lat"
     t.float    "lng"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "courses", :force => true do |t|
@@ -167,7 +175,7 @@ ActiveRecord::Schema.define(:version => 20120105193336) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role"
+    t.string   "name"
     t.boolean  "attending"
   end
 
