@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :roles
 
   has_many :payments
+  has_many :comments, :dependent => :destroy
 
   has_attached_file :photo, :styles => {:small => ["190x120", :jpg],
                                         :large => ["570x360>", :jpg],
