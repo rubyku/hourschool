@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106152143) do
+ActiveRecord::Schema.define(:version => 20120115195159) do
 
   create_table "cities", :force => true do |t|
     t.integer  "zip"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(:version => 20120106152143) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"
