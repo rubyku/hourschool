@@ -13,6 +13,7 @@ HourschoolV2::Application.routes.draw do
     resources :charts
   end
 
+  resources :comments
 
   resources :suggestions# , :path => 'requests'
 

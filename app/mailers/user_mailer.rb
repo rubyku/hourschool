@@ -7,6 +7,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.students.map(&:email), :reply_to => course.teacher.email, :subject => "Your teacher sent you a message!")
   end
 
+  def comment_on_course(user, comment, course)
+    @user    = user
+    @course  = course
+    @comment = comment
+    mail(:to => user.email, :subject => "#{comment.user.name} left a comment for on Hourschool")
+  end
+
   # course = Course.find(params[:id])
   # UserMailer.contact_teacher(user, course, "hello there").deliver
   def contact_teacher(current_user, course, message)
