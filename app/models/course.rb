@@ -98,7 +98,6 @@ class Course < ActiveRecord::Base
   def starts_at
     date
   end
-  alias :start_at :starts_at
 
   def active?
     return false if date.blank?
