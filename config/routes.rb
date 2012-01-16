@@ -41,6 +41,8 @@ HourschoolV2::Application.routes.draw do
   resources :users do
   end
 
+  ActiveAdmin.routes(self)
+
   scope :module => 'users' do
     resources :after_register, :only => [:show, :update]
   end
