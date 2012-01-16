@@ -3,12 +3,16 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :set_timezone
+  before_filter :set_timezone, :eventual_warm_facebook_cache
   protect_from_forgery
 
   protected
 
     def debug
+    end
+
+    def eventual_warm_facebook_cache
+      enqueue_warm_facebook_cache if rand(4) == 1 # one in 5 chance
     end
 
     def enqueue_warm_facebook_cache
