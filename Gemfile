@@ -109,7 +109,10 @@ gem "nifty-generators", :group => :development
 
 # gem "liverelaod"
 
+gem 'sunspot_rails'
+
 group :development, :test do
+  gem 'sunspot_solr'            # pre-packaged Solr distribution for use in development
   gem 'pgbackup-tasks'
   gem 'capybara', '~> 1.1.2'
   gem "rspec-rails", "~> 2.6"

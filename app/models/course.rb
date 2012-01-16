@@ -39,6 +39,16 @@ class Course < ActiveRecord::Base
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
+  include Course::Searchable
+
+  def lat
+    city.try(:lat)
+  end
+
+  def lng
+    city.try(:lng)
+  end
+
 
   def days_left
     (date - Time.current.to_date).to_i
