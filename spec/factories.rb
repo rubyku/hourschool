@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :role do
     association :user
     association :course
-    role  { ['teacher', 'student'].sample }
+    name  { ['teacher', 'student'].sample }
   end
 
 
@@ -35,8 +35,12 @@ FactoryGirl.define do
 
   factory :course do
     title       { FactoryGirl.generate(:course_name) }
+    teaser      { Forgery(:lorem_ipsum).words(rand(5) + 1) }
+    experience  { Forgery(:lorem_ipsum).words(rand(30) + 1) }
     description { Forgery(:lorem_ipsum).words(rand(30) + 1) }
+    public      { [true, false].sample }
     status      "live"
+    address     { Faker::Address.street_address }
     place_name  { Forgery::Name.location }
     time_range  {c = rand(5); "#{c} - #{c + rand(2)}}"}
     price       { rand(100) }

@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 gem 'pg'
 
-
 gem 'wicked', :git => 'git://github.com/schneems/wicked.git'
 gem 'awesome_print'     # for the printing
 gem "koala", '~> 1.2.1' # For the facebook
@@ -17,6 +16,8 @@ gem 'taps'
 
 # gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
 gem 'devise', '~> 1.4.9'
+gem 'activeadmin', '~> 0.3.4'
+
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth", '~> 0.3.2'
 #gem "koala"
@@ -45,7 +46,7 @@ gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'thumbs_up'
 
 #pagination
-gem 'will_paginate', '~> 3.0.2'
+gem 'will_paginate', '3.0.pre2'
 
 #searching-indexing
 #gem 'thinking-sphinx', '2.0.5'
@@ -104,7 +105,7 @@ gem "nifty-generators", :group => :development
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "mocha", :group => :test
+# gem "mocha", :group => :test
 
 # gem "liverelaod"
 
@@ -124,5 +125,9 @@ group :development, :test do
   gem 'faker'
   gem 'timecop'
   gem 'spork'
+end
+
+group :test do
+  gem 'webmock', :require => false
 end
 

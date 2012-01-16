@@ -2,7 +2,7 @@
   = image_tag("/images/v2/step3.png", :class => "steps")
   #preview-box
     .preview-header Preview your class
-    = button_to "Publish now!", confirm_path({:id => @course.id}), :class => "preview-button", :method => :put
+    = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
     = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
   #preview-box-tall
     .classBlock

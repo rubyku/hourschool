@@ -84,7 +84,7 @@ class CoursesController < ApplicationController
     if @course.save
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
-        @role = @course.roles.create!(:attending => true, :role => 'teacher', :user => current_user)
+        @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
       #now the course has been saved add it to a city where it belongs
@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
       #redirect_to current_user, :notice => "Successfully submitted your proposal"
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      redirect_to profile_path(:show => 'teaching')
+      redirect_to current_user
     else
       render :action => 'new'
     end
@@ -127,7 +127,7 @@ class CoursesController < ApplicationController
     params[:course].delete(:categories)
     @course.category_list = cat.join(", ").to_s
     if @course.update_attributes(params[:course])
-      redirect_to preview_path(:id => @course.id)
+      redirect_to preview_path(@course)
     else
       render :action => 'edit'
     end
@@ -182,7 +182,7 @@ class CoursesController < ApplicationController
   def register
     @course = Course.find(params[:id])
     @user   = current_user
-    @role   = @course.roles.new(:attending => true, :role => 'student', :user => current_user)
+    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
     if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
@@ -213,7 +213,7 @@ class CoursesController < ApplicationController
       if @payment.save
          @payment.update_attributes(:user => current_user, :course => @course)
          @user = current_user
-         @role = @course.roles.create!(:attending => true, :role => 'student', :user => current_user)
+         @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
@@ -265,7 +265,14 @@ class CoursesController < ApplicationController
 
   def post_to_twitter(course)
     client = Twitter::Client.new
-    client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
+    if !current_user.twitter_id.blank?
+      message = "New class available in ##{course.city.name}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
+      if message.size < 125
+        client.update(message + url_for(course))
+      end
+    else
+      client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
+    end
   end
 
   def sanitize_price(price)

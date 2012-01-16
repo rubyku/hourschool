@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :tracks
+
   # temp hack, remove after Febuary 2011
   match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
 
@@ -25,10 +27,6 @@ HourschoolV2::Application.routes.draw do
     resources :browse
   end
 
-  devise_for :members
-  resources :members, :only => [:index, :show]
-
-
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
   end
@@ -42,6 +40,8 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'home#index'
   resources :users do
   end
+
+  ActiveAdmin.routes(self)
 
   scope :module => 'users' do
     resources :after_register, :only => [:show, :update]
@@ -62,8 +62,8 @@ HourschoolV2::Application.routes.draw do
   match '/register' => 'courses#register'
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'
-  match '/preview' => 'courses#preview'
-  match '/confirm' => 'courses#confirm'
+  match '/preview/:id' => 'courses#preview', :as => 'preview'
+  match '/confirm/:id' => 'courses#confirm', :as => 'confirm'
   match '/heart' => 'courses#heart'
   match '/proposal' => 'courses#show_proposal'
   match '/payment_preview' => 'courses#register_preview'
