@@ -29,6 +29,12 @@
       %li= link_to "Toronto, ON", courses_browse_path(:city, :city => "Toronto") 
       %li= link_to "Windsor, CO", courses_browse_path(:city, :city => "Windsor")
 
+%ul.searchFilter
+  %li
+    .sidebar-heading Browse By Time
+    %li= link_to "All classes",      courses_browse_path(:all,      @params)
+    %li= link_to "Upcoming only", courses_browse_path(:upcoming, @params)
+
 
 %ul.searchFilter
   %li
