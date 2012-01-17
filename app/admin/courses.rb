@@ -3,6 +3,15 @@ ActiveAdmin.register Course do
   scope :active
   scope :past
 
+  form do |f|
+    f.inputs
+    f.inputs 'Category' do
+      f.input :categories
+    end
+    f.buttons
+  end
+
+
   index do
     column :title
     column :teaser
