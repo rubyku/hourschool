@@ -68,6 +68,7 @@ gem 'tumblr-api'
 
 #uploads, parsing, etc
 gem 'paperclip', '~> 2.5.0'
+gem 'aws-sdk'
 
 #storage
 gem 'aws-s3'
