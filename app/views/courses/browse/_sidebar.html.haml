@@ -42,9 +42,3 @@
     - TAGS.each do |tag|
       %li= link_to "#{tag}", courses_browse_path(:tags, :tag => tag)
 
-%ul.searchFilter
-  %li
-    .sidebar-heading Browse By Time
-    %li= link_to "All",      courses_browse_path(:all,      @params)
-    %li= link_to "Upcoming", courses_browse_path(:upcoming, @params)
-
