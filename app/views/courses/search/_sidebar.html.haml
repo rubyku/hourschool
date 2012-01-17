@@ -1,0 +1,44 @@
+- if current_user
+  %ul.searchFilter
+    %li
+      .sidebar-heading My Location
+      %li= link_to "#{current_user.city}, #{current_user.state}", courses_search_path(add_filter(:id => :upcoming, :city => current_user.city))
+  %ul.searchFilter
+    %li
+      .sidebar-heading search By City
+      %li= link_to "All Cities",        courses_search_path(add_filter(:id => :upcoming, :city => "All"))
+      %li= link_to "Ann Arbor, MI",     courses_search_path(add_filter(:id => :upcoming, :city => "Ann Arbor"))     unless current_user.city == "Ann Arbor"
+      %li= link_to "Austin, TX",        courses_search_path(add_filter(:id => :upcoming, :city => "Austin"))        unless current_user.city == "Austin"
+      %li= link_to "Loveland, CO",      courses_search_path(add_filter(:id => :upcoming, :city => "Loveland"))      unless current_user.city == "Loveland"
+      %li= link_to "New York, NY",      courses_search_path(add_filter(:id => :upcoming, :city => "New York"))      unless current_user.city == "New York"
+      %li= link_to "San Francisco, CA", courses_search_path(add_filter(:id => :upcoming, :city => "San Francisco")) unless current_user.city == "San Francisco"
+      %li= link_to "Santa Monica, CA",  courses_search_path(add_filter(:id => :upcoming, :city => "Santa Monica"))  unless current_user.city == "Santa Monica"
+      %li= link_to "Toronto, ON",       courses_search_path(add_filter(:id => :upcoming, :city => "Toronto"))       unless current_user.city == "Toronto"
+      %li= link_to "Windsor, CO",       courses_search_path(add_filter(:id => :upcoming, :city => "Windsor"))       unless current_user.city == "Windsor"
+- else
+  %ul.searchFilter
+    %li
+      .sidebar-heading Search By City
+      %li= link_to "All",               courses_search_path(add_filter(:id => :upcoming, :city => "All"))
+      %li= link_to "Ann Arbor, MI",     courses_search_path(add_filter(:id => :upcoming, :city => "Ann Arbor"))
+      %li= link_to "Austin, TX",        courses_search_path(add_filter(:id => :upcoming, :city => "Austin"))
+      %li= link_to "Loveland, CO",      courses_search_path(add_filter(:id => :upcoming, :city => "Loveland"))
+      %li= link_to "New York, NY",      courses_search_path(add_filter(:id => :upcoming, :city => "New York"))
+      %li= link_to "San Francisco, CA", courses_search_path(add_filter(:id => :upcoming, :city => "San Francisco"))
+      %li= link_to "Santa Monica, CA",  courses_search_path(add_filter(:id => :upcoming, :city => "Santa Monica"))
+      %li= link_to "Toronto, ON",       courses_search_path(add_filter(:id => :upcoming, :city => "Toronto"))
+      %li= link_to "Windsor, CO",       courses_search_path(add_filter(:id => :upcoming, :city => "Windsor"))
+
+%ul.searchFilter
+  %li
+    .sidebar-heading Search By Time
+    %li= link_to "All classes",   courses_search_path(add_filter(:id => :all))
+    %li= link_to "Upcoming only", courses_search_path(add_filter(:id => :upcoming))
+
+
+%ul.searchFilter
+  %li
+    .sidebar-heading Search By Category
+    - TAGS_HASH.each do |tag, id|
+      %li= link_to "#{tag}", courses_search_path(add_filter(:tag => id))
+
