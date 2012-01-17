@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
     @user    = user
     @course  = course
     @comment = comment
-    mail(:to => user.email, :subject => "#{comment.user.name} left a comment for on Hourschool")
+    mail(:to => user.email, :subject => "#{comment.user.name} left a comment on Hourschool")
   end
 
   # course = Course.find(params[:id])
