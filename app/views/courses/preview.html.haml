@@ -19,10 +19,17 @@
       .class-description
         .heading13-class
           = "#{@course.title.truncate(45)}"
-        %p= "#{@course.teaser.truncate(70)}"
+        %p= "#{@course.teaser.truncate(60)}"
       .class-note
         .heading9-class
-          = "#{@course.seats_left} seats left"
+          - if @course.active?  
+            - if @course.max_seats.blank?
+              = link_to "Unlimited seats |", @course
+            - elsif @course.seats_left == 0 
+              = link_to "Full! Request again |", @course
+            - elsif
+              = link_to "#{@course.seats_left} seats left |", @course
+          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
     #preview-checklist-box
       .welcome-header Preview CheckList
       %ul
