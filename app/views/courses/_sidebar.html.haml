@@ -1,6 +1,8 @@
 .sidebar-white
   .sidebar-content-white
-    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.max_seats}"
+    = "Class min. of #{@current_course.min_seats}"
+    - if !@current_course.max_seats.blank?
+      = ", max. of #{@current_course.max_seats}"
     %br
     %br
     - if !@current_course.active?
