@@ -10,7 +10,6 @@ class Course < ActiveRecord::Base
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
-  attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
 
@@ -29,8 +28,6 @@ class Course < ActiveRecord::Base
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
-
-  attr_accessible :photo
 
   extend FriendlyId
   friendly_id :pretty_slug, :use => :history
