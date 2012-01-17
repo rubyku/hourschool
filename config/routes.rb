@@ -21,11 +21,13 @@ HourschoolV2::Application.routes.draw do
   resources :suggestions# , :path => 'requests'
   resources :esuggestions, :path => 'suggestions'
 
-  resources :courses
 
   namespace :courses do
     resources :browse
+    resources :search
   end
+  resources :courses
+
 
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
