@@ -7,6 +7,7 @@ module Course::Searchable
 
       # Used when we want to say all spots _except_ for ...
       integer   :id
+      integer   :city_id
       integer   :max_seats
       integer   :min_seats
 
@@ -21,9 +22,6 @@ module Course::Searchable
       float     :lat
       float     :lng
 
-      integer   :city_id do |c|
-        c.city.try(:id)
-      end
 
       location(:coordinates) do |c|
         Sunspot::Util::Coordinates.new(c.lat, c.lng)
