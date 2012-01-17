@@ -12,11 +12,9 @@ class Course < ActiveRecord::Base
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
-  attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
 
-  default_scope order(:date, :created_at)
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
@@ -33,11 +31,19 @@ class Course < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
-  attr_accessible :photo
-
   extend FriendlyId
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
+
+  include Course::Searchable
+
+  def lat
+    city.try(:lat)
+  end
+
+  def lng
+    city.try(:lng)
+  end
 
 
   def days_left
@@ -97,7 +103,6 @@ class Course < ActiveRecord::Base
   def starts_at
     date
   end
-  alias :start_at :starts_at
 
   def active?
     return false if date.blank?

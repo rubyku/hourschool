@@ -1,6 +1,8 @@
 .bundle
 db/*.sqlite3
 log/*.log
+log/*.log.lck
 tmp/
 .rvmrc
 .DS_Store
+/solr

@@ -1,0 +1,9 @@
+.page
+  .page-content    
+          
+    = render :layout => 'shared/page/section', :locals => {:header => "Learn at HourSchool"} do
+      = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
+
+
+= content_for :sidebar do
+  = render :partial => 'sidebar'

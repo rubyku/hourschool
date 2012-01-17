@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :tracks
+
   # temp hack, remove after Febuary 2011
   match "/course_confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/course_confirm" }
 
@@ -17,11 +19,12 @@ HourschoolV2::Application.routes.draw do
 
   resources :suggestions# , :path => 'requests'
 
-  resources :courses
 
   namespace :courses do
     resources :browse
+    resources :search
   end
+  resources :courses
 
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
@@ -36,6 +39,8 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'home#index'
   resources :users do
   end
+
+  ActiveAdmin.routes(self)
 
   scope :module => 'users' do
     resources :after_register, :only => [:show, :update]

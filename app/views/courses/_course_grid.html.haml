@@ -2,7 +2,7 @@
   - group.each do |course|
     - if course.present?
       .classBlock
-        - if course.photo.exists?
+        - if course.photo.present?
           = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
           %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
         - else
@@ -21,7 +21,7 @@
             .heading9-class
               - if course.active?
                 - if course.seats_left == 0 
-                  = link_to "Full! Request it again |", course
+                  = link_to "Full! Request again |", course
                 - else 
                   = link_to "#{course.seats_left} seats left |", course
               = "#{course.city.try(:name)}, #{course.city.try(:state)}"

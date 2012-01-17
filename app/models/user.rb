@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email
   # Setup accessible (or protected) attributes for your model
-  #validate :supported_location, :location_format
+  # validate :supported_location, :location_format
 
   include MethodCacheable
   extend FriendlyId
@@ -30,8 +30,6 @@ class User < ActiveRecord::Base
                             :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
-
-  attr_accessible :photo
 
 
   acts_as_voter

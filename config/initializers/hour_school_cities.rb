@@ -2,14 +2,16 @@ SUPPORTED_CITIES = [
   "Austin, TX",
   "San Francisco, CA"
   ]
-  
-TAGS = [
-  "Presentation",
-  "Round Table",
-  "Demo",
-  "Hands-on",
-  ]
-  
+
+TAGS_HASH = {
+  "Presentation" => 12,
+  "Round Table"  => 13,
+  "Demo"         => 11,
+  "Hands-on"     => 10
+}
+
+TAGS = TAGS_HASH.keys
+
 DEF_IMAGE_PATH_STRING = "/images/v2-courses/DefaultClassPics_"
 DEF_IMAGES = {
   "Presentation" => "#{DEF_IMAGE_PATH_STRING}Generic.png",
