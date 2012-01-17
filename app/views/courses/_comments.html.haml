@@ -22,6 +22,6 @@
         = form_for course.comments.new do |f|
           %div
             = f.hidden_field :course_id, :value => course.id
-            = f.text_area    :body,      :placeholder => "Join the Conversation! #{Comment.say_something}"
+            = f.text_area    :body,      :placeholder => "Join the Conversation!"
           %div
             = f.submit 'Leave Comment'

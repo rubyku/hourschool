@@ -28,7 +28,8 @@
     .comment-section
       .class-section-heading
         = "Join the conversation"
-      = render :partial => "comments", :locals => {:course => @course}
+      = render :partial => "disqus"
+      =# render :partial => "comments", :locals => {:course => @course}
 
 
 = content_for :head do
