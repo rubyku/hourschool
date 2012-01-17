@@ -115,7 +115,7 @@ group :development, :test do
   gem 'sunspot_solr'            # pre-packaged Solr distribution for use in development
   gem 'pgbackup-tasks'
   gem 'capybara', '~> 1.1.2'
-  gem "rspec-rails", "~> 2.6"
+  gem "rspec-rails", "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
   gem 'rb-fsevent'
   gem 'guard-livereload'
@@ -126,6 +126,7 @@ group :development, :test do
   gem 'launchy', '~> 2.0.5'
   gem 'random_data'
   gem 'faker'
+  gem 'ffaker'
   gem 'timecop'
   gem 'spork'
 end

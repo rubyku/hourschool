@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :roles
 
   has_many :payments
+  has_many :comments, :dependent => :destroy
 
   has_attached_file :photo, :styles => {:small => ["190x120", :jpg],
                                         :large => ["570x360>", :jpg],
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 
   def self.random
-    order('rand()')
+    order('random()')
   end
 
   def update_time_zone
