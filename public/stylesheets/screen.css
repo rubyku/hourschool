@@ -4052,3 +4052,30 @@ a.closeButton:hover {
   font-size:0.8em;
   color: #A19A95;
 }
+
+
+.comments {
+ margin-left:10px;
+}
+
+.comments .avatar {
+  width:  50px;
+}
+
+
+.comments .content{
+  float:left;
+
+
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.comments textarea {
+  padding:    5px;
+  margin-top: 5px;
+  width:      560px;
+}
+
