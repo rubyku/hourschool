@@ -3,7 +3,9 @@ class Course < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
+  alias_attribute :name, :title
 
+  has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
   validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
