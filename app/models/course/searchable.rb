@@ -28,8 +28,13 @@ module Course::Searchable
   end
 
   module ClassMethods
+    # active_admin uses conflicting meta_search use solr_search instead
+    def solr_search(*args, &block)
+      Sunspot.search(Course, args, block)
+    end
+
     def search_live(query, options = {})
-      search do
+      solr_search do
         fulltext query
         paginate :per_page => Course::DEFAULT_PER_PAGE
         paginate :page     => options[:page] if options[:page].present?
