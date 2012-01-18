@@ -1,3 +1,6 @@
+:css
+  a{color: #ff7733;}
+
 .page-section-float-left
   = image_tag("/images/v2/step3.png", :class => "steps")
   #preview-box
@@ -66,8 +69,8 @@
           = render :partial => "social_share"
     .page-section-float-left
       .class-section-heading This class will cover
-      %p.class-detail
-        = sanitize @course.description.gsub(/\n/,'<br/>')
+      .class-detail
+        %p= simple_format auto_link(@course.description)
 
 = content_for :sidebar do
   = render :partial => "sidebar", :locals => {:course => @course}

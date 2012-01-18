@@ -611,29 +611,30 @@ p, ol, ul {
   font-size: 13px;
   color: white;
   line-height: 24px;
+  margin-bottom: 15px;
 }
 
 /* line 33, ../../app/assets/stylesheets/components/homepage.scss */
 a {
-  text-decoration: underline;
-  color: #ff7733;
+  text-decoration: none;
+  color: #4f4e4e;
 }
 
 /* line 34, ../../app/assets/stylesheets/components/homepage.scss */
 a:visited {
-  text-decoration: underline;
-  color: #ff7733;
+  text-decoration: none;
+  color: #4f4e4e;
 }
 
 /* line 35, ../../app/assets/stylesheets/components/homepage.scss */
 a:active {
-  text-decoration: underline;
+  text-decoration: none;
   color: #ff7733;
 }
 
 /* line 36, ../../app/assets/stylesheets/components/homepage.scss */
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: #ff7733;
 }
 
@@ -1556,29 +1557,6 @@ p, ol, ul {
   letter-spacing: auto;
 }
 
-/* line 35, ../../app/assets/stylesheets/components/general.scss */
-a {
-  text-decoration: none;
-  color: #4f4e4e;
-}
-
-/* line 36, ../../app/assets/stylesheets/components/general.scss */
-a:visited {
-  text-decoration: none;
-  color: #4f4e4e;
-}
-
-/* line 37, ../../app/assets/stylesheets/components/general.scss */
-a:active {
-  text-decoration: underline;
-  color: #ff7733;
-}
-
-/* line 38, ../../app/assets/stylesheets/components/general.scss */
-a:hover {
-  text-decoration: none;
-  color: #ff7733;
-}
 
 /*......PAGE BREAKDOWN......*/
 /* line 43, ../../app/assets/stylesheets/components/general.scss */
@@ -2059,6 +2037,10 @@ img.class-arrow {
   padding-right: 10px;
 }
 
+a.class-note{
+  color: #4f4e4e;
+}
+
 /* line 416, ../../app/assets/stylesheets/components/general.scss */
 table.view-more, tr.view-more {
   float: right;
@@ -2465,6 +2447,7 @@ p.class-details {
 
 /* line 717, ../../app/assets/stylesheets/components/general.scss */
 .class-alternatives {
+  float: left;
   font-weight: 400;
   font-size: 9px;
   color: #999;
@@ -2630,6 +2613,10 @@ p.class-details-heart-number {
   font-size: 25px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+
+.contact-link{
+  color: #4f4e4e;
 }
 
 /* line 775, ../../app/assets/stylesheets/components/general.scss */
@@ -3911,6 +3898,10 @@ td.fb_share_table_name_column{
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+}
+
+.button_decline{
+  color: #999;
 }
 
 .ui-corner-all{

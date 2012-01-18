@@ -78,11 +78,11 @@
               .class-sidebar-details
                 = course.address
             - else
-              %p Private Address
+              = "Private Address"
             - if course.is_a_student?(current_user)
-              - if course.public?
-                / %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-                / %br
+              / - if course.public?
+              /   %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+              /   %br
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
@@ -112,7 +112,7 @@
 
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-        = link_to "Contact teacher", contact_teacher_path(:id => course.id)
+        = link_to "Contact teacher", contact_teacher_path(:id => course.id), :class => "contact-link"
 
 
     - if course.students.any?
@@ -133,5 +133,5 @@
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-          = link_to "Contact students", contact_all_students_path(:id => course.id)
+          = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
 

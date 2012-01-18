@@ -1,3 +1,6 @@
+:css
+  a{color: #ff7733;}
+
 .page
   .page-content
     .page-section-float-left
@@ -23,7 +26,7 @@
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
-      %p= sanitize @course.description.gsub(/\n/,'<br/>')
+      %p= simple_format auto_link(@course.description)
 
     .comment-section
       .class-section-heading

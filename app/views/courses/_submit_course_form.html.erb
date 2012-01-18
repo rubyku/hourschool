@@ -25,7 +25,7 @@
     <div class="page-section-float-left">
 
     <p>
-     <%= f.label :title, 'Give your class a title:', :class => "form-question" %><br />
+     <%= f.label :title, 'Give your class a title:', :class => "form-question" %>
      <p class="tip">Max. length is 50 characters</p>
      <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle, :maxlength => "36" %>
      </p>
@@ -43,10 +43,10 @@
      <p class="tip">Choose the best category this class falls into.</p>
      <%= f.select :categories, options_for_select([['Presentation', 'Presentation'],['Round Table', 'Round Table'], ['Demo','Demo'],['Hands-on','Hands-on']], :selected => @course.category_list.first) %>
      </p>
-     <br><br>
+     <br>
 
      <p>
-     <%= f.label :photo, 'Upload a photo', :class => "form-question" %><br />
+     <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
      <p class="tip">If you don't have time to find a photo, we will auto-populate a default one based on the category. Of course you can always come back and change it.</p>
      <%= f.file_field :photo %>
      </p>
@@ -60,7 +60,7 @@
      <div class="page-section-float-left">
 
     <p>
-     <%= f.label :description, 'Describe your class in more details', :class => "form-question" %><br />
+     <%= f.label :description, 'Describe your class in more details', :class => "form-question" %>
      <p class="tip">No character limit</p>
      <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What are the 3 things they will get out of the class? What kind of material or equipment do they need ahead of time?" %>
      </p>

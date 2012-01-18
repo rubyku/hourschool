@@ -21,11 +21,11 @@
             .heading9-class
               - if course.active?  
                 - if course.max_seats.blank?
-                  = link_to "Unlimited seats |", course
+                  = "Unlimited seats |"
                 - elsif course.seats_left == 0 
-                  = link_to "Full! Request again |", course
+                  = "Full! Request again |"
                 - elsif
-                  = link_to "#{course.seats_left} seats left |", course
+                  = "#{course.seats_left} seats left |"
               = "#{course.city.try(:name)}, #{course.city.try(:state)}"
 
     - else
