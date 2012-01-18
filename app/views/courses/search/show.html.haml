@@ -3,6 +3,11 @@
           
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at HourSchool"} do
       = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
+    .page-section-float-right
+      %table.view-more
+        %tr
+          %td
+            = will_paginate @courses, :previous_label => "Prev"
 
 
 = content_for :sidebar do

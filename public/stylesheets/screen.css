@@ -4069,3 +4069,7 @@ a.closeButton:hover {
   width:      560px;
 }
 
+
+.hiddenSubmit {
+  visibility: hidden;
+}

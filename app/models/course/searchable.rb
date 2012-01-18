@@ -3,6 +3,9 @@ module Course::Searchable
 
   included do
     searchable do
+      # all 'text' fields are used for fulltext search
+      # all other typed fields can be used to scope/narrow
+      # down results
       text      :title, :teaser, :description
 
       # Used when we want to say all spots _except_ for ...
@@ -22,6 +25,21 @@ module Course::Searchable
       float     :lat
       float     :lng
 
+      # Richard Schneeman
+      text(:teacher_name) do |c|
+        c.teacher.try(:name)
+      end
+
+      # Austin, Tx
+      text(:city_state) do |c|
+        c.city.try(:name_state)
+      end
+
+      # Demo, cooking
+      text(:category_names_joined) do |c|
+        c.categories.map(&:name).join(", ")
+      end
+
 
       location(:coordinates) do |c|
         Sunspot::Util::Coordinates.new(c.lat, c.lng)
@@ -29,10 +47,6 @@ module Course::Searchable
 
       integer(:categories, :multiple => true) do |c|
         c.categories.map(&:id)
-      end
-
-      text(:category_names_joined) do |c|
-        c.categories.map(&:name).join(", ")
       end
     end
   end
@@ -97,7 +111,7 @@ module Course::Searchable
         # upcoming versus all
         if options[:when].present?
           any_of do
-            with(:date).greater_than(Date.yesterday) if options[:when]
+            with(:date).greater_than(Date.yesterday) if options[:when] == 'upcoming'
           end
         end
 
