@@ -44,7 +44,7 @@
                   %p Private Address
 
     
-    - if @course.nosignup?
+    - if @course.nosignup.nil?
       .class-description-block
         .confirm-bring-friend You're a couple short steps from signing up for this class!
         %br
@@ -58,7 +58,7 @@
           = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
         - else
           = render "amazon_form"
-    - else
+    - else @course.nosignup?
       .class-description-block
         .confirm-bring-friend Thanks for your interest
         %br
