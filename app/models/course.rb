@@ -40,6 +40,9 @@ class Course < ActiveRecord::Base
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
+  def self.tomorrows_courses
+    Course.where("(date - :todays_date) = 1 AND status = :live", {:todays_date => Date.today, :live => "live"})
+  end
 
   def days_left
     (date - Time.current.to_date).to_i
