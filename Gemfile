@@ -67,7 +67,8 @@ gem 'use_tinymce'
 gem 'tumblr-api'
 
 #uploads, parsing, etc
-gem 'paperclip'
+gem 'paperclip', '~> 2.5.0'
+gem 'aws-sdk'
 
 #storage
 gem 'aws-s3'

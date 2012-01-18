@@ -67,6 +67,11 @@ GEM
       builder
       mime-types
       xml-simple
+    aws-sdk (1.2.6)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
     capybara (1.1.2)
@@ -344,6 +349,7 @@ GEM
     use_tinymce (0.0.12)
     uuid (2.3.4)
       macaddr (~> 1.0)
+    uuidtools (2.1.2)
     warden (1.0.6)
       rack (>= 1.0)
     webmock (1.7.10)
@@ -365,6 +371,7 @@ DEPENDENCIES
   airbrake
   awesome_print
   aws-s3
+  aws-sdk
   capybara (~> 1.1.2)
   dalli (~> 1.1.4)
   delayed_job (~> 2.1.4)
@@ -389,7 +396,7 @@ DEPENDENCIES
   newrelic_rpm
   nifty-generators
   omniauth (~> 0.3.2)
-  paperclip
+  paperclip (~> 2.5.0)
   pg
   pgbackup-tasks
   rails (= 3.0.9)
