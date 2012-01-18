@@ -60,6 +60,7 @@ HourschoolV2::Application.routes.draw do
   match '/suggest' => 'suggestions#suggest'
   match '/csvote' => 'suggestions#vote'
   match '/register' => 'courses#register'
+  match '/register_for_reskilling' => 'courses#register_for_reskilling'
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'
   match '/preview/:id' => 'courses#preview', :as => 'preview'

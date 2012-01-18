@@ -81,8 +81,19 @@
                 </div><br><br>
 
              <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to have the class" %>
-             <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I want to have" %>
-    </div>
+             <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I want to have" %></div>
+             <br><br>
+            <div>
+             <% if current_user.admin?%>
+               <p>
+               <%= f.radio_button :nosignup, true %>
+               <%= f.label :nosignup, 'For Ann Arbor Reskilling - no sign up neccessary' %>
+               <br>
+               <%= f.radio_button :nosignup, false %>
+               <%= f.label :nosignup, 'Normal class' %>
+               </p>
+             <% end %>
+            </div><br><br>
 
     <div class="page-section-float-left">
         <div class="class-form-question">When</div><br>

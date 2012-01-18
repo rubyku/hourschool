@@ -25,10 +25,16 @@
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-        - if current_user.nil? || @current_course.city.name == current_user.city
-          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
-        - else
-          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+        - if @current_course.nosignup?
+          - if current_user.nil? || @current_course.city.name == current_user.city
+            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+          - else
+            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+        - else 
+          - if current_user.nil? || @current_course.city.name == current_user.city
+            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+          - else
+            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
 
 
     .sidebar-block
@@ -109,16 +115,19 @@
 
     - if course.students.any?
       .sidebar-block-last
-        .sidebar-heading Students
-        .class-attendance-block
-          - course.students.each do |student|
-            %table
-              %tr
-                %td
-                  = link_to_avatar(student, :class => "avatar-medium")
-                %td
-                  = link_to student.name, user_path(student.id), :class => "profile-link"
-            %br
+        - if @current_course.nosignup?
+          .sidebar-heading Students
+        - else 
+          .sidebar-heading People interested
+          .class-attendance-block
+            - course.students.each do |student|
+              %table
+                %tr
+                  %td
+                    = link_to_avatar(student, :class => "avatar-medium")
+                  %td
+                    = link_to student.name, user_path(student.id), :class => "profile-link"
+              %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
