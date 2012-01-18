@@ -64,7 +64,9 @@ class CoursesController < ApplicationController
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        post_to_twitter(@course)
+        if !@course.nosignup?
+          post_to_twitter(@course)
+        end
       end
     end
   end
@@ -195,6 +197,28 @@ class CoursesController < ApplicationController
       end
     end
 
+    respond_to do |format|
+      format.html do
+        redirect_to course_confirm_path(:id => @course.id)
+      end
+      format.js { }
+    end
+  end
+  
+  def register_for_reskilling
+    @course = Course.find(params[:id])
+    @user   = current_user
+    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
+    if @role.save
+      UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
+      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
+    else
+      if @course.is_a_student? @user
+        flash[:error] = "You are already registered for this course"
+      else
+        flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
+      end
+    end
     respond_to do |format|
       format.html do
         redirect_to course_confirm_path(:id => @course.id)

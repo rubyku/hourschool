@@ -37,6 +37,13 @@ class UserMailer < ActionMailer::Base
      mail(:to => user_email, :subject => "You've signed up for #{@course.title}!")
    end
 
+   def send_course_reskilling_mail(user_email, user_name, course)
+     @email = user_email
+     @name = user_name
+     @course = course
+     mail(:to => user_email, :subject => "Thanks for your interest in #{@course.title}!")
+   end
+
    def send_course_registration_to_teacher_mail(user_email, user_name, course)
      @email = user_email
      @name = user_name
