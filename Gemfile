@@ -1,135 +1,108 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
-gem 'pg'
+gem 'rails',                '3.0.9'
+gem 'pg',                   '~> 0.12.2'
 
-gem 'wicked', :git => 'git://github.com/schneems/wicked.git'
-gem 'awesome_print'     # for the printing
-gem "koala", '~> 1.2.1' # For the facebook
-gem "dalli", '~> 1.1.4' # for memcache
+# cache helper
+gem 'method_cacheable',     '0.0.4'
+gem "dalli",                '~> 1.1.4' # for memcache
 
-gem 'method_cacheable', '0.0.4' # cache helper
-gem 'taps'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# For Database data transfer
+gem 'taps',                 '~> 0.3.23'
 
-# gem 'devise', :git    => 'git://github.com/plataformatec/devise.git'
-gem 'devise', '~> 1.4.9'
-gem 'activeadmin', '~> 0.3.4'
+
+# User Authentication
+gem 'devise',               '~> 1.4.9'
+
+gem 'activeadmin',          '~> 0.3.4'
 
 #gem "oa-oauth", :require => "omniauth/oauth"
-gem "omniauth", '~> 0.3.2'
-#gem "koala"
+gem "omniauth",             '~> 0.3.2'
 
-gem 'twitter'
+# Social
+gem 'twitter',              '~> 2.0.2'
+gem "koala",                '~> 1.2.1' # For Facebook
+gem 'tumblr-api',           '~> 0.1.4'
 
-gem 'newrelic_rpm'
-gem "airbrake"
 
-gem 'yaml_db'
+# Error logging/reporting
+gem 'newrelic_rpm',         '~> 3.3.1'
+gem "airbrake",             '~> 3.0.9'
 
-gem 'timezone'
+gem 'timezone',             '~> 0.1.4'
 
-gem 'haml'
-gem 'rake', '~> 0.9.2'
-gem 'jquery-rails', '>= 1.0.19'
+gem 'haml',                 '~> 3.1.4'
+gem 'rake',                 '~> 0.9.2'
+gem 'jquery-rails',         '>= 1.0.19'
 
-gem 'friendly_id', '4.0.0'
-# uncomment the next line if you wish to deploy to Heroku
-# gem 'heroku', :group => :development
+gem 'friendly_id',          '4.0.0'
 
-gem 'mysql2', '~> 0.2.6'
+gem 'mysql2',               '~> 0.2.6'
 
 #tagging and voting
-gem 'acts-as-taggable-on', '~>2.1.0'
-gem 'thumbs_up'
+gem 'acts-as-taggable-on',  '~> 2.1.0'
+gem 'thumbs_up',            '~> 0.4.6'
 
 #pagination
-gem 'will_paginate', '3.0.pre2'
+gem 'will_paginate',        '3.0.pre2'
 
 #searching-indexing
-#gem 'thinking-sphinx', '2.0.5'
-gem 'indextank'
+gem 'sunspot_rails',        '~> 1.3.0'
 
-#geo
-#gem 'geokit'
-#gem 'geokit-rails3'
-gem 'geokit-rails3', :git =>  'git://github.com/jlecour/geokit-rails3.git'
 
-#delayed job
-gem 'delayed_job', '~> 2.1.4'
+# Delayed job
+gem 'delayed_job',          '~> 2.1.4'
 
-#rails-tinymce
+# rails-tinymce
 gem 'use_tinymce'
 
-#tumblr api
-gem 'tumblr-api'
-
 #uploads, parsing, etc
-gem 'paperclip', '~> 2.5.0'
-gem 'aws-sdk'
+gem 'paperclip',            '~> 2.5.0'
+gem 'aws-sdk',              '~> 1.2.6'
 
 #storage
-gem 'aws-s3'
+gem 'aws-s3',               '~> 0.6.2'
 
-#payment
-#gem "active_merchant"
-#gem "active_paypal_adaptive_payment"
-#gem "active_merchant", :require => 'active_merchant'
 
-#generators
-gem "nifty-generators", :group => :development
+gem 'wicked',               '0.0.1'
 
-#search
-# gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'geokit-rails3',        :git =>  'git://github.com/jlecour/geokit-rails3.git'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+gem 'awesome_print'         # for the printing
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+group :development do
+  gem 'heroku',             '~> 2.18.1'
+end
 
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
-# gem "mocha", :group => :test
-
-# gem "liverelaod"
-
-gem 'sunspot_rails'
 
 group :development, :test do
-  gem 'sunspot_solr'            # pre-packaged Solr distribution for use in development
-  gem 'pgbackup-tasks'
-  gem 'capybara', '~> 1.1.2'
-  gem "rspec-rails", "~> 2.8.1"
+
+  gem 'sunspot_solr',       '~> 1.3.0'       # pre-packaged Solr distribution for use in development
+  gem 'pgbackup-tasks',     '~> 0.2.3'
+  gem 'capybara',           '~> 1.1.2'
+  gem "rspec-rails",        "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
-  gem 'rb-fsevent'
-  gem 'guard-livereload'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'guard-bundler'
-  gem 'forgery'
-  gem 'launchy', '~> 2.0.5'
-  gem 'random_data'
-  gem 'faker'
-  gem 'ffaker'
-  gem 'timecop'
-  gem 'spork'
+  gem 'rb-fsevent',         '~> 0.4.3.1'
+
+  # Guard
+  gem 'guard-livereload',   '~> 0.4.0'
+  gem 'guard-rspec',        '~> 0.6.0'
+  gem 'guard-spork',        '~> 0.5.1'
+  gem 'guard-bundler',      '~> 0.1.3'
+
+  gem 'forgery',            '~> 0.5.0'
+  gem 'launchy',            '~> 2.0.5'
+  gem 'random_data',        '~> 1.5.2'
+  gem 'faker',              '~> 1.0.1'
+  gem 'ffaker',             '~> 1.12.1'
+  gem 'timecop',            '~> 0.3.5'
+  gem 'spork',              '~> 0.8.5'
+
+  # Debugging
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 group :test do
