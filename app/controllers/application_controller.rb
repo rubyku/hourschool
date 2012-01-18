@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :set_timezone, :eventual_warm_facebook_cache
+  before_filter :debug, :set_timezone, :eventual_warm_facebook_cache
   protect_from_forgery
 
   protected
