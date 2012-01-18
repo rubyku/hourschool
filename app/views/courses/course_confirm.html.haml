@@ -1,8 +1,8 @@
 .full-page
   .page-content
-    - if @course.nosignup?
+    - if @course.nosignup.nil?
       .confirm-second-message You have successfully signed up!
-    - else
+    - else @course.nosignup?
       .confirm-second-message Thanks for your interest!
     %hr#confirm
 
