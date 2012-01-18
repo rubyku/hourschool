@@ -98,12 +98,8 @@ class CoursesController < ApplicationController
         #delele the suggestion
         Suggestion.delete(params[:req].to_s)
         #here email people who voted, etc etc
-
       end
-      #add to indextank
-      #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
-      #redirect_to @course, :notice => "Successfully created course."
-      #redirect_to current_user, :notice => "Successfully submitted your proposal"
+
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to current_user

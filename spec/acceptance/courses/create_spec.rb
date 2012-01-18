@@ -44,9 +44,10 @@ feature "Acceptance courses#create" do
         fill_in 'course_min_seats',   :with => course_stub.min_seats
         fill_in 'course_max_seats',   :with => course_stub.max_seats
 
-        select course_stub.date.strftime("%Y") , :from => 'course_date_1i' # 2011
+
+        select course_stub.date.year.to_s      , :from => 'course_date_1i' # 2011
         select course_stub.date.strftime("%B") , :from => 'course_date_2i' # January
-        select course_stub.date.strftime("%d") , :from => 'course_date_3i' # January
+        select course_stub.date.day.to_s       , :from => 'course_date_3i' # 18
 
         fill_in 'course_time_range', :with => course_stub.time_range
 
