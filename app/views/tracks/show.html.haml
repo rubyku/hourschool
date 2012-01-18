@@ -1,4 +1,7 @@
 :css
+
+  a{color: #ff7733;}
+  
   .classRow {
     width: 100%;
     overflow: hidden;
@@ -19,29 +22,42 @@
     height: auto;
   }
   .intext_link { color: #FF7733; }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
+  hr {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #F0F0F0;
+  }
+  
+  .heading25_666{ text-align: center;}
 
-.page{:style => "width: 100%"}
+.full-page
   .page-content
-    .page-section-float-left
-      .section#teaching
-        .page-section-float-left
-
-        .welcome-header
+    .center
+      .marcomm-header
+        .heading25_666 
           = @track.title
-        = image_tag('v2/greyheader_half.png', :class => 'greyheader_half')
+        = image_tag('v2/greyheader_full.png', :class => 'greyheader_full')
 
-        %div
-          = simple_format(@track.description)
+    .page-section-float-left
+      %div
+        = simple_format auto_link(@track.description)
 
-        -@courses.each do |course|
-          .classRow
-            .classBlock
-              = link_to image_tag(course.photo.url(:small), :size => "190x120"), course
-              = image_tag('v2/arrow_white_pointup.png', :class => 'class-arrow')
-              %br
-              .class-description
-                .heading13-class
-                  = link_to course.title, course
-                %p
-                  = sanitize course.description.gsub(/\n/,'<br/>')
-                  = link_to 'Sign up here!', course
+      %hr 
+      
+      -@courses.each do |course|
+        .classRow
+          .classBlock
+            = link_to image_tag(course.photo.url(:small), :size => "190x120"), course
+            = image_tag('v2/arrow_white_pointup.png', :class => 'class-arrow')
+            %br
+            .class-description
+              .heading13-class
+                = link_to course.title, course
+              %p
+                = sanitize course.description.gsub(/\n/,'<br/>')
+                = link_to 'Sign up here!', course
