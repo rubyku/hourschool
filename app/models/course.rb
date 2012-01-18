@@ -68,7 +68,7 @@ class Course < ActiveRecord::Base
 
 
   def self.random
-    unscoped.order('random()')
+    order('random()')
   end
 
 
