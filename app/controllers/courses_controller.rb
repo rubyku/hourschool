@@ -64,9 +64,9 @@ class CoursesController < ApplicationController
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        if !@course.nosignup?
-          post_to_twitter(@course)
-        end
+        # if !@course.nosignup?
+        #   post_to_twitter(@course)
+        # end
       end
     end
   end
