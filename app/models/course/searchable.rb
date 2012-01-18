@@ -97,7 +97,7 @@ module Course::Searchable
         # upcoming versus all
         if options[:when].present?
           any_of do
-            with(:date).greater_than(Date.yesterday) if options[:when]
+            with(:date).greater_than(Date.yesterday) if options[:when] == 'upcoming'
           end
         end
 
