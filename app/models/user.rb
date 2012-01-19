@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
   has_many :payments
   has_many :comments, :dependent => :destroy
 
-  has_attached_file :photo, :styles => {:small => ["190x120", :jpg],
-                                        :large => ["570x360>", :jpg],
-                                        :thumb_large => ["50x50>", :jpg],
-                                        :thumb_small => ["25x25#", :jpg]
+  has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
+                                        :large       => ["570x360>", :jpg],
+                                        :thumb_large => ["125x125#", :jpg],
+                                        :thumb_small => ["50x50#",   :jpg]
                                         },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",
