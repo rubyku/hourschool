@@ -19,7 +19,7 @@ namespace :user do
     User.find_each do  |user|
       puts "========================="
       puts user.id
-      user.photo.reprocess!
+      user.photo.reprocess! unless user.photo.photo_file_name.blank?
     end
   end
 
