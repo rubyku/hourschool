@@ -1037,7 +1037,7 @@ img.arrow_small_pointright {
 .classBlock-homepage {
   float: left;
   width: 190px;
-  height: 260px;
+  height: 270px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -1999,7 +1999,7 @@ td.icon{
 .classBlock {
   float: left;
   width: 190px;
-  height: 260px;
+  height: 270px;
   background-color: white;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -2033,7 +2033,7 @@ img.class-arrow {
 /* line 412, ../../app/assets/stylesheets/components/general.scss */
 .class-description {
   padding: 10px;
-  height: 90px;
+  height: 100px;
 }
 
 .class-note{
