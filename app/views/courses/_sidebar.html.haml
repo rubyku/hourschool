@@ -126,7 +126,7 @@
               %table
                 %tr
                   %td
-                    = image_tag(student.photo.url(:thumb_small))
+                    = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
                   %td
                     = link_to student.name, user_path(student.id), :class => "profile-link"
               %br
