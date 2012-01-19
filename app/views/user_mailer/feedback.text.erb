@@ -1,0 +1,6 @@
+<%= @course.teacher.name %> just submitted a feedback form for the <%= @course.title %> class.
+
+<% @course.students.each do |student| %>
+  <%= student.name %> wants to teach <%= @want_to_teach %> and wants to learn <%= @want_to_learn %>
+<% end %>
+
