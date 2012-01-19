@@ -91,7 +91,7 @@
       .sidebar-heading Teacher
       .class-attendance-block
         - if @current_course.teacher.photo.present?
-          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50", :class => "avatar-medium")
+          = image_tag(@current_course.teacher.photo.url(:thumb_small))
         - else
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
@@ -126,7 +126,7 @@
               %table
                 %tr
                   %td
-                    = link_to_avatar(student, :class => "avatar-medium")
+                    = image_tag(student.photo.url(:thumb_small))
                   %td
                     = link_to student.name, user_path(student.id), :class => "profile-link"
               %br
