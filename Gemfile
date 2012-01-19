@@ -79,6 +79,7 @@ end
 
 
 group :development, :test do
+  gem 'git_test'
 
   gem 'sunspot_solr',       '~> 1.3.0'       # pre-packaged Solr distribution for use in development
   gem 'pgbackup-tasks',     '~> 0.2.3'
