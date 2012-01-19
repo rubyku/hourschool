@@ -190,10 +190,12 @@
       <% if user_signed_in? %>
         <div id="homepage_headline_7_signedin">Find a class</div>
         <div id="homeSearchForm-background"></div>
-        <input type="text" placeholder="Nutrition, boxing conditioning, typography... and more!" id="homepageSearchForm"/>
+        <%= form_tag courses_search_path(:all), :method => :get do %>
+        <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography... and more!" %>
         <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
         <br>
-        <input type="submit" value="Search" id="homepageSearchButton" />
+        <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
+        <% end %>
       <% else %>
         <div id="homepage_headline_7">Join HourSchool now</div>
         <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
