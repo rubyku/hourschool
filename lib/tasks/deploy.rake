@@ -18,14 +18,15 @@ namespace :deploy do
   task :production => :environment do
     alert "Preparing to deploy"
     Rake::Task["deploy:sync_master"].invoke
-    result = Rake::Task["deploy:test"].invoke
-    alert result
-    if result.blank?
+    Rake::Task["deploy:test"].invoke
+    if ENV['test_result'].blank?
       alert 'fix your tests before deploying kthnks bye'
     else
       notify_campfire 'Hold onto your Butts: Deploying to Production, all tests passing'
       Rake::Task["deploy:heroku:deploy_production"]
       Rake::Task["deploy:heroku:migrate_production"]
+      notify_campfire 'Deploy done'
+      alert 'All done, please manually check the website still exists'
     end
   end
 
@@ -39,15 +40,14 @@ namespace :deploy do
     desc 'migrates the production database'
     task :migrate_production => :environment do
       alert 'migrating databse...just incase'
-      %x{ heroku db:migrate --app #{production_app_name}}
+      %x{ heroku db:migrate --app #{production_app_name} }
     end
   end
 
   desc "pulls then pushes to master"
   task :test => :environment do
     alert "running tests"
-    result = system %q{ git_test push }
-    return result
+    ENV['test_result'] = system %q{ git_test push }
   end
 
   task :prepare_test => :environment do
@@ -57,7 +57,7 @@ namespace :deploy do
 
   desc "pulls then pushes to master"
   task :sync_master => :environment do
-    alert "syncing with github"
+    alert "Syncing with github"
     %x{ git pull origin master }
     %x{ git push origin master }
   end
