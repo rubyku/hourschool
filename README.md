@@ -103,3 +103,12 @@ Or start the servers manually (and manage them manually from now on):
 ## 4. Seed your development database
 
     $ rake db:setup
+
+## 5. Pull the Production DB from heroku
+
+    $ heroku db:pull --app sharp-sunset-8021
+
+## 6. Setup Solr
+
+    $ rake sunspot:solr:start
+    $ rake sunspot:solr:reindex
