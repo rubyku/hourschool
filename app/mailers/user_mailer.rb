@@ -24,12 +24,13 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
   
-  def feedback(current_user, course, students)
+  def feedback(current_user, course, students, general_feedback)
     @email = course.teacher.email
     @user = current_user
     @course = course
     @students = students
-    mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.teacher.name} submitted a feedback form!")
+    @general_feedback = general_feedback
+    mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@user.name} submitted a feedback form!")
   end
 
   def send_registration_mail(user_email,user_name)

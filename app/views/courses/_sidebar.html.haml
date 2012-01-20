@@ -134,5 +134,10 @@
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
           = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
+    
+      
+    - if current_user.admin?
+      .sidebar-block-last
+        = link_to "Feedback form", feedback_path(:id => course.id)
       
 
