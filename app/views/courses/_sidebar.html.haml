@@ -117,9 +117,9 @@
 
     - if course.students.any?
       .sidebar-block-last
-        - if @current_course.nosignup?
+        - if @current_course.nosignup.blank?
           .sidebar-heading Students
-        - else 
+        - else @current_course.nosignup?
           .sidebar-heading People interested
           .class-attendance-block
             - course.students.each do |student|
