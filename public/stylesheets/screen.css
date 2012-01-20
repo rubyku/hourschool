@@ -2485,7 +2485,7 @@ img.class-details-icon-email{
 }
 
 /* line 741, ../../app/assets/stylesheets/components/general.scss */
-p.class-details-heart-number {
+.class-details-heart-number {
   font-size: 12px;
   font-weight: 700;
   margin-left: 7px;
