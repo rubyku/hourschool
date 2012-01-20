@@ -274,6 +274,16 @@ class CoursesController < ApplicationController
     redirect_to @course
   end
 
+  def feedback
+    @course = Course.find(params[:id])
+  end
+
+  def feedback_send
+    @course = Course.find(params[:id])
+    UserMailer.feedback(current_user, @course, params[:students]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
 
   private
   def must_be_live

@@ -2997,6 +2997,21 @@ p.form-bg {
   border-radius: 5px;
 }
 
+.feedback-form{
+  position: relative;
+  float: left;
+  width: 200px;
+  height: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
 /* line 35, ../../app/assets/stylesheets/components/form.scss */
 .form {
   position: relative;
@@ -3262,6 +3277,13 @@ a.tip {
 
 .send-message-button:hover { background-color: #e46f28;}
 
+table.feedback{
+
+}
+
+td.feedback{
+  padding: 10px;
+}
 
 /*......SIDEBAR.....*/
 /* line 2, ../../app/assets/stylesheets/components/sidebar.scss */
