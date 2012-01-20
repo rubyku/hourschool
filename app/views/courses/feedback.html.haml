@@ -13,9 +13,9 @@
             %td.feedback
               = link_to student.name, user_path(student.id), :class => "profile-link"
             %td.feedback
-              = text_area_tag 'want_to_teach[]', "", :class => 'feedback-form', :placeholder => "wants to teach..." 
+              = text_area_tag "students[#{student.id}][want_to_teach]", "", :class => 'feedback-form', :placeholder => "wants to teach..." 
             %td.feedback
-              = text_area_tag 'want_to_learn[]', "", :class => 'feedback-form', :placeholder => "wants to learn..." 
+              = text_area_tag "students[#{student.id}][want_to_learn]", "", :class => 'feedback-form', :placeholder => "wants to learn..." 
 
     .page-section-float-left
       = submit_tag "Submit", :class => "send-message-button"

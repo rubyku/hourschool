@@ -24,12 +24,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
   
-  def feedback(current_user, course, want_to_teach, want_to_learn)
+  def feedback(current_user, course, students)
     @email = course.teacher.email
     @user = current_user
     @course = course
-    @want_to_teach = want_to_teach
-    @want_to_learn = want_to_learn
+    @students = students
     @url = "http://www.hourschool.com/feedback?id=#{@course.id}"
     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.teacher.name} submitted a feedback form!")
   end

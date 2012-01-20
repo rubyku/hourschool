@@ -280,7 +280,7 @@ class CoursesController < ApplicationController
 
   def feedback_send
     @course = Course.find(params[:id])
-    UserMailer.feedback(current_user, @course, params[:want_to_teach], params[:want_to_learn]).deliver
+    UserMailer.feedback(current_user, @course, params[:students]).deliver
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end

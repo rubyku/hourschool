@@ -1,7 +1,7 @@
 <%= @course.teacher.name %> just submitted a feedback form for the <%= @course.title %> class.
 
-<% @course.students.each do |student| %>
-  <%= student.name %> wants to teach <%= @want_to_teach %> and wants to learn <%= @want_to_learn %>
+<% @students.each do |student_hash| %>
+  <%= ::User.find(student_hash[0]).name %> wants to teach <%=  student_hash[1]["want_to_teach"] %> and wants to learn <%= student_hash[1]["want_to_learn"] %>
 <% end %>
 
 The form can be seen here <%= @url %>
