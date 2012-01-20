@@ -16,6 +16,10 @@ class Comment < ActiveRecord::Base
   def participants
     (course.comments.map(&:user) << course.teacher).uniq
   end
+  
+  def particants_and_students
+    (course.comments.map(&:user) << course.teacher).uniq + course.students
+  end
 
   def notify_participants
     participants.each do |user|
@@ -23,4 +27,10 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def notify_participants_and_students
+    participants_and_students.each do |user|
+      UserMailer.comment_on_course(user, self, self.course).deliver unless self.user == user
+    end
+  end
+  
 end
