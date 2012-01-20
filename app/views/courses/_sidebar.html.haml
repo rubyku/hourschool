@@ -136,7 +136,7 @@
           = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
     
       
-    - if current_user.admin?
+    - if current_user && current_user.admin?
       .sidebar-block-last
         = link_to "Feedback form", feedback_path(:id => course.id)
       

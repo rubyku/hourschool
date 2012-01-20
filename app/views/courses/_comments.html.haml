@@ -2,26 +2,32 @@
   - course.comments.each do |comment|
     %div.comment{:class => 'clearfix'}
       %div.avatar
-        = avatar_for(comment.user, :class => "avatar-medium")
+        = avatar_for(comment.user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
       %div.content
         %div.name
           = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
         %div.body
           = comment.body
         %div.created_at
-          = "#{time_ago_in_words comment.created_at} ago"
+          .class-alternatives
+            = "#{time_ago_in_words comment.created_at} ago"
   %div.comment_form
   - if current_user.blank?
     %div.comment
-      %p Please Log In to leave a Comment
+      = "Please first"
+      = link_to "sign up", new_user_registration_path
+      = "or"
+      = link_to "log in", new_user_session_path
+      = "to leave a comment"
+      
   - else
     %div.comment{:class => 'clearfix'}
       %div.avatar
-        = avatar_for(current_user, :class => 'avatar-medium')
+        = avatar_for(current_user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
       %div.content
         = form_for course.comments.new do |f|
           %div
             = f.hidden_field :course_id, :value => course.id
-            = f.text_area    :body,      :placeholder => "Join the Conversation!"
+            = f.text_area    :body,      :placeholder => "Have questions or feedback for the teacher? Leave a comment!", :class => "form-tall"
           %div
             = f.submit 'Leave Comment'

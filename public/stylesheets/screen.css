@@ -2853,7 +2853,11 @@ a.profile-link {
   color: #ff7733;
   font-weight: 700;
   font-size: 12px;
-  margin-left: 5px;
+}
+
+
+img.notBig{
+  margin-right: 10px;
 }
 
 /* line 933, ../../app/assets/stylesheets/components/general.scss */
@@ -4069,20 +4073,19 @@ a.closeButton:hover {
   color: #A19A95;
 }
 
-
 .comments {
- margin-left:10px;
+ margin-top: 20px;
 }
 
 .comments .avatar {
   width:  50px;
+  margin-right: 10px;
+  float: left;
 }
 
-
 .comments .content{
-  float:left;
-
-
+  float: left;
+  width: 90%;
 }
 
 .comment {
@@ -4094,7 +4097,6 @@ a.closeButton:hover {
   margin-top: 5px;
   width:      560px;
 }
-
 
 .hiddenSubmit {
   visibility: hidden;

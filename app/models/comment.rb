@@ -5,12 +5,6 @@ class Comment < ActiveRecord::Base
   validates :course_id, :presence => true
   validates :user_id,   :presence => true
 
-  ADJECTIVES = %W{witty fun sarcastic nice beautiful elegant magnificent mysterious deep inspiring sweet awesome entertaining obvious inquisitive ludicrous quirky scandalous upbeat unusual }
-
-  def self.say_something
-    "Say something... #{ADJECTIVES.shuffle.first}!"
-  end
-
   def body_with_links
     stripped_message = ERB::Util.html_escape(self.body)
     message_with_link = stripped_message.gsub(/(http:\/\/(\S*\.\S*)|https:\/\/(\S*\.\S*))/) {"<a href=\"#{$1}\" target='_blank' rel='nofollow'>#{$1}</a>"}
@@ -18,7 +12,6 @@ class Comment < ActiveRecord::Base
   rescue => ex
     return body
   end
-
 
   def participants
     (course.comments.map(&:user) << course.teacher).uniq
