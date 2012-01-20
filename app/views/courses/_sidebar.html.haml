@@ -121,15 +121,15 @@
           .sidebar-heading Students
         - else @current_course.nosignup?
           .sidebar-heading People interested
-          .class-attendance-block
-            - course.students.each do |student|
-              %table
-                %tr
-                  %td
-                    = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
-                  %td
-                    = link_to student.name, user_path(student.id), :class => "profile-link"
-              %br
+        .class-attendance-block
+          - course.students.each do |student|
+            %table
+              %tr
+                %td
+                  = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+                %td
+                  = link_to student.name, user_path(student.id), :class => "profile-link"
+            %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
