@@ -30,6 +30,7 @@ class UserMailer < ActionMailer::Base
     @course = course
     @want_to_teach = want_to_teach
     @want_to_learn = want_to_learn
+    @url = "http://www.hourschool.com/feedback?id=#{@course.id}"
     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.teacher.name} submitted a feedback form!")
   end
 

@@ -3279,11 +3279,11 @@ a.tip {
 .send-message-button:hover { background-color: #e46f28;}
 
 table.feedback{
-  width: 1000px;
+
 }
 
 td.feedback{
-  width: 100px;
+  padding: 10px;
 }
 
 /*......SIDEBAR.....*/
