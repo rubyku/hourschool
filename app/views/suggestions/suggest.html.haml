@@ -1,12 +1,9 @@
-%head
-  = include_yui_editor_if_used
-
 .page
   .page-content
     / - if @suggestions.size > 0
     .page-section-float-left
       .welcome-header Interested in a class? Vote for it!
-      %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
+      = image_tag 'v2/greyheader_half.png', :class => 'greyheader_half'
 
       .pagenote-box.clearfix
         .pagenote-header Didn't see a class you like?
@@ -18,7 +15,7 @@
 
 .sidebar
   .tipbox
-    %img.tape{:src => '../../../images/v2/Tape_White.png'}
+    = image_tag 'v2/Tape_White.png', :class => 'tape'
     .heading10 Have questions?
     %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
       #tipboxButton Contact us!

@@ -1,21 +1,18 @@
-%head
-  = include_yui_editor_if_used
-
 .page
   .page-content
-          
+
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at HourSchool"} do
-    
+
       - if @no_courses_in_user_city
         .pagenote-box.clearfix
-          .pagenote-header 
+          .pagenote-header
             = "We haven't quite made it to #{@current_user.city} yet!"
           = "Want HourSchool in your city? "
           = link_to "Teach the first class", new_course_path, :class => "pagenote-link"
           = "or"
           = link_to "contact us", "http://help.hourschool.com/customer/portal/emails/new", :class => "pagenote-link"
           = "to find out other ways to be involved!"
-    
+
       = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
       .page-section-float-right
         %table.view-more

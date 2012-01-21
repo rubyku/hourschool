@@ -40,7 +40,6 @@ module Course::Searchable
         c.categories.map(&:name).join(", ")
       end
 
-
       location(:coordinates) do |c|
         Sunspot::Util::Coordinates.new(c.lat, c.lng)
       end

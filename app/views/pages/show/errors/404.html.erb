@@ -1,4 +1,4 @@
-<%= link_to image_tag("/images/v2/404.png", :title => "Error"), root_path %>
+<%= link_to image_tag("/v2/404.png", :title => "Error"), root_path %>
 <p>There was an Error</p>
 <% if @exception.present? && current_user.try(:admin?) || !Rails.env.production? %>
   <div id="error-code" style="margin-top:15px;">

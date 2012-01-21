@@ -8,19 +8,20 @@
         %table
           %tr
             %td
-              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
-            %td  
+              = image_tag 'v2/arrow_orange_pointright.png', :class => 'view-more-arrow-orange'
+            %td
               = link_to "I want to teach this class", new_course_path("req" => suggestion.id), :class => "vote-link"
           %tr
             %td
-              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
-            %td  
+            = image_tag 'v2/arrow_orange_pointright.png', :class => 'view-more-arrow-orange'
+
+            %td
               = link_to "I want to nominate someone to teach this class", nominate_path("id" => suggestion.id), :class => "vote-link"
       .vote-class-number
         .heading35-vote
           %span{:id => "vote_count_#{suggestion.id}"}
             = "#{suggestion.votes_for}"
-        .heading10-vote 
+        .heading10-vote
           = "people"
         %span{:id => "vote_link_#{suggestion.id}"}
           - if user_signed_in?
@@ -36,4 +37,4 @@
       %tr
         %td
           = will_paginate suggestions, :previous_label => "Prev"
-        
+

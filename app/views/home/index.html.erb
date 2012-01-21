@@ -5,7 +5,7 @@
 
   <link rel="icon"
         type="image/png"
-        href="/images/favicon.png">
+        href="assets/favicon.png">
 
   <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
 
@@ -81,12 +81,12 @@
         <li id="homepage_login">
         <span id="nav-dropdown">
            <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-           <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
         </span>
 
         <span id="nav-dropdown-selected" style="display:none;">
            <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-           <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
         </span>
       <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "not_logged_in_homepage" %>
@@ -176,7 +176,7 @@
   </div><!-- /end #header -->
 
     <div class="container_16">
-       <%= image_tag("/images/v2/hp_transparent.png", :id => "hp_transparent") %>
+       <%= image_tag("/v2/hp_transparent.png", :id => "hp_transparent") %>
        
      <div class="grid_8">
       
@@ -189,8 +189,8 @@
      <div class="grid_8">
 
         <div id="homepage_headline_7">Join HourSchool now</div>
-        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
-        <%= image_tag('/images/v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+        <%= link_to image_tag('/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+        <%= image_tag('/v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
         
         <a href="/users/sign_up" id="homepage_headline_8">sign up with email</a>
 
