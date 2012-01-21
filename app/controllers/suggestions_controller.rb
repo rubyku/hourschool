@@ -4,7 +4,6 @@ class SuggestionsController < ApplicationController
 
   def index
     @suggestions = Suggestion.all
-
   end
 
   def suggest
@@ -14,7 +13,7 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-    suggestions_to_display = @top_suggestions & @suggestions_in_my_location
+    suggestions_to_display = @top_suggestions
     @suggestions = suggestions_to_display.paginate(:page => params[:page], :per_page => 20)
     if !params[:order].nil?
       order_suggestions(suggestions_to_display, params[:order])
