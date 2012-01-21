@@ -6,3 +6,4 @@ tmp/
 .rvmrc
 .DS_Store
 /solr
+.sass-cache/

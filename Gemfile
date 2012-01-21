@@ -1,6 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails',                '3.0.9'
+gem 'rails',                '3.2.0'
+
+group :assets do
+  # gem 'coffee-rails'
+  gem 'uglifier'
+end
+
+gem 'sass-rails'
+
+
 gem 'pg',                   '~> 0.12.2'
 
 # cache helper
@@ -15,7 +24,8 @@ gem 'taps',                 '~> 0.3.23'
 # User Authentication
 gem 'devise',               '~> 1.4.9'
 
-gem 'activeadmin',          '~> 0.3.4'
+gem 'activeadmin',          :git => 'https://github.com/ConsultingMD/active_admin.git' #'~> 0.3.4'
+gem 'meta_search',          '>= 1.1.0.pre'
 
 #gem "oa-oauth", :require => "omniauth/oauth"
 gem "omniauth",             '~> 0.3.2'
@@ -38,14 +48,14 @@ gem 'jquery-rails',         '>= 1.0.19'
 
 gem 'friendly_id',          '4.0.0'
 
-gem 'mysql2',               '~> 0.2.6'
+# gem 'mysql2',               '~> 0.2.6'
 
 #tagging and voting
 gem 'acts-as-taggable-on',  '~> 2.1.0'
 gem 'thumbs_up',            '~> 0.4.6'
 
 #pagination
-gem 'will_paginate',        '3.0.pre2'
+gem 'will_paginate',        '~> 3.0.2'
 
 #searching-indexing
 gem 'sunspot_rails',        '~> 1.3.0'
@@ -55,7 +65,7 @@ gem 'sunspot_rails',        '~> 1.3.0'
 gem 'delayed_job',          '~> 2.1.4'
 
 # rails-tinymce
-gem 'use_tinymce'
+# gem 'use_tinymce'
 
 #uploads, parsing, etc
 gem 'paperclip',            '~> 2.5.0'
