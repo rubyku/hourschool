@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
   def all
     @courses = Course.all
   end
-
+  
+  
   def approve
     @course = Course.find(params[:id])
     @course.update_attribute :status, "approved"
@@ -21,7 +22,6 @@ class CoursesController < ApplicationController
     #send email and other stuff here to the teacher
     UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
       redirect_to profile_path(:show => 'pending')
-
   end
 
   def show
