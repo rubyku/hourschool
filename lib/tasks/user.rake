@@ -14,6 +14,16 @@ namespace :user do
   end
 
 
+  desc "reprocesses all user photos"
+  task :reprocess_photos => :environment do
+    User.find_each do  |user|
+      puts "========================="
+      puts user.id
+      user.photo.reprocess! rescue nil
+    end
+  end
+
+
   desc "finds missing time_zones and populates them"
   task :populate_missing_time_zones => :environment do
     User.find_each(:conditions => "time_zone is null") do  |user|

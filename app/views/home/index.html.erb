@@ -176,7 +176,7 @@
   </div><!-- /end #header -->
 
     <div class="container_16">
-       <%= image_tag("/v2/hp_transparent.png", :id => "hp_transparent") %>
+       <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
        
      <div class="grid_8">
       
@@ -187,12 +187,22 @@
      </div><!-- /end .twoCol_left -->
 
      <div class="grid_8">
-
+      <% if user_signed_in? %>
+        <div id="homepage_headline_7_signedin">Find a class</div>
+        <div id="homeSearchForm-background"></div>
+        <%= form_tag courses_search_path(:all), :method => :get do %>
+        <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
+        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+        <br>
+        <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
+        <% end %>
+      <% else %>
         <div id="homepage_headline_7">Join HourSchool now</div>
-        <%= link_to image_tag('/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
-        <%= image_tag('/v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
-        
-        <a href="/users/sign_up" id="homepage_headline_8">sign up with email</a>
+
+        <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+        <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+        <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
+      <% end %>
 
      </div><!-- /end .twoCol_right-->
 

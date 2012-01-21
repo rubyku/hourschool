@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
   before_filter :must_be_live, :only => [:show]
   uses_yui_editor
@@ -274,6 +274,16 @@ class CoursesController < ApplicationController
     redirect_to @course
   end
 
+  def feedback
+    @course = Course.find(params[:id])
+  end
+
+  def feedback_send
+    @course = Course.find(params[:id])
+    UserMailer.feedback(current_user, @course, params[:students], params[:general_feedback]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
 
   private
   def must_be_live

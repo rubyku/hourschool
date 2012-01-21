@@ -1,0 +1,8 @@
+Hello <%= @user.name %>,
+
+<%= @comment.user.name %> just left a comment for your <%= @course.title %> class on Hourschool:
+
+"<%= @comment.body %>"
+
+To respond, follow this link: <%= course_url(@course) %>
+

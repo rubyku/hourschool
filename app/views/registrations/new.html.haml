@@ -12,6 +12,7 @@
         = link_to image_tag('fb_connect.jpg'), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook)).to_s
       %hr
       %br
+      %p Or sign up with email
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!

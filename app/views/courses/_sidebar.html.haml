@@ -117,21 +117,27 @@
 
     - if course.students.any?
       .sidebar-block-last
-        - if @current_course.nosignup?
+        - if @current_course.nosignup.blank?
           .sidebar-heading Students
-        - else 
+        - else @current_course.nosignup?
           .sidebar-heading People interested
-          .class-attendance-block
-            - course.students.each do |student|
-              %table
-                %tr
-                  %td
-                    = image_tag(student.photo.url(:thumb_small))
-                  %td
-                    = link_to student.name, user_path(student.id), :class => "profile-link"
-              %br
+        .class-attendance-block
+          - course.students.each do |student|
+            %table
+              %tr
+                %td
+                  = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+                %td
+                  = link_to student.name, user_path(student.id), :class => "profile-link"
+            %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
           = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
+    
+      
+    - if current_user && current_user.admin?
+      .sidebar-block-last
+        = link_to "Feedback form", feedback_path(:id => course.id)
+      
 

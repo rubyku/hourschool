@@ -1,0 +1,27 @@
+.modal
+  .welcome-header= "Tell us how your #{@course.title} class went!"
+
+  = form_tag feedback_send_path, :method => 'post' do
+    = hidden_field_tag 'id', @course.id
+    
+    - if @course.teacher == current_user
+      - if @course.students.any?
+        %table.feedback
+          - @course.students.each do |student|
+            %tr.feedback
+              %td.feedback
+                = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+              %td.feedback
+                = link_to student.name, user_path(student.id), :class => "profile-link"
+              %td.feedback
+                = text_area_tag "students[#{student.id}][want_to_teach]", "", :class => 'feedback-form', :placeholder => "wants to teach..." 
+              %td.feedback
+                = text_area_tag "students[#{student.id}][want_to_learn]", "", :class => 'feedback-form', :placeholder => "wants to learn..." 
+    
+    .page-section-float-left
+      = text_area_tag "general_feedback", "", :class => 'form-tall', :placeholder => "General feedback and suggestions" 
+
+    .page-section-float-left
+      = submit_tag "Submit", :class => "send-message-button"
+      
+      

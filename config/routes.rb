@@ -101,6 +101,8 @@ HourschoolV2::Application.routes.draw do
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
+  match '/feedback' => 'courses#feedback'
+  match '/feedback_send' => 'courses#feedback_send'
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'

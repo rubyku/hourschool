@@ -1,6 +1,6 @@
 .sidebar
   .sidebar-content
-    = avatar_for(@user, :size => :thumb_large)
+    = avatar_for(@user, :photo_size => :thumb_large)
 
     .sidebar-block
       %ul.noBullet
@@ -16,12 +16,12 @@
           %td.user-stat-icon
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
           %td.user-stat-number
-            %p.class-details-heart-number
+            .class-details-heart-number
               = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
           %td.user-stat-icon
             %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
           %td.user-stat-number
-            %p.class-details-heart-number
+            .class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
           /
           / %td.user-stat-icon

@@ -9,7 +9,7 @@
         .pagenote-header Didn't see a class you like?
         = "If there's something you have always wanted to learn but don't see it on HourSchool, "
         = link_to "request one!", new_suggestion_path, :class => "pagenote-link"
-        = "It's very likely that someone near you can can teach it."
+        = "It's very likely that someone near you can teach it."
 
       = render :partial => 'suggestions_for_classes', :locals => {:suggestions => @suggestions}
 
