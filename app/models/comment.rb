@@ -16,7 +16,7 @@ class Comment < ActiveRecord::Base
   def participants
     (course.comments.map(&:user) << course.teacher).uniq
   end
-  
+
   def particants_and_students
     (participants + course.students).uniq
   end
@@ -32,5 +32,5 @@ class Comment < ActiveRecord::Base
       UserMailer.comment_on_course(user, self, self.course).deliver unless self.user == user
     end
   end
-  
+
 end
