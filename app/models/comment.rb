@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
   end
   
   def particants_and_students
-    (course.comments.map(&:user) << course.teacher).uniq + course.students
+    (participants + course.students).uniq
   end
 
   def notify_participants
