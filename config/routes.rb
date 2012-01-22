@@ -17,7 +17,9 @@ HourschoolV2::Application.routes.draw do
 
   resources :comments
 
-  resources :suggestions# , :path => 'requests'
+  resources :suggestions do
+    resources :nominations, :module => "suggestions"
+  end
 
 
   namespace :courses do

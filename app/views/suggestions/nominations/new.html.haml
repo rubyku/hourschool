@@ -3,8 +3,8 @@
 .modal
   .welcome-header Nominate a teacher
 
-  = form_tag nominate_send_path, :method => 'post' do
-    .form-question Recipient: 
+  = form_tag suggestion_nominations_path, :method => 'post' do
+    .form-question Recipient:
     .form-question-tip= "Who do you think can teach a #{@req.name} class?"
     = hidden_field_tag 'reqid', @req.id
     = text_field_tag 'email', 'Enter his/her email address here', :class => 'form-with-margin', :onclick => 'this.value= "";'
@@ -13,8 +13,7 @@
     %br
     .form-question Message:
     .form-question-tip Write a short note and tell them why you think he/she'd be great to teach the class!
-    
+
     = text_area_tag 'message', '', :class => 'form-tall'
     .page-section-float-left
       = submit_tag "Send message", :class => "send-message-button"
-      
