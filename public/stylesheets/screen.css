@@ -4083,6 +4083,18 @@ a.closeButton:hover {
   float: left;
 }
 
+.comment .name{
+  float: left;
+  margin-right: 5px;
+}
+
+.comment .location{
+  font-weight: 400;
+  font-size: 9px;
+  color: #999;
+  margin-top: 2px;
+}
+
 .comments .content{
   float: left;
   width: 90%;
