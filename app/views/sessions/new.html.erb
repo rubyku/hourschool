@@ -18,13 +18,15 @@
     </ul>
   </div>
 
-  <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
   <div class="page-section-float-left">
+  <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
+    <br>
     <%  if resource_name.to_s == "user" %>
     <%= link_to image_tag('fb_connect.jpg'), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook)).to_s %>
     <% end %>
   </div>
 
+  <hr>
   <br />
   <p> Or sign in with email:</p>
   
