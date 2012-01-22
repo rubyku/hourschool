@@ -63,7 +63,6 @@ class CoursesController < ApplicationController
       if @course.status == "approved"
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         # if !@course.nosignup?
         #   post_to_twitter(@course)
         # end
@@ -101,7 +100,6 @@ class CoursesController < ApplicationController
       end
 
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to current_user
     else
       render :action => 'new'
@@ -184,7 +182,6 @@ class CoursesController < ApplicationController
     if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -207,7 +204,6 @@ class CoursesController < ApplicationController
     @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
     if @role.save
       UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
-      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -236,7 +232,6 @@ class CoursesController < ApplicationController
          @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
          redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
