@@ -40,6 +40,7 @@
         %img.greyheader_half{:src => '/images/v2/greyheader_half.png'}
         .classRow
           = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher + @user.past_classes_as_teacher}
+        .classRow
           - if current_user == @user
             = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
