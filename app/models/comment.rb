@@ -12,13 +12,13 @@ class Comment < ActiveRecord::Base
   rescue => ex
     return body
   end
-
+  
   def participants
     (course.comments.map(&:user) << course.teacher).uniq
   end
 
-  def particants_and_students
-    (participants + course.students).uniq
+  def participants_and_students
+    (participants + course.students << course.teacher).uniq
   end
 
   def notify_participants
