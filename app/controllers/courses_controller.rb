@@ -289,12 +289,12 @@ class CoursesController < ApplicationController
   def post_to_twitter(course)
     client = Twitter::Client.new
     if !current_user.twitter_id.blank?
-      message = "New class available in ##{course.city.name}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
+      message = "New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
       if message.size < 125
         client.update(message + url_for(course))
       end
     else
-      client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
+      client.update("New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
     end
   end
 
