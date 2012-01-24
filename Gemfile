@@ -8,7 +8,7 @@ group :assets do
 end
 
 gem 'sass-rails'
-
+gem 'thin'
 
 gem 'pg',                   '~> 0.12.2'
 
@@ -104,6 +104,7 @@ group :development, :test do
   gem 'guard-spork',        '~> 0.5.1'
   gem 'guard-bundler',      '~> 0.1.3'
 
+  gem 'foreman'
   gem 'forgery',            '~> 0.5.0'
   gem 'launchy',            '~> 2.0.5'
   gem 'random_data',        '~> 1.5.2'
