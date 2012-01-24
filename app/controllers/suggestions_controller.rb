@@ -6,6 +6,7 @@ class SuggestionsController < ApplicationController
     @suggestions = Suggestion.all
   end
 
+
   def suggest
     @top_suggestions =  Suggestion.tally(
        {  :at_least => 1,
