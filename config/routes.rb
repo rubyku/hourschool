@@ -111,9 +111,10 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
+
+  match '/team' => 'pages#show', :id => 'team'
   match '/start' => 'pages#index'
 
-  root :to => "pages#index"
 
   match '/404',  :to => 'errors#not_found'
   match '/500',  :to => 'errors#error'
