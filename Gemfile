@@ -87,7 +87,7 @@ group :development, :test do
   gem 'git_test'
 
   # For Database data transfer
-  gem 'taps',                 '~> 0.3.23'
+  # gem 'taps',                 '~> 0.3.23'
 
 
   gem 'sunspot_solr',       '~> 1.3.0'       # pre-packaged Solr distribution for use in development
