@@ -2681,13 +2681,13 @@ img.steps {
 
 #preview-box-tall{
   width: 880px;
-  height: 280px;
+  height: 300px;
   padding: 30px 30px 0px 50px;
   background: white;
 }
 
 #preview-checklist-box{
-  width: 620px;
+  width: 600px;
   float: right;
   margin-right: 30px;
   margin-top: 20px;
