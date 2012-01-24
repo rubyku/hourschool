@@ -16,11 +16,6 @@ gem 'pg',                   '~> 0.12.2'
 gem 'method_cacheable',     '0.0.4'
 gem "dalli",                '~> 1.1.4' # for memcache
 
-
-# For Database data transfer
-gem 'taps',                 '~> 0.3.23'
-
-
 # User Authentication
 gem 'devise',               '~> 1.4.9'
 
@@ -90,6 +85,10 @@ end
 
 group :development, :test do
   gem 'git_test'
+
+  # For Database data transfer
+  gem 'taps',                 '~> 0.3.23'
+
 
   gem 'sunspot_solr',       '~> 1.3.0'       # pre-packaged Solr distribution for use in development
   gem 'pgbackup-tasks',     '~> 0.2.3'
