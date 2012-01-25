@@ -1618,17 +1618,28 @@ p, ol, ul {
 .full-page {
   width: 960px;
   float: left;
-  padding-bottom: 50px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   background-color: #fff;
 }
 
 /* line 74, ../../app/assets/stylesheets/components/general.scss */
-.marcomm-half-page {
-  width: 960px;
+
+.marcomm-with-sidebar{
+  width: 760px;
   float: left;
-  margin-top: 20px;
-  padding-bottom: 50px;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
   background-color: #fff;
+}
+
+hr.about{
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: 1px solid #F0F0F0
 }
 
 /* line 82, ../../app/assets/stylesheets/components/general.scss */
@@ -3424,7 +3435,7 @@ p.profile-bio {
   margin-bottom: 30px;
   margin-left: 40px;
   background: #fefefe;
-  border: 0.5px solid #f0f0f0;
+  border: 1px solid #f0f0f0;
   -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
@@ -3493,7 +3504,6 @@ ol.metrics{
 /* line 3, ../../app/assets/stylesheets/components/marcomm.scss */
 .marcomm-header {
   padding-top: 15px;
-  padding-bottom: 25px;
 }
 
 /* line 8, ../../app/assets/stylesheets/components/marcomm.scss */
@@ -3519,6 +3529,25 @@ ol.metrics{
   z-index: 99;
 }
 
+.greyheader_three_fouths {
+  position: left;
+  float: left;
+  margin-top: -55px;
+  margin-left: -90px;
+  overflow: visible;
+  width: 880px;
+  z-index: 99;
+}
+
+.about-hourschool-box{
+  float: left;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  margin-right: 30px;
+  box-shadow: 1px 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
+}
+
 /* line 29, ../../app/assets/stylesheets/components/marcomm.scss */
 .heading15-marcomm {
   color: #ff7733;
@@ -3527,7 +3556,18 @@ ol.metrics{
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.1em;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.heading15-marcomm-grey {
+  color: #666;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  line-height: 26px;
   margin-bottom: 10px;
 }
 
@@ -3555,7 +3595,6 @@ span.list-number {
   float: left;
   width: 400px;
   margin-bottom: 40px;
-  margin-right: 30px;
   padding: 10px;
   box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
 }
