@@ -2,19 +2,19 @@
 
 <table>
   <tr>
-    <th>ID</th>
+    <th>Date</th>
+    <th>User</th>
     <th>Amount</th>
-   
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Transaction ID</th>
   </tr>
 
 <% @payments.each do |payment| %>
   <tr>
-    <td><%= payment.id %></td>
+    <td><%= payment.created_at %></td>
+    <td><%= payment.user_id %></td>
     <td><%= payment.amount %></td>
-
+    <td><%= payment.transaction_id %></td>
+        
     <td><%= link_to 'Show', payment %></td>
     <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
     <td><%= link_to 'Destroy', payment, :confirm => 'Are you sure?', :method => :delete %></td>

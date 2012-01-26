@@ -8,17 +8,17 @@
 
     %hr
     %div
-      %h3 Month over month
+      %p Month over month
       - @users_by_month.each do |month, count|
         %p
-          = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses (#{@courses_by_month_austin [month]||0} in austin) & #{@students_by_month[month] ||0} new students & #{number_to_currency @transaction_by_month[month] || 0}"
+          = "#{Date::MONTHNAMES[month.to_i]}: #{count} new users & #{@courses_by_month[month]||0} new courses & #{@students_by_month[month] ||0} new students & #{number_to_currency @transaction_by_month[month] || 0 } & #{@transaction_count_by_month[month] ||0}"
 
-    %hr
-    %div
-      %h2 Teachers' emails
-      - @teachers.each do |teacher|
-        %p
-          = "#{teacher.name} - #{teacher.email}"
+    / %hr
+    / %div
+    /   %h2 Teachers' emails
+    /   - @teachers.each do |teacher|
+    /     %p
+    /       = "#{teacher.name} - #{teacher.email}"
 
 
 = content_for :sidebar do
@@ -45,7 +45,9 @@
   %hr
   %div
     %p
-      = "Transaction To Date: #{ number_to_currency @transaction}"
+      = "Transaction To Date: #{ number_to_currency @total_transaction}"
     %p
-      = "Revenue To Date: #{ number_to_currency @transaction - @amazon_fees - @teachers_share}"
+      = "# of trans. thru Amazon: #{@total_transaction_count}"
+    %p
+      = "Revenue minus Amazon: #{ number_to_currency @total_transaction - @amazon_fees - @teachers_share}"
 
