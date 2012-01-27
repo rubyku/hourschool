@@ -103,7 +103,7 @@ group :development, :test do
   gem 'spork',              '~> 0.8.5'
 
   # Debugging
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19',       :require => 'ruby-debug'
 end
 
 group :test do
