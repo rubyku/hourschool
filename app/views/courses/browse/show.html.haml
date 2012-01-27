@@ -1,6 +1,3 @@
-%head
-  = include_yui_editor_if_used
-
 .page
   .page-content    
           
@@ -22,6 +19,15 @@
           %tr
             %td
               = will_paginate @courses, :previous_label => "Prev"
+              
+    - if current_user && current_user.location = "Austin"
+
+      = render :layout => 'shared/page/section', :locals => {:header => "Other classes we like"} do
+
+        .pagenote-box.clearfix
+          = "Want HourSchool in your city? "
+
+        = render :partial => 'courses/partner_classes', :locals => {:courses => @courses}
 
 - content_for :sidebar do
   = render :partial => 'courses/browse/sidebar'

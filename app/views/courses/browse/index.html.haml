@@ -23,5 +23,12 @@
             %td
               = will_paginate @courses, :previous_label => "Prev"
 
+    = render :layout => 'shared/page/section', :locals => {:header => "Other classes we like"} do
+  
+      .pagenote-box.clearfix
+        = "HourSchool partners with others in the community to ensure a wide variety of classes. The following classes are taught by members of the community and REI is kindly providing the space. Enjoy!"
+        
+      = render :partial => 'courses/partner_classes', :locals => {:courses => @courses}
+
 - content_for :sidebar do
   = render :partial => 'courses/browse/sidebar'
