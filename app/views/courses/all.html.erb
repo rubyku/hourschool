@@ -6,6 +6,8 @@
 	<th>Topic</th>
 	<th>Teacher</th>
   <th>Class date</th>
+  <th># of students</th>
+  <th>Min. students</th>
   <th>Created on</th>
   </tr>
 
@@ -15,6 +17,8 @@
     <td><%= link_to course.title, course %></td>
     <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
     <td><%= course.date %></td>
+    <td><%= course.students.count %></td>
+    <td><%= course.min_seats %></td>
     <td><%= course.created_at %></td>
 
     <td><%= link_to 'Show', course %></td>

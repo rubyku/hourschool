@@ -1,6 +1,7 @@
 class Admin::ChartsController < Admin::AdminController
 
   def index
+
     # Per day
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
@@ -14,6 +15,7 @@ class Admin::ChartsController < Admin::AdminController
     @courses_by_month           = Course.unscoped.group("extract( month from DATE(created_at)) ").count
     @courses_by_month_austin    = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
     @students_by_month          = Role.where(:name => 'student').group("extract( month from DATE(created_at)) ").count
+    @teachers_by_month          = Role.where(:name => 'teacher').group("extract( month from DATE(created_at)) ").count
     @transaction_by_month       = Payment.group("extract( month from DATE(created_at))").sum('amount')
     @transaction_count_by_month = Payment.group("extract( month from DATE(created_at))").count
     # @amazon_fees_by_month       = @transaction_by_month * 0.029 + @transaction_count_by_month * 0.3
