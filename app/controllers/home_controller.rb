@@ -13,6 +13,6 @@ class HomeController < ApplicationController
 
   def teach
   end
-
+  
 
 end

@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: hourschool_v2_development
+  database: mccombs_development
   pool: 5
   host: localhost
   # username: root
@@ -12,7 +12,7 @@ test:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: hourschool_v2_test
+  database: mccombs_test
   pool: 5
   host: localhost
   # username: root
@@ -21,7 +21,7 @@ production:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: hourschool_v2_production
+  database: mccombs_production
   pool: 5
   host: localhost
   # username: root

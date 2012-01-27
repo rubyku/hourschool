@@ -94,6 +94,12 @@
     padding-right: 10px;
   }
   
+  .field_with_errors{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  
   .form-question {
     width: 100%;
     font-size: 13px;
@@ -112,7 +118,7 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
   }
-  
+
   .login-text{
     color: black;
   }
@@ -157,6 +163,12 @@
     padding-bottom: -40px;
   }
 
+  .form-error {
+    color: red;
+    font-weight: 700;
+  }
+
+
 </style>
 
 </head>
@@ -169,15 +181,36 @@
         <div class="page-section-float-center">
         <img src="https://encrypted-tbn1.google.com/images?q=tbn:ANd9GcSN8gPzCgWKeshIMUxzhwOcwOi69yUg2eXasUibHxyZKdY-4TMB" width="193px">
         </div>
+        
+        <div class="page-section-float-center">
+          <ul class="sub-nav">
+            <li class="sub-nav-active">
+              <a class="sub-nav-active" href="/users/sign_up">Register</a>
+            </li>
+            <li class="sub-nav-inactive">
+              <a class="sub-nav-inactive" href="/users/sign_in">Sign in</a>
+            </li>
+          </ul>
+          </div>
 
         <%- if resource.present? && resource.email.present? -%>
           <div class="page-section-float-center">
-              <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
+              <div class="form-error">* Email or Password is Incorrect</div>
           </div>
         <%- end -%>
 
         <div class="page-section-float-center">
-          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+          
+              <div class="form-question">
+              <%= f.label :name, :class => "login-text" %><br />
+              <%= f.text_field :name, :class => "form-short" %>
+              </div>
+              
+              <div class="form-question">
+              <%= f.label :zipcode, :class => "login-text" %><br />
+              <%= f.text_field :zipcode, :class => "form-short" %>
+              </div>
           
               <div class="form-question">
               <%= f.label :email, :class => "login-text" %><br />
@@ -188,17 +221,22 @@
               <%= f.label :password, :class => "login-text" %><br />
                 <%= f.password_field :password , :class => "form-short"%>
               </div>
+              
+              <div class="form-question">
+              <%= f.label :password_confirmation, :class => "login-text" %><br />
+                <%= f.password_field :password_confirmation , :class => "form-short"%>
+              </div>
 
               <div class="page-section-float-left">
-                <div><%= f.submit "Sign in", :class => "loginButton" %></div>
+                <div><%= f.submit "Register", :class => "loginButton" %></div>
               </div>
           <% end %>
         </div>  
 
+
           <div class="page-section-float-center">
             <%= render :partial => "devise/shared/links" %>
           </div>
-          
           </center>
         </div>
       </div>

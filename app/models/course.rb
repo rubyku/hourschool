@@ -35,7 +35,7 @@ class Course < ActiveRecord::Base
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
-  include Course::Searchable
+  # include Course::Searchable
 
   def lat
     city.try(:lat)

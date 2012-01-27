@@ -74,7 +74,6 @@ HourschoolV2::Application.routes.draw do
   match '/approve' => 'courses#approve'
   match '/courses-all' => 'courses#all'
 
-  match '/community' => 'home#community'
   match '/community_faq' => 'home#community_faq'
 
   match '/profile' => 'users#show', :id => 'current'
@@ -108,9 +107,10 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
+  match '/community' => 'pages#show', :id => 'community'
   match '/start' => 'home#index'
 
-  root :to => "home#index"
+  root :to => "user#show"
 
   resources :test
   match ":bad_route", :to => "pages#show", :id => "errors/404"

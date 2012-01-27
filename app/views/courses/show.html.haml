@@ -28,10 +28,11 @@
         = "This class will cover"
       %p= simple_format auto_link(@course.description)
 
-    .comment-section
-      .class-section-heading
-        = "Join the conversation"
-      = render :partial => "comments", :locals => {:course => @course}
+    / .comment-section
+    /   .class-section-heading
+    /     = "Join the conversation"
+    /   - if @course.comments.exist?
+    /     = render :partial => "comments", :locals => {:course => @course}
 
 
 = content_for :head do

@@ -39,7 +39,6 @@ class SuggestionsController < ApplicationController
       city.suggestions << @suggestion
       city.save
       UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver
-      post_to_twitter(@suggestion)
       flash[:notice] = "Thanks for suggesting a class!"
       redirect_to @suggestion
     else

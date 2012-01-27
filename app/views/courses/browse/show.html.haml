@@ -2,17 +2,6 @@
   .page-content    
           
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at HourSchool"} do
-    
-      - if @no_courses_in_user_city
-        .pagenote-box.clearfix
-          .pagenote-header 
-            = "We haven't quite made it to #{@current_user.city} yet!"
-          = "Want HourSchool in your city? "
-          = link_to "Teach the first class", new_course_path, :class => "pagenote-link"
-          = "or"
-          = link_to "contact us", "http://help.hourschool.com/customer/portal/emails/new", :class => "pagenote-link"
-          = "to find out other ways to be involved!"
-      
       = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
       .page-section-float-right
         %table.view-more
@@ -20,14 +9,6 @@
             %td
               = will_paginate @courses, :previous_label => "Prev"
               
-    / - if current_user && current_user.location = "Austin"
-    / 
-    /   = render :layout => 'shared/page/section', :locals => {:header => "Other classes we like"} do
-    / 
-    /     .pagenote-box.clearfix
-    /       = "At HourSchool we love to partner with others who offer peer-led classes.  We are big fans of these classes offered by members of the Austin community and graciously hosted by REI.  Check them out below!"
-    /     
-    /     = render :partial => 'courses/partner_classes', :locals => {:courses => @courses}
 
 - content_for :sidebar do
   = render :partial => 'courses/browse/sidebar'
