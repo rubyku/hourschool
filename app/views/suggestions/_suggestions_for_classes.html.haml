@@ -15,7 +15,7 @@
             %td
               %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
             %td  
-              = link_to "I want to nominate someone to teach this class", nominate_path("id" => suggestion.id), :class => "vote-link"
+              = link_to "I want to nominate someone to teach this class", new_suggestion_nomination_path(suggestion.id), :class => "vote-link"
       .vote-class-number
         .heading35-vote
           %span{:id => "vote_count_#{suggestion.id}"}

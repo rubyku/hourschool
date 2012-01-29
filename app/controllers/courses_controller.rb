@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
   before_filter :must_be_live, :only => [:show]
   uses_yui_editor
@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
   def all
     @courses = Course.all
   end
-
+  
+  
   def approve
     @course = Course.find(params[:id])
     @course.update_attribute :status, "approved"
@@ -21,7 +22,6 @@ class CoursesController < ApplicationController
     #send email and other stuff here to the teacher
     UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
       redirect_to profile_path(:show => 'pending')
-
   end
 
   def show
@@ -63,7 +63,6 @@ class CoursesController < ApplicationController
       if @course.status == "approved"
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         post_to_twitter(@course)
       end
     end
@@ -96,14 +95,9 @@ class CoursesController < ApplicationController
         #delele the suggestion
         Suggestion.delete(params[:req].to_s)
         #here email people who voted, etc etc
-
       end
-      #add to indextank
-      #INDEX.document("course_#{@course.id}").add({:text => @course.description, :cid => "course_#{@course.id}", :title => @course.title, :tags => @course.categories.join(' ')})
-      #redirect_to @course, :notice => "Successfully created course."
-      #redirect_to current_user, :notice => "Successfully submitted your proposal"
+
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to current_user
     else
       render :action => 'new'
@@ -186,7 +180,6 @@ class CoursesController < ApplicationController
     if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -195,6 +188,27 @@ class CoursesController < ApplicationController
       end
     end
 
+    respond_to do |format|
+      format.html do
+        redirect_to course_confirm_path(:id => @course.id)
+      end
+      format.js { }
+    end
+  end
+  
+  def register_for_reskilling
+    @course = Course.find(params[:id])
+    @user   = current_user
+    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
+    if @role.save
+      UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
+    else
+      if @course.is_a_student? @user
+        flash[:error] = "You are already registered for this course"
+      else
+        flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
+      end
+    end
     respond_to do |format|
       format.html do
         redirect_to course_confirm_path(:id => @course.id)
@@ -216,7 +230,6 @@ class CoursesController < ApplicationController
          @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
          redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
@@ -254,6 +267,16 @@ class CoursesController < ApplicationController
     redirect_to @course
   end
 
+  def feedback
+    @course = Course.find(params[:id])
+  end
+
+  def feedback_send
+    @course = Course.find(params[:id])
+    UserMailer.feedback(current_user, @course, params[:students], params[:general_feedback]).deliver
+    flash[:notice] = "Your message has successfully been sent"
+    redirect_to @course
+  end
 
   private
   def must_be_live
@@ -264,15 +287,19 @@ class CoursesController < ApplicationController
   end
 
   def post_to_twitter(course)
-    client = Twitter::Client.new
-    if !current_user.twitter_id.blank?
-      message = "New class available in ##{course.city.name}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
-      if message.size < 125
-        client.update(message + url_for(course))
+    begin
+      client = Twitter::Client.new
+      if !current_user.twitter_id.blank?
+        message = "New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
+        if message.size < 125
+          client.update(message + url_for(course))
+        end
+      else
+        client.update("New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
       end
-    else
-      client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
-    end
+    rescue Exception => ex
+     Rails.logger.error "Twitter Failed: #{ex}"
+   end
   end
 
   def sanitize_price(price)

@@ -1,6 +1,8 @@
 .sidebar-white
   .sidebar-content-white
-    = "Class min. of #{@current_course.min_seats}, max. of #{@current_course.max_seats}"
+    = "Class min. of #{@current_course.min_seats}"
+    - if !@current_course.max_seats.blank?
+      = ", max. of #{@current_course.max_seats}"
     %br
     %br
     - if !@current_course.active?
@@ -10,7 +12,7 @@
       - else
         %p= "This class has passed."
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
-    - elsif @current_course.students.size >= course.max_seats
+    - elsif !@current_course.max_seats.blank? && @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
         = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
@@ -25,10 +27,16 @@
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-        - if current_user.nil? || @current_course.city.name == current_user.city
-          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
-        - else
-          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+        - if @current_course.nosignup.nil?
+          - if current_user.nil? || @current_course.city.name == current_user.city
+            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+          - else
+            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+        - else @current_course.nosignup?
+          - if current_user.nil? || @current_course.city.name == current_user.city
+            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+          - else
+            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
 
 
     .sidebar-block
@@ -55,7 +63,8 @@
               = "#{course.time_range}"
               %br
             - if course.is_a_student?(current_user)
-              / %a.class-alternatives(href="http://bit.ly/rAtf6o") Add to Google Calendar
+              / :erb
+              /   <a href="https://www.google.com/calendar/b/0/render?action=TEMPLATE&text=<%= @course.title %>&trp=false&sprop&sprop=name:&gsessionid=OK&sf=true&output=xml" target="_blank" class="class-alternatives">Add to Google Calendar</a>
               / %br
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
@@ -70,11 +79,11 @@
               .class-sidebar-details
                 = course.address
             - else
-              %p Private Address
+              = "Private Address"
             - if course.is_a_student?(current_user)
-              - if course.public?
-                / %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-                / %br
+              / - if course.public?
+              /   %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
+              /   %br
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
@@ -83,7 +92,7 @@
       .sidebar-heading Teacher
       .class-attendance-block
         - if @current_course.teacher.photo.present?
-          = image_tag(@current_course.teacher.photo.url(:small), :size => "50x50", :class => "avatar-medium")
+          = image_tag(@current_course.teacher.photo.url(:thumb_small))
         - else
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
@@ -104,23 +113,32 @@
 
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-        = link_to "Contact teacher", contact_teacher_path(:id => course.id)
+        = link_to "Contact teacher", contact_teacher_path(:id => course.id), :class => "contact-link"
 
 
     - if course.students.any?
       .sidebar-block-last
-        .sidebar-heading Students
+        - if @current_course.nosignup.blank?
+          .sidebar-heading Students
+        - else @current_course.nosignup?
+          .sidebar-heading People interested
         .class-attendance-block
           - course.students.each do |student|
             %table
               %tr
                 %td
-                  = link_to_avatar(student, :class => "avatar-medium")
+                  = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
                 %td
                   = link_to student.name, user_path(student.id), :class => "profile-link"
             %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-          = link_to "Contact students", contact_all_students_path(:id => course.id)
+          = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
+    
+      
+    - if current_user && current_user.admin?
+      .sidebar-block-last
+        = link_to "Feedback form", feedback_path(:id => course.id)
+      
 

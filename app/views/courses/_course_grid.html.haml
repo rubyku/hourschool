@@ -1,0 +1,29 @@
+- courses.in_groups_of(3) do |group|
+  - group.each do |course|
+    - if course.present?
+      .classBlock
+        - if course.photo.present?
+          = image_for_course(course)
+        - else
+          = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), course
+        %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+        %br
+          .class-description
+            .heading13-class
+              = link_to course.title.truncate(45), course
+            %p= course.teaser.truncate(49) unless course.teaser.blank?
+
+          .class-note
+            .heading9-class
+              - if course.active?  
+                - if course.max_seats.blank?
+                  = "Unlimited seats |"
+                - elsif course.seats_left == 0 
+                  = "Full! Request again |"
+                - elsif
+                  = "#{course.seats_left} seats left |"
+              = "#{course.city.try(:name)}, #{course.city.try(:state)}"
+
+    - else
+      /do nothing
+

@@ -14,7 +14,7 @@ class SuggestionsController < ApplicationController
            :limit => 100,
            :order => "suggestions.name ASC"
        })
-    suggestions_to_display = @top_suggestions & @suggestions_in_my_location
+    suggestions_to_display = @top_suggestions
     @suggestions = suggestions_to_display.paginate(:page => params[:page], :per_page => 20)
     if !params[:order].nil?
       order_suggestions(suggestions_to_display, params[:order])
@@ -108,7 +108,11 @@ class SuggestionsController < ApplicationController
   end
 
   def post_to_twitter(suggestion)
-    client = Twitter::Client.new
-    client.update("New class suggestion! \"#{suggestion.name}\" - Vote for it here: #{url_for(suggestion)}")
+    begin
+      client = Twitter::Client.new
+      client.update("New class suggestion! \"#{suggestion.name}\" - Vote for it here: #{url_for(suggestion)}")
+    rescue Exception => ex
+     Rails.logger.error "Twitter Failed: #{ex}"
+    end
   end
 end

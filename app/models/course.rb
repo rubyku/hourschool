@@ -3,21 +3,18 @@ class Course < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
+  alias_attribute :name, :title
 
+  has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
-  attr_accessible :title,:description, :price, :max_seats, :date, :time_range, :place_name, :min_seats
-  attr_accessible :status, :teaser, :experience, :coursetag, :address, :phone_number, :public
-  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
-  attr_accessible :terms_of_service
 
   acts_as_taggable_on :categories
 
-  default_scope order(:date, :created_at)
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", :large => "570x360>" },
@@ -34,15 +31,20 @@ class Course < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
-  attr_accessible :photo
-
   extend FriendlyId
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
-  def self.tomorrows_courses
-    Course.where("(date - :todays_date) = 1 AND status = :live", {:todays_date => Date.today, :live => "live"})
+  include Course::Searchable
+
+  def lat
+    city.try(:lat)
   end
+
+  def lng
+    city.try(:lng)
+  end
+
 
   def days_left
     (date - Time.current.to_date).to_i
@@ -66,7 +68,7 @@ class Course < ActiveRecord::Base
 
 
   def self.random
-    unscoped.order('random()')
+    order('random()')
   end
 
 
@@ -101,7 +103,6 @@ class Course < ActiveRecord::Base
   def starts_at
     date
   end
-  alias :start_at :starts_at
 
   def active?
     return false if date.blank?

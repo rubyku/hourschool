@@ -8,9 +8,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email
   # Setup accessible (or protected) attributes for your model
-  #validate :supported_location, :location_format
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :location, :fb_token
-  attr_accessible :zipcode, :zip, :bio, :referral, :facebook_id, :twitter_id, :web
+  # validate :supported_location, :location_format
 
   include MethodCacheable
   extend FriendlyId
@@ -20,19 +18,18 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :roles
 
   has_many :payments
+  has_many :comments, :dependent => :destroy
 
-  has_attached_file :photo, :styles => {:small => ["190x120", :jpg],
-                                        :large => ["570x360>", :jpg],
-                                        :thumb_large => ["50x50>", :jpg],
-                                        :thumb_small => ["25x25#", :jpg]
+  has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
+                                        :large       => ["570x360>", :jpg],
+                                        :thumb_large => ["125x125#", :jpg],
+                                        :thumb_small => ["50x50#",   :jpg]
                                         },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",
                             :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
-
-  attr_accessible :photo
 
 
   acts_as_voter
@@ -62,7 +59,7 @@ class User < ActiveRecord::Base
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 
   def self.random
-    order('rand()')
+    order('random()')
   end
 
   def update_time_zone

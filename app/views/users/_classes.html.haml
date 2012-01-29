@@ -20,8 +20,3 @@
         .heading13-class 
           = link_to c.title.truncate(36), c
         %p= c.teaser.truncate(60) unless c.teaser.blank?
-      .class-note
-        .heading9-class 
-          - if c.days_left > 0
-            = "#{ c.seats_left } seats left"
-            = "#{ c.days_left } days from today"

@@ -15,17 +15,18 @@ HourschoolV2::Application.routes.draw do
     resources :charts
   end
 
+  resources :comments
 
-  resources :ecourses, :path => 'classes'
+  resources :suggestions do
+    resources :nominations, :module => "suggestions"
+  end
 
-  resources :suggestions# , :path => 'requests'
-  resources :esuggestions, :path => 'suggestions'
-
-  resources :courses
 
   namespace :courses do
     resources :browse
+    resources :search
   end
+  resources :courses
 
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
@@ -40,6 +41,8 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'home#index'
   resources :users do
   end
+
+  ActiveAdmin.routes(self)
 
   scope :module => 'users' do
     resources :after_register, :only => [:show, :update]
@@ -58,6 +61,7 @@ HourschoolV2::Application.routes.draw do
   match '/suggest' => 'suggestions#suggest'
   match '/csvote' => 'suggestions#vote'
   match '/register' => 'courses#register'
+  match '/register_for_reskilling' => 'courses#register_for_reskilling'
   match '/register_with_amazon' => 'courses#register_with_amazon'
   match '/drop' => 'courses#drop'
   match '/preview/:id' => 'courses#preview', :as => 'preview'
@@ -66,11 +70,6 @@ HourschoolV2::Application.routes.draw do
   match '/proposal' => 'courses#show_proposal'
   match '/payment_preview' => 'courses#register_preview'
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
-
-  match '/enterprise-learn' => 'enterprises#learn'
-  match '/enterprise-teach' => 'enterprise#teach'
-  match '/esvote' => 'esuggestions#vote'
-  match '/eregister' => 'ecourses#register'
 
   match '/approve' => 'courses#approve'
   match '/courses-all' => 'courses#all'
@@ -104,6 +103,8 @@ HourschoolV2::Application.routes.draw do
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
+  match '/feedback' => 'courses#feedback'
+  match '/feedback_send' => 'courses#feedback_send'
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'

@@ -14,7 +14,14 @@
                 </div><!-- /end .class-description -->
                 <div class="class-note">
                   <div class="heading9-class">
-                  <%= "#{@fav1.seats_left} seats left | #{@fav1.city.name}, #{@fav1.city.state}" %>
+                    <% if @fav1.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav1 %>
+                    <% elsif @fav1.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav1 %>
+                    <% elsif %>
+                      <%= "#{@fav1.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav1.city.try(:name)}, #{@fav1.city.try(:state)}" %>
                   </div>
                 </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
@@ -24,11 +31,18 @@
                      <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav2.title.truncate(45), @fav2 %></div>
-                      <p><%= @fav2.teaser.truncate(60) unless @fav2.teaser.blank? %></p>
+                      <p><%= @fav2.teaser.truncate(49) unless @fav2.teaser.blank? %></p>
                     </div><!-- /end .class-description -->
                     <div class="class-note">
                       <div class="heading9-class">
-                      <%= "#{@fav2.seats_left} seats left | #{@fav2.city.name}, #{@fav2.city.state}"  %>
+                        <% if @fav2.max_seats.blank? %>
+                          <%= link_to "Unlimited seats |", @fav2 %>
+                        <% elsif @fav2.seats_left == 0 %>
+                          <%= link_to "Full! Request again |", @fav2 %>
+                        <% elsif %>
+                          <%= "#{@fav2.seats_left} seats left |" %>
+                        <% end %>
+                    <%= "#{@fav2.city.try(:name)}, #{@fav2.city.try(:state)}" %>
                       </div>
                     </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
@@ -42,7 +56,14 @@
                 </div><!-- /end .class-description -->
                 <div class="class-note">
                   <div class="heading9-class">
-                  <%= "#{@fav3.seats_left} seats left | #{@fav3.city.name}, #{@fav3.city.state}" %>
+                    <% if @fav3.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav3 %>
+                    <% elsif @fav3.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav3 %>
+                    <% elsif %>
+                      <%= "#{@fav3.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav3.city.try(:name)}, #{@fav3.city.try(:state)}" %>
                   </div>
                 </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
@@ -56,7 +77,14 @@
                 </div><!-- /end .class-description -->
                 <div class="class-note">
                   <div class="heading9-class">
-                  <%= "#{@fav4.seats_left} seats left | #{@fav4.city.name}, #{@fav4.city.state}" %>
+                    <% if @fav4.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav4 %>
+                    <% elsif @fav4.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav4 %>
+                    <% elsif %>
+                      <%= "#{@fav4.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav4.city.try(:name)}, #{@fav4.city.try(:state)}" %>
                   </div>
                 </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
@@ -83,14 +111,13 @@
         </div><!-- /happeningBlock-homepage -->
     
         <div class="happeningBlock-homepage">     
-            <a href="http://www.facebook.com/events/177997848962447/" target="_blank">
-            <img src="../../../images/v2/HappyHour_Jan23_v2.png">
+            <img src="../../../images/v2/homepage/map.jpg">
             <div class="happening-message-header">
-                Austin Happy Hour
+                We're growing!
             </div>
             </a>
             <div class="happening-message-description">
-                Come hang out with some HourSchoolmates and have a beer!
+                Since the launch of our new site, we now have classes in 8 new cities!
             </div>
         </div><!-- /happeningBlock-homepage -->
     

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   sequence :email do |n|
-    "person_#{Time.now.to_i }@example.com"
+    "person_#{ Time.now.to_i }_#{n}@example.com"
   end
 
   sequence :course_name do
@@ -20,6 +20,25 @@ FactoryGirl.define do
     name  { ['teacher', 'student'].sample }
   end
 
+  # factory :teacher, :parent => :user do
+  #   association :role, :name => 'teacher'
+  # end
+
+  factory :city do
+    zip   { Forgery(:address).zip   }
+    name  { Forgery(:address).city  }
+    state { Forgery(:address).state }
+    lat   { 39.999 } # Faker::Geolocation.lat
+    lng   { 39.999 } # Faker::Geolocation.lat
+  end
+
+
+  factory :comment do
+    user
+    course
+    body    { Forgery(:lorem_ipsum).words(rand(5 + 1)) }
+  end
+
 
   factory :user do
     name      { "#{Random.firstname}  #{Random.lastname}"}
@@ -32,8 +51,13 @@ FactoryGirl.define do
   end
 
 
+  factory :course_with_teacher, :parent => :course do
+    teacher {|course| FactoryGirl.build(:user) }
+  end
+
 
   factory :course do
+    association :city
     title       { FactoryGirl.generate(:course_name) }
     teaser      { Forgery(:lorem_ipsum).words(rand(5) + 1) }
     experience  { Forgery(:lorem_ipsum).words(rand(30) + 1) }

@@ -1,3 +1,6 @@
+:css
+  a{color: #ff7733;}
+
 .page-section-float-left
   = image_tag("/images/v2/step3.png", :class => "steps")
   #preview-box
@@ -19,10 +22,17 @@
       .class-description
         .heading13-class
           = "#{@course.title.truncate(45)}"
-        %p= "#{@course.teaser.truncate(70)}"
+        %p= "#{@course.teaser.truncate(60)}"
       .class-note
         .heading9-class
-          = "#{@course.seats_left} seats left"
+          - if @course.active?  
+            - if @course.max_seats.blank?
+              = link_to "Unlimited seats |", @course
+            - elsif @course.seats_left == 0 
+              = link_to "Full! Request again |", @course
+            - elsif
+              = link_to "#{@course.seats_left} seats left |", @course
+          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
     #preview-checklist-box
       .welcome-header Preview CheckList
       %ul
@@ -59,8 +69,8 @@
           = render :partial => "social_share"
     .page-section-float-left
       .class-section-heading This class will cover
-      %p.class-detail
-        = sanitize @course.description.gsub(/\n/,'<br/>')
+      .class-detail
+        %p= simple_format auto_link(@course.description)
 
 = content_for :sidebar do
   = render :partial => "sidebar", :locals => {:course => @course}

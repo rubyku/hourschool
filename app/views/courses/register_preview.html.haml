@@ -43,20 +43,31 @@
                 - else
                   %p Private Address
 
+    
+    - if @course.nosignup.nil?
+      .class-description-block
+        .confirm-bring-friend You're a couple short steps from signing up for this class!
+        %br
+        %br
+        %p.confirm If the class doesn't happen because there aren't enough students, you will get a refund.
+        %br
+        %p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
+        %br
+        %br
+        - if @course.price == 0
+          = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
+        - else
+          = render "amazon_form"
+    - else @course.nosignup?
+      .class-description-block
+        .confirm-bring-friend Thanks for your interest
+        %br
+        %br
+        %p.confirm Please note that the organizer of this event has disabled formal registration online. By clicking on "I'm interested" you're showing interest for this class to help the organizer plan accordingly. On the day of the event, registration and session sign-up begins at 9:30am. Note that several sessions have limited space. You may contact the organizers at a2reskill@gmail.com for further questions.
+        %br
+        %br
+        = button_to "Yes I'm in!", register_for_reskilling_path(:id => @course), :class => "register-class-button"
 
-    .class-description-block
-      .confirm-bring-friend You're a couple short steps from signing up for this class!
-      %br
-      %br
-      %p.confirm If the class doesn't happen because there aren't enough students, you will get a refund.
-      %br
-      %p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
-      %br
-      %br
-      - if @course.price == 0
-        = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
-      - else
-        = render "amazon_form"
 
 
 .sidebar

@@ -1,33 +1,40 @@
+= render :partial => 'courses/search'
 - if current_user
   %ul.searchFilter
     %li
       .sidebar-heading My Location
-      %li= link_to "#{current_user.city}, #{current_user.state}", courses_browse_path(:city, :city => current_user.city)
+      %li= link_to "#{current_user.city}, #{current_user.state}", courses_browse_path(:upcoming, :city => current_user.city)
   %ul.searchFilter
     %li
       .sidebar-heading Browse By City
-      %li= link_to "All", courses_browse_path(:city, :city => "All")
-      %li= link_to "Ann Arbor, MI", courses_browse_path(:city, :city => "Ann Arbor") unless current_user.city == "Ann Arbor"
-      %li= link_to "Austin, TX", courses_browse_path(:city, :city => "Austin") unless current_user.city == "Austin"
-      %li= link_to "Loveland, CO", courses_browse_path(:city, :city => "Loveland") unless current_user.city == "Loveland"
-      %li= link_to "New York, NY", courses_browse_path(:city, :city => "New York") unless current_user.city == "New York"
-      %li= link_to "San Francisco, CA", courses_browse_path(:city, :city => "San Francisco") unless current_user.city == "San Francisco"
-      %li= link_to "Santa Monica, CA", courses_browse_path(:city, :city => "Santa Monica") unless current_user.city == "Santa Monica"
-      %li= link_to "Toronto, ON", courses_browse_path(:city, :city => "Toronto") unless current_user.city == "Toronto"
-      %li= link_to "Windsor, CO", courses_browse_path(:city, :city => "Windsor") unless current_user.city == "Windsor"
+      %li= link_to "All Cities",        courses_browse_path(:upcoming, :city => "All")
+      %li= link_to "Ann Arbor, MI",     courses_browse_path(:upcoming, :city => "Ann Arbor")     unless current_user.city == "Ann Arbor"
+      %li= link_to "Austin, TX",        courses_browse_path(:upcoming, :city => "Austin")        unless current_user.city == "Austin"
+      %li= link_to "Loveland, CO",      courses_browse_path(:upcoming, :city => "Loveland")      unless current_user.city == "Loveland"
+      %li= link_to "New York, NY",      courses_browse_path(:upcoming, :city => "New York")      unless current_user.city == "New York"
+      %li= link_to "San Francisco, CA", courses_browse_path(:upcoming, :city => "San Francisco") unless current_user.city == "San Francisco"
+      %li= link_to "Santa Monica, CA",  courses_browse_path(:upcoming, :city => "Santa Monica")  unless current_user.city == "Santa Monica"
+      %li= link_to "Toronto, ON",       courses_browse_path(:upcoming, :city => "Toronto")       unless current_user.city == "Toronto"
+      %li= link_to "Windsor, CO",       courses_browse_path(:upcoming, :city => "Windsor")       unless current_user.city == "Windsor"
 - else
   %ul.searchFilter
     %li
       .sidebar-heading Browse By City
-      %li= link_to "All", courses_browse_path(:city, :city => "All")
-      %li= link_to "Ann Arbor, MI", courses_browse_path(:city, :city => "Ann Arbor")
-      %li= link_to "Austin, TX", courses_browse_path(:city, :city => "Austin") 
-      %li= link_to "Loveland, CO", courses_browse_path(:city, :city => "Loveland") 
-      %li= link_to "New York, NY", courses_browse_path(:city, :city => "New York")
-      %li= link_to "San Francisco, CA", courses_browse_path(:city, :city => "San Francisco") 
-      %li= link_to "Santa Monica, CA", courses_browse_path(:city, :city => "Santa Monica")
-      %li= link_to "Toronto, ON", courses_browse_path(:city, :city => "Toronto") 
-      %li= link_to "Windsor, CO", courses_browse_path(:city, :city => "Windsor")
+      %li= link_to "All",               courses_browse_path(:upcoming, :city => "All")
+      %li= link_to "Ann Arbor, MI",     courses_browse_path(:upcoming, :city => "Ann Arbor")
+      %li= link_to "Austin, TX",        courses_browse_path(:upcoming, :city => "Austin")
+      %li= link_to "Loveland, CO",      courses_browse_path(:upcoming, :city => "Loveland")
+      %li= link_to "New York, NY",      courses_browse_path(:upcoming, :city => "New York")
+      %li= link_to "San Francisco, CA", courses_browse_path(:upcoming, :city => "San Francisco")
+      %li= link_to "Santa Monica, CA",  courses_browse_path(:upcoming, :city => "Santa Monica")
+      %li= link_to "Toronto, ON",       courses_browse_path(:upcoming, :city => "Toronto")
+      %li= link_to "Windsor, CO",       courses_browse_path(:upcoming, :city => "Windsor")
+
+%ul.searchFilter
+  %li
+    .sidebar-heading Browse By Time
+    %li= link_to "All classes",   courses_browse_path(:all,      @params)
+    %li= link_to "Upcoming only", courses_browse_path(:upcoming, @params)
 
 
 %ul.searchFilter
@@ -35,5 +42,3 @@
     .sidebar-heading Browse By Category
     - TAGS.each do |tag|
       %li= link_to "#{tag}", courses_browse_path(:tags, :tag => tag)
-
-

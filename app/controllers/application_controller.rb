@@ -1,14 +1,19 @@
 class ApplicationController < ActionController::Base
+  rescue_from Koala::Facebook::APIError , :with => :facebook_error
   rescue_from Exception, :with => :render_error unless Rails.env.development?
 
   include UrlHelper
 
-  before_filter :set_timezone
+  before_filter :debug, :set_timezone, :eventual_warm_facebook_cache
   protect_from_forgery
 
   protected
 
     def debug
+    end
+
+    def eventual_warm_facebook_cache
+      enqueue_warm_facebook_cache if rand(4) == 1 # one in 5 chance
     end
 
     def enqueue_warm_facebook_cache
@@ -36,6 +41,14 @@ class ApplicationController < ActionController::Base
       message += Rails.backtrace_cleaner.clean(exception.backtrace).join("\\n")
       Rails.logger.fatal(message)
     end
+
+    def facebook_error(exception)
+      log_error(exception)
+      notify_airbrake(exception)
+      flash[:notice] = "There was a problem authenticating with Facebook, please try again"
+      redirect_to destroy_user_session_path
+    end
+
 
     def render_error(exception)
       @exception = exception
