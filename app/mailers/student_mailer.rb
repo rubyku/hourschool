@@ -22,7 +22,6 @@ class StudentMailer < ActionMailer::Base
   def send_post_class_feedback(student, course)
     @student = student
     @course = course
-    @url = "http://www.hourschool.com/feedback?id=#{@course.id}"
     mail(:to => @student.email, :subject => "Let us know how class went!")      
   end
   

@@ -2,7 +2,7 @@ Hello <%= @teacher.name %>,
 
 We're sorry to inform you that your <%= @course.title %> class didn't meet the minimum student requirement and will be cancelled.
 
-We have informed the students about the cancellation on your behalf. However, if you would still like to have the class anyways, you can reach out to your students here: <%= contact_all_students_url(@course) %>
+We have informed the students about the cancellation on your behalf. However, if you would still like to have the class anyways, you can reach out to your students here: <%= contact_all_students_url(:id => @course.id) %>
 
 Cheers!
 HourSchool HQ
