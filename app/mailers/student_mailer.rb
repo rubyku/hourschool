@@ -16,13 +16,14 @@ class StudentMailer < ActionMailer::Base
   def send_negative_confirmation(student, course)
     @student = student
     @course = course
-    mail(:to => @student.email, :subject => "The class you signed up for has been canceled!")    
+    mail(:to => @student.email, :subject => "The class you signed up for has been canceled")    
   end
 
   def send_post_class_feedback(student, course)
     @student = student
     @course = course
-    mail(:to => @student.email, :subject => "Thanks for using Hourschool! We appreciate your feedback")      
+    @url = "http://www.hourschool.com/feedback?id=#{@course.id}"
+    mail(:to => @student.email, :subject => "Let us know how class went!")      
   end
   
 end

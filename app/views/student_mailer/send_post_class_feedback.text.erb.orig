@@ -1,0 +1,21 @@
+Hello <%= @student.name %>,
+
+Thanks for taking <%= @course.title %> with HourSchool!
+
+<<<<<<< HEAD
+Please take a minute to provide us with some feedback! <%= feedback_url(:id => @course.id)%>
+
+=======
+If you have a minute, let us know how it went! 
+<%= @url %>
+>>>>>>> 54cb49ef9ace74a16c5fccd298c8201db2d76e2e
+
+Stay up on the latest new classes, new teachers, new ideas about teaching, and lots more by signing up for our newsletter: http://eepurl.com/gK9QH 
+
+Cheers!
+HourSchool HQ
+
+--
+Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com/
+
+

@@ -1,0 +1,12 @@
+Hello <%= @teacher.name %>,
+
+We're sorry to inform you that your <%= @course.title %> class didn't meet the minimum student requirement and will be cancelled.
+
+We have informed the students about the cancellation on your behalf. However, if you would still like to have the class anyways, you can reach out to your students here: <%= contact_all_students_url(@course) %>
+
+Cheers!
+HourSchool HQ
+
+---
+If you have any questions, please don't hesitate to email us at hello@hourschool.com or simply call us at: (877) 246-4689.  
+
