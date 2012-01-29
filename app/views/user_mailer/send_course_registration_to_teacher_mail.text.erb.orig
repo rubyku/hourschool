@@ -1,8 +1,0 @@
-Woohoo! <%= @course.students.last.name %> just signed up for your <%= @course.title %> class!
-
-Cheers!
-<<<<<<< HEAD
-HourSchool HQ
-=======
-HourSchool HQ
->>>>>>> 54cb49ef9ace74a16c5fccd298c8201db2d76e2e
