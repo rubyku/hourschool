@@ -1,6 +1,6 @@
 Hello <%= @student.name %>,
 
-We're sorry to inform you that the course you registered for, <%= @course.title %>, didn't meet the minimum student requirement and has been canceled for tomorrow. Ask your teacher to reschedule here: LINK 
+We're sorry to inform you that the course you registered for, <%= @course.title %>, didn't meet the minimum student requirement and has been canceled for tomorrow. Ask your teacher to reschedule here: <%= contact_teacher_url(:id => @course.id) %>
 
 Cheers!
 Hour School

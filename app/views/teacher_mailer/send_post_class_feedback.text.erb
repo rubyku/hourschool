@@ -2,7 +2,7 @@ Hello <%= @teacher.name %>,
 
 Thanks for teaching <%= @course.title %> with HourSchool!
 
-Please take a minute to provide us with some feedback! LINK_TO_FEEDBACK
+Please take a minute to provide us with some feedback! <%= feedback_url(:id => @course.id)%>
 
 
 Stay up on the latest new classes, new teachers, new ideas about teaching, and lots more by signing up for our newsletter: http://eepurl.com/gK9QH 

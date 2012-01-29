@@ -1,13 +1,13 @@
 class TeacherMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
 
-  def send_course_proposal_reminder
+  def send_course_proposal_reminder(course)
     @course = course
     @teacher = course.teacher
     mail(:to => @teacher.email, :subject => "Your class, #{@course.title}, has been approved, but you have not made it live yet!")
   end
   
-  def send_teacher_resources
+  def send_teacher_resources(course)
     @course = course
     @teacher = course.teacher
     mail(:to => @teacher.email, :subject => "Here are some resources to help you teach #{@course.title} next week!")
