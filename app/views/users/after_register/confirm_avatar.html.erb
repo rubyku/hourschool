@@ -3,21 +3,27 @@
     <div class="page-section-float-left">
       <div class="form-question">Add a photo of yourself!</div>
     </div>
- 
+
    <% @user.errors.each do |error, msg| %>
      <p class="error"><%= "#{error}: #{msg}" %></p>
    <%- end -%>
 
-   <%= form_for @user, :url => wizard_path, :method => :put, :html => {:class => 'inset', :id => 'form-signup'} do |f| %>
-
-   <div class="page-section-float-left">
-     <%=  f.text_field :twitter_id , :placeholder => "Twitter (optional)", :class => "form-short" %>
-   </div>
+   <%= form_for @user, :url => {:action => "update"}, :method => :put, :html => { :multipart => true } do |f| %>
 
    <div class="page-section-float-left">
     <%= f.label :photo, 'Photo', :class => "form-question" %><br />
     <%= f.file_field :photo %>
    </div>
+
+   <br><br>
+   <div class="page-section-float-left">
+     <div class="form-question">Add your Twitter Handle!</div>
+   </div>
+
+   <div class="page-section-float-left">
+     <%=  f.text_field :twitter_id , :placeholder => "Twitter (optional)", :class => "form-short" %>
+   </div>
+
 
 
    <div class="page-section-float-left">
