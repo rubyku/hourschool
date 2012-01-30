@@ -11,18 +11,7 @@ gem 'sass-rails',           '~> 3.2.3'
 
 gem 'pg',                   '~> 0.12.2'
 
-gem 'thin'
 
-source 'http://rubygems.org'
-
-gem 'rails',                '3.2.0'
-
-group :assets do
-  # gem 'coffee-rails'
-  gem 'uglifier'
-end
-
-gem 'sass-rails'
 gem 'thin'
 
 gem 'pg',                   '~> 0.12.2'
