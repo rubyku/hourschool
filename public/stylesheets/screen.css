@@ -646,22 +646,27 @@ a:hover {
 
 .homePageBackgroundImage1 {
   background-image: url(/images/v2/hp-bg1.jpg);
+  background-repeat:no-repeat;
 }
 
 .homePageBackgroundImage2 {
   background-image: url(/images/v2/hp-bg12.jpg);
+  background-repeat:no-repeat;
 }
 
 .homePageBackgroundImage3 {
   background-image: url(/images/v2/hp-bg13.png);
+  background-repeat:no-repeat;
 }
 
 .homePageBackgroundImage4 {
   background-image: url(/images/v2/hp-bg14.png);
+  background-repeat:no-repeat;
 }
 
 .homePageBackgroundImage5 {
   background-image: url(/images/v2/hp-bg15.png);
+  background-repeat:no-repeat;
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
@@ -4120,3 +4125,11 @@ a.closeButton:hover {
 }
 
 
+#homepage #header a {
+  color: white;
+}
+
+
+#homepage .teaser {
+  height: 330px;
+}

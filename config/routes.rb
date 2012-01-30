@@ -38,7 +38,7 @@ HourschoolV2::Application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
-  match 'user_root' => 'home#index'
+  match 'user_root' => 'pages#index'
   resources :users do
   end
 
@@ -108,9 +108,9 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
-  match '/start' => 'home#index'
+  match '/start' => 'pages#index'
 
-  root :to => "home#index"
+  root :to => "pages#index"
 
   resources :test
   match ":bad_route", :to => "pages#show", :id => "errors/404"
