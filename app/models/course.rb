@@ -37,6 +37,11 @@ class Course < ActiveRecord::Base
 
   include Course::Searchable
 
+  # for pretty links
+  def to_params
+    slug
+  end
+
   def lat
     city.try(:lat)
   end

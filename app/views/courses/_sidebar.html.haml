@@ -97,7 +97,7 @@
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
           %a.profile-link
-          = link_to "#{course.teacher.name}", user_path(course.teacher.id), :class => "profile-link"
+          = link_to "#{course.teacher.name}", course.teacher, :class => "profile-link"
         / .class-details
         /   %ul.noBullet
         /     %li.noBullet
@@ -129,7 +129,7 @@
                 %td
                   = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
                 %td
-                  = link_to student.name, user_path(student.id), :class => "profile-link"
+                  = link_to student.name, student, :class => "profile-link"
             %br
 
         - if course.teacher == current_user
