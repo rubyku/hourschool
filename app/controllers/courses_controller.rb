@@ -92,7 +92,7 @@ class CoursesController < ApplicationController
       if from_req
         #delele the suggestion
         Suggestion.delete(params[:req].to_s)
-        #here email people who voted, etc etc
+        # here email people who voted, etc etc
       end
 
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
