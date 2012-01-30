@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'home', :only => :index
+  layout 'application', :except => :index
 
   # homepage
   def index
@@ -7,6 +7,7 @@ class PagesController < ApplicationController
     @fav1 = Course.find(244)
     @fav3 = Course.find(240)
     @fav4 = Course.find(237)
+    render :layout => 'home'
   end
 
   def show
