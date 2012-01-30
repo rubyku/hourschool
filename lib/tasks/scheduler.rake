@@ -11,7 +11,7 @@ end
 
 task :send_72hr_invite_friends_emails => :environment do
   puts "Sending 72 hr reminder emails..." 
-  courses_in_3_days = Course.where("(date - :todays_date) = 3 AND status = :live", {:todays_date => Date.today, :live => "live"})
+  courses_in_3_days = Course.where("date = :todays_date AND status = :live", {:todays_date => 3.days.from_now, :live => "live"})
   courses_in_3_days.each do |course| 
     students = course.students
     if students.size < course.min_seats
@@ -26,7 +26,7 @@ end
 
 task :send_day_of_reminder_emails => :environment do
   puts "Sending day of reminder emails..."
-  courses_today = Course.where("(date - :todays_date) = 0 AND status = :live", {:todays_date => Date.today, :live => "live"})
+  courses_today = Course.where("date = :todays_date AND status = :live", {:todays_date => Date.today, :live => "live"})
   courses_today.each do |course|
     students = course.students
     if students.size >= course.min_seats
@@ -35,10 +35,10 @@ task :send_day_of_reminder_emails => :environment do
         StudentMailer.send_positive_confirmation(student, course).deliver
       end
     else
-      students.each do |student|
-        TeacherMailer.send_negative_confirmation(course).deliver
-        StudentMailer.send_negative_confirmation(student, course).deliver
-      end
+      TeacherMailer.send_negative_confirmation(course).deliver
+      # students.each do |student|
+      #   StudentMailer.send_negative_confirmation(student, course).deliver
+      # end
     end
   end
   puts "done"
@@ -46,7 +46,7 @@ end
 
 task :send_post_class_emails => :environment do
   puts "Sending post-class feedback emails..."
-  courses_yesterday = Course.where("(:todays_date - date) = 1 AND status = :live", {:todays_date => Date.today, :live => "live"})
+  courses_yesterday = Course.where("(:yesterdays_date = date) AND status = :live", {:yesterdays_date => Date.yesterday, :live => "live"})
   courses_yesterday.each do |course|
     students = course.students
     if students.size >= course.min_seats
