@@ -8,7 +8,8 @@
   <table>
     <tr>
   	<th>ID</th>
-  	<th>Name</th>
+  	<th>First Name</th>
+  	<th>Last Name</th>
   	<th>Email</th>
   	<th>Zip</th>
   	<th>City</th>
@@ -19,7 +20,8 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.id %>
-      <td><%= link_to user.name, user_path(user.id) %></td>     
+      <td><%= link_to user.name.split(" ").first, user_path(user.id) %></td> 
+      <td><%= link_to user.name.split(" ").last, user_path(user.id) %></td>   
       <td><%= user.email %></td>
       <td><%= user.zip %></td>
       <td><%= user.location %></td>
