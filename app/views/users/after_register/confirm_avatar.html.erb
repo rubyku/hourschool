@@ -1,30 +1,29 @@
 <div class="full-page">
   <div class="page-content">
-    
- <p class="error"></p>
+    <div class="page-section-float-left">
+      <div class="form-question">Add a photo of yourself!</div>
+    </div>
  
- <%= form_for @user, :url => {:action => "update"}, :method => :put, :html => {:class => 'inset', :id => 'form-signup'} do |f| %>
-   
-   
-   <div>
-     <%=  f.text_field :name , :placeholder => "Name", :class => "form-short" %>
-   </div>
-   <br><br>
-   <div>
-     <%=  f.text_field :email , :placeholder => "Email", :class => "form-short"  %>
-   </div>
-   <br><br>
+   <% @user.errors.each do |error, msg| %>
+     <p class="error"><%= "#{error}: #{msg}" %></p>
+   <%- end -%>
 
-   <br><br>
-   <div>
-     <%=  f.text_area :bio , :placeholder => "bio" %>
-   </div>
-   <div>
-     <%=  f.submit "Next", :class => "send-message-button" %>
-   </div>
- <% end %>
+   <%= form_for @user, :url => wizard_path, :method => :put, :html => {:class => 'inset', :id => 'form-signup'} do |f| %>
 
- <%= link_to "Skip", wizard_path(@next_step) %>
+   <div class="page-section-float-left">
+     <%=  f.text_field :twitter_id , :placeholder => "Twitter (optional)", :class => "form-short" %>
+   </div>
+
+   <div class="page-section-float-left">
+    <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+    <%= f.file_field :photo %>
+   </div>
+
+
+   <div class="page-section-float-left">
+       <%=  f.submit "Continue", :class => "send-message-button" %>
+   </div>
+   <% end %>
 
   </div>
 </div>

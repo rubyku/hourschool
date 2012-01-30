@@ -9,7 +9,7 @@ class Users::AfterRegisterController < Wicked::WizardController
     when :confirm_password
       skip_step unless @user.facebook?
     when :confirm_avatar
-      skip_step unless @user.photo?
+      skip_step if @user.photo?
     when :invite_fb
       if @user.facebook?
         @user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.shuffle # warm cache for ajax call
