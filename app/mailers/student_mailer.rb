@@ -5,28 +5,28 @@ class StudentMailer < ActionMailer::Base
     @student = student
     @course = course
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :subject => "The class you signed up for is 3 days away and needs more students!")
+    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is 3 days away and needs more students!")
   end
 
   def send_positive_confirmation(student, course)
     @student = student
     @course = course
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :subject => "The class you signed up for is tomorrow!")
+    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is tomorrow!")
   end
 
   def send_negative_confirmation(student, course)
     @student = student
     @course = course
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :subject => "The class you signed up for has been canceled")
+    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for has been canceled")
   end
 
   def send_post_class_feedback(student, course)
     @student = student
     @course = course
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :subject => "Let us know how class went!")
+    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Let us know how class went!")
   end
 
 end
