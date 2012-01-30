@@ -29,6 +29,7 @@ module CoursesHelper
     else
       link_to image_tag("/v2-courses/DefaultClassPics_Generic.png"), course
     end
+  end
 
 
   def image_for_course(course)
