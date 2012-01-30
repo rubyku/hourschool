@@ -12,6 +12,7 @@
   	<th>Email</th>
   	<th>Zip</th>
   	<th>City</th>
+  	<th>FB Token?</th>
     <th>Created on</th>
     </tr>
 
@@ -22,6 +23,7 @@
       <td><%= user.email %></td>
       <td><%= user.zip %></td>
       <td><%= user.location %></td>
+      <td><%= user.fb_token.nil? %></td>
       <td><%= user.created_at.strftime("%b %d, %Y") %></td>
 
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
