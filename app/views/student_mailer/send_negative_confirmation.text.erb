@@ -1,0 +1,16 @@
+Hello <%= @student.name %>,
+
+We're sorry to inform you that the class you registered for, <%= @course.title %>, didn't meet the minimum student requirement and will be cancelled. 
+
+If the teacher decides to have the class anyways, you will receive a separate email from them. 
+
+If you don't hear from the teacher and you're still interested in taking the class, let your teacher know!
+<%= contact_teacher_url(:id => @course.id) %>
+
+Cheers!
+HourSchool HQ
+
+---
+Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com
+
+
