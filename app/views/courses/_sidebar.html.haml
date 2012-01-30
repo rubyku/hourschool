@@ -15,7 +15,7 @@
     - elsif !@current_course.max_seats.blank? && @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
-        = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
+        = button_to "Edit class profile", edit_course_path(:id => @current_course), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
@@ -23,20 +23,20 @@
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - else
       - if @current_course.teacher == current_user
-        = button_to "Edit class profile", edit_course_path(:id => @current_course.id), :method => :get, :class => "edit-class-button"
+        = button_to "Edit class profile", edit_course_path(:id => @current_course), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
         - if @current_course.nosignup.nil?
           - if current_user.nil? || @current_course.city.name == current_user.city
-            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+            = button_to "Register for this class", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button"
           - else
             = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
         - else @current_course.nosignup?
           - if current_user.nil? || @current_course.city.name == current_user.city
-            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"
+            = button_to "I'm interested", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button"
           - else
-            = button_to "I'm interested", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+            = button_to "I'm interested", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
 
 
     .sidebar-block
@@ -97,7 +97,7 @@
           = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
           %a.profile-link
-          = link_to "#{course.teacher.name}", user_path(course.teacher.id), :class => "profile-link"
+          = link_to "#{course.teacher.name}", course.teacher, :class => "profile-link"
         / .class-details
         /   %ul.noBullet
         /     %li.noBullet
@@ -113,7 +113,7 @@
 
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-        = link_to "Contact teacher", contact_teacher_path(:id => course.id), :class => "contact-link"
+        = link_to "Contact teacher", contact_teacher_path(:id => course), :class => "contact-link"
 
 
     - if course.students.any?
@@ -129,16 +129,16 @@
                 %td
                   = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
                 %td
-                  = link_to student.name, user_path(student.id), :class => "profile-link"
+                  = link_to student.name, student, :class => "profile-link"
             %br
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-          = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
+          = link_to "Contact students", contact_all_students_path(:id => course), :class => "contact-link"
     
       
     - if current_user && current_user.admin?
       .sidebar-block-last
-        = link_to "Feedback form", feedback_path(:id => course.id)
+        = link_to "Feedback form", feedback_path(:id => course)
       
 
