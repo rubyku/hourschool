@@ -74,7 +74,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(params[:course])
+    city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+    @course      = Course.new(params[:course])
+    @course.city = city
 
     #was it from a request
     from_req = !params[:req].nil?
@@ -86,10 +88,6 @@ class CoursesController < ApplicationController
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
-      #now the course has been saved add it to a city where it belongs
-      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-      city.courses << @course
-      city.save
 
       if from_req
         #delele the suggestion
