@@ -4125,7 +4125,7 @@ a.closeButton:hover {
 }
 
 
-#homepage #header a {
+#homepage #header a, #homepage #header li{
   color: white;
 }
 
