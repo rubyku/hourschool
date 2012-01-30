@@ -1,6 +1,6 @@
 class Users::AfterRegisterController < Wicked::WizardController
   before_filter :authenticate_user!
-  steps :confirm_password, :invite_fb
+  steps :confirm_password, :confirm_avatar, :invite_fb
 
 
   def show
@@ -8,6 +8,8 @@ class Users::AfterRegisterController < Wicked::WizardController
     case @step
     when :confirm_password
       skip_step unless @user.facebook?
+    when :confirm_avatar
+      skip_step if @user.photo?
     when :invite_fb
       if @user.facebook?
         @user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.shuffle # warm cache for ajax call
@@ -22,6 +24,8 @@ class Users::AfterRegisterController < Wicked::WizardController
     @user = current_user
     case @step
     when :confirm_password
+      @user.update_attributes(params[:user])
+    when :confirm_avatar
       @user.update_attributes(params[:user])
     when :confirm_profile
       @user.update_attributes(params[:user])
