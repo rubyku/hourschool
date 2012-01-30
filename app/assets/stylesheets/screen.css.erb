@@ -601,7 +601,7 @@ body {
   color: white;
   line-height: 18px;
   background-color: none;
-  background-image: url( <%= asset_path 'v2/BG_grey.png' %>;
+  background-image: url( <%= asset_path 'v2/BG_grey.png' %>);
   position: relative;
 }
 
@@ -662,6 +662,29 @@ a:hover {
 
 .homePageBackgroundImage5 {
   background-image: url(<%= asset_path 'v2/hp-bg15.png' %>);
+  background-image: url(/images/v2/hp-bg1.jpg);
+  background-repeat:no-repeat;
+}
+
+.homePageBackgroundImage2 {
+  background-image: url(/images/v2/hp-bg12.jpg);
+  background-repeat:no-repeat;
+}
+
+.homePageBackgroundImage3 {
+  background-image: url(/images/v2/hp-bg13.png);
+  background-repeat:no-repeat;
+}
+
+.homePageBackgroundImage4 {
+  background-image: url(/images/v2/hp-bg14.png);
+  background-repeat:no-repeat;
+}
+
+.homePageBackgroundImage5 {
+  background-image: url(/images/v2/hp-bg15.png);
+  background-repeat:no-repeat;
+>>>>>>> c37afc9e9455242c8c546c2cd597e4413be1dbe9:public/stylesheets/screen.css
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
@@ -707,14 +730,8 @@ a:hover {
   padding-top: 20px;
   padding-bottom: 20px;
   overflow: hidden;
-  color: white;
 }
 
-/* line 85, ../../app/assets/stylesheets/components/homepage.scss */
-a#menu_homepage {
-  color: white;
-  text-decoration: none;
-}
 
 /* line 90, ../../app/assets/stylesheets/components/homepage.scss */
 
@@ -725,7 +742,7 @@ a#menu_homepage {
 
 
 /* line 95, ../../app/assets/stylesheets/components/homepage.scss */
-table#homepage_menu {
+#homepage table#menu {
   position: relative;
   float: right;
   margin-top: 12px;
@@ -733,7 +750,7 @@ table#homepage_menu {
 }
 
 /* line 102, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_teach, td#homepage_menu_suggest, td#homepage_menu_business {
+#homepage td#menu_teach, #homepage td#menu_suggest, #homepage td#menu_business {
   border: 1px solid white;
   height: 60px;
   vertical-align: bottom;
@@ -742,7 +759,7 @@ td#homepage_menu_teach, td#homepage_menu_suggest, td#homepage_menu_business {
 }
 
 /* line 110, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_learn, td#homepage_menu_faq {
+#homepage td#menu_learn, #homepage td#menu_faq {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   border-left: 0px;
@@ -754,28 +771,56 @@ td#homepage_menu_learn, td#homepage_menu_faq {
 }
 
 /* line 121, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_learn {
+#homepage td#menu_learn {
   width: 176px;
 }
 
 /* line 125, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_teach {
+#homepage td#menu_teach {
   width: 170px;
 }
 
 /* line 129, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_suggest {
+#homepage td#menu_suggest {
   width: 170px;
 }
 
 /* line 133, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_business {
+#homepage td#menu_business {
   width: 235px;
 }
 
 /* line 137, ../../app/assets/stylesheets/components/homepage.scss */
-td#homepage_menu_faq {
+#homepage td#menu_faq {
   width: 67px;
+}
+
+#homepage #menu18{
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+  color: white;
+}
+
+#homepage #menu9{
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 10px;
+  color: white;
+}
+
+#homepage #menu_faq {
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: white;
 }
 
 /* line 141, ../../app/assets/stylesheets/components/homepage.scss */
@@ -882,8 +927,7 @@ td#homepage_menu_faq {
   color: white;
 }
 
-a#menu_homepage:hover{color: #fae4da;}
-a#homepage_menu:hover{color: black;}
+#homepage a#menu:hover{color: #fae4da;}
 a#homepage_headline_8:hover{color: #fae4da;}
 
 img#fb-signup{
@@ -902,7 +946,6 @@ img#fb-signup-bg{
 }
 
 #hp_transparent{
-  margin-top: -100px;
   margin-bottom: -314px;
   z-index: 1;
 }
@@ -915,6 +958,7 @@ img#fb-signup-bg{
 .featured-content {
   position: relative;
   float: left;
+  margin-top: -5px;
   padding-bottom: 20px;
 }
 
@@ -1124,6 +1168,10 @@ a#logo:hover {
   margin-left: 1px;
 }
 
+#homepage #username{
+  color: white;
+}
+
 /* line 17, ../../app/assets/stylesheets/components/header.scss */
 #login {
   position: relative;
@@ -1152,6 +1200,17 @@ li#login_peerlearning {
   margin-left: 10px;
   top: 0px;
 }
+
+#homepage li#login_peerlearning {
+  float: left;
+  color: #8f8f8f;
+  text-decoration: none;
+  margin-left: 10px;
+  top: 0px;
+  color: white;
+}
+
+
 
 /* line 166, ../../app/assets/stylesheets/components/homepage.scss */
 #homepage_login {
@@ -1207,24 +1266,26 @@ img.profile-arrow{
 
 /* line 56, ../../app/assets/stylesheets/components/header.scss */
 tr#dropdown-text {
-  font-color: #ccc;
+  color: #ccc;
   border-bottom: 1px solid #ccc;
 }
 
 /* line 61, ../../app/assets/stylesheets/components/header.scss */
 tr#dropdown-text-last {
-  font-color: #ccc;
+  color: #ccc;
 }
 
 /* line 65, ../../app/assets/stylesheets/components/header.scss */
 td#dropdown-text {
   font-weight: 700;
   font-size: 12px;
-  font-color: #666666;
+  color: #666666;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-right: 30px;
 }
+
+
 
 /* line 74, ../../app/assets/stylesheets/components/header.scss */
 table#menu {
@@ -1298,37 +1359,22 @@ a#menu:hover {
   color: #ff7733;
 }
 
-a.homepage_menu {
-  color: white;
-  text-decoration: none;
-}
-
-a.homepage_menu:visited {
+#homepage a#not_logged_in{
   text-decoration: none;
   color: white;
 }
 
-a.homepage_menu:hover {
+#homepage a#not_logged_in:visited{
+  text-decoration: none;
+  color: white;
+}
+
+#homepage a#not_logged_in:hover{
   text-decoration: none;
   color: #ffbd9c;
 }
 
-a#not_logged_in_homepage{
-  text-decoration: none;
-  color: white;
-}
-
-a#not_logged_in_homepage:visited{
-  text-decoration: none;
-  color: white;
-}
-
-a#not_logged_in_homepage:hover{
-  text-decoration: none;
-  color: #ffbd9c;
-}
-
-#not_logged_in_homepage{
+#homepage #not_logged_in{
   position: relative;
   float: left;
   padding-right: 10px;
@@ -2681,7 +2727,7 @@ img.steps {
 
 #preview-box-tall{
   width: 880px;
-  height: 280px;
+  height: 300px;
   padding: 30px 30px 0px 50px;
   background: white;
 }
@@ -4083,6 +4129,18 @@ a.closeButton:hover {
   float: left;
 }
 
+.comment .name{
+  float: left;
+  margin-right: 5px;
+}
+
+.comment .location{
+  font-weight: 400;
+  font-size: 9px;
+  color: #999;
+  margin-top: 2px;
+}
+
 .comments .content{
   float: left;
   width: 90%;
@@ -4100,4 +4158,14 @@ a.closeButton:hover {
 
 .hiddenSubmit {
   visibility: hidden;
+}
+
+
+.indent {
+  margin-left: 2em;
+}
+
+
+#homepage .teaser {
+  height: 330px;
 }

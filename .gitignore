@@ -7,3 +7,4 @@ tmp/
 .DS_Store
 /solr
 .sass-cache/
+log/sunspot-solr-development.log.lck

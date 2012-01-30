@@ -108,7 +108,11 @@ class SuggestionsController < ApplicationController
   end
 
   def post_to_twitter(suggestion)
-    client = Twitter::Client.new
-    client.update("New class suggestion! \"#{suggestion.name}\" - Vote for it here: #{url_for(suggestion)}")
+    begin
+      client = Twitter::Client.new
+      client.update("New class suggestion! \"#{suggestion.name}\" - Vote for it here: #{url_for(suggestion)}")
+    rescue Exception => ex
+     Rails.logger.error "Twitter Failed: #{ex}"
+    end
   end
 end

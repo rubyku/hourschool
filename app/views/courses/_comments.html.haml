@@ -6,8 +6,10 @@
       %div.content
         %div.name
           = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
+        %div.location
+          = comment.user.location
         %div.body
-          = comment.body
+          = simple_format auto_link(comment.body)
         %div.created_at
           .class-alternatives
             = "#{time_ago_in_words comment.created_at} ago"

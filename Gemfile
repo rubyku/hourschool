@@ -11,5 +11,4 @@ gem 'sass-rails',           '~> 3.2.3'
 
 gem 'pg',                   '~> 0.12.2'
 
-
 gem 'thin'

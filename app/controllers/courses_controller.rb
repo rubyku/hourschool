@@ -13,7 +13,8 @@ class CoursesController < ApplicationController
   def all
     @courses = Course.all
   end
-
+  
+  
   def approve
     @course = Course.find(params[:id])
     @course.update_attribute :status, "approved"
@@ -21,7 +22,6 @@ class CoursesController < ApplicationController
     #send email and other stuff here to the teacher
     UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
       redirect_to profile_path(:show => 'pending')
-
   end
 
   def show
@@ -63,10 +63,7 @@ class CoursesController < ApplicationController
       if @course.status == "approved"
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        UserMailer.send_class_live_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        # if !@course.nosignup?
-        #   post_to_twitter(@course)
-        # end
+        post_to_twitter(@course)
       end
     end
   end
@@ -77,7 +74,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(params[:course])
+    city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+    @course      = Course.new(params[:course])
+    @course.city = city
 
     #was it from a request
     from_req = !params[:req].nil?
@@ -89,19 +88,14 @@ class CoursesController < ApplicationController
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
-      #now the course has been saved add it to a city where it belongs
-      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-      city.courses << @course
-      city.save
 
       if from_req
         #delele the suggestion
         Suggestion.delete(params[:req].to_s)
-        #here email people who voted, etc etc
+        # here email people who voted, etc etc
       end
 
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      UserMailer.send_proposal_received_to_hourschool_mail(@course.teacher.email, @course.teacher.name, @course).deliver
       redirect_to current_user
     else
       render :action => 'new'
@@ -184,7 +178,6 @@ class CoursesController < ApplicationController
     if @role.save
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -207,7 +200,6 @@ class CoursesController < ApplicationController
     @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
     if @role.save
       UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
-      UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -236,7 +228,6 @@ class CoursesController < ApplicationController
          @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_hourschool_mail(current_user.email, current_user.name, @course).deliver
          redirect_to course_confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
@@ -294,15 +285,19 @@ class CoursesController < ApplicationController
   end
 
   def post_to_twitter(course)
-    client = Twitter::Client.new
-    if !current_user.twitter_id.blank?
-      message = "New class available in ##{course.city.name}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
-      if message.size < 125
-        client.update(message + url_for(course))
+    begin
+      client = Twitter::Client.new
+      if !current_user.twitter_id.blank?
+        message = "New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" taught by @#{current_user.twitter_id} "
+        if message.size < 125
+          client.update(message + url_for(course))
+        end
+      else
+        client.update("New class available in ##{course.city.name.gsub(/ /, '')}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
       end
-    else
-      client.update("New class available in ##{course.city.name}! Sign up for \"#{course.title}\" here: #{url_for(course)}")
-    end
+    rescue Exception => ex
+     Rails.logger.error "Twitter Failed: #{ex}"
+   end
   end
 
   def sanitize_price(price)

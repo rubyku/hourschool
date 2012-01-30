@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
     @user    = user
     @course  = course
     @comment = comment
-    mail(:to => user.email, :subject => "#{comment.user.name} left a comment on Hourschool")
+    mail(:to => user.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{comment.user.name} left a comment on Hourschool")
   end
 
   # course = Course.find(params[:id])
@@ -46,11 +46,11 @@ class UserMailer < ActionMailer::Base
      mail(:to => user_email, :subject => "You've signed up for #{@course.title}!")
    end
 
-   def send_course_reskilling_mail(user_email, user_name, course)
+   def send_course_registration_to_teacher_mail(user_email, user_name, course)
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => user_email, :subject => "Thanks for your interest in #{@course.title}!")
+     mail(:to => @course.teacher.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Someone signed up for your #{@course.title} class!")
    end
 
    def send_course_registration_to_teacher_mail(user_email, user_name, course)
@@ -58,13 +58,6 @@ class UserMailer < ActionMailer::Base
      @name = user_name
      @course = course
      mail(:to => @course.teacher.email, :subject => "Someone signed up for your #{@course.title} class!")
-   end
-
-   def send_course_registration_to_hourschool_mail(user_email, user_name, course)
-     @email = user_email
-     @name = user_name
-     @course = course
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "Someone signed up for the #{@course.title} class!")
    end
 
    def send_proposal_received_mail(user_email, user_name, course)
@@ -92,14 +85,7 @@ class UserMailer < ActionMailer::Base
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => user_email, :subject => "#{@course.title} is live!")
-   end
-
-   def send_class_live_to_hourschool_mail(user_email, user_name, course)
-     @email = user_email
-     @name = user_name
-     @course = course
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.title} is live!")
+     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.title} is live!")
    end
 
    def send_nominate_mail_to_teacher(user_email, current_user, csuggid, message)

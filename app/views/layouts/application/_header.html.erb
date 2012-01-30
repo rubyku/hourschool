@@ -28,7 +28,7 @@
           <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "not_logged_in" %>
           <span id="not_logged_in">|</span>
-          <%= link_to "sign in", new_user_session_path, :class => "menu"%>
+          <%= link_to "sign in", new_user_session_path, :class => "menu", :id => "not_logged_in" %>
           <% end %>
 
         </li>
@@ -36,9 +36,9 @@
       <% if user_signed_in? %>
           <div id="dropdown-box" style="display:none;">
             <table id="dropdown-text">
-              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path %></td></tr>
-              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path %></td></tr>
-              <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path %></td></tr>
+              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path, :class => "dropdown-text" %></td></tr>
+              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path, :class => "dropdown-text" %></td></tr>
+              <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path, :class => "dropdown-text" %></td></tr>
             </table>
           </div>
       <% end %>
@@ -80,12 +80,11 @@
         <table id="menu">
           <tr id="menu">
               <td id="community_menu_learn">
-        <%= link_to learn_path, :id => "menu" do %>
-                <!-- <a href="/p/learn" id="menu"> -->
-                  <div id="menu18">Learn</div>
+
+                <%= link_to learn_path, :id => "menu" do %>
+                  <div id="menu18">Learn</div> 
                   <div id="menu9">something new</div>
-                <!-- </a> -->
-        <% end %>
+                <% end %>
               </td>
               <td id="community_menu_teach">
                 <%= link_to teach_path, :id => "menu" do %>
