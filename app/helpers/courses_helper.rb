@@ -22,9 +22,6 @@ module CoursesHelper
     (image + arrow).html_safe
   end
 
-  def image_for_course(course)
-    link_to(image_tag(course.photo.url(:small)), :size => "190x120")
-  end
 
   def default_image_for_course(course)
     if !course.categories.blank?
@@ -32,5 +29,10 @@ module CoursesHelper
     else
       link_to image_tag("/v2-courses/DefaultClassPics_Generic.png"), course
     end
+
+
+  def image_for_course(course)
+    link_to image_tag(course.photo.url(:small), :size => "190x120"), course
+  end
 
 end
