@@ -19,7 +19,7 @@ class TeacherMailer < ActionMailer::Base
     @course = course
     @teacher = course.teacher
     Time.zone = @teacher.time_zone
-    mail(:to => @teacher.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Reminder: You're teaching #{@course.title} tomorrow!")
+    mail(:to => @teacher.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Reminder: You're teaching #{@course.title} today!")
   end
 
   def send_negative_confirmation(course)

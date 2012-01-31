@@ -12,7 +12,7 @@ class StudentMailer < ActionMailer::Base
     @student = student
     @course = course
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is tomorrow!")
+    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is today!")
   end
 
   def send_negative_confirmation(student, course)
