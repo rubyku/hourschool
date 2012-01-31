@@ -53,5 +53,7 @@ module HourschoolV2
     config.filter_parameters += [:password, :password_confirmation]
 
     config.assets.initialize_on_precompile = false
+
+    config.assets.precompile += ['screen.css']
   end
 end
