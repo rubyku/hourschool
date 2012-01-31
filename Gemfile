@@ -23,7 +23,7 @@ gem "dalli",                '~> 1.1.4' # for memcache
 # User Authentication
 gem 'devise',               '~> 1.4.9'
 
-gem 'activeadmin',          :git => 'https://github.com/ConsultingMD/active_admin.git' #'~> 0.3.4'
+# gem 'activeadmin',          :git => 'https://github.com/ConsultingMD/active_admin.git' #'~> 0.3.4'
 gem 'meta_search',          '>= 1.1.0.pre'
 
 #gem "oa-oauth", :require => "omniauth/oauth"
@@ -81,6 +81,7 @@ gem 'geokit-rails3',        :git =>  'git://github.com/jlecour/geokit-rails3.git
 
 gem 'awesome_print'         # for the printing
 
+gem 'compass',              '~> 0.11.7'
 
 group :development do
   gem 'heroku',             '~> 2.18.1'
@@ -106,6 +107,8 @@ group :development, :test do
   gem 'guard-rspec',        '~> 0.6.0'
   gem 'guard-spork',        '~> 0.5.1'
   gem 'guard-bundler',      '~> 0.1.3'
+  gem 'guard-sass',         '~> 0.5.4'
+
 
   gem 'foreman'
   gem 'forgery',            '~> 0.5.0'
