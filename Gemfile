@@ -23,7 +23,7 @@ gem "dalli",                '~> 1.1.4' # for memcache
 # User Authentication
 gem 'devise',               '~> 1.4.9'
 
-# gem 'activeadmin',          :git => 'https://github.com/ConsultingMD/active_admin.git' #'~> 0.3.4'
+gem 'activeadmin',           :git => 'https://github.com/ConsultingMD/active_admin.git' #'~> 0.3.4'
 gem 'meta_search',          '>= 1.1.0.pre'
 
 #gem "oa-oauth", :require => "omniauth/oauth"
