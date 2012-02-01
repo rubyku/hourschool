@@ -1,5 +1,5 @@
 <div class="container_16 teaser">
-   <%= image_tag("/images/v2/hp_transparent.png", :id => "hp_transparent") %>
+   <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
 
  <div class="grid_8">
 
@@ -15,14 +15,14 @@
     <div id="homeSearchForm-background"></div>
     <%= form_tag courses_search_path(:all), :method => :get do %>
     <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
-    <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+    <%= image_tag("v2/search-magnifying-glass-orange.png", :id => "mag-glass-homepage") %>
     <br>
     <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
     <% end %>
   <% else %>
     <div id="homepage_headline_7">Join HourSchool now</div>
-    <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
-    <%= image_tag('/images/v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+    <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+    <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
     <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
   <% end %>
 
@@ -44,7 +44,7 @@
 
               <div class="classBlock-homepage">
                   <%= link_to (image_tag(@fav1.photo.url(:small), :size => "190x120")), @fav1 %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                  <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav1.title.truncate(45), @fav1 %></div>
                   <p><%= @fav1.teaser.truncate(60) unless @fav1.teaser.blank? %></p>
@@ -64,8 +64,8 @@
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-homepage">
-                        <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
-                     <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                    <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
+                    <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav2.title.truncate(45), @fav2 %></div>
                       <p><%= @fav2.teaser.truncate(49) unless @fav2.teaser.blank? %></p>
@@ -85,8 +85,8 @@
               </div><!-- /end .classBlock -->
 
               <div class="classBlock-homepage">
-                    <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                 <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+                 <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav3.title.truncate(45), @fav3 %></div>
                   <p><%= @fav3.teaser.truncate(60) unless @fav3.teaser.blank?%></p>
@@ -107,7 +107,7 @@
 
               <div class="classBlock-last-homepage">
                   <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
-                 <img src="../../../images/v2/arrow_white_pointup.png" class="class-arrow">
+                  <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav4.title.truncate(45), @fav4 %></div>
                   <p><%= @fav4.teaser.truncate(60) unless @fav4.teaser.blank? %></p>
@@ -137,7 +137,7 @@
 
         <div class="happeningBlock-homepage">
             <a href="../../../pdf/handbook.pdf">
-            <img src="../../../images/v2/screenshot_teacherHandbook.png">
+            <%= image_tag "v2/screenshot_teacherHandbook.png" %>
             <div class="happening-message-header">
                 Want to teach a class?
             </div>
@@ -148,7 +148,7 @@
         </div><!-- /happeningBlock-homepage -->
 
         <div class="happeningBlock-homepage">
-            <img src="../../../images/v2/homepage/map.jpg">
+            <%= image_tag "v2/homepage/map.jpg" %>
             <div class="happening-message-header">
                 We're growing!
             </div>
@@ -172,5 +172,5 @@
     </div><!-- /end .classRow-homepage -->
   </div><!-- /end .featured-content -->
 
-  <%= image_tag("/images/v2/hp_white.png", :id => "hp_white") %>
+  <%= image_tag("v2/hp_white.png", :id => "hp_white") %>
 </div>

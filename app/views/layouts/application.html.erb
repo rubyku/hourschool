@@ -1,6 +1,6 @@
 
 <% content_for :head_stylesheets do -%>
-  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'application.css', :media => 'screen, projection' %>
 <%- end %>
 
 
@@ -8,8 +8,8 @@
   <meta property="fb:app_id" content="<%= FacebookConfig::ID %>" />
   <meta property="og:description"
         content=" HourSchool is a social school from your community. Because it's not always the experts who make the best teachers, it's the people you know. Start learning with your network today, one hour at a time."/>
-  
-  <meta property="og:image"       
+
+  <meta property="og:image"
         content="http://www.hourschool.com/images/v2/Logo_Orange.png"/>
 <%- end -%>
 
@@ -17,7 +17,8 @@
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-  <%= javascript_include_tag 'jquery_ujs', 'jquery.cookie', 'jquery.lettering-0.6.1.min' %>
+
+  <%= javascript_include_tag 'application' %>
 
   <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -47,7 +48,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-  
+
   <script type="text/javascript">
     function recordOutboundLink(link, category, action) {
       _gat._getTrackerByName()._trackEvent(category, action);

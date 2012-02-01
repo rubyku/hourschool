@@ -80,4 +80,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'rounded-corners'.\A         on line 57 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss, in `rounded-corners'\A         from line 57 of /Users/rubyku/Desktop/hourschool/app/assets/stylesheets/components/sidebar.scss"; }
+}
