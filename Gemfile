@@ -5,9 +5,11 @@ gem 'rails',                '3.2.1'
 group :assets do
   gem 'coffee-rails',       '~> 3.2.1'
   gem 'uglifier',           '>= 1.0.3'
+  # gem 'compass'
+  # gem 'compass-rails',      :git => 'git://github.com/Compass/compass-rails.git'
 end
 
-gem 'sass-rails',           '~> 3.2.3'
+gem 'sass-rails',           '~> 3.2.4'
 
 gem 'pg',                   '~> 0.12.2'
 
@@ -81,7 +83,6 @@ gem 'geokit-rails3',        :git =>  'git://github.com/jlecour/geokit-rails3.git
 
 gem 'awesome_print'         # for the printing
 
-gem 'compass',              '~> 0.11.7'
 
 group :development do
   gem 'heroku',             '~> 2.18.1'
