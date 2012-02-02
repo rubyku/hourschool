@@ -37,7 +37,6 @@
             = "Classes I teach"
           - else
             = "Classes #{@user.name} teaches"
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         .classRow
           = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher + @user.past_classes_as_teacher}
         .classRow
@@ -52,7 +51,6 @@
             = "Classes I take"
           - else
             = "Classes #{@user.name} takes"
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         .classRow
           = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student + @user.past_classes_as_student}
 
@@ -64,25 +62,21 @@
             = "Classes I suggested"
           - else
             = "Classes #{@user.name} suggested"
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
  
     
     #approved.section{:style => 'display:none;'}
       .page-section-float-left
         .welcome-header Classes Approved
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
 
     #pending.section{:style => ('display:none;' unless params[:show] == 'pending')}
       .page-section-float-left
         .welcome-header Classes pending approval
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         = render :partial => "classes_pending", :locals => {:pending => @user.pending}
       .page-section-float-left
         .welcome-header Classes Approved
-        = image_tag "v2/greyheader_half.png", :class => "greyheder_half"
         = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
 
 = render :partial => 'sidebar'
