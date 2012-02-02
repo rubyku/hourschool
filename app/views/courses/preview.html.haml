@@ -70,7 +70,7 @@
     .page-section-float-left
       .class-section-heading This class will cover
       .class-detail
-        %p= simple_format auto_link(@course.description)
+        %p= @course.description
 
 = content_for :sidebar do
   = render :partial => "sidebar", :locals => {:course => @course}
