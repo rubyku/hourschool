@@ -21,7 +21,7 @@
     <% end %>
   <% else %>
     <div id="homepage_headline_7">Join HourSchool now</div>
-    <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+    <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"),  user_omniauth_authorize_path(:facebook) %>
     <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
     <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
   <% end %>

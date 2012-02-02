@@ -4,12 +4,22 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :set_timezone, :eventual_warm_facebook_cache
+  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache
   protect_from_forgery
 
   protected
 
     def debug
+    end
+
+
+    # remove the www. from our URL ensures facebook auth works
+    # and ensures we don't accidentally swap domains while a user
+    # is logged in (which makes it look like the user gets logged out)
+    def ensure_domain
+      if request.subdomain == 'www'
+        redirect_to request.url.gsub("//www.", '//'), :status => 301
+      end
     end
 
     def eventual_warm_facebook_cache

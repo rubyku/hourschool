@@ -1,12 +1,6 @@
 <div class="page">
   <div class="page-content">
 
-      <!-- <%  if resource_name.to_s == "member" %>
-      <h2>Sign in with your work email</h2>
-      <% else %>
-      <h2> Sign in </h2>
-      <% end %> -->
-
   <div class="page-section-float-left">
     <ul class="sub-nav">
       <li class="sub-nav-inactive">
@@ -22,14 +16,14 @@
   <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
     <br>
     <%  if resource_name.to_s == "user" %>
-    <%= link_to image_tag('fb_connect.jpg'), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook)).to_s %>
+    <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
     <% end %>
   </div>
 
   <hr>
   <br />
   <p> Or sign in with email:</p>
-  
+
 
   <%- if resource.present? && resource.email.present? -%>
     <div class="page-section-float-left">
