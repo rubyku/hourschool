@@ -89,7 +89,7 @@ class Course < ActiveRecord::Base
     if city.downcase == "all"
       where("")
     else
-      joins(:city).where("name like ?", city)
+      joins(:city).where("name like ? ", "%#{city}%")
     end
   end
 
