@@ -1,5 +1,4 @@
 = form_tag courses_search_path(:all), :method => :get do
   = text_field_tag :q, request.params[:q], :class => 'searchForm', :placeholder => "Search"
-  %img.mag-glass{:src => '../../../images/v2/search-magnifying-glass-orange.png'}
   = submit_tag '', :class => 'hiddenSubmit'
-
+  = image_tag 'v2/search-magnifying-glass-orange.png', :class => 'mag-glass'

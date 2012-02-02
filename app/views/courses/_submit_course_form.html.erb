@@ -1,5 +1,5 @@
 <div class="page-section-float-left">
-    <img src="../../../images/v2/step2.png" class="steps">
+    <%= image_tag 'vd/step2.png', :class => 'steps' %>
     <% if @course.status != "live" %>
     <div class="welcome-header">Hi, <%= current_user.name %>! Let's get your class up and running!</div>
     <p> We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!</p>
@@ -73,7 +73,7 @@
     <div class="page-section-float-left">
         <div class="class-form-question">Class Size (optional)</div><br>
             <a href="#" class="tip"><span id="showtip4">HourSchool tip
-                <img src="../../../images/v2/arrow_grey_profile.png"></span>
+                <%= image_tag('v2/arrow_grey_profile.png') %></span>
             </a>
                 <div class="form-question-tip4" style="display:none;">
                     <p class="tip">We recommend a minimum of 3 students. A 3 to 1 student teacher ratio is a great number to get a good discussion going. If you’re doing a cooking demo in your own kitchen, you probably can’t have 50 people! If you have lot of demand, you can always have a second class.</p><br><br>
@@ -98,7 +98,7 @@
     <div class="page-section-float-left">
         <div class="class-form-question">When</div><br>
            <a href="#" class="tip"><span id="showtip1">HourSchool tip
-               <img src="../../../images/v2/arrow_grey_profile.png"></span>
+               <%= image_tag('v2/arrow_grey_profile.png') %></span>
            </a>
                 <div class="form-question-tip1" style="display:none;">
                     <p class="tip">We recommend scheduling your class at least 2 weeks in advanced to give enough time for people to sign up!</p><br>
@@ -113,7 +113,7 @@
     <div class="page-section-float-left">
         <div class="class-form-question">Where</div><br>
             <a href="#" class="tip"><span id="showtip2">HourSchool tip
-                <img src="../../../images/v2/arrow_grey_profile.png"></span>
+                <%= image_tag('v2/arrow_grey_profile.png') %></span>
             </a>
                 <div class="form-question-tip2" style="display:none;">
                   <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p><br><br>
@@ -135,7 +135,7 @@
     <div class="page-section-float-left">
         <div class="class-form-question">Cover Charge</div><br>
             <a href="#" class="tip"><span id="showtip3">HourSchool tip
-                <img src="../../../images/v2/arrow_grey_profile.png"></span>
+                <%= image_tag('v2/arrow_grey_profile.png') %></span>
             </a>
             <div class="form-question-tip3" style="display:none;">
                 <p class="tip">We recommend charging even if it’s just for $5. We find that charging a little ensures people actually show up if they sign up! Don't forget the amount of supplies, venue rental fee, and other resources you’ll need. Finally, don't sell yourself short - your knowledge is valuable! Note that HourSchool charges 15% of the total price of the class. See terms and conditions below.</p><br><br>
