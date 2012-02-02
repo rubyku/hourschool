@@ -1,13 +1,13 @@
 Hello <%= @teacher.name %>,
 
-Thanks for teaching <%= @course.title %> with HourSchool. We hope everything went well!
+We hope everything went well with your <%= @course.title %> class.
 
-If you and students chatted about what else you all want to teach and learn, please take a moment and share that with us here: 
+If you have any resources or links to send to your students, you can leave it as a comment on your class page: <%= course_url(@course) %>
+
+If you and students chatted about what else you all want to teach and learn, or if you have specific feedback for HourSchool, please let us know here:
 <%= feedback_url(:id => @course) %>
 
-Stay up on the latest new classes, new teachers, new ideas about teaching, and lots more by signing up for our newsletter: http://eepurl.com/gK9QH 
-
-Cheers!
+Thanks for being a part the Hourschool Community!
 HourSchool HQ
 
 --
