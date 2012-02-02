@@ -44,7 +44,7 @@
       %table
         %tr
           %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+            = image_tag "/v2/icon_pricetag.png", :class => "class-details-icon-cost"
           %td
             .class-details
               = "$" "#{course.price}"
@@ -55,7 +55,7 @@
               %br/
         %tr
           %td.icon
-            = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+            = image_tag "/v2/icon_calendar.png", :class => "class-details-icon-when"
           %td
             .class-details
               = course.date.strftime("%a %b %d, %Y")
@@ -71,7 +71,7 @@
               %br/
         %tr
           %td.icon
-            = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+            = image_tag "/v2/icon_location.png", :class => "class-details-icon-where"
           %td
             .class-details
               = course.place_name
