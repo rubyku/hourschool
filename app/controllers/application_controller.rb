@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   rescue_from Koala::Facebook::APIError , :with => :facebook_error
-  rescue_from Exception, :with => :render_error unless Rails.env.development?
 
   include UrlHelper
 
@@ -11,7 +10,6 @@ class ApplicationController < ActionController::Base
 
     def debug
     end
-
 
     # remove the www. from our URL ensures facebook auth works
     # and ensures we don't accidentally swap domains while a user
@@ -32,6 +30,8 @@ class ApplicationController < ActionController::Base
       Rails.logger.warn '==== run `rake jobs:work` to ensure facebook cache is getting set' unless Rails.env.production?
       job = User::Facebook::FullCacheWarm.new(current_user.id)
       Delayed::Job.enqueue(job)
+    rescue => ex
+      facebook_error(ex)
     end
 
     alias :devise_authenticate_user! :authenticate_user!
@@ -55,27 +55,10 @@ class ApplicationController < ActionController::Base
     def facebook_error(exception)
       log_error(exception)
       notify_airbrake(exception)
-      flash[:notice] = "There was a problem authenticating with Facebook, please try again"
+      flash[:notice] = "There was a problem authenticating with Facebook, login again using Facebook"
       redirect_to destroy_user_session_path
     end
 
-
-    def render_error(exception)
-      @exception = exception
-      log_error(exception)
-      send_error_to_new_relic(exception)
-      notify_airbrake(exception)
-      respond_to do |format|
-        format.html do
-          case exception
-          when ArgumentError, ActionView::MissingTemplate, ActiveRecord::RecordNotFound, ActionController::UnknownController, ActionController::UnknownAction
-            render 'pages/show/errors/404', :status => 404
-          else
-            render 'pages/show/errors/404', :status => 500
-          end
-        end
-      end
-    end
 
     def send_error_to_new_relic(exception)
       rack_env = ENV.to_hash.merge(request.env)

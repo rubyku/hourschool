@@ -54,6 +54,8 @@ module HourschoolV2
 
     config.assets.initialize_on_precompile = false
 
+    config.exceptions_app = self.routes
+
     config.assets.precompile += ['screen.css']
   end
 end

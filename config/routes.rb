@@ -112,6 +112,10 @@ HourschoolV2::Application.routes.draw do
 
   root :to => "pages#index"
 
+  match '/404',  :to => 'errors#not_found'
+  match '/500',  :to => 'errors#error'
+
   resources :test
-  match ":bad_route", :to => "pages#show", :id => "errors/404"
+
 end
+

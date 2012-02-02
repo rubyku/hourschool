@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    @exception = env["action_dispatch.exception"]
     render "pages/show/#{params[:id]}" # %w{about apps contact ...}
   end
 
