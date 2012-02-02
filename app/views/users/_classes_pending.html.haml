@@ -13,7 +13,7 @@
       - if !course.categories.first.nil?
         = link_to image_tag("#{DEF_IMAGES[course.categories.first.name]}"), proposal_path(:id => course.id)
       - else
-        = link_to image_tag("/images/v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
+        = link_to image_tag("v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
         = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
     %br
 

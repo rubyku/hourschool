@@ -192,7 +192,7 @@
         <div id="homeSearchForm-background"></div>
         <%= form_tag courses_search_path(:all), :method => :get do %>
         <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
-        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+        <%= image_tag "v2/search-magnifying-glass-orange.png", :class => "mag-glass-homepage" %>
         <br>
         <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
         <% end %>

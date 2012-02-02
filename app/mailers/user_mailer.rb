@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     @message = message
     mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
-  
+
   def feedback(current_user, course, students, general_feedback)
     @email = course.teacher.email
     @user = current_user
@@ -52,11 +52,11 @@ class UserMailer < ActionMailer::Base
      @course = course
      mail(:to => @course.teacher.email, :subject => "Someone signed up for your #{@course.title} class!")
    end
-   
+
    def send_course_reskilling_mail(user_email, name, course)
      @course = course
      @name   = name
-     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com" :subject => "Thank you for your interest!"
+     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Thank you for your interest!")
    end
 
    def send_proposal_received_mail(user_email, user_name, course)

@@ -56,7 +56,7 @@ module Course::Searchable
     def sanatize_solr_input(options = {})
       options = HashWithIndifferentAccess.new(options)
       if options.is_a? Hash
-        query = options.delete(:query)||options.delete(:q)||options.delete(:id)
+        query = options.delete(:query)||options.delete(:q)||options.delete(:id)||""
       else
         query   = options
         options = {}
