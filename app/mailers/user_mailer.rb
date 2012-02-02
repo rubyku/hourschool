@@ -56,7 +56,7 @@ class UserMailer < ActionMailer::Base
    def send_course_reskilling_mail(user_email, name, course)
      @course = course
      @name   = name
-     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Thank you for your interest!"
+     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Thank you for your interest!")
    end
 
    def send_proposal_received_mail(user_email, user_name, course)
