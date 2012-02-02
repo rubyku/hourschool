@@ -24,7 +24,8 @@ class StudentMailer < ActionMailer::Base
 
   def send_post_class_feedback(student, course)
     @student = student
-    @course = course
+    @course  = course
+    @teacher = course.teacher
     Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Let us know how class went!")
   end
