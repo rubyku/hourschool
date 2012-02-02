@@ -94,7 +94,7 @@
         - if @current_course.teacher.photo.present?
           = image_tag(@current_course.teacher.photo.url(:thumb_small))
         - else
-          = image_tag "/images/v2/Avatars_04_V1.png", :class => "avatar-medium"
+          = image_tag "v2/Avatars_04_V1.png", :class => "avatar-medium"
         .class-details
           %a.profile-link
           = link_to "#{course.teacher.name}", course.teacher, :class => "profile-link"
@@ -112,7 +112,7 @@
             = course.experience
 
       - if course.teacher != current_user
-        %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
+        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
         = link_to "Contact teacher", contact_teacher_path(:id => course), :class => "contact-link"
 
 
@@ -133,7 +133,7 @@
             %br
 
         - if course.teacher == current_user
-          %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
+          = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
           = link_to "Contact students", contact_all_students_path(:id => course), :class => "contact-link"
     
       
