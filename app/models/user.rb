@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
     StateAbreviations[state.upcase]
   end
 
+  def self.ap; where(:email => 'alex@hourschool.com').first; end
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 
