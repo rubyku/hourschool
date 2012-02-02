@@ -23,13 +23,7 @@
           %td.user-stat-number
             .class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
-          /
-          / %td.user-stat-icon
-          /   %img.class-details-icon-heart{:src => 'v2/StatusIcon_Heart.png'}
-          / %td.user-stat-number
-          /   %p.class-details-heart-number
-          /     = 5
-          /     = @user.hearts
+
 
     .sidebar-block-last
       .sidebar-heading About
