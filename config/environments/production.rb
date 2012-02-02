@@ -44,6 +44,7 @@ HourschoolV2::Application.configure do
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
+  config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
 
 
 
