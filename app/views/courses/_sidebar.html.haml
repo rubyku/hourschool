@@ -98,13 +98,6 @@
         .class-details
           %a.profile-link
           = link_to "#{course.teacher.name}", course.teacher, :class => "profile-link"
-        / .class-details
-        /   %ul.noBullet
-        /     %li.noBullet
-        /       %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_heart.png'}
-        /     %li.noBullet
-        /       %p.class-details-heart-number
-        /         = course.votes_for
         %p.class-details
           - if course.experience.blank?
             = "#{course.teacher.bio}"
