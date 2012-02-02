@@ -26,7 +26,7 @@
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
-      %p= @course.description
+      %p= simple_format Rinku.auto_link(@course.description)
 
     .comment-section
       .class-section-heading

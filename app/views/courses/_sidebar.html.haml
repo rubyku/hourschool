@@ -109,7 +109,7 @@
           - if course.experience.blank?
             = "#{course.teacher.bio}"
           - else
-            = course.experience
+            = simple_format Rinku.auto_link(course.experience)
 
       - if course.teacher != current_user
         = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
