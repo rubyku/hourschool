@@ -8,3 +8,4 @@ tmp/
 /solr
 .sass-cache/
 log/sunspot-solr-development.log.lck
+public/assets/*
