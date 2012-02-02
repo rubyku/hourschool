@@ -119,6 +119,7 @@ group :development, :test do
   gem 'ffaker',             '~> 1.12.1'
   gem 'timecop',            '~> 0.3.5'
   gem 'spork',              '~> 0.8.5'
+  gem 'rinku',              '~> 1.2.2', :require => 'rails_rinku'
 
   # Debugging
   gem 'ruby-debug19', :require => 'ruby-debug'
