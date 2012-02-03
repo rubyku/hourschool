@@ -1,23 +1,34 @@
 
 <% content_for :head_stylesheets do -%>
-  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+  <%= stylesheet_link_tag 'application.css', :media => 'screen, projection' %>
 <%- end %>
 
 
 <%= content_for :head do %>
+  <!--
+  ooooo   ooooo                                 .oooooo..o           oooo                            oooo
+  `888'   `888'                                d8P'    `Y8           `888                            `888
+   888     888   .ooooo.  oooo  oooo  oooo d8b Y88bo.       .ooooo.   888 .oo.    .ooooo.   .ooooo.   888
+   888ooooo888  d88' `88b `888  `888  `888""8P  `"Y8888o.  d88' `"Y8  888P"Y88b  d88' `88b d88' `88b  888
+   888     888  888   888  888   888   888          `"Y88b 888        888   888  888   888 888   888  888
+   888     888  888   888  888   888   888     oo     .d8P 888   .o8  888   888  888   888 888   888  888
+  o888o   o888o `Y8bod8P'  `V88V"V8P' d888b    8""88888P'  `Y8bod8P' o888o o888o `Y8bod8P' `Y8bod8P' o888o
+  -->
+
   <meta property="fb:app_id" content="<%= FacebookConfig::ID %>" />
   <meta property="og:description"
         content=" HourSchool is a social school from your community. Because it's not always the experts who make the best teachers, it's the people you know. Start learning with your network today, one hour at a time."/>
-  
-  <meta property="og:image"       
-        content="http://www.hourschool.com/images/v2/Logo_Orange.png"/>
+
+  <meta property="og:image"
+        content="<%= asset_path "v2/Logo_Orange.png" %>" />
 <%- end -%>
 
 <% content_for :head_scripts do -%>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-  <%= javascript_include_tag 'jquery_ujs', 'jquery.cookie', 'jquery.lettering-0.6.1.min' %>
+
+  <%= javascript_include_tag 'application' %>
 
   <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -46,6 +57,13 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+  </script>
+
+  <script type="text/javascript">
+    function recordOutboundLink(link, category, action) {
+      _gat._getTrackerByName()._trackEvent(category, action);
+      setTimeout('document.location = "' + link.href + '"', 100);
+    }
   </script>
 <%- end -%>
 

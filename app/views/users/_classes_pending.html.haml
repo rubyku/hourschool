@@ -8,13 +8,13 @@
   %div{:class => "#{className}"}
     - if course.photo.exists?
       = link_to (image_tag(course.photo.url(:small), :size => "190x120")), proposal_path(:id => course.id)
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+      = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
     - else
       - if !course.categories.first.nil?
         = link_to image_tag("#{DEF_IMAGES[course.categories.first.name]}"), proposal_path(:id => course.id)
       - else
-        = link_to image_tag("/images/v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+        = link_to image_tag("v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id)
+        = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
     %br
 
       .class-description

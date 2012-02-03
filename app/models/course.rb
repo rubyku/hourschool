@@ -37,6 +37,11 @@ class Course < ActiveRecord::Base
 
   include Course::Searchable
 
+  # for pretty links
+  def to_params
+    slug
+  end
+
   def lat
     city.try(:lat)
   end
@@ -84,7 +89,7 @@ class Course < ActiveRecord::Base
     if city.downcase == "all"
       where("")
     else
-      joins(:city).where("name like ?", city)
+      joins(:city).where("name like ? ", "%#{city}%")
     end
   end
 

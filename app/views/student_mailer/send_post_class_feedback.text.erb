@@ -1,0 +1,15 @@
+Hello <%= @student.name %>,
+
+We hope everything went well with your <%= @course.title %> class.
+
+If you have any feedback or suggestion for your teacher, you can leave it as a comment on the class page: <%= course_url(@course) %> . Doing so will help <%= @teacher.name %> and future students know what to expect. 
+
+If you have feedback specifically for HourSchool, please let us know here:
+<%= feedback_url(:id => @course) %>
+
+Thanks for being a part the HourSchool Community!
+HourSchool HQ
+
+--
+If you have any questions, please don't hesitate to email us at hello@hourschool.com or simply call us at: (877) 246-4689.
+

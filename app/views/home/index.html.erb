@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <title>HourSchool</title>
 
   <link rel="icon"
         type="image/png"
-        href="/images/favicon.png">
+        href="assets/favicon.png">
 
   <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
 
@@ -13,13 +13,12 @@
   <%= javascript_include_tag :all %>
 
   <%= csrf_meta_tag %>
-  
+
   <meta property="og:description"
-        content=" HourSchool is a social school from your community. Because it's not always the experts who make the best teachers, it's the people you know. Start learning with your network today, one hour at a time."/>
-  
-  <meta property="og:image"       
-        content="http://www.hourschool.com/images/v2/Logo_Orange.png"/>
-        
+        content="HourSchool is a school from your social network.
+        It’s not always the experts who make the best teachers, it’s the people you know.
+        Start learning with your network today, one hour at a time."/>
+
   <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
@@ -82,12 +81,12 @@
         <li id="homepage_login">
         <span id="nav-dropdown">
            <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-           <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
         </span>
 
         <span id="nav-dropdown-selected" style="display:none;">
            <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
-           <img src="/images/v2/arrow_white_profile.png" class="profile-arrow">
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
         </span>
       <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "not_logged_in_homepage" %>
@@ -177,7 +176,7 @@
   </div><!-- /end #header -->
 
     <div class="container_16">
-       <%= image_tag("/images/v2/hp_transparent.png", :id => "hp_transparent") %>
+       <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
        
      <div class="grid_8">
       
@@ -193,14 +192,15 @@
         <div id="homeSearchForm-background"></div>
         <%= form_tag courses_search_path(:all), :method => :get do %>
         <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
-        <img src = "../../../images/v2/search-magnifying-glass-orange.png" class="mag-glass-homepage">
+        <%= image_tag "v2/search-magnifying-glass-orange.png", :class => "mag-glass-homepage" %>
         <br>
         <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
         <% end %>
       <% else %>
         <div id="homepage_headline_7">Join HourSchool now</div>
-        <%= link_to image_tag('/images/v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
-        <%= image_tag('/images/v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+
+        <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+        <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
         <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
       <% end %>
 

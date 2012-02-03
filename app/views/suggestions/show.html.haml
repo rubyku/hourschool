@@ -16,12 +16,13 @@
         %table
           %tr
             %td
-              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
+              = image_tag "v2/arrow_orange_pointright.png", :class => "tape"
+
             %td  
               = link_to "I want to teach this class", new_course_path("req" => @suggestion.id), :class => "vote-link"
           %tr
             %td
-              %img.view-more-arrow-orange{:src => '/images/v2/arrow_orange_pointright.png'}
+              = image_tag "v2/arrow_orange_pointright.png", :class => "tape"
             %td  
               = link_to "I want to nominate someone to teach this class", nominate_path("id" => @suggestion.id), :class => "vote-link"
       .vote-class-number
@@ -43,17 +44,13 @@
     .page-section-float-left
       - @suggestion.votes.each do |vote| 
         %p
-          / - if User.find(id = vote.voter_id).photo.exist?
-          /   = image_tag(User.find(id = vote.voter_id).photo.url(:small), :size => "25x25", :class => "profile-avatar")
-          / - else
-          /   = image_tag "/images/v2/Avatars_04_V1.png", :class => "profile-avatar"
           = link_to "#{User.find(id = vote.voter_id).name}", user_path(id = vote.voter_id), :class => "profile-link" 
           = "in #{User.find(id = vote.voter_id).location} voted"
 
 
 .sidebar
   .tipbox
-    %img.tape{:src => '../../../images/v2/Tape_White.png'}
+    = image_tag "v2/Tape_White.png", :class => "tape"
     .heading10 Have questions?
     %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
       #tipboxButton Contact us!

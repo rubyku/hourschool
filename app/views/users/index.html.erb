@@ -8,16 +8,24 @@
   <table>
     <tr>
   	<th>ID</th>
-  	<th>Name</th>
+  	<th>First Name</th>
+  	<th>Last Name</th>
   	<th>Email</th>
+  	<th>Zip</th>
+  	<th>City</th>
+  	<th>FB Token?</th>
     <th>Created on</th>
     </tr>
 
   <% @users.each do |user| %>
     <tr>
       <td><%= user.id %>
-      <td><%= link_to user.name, user_path(user.id) %></td>     
+      <td><%= link_to user.name.split(" ").first, user_path(user.id) %></td> 
+      <td><%= link_to user.name.split(" ").last, user_path(user.id) %></td>   
       <td><%= user.email %></td>
+      <td><%= user.zip %></td>
+      <td><%= user.location %></td>
+      <td><%= user.fb_token.nil? %></td>
       <td><%= user.created_at.strftime("%b %d, %Y") %></td>
 
       <td><%= link_to 'Edit', edit_user_path(user) %></td>

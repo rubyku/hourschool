@@ -14,22 +14,16 @@
       %table.user-stat
         %tr
           %td.user-stat-icon
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_CheckMark.png'}
+            = image_tag "v2/StatusIcon_CheckMark.png", :class => "class-details-icon-heart"
           %td.user-stat-number
             .class-details-heart-number
               = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
           %td.user-stat-icon
-            %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Star.png'}
+            = image_tag "v2/StatusIcon_Star.png", :class => "class-details-icon-heart"
           %td.user-stat-number
             .class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
-          /
-          / %td.user-stat-icon
-          /   %img.class-details-icon-heart{:src => '/images/v2/StatusIcon_Heart.png'}
-          / %td.user-stat-number
-          /   %p.class-details-heart-number
-          /     = 5
-          /     = @user.hearts
+
 
     .sidebar-block-last
       .sidebar-heading About

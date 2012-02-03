@@ -1,44 +1,44 @@
 <div id="header">
   <div class="container_16">
-    
-    <%= link_to "", root_path, :id => "logo" %>    
 
-  
+    <%= link_to "", root_path, :id => "logo" %>
+
+
 <div id="login">
-  
+
         <ul id="login">
             <% if user_signed_in? %>
                 <% if current_user.zip.present? %>
                     <li id="login_peerlearning">Peer learning in <%= current_user.city %></li>
                <% end %>
                <li id="login">
-            
+
               <span id="nav-dropdown">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
                   <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
-                  <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                  <%= image_tag 'v2/arrow_grey_profile.png', :class => 'profile-arrow' %>
               </span>
 
               <span id="nav-dropdown-selected" style="display:none;">
                   <%= link_to current_user.name, profile_path, :id => "username"%>
                   <!-- <%= image_tag(current_user.photo.url(:small), :size => "25x25#", :class => "profile-avatar") %> -->
-                  <img src="/images/v2/arrow_grey_profile.png" class="profile-arrow">
+                  <%= image_tag 'v2/arrow_grey_profile.png', :class => 'profile-arrow' %>
               </span>
-                    
+
           <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => "menu", :id => "not_logged_in" %>
           <span id="not_logged_in">|</span>
-          <%= link_to "sign in", new_user_session_path, :class => "menu"%>
+          <%= link_to "sign in", new_user_session_path, :class => "menu", :id => "not_logged_in" %>
           <% end %>
-          
+
         </li>
-  
+
       <% if user_signed_in? %>
           <div id="dropdown-box" style="display:none;">
             <table id="dropdown-text">
-              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path %></td></tr>
-              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path %></td></tr>
-              <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path %></td></tr>
+              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path, :class => "dropdown-text" %></td></tr>
+              <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path, :class => "dropdown-text" %></td></tr>
+              <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path, :class => "dropdown-text" %></td></tr>
             </table>
           </div>
       <% end %>
@@ -57,11 +57,11 @@
              $("#nav-dropdown").show();
              $("#nav-dropdown-selected").hide();
         });
-    </script> 
-    
-  
-    
-   
+    </script>
+
+
+
+
     <script type="text/javascript">
         $("#nav-dropdown").click(function() {
             $("#dropdown-box").show();
@@ -76,16 +76,15 @@
              return false;
         });
     </script>
-    
+
         <table id="menu">
           <tr id="menu">
               <td id="community_menu_learn">
-        <%= link_to learn_path, :id => "menu" do %>
-                <!-- <a href="/p/learn" id="menu"> -->
+
+                <%= link_to learn_path, :id => "menu" do %>
                   <div id="menu18">Learn</div> 
                   <div id="menu9">something new</div>
-                <!-- </a> -->
-        <% end %>
+                <% end %>
               </td>
               <td id="community_menu_teach">
                 <%= link_to teach_path, :id => "menu" do %>
@@ -95,7 +94,7 @@
               </td>
             <td id="community_menu_suggest">
       <%= link_to suggest_path, :id => "menu" do %>
-              
+
                 <div id="menu18">Suggest</div>
                 <div id="menu9">a class</div>
               <% end %>
@@ -111,7 +110,7 @@
                 <div id="menu_faq">F</div>
                 <div id="menu_faq">A</div>
                 <div id="menu_faq">Q</div>
-              
+
             </td>
           </tr>
         </table>
