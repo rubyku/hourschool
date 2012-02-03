@@ -10,15 +10,8 @@
     %div
       .heading15-marcomm Month over month
       - @users_by_month.each do |month, count|
-        = "#{Date::MONTHNAMES[month.to_i]}: #{@teachers_by_month[month] ||0} teachers & #{number_to_currency @transaction_by_month [month] || 0 } & #{@transaction_count_by_month [month] || 0} transactions"
+        = "#{Date::MONTHNAMES[month.to_i]}: #{@users_by_month [month] || 0} new users & #{@teachers_by_month[month] ||0} teachers & #{number_to_currency @transaction_by_month [month] || 0 } & #{@transaction_count_by_month [month] || 0} transactions"
         %br
-
-    / %hr
-    / %div
-    /   %h2 Teachers' emails
-    /   - @teachers.each do |teacher|
-    /     %p
-    /       = "#{teacher.name} - #{teacher.email}"
 
 
 = content_for :sidebar do
