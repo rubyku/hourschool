@@ -1,47 +1,59 @@
 .page
   .page-content
+
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-active
+          %a.sub-nav-active(href="/admin/charts") Overview
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/1") January    
+
+    %div
+      .heading15-marcomm Goals for this month
+      = "Users: #{@users_this_month} to date, #{@users_last_month *2 - @users_this_month} until #{@users_last_month *2}"
+      %br
+      = "Courses: #{@courses_this_month} to date, #{@courses_last_month *2 - @courses_this_month} until #{@courses_last_month *2}"
+      %br
+      = "Transactions: #{number_to_currency @transactions_this_month, :precision => 0} to date, #{number_to_currency @transactions_last_month *2 - @transactions_this_month, :precision => 0} until #{number_to_currency @transactions_last_month *2, :precision => 0}"
+    
+    %br
     %div
       .heading15-marcomm Last 7 days
       - @users.first(7).each do |date, count|
         = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
         %br
-    
-    %br
+  
+    %br    
     %div
-      .heading15-marcomm Month over month
-      - @users_by_month.each do |month, count|
-        = "#{Date::MONTHNAMES[month.to_i]}: #{@users_by_month [month] || 0} new users & #{@teachers_by_month[month] ||0} teachers & #{number_to_currency @transaction_by_month [month] || 0 } & #{@transaction_count_by_month [month] || 0} transactions"
-        %br
+      .heading15-marcomm Next 7 days
+      %table.metrics
+        %tr
+          %th.metrics= "ID"
+          %th.metrics= "Title"
+          %th.metrics= "Date"
+          %th.metrics= "Min Seats"
+          %th.metrics= "# of students"
+        - @courses_next7days.each do |course|
+          %tr
+            %td= course.id
+            %td= course.title
+            %td= course.date
+            %td.metrics= course.min_seats
+            %td.metrics= course.students.size
 
-
-= content_for :sidebar do
-  %div
-    .heading15-marcomm Total To Date
-    %p
-      = "Total Courses: #{@total_courses}"
-    %p
-      = "Paying Courses: #{@paying_courses}"
-    %p
-      = "Free Courses: #{@free_courses}"
-
-  %hr
-  %div
-    %p
-      = "Total Users: #{@total_users}"
-    %p
-      = "Facebook %: #{number_to_percentage(@total_fb_users/@total_users.to_f * 100)}"
-    %p
-      = "Total Students: #{@total_students}"
-    %p
-      = "Total Teachers: #{@total_teachers}"
-
-
-  %hr
-  %div
-    %p
-      = "Transaction To Date: #{ number_to_currency @total_transaction}"
-    %p
-      = "# of trans. thru Amazon: #{@total_transaction_count}"
-    %p
-      = "Revenue minus Amazon: #{ number_to_currency @total_transaction - @amazon_fees - @teachers_share}"
-
+      %br
+      %div
+      .heading15-marcomm Teachers we need to pay
+      %table
+        - @courses_yesterday.each do |course|
+          - if course.price != 0
+            %tr
+              %td= course.id
+              %td= course.title
+              %td= course.teacher.email
+              %td= course.price * course.students.size
+            
+      
+      
+- content_for :sidebar do
+  = render :partial => 'admin/charts/sidebar'

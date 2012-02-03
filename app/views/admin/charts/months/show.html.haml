@@ -1,0 +1,17 @@
+.page
+  .page-content
+
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav.inactive
+          %a.sub-nav-inactive(href="/admin/charts") Overview
+        %li.sub-nav.active
+          %a.sub-nav-active(href="/admin/charts/months/1") January
+
+    .div
+      = "Out of #{@users_in_month.count} users this month"
+      = "#{@attendes_signed_up_this_month} of them have signed up to attend (teacher/student) a class"
+      = "#{number_to_percentage(@attendes_signed_up_this_month/@users_in_month.count.to_f * 100, :precision => 0)}"
+
+- content_for :sidebar do
+  = render :partial => 'admin/charts/sidebar'
