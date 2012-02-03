@@ -12,6 +12,7 @@ HourschoolV2::Application.configure do
 
   config.static_cache_control = "public, max-age=2592000"
 
+
   # Generate digests for assets URLs
   config.assets.digest = true
 

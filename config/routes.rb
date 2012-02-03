@@ -117,6 +117,10 @@ HourschoolV2::Application.routes.draw do
   match '/start' => 'home#index'
 
 
+
+  root :to => "pages#index"
+
+
   match '/404',  :to => 'errors#not_found'
   match '/500',  :to => 'errors#error'
 
