@@ -38,7 +38,7 @@ HourschoolV2::Application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
-  match 'user_root' => 'home#index'
+  match 'user_root' => 'pages#index'
   resources :users do
   end
 
@@ -99,19 +99,23 @@ HourschoolV2::Application.routes.draw do
   match '/nominate_confirm' => 'home#nominate_confirm'
   match '/nominate_reject' => 'home#nominate_reject'
   match '/nominate_reject_send' => 'home#nominate_reject_send'
-  match '/contact_teacher' => 'courses#contact_teacher'
+  match '/contact_teacher' => 'courses#contact_teacher', :as => "contact_teacher"
   match '/contact_teacher_send' => 'courses#contact_teacher_send'
   match '/contact_all_students' => 'courses#contact_all_students'
   match '/contact_all_students_send' => 'courses#contact_all_students_send'
-  match '/feedback' => 'courses#feedback'
+  match '/feedback' => 'courses#feedback', :as => 'feedback'
   match '/feedback_send' => 'courses#feedback_send'
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
-  match '/start' => 'home#index'
+  match '/start' => 'pages#index'
 
-  root :to => "home#index"
+  root :to => "pages#index"
+
+  match '/404',  :to => 'errors#not_found'
+  match '/500',  :to => 'errors#error'
 
   resources :test
-  match ":bad_route", :to => "pages#show", :id => "errors/404"
+
 end
+

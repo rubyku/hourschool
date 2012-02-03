@@ -1,20 +1,17 @@
 .full-page
   .page-content
     .confirm-second-message Your class is now live!
-    = image_tag("/images/v2/grasshopper-hop.png", :class => "confirm-grasshopper")
+    = image_tag("v2/grasshopper-hop.png", :class => "confirm-grasshopper")
     %hr#confirm
 
     .confirm-classblock
-      - link_to @course do
+      = link_to @course do
         - if @course.photo.exists?
           = image_tag(@course.photo.url(:small), :size => "190x120")
-          %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         - else
-          - if !@course.categories.first.nil?
-            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-          - else
-            = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
-        = image_tag '/images/v2/arrow_white_pointup.png', :class => 'class-arrow'
+          = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         .class-description
           .heading13-class
             = link_to @course.title.truncate(45), @course

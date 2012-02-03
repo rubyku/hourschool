@@ -42,6 +42,12 @@ class User < ActiveRecord::Base
   include User::Omniauth
   include User::Facebook
 
+
+  # for pretty links
+  def to_params
+    slug
+  end
+
   def self.me_or_find(id, current_user)
     user_id = id.try(:to_s)
     if user_id.blank? || user_id == 'me' || user_id == 'current'
@@ -55,6 +61,7 @@ class User < ActiveRecord::Base
     StateAbreviations[state.upcase]
   end
 
+  def self.ap; where(:email => 'alex@hourschool.com').first; end
   def self.rk; where(:email => 'ruby@hourschool.com').first; end
   def self.rs; where(:email => 'richard.schneeman@gmail.com').first; end
 

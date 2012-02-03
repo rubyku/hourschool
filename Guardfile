@@ -10,7 +10,13 @@ group 'front' do
     watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
     watch(%r{config/locales/.+\.yml})
   end
+
+  guard 'sass',
+    :input => 'app/assets/stylesheets',
+    :noop => true
 end
+
+
 
 group 'back' do
   guard 'rspec', :version => 2, :all_on_start => false,  :all_after_pass => false do
@@ -36,5 +42,6 @@ group 'back' do
     watch 'Gemfile'
   end
 end
+
 
 

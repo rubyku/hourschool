@@ -7,13 +7,13 @@
       .class-logistic-block
         - if @course.photo.present?
           = image_tag(@course.photo.url(:small), :size => "190x120")
-          %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         - else
           - if !@course.categories.first.nil?
             = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
           - else
-            = image_tag("/images/v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
-          %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+            = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+            = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
       .class-description-block
         .class-title-big
           = "#{@course.title}"
@@ -26,7 +26,7 @@
     .page-section-float-left
       .class-section-heading
         = "This class will cover"
-      %p= simple_format auto_link(@course.description)
+      %p= simple_format Rinku.auto_link(@course.description)
 
     .comment-section
       .class-section-heading

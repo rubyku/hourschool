@@ -1,0 +1,176 @@
+<div class="container_16 teaser">
+   <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
+
+ <div class="grid_8">
+
+   <div id="homepage_headline_1">Learn with your network</div>
+   <div id="homepage_headline_2">One hour at a time</div>
+   <div id="homepage_headline_3">Build a social school from your community. Because it's not always the experts who make the best teachers, it's the people you know.</div>
+
+ </div><!-- /end .twoCol_left -->
+
+ <div class="grid_8">
+  <% if user_signed_in? %>
+    <div id="homepage_headline_7_signedin">Find a class</div>
+    <div id="homeSearchForm-background"></div>
+    <%= form_tag courses_search_path(:all), :method => :get do %>
+    <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
+    <%= image_tag("v2/search-magnifying-glass-orange.png", :class => "mag-glass-homepage") %>
+    <br>
+    <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
+    <% end %>
+  <% else %>
+    <div id="homepage_headline_7">Join HourSchool now</div>
+    <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"),  user_omniauth_authorize_path(:facebook) %>
+    <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+    <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
+  <% end %>
+
+ </div><!-- /end .twoCol_right-->
+
+
+</div><!-- /end .container16 -->
+
+
+
+<%# Featured !!!!!!!!!!!!!!! %>
+
+<div class="container_16">
+
+  <div class="featured-content clearfix">
+      <div class="homepage-header">Featured classes</div><br><br>
+
+          <div class="classRow-homepage clearfix">
+
+              <div class="classBlock-homepage">
+                  <%= link_to (image_tag(@fav1.photo.url(:small), :size => "190x120")), @fav1 %>
+                  <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav1.title.truncate(45), @fav1 %></div>
+                  <p><%= @fav1.teaser.truncate(60) unless @fav1.teaser.blank? %></p>
+                </div><!-- /end .class-description -->
+                <div class="class-note">
+                  <div class="heading9-class">
+                    <% if @fav1.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav1 %>
+                    <% elsif @fav1.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav1 %>
+                    <% elsif %>
+                      <%= "#{@fav1.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav1.city.try(:name)}, #{@fav1.city.try(:state)}" %>
+                  </div>
+                </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
+
+              <div class="classBlock-homepage">
+                    <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
+                    <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
+                    <div class="class-description">
+                      <div class="heading13-class"><%= link_to @fav2.title.truncate(45), @fav2 %></div>
+                      <p><%= @fav2.teaser.truncate(49) unless @fav2.teaser.blank? %></p>
+                    </div><!-- /end .class-description -->
+                    <div class="class-note">
+                      <div class="heading9-class">
+                        <% if @fav2.max_seats.blank? %>
+                          <%= link_to "Unlimited seats |", @fav2 %>
+                        <% elsif @fav2.seats_left == 0 %>
+                          <%= link_to "Full! Request again |", @fav2 %>
+                        <% elsif %>
+                          <%= "#{@fav2.seats_left} seats left |" %>
+                        <% end %>
+                    <%= "#{@fav2.city.try(:name)}, #{@fav2.city.try(:state)}" %>
+                      </div>
+                    </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
+
+              <div class="classBlock-homepage">
+                 <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+                 <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav3.title.truncate(45), @fav3 %></div>
+                  <p><%= @fav3.teaser.truncate(60) unless @fav3.teaser.blank?%></p>
+                </div><!-- /end .class-description -->
+                <div class="class-note">
+                  <div class="heading9-class">
+                    <% if @fav3.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav3 %>
+                    <% elsif @fav3.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav3 %>
+                    <% elsif %>
+                      <%= "#{@fav3.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav3.city.try(:name)}, #{@fav3.city.try(:state)}" %>
+                  </div>
+                </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
+
+              <div class="classBlock-last-homepage">
+                  <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
+                  <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
+                <div class="class-description">
+                  <div class="heading13-class"><%= link_to @fav4.title.truncate(45), @fav4 %></div>
+                  <p><%= @fav4.teaser.truncate(60) unless @fav4.teaser.blank? %></p>
+                </div><!-- /end .class-description -->
+                <div class="class-note">
+                  <div class="heading9-class">
+                    <% if @fav4.max_seats.blank? %>
+                      <%= link_to "Unlimited seats |", @fav4 %>
+                    <% elsif @fav4.seats_left == 0 %>
+                      <%= link_to "Full! Request again |", @fav4 %>
+                    <% elsif %>
+                      <%= "#{@fav4.seats_left} seats left |" %>
+                    <% end %>
+                    <%= "#{@fav4.city.try(:name)}, #{@fav4.city.try(:state)}" %>
+                  </div>
+                </div><!-- /end .class-note -->
+              </div><!-- /end .classBlock -->
+
+          </div><!-- /end .classRow -->
+
+  </div><!-- /end .featured-content -->
+
+  <div class="featured-content clearfix">
+    <div class="homepage-header">Hourschool Happenings</div><br><br>
+
+    <div class="classRow-homepage clearfix">
+
+        <div class="happeningBlock-homepage">
+            <a href="../../../pdf/handbook.pdf">
+            <%= image_tag "v2/screenshot_teacherHandbook.png" %>
+            <div class="happening-message-header">
+                Want to teach a class?
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Our teacher's handbook is a great guide to help you get started.
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+
+        <div class="happeningBlock-homepage">
+            <%= image_tag "v2/homepage/map.jpg" %>
+            <div class="happening-message-header">
+                We're growing!
+            </div>
+            </a>
+            <div class="happening-message-description">
+                Since the launch of our new site, we now have classes in 8 new cities!
+            </div>
+        </div><!-- /happeningBlock-homepage -->
+
+        <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="438" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <a href="http://vimeo.com/user7331787" target="_blank">
+        <div class="happening-message-header">
+            What is HourSchool?
+        </div>
+        </a>
+        <div class="happening-message-description">
+            Learning with your network, one hour at a time.<br>
+        </div>
+
+
+    </div><!-- /end .classRow-homepage -->
+  </div><!-- /end .featured-content -->
+
+  <%= image_tag("v2/hp_white.png", :id => "hp_white") %>
+</div>

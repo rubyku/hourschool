@@ -12,7 +12,7 @@ TAGS_HASH = {
 
 TAGS = TAGS_HASH.keys
 
-DEF_IMAGE_PATH_STRING = "/images/v2-courses/DefaultClassPics_"
+DEF_IMAGE_PATH_STRING = "v2-courses/DefaultClassPics_"
 DEF_IMAGES = {
   "Presentation" => "#{DEF_IMAGE_PATH_STRING}Generic.png",
   "Round Table" => "#{DEF_IMAGE_PATH_STRING}Generic.png",

@@ -14,7 +14,7 @@
       %table
         %tr
           %td
-            %img.view-more-arrow{:src => '/images/v2/arrow_orange_pointright.png'}
+            = image_tag "v2/arrow_orange_pointright.png", :class => "view-more-arrow"
           %td  
             = link_to "I want to nominate someone to teach this class", nominate_path("id" => t.id), :class => "vote-link"
     .vote-class-number

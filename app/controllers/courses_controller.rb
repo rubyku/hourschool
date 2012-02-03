@@ -2,7 +2,6 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
   before_filter :must_be_live, :only => [:show]
-  uses_yui_editor
 
   def index
     #authenticate admin - change this.
@@ -74,7 +73,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(params[:course])
+    city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+    @course      = Course.new(params[:course])
+    @course.city = city
 
     #was it from a request
     from_req = !params[:req].nil?
@@ -86,15 +87,11 @@ class CoursesController < ApplicationController
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
-      #now the course has been saved add it to a city where it belongs
-      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-      city.courses << @course
-      city.save
 
       if from_req
         #delele the suggestion
         Suggestion.delete(params[:req].to_s)
-        #here email people who voted, etc etc
+        # here email people who voted, etc etc
       end
 
       UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver

@@ -1,15 +1,23 @@
 class ApplicationController < ActionController::Base
   rescue_from Koala::Facebook::APIError , :with => :facebook_error
-  rescue_from Exception, :with => :render_error unless Rails.env.development?
 
   include UrlHelper
 
-  before_filter :debug, :set_timezone, :eventual_warm_facebook_cache
+  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache
   protect_from_forgery
 
   protected
 
     def debug
+    end
+
+    # remove the www. from our URL ensures facebook auth works
+    # and ensures we don't accidentally swap domains while a user
+    # is logged in (which makes it look like the user gets logged out)
+    def ensure_domain
+      if request.subdomain == 'www'
+        redirect_to request.url.gsub("//www.", '//'), :status => 301
+      end
     end
 
     def eventual_warm_facebook_cache
@@ -22,6 +30,8 @@ class ApplicationController < ActionController::Base
       Rails.logger.warn '==== run `rake jobs:work` to ensure facebook cache is getting set' unless Rails.env.production?
       job = User::Facebook::FullCacheWarm.new(current_user.id)
       Delayed::Job.enqueue(job)
+    rescue => ex
+      facebook_error(ex)
     end
 
     alias :devise_authenticate_user! :authenticate_user!
@@ -45,27 +55,10 @@ class ApplicationController < ActionController::Base
     def facebook_error(exception)
       log_error(exception)
       notify_airbrake(exception)
-      flash[:notice] = "There was a problem authenticating with Facebook, please try again"
+      flash[:notice] = "There was a problem authenticating with Facebook, login again using Facebook"
       redirect_to destroy_user_session_path
     end
 
-
-    def render_error(exception)
-      @exception = exception
-      log_error(exception)
-      send_error_to_new_relic(exception)
-      notify_airbrake(exception)
-      respond_to do |format|
-        format.html do
-          case exception
-          when ArgumentError, ActionView::MissingTemplate, ActiveRecord::RecordNotFound, ActionController::UnknownController, ActionController::UnknownAction
-            render 'pages/show/errors/404', :status => 404
-          else
-            render 'pages/show/errors/404', :status => 500
-          end
-        end
-      end
-    end
 
     def send_error_to_new_relic(exception)
       rack_env = ENV.to_hash.merge(request.env)

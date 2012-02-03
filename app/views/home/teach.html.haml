@@ -1,14 +1,12 @@
-%head
-  = include_yui_editor_if_used
-
 .page
   .page-content
     .page-section-float-left
       .welcome-header Why you should teach:
-      %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
-      
+      = image_tag "v2/greyheader_half.png", :class => 'greyheader_half'
+
+
       .why-teach-short.clearfix
-        = "If you’re passionate, genuine, and excited to share your experience, you’ve got all it takes. To get started, just click on the star. To learn more, check out our" 
+        = "If you’re passionate, genuine, and excited to share your experience, you’ve got all it takes. To get started, just click on the star. To learn more, check out our"
         = link_to "teacher's handbook", "/pdf/handbook.pdf", :class => "pagenote-link"
         = ", "
         = link_to "our blog", "http://hourschool.tumblr.com", :class => "pagenote-link"
@@ -16,18 +14,13 @@
 
       = link_to new_course_path do
         #create-class-button
-          %img#create-class-star{:src => '/images/v2/White Star_create a class.png'}
+          = image_tag "v2/White Star_create a class.png", :id => 'create-class-star'
+
           .create-class-heading Create a class
 
       %br
       .why-teach-last.clearfix
         = render :partial => "teachers_videos"
-        
 
-
-    / .page-section-float-left
-    /   .welcome-header Classes that still need a teacher
-    /   %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
-    /   = render :partial => "teach_suggestions", :locals => {:suggestions => @suggestions}
 
 = render :partial => "teach_sidebar", :locals => {:random_course => @random_course}

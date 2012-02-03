@@ -9,12 +9,11 @@
     - className = "classBlock"
   %div{:class => "#{className}"}
     - if c.photo.exists?
-      / Course.find(10).categories.first.name
       = link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+      = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
     - else
-        = link_to image_tag("/images/v2-courses/DefaultClassPics_Generic.png"), c
-      %img.class-arrow{:src => '/images/v2/arrow_white_pointup.png'}
+      = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), c
+      = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
     %br
       .class-description
         .heading13-class 
