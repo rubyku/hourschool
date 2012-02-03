@@ -47,7 +47,6 @@ HourschoolV2::Application.configure do
   config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
 
 
-
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
