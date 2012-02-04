@@ -1,0 +1,33 @@
+.page
+  .page-content
+
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts") Overview
+        %li.sub-nav-active
+          %a.sub-nav-active(href="/admin/charts/months/1") January
+
+    .div
+      = "Total new user sign ups in Jan: #{@users_this_month.count}"
+      %br
+      = "Of those, #{@active_users_this_month} (#{number_to_percentage(@active_users_this_month/@users_this_month.count.to_f * 100, :precision => 0)}) were active (taken/taught at least one class)"
+      
+    %br
+    .div
+      = "Total courses: #{@courses_this_month.count}"
+      %br
+      = "Paying courses:" 
+    
+    %br
+    .div
+      %br
+      = "Cancelled courses %:"
+      %br
+      = "Happened courses %:"
+      %br
+      = "Sold out courses %:"
+
+
+- content_for :sidebar do
+  = render :partial => 'admin/charts/sidebar'

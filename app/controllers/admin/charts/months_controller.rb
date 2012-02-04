@@ -1,21 +1,17 @@
-class Admin::ChartsController < Admin::AdminController
+class Admin::Charts::MonthsController < Admin::AdminController
 
-  def index
-    
-    # Goals of the month
-    @users_this_month           = User.where("extract( month from DATE(created_at)) = 2").count
-    @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 2").count
-    @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 2").sum('amount')
+  def show
+    @users_this_month   = User.where("extract( month from DATE(created_at)) = ?",  params[:id])
 
-    @users_last_month           = User.where("extract( month from DATE(created_at)) = 1").count
-    @courses_last_month         = Course.where("extract( month from DATE(created_at)) = 1").count
-    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 1").sum('amount')
+    @active_users_this_month =  Role.where("extract( month from DATE(created_at)) = ?", params[:id]).where("user_id in (?)", @users_this_month.map(&:id)).select("DISTINCT(user_id)").count
     
-    # For the next 7 days
-    @courses_next7days          = Course.active.where("date < ?", 7.days.from_now).order('DATE(date) ASC')
-    @courses_yesterday          = Course.where("date = ?", 1.day.ago) 
+    @courses_this_month           = Course.where("extract( month from DATE(created_at)) = ?",  params[:id])
+    @paying_courses_this_month    = Course.where('price != 0', "extract( month from DATE(created_at)) = ?",  params[:id])
+    #@sold_out_courses_this_month  =
+    @cancelled_courses_this_month = Course.joins(:roles).where("roles.name = 'student'").having("COUNT(roles) > 0") # < min_seats).count
+        
+    # select("DISTINCT(user_id)").order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     
-    @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
     
     # Sidebar
     
@@ -57,6 +53,5 @@ class Admin::ChartsController < Admin::AdminController
     # @revenue_by_month           = @transaction_by_month - @amazon_fees_by_month - @teachers_share_by_month
 
   end
-  
 
 end

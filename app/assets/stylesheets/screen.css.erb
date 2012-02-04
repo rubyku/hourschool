@@ -646,27 +646,37 @@ a:hover {
 
 .homePageBackgroundImage1 {
   background-image: url( <%= asset_path 'v2/hp-bg1.jpg' %> );
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
+  background-color: #CCC;
+  height: 450px;
 }
 
 .homePageBackgroundImage2 {
   background-image: url( <%= asset_path 'v2/hp-bg12.jpg' %> );
   background-repeat:no-repeat;
+  background-color: #CCC;
+  height: 450px;
 }
 
 .homePageBackgroundImage3 {
   background-image: url( <%= asset_path 'v2/hp-bg13.png' %> );
   background-repeat:no-repeat;
+  background-color: #CCC;
+  height: 450px;
 }
 
 .homePageBackgroundImage4 {
   background-image: url( <%= asset_path 'v2/hp-bg14.png' %> );
   background-repeat:no-repeat;
+  background-color: #CCC;
+  height: 450px;
 }
 
 .homePageBackgroundImage5 {
   background-image: url( <%= asset_path 'v2/hp-bg15.png' %> );
   background-repeat:no-repeat;
+  background-color: #CCC;
+  height: 450px;
 }
 
 /* line 46, ../../app/assets/stylesheets/components/homepage.scss */
@@ -1845,6 +1855,7 @@ a.sub-nav-inactive:hover {
 
 /* line 227, ../../app/assets/stylesheets/components/general.scss */
 ul.sub-nav {
+  float: left;
   list-style: none;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -3447,6 +3458,33 @@ p.profile-bio {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
+.tape-metrics {
+  float: left;
+  margin-top: -31px;
+  margin-left: 55px;
+}
+
+.tipbox-metrics {
+  position: relative;
+  width: 210px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: -10px;
+  background: #fefefe;
+  border: 0.5px solid #f0f0f0;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
+ol.metrics{
+  list-style-type: decimal;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+
 /* line 119, ../../app/assets/stylesheets/components/sidebar.scss */
 #tipboxButton {
   margin-top: 10px;
@@ -4211,4 +4249,16 @@ a.closeButton:hover {
 
 #homepage .teaser {
   height: 330px;
+}
+
+th.metrics{
+  padding-right: 20px;
+}
+
+td.metrics{
+  text-align: center;
+}
+
+tr.metrics_underline{
+  border-bottom: 1px solid #666;
 }
