@@ -1,12 +1,32 @@
 .page
   .page-content
 
-    / .page-section-float-left
-    /   %ul.sub-nav
-    /     %li.sub-nav-active
-    /       %a.sub-nav-active(href="/admin/charts") Overview
-    /     %li.sub-nav-inactive
-    /       %a.sub-nav-inactive(href="/admin/charts/months/1") January    
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-active
+          %a.sub-nav-active(href="/admin/charts") Overview
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/1") January   
+
+    - if !@courses_yesterday.empty?
+      .notification-center
+        %br
+        .class-section-heading Teachers we need to pay
+        %table
+          - @courses_yesterday.each do |course|
+            - if course.empty? || course.price == 0
+              = "Not today!"
+            - else  
+              %tr
+                %td= course.id
+                %td= course.title
+                %td= course.teacher.email
+                %td= course.price * course.students.size
+
+        %br
+        %div
+        .class-section-heading Students we need to refund
+       
 
     %div
       .heading15-marcomm Goals for this month
@@ -15,8 +35,10 @@
       = "Courses: #{@courses_this_month} to date, #{@courses_last_month *2 - @courses_this_month} until #{@courses_last_month *2}"
       %br
       = "Transactions: #{number_to_currency @transactions_this_month, :precision => 0} to date, #{number_to_currency @transactions_last_month *2 - @transactions_this_month, :precision => 0} until #{number_to_currency @transactions_last_month *2, :precision => 0}"
+      %br
     
-    %br
+    
+    %br      
     %div
       .heading15-marcomm Last 7 days
       - @users.first(7).each do |date, count|
@@ -31,28 +53,34 @@
           %th.metrics= "ID"
           %th.metrics= "Title"
           %th.metrics= "Date"
-          %th.metrics= "Min Seats"
-          %th.metrics= "# of students"
+          %th.metrics= "Min #"
+          %th.metrics= "Current #"
         - @courses_next7days.each do |course|
           %tr
             %td= course.id
-            %td= course.title
+            %td= link_to course.title, course
             %td= course.date
             %td.metrics= course.min_seats
             %td.metrics= course.students.size
 
       %br
       %div
-      .heading15-marcomm Teachers we need to pay
-      %table
-        - @courses_yesterday.each do |course|
-          - if course.price != 0
-            %tr
-              %td= course.id
-              %td= course.title
-              %td= course.teacher.email
-              %td= course.price * course.students.size
-            
+      .heading15-marcomm Courses that still need to go live
+      %table.metrics
+        %tr
+          %th.metrics= "ID"
+          %th.metrics= "Title"
+          %th.metrics= "Teacher's name"
+          %th.metrics= "Teachers' email"
+          %th.metrics= "Created"
+        - @courses_not_live.each do |course|
+          %tr
+            %td= course.id
+            %td= course.title
+            %td= course.teacher.name
+            %td= course.teacher.email
+            %td= course.created_at.strftime("%b %d")   
+      
       
       
 - content_for :sidebar do

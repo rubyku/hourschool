@@ -1,25 +1,41 @@
+.tipbox-metrics
+  = image_tag 'v2/Tape_White.png', :class => 'tape-metrics'
+  .heading10 Things to Ask ourselves:
+  %ol.metrics
+    %li Are we reaching out to new people or yelling at same people?
+    %li Are we filling up the classes and turning proposals to live so we are not wasting previous efforts?
+    %li Are we capturing students who want repeats and teachers can teach again?
+
+%div
+  .heading15-marcomm Month over month
+  - @users_by_month.each do |month, count|
+    = "#{Date::MONTHNAMES[month.last.to_i]}:"
+    = "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }"
+    %br
+  
+%br    
 .heading15-marcomm Total To Date
 %table
   %tr
     %td= "Total Users:" 
     %td= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)"
   %tr
-    %td= "Active Users %:"
+    %td= "Active Users:"
     %td= "#{@total_active_users} (#{number_to_percentage(@total_active_users/@total_users.to_f * 100, :precision => 0)})"
   %tr
-    %td= "Active Students %:"
+    %td= "Active Students:"
     %td= "#{@total_active_students} (#{number_to_percentage(@total_active_students/@total_users.to_f * 100, :precision => 0)})"
   %tr
-    %td= "Active Teachers %:"
+    %td= "Active Teachers:"
     %td= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
-    %td= "Repeat Users %:"
+    %td= "Repeat Users:"
     %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_users.to_f * 100, :precision => 0)})"
   %tr
-    %td= "Repeat Students %:"
+    %td= "Repeat Students:"
     %td= "#{@total_repeat_students} (#{number_to_percentage(@total_repeat_students/@total_users.to_f * 100, :precision => 0)})"
   %tr.metrics_underline
-    %td= "Repeat Teachers %:"
+    %td= "Repeat Teachers:"
     %td= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Total Courses:" 
@@ -37,10 +53,4 @@
     %td= "Revenue:" 
     %td= "#{ number_to_currency @total_transaction - @amazon_fees - @teachers_share}"
     
-%br    
-%div
-  .heading15-marcomm Month over month
-  - @users_by_month.each do |month, count|
-    = "#{Date::MONTHNAMES[month.last.to_i]}:"
-    = "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }"
-    %br
+

@@ -1,15 +1,8 @@
 class Admin::ChartsController < Admin::AdminController
 
   def index
-    # Per day
-    @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @students = Role.where(:name => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @teachers = User.joins(:roles).where("roles.name = 'teacher'").order('DATE(roles.created_at) DESC')
     
-    @courses_next7days          = Course.active.where("date < ?", 7.days.from_now).order('DATE(date) ASC')
-    @courses_yesterday          = Course.where("date = ?", 1.day.ago) 
-    
+    # Goals of the month
     @users_this_month           = User.where("extract( month from DATE(created_at)) = 2").count
     @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 2").count
     @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 2").sum('amount')
@@ -17,30 +10,20 @@ class Admin::ChartsController < Admin::AdminController
     @users_last_month           = User.where("extract( month from DATE(created_at)) = 1").count
     @courses_last_month         = Course.where("extract( month from DATE(created_at)) = 1").count
     @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 1").sum('amount')
-
-    # Per month
-    @users_by_month             = User.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    @courses_by_month           = Course.unscoped.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    # @courses_by_month_austin    = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
-    # students and teachers who attended a class this month
-    @students_by_month          = Role.where(:name => 'student').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    @teachers_by_month          = Role.where(:name => 'teacher').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    @transaction_by_month       = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").sum('amount')
-    @transaction_count_by_month = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    # @amazon_fees_by_month       = @transaction_by_month * 0.029 + @transaction_count_by_month * 0.3
-    # @teachers_share_by_month    = @transaction_by_month * 0.85
-    # @revenue_by_month           = @transaction_by_month - @amazon_fees_by_month - @teachers_share_by_month
     
+    # For the next 7 days
+    @courses_next7days          = Course.active.where("date < ?", 7.days.from_now).order('DATE(date) ASC')
+    @courses_yesterday          = Course.where("date = ?", 1.day.ago) 
     
-    # Week over week calculations
-    wow_users = @users.clone.to_a
-    user_count_last_week        = wow_users.shift(7).sum {|date, count| count}
-
-    # Totals
-    @total_courses              = Course.count
-    @paying_courses             = Course.where('price != 0').count
-    @free_courses               = Course.where('price = 0').count
-
+    @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
+    
+    # Sidebar
+    
+    @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
+    @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
+    @students = Role.where(:name => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
+    @teachers = User.joins(:roles).where("roles.name = 'teacher'").order('DATE(roles.created_at) DESC')
+    
     @total_users                = User.count
     @total_fb_users             = User.where("fb_token is not null").count
     @total_active_users         = Role.select("DISTINCT(user_id)").count
@@ -52,10 +35,27 @@ class Admin::ChartsController < Admin::AdminController
     @total_students             = Role.where(:name => 'student').count
     @total_teachers             = Role.where(:name => 'teacher').count
 
+    @total_courses              = Course.count
+    @paying_courses             = Course.where('price != 0').count
+    @free_courses               = Course.where('price = 0').count
+    
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_transaction_count    = Payment.count
     @amazon_fees                = @total_transaction * 0.029 + @total_transaction_count * 0.3
     @teachers_share             = @total_transaction * 0.85
+    
+    @users_by_month             = User.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    @courses_by_month           = Course.unscoped.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    # @courses_by_month_austin    = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
+    # students and teachers who attended a class this month
+    @students_by_month          = Role.where(:name => 'student').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    @teachers_by_month          = Role.where(:name => 'teacher').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    @transaction_by_month       = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").sum('amount')
+    @transaction_count_by_month = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    # @amazon_fees_by_month       = @transaction_by_month * 0.029 + @transaction_count_by_month * 0.3
+    # @teachers_share_by_month    = @transaction_by_month * 0.85
+    # @revenue_by_month           = @transaction_by_month - @amazon_fees_by_month - @teachers_share_by_month
+
   end
   
 
