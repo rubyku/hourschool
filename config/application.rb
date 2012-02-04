@@ -56,8 +56,8 @@ module HourschoolV2
 
     config.exceptions_app = self.routes
 
-    config.assets.precompile += ['screen.css']
-    
+    # config.assets.precompile += ['screen.css']
+
     config.autoload_paths += Dir["#{config.root}/lib/concerns/models/*"]
   end
 end

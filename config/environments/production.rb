@@ -7,6 +7,11 @@ HourschoolV2::Application.configure do
   # fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = true
 
+  # set cloudfront url to serve assets from
+  config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
+
+  config.static_cache_control = "public, max-age=2592000"
+
   # Generate digests for assets URLs
   config.assets.digest = true
 
@@ -40,9 +45,6 @@ HourschoolV2::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
   config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
-
-  config.static_cache_control = "public, max-age=2592000"
-  config.assets.digest = true
 
 
   # Disable delivery errors, bad email addresses will be ignored
