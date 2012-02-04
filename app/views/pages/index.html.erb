@@ -145,7 +145,7 @@
                           <% elsif %>
                             <%= "#{course.seats_left} seats left |" %>
                           <% end %>
-                      <%= "#{course.city.try(:name)}, #{.city.try(:state)}" %>
+                          <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
                         </div>
                       </div><!-- /end .class-note -->
                 </div><!-- /end .classBlock -->
