@@ -1,21 +1,31 @@
-<div class="grid_2" style="margin-right: 30px">
-  <%= link_to "About", about_path %><br>
-  <%= link_to "Story", story_path %> <br>
-  <%= link_to "Team", team_path %>
-</div>
-
-<div class="marcomm-with-sidebar">
+<div class="full-page">
   <div class="page-content">
 
-    <center>
-    <div class="marcomm-header">
-      <div class="heading25_666"> All Students are Teachers. They just don't know it yet.</div>
-
-      <%= image_tag 'v2/arrow_grey_profile.png', :class => 'profile-arrow' %>
+    <div class="page-section-float-left">
+      <ul class="sub-nav">
+        <li class="sub-nav-active">
+          <a href="/about" class="sub-nav-active">About</a>
+        </li>
+        <li class="sub-nav-inactive">
+          <a href="/story" class="sub-nav-inactive">Story</a>
+        </li>       
+        <li class="sub-nav-inactive">
+            <a href="/team" class="sub-nav-inactive">Team</a>
+        </li>   
+        <li class="sub-nav-inactive">
+            <a href="/campaign" class="sub-nav-inactive">Campaign</a>
+        </li>
+      </ul>
     </div>
+
+    <center>
+      <div class="marcomm-header">
+        <div class="heading25_666">We believe everyone is a teacher.</div>
+        <%= image_tag "v2/greyheader_full.png", :class => "greyheader_full" %>
+      </div>
     </center>
     
-    <div class="grid_12">
+    <div class="page-section-float-left">
       <div class="heading15-marcomm">What is HourSchool?</div>
         <p>We’re building a social school from your community. We believe everybody has something they can teach and people learn the most and are most willing to learn when they know and trust their teachers. Our mission is to empower people to be teachers and makes it easier for anyone to become a student. We define our success by people becoming teachers.</p>
     </div>
