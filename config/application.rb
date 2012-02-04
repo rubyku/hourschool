@@ -56,7 +56,6 @@ module HourschoolV2
 
     config.exceptions_app = self.routes
 
-
     config.autoload_paths += Dir["#{config.root}/lib/concerns/models/*"]
   end
 end

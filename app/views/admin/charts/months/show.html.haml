@@ -27,5 +27,6 @@
       = "#{@happened_courses_this_month.count} (#{number_to_percentage(@happened_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) actually happened."
 
 
+
 - content_for :sidebar do
   = render :partial => 'admin/charts/sidebar'
