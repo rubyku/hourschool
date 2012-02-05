@@ -40,7 +40,7 @@ namespace :deploy do
     desc 'migrates the production database'
     task :migrate_production => :environment do
       alert 'migrating databse...just incase'
-      %x{ heroku db:migrate --app #{production_app_name} }
+      puts %x{ heroku run rake db:migrate --app #{production_app_name} }
     end
   end
 
