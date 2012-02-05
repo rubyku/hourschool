@@ -48,35 +48,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/*
-  960 Grid System ~ Core CSS.
-  Learn more ~ http://960.gs/
-
-  Licensed under GPL and MIT.
-*/
-/*
-  Forces backgrounds to span full width,
-  even if there is horizontal scrolling.
-  Increase this if your layout is wider.
-
-  Note: IE6 works fine without this fix.
-*/
 
 body {
   min-width: 960px;
 }
 
-/* Container
-----------------------------------------------------------------------------------------------------*/
 
 .container_16 {
   margin-left: auto;
   margin-right: auto;
   width: 960px;
 }
-
-/* Grid >> Global
-----------------------------------------------------------------------------------------------------*/
 
 .grid_1,
 .grid_2,
@@ -99,6 +81,7 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .push_1, .pull_1,
 .push_2, .pull_2,
 .push_3, .pull_3,
@@ -118,8 +101,7 @@ body {
   position: relative;
 }
 
-/* Grid >> Children (Alpha ~ First, Omega ~ Last)
-----------------------------------------------------------------------------------------------------*/
+
 
 .alpha {
   margin-left: 0;
@@ -127,9 +109,6 @@ body {
 .omega {
   margin-right: 0;
 }
-
-/* Grid >> 16 Columns
-----------------------------------------------------------------------------------------------------*/
 
 .container_16 .grid_1 {
   width: 40px;
@@ -180,9 +159,6 @@ body {
   width: 940px;
 }
 
-/* Prefix Extra Space >> 16 Columns
-----------------------------------------------------------------------------------------------------*/
-
 .container_16 .prefix_1 {
   padding-left: 60px;
 }
@@ -228,9 +204,6 @@ body {
 .container_16 .prefix_15 {
   padding-left: 900px;
 }
-
-/* Suffix Extra Space >> 16 Columns
-----------------------------------------------------------------------------------------------------*/
 
 .container_16 .suffix_1 {
   padding-right: 60px;
@@ -278,9 +251,6 @@ body {
   padding-right: 900px;
 }
 
-/* Push Space >> 16 Columns
-----------------------------------------------------------------------------------------------------*/
-
 .container_16 .push_1 {
   left: 60px;
 }
@@ -326,9 +296,6 @@ body {
 .container_16 .push_15 {
   left: 900px;
 }
-
-/* Pull Space >> 16 Columns
-----------------------------------------------------------------------------------------------------*/
 
 .container_16 .pull_1 {
   left: -60px;
@@ -376,8 +343,6 @@ body {
   left: -900px;
 }
 
-/* `Clear Floated Elements
-----------------------------------------------------------------------------------------------------*/
 .clear {
   clear: both;
   display: block;
@@ -404,11 +369,6 @@ body {
 .container_16:after {
   clear: both;
 }
-
-/*
-  The following zoom:1 rule is specifically for IE6 + IE7.
-  Move to separate stylesheet if invalid CSS is a problem.
-*/
 
 .clearfix,
 .container_16 {
@@ -491,16 +451,7 @@ a:hover {
 .homepage_bottom_bg {
   background-color: #fff;
 }
-/*.featuredContent {
-  display: block;
-  width: 960px;
-  height: 350px;
-  padding-top: 40px;
-  padding-bottom: 20px;
-  margin: 0 auto;
-  position: relative;
-  }
-*/
+
 .footerContent {
   display: block;
   width: 960px;
@@ -781,7 +732,6 @@ img.mag-glass-homepage {
   cursor: pointer;
 }
 
-
 .viewMore {
   position: relative;
   float: right;
@@ -974,7 +924,6 @@ td#dropdown-text {
   padding-bottom: 3px;
   padding-right: 30px;
 }
-
 
 table#menu {
   position: relative;
@@ -2717,9 +2666,11 @@ td.feedback{
   letter-spacing: 0.1em;
   margin-top: 10px;
 }
+
 ul.avatar-list {
   margin-top: 0px;
 }
+
 li.avatar-list {
   float: left;
   margin-right: 3px;
@@ -2731,6 +2682,7 @@ li.avatar-list {
   padding: 10px 0px 20px 0px;
   border-bottom: 1px dashed #ccc;
 }
+
 .sidebar-block-last {
   float: left;
   width: 220px;
@@ -2738,6 +2690,7 @@ li.avatar-list {
   border-bottom: 0px dashed #ccc;
   padding-bottom: 20px;
 }
+
 .partner-block {
   float: left;
   width: 220px;
@@ -2752,12 +2705,14 @@ li.avatar-list {
   margin-bottom: 40px;
   margin-left: 23px;
 }
+
 p.similar-class-description {
   float: left;
   width: 200px;
   font-size: 10px;
   padding-bottom: 10px;
 }
+
 p.profile-name-blurb {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -2767,6 +2722,7 @@ p.profile-name-blurb {
   float: left;
   width: 150px;
 }
+
 p.profile-location-blurb {
   float: left;
   width: 150px;
@@ -2774,6 +2730,7 @@ p.profile-location-blurb {
   font-size: 11px;
   padding-bottom: 10px;
 }
+
 p.profile-bio {
   padding-bottom: 10px;
   width: 220px;
@@ -2784,6 +2741,7 @@ p.profile-bio {
   margin-top: -31px;
   margin-left: 32px;
 }
+
 .tipbox {
   position: relative;
   width: 160px;
@@ -2856,6 +2814,7 @@ ol.metrics{
 .marcomm-header {
   padding-top: 15px;
 }
+
 .heading25_666 {
   color: #666;
   text-transform: uppercase;
@@ -2864,8 +2823,8 @@ ol.metrics{
   font-size: 24px;
   letter-spacing: 0.1em;
   padding-bottom: 25px;
-  
 }
+
 .greyheader_full {
   position: left;
   float: left;
@@ -2895,6 +2854,7 @@ ol.metrics{
   border: 1px solid #F0F0F0;
   box-shadow: 1px 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
 }
+
 .heading15-marcomm {
   color: #ff7733;
   text-transform: uppercase;
@@ -2936,19 +2896,21 @@ ol.metrics{
   line-height: 26px;
   margin-bottom: 10px;
 }
+
 ul.noBullet-marcomm {
   list-style-type: none;
   margin-bottom: 30px;
 }
+
 li.noBullet-marcomm {
   margin-bottom: 3px;
 }
+
 span.list-number {
   float: left;
   font-size: 20px;
   margin-right: 5px;
 }
-
 
 p.about{
   padding-bottom: 10px;
@@ -2963,9 +2925,11 @@ p.about{
   padding-top: 20px;
   box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0;
 }
+
 .about-bio-advisor {
   padding-bottom: 20px;
 }
+
 .about-bio-team-photo {
   float: left;
   color: #ff7733;
@@ -3010,6 +2974,7 @@ p.about{
   padding-left: 15px;
   float: left;
 }
+
 .tipbox-marcomm {
   position: relative;
   width: 160px;
@@ -3027,12 +2992,15 @@ p.about{
 .bottom_bg {
   background-color: #fff;
 }
+
 .three-col-left {
   padding-right: 20px;
 }
+
 .three-col-middle {
   margin-right: 20px;
 }
+
 .three-col-right {
   margin-bottom: 100px;
 }
@@ -3047,6 +3015,7 @@ p.about{
   margin-top: 40px;
   margin-bottom: 20px;
 }
+
 .footer-blog-title {
   color: #999999;
   font-family: futura-pt-1, futura-pt-2;
@@ -3054,14 +3023,17 @@ p.about{
   font-size: 14px;
   letter-spacing: 0.1em;
 }
+
 table#footer, td#footer {
   padding-bottom: 5px;
 }
+
 img.footer_contact {
   position: relative;
   float: left;
   margin-right: 10px;
 }
+
 .footer_contact {
   position: relative;
   float: left;
@@ -3070,12 +3042,14 @@ img.footer_contact {
   color: #999999;
   line-height: 16px;
 }
+
 p.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
   color: #999999;
   line-height: 16px;
 }
+
 a.footer {
   font-family: verdana,sans-serif;
   font-size: 11px;
@@ -3094,7 +3068,6 @@ a.footer:visited{
   text-decoration: underline;
 }
 
-
 .newsletterForm {
   border: 1px solid #eeeaea;
   -moz-border-radius: 5px 5px 5px 5px;
@@ -3108,8 +3081,8 @@ a.footer:visited{
   margin-top: 12px;
   margin-bottom: 10px;
 }
+
 .newsletterButton {
-  
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -3143,6 +3116,7 @@ a.footer:visited{
   color: #ccc;
   letter-spacing: 0.1em;
 }
+
 .grasshopper-footer {
   float: left;
 }
@@ -3152,6 +3126,7 @@ table#powered-by {
   margin-bottom: 60px;
   float: right;
 }
+
 .footer-powered-by {
   font-family: verdana,sans-serif;
   font-size: 9px;
@@ -3159,20 +3134,25 @@ table#powered-by {
   text-transform: uppercase;
   padding-right: 10px;
 }
+
 img#powered-by-logo {
   padding-bottom: -40px;
 }
+
 h1.email-header {
   font-size: 24px;
   margin-top: 10px;
   margin-bottom: 30px;
 }
+
 .email-body {
   margin-bottom: 20px;
 }
+
 .email-footer {
   margin-top: 30px;
 }
+
 .faq-question {
   float: left;
   width: 100%;
@@ -3295,10 +3275,9 @@ td.fb_share_table_name_column{
 }
 
 #invite-button{
-  
-    border: none;
-    background: #00B6FF;
-    color: #fff;
+  border: none;
+  background: #00B6FF;
+  color: #fff;
   padding: 5px;
   width: 50px;
   height: 20px;
@@ -3359,9 +3338,7 @@ ul.ui-autocomplete {
   width: 260px;
   height: 300px; 
   overflow-y: auto;
-  
   overflow-x: hidden;
-  
   padding-right: 10px;
 }
 
@@ -3399,7 +3376,6 @@ ul.ui-autocomplete a.ui-state-hover {
 }
 
 .print-flyer-button {
-  
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -3436,6 +3412,7 @@ ul.ui-autocomplete a.ui-state-hover {
   opacity:0.8;
   filter: alpha(opacity=80);
 }
+
 .modal .content {
   display: block;
   position: fixed;
@@ -3470,6 +3447,7 @@ a.closeButton {
   padding:0px 5px;
   text-decoration:none;
 }
+
 a.closeButton:hover {
   color: white;
   background-color: #BABABA;
@@ -3530,6 +3508,7 @@ a.closeButton:hover {
 .hiddenSubmit {
   visibility: hidden;
 }
+
 .indent {
   margin-left: 2em;
 }
@@ -3563,7 +3542,6 @@ img.nail{
 }
 
 .greendoors-register-class-button{
-  
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -3676,3 +3654,4 @@ img.nail{
   float: left;
   margin-top: -125px;
   margin-left: -1px;
+}
