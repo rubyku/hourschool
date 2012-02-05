@@ -3,7 +3,7 @@
 
 namespace :deploy do
   def production_app_name
-    "sharp-sunset-8021"
+    "hourschool"
   end
 
   def alert(msg)
@@ -17,16 +17,16 @@ namespace :deploy do
   desc "deploys to production in a standard way"
   task :production => :environment do
     alert "Preparing to deploy"
-    Rake::Task["deploy:sync_master"].invoke
+    Rake::Task["deploy:pull_master"].invoke
     Rake::Task["deploy:test"].invoke
-    if ENV['test_result'].blank?
-      alert 'fix your tests before deploying kthnks bye'
-    else
+    if ENV['test_result'].try(:downcase) == "true"
       notify_campfire 'Hold onto your Butts: Deploying to Production, all tests passing'
-      Rake::Task["deploy:heroku:deploy_production"]
-      Rake::Task["deploy:heroku:migrate_production"]
+      Rake::Task["deploy:heroku:deploy_production"].invoke
+      Rake::Task["deploy:heroku:migrate_production"].invoke
       notify_campfire 'Deploy done'
       alert 'All done, please manually check the website still exists'
+    else
+      alert 'fix your tests before deploying kthnks bye'
     end
   end
 
@@ -47,7 +47,8 @@ namespace :deploy do
   desc "pulls then pushes to master"
   task :test => :environment do
     alert "running tests"
-    ENV['test_result'] = system %q{ git_test push }
+    result = system %q{ git_test push }
+    ENV['test_result'] = result.to_s # true/false
   end
 
   task :prepare_test => :environment do
@@ -55,10 +56,9 @@ namespace :deploy do
     %x{ rake db:test:load }
   end
 
-  desc "pulls then pushes to master"
-  task :sync_master => :environment do
+  desc "pulls master"
+  task :pull_master => :environment do
     alert "Syncing with github"
     %x{ git pull origin master }
-    %x{ git push origin master }
   end
 end
