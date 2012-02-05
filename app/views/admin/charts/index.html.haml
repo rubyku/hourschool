@@ -30,7 +30,7 @@
         %br
         %div
         .class-section-heading Students we need to refund
-       
+
 
     %div
       .heading15-marcomm Goals for this month
@@ -42,14 +42,14 @@
       %br
     
     
-    %br      
+    %br
     %div
       .heading15-marcomm Last 7 days
       - @users.first(7).each do |date, count|
         = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
         %br
   
-    %br    
+    %br
     %div
       .heading15-marcomm Next 7 days
       %table.metrics
@@ -84,9 +84,7 @@
             %td= course.title
             %td= course.teacher.name
             %td= course.teacher.email
-            %td= course.created_at.strftime("%b %d")   
-      
-      
-      
+            %td= course.created_at.strftime("%b %d")
+
 - content_for :sidebar do
   = render :partial => 'admin/charts/sidebar'
