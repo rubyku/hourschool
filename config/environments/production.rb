@@ -8,7 +8,8 @@ HourschoolV2::Application.configure do
   config.assets.compile = true
 
   # set cloudfront url to serve assets from
-  config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
+  # ENV["cloudfront_url"] can be set per server (i.e. staging/etc.)
+  config.action_controller.asset_host = ENV["cloudfront_url"]||"http://d1ufsa5oa5lbkj.cloudfront.net"
 
   config.static_cache_control = "public, max-age=2592000"
 
