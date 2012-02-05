@@ -700,8 +700,7 @@ a:hover {
 /* line 77, ../../app/assets/stylesheets/components/homepage.scss */
 #header {
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
   overflow: hidden;
 }
 
@@ -718,7 +717,6 @@ a:hover {
 #homepage table#menu {
   position: relative;
   float: right;
-  margin-top: 12px;
   border-collapse: collapse;
 }
 
@@ -744,23 +742,8 @@ a:hover {
 }
 
 /* line 121, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage td#menu_learn {
-  width: 176px;
-}
-
-/* line 125, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage td#menu_teach {
-  width: 170px;
-}
-
-/* line 129, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage td#menu_suggest {
-  width: 170px;
-}
-
-/* line 133, ../../app/assets/stylesheets/components/homepage.scss */
-#homepage td#menu_business {
-  width: 235px;
+#homepage td#menu_learn, #homepage td#menu_teach, #homepage td#menu_suggest, #homepage td#menu_business {
+  width: 187px;
 }
 
 /* line 137, ../../app/assets/stylesheets/components/homepage.scss */
@@ -919,7 +902,7 @@ img#fb-signup-bg{
 }
 
 #hp_transparent{
-  margin-bottom: -314px;
+  margin-bottom: -334px;
   z-index: 1;
 }
 
@@ -1111,19 +1094,8 @@ img.class-arrow {
 
 /*......NOT LOGGED IN......*/
 /* line 5, ../../app/assets/stylesheets/components/header.scss */
-#header {
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  overflow: hidden;
-}
 
 /* line 12, ../../app/assets/stylesheets/components/header.scss */
-#homepage_logo {
-  position: relative;
-  float: left;
-  margin-bottom: 10px;
-}
 
 #logo {
   position: relative;
@@ -1268,7 +1240,6 @@ td#dropdown-text {
 table#menu {
   position: relative;
   float: right;
-  margin-top: 12px;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
@@ -1296,22 +1267,22 @@ td#menu_learn, td#menu_faq {
 
 /* line 102, ../../app/assets/stylesheets/components/header.scss */
 td#menu_learn {
-  width: 176px;
+  width: 180px;
 }
 
 /* line 106, ../../app/assets/stylesheets/components/header.scss */
 td#menu_teach {
-  width: 170px;
+  width: 180px;
 }
 
 /* line 110, ../../app/assets/stylesheets/components/header.scss */
 td#menu_suggest {
-  width: 170px;
+  width: 180px;
 }
 
 /* line 114, ../../app/assets/stylesheets/components/header.scss */
 td#menu_business {
-  width: 235px;
+  width: 180px;
 }
 
 /* line 118, ../../app/assets/stylesheets/components/header.scss */
@@ -1531,23 +1502,8 @@ td#community_menu_learn, td#community_menu_faq {
 }
 
 /* line 265, ../../app/assets/stylesheets/components/header.scss */
-td#community_menu_learn {
-  width: 176px;
-}
-
-/* line 269, ../../app/assets/stylesheets/components/header.scss */
-td#community_menu_teach {
-  width: 170px;
-}
-
-/* line 273, ../../app/assets/stylesheets/components/header.scss */
-td#community_menu_suggest {
-  width: 170px;
-}
-
-/* line 277, ../../app/assets/stylesheets/components/header.scss */
-td#community_menu_community {
-  width: 235px;
+td#community_menu_learn, td#community_menu_teach, td#community_menu_suggest, td#community_menu_community{
+  width: 186px;
 }
 
 /* line 281, ../../app/assets/stylesheets/components/header.scss */
@@ -1878,6 +1834,16 @@ li.sub-nav-inactive {
   font-size: 25px;
   letter-spacing: 0.1em;
   margin-bottom: 25px;
+}
+
+.heading25_team {
+  color: #cccccc;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+  margin-top: 30px;
 }
 
 /* line 267, ../../app/assets/stylesheets/components/general.scss */
@@ -3513,7 +3479,7 @@ ol.metrics{
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 24px;
   letter-spacing: 0.1em;
   padding-bottom: 25px;
   /*  margin-top: -27px;*/
@@ -3542,10 +3508,11 @@ ol.metrics{
 
 .about-hourschool-box{
   float: left;
+  width: 95%;
   margin-top: 20px;
-  padding-top: 10px;
-  padding-bottom: 20px;
   margin-right: 30px;
+  padding: 20px;
+  border: 1px solid #F0F0F0;
   box-shadow: 1px 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
 }
 
@@ -3557,8 +3524,7 @@ ol.metrics{
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.1em;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .heading15-campaign {
@@ -3569,6 +3535,16 @@ ol.metrics{
   font-size: 15px;
   letter-spacing: 0.1em;
   margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.heading15-campaign-orange{
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
   margin-bottom: 10px;
 }
 
@@ -3603,6 +3579,11 @@ span.list-number {
 
 /*......ABOUT......*/
 /* line 56, ../../app/assets/stylesheets/components/marcomm.scss */
+
+p.about{
+  padding-bottom: 10px;
+}
+
 .about-bio-team {
   float: left;
   width: 420px;
@@ -4284,3 +4265,132 @@ td.metrics{
 tr.metrics_underline{
   border-bottom: 1px solid #666;
 }
+
+img.nail{
+  margin-left: 90px;
+  margin-top: 20px;
+}
+
+.greendoors-alternatives{
+  font-weight: 400;
+  font-size: 9px;
+  color: #81ae21;
+  line-height: 12px;
+  margin-bottom: -10px;
+}
+
+.greendoors-register-class-button{
+  /* Disables default styling */
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 220px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #81ae21;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.greendoors-frame{
+  float: left;
+}
+
+.campaign_frame_big{
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.campaign-frame-text{
+  float: left;
+  text-align: center;
+  z-index: 10;
+  margin-top: -225px;
+  margin-left: 53px;
+}
+
+.campaign-frame-big-heading{
+  color: #5b7020;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+.campaign-frame-bold-text{
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+}
+
+.campaign-frame-small-text{
+  font-size: 10px;
+  color: #999;
+}
+
+
+.campaign-button{
+  margin-right: 5px;
+}
+
+.greendoors-frame-heading{
+  float: left;
+  z-index: 10;
+  color: #5b7020;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  margin-top: -151px;
+  margin-left: -10px;
+}
+
+.greendoors-frame-copy{
+  float: left;
+  z-index: 10;
+}
+
+.greendoors-frame-copy-text{
+  text-align: center;
+  padding: 10px;
+  color: #81ae21;
+  font-size: 10px;
+  margin-top: -130px;
+  line-height: 15px;
+}
+
+.button-learnmore{
+  float: left;
+  z-index: 1;
+  margin-top: -53px;
+  margin-left: 32px;
+}
+
+.icon-greenhouse{
+  float: left;
+  z-index: 10;
+  margin-top: -45px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.widget-ribbon{
+  position: relative;
+  float: left;
+  margin-top: -125px;
+  margin-left: -1px;
