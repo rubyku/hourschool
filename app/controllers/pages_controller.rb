@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   # homepage
   def index
+    # @featured_courses = Course.where(:featured => true).order("created_at desc").first(4)
     @fav2 = Course.find(308)
     @fav1 = Course.find(244)
     @fav3 = Course.find(240)

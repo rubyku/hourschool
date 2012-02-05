@@ -26,15 +26,16 @@
         <%= current_user ? 'logged-in' : 'not-logged-in' %>"
         data-controller="<%= sanitized_controller_path.sub('/', '-') %>"
         data-action="<%= action_name %>">
-        
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=207459135947339";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+    <%= yield :admin_bar %>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=207459135947339";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <div class="brand_bg"></div>
     <div class="<%= content_for?(:main_class) ? yield(:main_class) :  "container_16 main clearfix" %>">

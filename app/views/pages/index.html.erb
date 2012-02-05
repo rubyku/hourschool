@@ -126,6 +126,30 @@
                 </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
 
+
+              <%# Implement this when we get a chance %>
+              <%- [].each do |course| -%>
+                <div class="classBlock-homepage">
+                      <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), @fav2 %>
+                      <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
+                      <div class="class-description">
+                        <div class="heading13-class"><%= link_to course.title.truncate(45), @fav2 %></div>
+                        <p><%= course.teaser.truncate(49) unless course.teaser.blank? %></p>
+                      </div><!-- /end .class-description -->
+                      <div class="class-note">
+                        <div class="heading9-class">
+                          <% if course.max_seats.blank? %>
+                            <%= link_to "Unlimited seats |", course %>
+                          <% elsif course.seats_left == 0 %>
+                            <%= link_to "Full! Request again |", course %>
+                          <% elsif %>
+                            <%= "#{course.seats_left} seats left |" %>
+                          <% end %>
+                          <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
+                        </div>
+                      </div><!-- /end .class-note -->
+                </div><!-- /end .classBlock -->
+              <%- end -%>
           </div><!-- /end .classRow -->
 
   </div><!-- /end .featured-content -->

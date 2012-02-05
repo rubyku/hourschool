@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117220837) do
+ActiveRecord::Schema.define(:version => 20120130183616) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -27,6 +28,24 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
+  create_table "admin_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
   create_table "cities", :force => true do |t|
     t.integer  "zip"
     t.string   "area"
@@ -37,6 +56,17 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.float    "lat"
     t.float    "lng"
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -64,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.date     "date"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "donate"
     t.boolean  "nosignup"
   end
 
@@ -127,6 +156,19 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.datetime "updated_at"
     t.integer  "requested_by"
   end
+
+  create_table "followings", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.string   "status"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
+  add_index "followings", ["follower_id", "followed_id", "type"], :name => "index_followings_on_follower_id_and_followed_id_and_type", :unique => true
+  add_index "followings", ["status"], :name => "index_followings_on_status"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
