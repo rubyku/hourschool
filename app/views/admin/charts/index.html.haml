@@ -8,20 +8,18 @@
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/1") January   
 
-    - if !@courses_yesterday.blank?
+    - if @courses_yesterday.present?
       .notification-center
         %br
         .class-section-heading Teachers we need to pay
         %table
-          - @courses_yesterday.each do |course|
-            - if course.blank? || course.price == 0
-              = "Not today!"
-            - else  
-              %tr
-                %td= course.id
-                %td= course.title
-                %td= course.teacher.email
-                %td= course.price * course.students.size
+          - @courses_yesterday.each do |course|  
+            - next if course.price == 0
+            %tr
+              %td= course.id
+              %td= course.title
+              %td= course.teacher.email
+              %td= "$ #{course.price * course.students.size}"
 
         %br
         %div
