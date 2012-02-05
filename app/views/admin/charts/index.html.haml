@@ -8,13 +8,13 @@
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/1") January   
 
-    - if !@courses_yesterday.empty?
+    - if !@courses_yesterday.blank?
       .notification-center
         %br
         .class-section-heading Teachers we need to pay
         %table
           - @courses_yesterday.each do |course|
-            - if course.empty? || course.price == 0
+            - if course.blank? || course.price == 0
               = "Not today!"
             - else  
               %tr
