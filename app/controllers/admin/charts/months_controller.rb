@@ -8,7 +8,6 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @courses_this_month           = Course.where("extract( month from DATE(created_at)) = ?",  params[:id])
     @paying_courses_this_month    = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('price != 0')
     @happened_courses_this_month = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('happening = true')
-
         
     # select("DISTINCT(user_id)").order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     
@@ -34,10 +33,8 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
-<<<<<<< HEAD
+
     @happened_courses           = Course.where(:happening => true).count
-=======
->>>>>>> fixed merge conflicts
     
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_transaction_count    = Payment.count

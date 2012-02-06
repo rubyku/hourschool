@@ -474,7 +474,6 @@ a:hover {
   float: left;
 }
 
-
 #homepage table#menu {
   position: relative;
   float: right;
@@ -499,6 +498,7 @@ a:hover {
   text-align: center;
   vertical-align: middle;
 }
+
 
 #homepage td#menu_learn, #homepage td#menu_teach, #homepage td#menu_suggest, #homepage td#menu_business {
   width: 187px;
@@ -535,7 +535,33 @@ a:hover {
   color: white;
 }
 
-#menu18 {
+#homepage td#menu_learn {
+  width: 176px;
+}
+
+/* line 125, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage td#menu_teach {
+  width: 170px;
+}
+
+
+#homepage td#menu_suggest {
+  width: 170px;
+}
+
+
+#homepage td#menu_business {
+  width: 235px;
+}
+
+
+#homepage td#menu_faq {
+  width: 67px;
+}
+
+
+/* line 141, ../../app/assets/stylesheets/components/homepage.scss */
+#homepage #menu18 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -543,6 +569,7 @@ a:hover {
   letter-spacing: 0.2em;
   line-height: 20px;
 }
+
 #menu9 {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -659,6 +686,8 @@ img#fb-signup-bg{
 
 .white {
   background-color:white;
+  margin-top: -5px;
+
 }
 
 #homepage_headline_7_signedin {
@@ -2790,6 +2819,26 @@ p.profile-bio {
 
 
 
+.tape-metrics {
+  float: left;
+  margin-top: -31px;
+  margin-left: 55px;
+}
+
+.tipbox-metrics {
+  position: relative;
+  width: 210px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  margin-left: -10px;
+  background: #fefefe;
+  border: 0.5px solid #f0f0f0;
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}
+
 ol.metrics{
   list-style-type: decimal;
   padding-left: 20px;
@@ -3725,3 +3774,31 @@ tr.metrics_underline{
   color:white;
 }
 
+#homepage .teaser {
+  height: 333px;
+}
+
+th.metrics{
+  padding-right: 20px;
+}
+
+td.metrics{
+  text-align: center;
+}
+
+tr.metrics_underline{
+  border-bottom: 1px solid #666;
+}
+
+.adminBar{
+  font-family: futura-pt-1, futura-pt-2;
+  background-color:black;
+  color:white;
+  padding:2px;
+  margin: 0 auto 0;
+}
+
+.adminBar a {
+  text-decoration: underline;
+  color:white;
+}

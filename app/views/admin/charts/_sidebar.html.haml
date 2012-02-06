@@ -30,6 +30,7 @@
     %td= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Users:"
+
     %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Students:"

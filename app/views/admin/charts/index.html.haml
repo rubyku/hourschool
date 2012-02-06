@@ -7,11 +7,13 @@
           %a.sub-nav-active(href="/admin/charts") Overview
         %li.sub-nav-inactive
 
+
           %a.sub-nav-inactive(href="/admin/charts/months/1") Jan 2012
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/12") Dec 2011
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/11") Nov 2011
+
 
 
     - if @courses_yesterday.present?
@@ -30,8 +32,7 @@
         %br
         %div
         .class-section-heading Students we need to refund
-
-
+        
     %div
       .heading15-marcomm Goals for this month
       = "Users: #{@users_this_month} to date, #{@users_last_month *2 - @users_this_month} until #{@users_last_month *2}"
@@ -48,7 +49,7 @@
       - @users.first(7).each do |date, count|
         = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
         %br
-  
+
     %br
     %div
       .heading15-marcomm Next 7 days
@@ -85,6 +86,7 @@
             %td= course.teacher.name
             %td= course.teacher.email
             %td= course.created_at.strftime("%b %d")
+
 
 - content_for :sidebar do
   = render :partial => 'admin/charts/sidebar'
