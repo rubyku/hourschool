@@ -109,6 +109,11 @@
         <div class="flash-notice"><%= flash[:notice] %></div>
     </div>
   <%- end -%>
+  <%- if flash[:alert].present? -%>
+    <div class="page-section-float-left">
+        <div class="flash-notice"><%= flash[:alert] %></div>
+    </div>
+  <%- end -%>
 
   <%# Main Content %>
   <%= yield %>

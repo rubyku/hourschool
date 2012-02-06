@@ -1,6 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def facebook
+# https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
+
+  def facebook
     if current_user
       @user = current_user
       @user.update_facebook_from_oauth(env["omniauth.auth"])
@@ -8,15 +10,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       @user = User.find_for_facebook_oauth(env["omniauth.auth"], current_user)
     end
-    # sign_in(@user, :bypass => true) # needed for devise
-    # @user.remember_me!
+    session["devise.facebook_data"] = request.env["omniauth.auth"]
+    @user.remember_me = true
+    @user.save
 
+
+    # if a user doesn't have a zipcode (new users) send them to the wizard (after_register_path)
     if @user.zip.present?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
-      @user.remember_me = true
       sign_in_and_redirect @user, :event => :authentication
     else
-      flash[:notice] = "Thanks for signing up!"
+      sign_in(@user, :event => :authentication)
       redirect_to after_register_path(:confirm_password)
     end
   end

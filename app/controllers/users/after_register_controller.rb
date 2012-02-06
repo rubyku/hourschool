@@ -7,7 +7,11 @@ class Users::AfterRegisterController < Wicked::WizardController
     @user = current_user
     case @step
     when :confirm_password
-      skip_step unless @user.facebook?
+      if @user.facebook?
+        flash[:notice] = "Please fill out this information"
+      else
+        skip_step
+      end
     when :confirm_avatar
       skip_step if @user.photo?
     when :invite_fb
