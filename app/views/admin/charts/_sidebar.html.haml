@@ -30,7 +30,6 @@
     %td= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Users:"
-
     %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Students:"
@@ -49,7 +48,7 @@
     %td= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})"
   %tr.metrics_underline
     %td= "Happened Courses:" 
-    %td= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})"
+    %td= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})"e
   %tr
     %td= "Total Transactions:" 
     %td= "#{ number_to_currency @total_transaction}"
