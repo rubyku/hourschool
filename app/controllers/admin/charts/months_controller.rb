@@ -33,6 +33,7 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
+
     @happened_courses           = Course.where(:happening => true).count
     
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f

@@ -8,9 +8,11 @@ HourschoolV2::Application.configure do
   config.assets.compile = true
 
   # set cloudfront url to serve assets from
-  config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
+  # ENV["cloudfront_url"] can be set per server (i.e. staging/etc.)
+  config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d1ufsa5oa5lbkj.cloudfront.net"
 
   config.static_cache_control = "public, max-age=2592000"
+
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -45,7 +47,6 @@ HourschoolV2::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
   config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
-
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

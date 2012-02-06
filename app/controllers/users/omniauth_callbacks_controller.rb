@@ -14,6 +14,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.remember_me = true
     @user.save
 
+    # sign_in(@user, :bypass => true) # needed for devise
+    # @user.remember_me!
 
     # if a user doesn't have a zipcode (new users) send them to the wizard (after_register_path)
     if @user.zip.present?
