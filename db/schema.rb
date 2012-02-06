@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20120204221603) do
 
+
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
     t.string   "resource_type", :null => false
