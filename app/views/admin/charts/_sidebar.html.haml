@@ -30,13 +30,13 @@
     %td= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Users:"
-    %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_users.to_f * 100, :precision => 0)})"
+    %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Students:"
-    %td= "#{@total_repeat_students} (#{number_to_percentage(@total_repeat_students/@total_users.to_f * 100, :precision => 0)})"
+    %td= "#{@total_repeat_students} (#{number_to_percentage(@total_repeat_students/@total_active_students.to_f * 100, :precision => 0)})"
   %tr.metrics_underline
     %td= "Repeat Teachers:"
-    %td= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_users.to_f * 100, :precision => 0)})"
+    %td= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_active_teachers.to_f * 100, :precision => 0)})"
   %tr
     %td= "Total Courses:" 
     %td= "#{@total_courses}"

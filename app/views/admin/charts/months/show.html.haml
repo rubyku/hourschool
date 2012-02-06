@@ -17,16 +17,9 @@
     .div
       = "Total courses: #{@courses_this_month.count}"
       %br
-      = "Paying courses:" 
-    
-    %br
-    .div
+      = "Paying courses: #{@paying_courses_this_month.count}"
       %br
-      = "Cancelled courses %:"
-      %br
-      = "Happened courses %:"
-      %br
-      = "Sold out courses %:"
+      = "Happened courses %: #{@happened_courses_this_month.count}"
 
 
 - content_for :sidebar do

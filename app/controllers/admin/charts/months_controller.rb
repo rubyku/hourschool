@@ -7,8 +7,7 @@ class Admin::Charts::MonthsController < Admin::AdminController
     
     @courses_this_month           = Course.where("extract( month from DATE(created_at)) = ?",  params[:id])
     @paying_courses_this_month    = Course.where('price != 0', "extract( month from DATE(created_at)) = ?",  params[:id])
-    #@sold_out_courses_this_month  =
-    @cancelled_courses_this_month = Course.joins(:roles).where("roles.name = 'student'").having("COUNT(roles) > 0") # < min_seats).count
+    @happened_courses_this_month = Course.where('happening = true', params[:id])
         
     # select("DISTINCT(user_id)").order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     
@@ -34,6 +33,7 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
+    @happened_courses           = Course.where(:happening => true).count
     
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_transaction_count    = Payment.count
