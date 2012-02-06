@@ -39,7 +39,9 @@ class Admin::ChartsController < Admin::AdminController
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
     @happened_courses           = Course.where(:happening => true).count
+
     
+
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_transaction_count    = Payment.count
     @amazon_fees                = @total_transaction * 0.029 + @total_transaction_count * 0.3

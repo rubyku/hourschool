@@ -12,9 +12,9 @@
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/11") Nov 2011
 
-
     .div
       = "Total new user sign ups: #{@users_this_month.count}"
+
       %br
       = "Of those, #{@active_users_this_month} (#{number_to_percentage(@active_users_this_month/@users_this_month.count.to_f * 100, :precision => 0)}) were active (taken/taught at least one class)"
       
@@ -25,7 +25,6 @@
       = "of those, #{@paying_courses_this_month.count} (#{number_to_percentage(@paying_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) were charging,"
       %br
       = "#{@happened_courses_this_month.count} (#{number_to_percentage(@happened_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) actually happened."
-
 
 - content_for :sidebar do
   = render :partial => 'admin/charts/sidebar'

@@ -1,0 +1,220 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>HourSchool</title>
+
+  <link rel="icon"
+        type="image/png"
+        href="assets/favicon.png">
+
+  <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
+
+  <!-- <%= javascript_include_tag :all %> -->
+  <%= javascript_include_tag :all %>
+
+  <%= csrf_meta_tag %>
+
+  <meta property="og:description"
+        content="HourSchool is a school from your social network.
+        It’s not always the experts who make the best teachers, it’s the people you know.
+        Start learning with your network today, one hour at a time."/>
+
+  <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22725750-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+
+
+  <script>
+    $(document).ready(function() {
+      $("h1#homepage_headline").lettering('words');
+    });
+  </script>
+  <style type="text/css">
+       a:visited {
+      text-decoration: underline;
+      color: #4F4E4E;
+    }
+
+    /* line 35, ../../app/assets/stylesheets/components/homepage.scss */
+    a:active {
+      text-decoration: underline;
+      color: #4F4E4E;
+    }
+</style>
+</head>
+<body id="hasbanner">
+
+<div class = "brand_bg">
+</div> 
+
+<div class="homepage_top_bg <%= ['homePageBackgroundImage1', 'homePageBackgroundImage2', 'homePageBackgroundImage3', 'homePageBackgroundImage4', 'homePageBackgroundImage5'].sample %>">
+
+  <div id="header">
+    <div class="container_16">
+
+    <%= link_to "", root_path, :id => "logo" %>   
+
+    <div id="homepage_login">
+       <ul id="login">
+       <% if user_signed_in? %>
+          <% if current_user.zip.present? %>
+              <li id="homepage_login">Peer learning in <%= current_user.city %></li>
+          <% end %>
+        <li id="homepage_login">
+        <span id="nav-dropdown">
+           <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
+        </span>
+
+        <span id="nav-dropdown-selected" style="display:none;">
+           <%= link_to current_user.name, profile_path, :class => "homepage_menu", :id => "username"%>
+           <%= image_tag 'v2/arrow_white_profile.png', :class => 'profile-arrow' %>
+        </span>
+      <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => "homepage_menu", :id => "not_logged_in_homepage" %>
+          <span id="not_logged_in_homepage">|</span>
+          <%= link_to "sign in", new_user_session_path, :class => "homepage_menu" %>
+      <% end %>
+       </li>
+
+     <% if user_signed_in? %>
+         <div id="dropdown-box" style="display:none;">
+           <table id="dropdown-text">
+             <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path %></td></tr>
+             <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path %></td></tr>
+             <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path %></td></tr>
+           </table>
+         </div>
+     <% end %>
+       </ul>
+    </div>
+
+         <script type="text/javascript">
+             $("#nav-dropdown").click(function() {
+                 $("#dropdown-box").show();
+                 $("#nav-dropdown").hide();
+                 $("#nav-dropdown-selected").show();
+                 return false;
+              });
+            $("#nav-dropdown-selected").click(function() {
+                  $("#dropdown-box").hide();
+                  $("#nav-dropdown").show();
+                  $("#nav-dropdown-selected").hide();
+             });
+         </script>
+
+         <script type="text/javascript">
+             $("#nav-dropdown").click(function() {
+                 $("#dropdown-box").show();
+                 $("#nav-dropdown").hide();
+                 $("#nav-dropdown-selected").show();
+                 return false;
+              });
+            $("#nav-dropdown-selected").click(function() {
+                  $("#dropdown-box").hide();
+                  $("#nav-dropdown").show();
+                  $("#nav-dropdown-selected").hide();
+                  return false;
+             });
+         </script>
+
+        <table id="homepage_menu">
+          <tr id="homepage_menu">
+            <td id="homepage_menu_learn">
+              <a href="/learn" id="menu_homepage">
+                <div id="menu18">Learn</div>
+                <div id="menu9">something new</div>
+              </a>
+            </td>
+            <td id="homepage_menu_teach">
+              <a href="/teach" id="menu_homepage">
+                <div id="menu9">Offer to</div>
+                <div id="menu18">teach</div>
+              </a>
+            </td>
+            <td id="homepage_menu_suggest">
+              <a href="/suggest" id="menu_homepage">
+                <div id="menu18">Suggest</div>
+                <div id="menu9">a class</div>
+              </a>
+            </td>
+            <td id="homepage_menu_business">
+              <a href="/business" id="menu_homepage">
+                <div id="menu9">Hourschool for</div>
+                <div id="menu18">Organizations</div>
+              </a>
+            </td>
+            <td id="homepage_menu_faq">
+              <a href="http://help.hourschool.com/" id="menu_homepage">
+                <div id="menu_faq">F</div>
+                <div id="menu_faq">A</div>
+                <div id="menu_faq">Q</div>
+              </a>
+            </td>
+          </tr>
+        </table>
+
+    </div><!-- /end .container_16 -->
+  </div><!-- /end #header -->
+
+    <div class="container_16">
+       <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
+       
+     <div class="grid_8">
+      
+       <div id="homepage_headline_1">Learn with your network</div>
+       <div id="homepage_headline_2">One hour at a time</div>
+       <div id="homepage_headline_3">Build a social school from your community. Because it's not always the experts who make the best teachers, it's the people you know.</div>
+
+     </div><!-- /end .twoCol_left -->
+
+     <div class="grid_8">
+      <% if user_signed_in? %>
+        <div id="homepage_headline_7_signedin">Find a class</div>
+        <div id="homeSearchForm-background"></div>
+        <%= form_tag courses_search_path(:all), :method => :get do %>
+        <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
+        <%= image_tag "v2/search-magnifying-glass-orange.png", :class => "mag-glass-homepage" %>
+        <br>
+        <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
+        <% end %>
+      <% else %>
+        <div id="homepage_headline_7">Join HourSchool now</div>
+
+        <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"), URI.join( root_url(:subdomain => nil) , user_omniauth_authorize_path(:facebook) ).to_s %>
+        <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
+        <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
+      <% end %>
+
+     </div><!-- /end .twoCol_right-->
+
+
+    </div><!-- /end .container16 -->
+
+</div><!-- /end .homepage_top_bg -->
+
+
+<%= render :partial => 'featured' %>
+
+
+<div class="bottom_bg">
+  <%= render :partial => 'layouts/application/footer' %>
+</div><!-- /end .bottom_bg -->
