@@ -43,9 +43,12 @@
   %tr
     %td= "Paying Courses:" 
     %td= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})"    
-  %tr.metrics_underline
+  %tr
     %td= "Free Courses:" 
     %td= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})"
+  %tr.metrics_underline
+    %td= "Happened Courses:" 
+    %td= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})"
   %tr
     %td= "Total Transactions:" 
     %td= "#{ number_to_currency @total_transaction}"
