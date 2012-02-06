@@ -8,7 +8,6 @@ HourschoolV2::Application.configure do
   config.assets.compile = true
 
   # set cloudfront url to serve assets from
-
   # ENV["cloudfront_url"] can be set per server (i.e. staging/etc.)
   config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d1ufsa5oa5lbkj.cloudfront.net"
 
@@ -48,10 +47,6 @@ HourschoolV2::Application.configure do
   config.serve_static_assets = false
   config.action_controller.asset_host = "http://d1ufsa5oa5lbkj.cloudfront.net"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

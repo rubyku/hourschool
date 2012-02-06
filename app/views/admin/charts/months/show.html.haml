@@ -5,13 +5,11 @@
       %ul.sub-nav
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts") Overview
-<<<<<<< HEAD
         %li.sub-nav-active
           %a.sub-nav-active(href="/admin/charts/months/1") January
 
     .div
       = "Total new user sign ups in Jan: #{@users_this_month.count}"
-=======
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/1") Jan 2012
         %li.sub-nav-inactive
@@ -22,13 +20,11 @@
 
     .div
       = "Total new user sign ups: #{@users_this_month.count}"
->>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
       %br
       = "Of those, #{@active_users_this_month} (#{number_to_percentage(@active_users_this_month/@users_this_month.count.to_f * 100, :precision => 0)}) were active (taken/taught at least one class)"
       
     %br
     .div
-<<<<<<< HEAD
       = "Total courses: #{@courses_this_month.count}"
       %br
       = "Paying courses:" 
@@ -41,13 +37,11 @@
       = "Happened courses %:"
       %br
       = "Sold out courses %:"
-=======
       = "Total new courses created: #{@courses_this_month.count}"
       %br
       = "of those, #{@paying_courses_this_month.count} (#{number_to_percentage(@paying_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) were charging,"
       %br
       = "#{@happened_courses_this_month.count} (#{number_to_percentage(@happened_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) actually happened."
->>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
 
 
 - content_for :sidebar do

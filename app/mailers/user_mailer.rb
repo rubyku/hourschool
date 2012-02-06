@@ -66,13 +66,6 @@ class UserMailer < ActionMailer::Base
      mail(:to => user_email, :subject => "#{@course.title} is submitted!")
    end
 
-   def send_proposal_received_to_hourschool_mail(user_email, user_name, course)
-     @email = user_email
-     @name = user_name
-     @course = course
-     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A proposal has been submitted!")
-   end
-
    def send_course_approval_mail(user_email, user_name, course)
      @email = user_email
      @name = user_name

@@ -30,7 +30,6 @@
     %td= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Users:"
-<<<<<<< HEAD
     %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Students:"
@@ -38,7 +37,6 @@
   %tr.metrics_underline
     %td= "Repeat Teachers:"
     %td= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_users.to_f * 100, :precision => 0)})"
-=======
     %td= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})"
   %tr
     %td= "Repeat Students:"
@@ -46,25 +44,21 @@
   %tr.metrics_underline
     %td= "Repeat Teachers:"
     %td= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_active_teachers.to_f * 100, :precision => 0)})"
->>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
   %tr
     %td= "Total Courses:" 
     %td= "#{@total_courses}"
   %tr
     %td= "Paying Courses:" 
     %td= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})"    
-<<<<<<< HEAD
   %tr.metrics_underline
     %td= "Free Courses:" 
     %td= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})"
-=======
   %tr
     %td= "Free Courses:" 
     %td= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})"
   %tr.metrics_underline
     %td= "Happened Courses:" 
-    %td= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})"
->>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
+    %td= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})"e
   %tr
     %td= "Total Transactions:" 
     %td= "#{ number_to_currency @total_transaction}"
