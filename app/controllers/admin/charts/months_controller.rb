@@ -6,8 +6,8 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @active_users_this_month =  Role.where("extract( month from DATE(created_at)) = ?", params[:id]).where("user_id in (?)", @users_this_month.map(&:id)).select("DISTINCT(user_id)").count
     
     @courses_this_month           = Course.where("extract( month from DATE(created_at)) = ?",  params[:id])
-    @paying_courses_this_month    = Course.where('price != 0', "extract( month from DATE(created_at)) = ?",  params[:id])
-    @happened_courses_this_month = Course.where('happening = true', params[:id])
+    @paying_courses_this_month    = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('price != 0')
+    @happened_courses_this_month = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('happening = true')
         
     # select("DISTINCT(user_id)").order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     
