@@ -26,8 +26,7 @@
         <%= current_user ? 'logged-in' : 'not-logged-in' %>"
         data-controller="<%= sanitized_controller_path.sub('/', '-') %>"
         data-action="<%= action_name %>">
-    <%= yield :admin_bar %>
-
+    <%= yield :first_inside_body %>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

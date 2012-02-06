@@ -73,8 +73,10 @@
 
 <%- end -%>
 
+
+
 <%# Admin Bar %>
-<%= content_for :admin_bar do %>
+<%= content_for :first_inside_body do %>
   <% if current_user && current_user.admin? %>
     <div class="adminBar">
       <div class='container_16'>
@@ -90,6 +92,16 @@
       </div>
     </div>
   <% end %>
+<%- end -%>
+
+<%= content_for :first_inside_body do %>
+  <% if current_user && !current_user.confirmed? %>
+    <div class='userConfirm'>
+      <div class='container_16'>
+        We sent you a confirmation email to <%= current_user.email %> to resend <%=  link_to 'click here', user_confirmation_path(:user => { :email => current_user.email }), :method => :post %>. If this is not your email <%= link_to 'update it here', edit_user_registration_path(current_user) %>, thanks!
+      </div>
+    </div>
+  <%- end -%>
 <%- end -%>
 
 <%# Main Layout %>
