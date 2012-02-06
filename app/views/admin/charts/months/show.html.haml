@@ -15,11 +15,11 @@
       
     %br
     .div
-      = "Total courses: #{@courses_this_month.count}"
+      = "Total new courses created in Jan: #{@courses_this_month.count}"
       %br
-      = "Paying courses: #{@paying_courses_this_month.count}"
+      = "of those, #{@paying_courses_this_month.count} (#{number_to_percentage(@paying_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) were charging,"
       %br
-      = "Happened courses %: #{@happened_courses_this_month.count}"
+      = "#{@happened_courses_this_month.count} (#{number_to_percentage(@happened_courses_this_month.count/@courses_this_month.count.to_f * 100, :precision => 0)}) actually happened."
 
 
 - content_for :sidebar do
