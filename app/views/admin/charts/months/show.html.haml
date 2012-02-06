@@ -5,8 +5,13 @@
       %ul.sub-nav
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts") Overview
-        %li.sub-nav-active
-          %a.sub-nav-active(href="/admin/charts/months/1") January
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/1") Jan 2012
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/12") Dec 2011
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/11") Nov 2011
+
 
     .div
       = "Total new user sign ups in Jan: #{@users_this_month.count}"
