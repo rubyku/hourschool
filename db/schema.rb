@@ -95,8 +95,11 @@ ActiveRecord::Schema.define(:version => 20120130183616) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "nosignup"
+    t.boolean  "happening",          :default => true
+    t.boolean  "featured",           :default => false
   end
 
+  add_index "courses", ["featured"], :name => "index_courses_on_featured"
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
 
   create_table "delayed_jobs", :force => true do |t|

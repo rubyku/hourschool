@@ -6,9 +6,14 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @active_users_this_month =  Role.where("extract( month from DATE(created_at)) = ?", params[:id]).where("user_id in (?)", @users_this_month.map(&:id)).select("DISTINCT(user_id)").count
     
     @courses_this_month           = Course.where("extract( month from DATE(created_at)) = ?",  params[:id])
+<<<<<<< HEAD
     @paying_courses_this_month    = Course.where('price != 0', "extract( month from DATE(created_at)) = ?",  params[:id])
     #@sold_out_courses_this_month  =
     @cancelled_courses_this_month = Course.joins(:roles).where("roles.name = 'student'").having("COUNT(roles) > 0") # < min_seats).count
+=======
+    @paying_courses_this_month    = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('price != 0')
+    @happened_courses_this_month = Course.where("extract( month from DATE(created_at)) = ?",  params[:id]).where('happening = true')
+>>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
         
     # select("DISTINCT(user_id)").order('extract( month from DATE(created_at)) DESC').group("extract( month from DATE(created_at)) ").count
     
@@ -34,6 +39,10 @@ class Admin::Charts::MonthsController < Admin::AdminController
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
+<<<<<<< HEAD
+=======
+    @happened_courses           = Course.where(:happening => true).count
+>>>>>>> 1526b6eae8b5c5a8f61b56a1b1fec0d1cc626ca4
     
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
     @total_transaction_count    = Payment.count
