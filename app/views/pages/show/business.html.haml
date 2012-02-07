@@ -1,69 +1,83 @@
 .full-page
-    .page-content
+  .page-content
+    
+    .page-section-float-left
+      %ul.sub-nav
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/mission") About
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/story") Story          
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/team") Team    
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/campaign") For non-profits
+        %li.sub-nav-active
+          %a.sub-nav-active(href="/business") For Businesses  
+    
+    %center
+      .marcomm-header
+        .heading25_666 Bring peer learning to your organization
+        = image_tag 'v2/greyheader_full.png', :class => 'greyheader_full'
+        
+    .grid_7
+      %br
+      %p Your employees are your biggest assets. High-performing organizations need to:
+      %br
+      %ul.noBullet-marcomm
+        %span.list-number 1
+        = "Encourage knowledge sharing across departments"
+        %br
+        %span.list-number 2
+        = "Improve employee performance and retention"
+        %br
+        %span.list-number 3
+        = "Identify and nurture future leaders"
+        
+      %p HourSchool for Business is a new way to stimulate the flow of knowledge at all levels of your organization. We enable employees to share their skills and know-how in small, peer-led classes.
+    
+    .grid_8
+      .tipbox-marcomm
+        = image_tag 'v2/Tape_White.png', :class => 'tape'
         %center
-            .marcomm-header
-                .heading25_666 Bring peer learning to your organization
-                = image_tag 'v2/greyheader_full.png', :class => 'greyheader_full'
-        .grid_7
-            %p Your employees are your biggest assets. High-performing organizations need to:
-            %br
-            %ul.noBullet-marcomm
-                %span.list-number 1
-                = "Encourage knowledge sharing across departments"
-                %br
-                %span.list-number 2
-                = "Improve employee performance and retention"
-                %br
-                %span.list-number 3
-                = "Identify and nurture future leaders"
-
-
-            %p HourSchool for Business is a new way to stimulate the flow of knowledge at all levels of your organization. We enable employees to share their skills and know-how in small, peer-led classes.
-        .grid_8
-            .tipbox-marcomm
-                = image_tag 'v2/Tape_White.png', :class => 'tape'
-                %center
-                    .happening-message-header Interested to try? Contact us:
-                    %br
-                    = image_tag 'v2/icon_email.png'
-                    %br
-                    %a(href="mailto:hello@hourschool.com") hello@hourschool.com
+          .happening-message-header Interested to try? Contact us:
+          %br
+          = image_tag 'v2/icon_email.png'
+          %br
+          %a(href="mailto:hello@hourschool.com") hello@hourschool.com
 
 
 .full-page
-    .page-content
+  .page-content
 
-        .heading25_ccc How does it work?
+    .feature-row
+      .grid_6
+        .heading15-marcomm Real time, demand driven, and bite sized
+        %ul.withBullets
+          %li.withBullets In person classes drive conversation and the sharing of personal experiences
+          %li.withBullets Your employees decide what skills they want to learn most
+          %li.withBullets Hour-long classes fit easily into busy schedules
 
-        .feature-row
-            .grid_6
-                .heading15-marcomm Real time, demand driven, and bite sized
-                %ul.withBullets
-                    %li.withBullets In person classes drive conversation and the sharing of personal experiences
-                    %li.withBullets Your employees decide what skills they want to learn most
-                    %li.withBullets Hour-long classes fit easily into busy schedules
+      .grid_8
+        = image_tag 'v2-business/hs-forBiz-dashboard.png'
 
-            .grid_8
-                = image_tag 'v2-business/hs-forBiz-dashboard.png'
+    .feature-row
+      .grid_6
+        .heading15-marcomm Hassle-Free Logistics
+        %ul.withBullets
+          %li.withBullets Class scheduling, sign up, communication, and post-class assessment all happen in a few easy steps
+          %li.withBullets The deep, tacit knowledge within your organization rises to the surface, allowing all employees to benefit from the experience of peers at all levels
 
-        .feature-row
-            .grid_6
-                .heading15-marcomm Hassle-Free Logistics
-                %ul.withBullets
-                    %li.withBullets Class scheduling, sign up, communication, and post-class assessment all happen in a few easy steps
-                    %li.withBullets The deep, tacit knowledge within your organization rises to the surface, allowing all employees to benefit from the experience of peers at all levels
+      .grid_8
+        = image_tag 'v2-business/hs-forBiz-classpage.png'
+    
+    .feature-row
+      .grid_6
+        .heading15-marcomm Visible Results
+        %ul.withBullets
+          %li.withBullets Get at-a-glance views of individual employee progress and involvement
+          %li.withBullets See the impact and reach your employees have in the community
+          %li.withBullets Use actionable insights from analytics to reach business goals and targets
 
-            .grid_8
-                = image_tag 'v2-business/hs-forBiz-classpage.png'
-        .feature-row
-            .grid_6
-                .heading15-marcomm Visible Results
-                %ul.withBullets
-                    %li.withBullets Get at-a-glance views of individual employee progress and involvement
-                    %li.withBullets See the impact and reach your employees have in the community
-                    %li.withBullets Use actionable insights from analytics to reach business goals and targets
-
-            .grid_8
-                = image_tag 'v2-business/hs-forBiz-progress.png'
-
+      .grid_8
+        = image_tag 'v2-business/hs-forBiz-progress.png'
 
