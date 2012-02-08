@@ -41,6 +41,23 @@ group 'back' do
   guard 'bundler' do
     watch 'Gemfile'
   end
+  
+  guard 'spork', :bundler => false,
+                 :cucumber => false,
+                 :test_unit => false,
+                 :wait => 30 do
+
+    watch('config/application.rb')
+    watch('config/environment.rb')
+    watch('lib/routing_filters.rb')
+    watch('spec/spec_helper.rb')
+    watch('config/routes.rb')
+
+    watch(%r{^config/environments/.*\.rb$})
+    watch(%r{^config/initializers/.*\.rb$})
+    watch(%r{^app/models/.*\.rb$})
+    watch(%r{^lib/.*})
+  end
 end
 
 
