@@ -63,13 +63,16 @@ module User::FollowingMethods
     cache(:expires_in => DEFAULT_EXPIRES).followed_ids
   end
 
+
   def fill_as_teacher_for(course)
+    return false unless course.teacher == self
     course.students.each do |student|
       self.follow!(student, "student")
     end
   end
-  
+
   def fill_as_student_for(course)
+    return false if course.teacher == self
     self.follow!(course.teacher, "teacher")
     course.students.each do |student|
       self.follow!(student, "classmate")
@@ -77,12 +80,12 @@ module User::FollowingMethods
   end
 
   def fill_for_class(course)
+    return false unless course.users.include? user
     if taught?(course)
       fill_as_teacher_for(course)
     else
       fill_as_student_for(course)
     end
-    # Email we added some friends to your learning circle!!
   end
 
   private
