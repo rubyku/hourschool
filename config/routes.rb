@@ -43,6 +43,7 @@ HourschoolV2::Application.routes.draw do
   end
   match 'user_root' => 'pages#index'
   resources :users do
+    resources :followings
   end
 
   ActiveAdmin.routes(self)

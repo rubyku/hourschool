@@ -1,0 +1,7 @@
+<div>
+  <%= link_to_avatar user, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
+  <%= link_to user.name, user %>
+  <p>
+    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete%>
+  </p>
+</div>
