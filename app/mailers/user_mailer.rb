@@ -1,6 +1,14 @@
 class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
 
+
+  def followed_signed_up_for_a_class(current_user, followed, course)
+    @user     = current_user
+    @followed = followed
+    @course   = course
+    mail(:to => current_user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
+  end
+
   def contact_all_students(current_user,course,message)
     @course = course
     @message = message
