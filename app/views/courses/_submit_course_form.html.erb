@@ -141,8 +141,17 @@
                 <p class="tip">We recommend charging even if it’s just for $5. We find that charging a little ensures people actually show up if they sign up! Don't forget the amount of supplies, venue rental fee, and other resources you’ll need. Finally, don't sell yourself short - your knowledge is valuable! Note that HourSchool charges 15% of the total price of the class. See terms and conditions below.</p><br><br>
                 <a href="" class="tip"><span id="hidetip3" style="width: 200px">Okay, got it.</span></a><br><br>
             </div><br><br>
-
+            
+            <p>
+            <%= f.radio_button :donate, true %>
+            <%= f.label :donate, 'Donate class proceeds' %>
+            <br>
+            <%= f.radio_button :donate, false %>
+            <%= f.label :donate, 'Not this time' %>
+            </p>
+            <br>
             <%= f.text_field :price, :class => "form-short", :placeholder => "ex. 10 (no $ sign needed!)" %>
+
 
     </div>
 
