@@ -9,15 +9,14 @@
     = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
   #preview-box-tall
     .classBlock
-      - if @course.photo.exists?
-        = image_tag(@course.photo.url(:small), :size => "190x120")
-        = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
+      - if @course.photo.present?
+        = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
       - else
-        - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
-          = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
-        - else
-          = image_tag("v2/courses/DefaultClassPics_Generic.png", :size => "190x120")
-          = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
+        = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
+      - if @course.donate?
+        = image_tag "/images/v2-greendoors/widget-ribbon.png", :class => "widget-ribbon" 
+      = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
+      
       .class-description
         .heading13-class
           = "#{@course.title.truncate(45)}"

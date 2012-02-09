@@ -4,10 +4,12 @@
       .classBlock
         - if course.photo.present?
           = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
-          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         - else
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
-          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
+        - if course.donate?
+          = image_tag "/images/v2-greendoors/widget-ribbon.png", :class => "widget-ribbon" 
+        = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
+
         %br
           .class-description
             .heading13-class
