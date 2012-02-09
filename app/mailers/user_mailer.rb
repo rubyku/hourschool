@@ -63,7 +63,7 @@ class UserMailer < ActionMailer::Base
      @email = user_email
      @name = user_name
      @course = course
-     mail(:to => user_email, :subject => "#{@course.title} is submitted!")
+     mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.title} is submitted!")
    end
 
    def send_course_approval_mail(user_email, user_name, course)
