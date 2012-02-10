@@ -22,6 +22,26 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def twitter
+    p env["omniauth.auth"]
+    if current_user
+      @user = current_user
+      @user.update_twitter_from_oauth(env["omniauth.auth"])
+    else
+      @user = User.find_for_twitter_oauth(env["omniauth.auth"], current_user)
+    end
+    @user.remember_me!
+    sign_in(@user, :bypass => true) # needed for devise
+
+    if @user.zip.present?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Twitter"
+      redirect_to  after_sign_in_path_for @user
+    else
+      flash[:notice] = "Thanks for signing up!"
+      redirect_to after_register_path(:confirm_password)
+    end
+  end
+
   def passthru
     store_referrer if session[:return_to].blank?
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false

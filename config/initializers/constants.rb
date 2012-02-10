@@ -8,6 +8,16 @@ else
   FacebookConfig::Secret = 'a7f47f266872b6ce3847c9b7720bcdf4'
 end
 
+module TwitterConfig; end
+
+if Rails.env.development?
+  TwitterConfig::ID       = "k3BLACUuU7nRV6swgXZ6jw"
+  TwitterConfig::Secret    = "blcQ4no16A11KYYRV4azhIQDyxPwPPdW3SMRdpLMI"
+else
+  TwitterConfig::ID       = "LK2Zf4LH6ro4rtmZDQ37pg"
+  TwitterConfig::Secret    = "6hFNduoaepyEUZoqG4KbLRkdeWe5lCikUQw22hSY"
+end
+
 
 StateAbreviations = {
   'AL' => 'Alabama',

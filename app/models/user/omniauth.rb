@@ -11,17 +11,43 @@ module User::Omniauth
     self
   end
 
+  def update_twitter_from_oauth(auth_hash)
+    token_from_hash = auth_hash["credentials"]["token"]
+    twitter_id_from_hash = auth_hash["user_info"]["nickname"]
+    if (twitter_token != token_from_hash || twitter_id != twitter_id_from_hash)
+      update_attributes(:twitter_token => token_from_hash, :twitter_id => twitter_id_from_hash)
+    end
+    self
+  end
+
   module ClassMethods
     def find_for_facebook_oauth(auth_hash, signed_in_resource=nil)
       email =    auth_hash['extra']['user_hash']['email']
       user  =    User.where(:facebook_id => auth_hash["uid"]).first || User.find_by_email(email)
-      user  ||=  User.create_from_omniauth(auth_hash)
+      user  ||=  User.create_fb_user_from_omniauth(auth_hash)
       user.update_facebook_from_oauth(auth_hash)
       user
     end
 
+    def find_for_twitter_oauth(auth_hash, signed_in_resources=nil)
+      user = User.where(:twitter_id => auth_hash["user_info"]["nickname"]).first
+      user ||= User.create_tw_user_from_omniauth(auth_hash)
+      user.update_twitter_from_oauth(auth_hash)
+      user
+    end
 
-    def create_from_omniauth(auth_hash)
+
+    def create_tw_user_from_omniauth(auth_hash)
+      user_info = auth_hash['extra']['user_hash']
+      User.create( :password    => Devise.friendly_token[0,20],
+                   :name        => user_info["name"],
+                   :location    => user_info["location"].try(:[], "name"),
+                   :twitter_token => auth_hash["credentials"]["token"],
+                   :twitter_id => user_info["nickname"],
+                   )
+    end
+
+    def create_fb_user_from_omniauth(auth_hash)
       user_info = auth_hash['extra']['user_hash']
       User.create( :email       => user_info["email"],
                    :password    => Devise.friendly_token[0,20],

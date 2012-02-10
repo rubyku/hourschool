@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117220837) do
+ActiveRecord::Schema.define(:version => 20120210212219) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.float    "lng"
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
   create_table "courses", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -64,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.date     "date"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "donate"
     t.boolean  "nosignup"
   end
 
@@ -288,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20120117220837) do
     t.string   "legacy_password_hash"
     t.string   "legacy_password_salt"
     t.string   "time_zone"
+    t.string   "twitter_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
