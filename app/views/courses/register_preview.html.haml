@@ -1,13 +1,13 @@
 .page
   .page-content
     .confirm-classblock
-      - link_to @course do
+      = link_to @course do
         - if @course.photo.present?
           = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
         - else
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
         - if @course.donate?
-          = image_tag "/images/v2-greendoors/widget-ribbon.png", :class => "widget-ribbon" 
+          = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
         = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         
         .confirm-class-description
@@ -17,13 +17,13 @@
           %table
             %tr
               %td.icon
-                = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
+                = image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost"
               %td
                 .class-details
                   = "$ #{@course.price}"
             %tr
               %td.icon
-                = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
+                = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"
               %td
                 .class-details
                   = @course.date.strftime("%a %b %d, %Y")
@@ -32,7 +32,7 @@
 
             %tr
               %td.icon
-                = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
+                = image_tag "v2/icon_location.png", :class => "class-details-icon-where"
               %td
                 .class-details
                   = "#{@course.place_name}"

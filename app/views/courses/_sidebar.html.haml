@@ -27,16 +27,14 @@
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-        - if @current_course.nosignup.nil?
-          - if current_user.nil? || @current_course.city.name == current_user.city
-            = button_to "Register for this class", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button"
+        - if current_user.nil? || @current_course.city.name == current_user.city
+          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "greendoors-register-class-button"           
+        - else
+          - if @current_course.donate?
+            = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "greendoors-register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+            = image_tag "v2-campaign/greenhouse.png", :class => "icon-greenhouse"
           - else
             = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
-        - else @current_course.nosignup?
-          - if current_user.nil? || @current_course.city.name == current_user.city
-            = button_to "I'm interested", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button"
-          - else
-            = button_to "I'm interested", payment_preview_path(:id => @current_course), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
 
 
     .sidebar-block
@@ -51,8 +49,11 @@
               %br/
               - if course.is_a_student?(current_user)
               - else
-                %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
-              %br/
+                - if @current_course.donate?
+                  .greendoors-alternatives All proceeds will be used to support the peer teaching fund!
+                - else
+                  %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
+              %br
         %tr
           %td.icon
             = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"
@@ -87,6 +88,15 @@
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
+
+    - if @current_course.donate?
+      .sidebar-block
+        = image_tag "v2-campaign/frame.png", :class => "greendoors-frame"
+        = link_to image_tag "v2-campaign/button-learnmore.png", :class => "button-learnmore"
+        .greendoors-frame-heading Greendoors supporter
+        .greendoors-frame-copy
+          .greendoors-frame-copy-text Greendoors provides housing and training for the homelessess. Learn how HourSchool is helping end homelessness by peer-education
+                    
 
     .sidebar-block-last
       .sidebar-heading Teacher
