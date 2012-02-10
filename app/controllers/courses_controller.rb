@@ -75,6 +75,7 @@ class CoursesController < ApplicationController
   def create
     city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @course      = Course.new(params[:course])
+
     @course.city = city
 
     #was it from a request
