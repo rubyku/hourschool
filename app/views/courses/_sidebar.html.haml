@@ -37,7 +37,7 @@
             = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"     
         - else
           - if @current_course.donate?
-            = image_tag "v2-campaign/button-register.png", payment_preview_path(:id => @current_course.id), :method => :put, :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
+            = link_to image_tag("v2-campaign/button-register.png"), payment_preview_path(:id => @current_course.id), :method => :put, :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
           - else
             = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{@current_course.city.name}! Are you sure you want to register for it?"
 
