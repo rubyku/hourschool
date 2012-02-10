@@ -4,7 +4,7 @@
     <div class="page-section-float-left">
       <ul class="sub-nav">
         <li class="sub-nav-inactive">
-          <a href="/mission" class="sub-nav-inactive">About</a>
+          <a href="/about" class="sub-nav-inactive">About</a>
         </li>
         <li class="sub-nav-inactive">
           <a href="/story" class="sub-nav-inactive">Story</a>
@@ -43,7 +43,7 @@
         <%= image_tag "v2-campaign/frame_big.png", :class => "campaign_frame_big" %>
         <div class="campaign-frame-text">
 
-          <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer-learning fund</div>
+          <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer teaching fund</div>
           <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
           <p><div class="campaign-frame-bold-text"> 
              <%= "#{number_to_currency @amount_raised, :precision => 0} of $5000 raised" %>
@@ -66,7 +66,7 @@
           <div class="campaign-frame-small-text">This campaign ends March 31, 2012</div>
         </div>
       
-        <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), teach_path  %>
+        <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), new_course_path  %>
         <%= link_to image_tag("v2-campaign/button-take-class.png", :class => "campaign-button"), learn_path %>
         <%= link_to image_tag("v2-campaign/button-nominate.png", :class => "campaign-button"), suggest_path %>    
       </div>

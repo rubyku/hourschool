@@ -111,7 +111,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/business' => 'pages#show', :id => 'business'
   match '/about' => 'pages#show', :id => 'about'
-  match '/mission' => 'pages#show', :id => 'mission'
   match '/team' => 'pages#show', :id => 'team'
   match '/story' => 'pages#show', :id => 'story'
   match '/campaign' => 'pages#show', :id => 'campaign'
