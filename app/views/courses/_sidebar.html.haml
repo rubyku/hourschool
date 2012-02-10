@@ -12,6 +12,7 @@
       - else
         %p= "This class has passed."
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
+    
     - elsif !@current_course.max_seats.blank? && @current_course.students.size >= course.max_seats
       - if @current_course.teacher == current_user
         = "Yay! Your class is sold out!"
@@ -21,16 +22,17 @@
       - else
         = "Class is full already!"
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
+    
     - else
       - if @current_course.teacher == current_user
         = button_to "Edit class profile", edit_course_path(:id => @current_course), :method => :get, :class => "edit-class-button"
       - elsif @current_course.is_a_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-        - if current_user.nil? || @current_course.city.name == current_user.city
-          = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"     
+      
+        - if current_user.nil? || @current_course.city.name == current_user.city  
           - if @current_course.donate?
-            = image_tag "v2-campaign/button-register.png", payment_preview_path(:id => @current_course.id), :method => :put
+            = link_to image_tag("v2-campaign/button-register.png"), payment_preview_path(:id => @current_course.id), :method => :put
           - else
             = button_to "Register for this class", payment_preview_path(:id => @current_course.id), :method => :put, :class => "register-class-button"     
         - else
