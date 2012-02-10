@@ -24,7 +24,23 @@
         <div class="campaign-frame-text">
           <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer-learning fund</div>
           <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
-          <p><div class="campaign-frame-bold-text"> $1000 of $5000 raised</div></p>
+          <p><div class="campaign-frame-bold-text"> 
+             <%= "#{number_to_currency @amount_raised, :precision => 0} of $5000 raised" %>
+          </div></p>
+
+          <script type="text/javascript">
+            $(function() {
+              $( "#progressbar" ).progressbar({
+              value: 37
+              });
+            });
+          </script>
+          
+          <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
+             <div id="progressbar" class="ui-progressbar-value ui-widget-header ui-corner-left"></div>
+          </div>
+          
+          <br>
           <div class="campaign-frame-small-text">This campaign ends March 31, 2012</div>
         </div>
       
