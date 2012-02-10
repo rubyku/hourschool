@@ -4,8 +4,8 @@ class PagesController < ApplicationController
   # homepage
   def index
     # @featured_courses = Course.where(:featured => true).order("created_at desc").first(4)
-    @fav2 = Course.find(308)
-    @fav1 = Course.find(244)
+    @fav2 = Course.find(256)
+    @fav1 = Course.find(337)
     @fav3 = Course.find(240)
     @fav4 = Course.find(237)
     render :layout => 'home'
