@@ -124,6 +124,8 @@ group :development, :test do
 
   # Debugging
   gem 'ruby-debug19', :require => 'ruby-debug'
+  
+  gem 'progress_bar'
 end
 
 group :test do

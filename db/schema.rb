@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204221603) do
-
+ActiveRecord::Schema.define(:version => 20120207000332) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -98,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20120204221603) do
     t.boolean  "nosignup"
     t.boolean  "happening",          :default => true
     t.boolean  "featured",           :default => false
+    t.boolean  "donate"
   end
 
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
