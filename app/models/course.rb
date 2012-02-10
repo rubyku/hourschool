@@ -109,6 +109,16 @@ class Course < ActiveRecord::Base
     date
   end
 
+  def inactive?
+    !active?
+  end
+
+  def sold_out?
+    self.max_seats.present? && self.students.size >= self.max_seats
+  end
+  alias :soldout? :sold_out?
+  alias :full?    :sold_out?
+
   def active?
     return false if date.blank?
     self.starts_at < 1.year.from_now.to_date && self.starts_at >= Date.today
@@ -136,6 +146,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def near_user?(user)
+     user.blank? || self.city.name == user.city
+  end
+
   def is_a_student?(user)
     students = roles.where(:name => 'student')
     if students.any?
@@ -144,6 +158,7 @@ class Course < ActiveRecord::Base
       return false
     end
   end
+  alias :has_student? :is_a_student?
 
   def is_not_a_student?(user)
     !is_a_student?(user)
@@ -152,6 +167,7 @@ class Course < ActiveRecord::Base
   def is_a_teacher?(user)
     self.teacher == user
   end
+  alias :has_teacher? :is_a_teacher?
 
   def is_not_a_teacher?(user)
     !is_a_teacher?(user)

@@ -1,35 +1,34 @@
 .sidebar-white
   .sidebar-content-white
     = "Class min. of #{course.min_seats}"
-    - if !course.max_seats.blank?
+    - if course.max_seats.present?
       = ", max. of #{course.max_seats}"
     %br
     %br
-    - if !course.active?
-      - if course.teacher == current_user
+    - if course.inactive?
+      - if course.has_teacher?(current_user)
         %p= "This class has passed."
         = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
       - else
         %p= "This class has passed."
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
 
-    - elsif !course.max_seats.blank? && course.students.size >= course.max_seats
-      - if course.teacher == current_user
+    - elsif course.sold_out?
+      - if course.has_teacher?(current_user)
         = "Yay! Your class is sold out!"
         = button_to "Edit class profile", edit_course_path(:id => course), :method => :get, :class => "edit-class-button"
-      - elsif course.is_a_student?(current_user)
+      - elsif course.has_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
         = "Class is full already!"
         = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
     - else
-      - if course.teacher == current_user
+      - if course.has_teacher?(current_user)
         = button_to "Edit class profile", edit_course_path(:id => course), :method => :get, :class => "edit-class-button"
-      - elsif course.is_a_student?(current_user)
+      - elsif course.has_student?(current_user)
         .edit-class-button= "You're already registered"
       - else
-
-        - if current_user.nil? || course.city.name == current_user.city
+        - if course.near_user?(current_user)
           - if course.donate?
             = link_to image_tag("v2-campaign/button-register.png"), payment_preview_path(:id => course.id), :method => :put
           - else
@@ -42,7 +41,6 @@
 
 
     .sidebar-block
-
       %table
         %tr
           %td.icon
@@ -51,7 +49,7 @@
             .class-details
               = "$" "#{course.price}"
               %br/
-              - if course.is_a_student?(current_user)
+              - if course.has_student?(current_user)
               - else
                 - if course.donate?
                   .greendoors-alternatives All proceeds will be used to support the Peer Teaching Fund!
@@ -67,10 +65,8 @@
             .class-sidebar-details
               = "#{course.time_range}"
               %br
-            - if course.is_a_student?(current_user)
-              / :erb
-              /   <a href="https://www.google.com/calendar/b/0/render?action=TEMPLATE&text=<%= course.title %>&trp=false&sprop&sprop=name:&gsessionid=OK&sf=true&output=xml" target="_blank" class="class-alternatives">Add to Google Calendar</a>
-              / %br
+            - if course.has_student?(current_user)
+
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
               %br/
@@ -85,10 +81,7 @@
                 = course.address
             - else
               = "Private Address"
-            - if course.is_a_student?(current_user)
-              / - if course.public?
-              /   %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-              /   %br
+            - if course.has_student?(current_user)
             - else
               %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
               %br
@@ -139,13 +132,13 @@
                   = link_to student.name, student, :class => "profile-link"
             %br
 
-        - if course.teacher == current_user
+        - if course.has_teacher?(current_user)
           = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
           = link_to "Contact students", contact_all_students_path(:id => course), :class => "contact-link"
 
 
-    - if current_user && current_user.admin?
-      .sidebar-block-last
-        = link_to "Feedback form", feedback_path(:id => course)
+
+- content_for :admin_action do
+  = link_to "Feedback form", feedback_path(:id => course)
 
 
