@@ -54,7 +54,7 @@
               - if course.is_a_student?(current_user)
               - else
                 - if course.donate?
-                  .greendoors-alternatives All proceeds will be used to support the peer teaching fund!
+                  .greendoors-alternatives All proceeds will be used to support the Peer Teaching Fund!
                 - else
                   %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
               %br
@@ -96,10 +96,10 @@
     - if course.donate?
       .sidebar-block
         = image_tag "v2-campaign/frame.png", :class => "greendoors-frame"
-        = link_to image_tag "v2-campaign/button-learnmore.png", :class => "button-learnmore"
-        .greendoors-frame-heading Greendoors supporter
+        = link_to image_tag("v2-campaign/button-learnmore.png"), story_path, :class => "button-learnmore"
+        .greendoors-frame-heading Peer Teaching Fund
         .greendoors-frame-copy
-          .greendoors-frame-copy-text Greendoors provides housing and training for the homelessess. Learn how HourSchool is helping end homelessness by peer-education
+          .greendoors-frame-copy-text This fund is used to cover the cost of a peer teaching program at our partnered non-profit organizations.  
 
 
     .sidebar-block-last
