@@ -1,64 +1,89 @@
 <div class="full-page">
   <div class="page-content">
 
-    <center>
-    <div class="marcomm-header">
-      <div class="heading25_666"> All Students are Teachers. They just don't know it yet.</div>
-
-      <%= image_tag 'v2/arrow_grey_profile.png', :class => 'profile-arrow' %>
-    </div>
-    </center>
-
-    <div class="grid_7">
-        <div class="heading15-marcomm">Our mission:</div>
-         <p>We’re building a social school from your social network. Because it’s not always the experts who make the best teachers, it’s the people you know.</p>
-         <br>
-      <div class="heading15-marcomm">We believe:</div>
-      <ul class="noBullet-marcomm">
-        <li class="noBullet-marcomm"><span class="list-number">1</span>You don’t have to be an expert to teach.</li>
-        <li class="noBullet-marcomm"><span class="list-number">2</span> You’re passionate about a wide variety of things.</li>
-        <li class="noBullet-marcomm"><span class="list-number">3</span> You enjoy learning from and with your friends.</li>
-        <li class="noBullet-marcomm"><span class="list-number">4</span> Your friends have a lot to teach you.</li>
-        <li class="noBullet-marcomm"><span class="list-number">5</span> You have a great deal to teach them.</li>
+    <div class="page-section-float-left">
+      <ul class="sub-nav">
+        <li class="sub-nav-active">
+          <a href="/about" class="sub-nav-active">About</a>
+        </li>
+        <li class="sub-nav-inactive">
+          <a href="/story" class="sub-nav-inactive">Story</a>
+        </li>       
+        <li class="sub-nav-inactive">
+            <a href="/team" class="sub-nav-inactive">Team</a>
+        </li>   
+        <li class="sub-nav-inactive">
+            <a href="/campaign" class="sub-nav-inactive">For non-profits</a>
+        </li>
+        <li class="sub-nav-inactive">
+            <a href="/business" class="sub-nav-inactive">For businesses</a>
+        </li>
       </ul>
-
     </div>
 
-    <div class="grid_8">
-      <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="470" height="281" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+    <center>
+      <div class="marcomm-header">
+        <div class="heading25_666">We believe everyone can teach and everyone should teach</div>
+        <%= image_tag "v2/greyheader_full.png", :class => "greyheader_full" %>
+      </div>
+    </center>
+    
+    <div class="page-section-float-left">
+      <div class="about-hourschool-box">
+        <div class="grid_5">
+        <div class="heading15-marcomm">What is HourSchool?</div>
+          <p>HourSchool is a social school built from your community. </p>
+          <p>We believe everybody has something they can teach. People learn the most, and are most willing to learn, when they are learning from their peers.</p>
+          <p>Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides.</p>
+          <br>
+          <%= image_tag 'v2/arrow_orange_pointright.png' %>
+          <a href="/story" style="font-weight: 700; font-size: 12px; color: #ff7733">Read our founding story</a>
+        </div>
+        <div class="grid_6">
+          <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="545" height="309" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+      </div>
     </div>
-
+    
+    <%= image_tag "v2-campaign/divider-long.png" %>
+  
+    <div class="clearfix" style="margin-top: 30px; padding-left: 20px">
+      <div>
+        <div class="heading15-marcomm">Learning should be relevant, engaging, and social.</div>
+        <p class="about">Take an active role in your continued education; get a taste of something new in small, bite-sized classes; and meet some new people your city.</p>
+        <div>
+          <%= image_tag "v2-about/Slide05.jpg", :style => "width: 427px; float: left" %>
+        </div>
+        <div>
+          <%= image_tag "v2-about/Slide06.jpg", :style => "width: 427px" %>
+        </div>
+        <div style="margin-top: 5px">
+          <%= image_tag 'v2/arrow_orange_pointright.png' %>
+          Check out all the classes <a href="/learn" style="font-weight: 700; font-size: 12px; color: #ff7733">you can take</a> in your city.
+        </div>
+      </div>
+    </div>
+    
+    <%= image_tag "v2-campaign/divider-long.png", :style => "margin-top: 30px" %>
+  
+    <div class="clearfix" style="margin-top: 30px; padding-left: 20px">
+      <div>
+        <div class="heading15-marcomm">Teaching is about learning, sharing, and building communities.</div>
+        <p class="about">Get others excited about what you love; engage in the community, and learn from those you're teaching. Strengthening your role in your community and help unlock the knowledge your community already has.</p>
+        <div>
+          <%= image_tag "v2-about/Slide02.jpg", :style => "width: 427px; float: left" %>
+        </div>
+        <div>
+          <%= image_tag "v2-about/Slide04.jpg", :style => "width: 427px" %>
+        </div>
+        <div style="margin-top: 5px">
+          <%= image_tag 'v2/arrow_orange_pointright.png' %>
+          Learn more about <a href="/teach" style="font-weight: 700; font-size: 12px; color: #ff7733">what you can teach</a> at HourSchool.
+        </div>
+      </div>
+    </div>
+    
+       
   </div>
 </div>
 
-
-  </div>
-</div>
-
-<script>
-
-    //Dialog
-  $(function() {
-    // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-    $( "#dialog:ui-dialog" ).dialog( "destroy" );
-
-    $( "#dialog" ).dialog({
-      modal: true,
-      autoOpen: false,
-      buttons: {
-        Ok: function() {
-          $( this ).dialog( "close" );
-        }
-      }
-    });
-  });
-
-      // Dialog Link
-    $('#dialog-link').click(function(){
-     $('#dialog').dialog('open');
-     return false;
-
-    });
-
-
-</script>

@@ -62,7 +62,7 @@ class CoursesController < ApplicationController
       if @course.status == "approved"
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        post_to_twitter(@course)
+        # post_to_twitter(@course)
       end
     end
   end
@@ -75,6 +75,7 @@ class CoursesController < ApplicationController
   def create
     city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @course      = Course.new(params[:course])
+
     @course.city = city
 
     #was it from a request

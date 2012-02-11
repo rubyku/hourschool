@@ -4,7 +4,7 @@
     <div class="page-section-float-left">
       <ul class="sub-nav">
         <li class="sub-nav-inactive">
-          <a href="/mission" class="sub-nav-inactive">About</a>
+          <a href="/about" class="sub-nav-inactive">About</a>
         </li>
         <li class="sub-nav-inactive">
           <a href="/story" class="sub-nav-inactive">Story</a>
@@ -43,7 +43,7 @@
         <%= image_tag "v2-campaign/frame_big.png", :class => "campaign_frame_big" %>
         <div class="campaign-frame-text">
 
-          <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer-learning fund</div>
+          <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer teaching fund</div>
           <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
           <p><div class="campaign-frame-bold-text"> 
              <%= "#{number_to_currency @amount_raised, :precision => 0} of $5000 raised" %>
@@ -66,7 +66,7 @@
           <div class="campaign-frame-small-text">This campaign ends March 31, 2012</div>
         </div>
       
-        <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), teach_path  %>
+        <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), new_course_path  %>
         <%= link_to image_tag("v2-campaign/button-take-class.png", :class => "campaign-button"), learn_path %>
         <%= link_to image_tag("v2-campaign/button-nominate.png", :class => "campaign-button"), suggest_path %>    
       </div>
@@ -85,7 +85,7 @@
       
       <div class="grid_10">
         <div class="heading15-campaign">Returning to the founding story of HourSchool</div>
-        <p>HourSchool evolved from a research project that co-founders Ruby Ku and Alex Pappas were conducting on homelessness while at Austin Center for Design. They found that people experiencing homelessness lack avenues to give back to the community and become disconnected from the communities in which they live. HourSchool was built based on the belief that everyone has knowledge to share with a mission to empower people to become teachers and enjoy the financial and emotional benefits that teaching provides. <a href="/story" style="color: #5b7020">[continue reading...]</a></p>
+        <p>HourSchool evolved from a research project that co-founders Ruby Ku and Alex Pappas were conducting on homelessness while at Austin Center for Design. They found that people experiencing homelessness lack avenues to give back to the community and become disconnected from the communities in which they live. HourSchool was built based on the belief that everyone has knowledge to share with a mission to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="/story" style="color: #5b7020">[continue reading...]</a></p>
       </div>
     
     </div>
@@ -120,7 +120,7 @@
       <p>We will be working with a vulnerable population - though talented, are all going through different challenges. We are confident that a peer teaching program is a direct way to help them gain self-esteem and recovery from homelessness. At the same time, we don't expect overnight success and are prepared to create long-term partnerships with these two organizations.</p>
       
       <div class="heading15-campaign" style="margin-top: 20px">I work for a non-profit and I'm interested in implementing a program like this. What should I do?</div>
-      <p>We would love to work with you and inspire more organizations to adopt the peer teaching model. Please email us at <a href="mailto:hello@hourschool.com">hello@hourschool.com</a> and we will chat more.</p>
+      <p>We would love to work with you and inspire more organizations to adopt the peer teaching model. Please email us at <a href="mailto:hello@hourschool.com" style="color: #5b7020">hello@hourschool.com</a> and we will chat more.</p>
     </div>    
   
   </div>

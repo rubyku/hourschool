@@ -106,19 +106,21 @@
         <div class="class-form-question">Cover Charge</div><br>
             <p class="tip">We recommend charging even if it’s just for $5. We find that charging a little ensures people actually show up if they sign up! Don't forget the amount of supplies, venue rental fee, and other resources you’ll need. Finally, don't sell yourself short - your knowledge is valuable! Note that HourSchool charges 15% of the total price of the class. See terms and conditions below.</p><br>
             
-            <% if current_user.admin? %>
               <div style="float: left; border: 1px solid #9bc446; padding: 15px; margin-bottom: 15px;">
-                From now till March 31, 2012, we are raising money to support the launch of our peer-teaching program with two partnered non-profits. Would you like to donate your class proceeds to the HourSchool Peer Teaching Fund? To learn more, please visit <a href="/campaign" target="_blank" style="font-weight: 700; font-size: 12px; color: #9bc446;">our campaign page</a>.
+                <p>From now till March 31, 2012, we are raising money to support the launch of our peer-teaching program with two partnered non-profits. <a href="/campaign" target="_blank" style="font-weight: 700; font-size: 12px; color: #9bc446;">Find out more here!</a></p>
+              
+                <p>Would you like to donate your class proceeds to the HourSchool Peer Teaching Fund? </p>
+            
+                <p>
+                <%= f.radio_button :donate, true %>
+                <%= f.label :donate, 'Yes! I will donate 100% of my class proceeds to the Peer Teaching Fund.'%><%= link_to "(What's this?)", campaign_path, :style => "font-weight: 700; font-size: 12px; color: #9bc446", :target => "_blank" %>
+                <br>
+                <%= f.radio_button :donate, false, :checked => @course.donate.blank? %>
+                <%= f.label :donate, 'No, I have to cover the cost so not this time.' %>
+                </p>
+              
               </div>
             
-              <p>
-              <%= f.radio_button :donate, true %>
-              <%= f.label :donate, 'I will donate class proceeds to the Peer Teaching Fund.' %>
-              <br>
-              <%= f.radio_button :donate, false, :checked => true %>
-              <%= f.label :donate, 'I have to cover the cost so not this time.' %>
-              </p>
-            <% end %>
             <br>
             <div style="float: left; margin-top: 5px; margin-right: 10px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 10 (no $ sign needed!)" %>
             <div style="float: left; margin-top: 5px">per student</div> 

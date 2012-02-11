@@ -630,7 +630,7 @@ a:hover {
   letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 23px;
   margin-top: 60px;
   margin-bottom: 10px;
   margin-left: 30px;
@@ -644,7 +644,7 @@ a:hover {
   letter-spacing: 0.15em;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 23px;
   margin-bottom: 24px;
   margin-left: 30px;
   color: white;
@@ -725,6 +725,14 @@ img#fb-signup-bg{
   background-color: white;
   margin-top: 25px;
   padding-top: 20px;
+}
+
+.whiteText {
+  color:white;
+}
+
+.right {
+  float:right;
 }
 
 #homepage_headline_7_signedin {
@@ -1192,19 +1200,19 @@ td#community_menu_learn, td#community_menu_faq {
   vertical-align: middle;
 }
 td#community_menu_learn{
-  width: 176px;
+  width: 189px;
 }
 
 td#community_menu_teach{
-  width: 170px;
+  width: 189px;
 }
 
 td#community_menu_suggest{
-  width: 170px;
+  width: 189px;
 }
 
 td#community_menu_community{
-  width: 235px;
+  width: 189px;
 }
 
 td#community_menu_faq {
@@ -3784,7 +3792,7 @@ img.nail{
   font-size: 11px;
   letter-spacing: 0.15em;
   margin-top: -151px;
-  margin-left: -10px;
+  margin-left: 40px;
 }
 
 .greendoors-frame-copy{
@@ -3794,10 +3802,13 @@ img.nail{
 
 .greendoors-frame-copy-text{
   text-align: center;
-  padding: 10px;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   color: #81ae21;
   font-size: 10px;
   margin-top: -130px;
+  padding-bottom: 20px;
   line-height: 15px;
 }
 
@@ -3892,6 +3903,7 @@ tr.metrics_underline{
 }
 
 
+
 .greendoorsRegister {
   background-image: url( <%= asset_path "v2-campaign/button-register.png" %> );
   background-repeat:no-repeat;
@@ -3926,3 +3938,37 @@ tr.metrics_underline{
   margin: 0 auto 0;
   text-align: center;
 }
+
+
+.userConfirm {
+  background-color: #FF7543;
+  height: 28px;
+  margin: 0;
+  padding: 5px 0;
+  border-top: solid 2px #E56F45;
+  border-bottom: solid 2px #E56F45;
+}
+
+.userConfirm p {
+ text-transform: uppercase;
+ font-weight: 700;
+ margin-bottom: 0;
+ height: 100%;
+ color: #8E381A;
+ font-family: futura-pt-1, futura-pt-2;
+ font-size: 11px;
+ margin-top: 5px;
+ letter-spacing: 0.2em;
+}
+
+.userConfirm .reminder {
+  margin-right: 1em;
+}
+
+.userConfirm a,
+.userConfirm a:visited {
+  color:white;
+  text-decoration:underline;
+  padding:2px;
+}
+
