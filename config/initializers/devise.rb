@@ -221,5 +221,5 @@ Devise.setup do |config|
   # end
 
   # this needs to be changed to allow_unconfirmed_access_for when upgrading
-  config.confirm_within = 2.months
+  config.confirm_within = 2.years
 end
