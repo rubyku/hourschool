@@ -48,6 +48,7 @@ FactoryGirl.define do
     time_zone "America/Chicago"
     password  { Forgery(:basic).password }
     bio       { Forgery(:lorem_ipsum).words(rand(10)) }
+    confirmed_at {Time.now}
   end
 
 
