@@ -146,6 +146,9 @@ class Course < ActiveRecord::Base
     end
   end
 
+
+  # return true if user is blank (we don't know where they are)
+  # or false if the cities don't match
   def near_user?(user)
      user.blank? || self.city.name == user.city
   end
@@ -163,13 +166,14 @@ class Course < ActiveRecord::Base
   def is_not_a_student?(user)
     !is_a_student?(user)
   end
+  alias :not_student? :is_not_a_student?
 
   def is_a_teacher?(user)
     self.teacher == user
   end
   alias :has_teacher? :is_a_teacher?
 
-  def is_not_a_teacher?(user)
+  def not_teacher?(user)
     !is_a_teacher?(user)
   end
 
