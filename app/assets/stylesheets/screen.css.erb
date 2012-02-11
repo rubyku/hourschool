@@ -3584,7 +3584,7 @@ ul.ui-autocomplete a.ui-state-hover {
   overflow: auto;
 }
 
-a.closeButton {
+.modal a.closeButton {
   z-index: 1002;
   cursor: pointer;
   background-color:#dfdfdf;
@@ -3903,6 +3903,43 @@ tr.metrics_underline{
 }
 
 
+
+.greendoorsRegister {
+  background-image: url( <%= asset_path "v2-campaign/button-register.png" %> );
+  background-repeat:no-repeat;
+  border: none;
+  color: #fff;
+  float: left;
+  width: 220px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-color: none;
+}
+
+.modal a {
+  text-decoration: underline;
+}
+
+
+.center {
+  margin: 0 auto 0;
+  text-align: center;
+}
+
+
 .userConfirm {
   background-color: #FF7543;
   height: 28px;
@@ -3934,3 +3971,4 @@ tr.metrics_underline{
   text-decoration:underline;
   padding:2px;
 }
+

@@ -5,41 +5,31 @@
       = ", max. of #{course.max_seats}"
     %br
     %br
-    - if course.inactive?
-      - if course.has_teacher?(current_user)
-        %p= "This class has passed."
-        = button_to "Teach this again!", new_course_path, :method => :get, :class => "register-class-button"
-      - else
-        %p= "This class has passed."
-        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
-
-    - elsif course.sold_out?
-      - if course.has_teacher?(current_user)
-        = "Yay! Your class is sold out!"
-        = button_to "Edit class profile", edit_course_path(:id => course), :method => :get, :class => "edit-class-button"
-      - elsif course.has_student?(current_user)
-        .edit-class-button= "You're already registered"
-      - else
-        = "Class is full already!"
-        = button_to "Request a new one", new_suggestion_path, :method => :get, :class => "register-class-button"
-    - else
-      - if course.has_teacher?(current_user)
-        = button_to "Edit class profile", edit_course_path(:id => course), :method => :get, :class => "edit-class-button"
-      - elsif course.has_student?(current_user)
-        .edit-class-button= "You're already registered"
-      - else
-        - if course.near_user?(current_user)
-          - if course.donate?
-            = link_to image_tag("v2-campaign/button-register.png"), payment_preview_path(:id => course.id), :method => :put
-          - else
-            = button_to "Register for this class", payment_preview_path(:id => course.id), :method => :put, :class => "register-class-button"
+    %div.user_status
+      = content_tag(:p, "You are teaching this class!")       if course.has_teacher?(current_user)
+      = content_tag(:p, "You're registered for this course!") if course.has_student?(current_user)
+    %div.course_status
+      = content_tag(:p, "This class is full!")                if course.sold_out?
+      = content_tag(:p, "This class has passed.")             if course.inactive?
+      = content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user)
+    %div.course_action
+      - if can? :sign_up_for_course, course
+        - if course.sold_out? || course.inactive?
+          = button_to "Request a new one",       new_suggestion_path,  :class => "register-class-button", :method => :get
+        - elsif course.donate?
+          = button_to " ",                       payment_preview_path, :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - else
-          - if course.donate?
-            = link_to image_tag("v2-campaign/button-register.png"), payment_preview_path(:id => course.id), :method => :put, :confirm => "You specified your location as #{current_user.city}. This class is in #{course.city.name}! Are you sure you want to register for it?"
-          - else
-            = button_to "Register for this class", payment_preview_path(:id => course.id), :method => :put, :class => "register-class-button", :confirm => "You specified your location as #{current_user.city}. This class is in #{course.city.name}! Are you sure you want to register for it?"
+          = button_to "Register for this class", payment_preview_path, :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+
+      - if can? :edit_course, course
+        - if course.inactive?
+          = button_to "Teach this again!",       new_course_path, :method => :get, :class => "register-class-button"
+        - else
+          = button_to "Edit class profile",      edit_course_path, :method => :get, :class => "edit-class-button"
+          =# button_to "Cancel this Class",       edit_course_path, :method => :get, :class => "edit-class-button"
 
 
+    //todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css
     .sidebar-block
       %table
         %tr
@@ -137,8 +127,31 @@
           = link_to "Contact students", contact_all_students_path(:id => course), :class => "contact-link"
 
 
-
+// Feedback link on the admin bar
 - content_for :admin_action do
   = link_to "Feedback form", feedback_path(:id => course)
 
+
+// Modal Layout for when a User tries to sign up for a course too far away
+= render :layout => 'shared/page/modal', :locals => {:modal_class => 'tooFarToRegisterModal'} do
+  = content_tag(:p, "Wait!! This class is in #{course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.")
+  %p
+    = "If you're no longer in #{current_user.try(:location)} "
+    = link_to "change your location here", edit_user_registration_path(:id => current_user)
+    = ", or continue signing up for this class"
+
+  %div
+    %br
+    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "register-class-button"
+
+
+
+// Show the modal window if a person tries to register for a course too far away from them
+:javascript
+  $(document).ready( function(){
+    $('.tooFarToRegister').bind('click', function(){
+      $('.tooFarToRegisterModal').show();
+      return false;
+    })
+  });
 
