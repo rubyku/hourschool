@@ -219,4 +219,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
+  # this needs to be changed to allow_unconfirmed_access_for when upgrading
+  config.confirm_within = 2.years
 end

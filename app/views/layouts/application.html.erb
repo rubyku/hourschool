@@ -73,8 +73,10 @@
 
 <%- end -%>
 
+
+
 <%# Admin Bar %>
-<%= content_for :admin_bar do %>
+<%= content_for :first_inside_body do %>
   <% if current_user && current_user.admin? %>
     <div class="adminBar">
       <div class='container_16'>
@@ -90,6 +92,28 @@
       </div>
     </div>
   <% end %>
+<%- end -%>
+
+<%= content_for :first_inside_body do %>
+  <% if current_user && !current_user.confirmed? %>
+    <div class='userConfirm'>
+      <div class='container_16'>
+        <p>
+          <span class='reminder'>
+            A friendly Reminder
+          </span>
+          <span class='whiteText'>
+            Please confirm your account with the verification email we sent.
+          </span>
+          <span class='right'>
+            <%=  link_to 'Send Email Again', user_confirmation_path(:user => { :email => current_user.email }), :method => :post %>
+          </span>
+        </p>
+      </div>
+    </div>
+  <%- else -%>
+    <div class="brand_bg"></div>
+  <%- end -%>
 <%- end -%>
 
 <%# Main Layout %>
