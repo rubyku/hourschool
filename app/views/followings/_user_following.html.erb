@@ -1,7 +1,14 @@
-<div>
-  <%= link_to_avatar user, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
-  <%= link_to user.name, user %>
-  <p>
-    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete%>
-  </p>
+<div class='friendList clearfix'>
+  <div class='grid_1 avatar'>
+    <%= link_to_avatar user, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
+  </div>
+  <div class='grid_5 name' >
+    <%= link_to user.name, user, :class => '' %>
+  </div>
+  <% if current_user && current_user == @user %>
+    <div class='grid_1 unfollow' >
+        <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete, :class => 'button' %>
+    </div>
+  <%- end -%>
 </div>
+

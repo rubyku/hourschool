@@ -37,6 +37,14 @@ module User::FollowingMethods
   end
   alias :following :followed
 
+  def fetch_followed
+    cache(:expire_in => 2.hours).followed
+  end
+
+ def fetch_following
+   cache(:expire_in => 2.hours).following
+ end
+
   # is self following the 'followed'
   def following?(followed)
     followed_id = followed.is_a?(User) ? followed.id : followed

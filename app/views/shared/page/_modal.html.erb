@@ -3,15 +3,14 @@
   modal_class    = local_assigns[:modal_class]
   display        = local_assigns[:display]        # display: make the modal show immediately by setting to 'block'
   after_close_js = local_assigns[:after_close_js] # after_close_js: javascript that will be executed after the close button is pressed
+  click_closes_overlay  = local_assigns[:click_closes_overlay] # after_close_js: clicking on the overlay will close the modal
 
  %>
 
 <div class='modal <%= modal_class %>' style='display:<%= display||'none' %>'>
-  <div class='overlay'></div>
+  <div class='overlay' <%= %Q{onclick="$('.modal').hide(); #{after_close_js}"}.html_safe if click_closes_overlay.present? %>  ></div>
   <div class='content'>
-    <h2>
       <a herf='javascript:void(0)' onclick="$('.modal').hide(); <%= after_close_js %>;" class='closeButton'>X</a>
-    </h2>
     <%= yield %>
   </div>
 </div>
