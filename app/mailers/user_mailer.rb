@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
     mail(:to => current_user.email, :subject => "#{@followed.name} just created a course on Hourschool")
   end
 
-  def followed_signed_up_for_a_class(current_user, followed, course)
+  def followed_signed_up_for_a_course(current_user, followed, course)
     @user     = current_user
     @followed = followed
     @course   = course

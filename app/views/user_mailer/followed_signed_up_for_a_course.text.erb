@@ -12,4 +12,4 @@ Cheers!
 HourSchool HQ
 
 ---
-To quit following <%= @followed.name %> please go to <%= user_followings_url(:user_id => @user) %>
+To quit following <%= @followed.name %> please go to <%= user_url(@user, :show_classmates => true)%>
