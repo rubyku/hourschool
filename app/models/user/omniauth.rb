@@ -39,7 +39,8 @@ module User::Omniauth
 
     def create_tw_user_from_omniauth(auth_hash)
       user_info = auth_hash['extra']['user_hash']
-      User.create( :password    => Devise.friendly_token[0,20],
+      User.create(
+                   :password    => Devise.friendly_token[0,20],
                    :name        => user_info["name"],
                    :location    => user_info["location"].try(:[], "name"),
                    :twitter_token => auth_hash["credentials"]["token"],
