@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
 
-  validates_presence_of :name, :email
+  validates_presence_of :name, :email, :zip
   # Setup accessible (or protected) attributes for your model
   # validate :supported_location, :location_format
 
