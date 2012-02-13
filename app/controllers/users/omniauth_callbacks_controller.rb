@@ -38,7 +38,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to  after_sign_in_path_for @user
     else
       flash[:notice] = "Thanks for signing up!"
-      redirect_to after_register_path(:confirm_password)
+      redirect_to after_register_path(:confirm_after_twitter)
     end
   end
 

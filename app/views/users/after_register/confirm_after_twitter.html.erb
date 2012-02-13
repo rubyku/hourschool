@@ -1,0 +1,42 @@
+<div class="full-page">
+  <div class="page-content">
+    
+    <div class="page-section-float-left">
+       <div class="form-question">We just need a little more information...</div>
+     </div>
+    
+     <% @user.errors.each do |error, msg| %>
+       <p class="error"><%= "#{error}: #{msg}" %></p>
+     <%- end -%>
+
+ 
+ <%= form_for @user, :url => {:action => "update"}, :method => :put, :html => {:class => 'inset', :id => 'form-signup'} do |f| %>
+   
+   <div class="page-section-float-left">
+     <%=  f.text_field :name , :placeholder => "Name", :class => "form-short" %>
+   </div>
+   <div class="page-section-float-left">
+     <%=  f.text_field :email , :placeholder => "Email (required)", :class => "form-short"  %>
+   </div>
+   <div class="page-section-float-left">
+     <%=  f.text_field :zip , :placeholder => "Zipcode (required)", :class => "form-short" %>
+   </div>
+
+   <div class="page-section-float-left">
+   <%=  f.password_field :password , :placeholder => "Password (required)", :class => "form-short" %>
+   </div>
+
+   <div class="page-section-float-left">
+   <%=  f.password_field :password_confirmation , :placeholder => "Confirm Password", :class => "form-short" %>
+   </div>
+   
+   <br><br>
+
+   <br><br>   
+   <div>
+     <%=  f.submit "Next", :class => "send-message-button" %>
+   </div>
+ <% end %>
+
+  </div>
+</div>

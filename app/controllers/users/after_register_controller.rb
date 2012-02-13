@@ -1,6 +1,6 @@
 class Users::AfterRegisterController < Wicked::WizardController
   before_filter :authenticate_user!
-  steps :confirm_password, :confirm_avatar, :invite_fb
+  steps :confirm_password, :confirm_avatar, :invite_fb, :confirm_after_twitter
 
 
   def show
@@ -28,6 +28,8 @@ class Users::AfterRegisterController < Wicked::WizardController
     when :confirm_avatar
       @user.update_attributes(params[:user])
     when :confirm_profile
+      @user.update_attributes(params[:user])
+    when :confirm_after_twitter
       @user.update_attributes(params[:user])
     end
     sign_in(@user, :bypass => true) # needed for devise
