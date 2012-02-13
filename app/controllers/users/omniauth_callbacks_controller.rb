@@ -23,7 +23,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def twitter
-    p env["omniauth.auth"]
     if current_user
       @user = current_user
       @user.update_twitter_from_oauth(env["omniauth.auth"])
