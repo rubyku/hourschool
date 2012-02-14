@@ -44,7 +44,7 @@
             %a.profile-link
               = link_to "Twitter", @user.twitter_url, :class => "profile-link"
 
-    - if @user.fetch_following.present?
+    - if @user.fetch_followed.present?
       .sidebar-block-last
         .sidebar-heading
           = link_to 'Classmates', '#', :class => 'showClassmateModal', :onclick => "$('.ClassmateModal').show()"
@@ -53,7 +53,7 @@
   %div
     = content_tag(:h2, 'Classmates')
     = content_tag(:p, "Classmates are friends at Hourschool. They're automatically added after each class and can be add or removed at any time")
-    - @user.fetch_following.each do |user|
+    - @user.fetch_followed.each do |user|
       = render :partial => 'followings/user_following', :locals => {:user => user}
 
 - content_for :admin_action do
