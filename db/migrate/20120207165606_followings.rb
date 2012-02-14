@@ -11,6 +11,8 @@ class Followings < ActiveRecord::Migration
 
     add_index :followings, [:follower_id, :followed_id], :unique => true
     add_index :followings, :followed_id
+
+    User.find_each(&:back_fill_following!)
   end
 
   def down

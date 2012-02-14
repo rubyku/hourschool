@@ -96,7 +96,6 @@ module User::FollowingMethods
     end
   end
 
-  private
 
   def back_fill_following!
     courses_attended.each do |course|
