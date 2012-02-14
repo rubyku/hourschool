@@ -16,9 +16,16 @@ class User < ActiveRecord::Base
 
   has_many :roles, :dependent => :destroy
   has_many :courses, :through => :roles
+  has_many :courses_taught,   :through => :roles, :conditions => ["name = (?)", "teacher"], :source => :course
+  has_many :courses_attended, :through => :roles, :conditions => ["name = (?)", "student"], :source => :course
+
+
 
   has_many :payments
   has_many :comments, :dependent => :destroy
+
+  has_many :followers, :through => :followings, :foreign_key => 'follower_id', :dependent => :destroy
+  has_many :followed,  :through => :followings, :foreign_key => 'followed_id', :dependent => :destroy
 
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
@@ -41,6 +48,7 @@ class User < ActiveRecord::Base
 
   include User::Omniauth
   include User::Facebook
+  include User::FollowingMethods
 
 
   # for pretty links
@@ -73,6 +81,10 @@ class User < ActiveRecord::Base
     if time_zone.blank? && zip.present? && zip_changed?
       self.time_zone = Timezone::Zone.new(:latlon => [lat, lng]).zone
     end
+  end
+
+  def taught?(course)
+    course.teacher == self
   end
 
   def lat

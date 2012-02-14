@@ -1,0 +1,11 @@
+.page
+  .page-content
+    = render :layout => 'shared/page/section', :locals => {:header => "Your Classmates"} do
+      - @classmates.each do |user|
+        = render :partial => 'user_following', :locals => {:user => user}
+    = render :layout => 'shared/page/section', :locals => {:header => "Your Teachers"} do
+      - @teachers.each do |user|
+        = render :partial => 'user_following', :locals => {:user => user}
+    = render :layout => 'shared/page/section', :locals => {:header => "Your Students"} do
+      - @students.each do |user|
+        = render :partial => 'user_following', :locals => {:user => user}
