@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
     @course = Course.find(id)
 
     # temp twitter_hack
-    if current_user.blank? || (@course.is_not_a_teacher?(current_user) && !current_user.admin?)
+    if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
       redirect_to @course
     else
       if @course.status == "approved"
