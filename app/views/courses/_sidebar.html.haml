@@ -42,17 +42,7 @@
     .sidebar-block
 
       %table
-        %tr
-          %td.icon
-            = image_tag "/images/v2/icon_pricetag.png", :class => "class-details-icon-cost"
-          %td
-            .class-details
-              = "$" "#{course.price}"
-              %br/
-              - if course.is_a_student?(current_user)
-              - else
-                %a.class-alternatives(href="http://bit.ly/rAtf6o") Too much? Suggest a new price!
-              %br/
+
         %tr
           %td.icon
             = image_tag "/images/v2/icon_calendar.png", :class => "class-details-icon-when"
@@ -62,34 +52,17 @@
             .class-sidebar-details
               = "#{course.time_range}"
               %br
-            - if course.is_a_student?(current_user)
-              / :erb
-              /   <a href="https://www.google.com/calendar/b/0/render?action=TEMPLATE&text=<%= @course.title %>&trp=false&sprop&sprop=name:&gsessionid=OK&sf=true&output=xml" target="_blank" class="class-alternatives">Add to Google Calendar</a>
-              / %br
-            - else
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Can't make it? Request a new time!
-              %br/
         %tr
           %td.icon
             = image_tag "/images/v2/icon_location.png", :class => "class-details-icon-where"
           %td
             .class-details
               = course.place_name
-            - if course.public?
-              .class-sidebar-details
-                = course.address
-            - else
-              = "Private Address"
-            - if course.is_a_student?(current_user)
-              / - if course.public?
-              /   %a.class-alternatives(href="http://bit.ly/rAtf6o") View on Google Map
-              /   %br
-            - else
-              %a.class-alternatives(href="http://bit.ly/rAtf6o") Don't live in this city? Request in yours!
-              %br
+            .class-sidebar-details
+              = course.address
 
     .sidebar-block-last
-      .sidebar-heading Teacher
+      .sidebar-heading Moderator
       .class-attendance-block
         - if @current_course.teacher.photo.present?
           = image_tag(@current_course.teacher.photo.url(:thumb_small))
@@ -113,13 +86,13 @@
 
       - if course.teacher != current_user
         %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-        = link_to "Contact teacher", contact_teacher_path(:id => course.id), :class => "contact-link"
+        = link_to "Contact moderator", contact_teacher_path(:id => course.id), :class => "contact-link"
 
 
     - if course.students.any?
       .sidebar-block-last
         - if @current_course.nosignup.blank?
-          .sidebar-heading Students
+          .sidebar-heading Attendees
         - else @current_course.nosignup?
           .sidebar-heading People interested
         .class-attendance-block
@@ -134,7 +107,7 @@
 
         - if course.teacher == current_user
           %img.class-details-icon-email{:src => '../../../images/v2/icon_email.png'}
-          = link_to "Contact students", contact_all_students_path(:id => course.id), :class => "contact-link"
+          = link_to "Contact attendees", contact_all_students_path(:id => course.id), :class => "contact-link"
     
       
     - if current_user && current_user.admin?

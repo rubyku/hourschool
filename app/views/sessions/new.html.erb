@@ -60,11 +60,11 @@
     padding-bottom: 20px;
   }
   
-  a{color: #1b5225; text-decoration: none;}
+  a{color: #ff7733; text-decoration: none;}
   a.sub-nav-active {color: black;}
   a.sub-nav-inactive {color: #8f8f8f;}
-  a.sub-nav-active:hover {text-decoration: none; color: #1b5225;}
-  a.sub-nav-inactive:hover {text-decoration: none; color: #1b5225;}
+  a.sub-nav-active:hover {text-decoration: none; color: #ff7733;}
+  a.sub-nav-inactive:hover {text-decoration: none; color: #ff7733;}
 
   ul.sub-nav {
     list-style: none;
@@ -84,7 +84,7 @@
   }
 
   li.sub-nav-active {
-    border-bottom: 3px solid #1b5225;
+    border-bottom: 3px solid #ff7733;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -125,7 +125,7 @@
     position: relative;
     width: 84px;
     height: 33px;
-    background-color: #1b5225;
+    background-color: #ff7733;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -168,6 +168,17 @@
       <center>
         <div class="page-section-float-center">
         <img src="https://encrypted-tbn1.google.com/images?q=tbn:ANd9GcSN8gPzCgWKeshIMUxzhwOcwOi69yUg2eXasUibHxyZKdY-4TMB" width="193px">
+        </div>
+
+        <div class="page-section-float-center">
+          <ul class="sub-nav">
+            <li class="sub-nav-inactive">
+              <a class="sub-nav-inactive" href="/users/sign_up">Register</a>
+            </li>
+            <li class="sub-nav-active">
+              <a class="sub-nav-active" href="/users/sign_in">Sign in</a>
+            </li>
+          </ul>
         </div>
 
         <%- if resource.present? && resource.email.present? -%>

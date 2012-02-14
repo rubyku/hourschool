@@ -707,7 +707,6 @@ a:hover {
   padding-top: 20px;
   padding-bottom: 20px;
   overflow: hidden;
-  color: white;
 }
 
 /* line 85, ../../app/assets/stylesheets/components/homepage.scss */
@@ -1413,7 +1412,7 @@ table#enterprise_menu {
 }
 
 /* line 179, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, td#enterprise_menu_community {
+td#enterprise_menu_2, td#enterprise_menu_3, td#enterprise_menu_4, td#enterprise_menu_5 {
   border: 1px solid #d0cdcd;
   height: 60px;
   vertical-align: bottom;
@@ -1422,7 +1421,7 @@ td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, 
 }
 
 /* line 187, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_dashboard, td#enterprise_menu_faq {
+td#enterprise_menu_1, td#enterprise_menu_6 {
   border-top: 1px solid #d0cdcd;
   border-bottom: 1px solid #d0cdcd;
   border-left: 0px;
@@ -1434,33 +1433,33 @@ td#enterprise_menu_dashboard, td#enterprise_menu_faq {
 }
 
 /* line 199, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_dashboard {
-  width: 200px;
+td#enterprise_menu_1 {
+  width: 180px;
 }
 
 /* line 203, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_learn {
-  width: 160px;
+td#enterprise_menu_2 {
+  width: 180px;
 }
 
 /* line 207, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_teach {
-  width: 160px;
+td#enterprise_menu_3 {
+  width: 180px;
 }
 
 /* line 211, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_suggest {
-  width: 160px;
+td#enterprise_menu_4 {
+  width: 180px;
 }
 
 /* line 215, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_community {
-  width: 200px;
+td#enterprise_menu_5 {
+  width: 67px;
 }
 
 /* line 219, ../../app/assets/stylesheets/components/header.scss */
-td#enterprise_menu_faq {
-  width: 67px;
+td#enterprise_menu_6 {
+  width: 180px;
 }
 
 /*......LOGGED IN - COMMUNITY......*/

@@ -5,12 +5,12 @@
   .page-content
     / - if @suggestions.size > 0
     .page-section-float-left
-      .welcome-header Interested in a class? Vote for it!
+      .welcome-header Request some help
       %img.greyheader_half{:src => '../../../images/v2/greyheader_half.png'}
 
       .pagenote-box.clearfix
-        .pagenote-header Didn't see a class you like?
-        = "If there's something you have always wanted to learn but don't see it on HourSchool, "
+        .pagenote-header Didn't see a topic you like?
+        = "If there's something you have always wanted to learn but don't see it here, "
         = link_to "request one!", new_suggestion_path, :class => "pagenote-link"
         = "It's very likely that someone near you can teach it."
 

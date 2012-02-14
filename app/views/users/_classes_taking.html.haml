@@ -1,10 +1,10 @@
 - count = 0
 - if classes_taking.blank?
   - if current_user == @user
-    = "Aw..you haven't taken any classes yet."
+    = "Aw..you haven't attended any meetings yet."
     = link_to "Go look around!", learn_path, :class => "pagenote-link"
   - else
-    = "#{@user.name} has not taken any classes yet!"
+    = "#{@user.name} has not attended any meetings yet yet!"
 - classes_taking.each do |c|
   - count = count + 1
   - if count%3 == 0
