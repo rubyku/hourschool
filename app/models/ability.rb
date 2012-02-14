@@ -10,12 +10,12 @@ class Ability
     # end
 
 
+    can :sign_up_for_course, Course do |course|
+      course.not_student?(user) && course.not_teacher?(user)
+    end
+
     # they exist and are logged in
     if user.id.present?
-
-      can :sign_up_for_course, Course do |course|
-        course.not_student?(user) && course.not_teacher?(user)
-      end
 
       can :edit_course, Course do |course|
         course.teacher == user
