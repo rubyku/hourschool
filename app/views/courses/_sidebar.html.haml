@@ -17,9 +17,9 @@
         - if course.sold_out? || course.inactive?
           = button_to "Request a new one",       new_suggestion_path,  :class => "register-class-button", :method => :get
         - elsif course.donate?
-          = button_to " ",                       payment_preview_path, :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
+          = button_to " ",                       payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - else
-          = button_to "Register for this class", payment_preview_path, :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+          = button_to "Register for this class", payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
 
       - if can? :edit_course, course
         - if course.inactive?
