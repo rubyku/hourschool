@@ -123,21 +123,23 @@
   <%= render 'layouts/application/header' %>
 
   <%# Flash %>
-  <%- if flash[:error].present? -%>
-    <div class="page-section-float-left">
-        <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
-    </div>
-  <%- end -%>
-  <%- if flash[:notice].present? -%>
-    <div class="page-section-float-left">
-        <div class="flash-notice"><%= flash[:notice] %></div>
-    </div>
-  <%- end -%>
-  <%- if flash[:alert].present? -%>
-    <div class="page-section-float-left">
-        <div class="flash-notice"><%= flash[:alert] %></div>
-    </div>
-  <%- end -%>
+  <div class='container_16'>
+    <%- if flash[:error].present? -%>
+      <div class="page-section-float-left">
+          <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
+      </div>
+    <%- end -%>
+    <%- if flash[:notice].present? -%>
+      <div class="page-section-float-left">
+          <div class="flash-notice"><%= flash[:notice] %></div>
+      </div>
+    <%- end -%>
+    <%- if flash[:alert].present? -%>
+      <div class="page-section-float-left">
+          <div class="flash-notice"><%= flash[:alert] %></div>
+      </div>
+    <%- end -%>
+  </div>
 
   <%# Main Content %>
   <%= yield %>
