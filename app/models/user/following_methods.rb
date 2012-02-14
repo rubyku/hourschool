@@ -41,7 +41,7 @@ module User::FollowingMethods
     cache(:expire_in => 2.hours).followed
   end
 
- def fetch_following
+ def fetch_followers
    cache(:expire_in => 2.hours).following
  end
 
