@@ -51,6 +51,9 @@
               = link_to "Twitter", @user.twitter_url, :class => "profile-link"
 
     - if current_user.admin?
+
       .sidebar-block-last
         .sidebar-heading Admin Panel
-        =link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
+        %p= link_to "Schedule a meeting", new_course_path
+        %p= link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
+        
