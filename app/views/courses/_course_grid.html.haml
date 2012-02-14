@@ -22,7 +22,7 @@
                 - if course.max_seats.blank?
                   = "Unlimited seats |"
                 - elsif course.seats_left == 0 
-                  = "Full! Request again |"
+                  = "Full! |"
                 - elsif
                   = "#{course.seats_left} seats left |"
               = "#{course.city.try(:name)}, #{course.city.try(:state)}"
