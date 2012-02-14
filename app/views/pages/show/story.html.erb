@@ -78,3 +78,12 @@
 
   </div>
 </div>
+
+<%= content_for :head do %>
+  <meta property="og:description"
+        content="THE BIGGEST PROBLEM IS PERCEPTION
+        HourSchool began as a research project about homelessness when co-founders Ruby Ku and Alex Pappas were at the Austin Center for Design."/>
+
+  <meta property="og:image"
+        content="<%= asset_path "v2-about/church_under_the_bridge.jpg" %>" />
+<%- end -%>
