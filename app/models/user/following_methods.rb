@@ -90,7 +90,7 @@ module User::FollowingMethods
   end
 
   def fill_following_for_course!(course)
-    return false unless course.users.include? user
+    return false unless course.users.include? self
     if taught?(course)
       fill_following_as_teacher_for_course!(course)
     else
