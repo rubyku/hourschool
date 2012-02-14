@@ -27,6 +27,8 @@ class Course < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   after_update :reprocess_photo, :if => :cropping?
+  after_save   :notify_followers
+
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
@@ -207,6 +209,14 @@ class Course < ActiveRecord::Base
 
   private
 
+  def notify_followers
+    return true unless status_changed?
+    return true if teacher.blank? || status != 'live'
+    teacher.fetch_followers.each do |follower|
+      UserMailer.delay.followed_created_a_course(follower, teacher, course)
+    end
+    return true
+  end
 
   def reprocess_photo
     photo.reprocess!
