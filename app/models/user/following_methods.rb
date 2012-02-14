@@ -72,14 +72,14 @@ module User::FollowingMethods
   end
 
 
-  def fill_as_teacher_for(course)
+  def fill_following_as_teacher_for_course!(course)
     return false unless course.teacher == self
     course.students.each do |student|
       self.follow!(student, "student")
     end
   end
 
-  def fill_as_student_for(course)
+  def fill_following_as_student_for_course!(course)
     return false if course.teacher == self
     self.follow!(course.teacher, "teacher")
     course.students.each do |student|
@@ -87,22 +87,22 @@ module User::FollowingMethods
     end
   end
 
-  def fill_for_class(course)
+  def fill_following_for_course!(course)
     return false unless course.users.include? user
     if taught?(course)
-      fill_as_teacher_for(course)
+      fill_following_as_teacher_for_course!(course)
     else
-      fill_as_student_for(course)
+      fill_following_as_student_for_course!(course)
     end
   end
 
 
   def back_fill_following!
     courses_attended.each do |course|
-      fill_as_student_for(course)
+      fill_following_for_course!(course)
     end
     courses_taught.each   do |course|
-      fill_as_teacher_for(course)
+      fill_following_for_course!(course)
     end
   end
 
