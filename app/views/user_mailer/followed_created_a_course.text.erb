@@ -1,0 +1,15 @@
+Hey <%= @user.name %>,
+
+One of your <%= @user.relationship(@followed) %>'s, <%= @followed.name %>, just signed up teach a class, and we thought you might be interested!
+
+Class:  <%= @course.title %>
+When:   <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
+
+Check it out: <%= course_url(@course) %>.
+
+
+Cheers!
+HourSchool HQ
+
+---
+To quit following <%= @followed.name %> please go to <%= user_url(@user, :show_classmates => true) %>

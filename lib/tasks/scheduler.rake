@@ -46,6 +46,20 @@ namespace :schedule do
   end
 
   task :send_post_class_emails => :environment do
+    puts "Auto Following Students from Yesterdays course..."
+    courses_yesterday = Course.where("(:yesterdays_date = date) AND status = :live", {:yesterdays_date => Date.yesterday, :live => "live"})
+    courses_yesterday.each do |course|
+      students = course.students
+      if students.size >= course.min_seats
+        students.each do |student|
+          student.fill_following_for_course!(course)
+        end
+      end
+    end
+    puts "done"
+  end
+
+  task :fill_followings_post_class => :environment do
     puts "Sending post-class feedback emails..."
     courses_yesterday = Course.where("(:yesterdays_date = date) AND status = :live", {:yesterdays_date => Date.yesterday, :live => "live"})
     courses_yesterday.each do |course|

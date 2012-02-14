@@ -41,14 +41,14 @@ FactoryGirl.define do
 
 
   factory :user do
-    name      { "#{Random.firstname}  #{Random.lastname}"}
-    email     { FactoryGirl.generate(:email) }
-    zip       { Forgery(:address).zip }
-    location  { "#{Forgery(:address).city}, #{Forgery(:address).state}" }
-    time_zone "America/Chicago"
-    password  { Forgery(:basic).password }
-    bio       { Forgery(:lorem_ipsum).words(rand(10)) }
-    confirmed_at {Time.now}
+    name          { "#{Random.firstname}  #{Random.lastname}"}
+    email         { FactoryGirl.generate(:email) }
+    zip           { Forgery(:address).zip }
+    location      { "#{Forgery(:address).city}, #{Forgery(:address).state}" }
+    time_zone     "America/Chicago"
+    password      { Forgery(:basic).password }
+    bio           { Forgery(:lorem_ipsum).words(rand(10)) }
+    confirmed_at  { Time.now }
   end
 
 

@@ -27,6 +27,8 @@ class Course < ActiveRecord::Base
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   after_update :reprocess_photo, :if => :cropping?
+  after_save   :notify_followers
+
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
@@ -205,22 +207,29 @@ class Course < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
    end
 
-   private
+  private
 
-    def reprocess_photo
-      photo.reprocess!
+  def notify_followers
+    return true unless status_changed?
+    return true if teacher.blank? || status != 'live'
+    teacher.fetch_followers.each do |follower|
+      UserMailer.delay.followed_created_a_course(follower, teacher, course)
     end
+    return true
+  end
+
+  def reprocess_photo
+    photo.reprocess!
+  end
 
    #validations
-   def default_validations
-
+  def default_validations
      if self.status == "proposal"
        if self.title.blank? || self.teaser.blank? || self.experience.blank?
          #errors.add(:title, "Title cannot be blank!") unless !self.title.blank?
          #errors.add(:teaser, "About field cannot be blank!") unless !self.teaser.blank?
          #errors.add(:experience, "Experience field cannot be blank!") unless !self.experience.blank?
          errors[:base] << "All the fields are required!"
-
        end
      end
    end
