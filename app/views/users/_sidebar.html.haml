@@ -57,4 +57,7 @@
       = render :partial => 'followings/user_following', :locals => {:user => user}
 
 - content_for :admin_action do
-  =link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
+  = link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
+  
+  
+  
