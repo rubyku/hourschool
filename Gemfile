@@ -8,8 +8,7 @@ gem 'method_cacheable',     '0.0.4'
 gem "dalli",                '~> 1.1.4' # for memcache
 
 
-# For Database data transfer
-gem 'taps',                 '~> 0.3.23'
+
 
 
 # User Authentication
@@ -38,7 +37,7 @@ gem 'jquery-rails',         '>= 1.0.19'
 
 gem 'friendly_id',          '4.0.0'
 
-gem 'mysql2',               '~> 0.2.6'
+# gem 'mysql2',               '~> 0.2.6'
 
 #tagging and voting
 gem 'acts-as-taggable-on',  '~> 2.1.0'
@@ -101,6 +100,9 @@ group :development, :test do
   gem 'ffaker',             '~> 1.12.1'
   gem 'timecop',            '~> 0.3.5'
   gem 'spork',              '~> 0.8.5'
+  
+  # For Database data transfer
+  gem 'taps',                 '~> 0.3.23'
 
   # Debugging
   gem 'ruby-debug19', :require => 'ruby-debug'
