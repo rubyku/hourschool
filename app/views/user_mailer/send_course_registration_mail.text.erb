@@ -6,4 +6,3 @@ Meeting: <%= @course.title %>
 When: <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
-Got questions? You can message your moderator at <%= course_url(@course) %>
