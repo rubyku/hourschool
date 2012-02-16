@@ -47,11 +47,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@user.name} submitted a feedback form!")
   end
 
-  def send_registration_mail(user_email,user_name)
-    @email = user_email
-    @name = user_name
-    mail(:to => user_email, :subject => "Welcome to HourSchool!")
-  end
+  # def send_registration_mail(user_email,user_name)
+  #   @email = user_email
+  #   @name = user_name
+  #   mail(:to => user_email, :subject => "Welcome to HourSchool!")
+  # end
 
    def send_course_registration_mail(user_email, user_name, course)
      @email = user_email
