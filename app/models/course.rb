@@ -213,7 +213,7 @@ class Course < ActiveRecord::Base
     return true unless status_changed?
     return true if teacher.blank? || status != 'live'
     teacher.fetch_followers.each do |follower|
-      UserMailer.delay.followed_created_a_course(follower, teacher, self)
+      # UserMailer.delay.followed_created_a_course(follower, teacher, self)
     end
     return true
   end
