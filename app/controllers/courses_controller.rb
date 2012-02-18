@@ -62,7 +62,7 @@ class CoursesController < ApplicationController
       if @course.status == "approved"
         @course.update_attribute :status, "live"
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        # post_to_twitter(@course)
+        post_to_twitter(@course)
       end
     end
   end
