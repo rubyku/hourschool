@@ -42,8 +42,11 @@
 
           <div class="classRow-homepage clearfix">
 
-              <div class="classBlock-homepage">
+              <div class="classBlock-homepage">            
                   <%= link_to (image_tag(@fav1.photo.url(:small), :size => "190x120")), @fav1 %>
+                  <% if @fav1.donate? %>
+                    <%= image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" %>
+                  <% end %>
                   <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav1.title.truncate(45), @fav1 %></div>
@@ -62,9 +65,12 @@
                   </div>
                 </div><!-- /end .class-note -->
               </div><!-- /end .classBlock -->
-
+            
               <div class="classBlock-homepage">
                     <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
+                    <% if @fav2.donate? %>
+                      <%= image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" %>
+                    <% end %>
                     <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                     <div class="class-description">
                       <div class="heading13-class"><%= link_to @fav2.title.truncate(45), @fav2 %></div>
@@ -86,6 +92,9 @@
 
               <div class="classBlock-homepage">
                  <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+                 <% if @fav3.donate? %>
+                   <%= image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" %>
+                 <% end %>
                  <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav3.title.truncate(45), @fav3 %></div>
@@ -107,6 +116,9 @@
 
               <div class="classBlock-last-homepage">
                   <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
+                  <% if @fav4.donate? %>
+                    <%= image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" %>
+                  <% end %>
                   <%= image_tag "v2/arrow_white_pointup.png", :class => 'class-arrow' %>
                 <div class="class-description">
                   <div class="heading13-class"><%= link_to @fav4.title.truncate(45), @fav4 %></div>
