@@ -39,6 +39,17 @@ class Course < ActiveRecord::Base
 
   include Course::Searchable
 
+  def cancel!
+    update_attributes :happening => false, :status => 'canceled'
+  end
+
+  def notify_cancel!(msg = '')
+    return false if inactive?
+    students.each do |student|
+      StudentMailer.delay.course_is_canceled(student, self, msg)
+    end
+  end
+
   # for pretty links
   def to_params
     slug
