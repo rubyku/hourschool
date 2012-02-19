@@ -176,6 +176,10 @@ class Course < ActiveRecord::Base
   end
   alias :has_student? :is_a_student?
 
+  def canceled?
+    status == 'canceled'
+  end
+
   def is_not_a_student?(user)
     !is_a_student?(user)
   end

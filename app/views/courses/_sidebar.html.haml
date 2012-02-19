@@ -11,6 +11,7 @@
     %div.course_status
       = content_tag(:p, "This class is full!")                if course.sold_out?
       = content_tag(:p, "This class has passed.")             if course.inactive?
+      = content_tag(:p, "This class has been canceled!")      if course.canceled?
       = content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user)
     %div.course_action
       - if can? :sign_up_for_course, course
