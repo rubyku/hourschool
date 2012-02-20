@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     if params[:id] == "campaign"
       @amount_raised = Payment.joins(:course).where("courses.donate = 'true'").select('SUM(amount) as sum').first.sum.to_f
     end
-    render "pages/show/#{params[:id]}" # %w{about apps contact ...}
+    render "pages/show/#{params[:id]}" # %w{ about apps contact ... }
   end
 
 end
