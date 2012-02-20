@@ -22,8 +22,9 @@ class ApplicationController < ActionController::Base
 
     def require_account_for_subdomain!
       if invalid_user_for_subdomain?
+        sign_out_and_redirect(:user)
+        # flash must come after redirect to work properly
         flash[:error] = "You need to sign up with a #{current_account.name} email address"
-        sign_out_and_redirect(new_user_session_path)
       end
     end
 
