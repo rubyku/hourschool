@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe User do
 
+  describe 'user settings' do
+    let(:user) { Factory.create(:user) }
+
+    it 'is created automatically after create' do
+      user.user_settings.should_not be_nil
+    end
+
+    it 'delegates the get properly' do
+      user.auto_follow_classmates?.should == user.user_settings.auto_follow_classmates
+    end
+
+    it 'delegates the set properly' do
+      user.update_attributes(:auto_follow_classmates => false)
+      user.user_settings.save
+      user.auto_follow_classmates?.should == false
+    end
+  end
+
   describe 'legacy password' do
     let(:hash)      {"$2a$10$gty2sE8EyUx9NhQVIcF4RusDu1aTYYwU2Mpih48vYhjOVAumzz6XK"}
     let(:salt)      {"$2a$10$gty2sE8EyUx9NhQVIcF4Ru"}
