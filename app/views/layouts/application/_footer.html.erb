@@ -22,7 +22,7 @@
 
     </div>
 
-    <div class="grid_6">
+    <div class="grid_5">
       <div class="footer-heading">Newsletter sign up</div>
         <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
           <div id="mc_embed_signup">
@@ -31,45 +31,29 @@
             <input type="email" value="" name="EMAIL" class="newsletterForm" placeholder="email address" required><br>
             <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletterButton">
           </form>
-          </div>
-
+        </div>
+    
     </div>
 
 
-    <div class="grid_3 footer-right">
+    <div class="grid_4 footer-right">
 
          <div class="footer-heading">Connect with us</div>
 
          <table id="footer">
-
-         <tr>
-            <td id="footer">
-              <%= image_tag 'v2/icon_star.png', :class => 'footer_contact' %>
-            </td>
-            <td id="footer">
-              <a href="/about" class="footer">Read our mission</a>
-            </td>
+           
+          <tr id="footer">
+            <div class="fb-like" data-send="false" data-width="250" data-show-faces="true" style="margin-bottom: 20px"></div>   
           </tr>
 
-           <tr>
-             <td id="footer">
-               <%= image_tag 'v2/icon_facebook.png', :class => 'footer_contact' %>
-             </td>
-             <td id="footer">
-                <a href="http://www.facebook.com/hourschool" class="footer" target="_blank">Like us on Facebook</a>
-             </td>
-           </tr>
-
-           <tr>
-              <td id="footer">
-                <%= image_tag 'v2/icon_twitter.png', :class => 'footer_contact' %>
-              </td>
-              <td id="footer">
-                <a href="http://www.twitter.com/hourschool" class="footer" target="_blank">Follow us on Twitter</a>
-              </td>
+           <tr id="footer">
+             <div style="margin-bottom: 20px">
+             <a href="https://twitter.com/HourSchool" class="twitter-follow-button" data-show-count="false">Follow @HourSchool</a>
+             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+             </div>
             </tr>
 
-           <tr>
+           <tr id="footer">
              <td id="footer">
                <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
              </td>
