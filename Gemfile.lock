@@ -405,7 +405,7 @@ GEM
     webmock (1.7.10)
       addressable (~> 2.2, > 2.2.5)
       crack (>= 0.1.7)
-    wicked (0.0.1)
+    wicked (0.0.2)
       activesupport (>= 3.0.7)
       rails (>= 3.0.7)
     will_paginate (3.0.3)
@@ -474,5 +474,5 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn (~> 4.2.0)
   webmock
-  wicked (= 0.0.1)
+  wicked (= 0.0.2)
   will_paginate (~> 3.0.2)

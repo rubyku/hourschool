@@ -76,7 +76,7 @@ gem 'aws-sdk',              '~> 1.2.6'
 gem 'aws-s3',               '~> 0.6.2'
 
 
-gem 'wicked',               '0.0.1'
+gem 'wicked',               '0.0.2'
 
 
 gem 'geokit-rails3',        :git =>  'git://github.com/jlecour/geokit-rails3.git'
