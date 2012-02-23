@@ -13,20 +13,19 @@
         %br
           .class-description
             .heading13-class
-              = link_to course.title, course
-            / %p= course.teaser.truncate(49) unless course.teaser.blank?
+              = link_to course.title.truncate(45), course
+            %p= course.teaser.truncate(49) unless course.teaser.blank?
 
           .class-note
             .heading9-class
-              = "#{course.city.try(:name)}, #{course.city.try(:state)} |"
               - if course.active?  
                 - if course.max_seats.blank?
-                  = "Unlimited seats"
+                  = "Unlimited seats |"
                 - elsif course.seats_left == 0 
-                  = "Full!"
+                  = "Full! |"
                 - elsif
-                  = "#{course.seats_left} seats left"
-              
+                  = "#{course.seats_left} seats left |"
+              = "#{course.city.try(:name)}, #{course.city.try(:state)}"
 
     - else
       /do nothing
