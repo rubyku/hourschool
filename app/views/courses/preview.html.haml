@@ -61,6 +61,8 @@
       .class-description-block
         .class-title-big
           = @course.title
+        .happening-message-header
+          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
         .heading10-class
           = "Classes are always more fun with a group of friends. Share this class!"
           = render :partial => "add_this_small"

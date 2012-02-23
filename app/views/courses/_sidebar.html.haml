@@ -78,12 +78,7 @@
 
     - if course.donate?
       .sidebar-block
-        = image_tag "v2-campaign/frame.png", :class => "greendoors-frame"
-        = link_to image_tag("v2-campaign/button-learnmore.png"), campaign_path, :class => "button-learnmore"
-        .greendoors-frame-heading Peer Teaching Fund
-        .greendoors-frame-copy
-          .greendoors-frame-copy-text This fund is used to cover the cost of a peer teaching program at our partnered non-profit organizations.  
-
+        = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
     .sidebar-block-last
       .sidebar-heading Teacher
