@@ -89,8 +89,11 @@ gem 'rinku',              '~> 1.2.2', :require => 'rails_rinku'
 gem 'cancan',             '~> 1.6.5'
 
 group :development do
-  gem 'heroku',             '~> 2.18.1'
+  gem 'heroku',           '~> 2.18.1'
 end
+
+
+gem 'mail_view',          '~> 1.0.2'
 
 
 group :development, :test do

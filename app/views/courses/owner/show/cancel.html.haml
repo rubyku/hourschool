@@ -1,0 +1,9 @@
+.page
+  .page-content    
+    = render :layout => 'shared/page/section', :locals => {:header => "Cancel '#{@course.name}'?"} do
+      = "We're bummed that you want to cancel '#{@course.name}'. Please let your students know why you're canceling this class and we'll send them all an email."
+      %div
+        = form_tag course_owner_path(@course, :cancel), :method => :put do
+          = text_area_tag :messsage, nil, :placeholder => 'Cancellation message (optional)', :class => 'form-tall'
+          %div
+            = submit_tag 'Confirm Course Cancel', :class => 'register-class-button'
