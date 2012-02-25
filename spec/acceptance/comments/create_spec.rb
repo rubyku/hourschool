@@ -10,7 +10,6 @@ feature "Acceptance courses#create" do
       pending("course factories working with a teacher")
       as_user(user) do
         visit course_path(course)
-        save_and_open_page
         successfully_renders
       end
     end

@@ -24,6 +24,13 @@ FactoryGirl.define do
   #   association :role, :name => 'teacher'
   # end
 
+  factory :account do
+    name        'frog'
+    subdomain   'frog'
+    description ''
+    email_regex  "@frog.com$"
+  end
+
   factory :city do
     zip   { Forgery(:address).zip   }
     name  { Forgery(:address).city  }
