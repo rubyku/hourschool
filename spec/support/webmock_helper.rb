@@ -63,3 +63,9 @@ def geo_web_mock(options = {})
   stub_request(:any, %r{maps.google.com/maps/geo}).
     to_return(:status => status, :body => body, :headers => {})
 end
+
+
+def geo_name_web_mock
+  austin_time = Timezone::Zone.new(:zone => "America/Chicago")
+  Timezone::Zone.stub(:new).and_return( austin_time )
+end
