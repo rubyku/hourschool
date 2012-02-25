@@ -29,7 +29,10 @@ HourschoolV2::Application.routes.draw do
     resources :browse
     resources :search
   end
-  resources :courses
+
+  resources :courses do
+    resources :owner, :controller => 'courses/owner'
+  end
 
    resources :enterprises, :only => [:index, :show]  do
     resources :subdomains, :shallow => true
@@ -124,6 +127,10 @@ HourschoolV2::Application.routes.draw do
   match '/500',  :to => 'errors#error'
 
   resources :test
+
+  if Rails.env.development?
+    mount StudentMailer::Preview => 'mail_view'
+  end
 
 end
 

@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
-  before_filter :must_be_live, :only => [:show]
 
   def index
     #authenticate admin - change this.
@@ -277,12 +276,7 @@ class CoursesController < ApplicationController
   end
 
   private
-  def must_be_live
-    @course = Course.find(params[:id])
-    if @course.status.present? && @course.status != "live"
-      redirect_to user_root_path
-    end
-  end
+
 
   def post_to_twitter(course)
     begin
