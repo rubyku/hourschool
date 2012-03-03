@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :series
+
   resources :tracks
 
   # temp hack, remove after Febuary 2011

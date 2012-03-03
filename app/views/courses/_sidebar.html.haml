@@ -24,7 +24,7 @@
 
       - if can? :edit_course, course
         - if course.inactive?
-          = button_to "Teach this again!",       new_course_path, :method => :get, :class => "register-class-button"
+          = button_to "Teach this again!",       duplicate_course_path, :method => :get, :class => "register-class-button"
         - else
           = button_to "Edit class profile",      edit_course_path, :method => :get, :class => "edit-class-button"
           = button_to "Cancel this Class",       course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
