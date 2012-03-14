@@ -6,15 +6,14 @@
         %li.sub-nav-active
           %a.sub-nav-active(href="/admin/charts") Overview
         %li.sub-nav-inactive
-
-
+        
+          %a.sub-nav-inactive(href="/admin/charts/months/3") Mar 2012
+        %li.sub-nav-inactive
+          %a.sub-nav-inactive(href="/admin/charts/months/2") Feb 2012
+        %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/1") Jan 2012
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/admin/charts/months/12") Dec 2011
-        %li.sub-nav-inactive
-          %a.sub-nav-inactive(href="/admin/charts/months/11") Nov 2011
-
-
 
     - if @courses_yesterday.present?
       .notification-center
@@ -29,10 +28,6 @@
               %td= course.teacher.email
               %td= "$ #{course.price * course.students.size}"
 
-        %br
-        %div
-        .class-section-heading Students we need to refund
-        
     %div
       .heading15-marcomm Goals for this month
       = "Users: #{@users_this_month} to date, #{@users_last_month *2 - @users_this_month} until #{@users_last_month *2}"
