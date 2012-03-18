@@ -74,7 +74,6 @@
         = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
 
         = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm taking this class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
-
       - else
         %p.confirm Classes are more fun with friends! Connect Facebook to your account today!
         = render :partial => 'users/facebook/connect_button'
