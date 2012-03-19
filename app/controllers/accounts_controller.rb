@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
     if (@user.valid? && @account.valid?) && (@user.save && @account.save)
       sign_in('user', @user)
       Membership.create!(:user => @user, :account => @account, :admin => true)
-      redirect_to(account_url(:current, :subdomain => @account.subdomain)) && return
+      redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
     end
 
     # somethings wrong if we made it this far, render form
