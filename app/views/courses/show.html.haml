@@ -1,5 +1,7 @@
 :css
   a{color: #ff7733;}
+  
+= content_for(:document_title, "#{@course.name} in #{@course.city.try(:name_state)} | Hourschool" )
 
 .page
   .page-content
