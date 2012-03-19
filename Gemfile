@@ -129,8 +129,9 @@ group :development, :test do
 
 
   # Debugging
-  gem 'ruby-debug19', :require => 'ruby-debug'
-  
+  # gem 'linecache19', '~> 0.5.13'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
+
   gem 'progress_bar'
 end
 
