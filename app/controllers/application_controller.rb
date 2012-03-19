@@ -17,10 +17,16 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    helper_method :admin_of_current_account?
+    def admin_of_current_account?
+      authenticate_user!
+      current_user.admin? || (current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true))
+    end
+
+    helper_method :community_site?
     def community_site?
       current_account.nil?
     end
-    helper_method :community_site?
 
     # remove the www. from our URL ensures facebook auth works
     # and ensures we don't accidentally swap domains while a user
@@ -54,7 +60,9 @@ class ApplicationController < ActionController::Base
 
     def authenticate_admin!
       authenticate_user!
-      redirect_to root_path unless current_user.admin?
+      unless current_user.admin? || admin_of_current_account?
+        redirect_to root_path
+      end
     end
 
     def log_error(exception)

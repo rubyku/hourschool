@@ -13,12 +13,13 @@ class AccountsController < ApplicationController
     @account = Account.new(params[:account])
     @user = User.new_with_session(params[:user], session) # devise helper
 
-    # make sure we attach any errors to both models
+    # run validations and attach errors to both models
     @user.valid?
     @account.valid?
 
     if (@user.valid? && @account.valid?) && (@user.save && @account.save)
       sign_in('user', @user)
+      Membership.create!(:user => @user, :account => @account, :admin => true)
       redirect_to(account_url(:current, :subdomain => @account.subdomain)) && return
     end
 

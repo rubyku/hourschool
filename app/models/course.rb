@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   belongs_to :city
   belongs_to :series
+  belongs_to :account
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
