@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120323020655) do
 
   create_table "access_grants", :force => true do |t|
@@ -23,14 +24,18 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
+=======
+ActiveRecord::Schema.define(:version => 20120319183149) do
+>>>>>>> create a user, account and log me in
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
     t.string   "subdomain"
     t.string   "email_regex"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "private",     :default => false, :null => false
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
@@ -130,9 +135,14 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "happening",          :default => true
     t.boolean  "featured",           :default => false
     t.boolean  "donate"
+<<<<<<< HEAD
     t.integer  "series_id"
+=======
+    t.integer  "account_id"
+>>>>>>> create a user, account and log me in
   end
 
+  add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
 

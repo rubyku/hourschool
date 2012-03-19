@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
   def new
     @account = Account.new
+    @user = User.new
+    @errors = []
   end
 
   def edit
@@ -9,13 +11,26 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(params[:account])
-    
-    if @account.save
-      redirect_to(learn_url(:subdomain => @account.subdomain))
-    else
-      flash.now['alert'] = "Oops. Double check the errors below."
-      render :action => "new"
+    @user = User.new_with_session(params[:user], session) # devise helper
+
+    # make sure we attach any errors to both models
+    @user.valid?
+    @account.valid?
+
+    if (@user.valid? && @account.valid?) && (@user.save && @account.save)
+      sign_in('user', @user)
+      redirect_to(account_url(:current, :subdomain => @account.subdomain)) && return
     end
+
+    # somethings wrong if we made it this far, render form
+    @errors = @user.errors.full_messages + @account.errors.full_messages
+    flash.now['alert'] = "Oops. Double check the errors below."
+    render :action => "new"
+  end
+
+  def show
+    # admins only
+    @account = current_account
   end
 
   def update

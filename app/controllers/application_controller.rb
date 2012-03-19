@@ -10,23 +10,17 @@ class ApplicationController < ActionController::Base
     def debug
     end
 
+    helper_method :current_account
     def current_account
       @current_account ||= if request.subdomain.present?
         Account.where(:subdomain => request.subdomain.downcase).first
       end
     end
 
-    def invalid_user_for_subdomain?
-      current_user && current_account && current_account.invalid_user?(current_user)
+    def community_site?
+      current_account.nil?
     end
-
-    def require_account_for_subdomain!
-      if invalid_user_for_subdomain?
-        sign_out_and_redirect(:user)
-        # flash must come after redirect to work properly
-        flash[:error] = "You need to sign up with a #{current_account.name} email address"
-      end
-    end
+    helper_method :community_site?
 
     # remove the www. from our URL ensures facebook auth works
     # and ensures we don't accidentally swap domains while a user
@@ -34,8 +28,6 @@ class ApplicationController < ActionController::Base
     def ensure_domain
       if request.subdomain == 'www'
         redirect_to request.url.gsub("//www.", '//'), :status => 301
-      else
-        require_account_for_subdomain!
       end
     end
 

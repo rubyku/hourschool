@@ -1,16 +1,16 @@
 <h1>Create a School</h1>
 
 <%= form_for @account do |f| %>
-  <% if @account.errors.any? %>
+  <% if @errors.any? %>
     <div id="error_explanation" class="error">
       <ul>
-        <% @account.errors.full_messages.each do |msg| %>
+        <% @errors.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  
+
   <div class="clearfix">
     <%= f.label :name, "Organization Name" %>
     <div class="input">
@@ -21,8 +21,62 @@
   <div class="clearfix">
     <%= f.label :subdomain, "Subdomain" %>
     <div class="input">
-      <%= f.text_field :subdomain %>
-      <span class="help-block">Numbers and letters only.</span>
+      <%= f.text_field :subdomain %>.hourschool.com
+      <span class="help-block">(Numbers and letters only.)</span>
+    </div>
+  </div>
+
+  <% if current_user %>
+    <p>Logged in as <%= current_user.email %></p>
+  <% else %>
+    <%= fields_for :user do |user| %>
+      <div class="clearfix">
+        <%= user.label :name, "Your Name" %>
+        <div class="input">
+          <%= user.text_field :name %>
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <%= user.label :email, "Your Email" %>
+        <div class="input">
+          <%= user.text_field :email %>
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <%= user.label :zipcode, "Your Zipcode" %>
+        <div class="input">
+          <%= user.text_field :zipcode %>
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <%= user.label :password, "Create a Password" %>
+        <div class="input">
+          <%= user.password_field :password %>
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <%= user.label :password_confirmation, "Confirm Password" %>
+        <div class="input">
+          <%= user.password_field :password_confirmation %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <label class="radio">
+        <%= f.radio_button :private, false %>
+        Promote my classes on the main hourschool.com site where anyone can view and attend.
+      </label><br />
+      <label class="radio">
+        <%= f.radio_button :private, true %>
+        Please keep my classes private, only the people I invite can view or attend classes.
+      </label>
     </div>
   </div>
 
