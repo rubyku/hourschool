@@ -7,14 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    if current_account.present? && current_account.invalid_email?(params[:user][:email])
-        params[:user][:email] = nil
-        flash[:error]         = "This is not a valid #{current_account.name} email address"
-        resource              = build_resource(params[:user])
-        respond_with_navigational(resource){ render_with_scope :new }
-    else
-      super
-    end
+    super
   end
 
   def update
