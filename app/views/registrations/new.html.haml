@@ -6,13 +6,15 @@
           %a.sub-nav-active(href="/users/sign_up") Register
         %li.sub-nav-inactive
           %a.sub-nav-inactive(href="/users/sign_in") Sign in
-    .class-alternatives
-      We will not post anything without your permission.
-      .page-section-float-left
-        = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
-      %hr
-      %br
-      %p Or sign up with email
+
+    - if community_site?
+      .class-alternatives
+        We will not post anything without your permission.
+        .page-section-float-left
+          = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
+        %hr
+        %br
+        %p Or sign up with email
 
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
