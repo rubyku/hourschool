@@ -36,10 +36,6 @@ HourschoolV2::Application.routes.draw do
     resources :owner, :controller => 'courses/owner'
   end
 
-   resources :enterprises, :only => [:index, :show]  do
-    resources :subdomains, :shallow => true
-  end
-
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
                                        :sessions            => 'sessions' }
@@ -65,7 +61,6 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  get "sites/show"
   match '/learn'                      => 'Courses::Browse#index'
   match '/teach'                      => 'home#teach'
   match '/suggest'                    => 'suggestions#suggest'
