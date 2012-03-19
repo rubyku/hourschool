@@ -12,7 +12,7 @@
 
         <ul id="login">
             <% if user_signed_in? %>
-                <% if current_user.zip.present? %>
+                <% if current_user.zip.present? && community_site? %>
                     <li id="login_peerlearning">Peer learning in <%= current_user.city %></li>
                <% end %>
                <li id="login">
