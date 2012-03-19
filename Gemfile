@@ -88,6 +88,11 @@ gem 'rinku',              '~> 1.2.2', :require => 'rails_rinku'
 
 gem 'cancan',             '~> 1.6.5'
 
+# For the Sitemaps!
+gem 'sitemap_generator',  '~> 3.0.0'
+gem 'carrierwave',        '~> 0.5.8'
+gem 'fog',                '~> 1.1.2'
+
 group :development do
   gem 'heroku',           '~> 2.18.1'
 end
