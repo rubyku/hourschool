@@ -1,0 +1,18 @@
+curl 'localhost:3000/oauth/authorize?redirect_uri=http://localhost:3000/callback&client_id=a0ccda1de0c38387d5df140cc9ec408c'
+
+
+
+curl     -d 'client_id=a0ccda1de0c38387d5df140cc9ec408c' \
+         -d 'client_secret=4e9f7d2f3fa5591c4bdc87a699fb4d3d' \
+         -d 'code=12a264630c9d12c3a00071b8fae37f85' \
+         'http://localhost:3000/oauth/access_token'
+
+
+
+
+b7bf8d06dda866a969634769aa837c9f
+
+
+
+
+localhost:3000/oauth/authorize?client_id=d125ebeeb8da1b23d6cb04c26f845f3e&access_token=b7bf8d06dda866a969634769aa837c9f&redirect_uri=http%3A%2F%2Fexample.com
