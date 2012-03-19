@@ -20,7 +20,7 @@ class Courses::BrowseController < ApplicationController
       @no_courses_in_user_city = false
     end
 
-    courses  = Course.live
+    courses  = Course.live.includes(:roles, [:roles => :user])
     if params[:id] == 'all'
       courses = courses.random
     else
