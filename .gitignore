@@ -4,8 +4,12 @@ log/*.log
 log/*.log.lck
 tmp/
 .rvmrc
+
 .DS_Store
+public/.DS_Store
+
 /solr
 .sass-cache/
 log/sunspot-solr-development.log.lck
 public/assets/*
+public/sitemap*

@@ -1,6 +1,22 @@
 desc "Send scheduled emails"
 namespace :schedule do
 
+  task :generate_sitemap => :environment do
+
+    SitemapGenerator::Sitemap.sitemaps_host = "https://s3.amazonaws.com/hourschool-sitemap/"
+    SitemapGenerator::Sitemap.public_path = 'tmp/'
+    SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+    SitemapGenerator::Sitemap.adapter = SitemapGenerator::WaveAdapter.new
+
+    SitemapGenerator::Sitemap.default_host = 'http://www.hourschool.com'
+    SitemapGenerator::Sitemap.create do
+      Course.find_each do |course|
+        add course_path(course), :changefreq => 'daily'
+      end
+    end
+    SitemapGenerator::Sitemap.ping_search_engines # called for you when you use the rake task
+  end
+
   task :send_class_proposal_reminder_emails => :environment do
     puts "Sending class proposal reminder emails..."
     pending_courses = Course.where("status = ? AND updated_at < ? AND updated_at > ?", "approved", 7.days.ago, 8.days.ago)
