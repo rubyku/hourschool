@@ -54,6 +54,7 @@ HourschoolV2::Application.routes.draw do
   end
 
   resources :payments
+  resources :accounts
 
   match 'confirm_payment'             => 'payments#confirm'
 

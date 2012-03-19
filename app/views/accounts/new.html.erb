@@ -1,0 +1,32 @@
+<h1>Create a School</h1>
+
+<%= form_for @account do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation" class="error">
+      <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="clearfix">
+    <%= f.label :name, "Organization Name" %>
+    <div class="input">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= f.label :subdomain, "Subdomain" %>
+    <div class="input">
+      <%= f.text_field :subdomain %>
+      <span class="help-block">Numbers and letters only.</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :disable_with => 'Creating account...' %>
+  </div>
+<% end %>

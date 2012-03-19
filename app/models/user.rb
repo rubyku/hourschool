@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
+  has_many :memberships
+  has_many :accounts, :through => :memberships
+
   has_many :roles, :dependent => :destroy
   has_many :courses, :through => :roles
   has_many :courses_taught,   :through => :roles, :conditions => ["name = (?)", "teacher"], :source => :course
