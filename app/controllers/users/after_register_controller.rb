@@ -1,4 +1,6 @@
-class Users::AfterRegisterController < Wicked::WizardController
+class Users::AfterRegisterController < ApplicationController
+  include Wicked::Wizard
+
   before_filter :authenticate_user!
   steps :confirm_password, :confirm_zip, :confirm_avatar, :invite_fb
 
