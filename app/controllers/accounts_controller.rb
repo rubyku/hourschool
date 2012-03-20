@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_filter :authenticate_admin!, :except => [:new, :create]
+
   def new
     @account = Account.new
     @user = User.new
@@ -11,20 +13,26 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(params[:account])
-    @user = User.new_with_session(params[:user], session) # devise helper
-
-    # run validations and attach errors to both models
-    @user.valid?
     @account.valid?
 
-    if (@user.valid? && @account.valid?) && (@user.save && @account.save)
-      sign_in('user', @user)
-      Membership.create!(:user => @user, :account => @account, :admin => true)
-      redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+    if user_signed_in?
+      if @account.valid? && @account.save
+        Membership.create!(:user => current_user, :account => @account, :admin => true)
+        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+      end
+    else
+      @user = User.new_with_session(params[:user], session)
+      @user.valid?
+      if (@user.valid? && @account.valid?) && (@user.save && @account.save)
+        sign_in('user', @user)
+        Membership.create!(:user => @user, :account => @account, :admin => true)
+        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+      end
     end
 
     # somethings wrong if we made it this far, render form
-    @errors = @user.errors.full_messages + @account.errors.full_messages
+    @errors = @account.errors.full_messages
+    @errors += @user.errors.full_messages unless user_signed_in?
     flash.now['alert'] = "Oops. Double check the errors below."
     render :action => "new"
   end

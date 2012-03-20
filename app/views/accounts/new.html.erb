@@ -1,86 +1,77 @@
-<h1>Create a School</h1>
+<div class="page">
+  <div class="page-content">
+    <h2>Create a School</h2><br /><br />
 
-<%= form_for @account do |f| %>
-  <% if @errors.any? %>
-    <div id="error_explanation" class="error">
-      <ul>
-        <% @errors.each do |msg| %>
-          <li><%= msg %></li>
+    <%= form_for @account do |f| %>
+      <% if @errors.any? %>
+        <div id="error_explanation" class="error">
+          <strong style="font-weight:bold;color:red;">Oops, check the errors below:</strong>
+          <ul>
+            <% @errors.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-question">
+        <%= f.label :name, "Organization Name" %><br />
+        <%= f.text_field :name, :class => "form-short-with-margin" %>
+      </div>
+
+      <div class="form-question">
+        <%= f.label :subdomain, "Custom URL" %><br />
+        <%= f.text_field :subdomain, :class => "form-short-with-margin" %>.hourschool.com<br />
+        <span class="help-block" style="font-weight:normal">(numbers and letters only)</span>
+      </div>
+
+      <% if current_user %>
+        <p>You're currently logged in as <%= current_user.email %></p>
+      <% else %>
+        <%= fields_for :user do |user| %>
+          <div class="form-question">
+            <%= user.label :name, "Your Name" %><br />
+            <%= user.text_field :name, :class => "form-short-with-margin" %>
+          </div>
+
+          <div class="form-question">
+            <%= user.label :email, "Your Email" %><br />
+            <%= user.text_field :email, :class => "form-short-with-margin" %>
+          </div>
+
+          <div class="form-question">
+            <%= user.label :zipcode, "Your Zipcode" %><br />
+            <%= user.text_field :zipcode, :class => "form-short-with-margin" %>
+          </div>
+
+          <div class="form-question">
+            <%= user.label :password, "Create a Password" %><br />
+            <%= user.password_field :password, :class => "form-short-with-margin" %>
+          </div>
+
+          <div class="form-question">
+            <%= user.label :password_confirmation, "Confirm Password" %><br />
+            <%= user.password_field :password_confirmation, :class => "form-short-with-margin" %>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <% end %>
 
-  <div class="clearfix">
-    <%= f.label :name, "Organization Name" %>
-    <div class="input">
-      <%= f.text_field :name %>
-    </div>
-  </div>
-
-  <div class="clearfix">
-    <%= f.label :subdomain, "Subdomain" %>
-    <div class="input">
-      <%= f.text_field :subdomain %>.hourschool.com
-      <span class="help-block">(Numbers and letters only.)</span>
-    </div>
-  </div>
-
-  <% if current_user %>
-    <p>Logged in as <%= current_user.email %></p>
-  <% else %>
-    <%= fields_for :user do |user| %>
-      <div class="clearfix">
-        <%= user.label :name, "Your Name" %>
-        <div class="input">
-          <%= user.text_field :name %>
+      <div class="control-group" style="margin-bottom:20px">
+        <div class="controls">
+          <label class="radio">
+            <%= f.radio_button :private, false %>
+            Promote my classes on the main hourschool.com site where anyone can view and attend.
+          </label><br />
+          <label class="radio">
+            <%= f.radio_button :private, true %>
+            Please keep my classes private, only the people I invite can view or attend classes.
+          </label>
         </div>
       </div>
 
-      <div class="clearfix">
-        <%= user.label :email, "Your Email" %>
-        <div class="input">
-          <%= user.text_field :email %>
-        </div>
-      </div>
-
-      <div class="clearfix">
-        <%= user.label :zipcode, "Your Zipcode" %>
-        <div class="input">
-          <%= user.text_field :zipcode %>
-        </div>
-      </div>
-
-      <div class="clearfix">
-        <%= user.label :password, "Create a Password" %>
-        <div class="input">
-          <%= user.password_field :password %>
-        </div>
-      </div>
-
-      <div class="clearfix">
-        <%= user.label :password_confirmation, "Confirm Password" %>
-        <div class="input">
-          <%= user.password_field :password_confirmation %>
-        </div>
+      <div class="actions">
+        <%= f.submit 'Go!', :class => "loginButton" %>
       </div>
     <% end %>
-  <% end %>
-
-  <div class="control-group">
-    <div class="controls">
-      <label class="radio">
-        <%= f.radio_button :private, false %>
-        Promote my classes on the main hourschool.com site where anyone can view and attend.
-      </label><br />
-      <label class="radio">
-        <%= f.radio_button :private, true %>
-        Please keep my classes private, only the people I invite can view or attend classes.
-      </label>
-    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit :disable_with => 'Creating account...' %>
-  </div>
-<% end %>
+</div>
