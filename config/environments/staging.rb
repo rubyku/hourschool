@@ -9,7 +9,7 @@ HourschoolV2::Application.configure do
 
   # set cloudfront url to serve assets from
   # ENV["cloudfront_url"] can be set per server (i.e. staging/etc.)
-  # config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d2241bk01g007l.cloudfront.net"
+  config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d2241bk01g007l.cloudfront.net"
 
   config.static_cache_control = "public, max-age=2592000"
 
@@ -45,8 +45,8 @@ HourschoolV2::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = true
-  # config.action_controller.asset_host = "http://d2241bk01g007l.cloudfront.net"
+  config.serve_static_assets = false
+  config.action_controller.asset_host = "http://d2241bk01g007l.cloudfront.net"
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
