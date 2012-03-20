@@ -3,21 +3,29 @@ class SuggestionsController < ApplicationController
   before_filter :has_not_created_suggestion_recently?, :only => [:new, :create]
 
   def index
-    @suggestions = Suggestion.all
+    if community_site?
+      @suggestions = Suggestion.all
+    else
+      @suggestions = current_account.suggestions
+    end
   end
 
 
   def suggest
-    @top_suggestions =  Suggestion.tally(
-       {  :at_least => 1,
-           :at_most => 10000,
-           :limit => 100,
-           :order => "suggestions.name ASC"
-       })
-    suggestions_to_display = @top_suggestions
-    @suggestions = suggestions_to_display.paginate(:page => params[:page], :per_page => 20)
-    if !params[:order].nil?
-      order_suggestions(suggestions_to_display, params[:order])
+    if community_site?
+      @top_suggestions =  Suggestion.tally(
+         {  :at_least => 1,
+             :at_most => 10000,
+             :limit => 100,
+             :order => "suggestions.name ASC"
+         })
+      suggestions_to_display = @top_suggestions
+      @suggestions = suggestions_to_display.paginate(:page => params[:page], :per_page => 20)
+      if !params[:order].nil?
+        order_suggestions(suggestions_to_display, params[:order])
+      end
+    else
+      @suggestions = Suggestion.where(:account_id => current_account.id).paginate(:page => params[:page], :per_page => 20)
     end
   end
 
@@ -32,6 +40,7 @@ class SuggestionsController < ApplicationController
   def create
     @suggestion = Suggestion.new(params[:suggestion].merge({:requested_by => current_user.id}))
     @user = current_user
+    @suggestion.account = current_account if current_account
     #need to have validations
     if @suggestion.save
       current_user.vote_for(@suggestion)
