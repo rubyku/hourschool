@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   def index
     #authenticate admin - change this.
     @courses = Course.where(:status => "proposal")
+    @courses = @courses.where(:account_id => current_account.id) if current_account
     @user = current_user
   end
 
