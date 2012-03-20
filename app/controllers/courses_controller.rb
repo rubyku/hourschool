@@ -46,10 +46,7 @@ class CoursesController < ApplicationController
 
   def duplicate
     @old_course = Course.find(params[:id])
-    @course = Course.new(@old_course.attributes)
-    @course.status = "approved"
-    @course.date = Date.tomorrow
-    @course.photo = @old_course.photo
+    @course = Course.duplicate(@old_course)
     @course.save!
 
     @user = current_user
@@ -65,6 +62,7 @@ class CoursesController < ApplicationController
     @series.last_course_id = @course.id
     @series.student_count = @series.count_students(@series.student_count)
     @series.save!
+
     redirect_to edit_course_path(@course.id)
   end
 

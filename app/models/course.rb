@@ -160,6 +160,13 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.duplicate(course)
+    duplicate = Course.new(course.attributes)
+    duplicate.status = "approved"
+    duplicate.date = Date.tomorrow
+    duplicate.photo = course.photo
+    duplicate
+  end
 
   # return true if user is blank (we don't know where they are)
   # or false if the cities don't match
