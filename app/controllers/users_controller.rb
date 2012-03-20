@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @users = User.order('DATE(created_at) DESC').all
-    
+    if community_site?
+      @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
+    else
+      @users = current_account.users
+    end
   end
 
   def show

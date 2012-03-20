@@ -1,16 +1,21 @@
-<% if current_user && current_user.admin? %> 
+<% if current_user && admin_of_current_account? %> 
   <h1>Users</h1>
 
   <table>
     <tr>
-  	<th>ID</th>
-  	<th>First Name</th>
-  	<th>Last Name</th>
-  	<th>Email</th>
-  	<th>Zip</th>
-  	<th>City</th>
-  	<th>FB Token?</th>
-    <th>Created on</th>
+      <% if community_site? %>
+    	 <th>ID</th>
+      <% end %>
+    	<th>First Name</th>
+    	<th>Last Name</th>
+    	<th>Email</th>
+    	<th>Zip</th>
+    	<th>City</th>
+      <% if community_site? %>
+    	 <th>FB Token?</th>
+       <th>Account</th>
+      <% end %>
+      <th>Created on</th>
     </tr>
 
   <% @users.each do |user| %>
@@ -21,7 +26,10 @@
       <td><%= user.email %></td>
       <td><%= user.zip %></td>
       <td><%= user.location %></td>
-      <td><%= user.fb_token.nil? %></td>
+      <% if community_site? %>
+        <td><%= user.fb_token.nil? %></td>
+        <td><%= user.memberships.collect(&:account).collect(&:name).to_sentence %></td>
+      <% end %>
       <td><%= user.created_at.strftime("%b %d, %Y") %></td>
 
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
