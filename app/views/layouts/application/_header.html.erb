@@ -42,7 +42,7 @@
             <table id="dropdown-text">
               <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path, :class => "dropdown-text" %></td></tr>
               <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path, :class => "dropdown-text" %></td></tr>
-              <% if admin_of_current_account? %>
+              <% if current_account && admin_of_current_account? %>
                 <tr id="dropdown-text">
                   <td id="dropdown-text">
                     <%= link_to "Admin", account_path(:admin), :class => "dropdown-text" %>
