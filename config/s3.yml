@@ -11,7 +11,7 @@ production:
   bucket: hourschool-prod
   access_key_id: AKIAIYW3RHXACBNVKNMQ
   secret_access_key: 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
-production:
+staging:
   bucket: hourschool-staging
   access_key_id: AKIAIYW3RHXACBNVKNMQ
   secret_access_key: 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
