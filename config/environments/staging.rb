@@ -9,7 +9,7 @@ HourschoolV2::Application.configure do
 
   # set cloudfront url to serve assets from
   # ENV["cloudfront_url"] can be set per server (i.e. staging/etc.)
-  config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d1ufsa5oa5lbkj.cloudfront.net"
+  config.action_controller.asset_host = ENV["cloudfront_url"] || "http://d2241bk01g007l.cloudfront.net"
 
   config.static_cache_control = "public, max-age=2592000"
 
@@ -61,7 +61,7 @@ HourschoolV2::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'hourschool.com' }
+  config.action_mailer.default_url_options = { :host => 'hourschool-staging.com' }
   ### ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :test
