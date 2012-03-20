@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= current_account.name %></title>
+
+  <link rel="icon"
+        type="image/png"
+        href="/images/favicon.png">
+
+  <%= csrf_meta_tag %>
+
+  <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22725750-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<style type="text/css">
+
+  body {
+    font-family: verdana,sans-serif;
+    font-size: 13px;
+    color: black;
+    line-height: 18px;
+    background-color: none;
+    background-image: url(../../../images/v2/BG_grey.png);
+    position: relative;
+  }
+  
+  .container_16 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+  }
+  
+  .full-page {
+    width: 960px;
+    float: left;
+  }
+  
+  .page-section-float-center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+  
+  a{color: #1b5225; text-decoration: none;}
+  a.sub-nav-active {color: black;}
+  a.sub-nav-inactive {color: #8f8f8f;}
+  a.sub-nav-active:hover {text-decoration: none; color: #1b5225;}
+  a.sub-nav-inactive:hover {text-decoration: none; color: #1b5225;}
+
+  ul.sub-nav {
+    list-style: none;
+    font-family: futura-pt-1, futura-pt-2;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  li.sub-nav-active, li.sub-nav-inactive {
+    float: left;
+    margin-left: 45px;
+    margin-right: 10px;
+    padding-bottom: 3px;
+  }
+
+  li.sub-nav-active {
+    border-bottom: 3px solid #1b5225;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  li.sub-nav-inactive {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .form-question {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4f4e4e;
+  }
+  
+  .form-short {
+    position: relative;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border: 1px solid #d2d9dc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  }
+  
+  .login-text{
+    color: black;
+  }
+  
+  .loginButton {
+    /* Disables default styling */
+    border: none;
+    background: #00B6FF;
+    color: #fff;
+    position: relative;
+    width: 84px;
+    height: 33px;
+    background-color: #1b5225;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    color: white;
+    text-transform: uppercase;
+    font-family: futura-pt-1, futura-pt-2;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+  
+  table#powered-by {
+    margin-top: -60px;
+    margin-bottom: 60px;
+    float: right;
+  }
+
+  .footer-powered-by {
+    font-family: verdana,sans-serif;
+    font-size: 9px;
+    color: #a8a7a7;
+    text-transform: uppercase;
+    padding-right: 10px;
+  }
+
+  img#powered-by-logo {
+    padding-bottom: -40px;
+  }
+
+</style>
+
+</head>
+
+<body id="hasbanner">
+  <div class="container_16">
+  <div class="full-page">
+
+      <center>
+        <div class="page-section-float-center">
+         <%= current_account.name %>
+        </div>
+
+        <%- if resource.present? && resource.email.present? -%>
+          <div class="page-section-float-center">
+              <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
+          </div>
+        <%- end -%>
+
+        <div class="page-section-float-center">
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          
+              <div class="form-question">
+              <%= f.label :email, :class => "login-text" %><br />
+              <%= f.email_field :email, :class => "form-short" %>
+              </div>
+
+              <div class="form-question">
+              <%= f.label :password, :class => "login-text" %><br />
+                <%= f.password_field :password , :class => "form-short"%>
+              </div>
+
+              <div class="page-section-float-left">
+                <div><%= f.submit "Sign in", :class => "loginButton" %></div>
+              </div>
+          <% end %>
+        </div>  
+
+          <div class="page-section-float-center">
+            <%= render :partial => "devise/shared/links" %>
+          </div>
+          
+          </center>
+        </div>
+      </div>
+
+<div class="bottom_bg">
+</div><!-- /end .bottom_bg -->
+
+</body>
+</html>

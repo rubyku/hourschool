@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache
+  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
@@ -26,6 +26,12 @@ class ApplicationController < ActionController::Base
     helper_method :community_site?
     def community_site?
       current_account.nil?
+    end
+
+    def hide_private_accounts
+      if current_account && current_account.private? && !user_signed_in?
+        redirect_to new_user_session_path
+      end
     end
 
     # remove the www. from our URL ensures facebook auth works
