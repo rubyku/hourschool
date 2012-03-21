@@ -13,12 +13,20 @@ class UsersController < ApplicationController
     @user = User.me_or_find(params[:id], current_user)
     @approved_courses = @user.courses.where(:status => "approved")
     @pending_courses  = @user.courses.where(:status => "proposal")
+    if current_account
+      @approved_courses = @approved_courses.where(:account_id => current_account.id)
+      @pending_courses = @pending_courses.where(:account_id => current_account.id)
+    end
   end
 
   def profile_teaching
     @user = current_user
     @approved_courses = @user.courses.where(:status => "approved")
     @pending_courses  = @user.courses.where(:status => "proposal")
+    if current_account
+      @approved_courses = @approved_courses.where(:account_id => current_account.id)
+      @pending_courses = @pending_courses.where(:account_id => current_account.id)
+    end
   end
 
   def profile_past_taught
