@@ -1,4 +1,8 @@
+<div class="page">
+  <div class="page-content">
+
 <% if current_user && admin_of_current_account? %> 
+  <%= render :partial => 'layouts/application/admin_bar' %>
   <h1>Users</h1>
 
   <table>

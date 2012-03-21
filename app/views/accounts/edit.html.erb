@@ -1,6 +1,6 @@
 <div class="page">
   <div class="page-content">
-    <h2>Edit Account</h2><br /><br />
+    <%= render :partial => 'layouts/application/admin_bar' %>
 
     <%= form_for @account do |f| %>
       <% if @account.errors.any? %>
