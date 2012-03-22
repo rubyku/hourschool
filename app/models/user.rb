@@ -39,12 +39,27 @@ class User < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
 
 
+  has_one  :user_settings, :class_name => 'UserSettings'
+  delegate :auto_follow_classmates,
+           :auto_follow_classmates?,
+           :auto_follow_classmates=,
+           :auto_follow_facebook?,
+           :auto_follow_facebook=,
+           :notify_classmate_new_course?,
+           :notify_classmate_new_course=,
+           :notify_classmate_attend?,
+           :notify_classmate_attend=, :to => :user_settings
+
+
+
+
   acts_as_voter
 
   before_save  :update_time_zone
   before_save  :update_user_location
   after_save   :update_location_database
   after_create :send_reg_email
+  after_create :create_user_settings
 
   include User::Omniauth
   include User::Facebook
@@ -250,6 +265,11 @@ class User < ActiveRecord::Base
   # End user conversion Code
   # ================================
   private
+
+  def create_user_settings
+    UserSettings.create!(:user => self)
+  end
+
   def update_user_location
     return true if zip.blank?
     return true unless self.zip_changed?
