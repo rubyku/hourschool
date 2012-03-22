@@ -3,7 +3,8 @@
 
 <% if current_user && admin_of_current_account? %> 
   <%= render :partial => 'layouts/application/admin_bar' %>
-  <h1>Users</h1>
+
+  <p><%= link_to '+ Invite a User', new_invite_users_path if current_account %></p>
 
   <table>
     <tr>

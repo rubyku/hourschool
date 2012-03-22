@@ -48,6 +48,10 @@ HourschoolV2::Application.routes.draw do
     member do
       put 'make_admin'
     end
+    collection do
+      get 'new_invite'
+      post 'send_invite'
+    end
   end
 
   ActiveAdmin.routes(self)

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable
 
   validates :zip, :presence => true, :if => :active?
+  attr_accessor :dont_send_reg_email
 
   validates_presence_of :name
   # Setup accessible (or protected) attributes for your model
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
   before_save  :update_time_zone
   before_save  :update_user_location
   after_save   :update_location_database
-  after_create :send_reg_email
+  after_create :send_reg_email, :unless => Proc.new {|u| u.dont_send_reg_email}
 
   include User::Omniauth
   include User::Facebook
@@ -299,6 +300,5 @@ class User < ActiveRecord::Base
 
   def send_reg_email
     UserMailer.send_registration_mail(self.email, self.name).deliver
-  
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :authenticate_admin!, :only => [:make_admin]
+  before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
   
   def index
     if community_site?
@@ -57,12 +57,43 @@ class UsersController < ApplicationController
   def make_admin
     @user = User.find(params[:id])
     if Membership.find_by_user_id_and_account_id(@user.id, current_account.id).update_attribute(:admin, true)
-      redirect_to(users_url, :notice => "#{@user.name} is not an admin.")
+      redirect_to(users_url, :notice => "#{@user.name} is now an admin.")
     else
       redirect_to(users_url, :notice => 'Something went wrong.')
     end
   end
 
+  # admins inviting users
+  def new_invite
+    @user = User.new
+  end
+
+  def send_invite
+    # theres a chance that user might already have an account on the community stie
+    # so we'll just send them an email about this new school
+    @existing_user = User.find_by_email(params[:user][:email])
+    if @existing_user
+      Membership.create!(:user => @existing_user, :account => current_account, :admin => false) unless Membership.find_by_user_id_and_account_id(@existing_user.id, current_account.id)
+      UserMailer.invitation(@existing_user, current_account, current_user, true).deliver
+      redirect_to(users_url, :notice => "User invited.")
+    else
+      @user = User.new(params[:user])
+      # set user's password to a random string to keep from
+      # hacking devises's password stuff
+      password = SecureRandom.hex
+      @user.password = password
+      @user.password_confirmation = password
+      @user.skip_confirmation!
+      @user.dont_send_reg_email = true
+      if @user.save
+        # cant use .send_reset_password_instructions because it will send mail
+        @user.send(:generate_reset_password_token!)
+        Membership.create!(:user => @user, :account => current_account, :admin => false)
+        UserMailer.invitation(@user, current_account, current_user, false).deliver
+        redirect_to(users_url, :notice => "User invited.")
+      else
+        render :new_invite
+      end
     end
   end
 end
