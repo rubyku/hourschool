@@ -57,9 +57,12 @@ class UsersController < ApplicationController
   def make_admin
     @user = User.find(params[:id])
     if Membership.find_by_user_id_and_account_id(@user.id, current_account.id).update_attribute(:admin, true)
-      redirect_to(root_url, :notice => "#{@user.name} is not an admin.")
+      redirect_to(users_url, :notice => "#{@user.name} is not an admin.")
     else
-      redirect_to(root_url, :notice => 'Something went wrong.')
+      redirect_to(users_url, :notice => 'Something went wrong.')
+    end
+  end
+
     end
   end
 end

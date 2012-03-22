@@ -11,9 +11,6 @@ HourschoolV2::Application.routes.draw do
     namespace :facebook do
       resources :share
     end
-    member do
-      put 'make_admin'
-    end
   end
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
@@ -48,6 +45,9 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'pages#index'
   resources :users do
     resources :followings
+    member do
+      put 'make_admin'
+    end
   end
 
   ActiveAdmin.routes(self)
