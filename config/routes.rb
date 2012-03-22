@@ -11,6 +11,9 @@ HourschoolV2::Application.routes.draw do
     namespace :facebook do
       resources :share
     end
+    member do
+      put 'make_admin'
+    end
   end
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
@@ -78,7 +81,7 @@ HourschoolV2::Application.routes.draw do
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
   match '/approve'                    => 'courses#approve'
-  match '/courses-all'                => 'courses#all'
+  match '/courses-all'                => 'courses#all', :as => 'courses_all'
 
   match '/community'                  => 'home#community'
   match '/community_faq'              => 'home#community_faq'

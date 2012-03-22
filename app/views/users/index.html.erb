@@ -20,11 +20,14 @@
        <th>Account</th>
       <% end %>
       <th>Created on</th>
+      <th></th>
     </tr>
 
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.id %>
+      <% if community_site? %>
+        <td><%= user.id %>
+      <% end %>
       <td><%= link_to user.name.split(" ").first, user_path(user.id) %></td> 
       <td><%= link_to user.name.split(" ").last, user_path(user.id) %></td>   
       <td><%= user.email %></td>
@@ -35,9 +38,17 @@
         <td><%= user.memberships.collect(&:account).collect(&:name).to_sentence %></td>
       <% end %>
       <td><%= user.created_at.strftime("%b %d, %Y") %></td>
-
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <% if community_site? %>
+          <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+        <% else %>
+          <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+            Admin
+          <% else %>
+            <%= link_to 'Make Admin', user, :method => :put %>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </table>
