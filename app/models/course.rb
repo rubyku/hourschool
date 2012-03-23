@@ -1,5 +1,6 @@
 class Course < ActiveRecord::Base
   belongs_to :city
+  belongs_to :series
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
@@ -159,6 +160,14 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.duplicate(course)
+    duplicate = Course.new(course.attributes)
+    duplicate.category_list = course.category_list
+    duplicate.status        = "approved"
+    duplicate.date          = Date.tomorrow
+    duplicate.photo         = course.photo
+    duplicate
+  end
 
   # return true if user is blank (we don't know where they are)
   # or false if the cities don't match

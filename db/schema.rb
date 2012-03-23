@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
 
+
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "happening",          :default => true
     t.boolean  "featured",           :default => false
     t.boolean  "donate"
+    t.integer  "series_id"
   end
 
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
@@ -264,27 +266,13 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "attending"
   end
 
-  create_table "schedule_events", :force => true do |t|
-    t.integer  "scheduler_id"
-    t.date     "publish_on"
-    t.datetime "starts_at"
-    t.boolean  "published"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "schedulers", :force => true do |t|
-    t.string   "interval"
-    t.string   "repeat_on"
-    t.string   "timezone"
-    t.string   "resource_name"
-    t.integer  "course_id"
-    t.integer  "publish_days_before"
-    t.datetime "start_at"
-    t.datetime "ends_at"
-    t.date     "start_on"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+  create_table "series", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "last_course_id"
+    t.integer  "student_count"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "sessions", :force => true do |t|

@@ -11,8 +11,8 @@ class CoursesController < ApplicationController
   def all
     @courses = Course.all
   end
-  
-  
+
+
   def approve
     @course = Course.find(params[:id])
     @course.update_attribute :status, "approved"
@@ -42,6 +42,28 @@ class CoursesController < ApplicationController
     if Course.count > 0
       @random_course = Course.random
     end
+  end
+
+  def duplicate
+    @old_course = Course.find(params[:id])
+    @course = Course.duplicate(@old_course)
+    @course.save!
+
+    @user = current_user
+    @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
+    @user.save!
+
+    @series = Series.find_or_create_by_name(@old_course.title)
+    if @series.courses.empty?
+      @series.courses << @old_course << @course
+    else
+      @series.courses << @course
+    end
+    @series.last_course_id = @course.id
+    @series.student_count = @series.count_students(@series.student_count)
+    @series.save!
+
+    redirect_to edit_course_path(@course.id)
   end
 
   def preview
@@ -192,7 +214,7 @@ class CoursesController < ApplicationController
       format.js { }
     end
   end
-  
+
   def register_for_reskilling
     @course = Course.find(params[:id])
     @user   = current_user
