@@ -48,9 +48,9 @@
      <p>
      <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
      <p class="tip">If you don't have time to find a photo, we will auto-populate a default one based on the category. Of course you can always come back and change it.</p>
+     <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
      <%= f.file_field :photo %>
      </p>
-
 
      </div>
 
