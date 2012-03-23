@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220154824) do
+ActiveRecord::Schema.define(:version => 20120323020655) do
+
+  create_table "access_grants", :force => true do |t|
+    t.string   "code"
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.datetime "access_token_expires_at"
+    t.integer  "user_id"
+    t.integer  "application_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -66,6 +77,15 @@ ActiveRecord::Schema.define(:version => 20120220154824) do
     t.datetime "updated_at"
     t.float    "lat"
     t.float    "lng"
+  end
+
+  create_table "client_applications", :force => true do |t|
+    t.string   "name"
+    t.string   "app_id"
+    t.string   "app_secret"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -244,6 +264,29 @@ ActiveRecord::Schema.define(:version => 20120220154824) do
     t.boolean  "attending"
   end
 
+  create_table "schedule_events", :force => true do |t|
+    t.integer  "scheduler_id"
+    t.date     "publish_on"
+    t.datetime "starts_at"
+    t.boolean  "published"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "schedulers", :force => true do |t|
+    t.string   "interval"
+    t.string   "repeat_on"
+    t.string   "timezone"
+    t.string   "resource_name"
+    t.integer  "course_id"
+    t.integer  "publish_days_before"
+    t.datetime "start_at"
+    t.datetime "ends_at"
+    t.date     "start_on"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -347,6 +390,7 @@ ActiveRecord::Schema.define(:version => 20120220154824) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "status"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

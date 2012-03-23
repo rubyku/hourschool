@@ -1,6 +1,6 @@
 class Users::AfterRegisterController < Wicked::WizardController
   before_filter :authenticate_user!
-  steps :confirm_password, :confirm_avatar, :invite_fb
+  steps :confirm_password, :confirm_zip, :confirm_avatar, :invite_fb
 
 
   def show
@@ -12,6 +12,8 @@ class Users::AfterRegisterController < Wicked::WizardController
       else
         skip_step
       end
+    when :confirm_zip
+      skip_step if @user.zip.present?
     when :confirm_avatar
       skip_step if @user.photo?
     when :invite_fb
@@ -21,19 +23,14 @@ class Users::AfterRegisterController < Wicked::WizardController
         skip_step
       end
     end
+
     render_wizard
   end
 
   def update
     @user = current_user
-    case @step
-    when :confirm_password
-      @user.update_attributes(params[:user])
-    when :confirm_avatar
-      @user.update_attributes(params[:user])
-    when :confirm_profile
-      @user.update_attributes(params[:user])
-    end
+    params[:user][:status] = 'active'
+    @user.update_attributes(params[:user])
     sign_in(@user, :bypass => true) # needed for devise
     render_wizard @user
   end

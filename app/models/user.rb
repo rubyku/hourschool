@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   devise :omniauthable
 
+  validates :zip, :presence => true, :if => :active?
 
   validates_presence_of :name
   # Setup accessible (or protected) attributes for your model
@@ -50,6 +51,10 @@ class User < ActiveRecord::Base
   include User::Facebook
   include User::FollowingMethods
 
+
+  def active?
+    status == "active"
+  end
 
   # for pretty links
   def to_params
@@ -204,7 +209,8 @@ class User < ActiveRecord::Base
   end
 
   def state
-    loc = location.split(',')[1]
+    loc = location || ","
+    loc = loc.split(',')[1]
     loc.strip unless loc.blank?
   end
 
