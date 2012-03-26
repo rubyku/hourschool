@@ -52,7 +52,7 @@
         </td>
         <td>
           <p>
-            <% unless current_user.facebook? %>
+            <% unless current_user.facebook? || current_account %>
               <%= render :partial => 'users/facebook/connect_button' %>
             <%- end -%>
           </p>

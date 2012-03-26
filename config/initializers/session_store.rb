@@ -5,7 +5,7 @@
 # if Rails.env == "development"
 #   HourschoolV2::Application.config.session_store :cookie_store, :key => '_hourschool_v2_session', :domain => ".lvh.me"
 # end
-HourschoolV2::Application.config.session_store :cookie_store, :key => '_hourschool_v2_session'
+HourschoolV2::Application.config.session_store :cookie_store, :key => '_hourschool_v2_session', :domain => :all
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

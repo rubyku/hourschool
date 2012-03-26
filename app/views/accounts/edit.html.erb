@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="page-content">
+    <%= render :partial => 'layouts/application/admin_bar' %>
+
+    <%= form_for @account do |f| %>
+      <% if @account.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+          <ul>
+          <% @account.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-question">
+        <%= f.label :name, "Organization Name" %><br />
+        <%= f.text_field :name, :class => "form-short-with-margin" %>
+      </div>
+
+      <p>Your custom url is <%= @account.subdomain %>.hourschool.com<br />
+      contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.</p>
+
+      <div class="control-group" style="margin-bottom:20px">
+        <div class="controls">
+          <label class="radio">
+            <%= f.radio_button :private, false %>
+            Promote my classes on the main hourschool.com site where anyone can view and attend.
+          </label><br />
+          <label class="radio">
+            <%= f.radio_button :private, true %>
+            Please keep my classes private, only the people I invite can view or attend classes.
+          </label>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Save', :class => "loginButton" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,11 +5,12 @@ class CoursesController < ApplicationController
   def index
     #authenticate admin - change this.
     @courses = Course.where(:status => "proposal")
+    @courses = @courses.where(:account_id => current_account.id) if current_account
     @user = current_user
   end
 
   def all
-    @courses = Course.all
+    @courses = current_account ? current_account.courses : Course.all
   end
 
 
@@ -98,6 +99,7 @@ class CoursesController < ApplicationController
     @course      = Course.new(params[:course])
 
     @course.city = city
+    @course.account = current_account if current_account
 
     #was it from a request
     from_req = !params[:req].nil?
