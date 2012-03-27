@@ -1,39 +1,39 @@
-<% if current_user && current_user.admin? %> 
-
-<table>
-  <tr>
-	<th>ID</th>
-	<th>Topic</th>
-	<th>Teacher</th>
-  <th>Class date</th>
-  <th># of students</th>
-  <th>Min. students</th>
-  <th>Created on</th>
-  </tr>
-
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.id %>
-    <td><%= link_to course.title, course %></td>
-    <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
-    <td><%= course.date %></td>
-    <td><%= course.students.count %></td>
-    <td><%= course.min_seats %></td>
-    <td><%= course.created_at %></td>
-
-    <td><%= link_to 'Show', course %></td>
-    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-    <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
 
-<% else %>
+<div class="page">
+  <div class="page-content">
+    <% if current_user && admin_of_current_account? %> 
+      <%= render :partial => 'layouts/application/admin_bar' %>
+      <table>
+        <tr>
+      	<th>ID</th>
+      	<th>Topic</th>
+      	<th>Teacher</th>
+        <th>Class date</th>
+        <th># of students</th>
+        <th>Min. students</th>
+        <th>Created on</th>
+        </tr>
 
-Sorry, you don't have admin access to this page. <br>
-Have a question? Please email us at hello at hourschool dot com.
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= course.id %>
+          <td><%= link_to course.title, course %></td>
+          <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
+          <td><%= course.date %></td>
+          <td><%= course.students.count %></td>
+          <td><%= course.min_seats %></td>
+          <td><%= course.created_at %></td>
 
-<% end %>
-
-
+          <td><%= link_to 'Show', course %></td>
+          <td><%= link_to 'Edit', edit_course_path(course) %></td>
+          <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+      <% end %>
+      </table>
+    <% else %>
+      Sorry, you don't have admin access to this page. <br>
+      Have a question? Please email us at hello at hourschool dot com.
+    <% end %>
+  </div>
+</div>

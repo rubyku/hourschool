@@ -12,17 +12,19 @@
     </ul>
   </div>
 
-  <div class="page-section-float-left">
-  <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
-    <br>
-    <%  if resource_name.to_s == "user" %>
-    <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
-    <% end %>
-  </div>
+  <% if community_site? %>
+    <div class="page-section-float-left">
+    <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
+      <br>
+      <%  if resource_name.to_s == "user" %>
+      <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
+      <% end %>
+    </div>
 
-  <hr>
-  <br />
-  <p> Or sign in with email:</p>
+    <hr>
+    <br />
+    <p> Or sign in with email:</p>
+  <% end %>
 
 
   <%- if resource.present? && resource.email.present? -%>

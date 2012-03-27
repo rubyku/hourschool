@@ -119,6 +119,15 @@ class UserMailer < ActionMailer::Base
      mail(:to => "ruby@hourschool.com, alex@hourschool.com", :subject => "A suggestion has been submitted!")
    end
 
+  def invitation(user, account, inviter, existing_user)
+    @user = user
+    @account = account
+    @existing_user = existing_user
+    mail :to => user.email,
+         :bcc => "ruby@hourschool.com, alex@hourschool.com",
+         :subject => "#{inviter.name} wants you to join #{account.name}"
+  end
+
    def simple(options)
      @body = options[:body].to_s
      mail(options)

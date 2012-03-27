@@ -36,10 +36,6 @@ HourschoolV2::Application.routes.draw do
     resources :owner, :controller => 'courses/owner'
   end
 
-   resources :enterprises, :only => [:index, :show]  do
-    resources :subdomains, :shallow => true
-  end
-
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
                                        :sessions            => 'sessions' }
@@ -49,6 +45,13 @@ HourschoolV2::Application.routes.draw do
   match 'user_root' => 'pages#index'
   resources :users do
     resources :followings
+    member do
+      put 'make_admin'
+    end
+    collection do
+      get 'new_invite'
+      post 'send_invite'
+    end
   end
 
   ActiveAdmin.routes(self)
@@ -58,6 +61,7 @@ HourschoolV2::Application.routes.draw do
   end
 
   resources :payments
+  resources :accounts
 
   match 'confirm_payment'             => 'payments#confirm'
 
@@ -65,7 +69,6 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  get "sites/show"
   match '/learn'                      => 'Courses::Browse#index'
   match '/teach'                      => 'home#teach'
   match '/suggest'                    => 'suggestions#suggest'
@@ -82,7 +85,7 @@ HourschoolV2::Application.routes.draw do
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
   match '/approve'                    => 'courses#approve'
-  match '/courses-all'                => 'courses#all'
+  match '/courses-all'                => 'courses#all', :as => 'courses_all'
 
   match '/community'                  => 'home#community'
   match '/community_faq'              => 'home#community_faq'

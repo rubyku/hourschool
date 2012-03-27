@@ -1,18 +1,21 @@
-.content
-  %h3= "Requests"
-  %table
-    %tr
-      %th ID
-      %th Name
-      %th Description
-    
-    - for suggestion in @suggestions
+.page
+  .page-content
+    = render :partial => 'layouts/application/admin_bar'
+
+    %h3 Requests
+    %table
       %tr
-        %td= suggestion.id
-        %td= suggestion.name
-        %td= suggestion.description
-        %div{:id => "vote_count_csug#{suggestion.id}"}
-          %td= "#{suggestion.votes_for} votes"
+        %th ID
+        %th Name
+        %th Description
       
-      %td= link_to 'Show', suggestion
-      %td= link_to 'Edit', edit_suggestion_path(suggestion)
+      - for suggestion in @suggestions
+        %tr
+          %td= suggestion.id
+          %td= suggestion.name
+          %td= suggestion.description
+          %div{:id => "vote_count_csug#{suggestion.id}"}
+            %td= "#{suggestion.votes_for} votes"
+        
+        %td= link_to 'Show', suggestion
+        %td= link_to 'Edit', edit_suggestion_path(suggestion)

@@ -3,28 +3,34 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache
+  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
     def debug
     end
 
+    helper_method :current_account
     def current_account
       @current_account ||= if request.subdomain.present?
         Account.where(:subdomain => request.subdomain.downcase).first
       end
     end
 
-    def invalid_user_for_subdomain?
-      current_user && current_account && current_account.invalid_user?(current_user)
+    helper_method :admin_of_current_account?
+    def admin_of_current_account?
+      authenticate_user!
+      current_user.admin? || (current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true))
     end
 
-    def require_account_for_subdomain!
-      if invalid_user_for_subdomain?
-        sign_out_and_redirect(:user)
-        # flash must come after redirect to work properly
-        flash[:error] = "You need to sign up with a #{current_account.name} email address"
+    helper_method :community_site?
+    def community_site?
+      current_account.nil?
+    end
+
+    def hide_private_accounts
+      if current_account && current_account.private? && !user_signed_in?
+        redirect_to new_user_session_path
       end
     end
 
@@ -34,8 +40,6 @@ class ApplicationController < ActionController::Base
     def ensure_domain
       if request.subdomain == 'www'
         redirect_to request.url.gsub("//www.", '//'), :status => 301
-      else
-        require_account_for_subdomain!
       end
     end
 
@@ -62,7 +66,9 @@ class ApplicationController < ActionController::Base
 
     def authenticate_admin!
       authenticate_user!
-      redirect_to root_path unless current_user.admin?
+      unless current_user.admin? || admin_of_current_account?
+        redirect_to root_path
+      end
     end
 
     def log_error(exception)

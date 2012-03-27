@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.string   "subdomain"
     t.string   "email_regex"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "private",     :default => false, :null => false
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
@@ -131,8 +132,10 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "featured",           :default => false
     t.boolean  "donate"
     t.integer  "series_id"
+    t.integer  "account_id"
   end
 
+  add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
 
@@ -151,31 +154,6 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "ecourses", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.float    "price"
-    t.integer  "seats"
-    t.date     "date"
-    t.time     "time"
-    t.string   "place"
-    t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "minimum"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-  end
-
-  create_table "enterprises", :force => true do |t|
-    t.string   "area"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "domain"
-  end
-
   create_table "eroles", :force => true do |t|
     t.integer  "member_id"
     t.integer  "ecourse_id"
@@ -183,15 +161,6 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.datetime "updated_at"
     t.string   "role"
     t.boolean  "attending"
-  end
-
-  create_table "esuggestions", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "requested_by"
   end
 
   create_table "followings", :force => true do |t|
@@ -217,27 +186,16 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "members", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "organization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "enterprise_id"
+  create_table "memberships", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.boolean  "admin",      :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
-  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
-  add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
-  add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
+  add_index "memberships", ["account_id"], :name => "index_memberships_on_account_id"
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id_id"
@@ -296,13 +254,6 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
-
-  create_table "subdomains", :force => true do |t|
-    t.string   "name"
-    t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
