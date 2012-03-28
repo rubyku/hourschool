@@ -1,6 +1,6 @@
 HourschoolV2::Application.routes.draw do
 
-  resources :series
+
 
   resources :tracks
 
@@ -30,6 +30,7 @@ HourschoolV2::Application.routes.draw do
   namespace :courses do
     resources :browse
     resources :search
+    resources :series
   end
 
   namespace :payments do

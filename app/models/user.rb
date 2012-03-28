@@ -19,11 +19,12 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :accounts, :through => :memberships
 
-  has_many :roles, :dependent => :destroy
+  has_many :roles,   :dependent => :destroy
   has_many :courses, :through => :roles
-  has_many :courses_taught,   :through => :roles, :conditions => ["name = (?)", "teacher"], :source => :course
-  has_many :courses_attended, :through => :roles, :conditions => ["name = (?)", "student"], :source => :course
+  has_many :courses_taught,   :through => :roles, :conditions => ["roles.name = (?)", "teacher"], :source => :course
+  has_many :courses_attended, :through => :roles, :conditions => ["roles.name = (?)", "student"], :source => :course
 
+  has_many :series, :through => :courses_taught
 
   has_many :payments
   has_many :comments, :dependent => :destroy

@@ -1,0 +1,45 @@
+<%= form_for(@series, :url => courses_series_path(@series), :method => :put) do |f| %>
+  <% if @series.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@series.errors.count, "error") %> prohibited this series from being saved:</h2>
+      <ul>
+      <% @series.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label 'Name' %>
+    <%= f.text_field :name, :placeholder => 'Series Name' %>
+  </div>
+  <div>
+    Course Count:
+    <%= @series.courses.count %>
+  </div>
+
+  <div>
+    <h3>Last Course</h3>
+    <p>Name:</p>
+    <%= @series.last_course.name %>
+    <p>Description:</p>
+    <%= @series.last_course.description %>
+  </div>
+
+  <%= hidden_field_tag 'schedule[start_time]', Time.now %>
+  <div>
+    <h3>Repeat Every: </h3>
+    <%= check_box_tag 'schedule[weekdays][]', :sunday,    checked_for_series_if(@series, :sunday) %> S
+    <%= check_box_tag 'schedule[weekdays][]', :monday,    checked_for_series_if(@series, :monday) %> M
+    <%= check_box_tag 'schedule[weekdays][]', :tuesday,   checked_for_series_if(@series, :tuesday) %> T
+    <%= check_box_tag 'schedule[weekdays][]', :wednesday, checked_for_series_if(@series, :wednesday) %> W
+    <%= check_box_tag 'schedule[weekdays][]', :thursday,  checked_for_series_if(@series, :thursday)  %> T
+    <%= check_box_tag 'schedule[weekdays][]', :friday,    checked_for_series_if(@series, :friday) %> F
+    <%= check_box_tag 'schedule[weekdays][]', :saturday,  checked_for_series_if(@series, :saturday)  %> S
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update Course Series' %>
+  </div>
+<% end %>
