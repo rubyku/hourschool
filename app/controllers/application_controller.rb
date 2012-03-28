@@ -104,6 +104,8 @@ class ApplicationController < ActionController::Base
       redirect_to learn_path if current_user.present?
     end
 
+
+    # 'America/New_York'
     def set_timezone
       Time.zone = TZInfo::Timezone.get(current_user.time_zone) if current_user.present? && current_user.time_zone.present?
     rescue => ex
