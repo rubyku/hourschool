@@ -2,7 +2,7 @@ module Course::Searchable
   extend ActiveSupport::Concern
 
   included do
-    searchable do
+    searchable :unless => proc { |course| course.account_id.present? } do
       # all 'text' fields are used for fulltext search
       # all other typed fields can be used to scope/narrow
       # down results
