@@ -171,23 +171,26 @@ class User < ActiveRecord::Base
     return classes.sort_by {|course| course.date }
    end
 
-  def suggestions
+  def suggestions(current_account=nil)
     suggestions = Suggestion.where(:requested_by => self.id)
+    suggestions = suggestions.where(:account_id => current_account.id) if current_account
     return suggestions
   end
 
-  def pending
+  def pending(current_account=nil)
     if self.admin?
       #if user is admin return all pending in the dashbboard
       Course.where(:status => "proposal")
     else
       pending = self.courses.where(:status => "proposal")
+      pending = pending.where(:account_id => current_account.id) if current_account
       return pending
     end
   end
 
-  def approved_classes
+  def approved_classes(current_account=nil)
       approved = self.courses.where(:status => "approved")
+      approved = approved.where(:account_id => current_account.id) if current_account
       return approved
   end
 

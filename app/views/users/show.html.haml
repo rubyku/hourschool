@@ -62,21 +62,21 @@
             = "Classes I suggested"
           - else
             = "Classes #{@user.name} suggested"
-        = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions}
+        = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions(current_account)}
  
     
     #approved.section{:style => 'display:none;'}
       .page-section-float-left
         .welcome-header Classes Approved
-        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
+        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes(current_account)}
 
 
     #pending.section{:style => ('display:none;' unless params[:show] == 'pending')}
       .page-section-float-left
         .welcome-header Classes pending approval
-        = render :partial => "classes_pending", :locals => {:pending => @user.pending}
+        = render :partial => "classes_pending", :locals => {:pending => @user.pending(current_account)}
       .page-section-float-left
         .welcome-header Classes Approved
-        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes}
+        = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes(current_account)}
 
 = render :partial => 'sidebar'
