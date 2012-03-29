@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
     all_student_roles = self.roles.where(:name => "student").map(&:course)
     all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
     if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
+      all_student_roles = all_student_roles.select {|c| c.present? && c.account_id == current_account.id}
       all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
     end
     classes = (all_upcoming_classes & all_student_roles)
@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
     all_teacher_roles = self.roles.where(:name => "teacher").map(&:course)
     all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
     if current_account
-      all_teacher_roles = all_teacher_roles.select {|c| c.account_id == current_account.id}
+      all_teacher_roles = all_teacher_roles.select {|c| c.present? && c.account_id == current_account.id}
       all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
     end
     classes = (all_upcoming_classes & all_teacher_roles)
@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
     all_student_roles = self.roles.where(:name => "student").map(&:course)
     all_past_classes = self.courses.where(['date < ?', DateTime.now])
     if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
+      all_student_roles = all_student_roles.select {|c| c.present? && c.account_id == current_account.id}
       all_past_classes = all_past_classes.where(:account_id => current_account.id)
     end
     classes = (all_past_classes & all_student_roles)
