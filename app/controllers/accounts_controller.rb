@@ -57,23 +57,8 @@ class AccountsController < ApplicationController
 
   private
   def seed_course_and_user
-    # make ruby and alex members of this school
-    Membership.create!(:user_id => 1, :account => @account)
-    Membership.create!(:user_id => 2, :account => @account)
-
-    # seed user
-    password = SecureRandom.hex
-    @user = User.new(
-      :name => "Seed User",
-      :email => "#{@account.subdomain}@hourschool.com",
-      :zipcode => "12345",
-      :password => password,
-      :password_confirmation => password,
-      :dont_send_reg_email => true 
-    )
-    @user.skip_confirmation!
-    @user.save
-    Membership.create!(:user => @user, :account => @account)
+    # make ruby member of this school
+    Membership.create!(:user_id => 1, :account => @account) unless Membership.find_by_user_id_and_account_id(1, @account.id)
 
     city    = City.find_or_create_by_name_and_state(@user.city, @user.state)
     @course = Course.create!(
@@ -90,7 +75,7 @@ class AccountsController < ApplicationController
       :account => @account,
       :city => city
     )
-    # make ruby the teacher (could be @user or alex)
+    # make ruby the teacher (could be ruby)
     @course.roles.create!(:attending => true, :name => 'teacher', :user_id => 1)
   end
 end
