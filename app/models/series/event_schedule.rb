@@ -25,11 +25,7 @@ module Series::EventSchedule
   end
 
   def schedule
-    if schedule_hash.present?
-      Schedule.from_hash(schedule_hash)
-    else
-      nil
-    end
+    Schedule.from_hash(schedule_hash)
   end
 
 

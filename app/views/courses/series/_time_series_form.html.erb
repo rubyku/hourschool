@@ -1,0 +1,24 @@
+
+
+<% if @series.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@series.errors.count, "error") %> prohibited this series from being saved:</h2>
+    <ul>
+    <% @series.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= hidden_field_tag 'schedule[start_time]', Time.now %>
+<div>
+  <h3>Repeat Every: </h3>
+  <%= check_box_tag 'schedule[weekdays][]', :sunday,    checked_for_series_if(@series, :sunday) %> S
+  <%= check_box_tag 'schedule[weekdays][]', :monday,    checked_for_series_if(@series, :monday) %> M
+  <%= check_box_tag 'schedule[weekdays][]', :tuesday,   checked_for_series_if(@series, :tuesday) %> T
+  <%= check_box_tag 'schedule[weekdays][]', :wednesday, checked_for_series_if(@series, :wednesday) %> W
+  <%= check_box_tag 'schedule[weekdays][]', :thursday,  checked_for_series_if(@series, :thursday)  %> T
+  <%= check_box_tag 'schedule[weekdays][]', :friday,    checked_for_series_if(@series, :friday) %> F
+  <%= check_box_tag 'schedule[weekdays][]', :saturday,  checked_for_series_if(@series, :saturday)  %> S
+</div>

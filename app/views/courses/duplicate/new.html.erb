@@ -1,0 +1,13 @@
+<h2>Schedule One Class</h2>
+
+
+<%= button_to "Duplicate: #{@course.name}", course_duplicate_path(:course_id => @course), :method => :post %>
+
+<h2>Schedule Recurring Classes</h2>
+
+<%= form_for(@series, :url => courses_series_index_path(:course_id => @course), :method => :post) do |f| %>
+  <%= render :partial => "courses/series/time_series_form", :locals => {:f => f} %>
+  <div class="actions">
+    <%= f.submit 'Schedule Recurring Classes' %>
+  </div>
+<% end %>

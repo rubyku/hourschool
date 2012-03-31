@@ -2,7 +2,7 @@ desc "Send scheduled emails"
 namespace :schedule do
 
   task :schedule_events => :environment do
-    ScheduleEvent.where(:publish_on => Date.today, :published => false).each do |event|
+    ScheduleEvent.where("DATE(publish_on) <= DATE(:today) and published = false", :today => Date.today).each do |event|
       event.course.duplicate
       event.update_attributes(:published => true)
     end

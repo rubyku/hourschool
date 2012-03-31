@@ -167,12 +167,14 @@ class Course < ActiveRecord::Base
     end
   end
 
+
   def self.duplicate(course)
     duplicate = Course.new(course.attributes)
     duplicate.category_list = course.category_list
     duplicate.status        = "approved"
-    duplicate.date          = Date.tomorrow
-    duplicate.photo         = course.photo
+    duplicate.date          = course.date + 1.week
+    duplicate.photo         = course.photo if course.photo.present?
+    duplicate.save
     duplicate
   end
 
