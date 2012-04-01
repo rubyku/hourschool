@@ -3,21 +3,32 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  around_filter :oauth_login
+  around_filter      :oauth_auth!
+  skip_before_filter :verify_authenticity_token, :if => :valid_oauth?
+
   before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache, :hide_private_accounts
 
   protect_from_forgery
 
+
   protected
-    def oauth_login
-      if params[:access_token].present?
-        oauth_user = User.find_for_token_authentication(params)
-        sign_in(oauth_user, :bypass => true) if oauth_user.present?
-      end
+
+    def oauth?
+      params[:access_token].present?
+    end
+
+    def oauth_user
+      @oauth_user ||= Oauth::AccessGrant.find_user_for_token(params[:access_token])
+    end
+
+    def valid_oauth?
+      oauth? && oauth_user.present?
+    end
+
+    def oauth_auth!
+      sign_in(oauth_user, :bypass => true) if valid_oauth?
       yield
-      if params[:access_token].present?
-        sign_out(oauth_user) if oauth_user.present?
-      end
+      sign_out(oauth_user) if valid_oauth?
     end
 
     def debug

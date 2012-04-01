@@ -3,10 +3,12 @@ class Oauth::ClientApplication < ActiveRecord::Base
   validates  :app_id, :uniqueness => true
   validates  :name,   :uniqueness => true
 
+  alias_attribute :client_id, :app_id
+
   def self.authenticate(app_id, app_secret)
     where(["app_id = ? AND app_secret = ?", app_id, app_secret]).first
   end
-  
+
   def self.create_with_user_and_name(user, name)
     create(:user => user, :name => name, :app_id => generate_id, :app_secret => SecureRandom.hex(16))
   end

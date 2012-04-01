@@ -1,7 +1,7 @@
 class Oauth::AccessGrant < ActiveRecord::Base
   belongs_to :user
   belongs_to :application, :class_name => "Oauth::ClientApplication"
-  
+
   validates :application_id, :uniqueness => {:scope => :user_id, :message => "Applicaiton is already authed for this user"}, :presence => true
 
   before_create :generate_tokens
@@ -9,6 +9,10 @@ class Oauth::AccessGrant < ActiveRecord::Base
   def self.prune!
     # UPDATEME
     # delete_all(["created_at < ?", 3.days.ago])
+  end
+
+  def self.find_user_for_token(token)
+    self.where(:access_token => token).first.user
   end
 
   def self.authenticate(code, application_id)
