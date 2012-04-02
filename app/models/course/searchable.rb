@@ -13,8 +13,10 @@ module Course::Searchable
       integer   :city_id
       integer   :max_seats
       integer   :min_seats
+      integer   :account_id
 
       boolean   :public
+      boolean   :seed
 
       time      :created_at
       date      :date
@@ -106,6 +108,8 @@ module Course::Searchable
         paginate :page     => options[:page] if options[:page].present?
 
         with(:status).equal_to('live')
+        with(:seed).equal_to(false)
+        with(:account_id, Account.public_ids)
 
         # upcoming versus all
         if options[:when].present?

@@ -6,13 +6,13 @@
       <%= render :partial => 'layouts/application/admin_bar' %>
       <table>
         <tr>
-      	<th>ID</th>
-      	<th>Topic</th>
-      	<th>Teacher</th>
-        <th>Class date</th>
-        <th># of students</th>
-        <th>Min. students</th>
-        <th>Created on</th>
+        	<th>ID</th>
+        	<th>Topic</th>
+        	<th>Teacher</th>
+          <th>Class date</th>
+          <th># of students</th>
+          <th>Min. students</th>
+          <th>Status</th>
         </tr>
 
       <% @courses.each do |course| %>
@@ -23,9 +23,12 @@
           <td><%= course.date %></td>
           <td><%= course.students.count %></td>
           <td><%= course.min_seats %></td>
-          <td><%= course.created_at %></td>
-
-          <td><%= link_to 'Show', course %></td>
+          <td>
+            <%= course.status %>
+            <% if course.status == 'proposal' %>
+              (<%= link_to 'approve', proposal_path(:id => course.id) %>)
+            <% end %>
+          </td>
           <td><%= link_to 'Edit', edit_course_path(course) %></td>
           <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>

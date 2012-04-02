@@ -73,7 +73,8 @@ class AccountsController < ApplicationController
       :time_range => "whenever you're available",
       :phone_number => "(877) 246-4689",
       :account => @account,
-      :city => city
+      :city => city,
+      :seed => true
     )
     # make ruby the teacher (could be ruby)
     @course.roles.create!(:attending => true, :name => 'teacher', :user_id => 1)

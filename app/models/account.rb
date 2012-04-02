@@ -13,7 +13,7 @@ class Account < ActiveRecord::Base
   scope :private, where(:private => true)
 
   def self.public_ids
-    self.open.collect(&:id) + [nil]
+    self.open.collect(&:id) + [0]
   end
 
   private
