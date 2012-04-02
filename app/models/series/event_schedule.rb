@@ -7,7 +7,8 @@ module Series::EventSchedule
   SCHEDULE_OUT_TO             = 6 # months
 
   included do
-    serialize :schedule_hash, Hash
+    serialize   :schedule_hash, Hash
+    after_save  :after_save_refresh_events!
   end
 
 
@@ -19,7 +20,7 @@ module Series::EventSchedule
     # If hash is not an IceCube::Schedule hash, it is our proprietary format, convert it
     hash = self.class.schedule_from_hash(hash).to_hash unless hash.has_key?(:rrules)
 
-    puts hash.inspect
+
     raise 'not valid schedule'  unless hash.present?
     self.schedule_hash = hash
   end
@@ -55,6 +56,16 @@ module Series::EventSchedule
       build_events!
     end
   end
+
+  private
+
+  def after_save_refresh_events!
+    return true unless schedule_hash_changed?
+    refresh_events!
+    true
+  end
+
+  public
 
   module ClassMethods
     include IceCube
