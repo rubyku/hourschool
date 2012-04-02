@@ -118,8 +118,13 @@ class CoursesController < ApplicationController
         # here email people who voted, etc etc
       end
 
-      UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-      redirect_to current_user
+      if admin_of_current_account?
+        @course.update_attribute(:status, 'approved')
+        redirect_to edit_course_path(@course)
+      else
+        UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        redirect_to current_user
+      end
     else
       render :action => 'new'
     end
