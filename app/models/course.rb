@@ -173,7 +173,7 @@ class Course < ActiveRecord::Base
     duplicate.category_list = course.category_list
     duplicate.status        = "approved"
     duplicate.date          = course.date + 1.week
-    duplicate.photo         = course.photo if course.photo.present?
+    duplicate.photo         = course.photo if course.photo_file_name.present?
     duplicate.save
     duplicate
   end
