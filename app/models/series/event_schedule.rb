@@ -32,7 +32,7 @@ module Series::EventSchedule
 
   def clear_events_transaction!(&block)
     raise 'no block given' if block.blank?
-    stale_events = schedule_events.where(:published => false)
+    stale_events = schedule_events.where(:published => false).all
     return_val = block.call
     stale_events.map(&:destroy) if return_val.present?
   end
