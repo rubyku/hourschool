@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://s3.amazonaws.com/hourschool-sitemap/sitemaps/sitemap_index.xml.gz
