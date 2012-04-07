@@ -136,6 +136,8 @@ HourschoolV2::Application.routes.draw do
   match '/500'                        => 'errors#error'
 
 
+  match 'sitemap/'                    => redirect('https://s3.amazonaws.com/hourschool-sitemap/sitemaps/sitemap_index.xml.gz')
+
   resources :test
 
   if Rails.env.development?
