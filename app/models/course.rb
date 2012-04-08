@@ -172,7 +172,8 @@ class Course < ActiveRecord::Base
     duplicate = Course.new(course.attributes)
     duplicate.category_list = course.category_list
     duplicate.status        = "approved"
-    duplicate.date          = options[:date] || course.date + 1.week
+    day_of_week             = course.date.strftime('%A').downcase.to_sym # :monday, :tuesday, :wednesday, :thursday
+    duplicate.date          = options[:date] || Time.now.next_week(day_of_week)
     duplicate.photo         = course.photo if course.photo_file_name.present?
     duplicate.save
     duplicate
