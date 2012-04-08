@@ -41,6 +41,8 @@ namespace :deploy do
     task :migrate_production => :environment do
       alert 'migrating databse...just incase'
       puts %x{ heroku run rake db:migrate --app #{production_app_name} }
+      alert 'restarting app'
+      puts %x{ heroku restart --app #{production_app_name} }
     end
   end
 
