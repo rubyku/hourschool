@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323020655) do
+ActiveRecord::Schema.define(:version => 20120402152315) do
 
   create_table "access_grants", :force => true do |t|
     t.string   "code"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
-
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -133,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "donate"
     t.integer  "series_id"
     t.integer  "account_id"
+    t.boolean  "seed",               :default => false, :null => false
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
@@ -224,13 +224,24 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.boolean  "attending"
   end
 
+  create_table "schedule_events", :force => true do |t|
+    t.integer  "series_id"
+    t.date     "publish_on"
+    t.datetime "starts_at"
+    t.boolean  "published"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "series", :force => true do |t|
     t.string   "name"
     t.string   "slug"
     t.integer  "last_course_id"
     t.integer  "student_count"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.text     "schedule_hash"
+    t.integer  "publish_days_before"
   end
 
   create_table "sessions", :force => true do |t|
@@ -263,8 +274,10 @@ ActiveRecord::Schema.define(:version => 20120323020655) do
     t.datetime "updated_at"
     t.integer  "requested_by"
     t.string   "slug"
+    t.integer  "account_id"
   end
 
+  add_index "suggestions", ["account_id"], :name => "index_suggestions_on_account_id"
   add_index "suggestions", ["slug"], :name => "index_csuggestions_on_slug", :unique => true
 
   create_table "taggings", :force => true do |t|
