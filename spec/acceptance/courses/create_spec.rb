@@ -22,7 +22,7 @@ feature "Acceptance courses#create" do
     before(:each) do
       as_user(user) do
         visit teach_path
-        click_link('Create')
+        click_link('createCourse')
         current_path.should == new_course_path
         fill_in 'course_title',       :with => course_stub.title
         fill_in 'course_teaser',      :with => course_stub.teaser

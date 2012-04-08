@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Role do
 
   describe 'validations' do
-    describe 'presence', do
+    describe 'presence' do
       it 'prevents roles with no user from saving' do
         role = Factory.stub(:role, :user => nil)
         role.valid?.should be_false
