@@ -3,7 +3,7 @@ class Courses::BrowseController < ApplicationController
   def index
     @courses = Course.active.order(:date, :created_at)
     if community_site?
-      @courses = @courses.where(:account_id => Account.public_ids).where(:seed => false)
+      @courses = @courses.where('account_id in (?) or account_id is null', Account.public_ids).where(:seed => false)
       if current_user
         @no_courses_in_user_city = Course.joins(:city).where("cities.name = '#{current_user.city}'").count == 0
       else
