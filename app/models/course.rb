@@ -41,6 +41,10 @@ class Course < ActiveRecord::Base
 
   include Course::Searchable
 
+  def self.community
+    where('account_id in (?) or account_id is null', Account.public_ids).where(:seed => false)
+  end
+
   def cancel!
     update_attributes :happening => false, :status => 'canceled'
   end
