@@ -39,6 +39,14 @@ HourschoolV2::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
                                        :sessions            => 'sessions' }
+
+
+  match 'oauth/new'           => 'oauth/auth#new'
+  match '/oauth/authorize'    => 'oauth/auth#authorize'
+  match '/oauth/access_token' => 'oauth/auth#access_token'
+
+  resources :oauth_client_applications, :controller => 'oauth/client_application'
+
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end

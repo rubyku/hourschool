@@ -1,11 +1,13 @@
-class Users::AfterRegisterController < Wicked::WizardController
+class Users::AfterRegisterController < ApplicationController
+  include Wicked::Wizard
+
   before_filter :authenticate_user!
   steps :confirm_password, :confirm_zip, :confirm_avatar, :invite_fb
 
 
   def show
     @user = current_user
-    case @step
+    case step
     when :confirm_password
       if @user.facebook?
         flash[:notice] = "Please fill out this information"

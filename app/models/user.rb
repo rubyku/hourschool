@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   include User::Omniauth
   include User::Facebook
   include User::FollowingMethods
-
+  include User::Oauthable
 
   def active?
     status == "active"
