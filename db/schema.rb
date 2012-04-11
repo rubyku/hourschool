@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
     t.boolean  "donate"
     t.integer  "series_id"
     t.integer  "account_id"
+    t.integer  "account_id",         :default => 0,     :null => false
     t.boolean  "seed",               :default => false, :null => false
   end
 
