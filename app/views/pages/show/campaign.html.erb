@@ -40,18 +40,17 @@
       </div>
 
       <div class="grid_8" style="margin-left: 60px">
-        <%= image_tag "v2-campaign/frame_big.png", :class => "campaign_frame_big" %>
+        <%= image_tag "v2-campaign/frame_big2.png", :class => "campaign_frame_big" %>
         <div class="campaign-frame-text">
 
-          <div class="campaign-frame-big-heading">HourSchool is raising $5000<br> for the peer teaching fund</div>
+          <div class="campaign-frame-big-heading">Total amount raised to date <br>for the Peer Teaching Fund:</div>
           <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
           <p><div class="campaign-frame-bold-text"> 
-             <%= "#{number_to_currency @amount_raised, :precision => 0} of $5000 raised" %>
-          </div></p>
+             <%= "#{number_to_currency @amount_raised, :precision => 0}" %>
+          </div></p>          
+          <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
 
-
-          
-          <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
+          <!-- <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
              <div id="progressbar" class=""></div>
           </div>
           <script type="text/javascript">
@@ -62,14 +61,12 @@
             });
           </script>
           <br>
-
-          <div class="campaign-frame-small-text">This campaign ends April 15, 2012</div>
-        </div>
-      
+        </div> -->
+         </div>   
         <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), new_course_path  %>
         <%= link_to image_tag("v2-campaign/button-take-class.png", :class => "campaign-button"), learn_path %>
         <%= link_to image_tag("v2-campaign/button-nominate.png", :class => "campaign-button"), suggest_path %>    
-      </div>
+
     
     </div>
     

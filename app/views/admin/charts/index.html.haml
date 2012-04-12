@@ -83,12 +83,12 @@
             %td= course.created_at.strftime("%b %d")
             
 
-      / %hr
-      / %div
-      /   %h2 Teachers' emails
-      /   - @teachers.each do |teacher|
-      /     %p
-      /       = "#{teacher.name} - #{teacher.email}"
+      %hr
+      %div
+        %h2 Teachers' emails
+        - @teachers.each do |teacher|
+          %p
+            = "#{teacher.name} - #{teacher.email}"
 
 
 - content_for :sidebar do
