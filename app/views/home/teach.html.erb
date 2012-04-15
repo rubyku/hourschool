@@ -3,7 +3,7 @@
 
     <center>
       <div class="marcomm-header">
-        <div class="heading25_666">Teaching at HourSchool is a lot of fun!</div>
+        <div class="heading25_666">Knowledge Sharing, Story Telling, and Community Building</div>
         <%= image_tag "v2/greyheader_full.png", :class => "greyheader_full" %>
       </div>
     </center>
@@ -48,6 +48,7 @@
 
     </div>
     
+    <% if community_site? %>
     <%= image_tag "v2-campaign/divider-long.png" %>
   
     <div class="clearfix" style="margin-top: 30px; margin-left: 20px">
@@ -117,6 +118,7 @@
       </div>
     </div>
         
+  <% end %>
        
   </div>
 </div>
