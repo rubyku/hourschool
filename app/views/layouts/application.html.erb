@@ -157,4 +157,22 @@
   <%- end -%>
 <%- end -%>
 
-<%= render 'layouts/application/footer' if community_site? %>
+<% if community_site? %>
+  <%= render 'layouts/application/footer' %>
+<% else %>
+  <div class="container_16">
+    <table id="powered-by">
+      <tr>
+        <td>
+          <div class="footer-powered-by">Powered by</div>
+        </td>
+        <td>
+          <a href="http://www.hourschool.com">
+            <%= image_tag('v2/Logo_Grey.png', :id => "powered-by-logo") %>
+          </a>
+        </td>
+      </td>
+    </table>
+
+  </div>
+<% end %>
