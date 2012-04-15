@@ -173,7 +173,7 @@ class Course < ActiveRecord::Base
     duplicate.category_list = course.category_list
     duplicate.status        = "approved"
     day_of_week             = course.date.strftime('%A').downcase.to_sym # :monday, :tuesday, :wednesday, :thursday
-    duplicate.date          = options[:date] || Time.now.next_week(day_of_week)
+    duplicate.date          = options[:date] || Time.now.next_week(day_of_week) + 1.week # default two two weeks from said day
     duplicate.photo         = course.photo if course.photo_file_name.present?
     duplicate.save
     duplicate.roles.create(:user => course.teacher, :name => 'teacher')
