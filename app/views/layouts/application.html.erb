@@ -77,20 +77,23 @@
 
 <%# Admin Bar %>
 <%= content_for :first_inside_body do %>
-  <% if current_user && current_user.admin? %>
-    <div class="adminBar">
-      <div class='container_16'>
-        Admin Bar:
-        <%= link_to "Git", 'http://github.com/rubyku/hourschool_v2' %> |
-        <%= link_to "Issues", 'http://github.com/rubyku/hourschool_v2/issues' %> |
-        <%= link_to "Analytics", 'https://www.google.com/analytics/web/#report/visitors-overview/a22725750w44672735p44785902/' %> |
-        <%= link_to "Charts", admin_charts_path %> |
-        Goal of the Month: More Full Classes
-        <div class='actions'>
-          <%= yield :admin_action %>
+  <% if community_site? %>
+    <% if current_user && current_user.admin? %>
+      <div class="adminBar">
+        <div class='container_16'>
+          Admin Bar:
+          <%= link_to "Git", 'http://github.com/rubyku/hourschool_v2' %> |
+          <%= link_to "Issues", 'http://github.com/rubyku/hourschool_v2/issues' %> |
+          <%= link_to "Analytics", 'https://www.google.com/analytics/web/#report/visitors-overview/a22725750w44672735p44785902/' %> |
+          <%= link_to "Charts", admin_charts_path %> |
+          Goal of the Month: More Full Classes
+          <div class='actions'>
+            <%= yield :admin_action %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
   <% end %>
 <%- end -%>
 
