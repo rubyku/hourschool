@@ -176,6 +176,7 @@ class Course < ActiveRecord::Base
     duplicate.date          = options[:date] || Time.now.next_week(day_of_week)
     duplicate.photo         = course.photo if course.photo_file_name.present?
     duplicate.save
+    duplicate.roles.create(:user => course.teacher, :name => 'teacher')
     duplicate
   end
 
