@@ -9,6 +9,14 @@ class UsersController < ApplicationController
       @users = current_account.users
     end
   end
+  
+  def table
+    if community_site?
+      @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
+    else
+      @users = current_account.users
+    end
+  end
 
   def show
     @user = User.me_or_find(params[:id], current_user)

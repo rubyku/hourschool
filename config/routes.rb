@@ -85,7 +85,8 @@ HourschoolV2::Application.routes.draw do
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
   match '/approve'                    => 'courses#approve'
-  match '/courses-all'                => 'courses#all', :as => 'courses_all'
+
+  match '/users-table'                => 'users#table'
 
   match '/community'                  => 'home#community'
   match '/community_faq'              => 'home#community_faq'
