@@ -45,7 +45,7 @@
               <% if current_account && admin_of_current_account? %>
                 <tr id="dropdown-text">
                   <td id="dropdown-text">
-                    <%= link_to "Admin", account_path(:admin), :class => "dropdown-text" %>
+                    <%= link_to "Admin", edit_account_path(:admin), :class => "dropdown-text" %>
                   </td>
                 </tr>
               <% end %>
