@@ -1,4 +1,4 @@
-Hey <%= @user.name %>,
+Hey <%= @user.name.split(" ").first %>,
 
 One of your <%= @user.relationship(@followed) %>'s, <%= @followed.name %>, just signed up for a class, and we thought you might be interested!
 

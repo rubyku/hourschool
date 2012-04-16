@@ -1,4 +1,4 @@
-Hi <%= @course.teacher.name %>,
+Hi <%= @course.teacher.name.split(" ").first %>,
 
 This is a message for you from <%= @user.name %>, a student from your <%= @course.title %> class. 
   
