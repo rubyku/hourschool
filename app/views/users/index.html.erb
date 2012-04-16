@@ -1,65 +1,49 @@
-<div class="page">
+<div class="full-page">
   <div class="page-content">
 
-<% if current_user && admin_of_current_account? %> 
-  <%= render :partial => 'layouts/application/admin_bar' %>
+    <% if current_user && admin_of_current_account? %> 
+      <%= render :partial => 'layouts/application/admin_bar' %>
 
-  <p><%= link_to '+ Invite a User', new_invite_users_path if current_account %></p>
-
-  <table>
-    <tr>
+      <p><%= link_to '+ Invite a User', new_invite_users_path if current_account %></p>
+      
+      <div class="heading15-marcomm">Total users: 
+        
       <% if community_site? %>
-    	 <th>ID</th>
+        <%= User.count %>
+      <% else %>
+        <%= current_account.users.count %>
       <% end %>
-    	<th>First Name</th>
-    	<th>Last Name</th>
-    	<th>Email</th>
-    	<th>Zip</th>
-    	<th>City</th>
-      <% if community_site? %>
-    	 <th>FB Token?</th>
-       <th>Account</th>
-      <% end %>
-      <th>Created on</th>
-      <th></th>
-    </tr>
-
-  <% @users.each do |user| %>
-    <tr>
-      <% if community_site? %>
-        <td><%= user.id %>
-      <% end %>
-      <td><%= link_to user.name.split(" ").first, user_path(user.id) %></td> 
-      <td><%= link_to user.name.split(" ").last, user_path(user.id) %></td>   
-      <td><%= user.email %></td>
-      <td><%= user.zip %></td>
-      <td><%= user.location %></td>
-      <% if community_site? %>
-        <td><%= user.fb_token.nil? %></td>
-        <td><%= user.memberships.collect(&:account).collect(&:name).to_sentence %></td>
-      <% end %>
-      <td><%= user.created_at.strftime("%b %d, %Y") %></td>
-      <td>
-        <% if community_site? %>
-          <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
-        <% else %>
-          <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
-            Admin
+      
+      </div>
+      
+      <% @users.each do |user| %>
+        <div style="width: 430px; margin-right: 20px; float: left">
+          <%= avatar_for(user, :photo_size => :thumb_large) %>        
+          <%= link_to user.name, user_path(user.id), :class => "profile-link" %><br>
+          <%= user.email %><br>
+          City: <%= user.location %><br>
+          Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
+          <% if community_site? %>
+            <td class="admin"><%= user.memberships.collect(&:account).collect(&:name).to_sentence %><br>
+            <%= link_to 'Edit', edit_user_registration_path %>
           <% else %>
-            <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+              <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                Admin
+              <% else %>
+                <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+              <% end %>
           <% end %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </table>
+          </p>
+        </div>
+      <% end %>
 
 
-<% else %>
+    <% else %>
 
-  Sorry, you don't have admin access to this page. <br>
-  Have a question? Please email us at hello at hourschool dot com.
+      Sorry, you don't have admin access to this page. <br>
+      Have a question? Please email us at hello at hourschool dot com.
 
-<% end %>
+    <% end %>
 
-
+  </div>
+</div>

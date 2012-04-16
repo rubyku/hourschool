@@ -1,42 +1,57 @@
-
-
-<div class="page">
+<div class="full-page">
   <div class="page-content">
     <% if current_user && admin_of_current_account? %> 
       <%= render :partial => 'layouts/application/admin_bar' %>
-      <table>
+      <!-- <table>
         <tr>
-        	<th>ID</th>
-        	<th>Topic</th>
-        	<th>Teacher</th>
+          <th>ID</th>
+          <th>Topic</th>
+          <th>Teacher</th>
           <th>Class date</th>
           <th># of students</th>
           <th>Min. students</th>
           <th>Status</th>
-        </tr>
+        </tr> -->
+        
+      <div class="heading15-marcomm">Total classes: 
 
-      <% @courses.each do |course| %>
-        <tr>
-          <td><%= course.id %>
-          <td><%= link_to course.title, course %></td>
-          <td><%= link_to course.teacher.name, user_path(course.teacher.id) %></td>
-          <td><%= course.date %></td>
-          <td><%= course.students.count %></td>
-          <td><%= course.min_seats %></td>
-          <td>
-            <%= course.status %>
+      <% if community_site? %>
+        <%= Course.count %>
+      <% else %>
+        <%= current_account.courses.count %>
+      <% end %>
+
+      </div>
+
+      <% @courses.each do |course| %> 
+        <div class="classBlock">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+          <%= image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow' %>
+                   
+          <div class="class-description">
+            <div class="heading13-class"><%= link_to course.title, course %></div>
+            Teacher: <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
+            Date: <%= course.date %><br>
+            Attendance: <%= course.students.count %> out of <%= course.max_seats %><br>
+            Status: <%= course.status %>
             <% if course.status == 'proposal' %>
               (<%= link_to 'approve', proposal_path(:id => course.id) %>)
             <% end %>
-          </td>
-          <td><%= link_to 'Edit', edit_course_path(course) %></td>
-          <td><%= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete %></td>
-        </tr>
+            <br>
+            <%= link_to 'Edit', edit_course_path(course) %>
+          </div>
+        </div>
       <% end %>
-      </table>
+      
+      
     <% else %>
       Sorry, you don't have admin access to this page. <br>
       Have a question? Please email us at hello at hourschool dot com.
     <% end %>
+
   </div>
 </div>
