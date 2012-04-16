@@ -4,15 +4,10 @@ class CoursesController < ApplicationController
 
   def index
     #authenticate admin - change this.
-    @courses = Course.where(:status => "proposal")
+    @courses = current_account ? current_account.courses : Course.all
     @courses = @courses.where(:account_id => current_account.id) if current_account
     @user = current_user
   end
-
-  def all
-    @courses = current_account ? current_account.courses : Course.all
-  end
-
 
   def approve
     @course = Course.find(params[:id])
