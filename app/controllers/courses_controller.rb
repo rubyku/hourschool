@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   def index
     #authenticate admin - change this.
-    @courses = current_account ? current_account.courses : Course.all
+    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC')
     @courses = @courses.where(:account_id => current_account.id) if current_account
     @user = current_user
   end
