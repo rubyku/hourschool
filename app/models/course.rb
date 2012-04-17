@@ -75,7 +75,9 @@ class Course < ActiveRecord::Base
   end
 
   def pretty_slug
-    if city.present?
+    if seed?
+      "#{title}-in-#{city.name_state}-#{account_id}"
+    elsif city.present?
       "#{title}-in-#{city.name_state}"
     else
       "#{title}"
