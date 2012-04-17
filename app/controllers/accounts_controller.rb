@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
         @user = current_user
         Membership.create!(:user => current_user, :account => @account, :admin => true)
         seed_course_and_user
-        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+        redirect_to(learn_url(:admin, :subdomain => @account.subdomain)) && return
       end
     else
       @user = User.new_with_session(params[:user], session)
@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
         sign_in('user', @user)
         Membership.create!(:user => @user, :account => @account, :admin => true)
         seed_course_and_user
-        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+        redirect_to(learn_url(:admin, :subdomain => @account.subdomain)) && return
       end
     end
 
