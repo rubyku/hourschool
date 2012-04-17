@@ -1123,7 +1123,6 @@ table#enterprise_menu {
   position: relative;
   width: 100%;
   float: right;
-  margin-top: 12px;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
@@ -2101,6 +2100,47 @@ img.class-details-icon-email{
 
 .register-class-button:hover { background-color: #e46f28;}
 
+.approve-class-button{
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 170px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.approve-class-button:hover { background-color: #e46f28;}
+
+.approvalRow{
+  border-bottom: 1px solid #8f8f8f;
+}
+
+.grey-header{
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  color: #8f8f8f;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  float: left;
+}
+
 .edit-class-button{
   border: none;
   background: #00B6FF;
@@ -2185,6 +2225,7 @@ img.class-details-icon-email{
 }
 
 .complete-class-button:hover { background-color: #e46f28;}
+
 .class-title-big {
   float: left;
   color: #666;
@@ -3702,16 +3743,31 @@ tr.metrics_underline{
   color:white;
 }
 
-th.metrics{
+td.metrics{
   padding-right: 20px;
 }
 
-td.metrics{
+td.metrics-seats{
   text-align: center;
+  padding-right: 20px;
+}
+
+td.metrics-course-title{
+  width: 300px;
+  padding-right: 20px;
 }
 
 tr.metrics_underline{
   border-bottom: 1px solid #666;
+}
+
+.bigNum{
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  color: black;
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 img.nail{

@@ -4,20 +4,23 @@ class CoursesController < ApplicationController
 
   def index
     #authenticate admin - change this.
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC')
-    @courses = @courses.where(:account_id => current_account.id) if current_account
+    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "live")
+    @courses = @courses.where(:account_id => current_account.id, :status => "live") if current_account
     @user = current_user
   end
 
-  def approve
-    @course = Course.find(params[:id])
-    @course.update_attribute :status, "approved"
-
-    #send email and other stuff here to the teacher
-    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
-      redirect_to profile_path(:show => 'pending')
+  def proposals
+    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "proposal")
+    @courses = @courses.where(:account_id => current_account.id, :status => "proposal") if current_account
+    @user = current_user
   end
-
+  
+  def pending_live
+    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "approved")
+    @courses = @courses.where(:account_id => current_account.id, :status => "approved") if current_account
+    @user = current_user
+  end
+  
   def show
     @course = Course.find(params[:id])
     @current_course = @course
@@ -199,6 +202,9 @@ class CoursesController < ApplicationController
     @user   = current_user
     @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
     if @role.save
+      if !community_site?
+        Membership.create(:user => @user, :account => @course.account, :admin => false) 
+      end
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
     else

@@ -3,13 +3,13 @@ class Admin::ChartsController < Admin::AdminController
   def index
     
     # Goals of the month
-    @users_this_month           = User.where("extract( month from DATE(created_at)) = 3").count
-    @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 3").count
-    @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 3").sum('amount')
+    @users_this_month           = User.where("extract( month from DATE(created_at)) = 4").count
+    @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 4").count
+    @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 4").sum('amount')
 
-    @users_last_month           = User.where("extract( month from DATE(created_at)) = 2").count
-    @courses_last_month         = Course.where("extract( month from DATE(created_at)) = 2").count
-    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 2").sum('amount')
+    @users_last_month           = User.where("extract( month from DATE(created_at)) = 3").count
+    @courses_last_month         = Course.where("extract( month from DATE(created_at)) = 3").count
+    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 3").sum('amount')
     
     # For the next 7 days
     @courses_next7days          = Course.active.where("date < ?", 7.days.from_now).order('DATE(date) ASC')

@@ -24,7 +24,7 @@
           City: <%= user.location %><br>
           Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
           <% if community_site? %>
-            <td class="admin"><%= user.memberships.collect(&:account).collect(&:name).to_sentence %><br>
+            <%= user.memberships.collect(&:account).collect(&:name).to_sentence %><br>
             <%= link_to 'Edit', edit_user_registration_path %>
           <% else %>
               <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>

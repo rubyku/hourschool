@@ -6,11 +6,14 @@
 		- if current_account
 			%li{:class => "sub-nav-#{'in' unless controller_name == 'accounts' && action_name == 'edit'}active"}
 				= link_to 'Account', edit_account_path(:admin)
-			/ %li.sub-nav-inactive
-			/ 	= link_to 'Payment'
+		- else
+			%li{:class => "sub-nav-#{'in' unless controller_name == 'charts'}active"}
+				= link_to 'Metrics', admin_charts_path(:admin)
+		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'proposals'}active"}
+			= link_to 'Proposals', course_proposals_path
+		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'pending_live'}active"}
+			= link_to 'Pending Live', course_pending_live_path
+		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'index'}active"}
+			= link_to 'Courses', courses_path
 		%li{:class => "sub-nav-#{'in' unless controller_name == 'users'}active"}
 			= link_to 'Users', users_path
-		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses'}active"}
-			= link_to 'Courses', courses_path
-		%li{:class => "sub-nav-#{'in' unless controller_name == 'suggestions'}active"}
-			= link_to 'Suggestions', suggestions_path

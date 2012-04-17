@@ -1,95 +1,58 @@
 .page
   .page-content
 
-    .page-section-float-left
-      %ul.sub-nav
-        %li.sub-nav-active
-          %a.sub-nav-active(href="/admin/charts") Overview
-        %li.sub-nav-inactive
-        
-          %a.sub-nav-inactive(href="/admin/charts/months/3") Mar 2012
-        %li.sub-nav-inactive
-          %a.sub-nav-inactive(href="/admin/charts/months/2") Feb 2012
-        %li.sub-nav-inactive
-          %a.sub-nav-inactive(href="/admin/charts/months/1") Jan 2012
-        %li.sub-nav-inactive
-          %a.sub-nav-inactive(href="/admin/charts/months/12") Dec 2011
+    -if current_user && admin_of_current_account?
+      = render :partial => 'layouts/application/admin_bar'
 
-    - if @courses_yesterday.present?
-      .notification-center
+      - if @courses_yesterday.present?
+        .notification-center
+          %br
+          .class-section-heading Teachers we need to pay
+          %table
+            - @courses_yesterday.each do |course|  
+              - next if course.price == 0
+              %tr
+                %td= course.id
+                %td= course.title
+                %td= course.teacher.email
+                %td= "$ #{course.price * course.students.size}"
+
+      %div
+        .heading15-marcomm Goals for April 2012
         %br
-        .class-section-heading Teachers we need to pay
-        %table
-          - @courses_yesterday.each do |course|  
-            - next if course.price == 0
+        .bigNum 75 Classes
+        = "#{@courses_this_month} to date"
+  
+      / %br
+      / %div
+      /   .heading15-marcomm Last 7 days
+      /   - @users.first(7).each do |date, count|
+      /     = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
+      /     %br
+
+      %br
+      %div
+        .heading15-marcomm Next 7 days
+        %table.metrics
+          %tr
+            %th= "Title"
+            %th= "Date"
+            %th= "Min #"
+            %th= "Current #"
+          - @courses_next7days.each do |course|
             %tr
-              %td= course.id
-              %td= course.title
-              %td= course.teacher.email
-              %td= "$ #{course.price * course.students.size}"
+              %td.metrics-course-title= link_to course.title, course
+              %td.metrics= course.date
+              %td.metrics-seats= course.min_seats
+              %td.metrics-seats= course.students.size
 
-    %div
-      .heading15-marcomm Goals for this month
-      = "Users: #{@users_this_month} to date, #{@users_last_month *2 - @users_this_month} until #{@users_last_month *2}"
-      %br
-      = "Courses: #{@courses_this_month} to date, #{@courses_last_month *2 - @courses_this_month} until #{@courses_last_month *2}"
-      %br
-      = "Transactions: #{number_to_currency @transactions_this_month, :precision => 0} to date, #{number_to_currency @transactions_last_month *2 - @transactions_this_month, :precision => 0} until #{number_to_currency @transactions_last_month *2, :precision => 0}"
-      %br
-    
-    
-    %br
-    %div
-      .heading15-marcomm Last 7 days
-      - @users.first(7).each do |date, count|
-        = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
-        %br
-
-    %br
-    %div
-      .heading15-marcomm Next 7 days
-      %table.metrics
-        %tr
-          %th.metrics= "ID"
-          %th.metrics= "Title"
-          %th.metrics= "Date"
-          %th.metrics= "Min #"
-          %th.metrics= "Current #"
-        - @courses_next7days.each do |course|
-          %tr
-            %td= course.id
-            %td= link_to course.title, course
-            %td= course.date
-            %td.metrics= course.min_seats
-            %td.metrics= course.students.size
+        / %hr
+        / %div
+        /   %h2 Teachers' emails
+        /   - @teachers.each do |teacher|
+        /     %p
+        /       = "#{teacher.name} - #{teacher.email}"
 
 
-      %br
-      %div
-      .heading15-marcomm Courses that still need to go live
-      %table.metrics
-        %tr
-          %th.metrics= "ID"
-          %th.metrics= "Title"
-          %th.metrics= "Teacher's name"
-          %th.metrics= "Teachers' email"
-          %th.metrics= "Created"
-        - @courses_not_live.each do |course|
-          %tr
-            %td= course.id
-            %td= course.title
-            %td= course.teacher.name
-            %td= course.teacher.email
-            %td= course.created_at.strftime("%b %d")
-            
-
-      %hr
-      %div
-        %h2 Teachers' emails
-        - @teachers.each do |teacher|
-          %p
-            = "#{teacher.name} - #{teacher.email}"
-
-
-- content_for :sidebar do
-  = render :partial => 'admin/charts/sidebar'
+    - content_for :sidebar do
+      = render :partial => 'admin/charts/sidebar'

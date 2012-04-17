@@ -1,0 +1,38 @@
+<div class="full-page">
+  <div class="page-content">
+    <% if current_user && admin_of_current_account? %> 
+      <%= render :partial => 'layouts/application/admin_bar' %>
+      
+      <div class="heading15-marcomm">Total proposals: 
+        
+        <% if community_site? %>
+          <%= Course.where(:status => "proposal").count %>
+        <% else %>
+          <%= current_account.courses.where(:status => "proposal").count %>
+        <% end %>
+      
+      </div>
+
+      <% @courses.each do |course| %> 
+        <div class="approvalRow clearfix">
+          <div style="width: 600px; float: left">
+            <div class="heading13-class"><%= course.title %></div>
+            <p><%= course.teaser %></p>
+            <p>Teacher's name: <%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
+            <p>Teacher's city: <%= course.teacher.location %></p>
+            <p>Teacher's experience: <%= course.experience %></p>
+          </div>
+          <div style="width: 200px; float: left; margin-left: 60px">
+            <%= button_to 'approve', proposal_path(:id => course.id), :method => :post, :class => "approve-class-button" %>
+          </div>
+        </div>
+      <% end %>
+      
+      
+    <% else %>
+      Sorry, you don't have admin access to this page. <br>
+      Have a question? Please email us at hello at hourschool dot com.
+    <% end %>
+
+  </div>
+</div>
