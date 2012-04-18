@@ -46,14 +46,12 @@
     .class-description-block
       .confirm-bring-friend You're a couple short steps from signing up for this class!
       %br
-      %p.confirm If the class doesn't happen because there aren't enough students, you will get a refund.
-      %br
-      %p We use Amazon to handle all class payments. Amazon is the only party that sees and stores your credit card info.
-      %br
       - if @course.price == 0
-        = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
       - else
-        = render "amazon_form"
+        %p.warning Attention!
+        %p We are currently experiencing issues with Amazon Payments. Please go ahead and sign up for the class so the teacher knows to expect you. We will reach out for next step with regards to payments. If you have any question, please don't hesitate to contact hello@hourschool.com. 
+        %br
+      = button_to "Yes I'm in!", register_path(:id => @course), :class => "register-class-button"
 
 
 .sidebar
