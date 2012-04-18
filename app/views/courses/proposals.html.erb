@@ -14,18 +14,16 @@
       </div>
 
       <% @courses.each do |course| %> 
-        <div class="approvalRow clearfix">
-          <div style="width: 600px; float: left">
-            <div class="heading13-class"><%= course.title %></div>
-            <p><%= course.teaser %></p>
-            <p>Teacher's name: <%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
-            <p>Teacher's city: <%= course.teacher.location %></p>
-            <p>Teacher's experience: <%= course.experience %></p>
-          </div>
-          <div style="width: 200px; float: left; margin-left: 60px">
-            <%= button_to 'approve', proposal_path(:id => course.id), :method => :post, :class => "approve-class-button" %>
-          </div>
+      
+      <div class="classBlock">
+        <%= link_to image_tag("v2-courses/DefaultClassPics_Pending_Orange.png"), proposal_path(:id => course.id) %>              
+        <div class="class-description">
+          <div class="heading13-class"><%= link_to course.title, proposal_path(:id => course.id) %></div>
+          <p><%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
+          <p>Submitted on:<br>
+          <%= course.created_at.strftime("%b %d, %Y") %></p>
         </div>
+      </div>
       <% end %>
       
       

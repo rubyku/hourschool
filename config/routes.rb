@@ -83,6 +83,10 @@ HourschoolV2::Application.routes.draw do
   match '/payment_preview'            => 'courses#register_preview'
   match '/courses/:id/course_confirm' => 'courses#course_confirm', :as => 'course_confirm'
 
+
+  match '/proposal'                   => 'courses#show_proposal'
+  match '/approve'                    => 'courses#approve'
+    
   match '/courses-proposals'          => 'courses#proposals', :as => 'course_proposals'
   match '/courses-pending-live'       => 'courses#pending_live', :as => 'course_pending_live'
 

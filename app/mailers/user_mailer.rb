@@ -18,7 +18,7 @@ class UserMailer < ActionMailer::Base
   def contact_all_students(current_user,course,message)
     @course = course
     @message = message
-    mail(:to => course.students.map(&:email), :reply_to => course.teacher.email, :subject => "Your teacher sent you a message!")
+    mail(:to => course.teacher.email, :bcc => "#{course.students.map(&:email)}, ruby@hourschool.com, alex@hourschool.com", :reply_to => course.teacher.email, :subject => "Your teacher sent you a message!")
   end
 
   def comment_on_course(user, comment, course)
@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @user = current_user
     @course = course
     @message = message
-    mail(:to => course.teacher.email, :reply_to => current_user.email, :subject => "A student sent you a message!")
+    mail(:to => course.teacher.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :reply_to => current_user.email, :subject => "A student sent you a message!")
   end
 
   def feedback(current_user, course, students, general_feedback)
