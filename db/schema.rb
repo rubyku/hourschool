@@ -11,18 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402152315) do
-
-  create_table "access_grants", :force => true do |t|
-    t.string   "code"
-    t.string   "access_token"
-    t.string   "refresh_token"
-    t.datetime "access_token_expires_at"
-    t.integer  "user_id"
-    t.integer  "application_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
+ActiveRecord::Schema.define(:version => 20120411164450) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -80,15 +69,6 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
     t.float    "lng"
   end
 
-  create_table "client_applications", :force => true do |t|
-    t.string   "name"
-    t.string   "app_id"
-    t.string   "app_secret"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
@@ -131,7 +111,6 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
     t.boolean  "featured",           :default => false
     t.boolean  "donate"
     t.integer  "series_id"
-    t.integer  "account_id"
     t.integer  "account_id",         :default => 0,     :null => false
     t.boolean  "seed",               :default => false, :null => false
   end
@@ -155,6 +134,31 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "ecourses", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "seats"
+    t.date     "date"
+    t.time     "time"
+    t.string   "place"
+    t.integer  "enterprise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "minimum"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
+  create_table "enterprises", :force => true do |t|
+    t.string   "area"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "domain"
+  end
+
   create_table "eroles", :force => true do |t|
     t.integer  "member_id"
     t.integer  "ecourse_id"
@@ -162,6 +166,15 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
     t.datetime "updated_at"
     t.string   "role"
     t.boolean  "attending"
+  end
+
+  create_table "esuggestions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "enterprise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requested_by"
   end
 
   create_table "followings", :force => true do |t|
@@ -186,6 +199,28 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "members", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "organization"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "enterprise_id"
+  end
+
+  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+  add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
+  add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "account_id"
@@ -239,10 +274,8 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
     t.string   "slug"
     t.integer  "last_course_id"
     t.integer  "student_count"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.text     "schedule_hash"
-    t.integer  "publish_days_before"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -266,6 +299,13 @@ ActiveRecord::Schema.define(:version => 20120402152315) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "subdomains", :force => true do |t|
+    t.string   "name"
+    t.integer  "enterprise_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
