@@ -61,6 +61,7 @@ GEM
       activesupport
       builder
     arel (3.0.2)
+    attr_required (0.0.5)
     awesome_print (1.0.2)
     aws-s3 (0.6.2)
       builder
@@ -281,6 +282,12 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    paypal-express (0.4.6)
+      activesupport (>= 2.3)
+      attr_required (>= 0.0.5)
+      i18n
+      restclient_with_cert
+    paypal-recurring (0.1.6)
     pg (0.12.2)
     pgbackup-tasks (0.2.3)
       heroku (>= 2.17.0)
@@ -326,6 +333,8 @@ GEM
     responders (0.6.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    restclient_with_cert (0.0.8)
+      rest-client (>= 1.6)
     rinku (1.2.2)
     rsolr (1.0.7)
       builder (>= 2.1.2)
@@ -468,6 +477,8 @@ DEPENDENCIES
   newrelic_rpm (~> 3.3.1)
   omniauth (~> 0.3.2)
   paperclip (~> 2.5.0)
+  paypal-express
+  paypal-recurring
   pg (~> 0.12.2)
   pgbackup-tasks (~> 0.2.3)
   progress_bar

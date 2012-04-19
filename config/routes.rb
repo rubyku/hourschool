@@ -32,6 +32,15 @@ HourschoolV2::Application.routes.draw do
     resources :search
   end
 
+  namespace :payments do
+    namespace :paypal do
+      resources :requests,  :only => [:new, :create]
+      resources :responses, :only => [:create]
+    end
+  end
+
+  match '/payments/paypal/responses' => 'Payments::Paypal::Responses#create'
+
   resources :courses do
     resources :owner, :controller => 'courses/owner'
   end
@@ -86,7 +95,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/proposal'                   => 'courses#show_proposal'
   match '/approve'                    => 'courses#approve'
-    
+
   match '/courses-proposals'          => 'courses#proposals', :as => 'course_proposals'
   match '/courses-pending-live'       => 'courses#pending_live', :as => 'course_pending_live'
 
