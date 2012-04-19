@@ -9,6 +9,10 @@ group :assets do
   # gem 'compass-rails',      :git => 'git://github.com/Compass/compass-rails.git'
 end
 
+
+gem 'paypal-express'
+gem "paypal-recurring"
+
 gem 'sass-rails',           '~> 3.2.4'
 
 gem 'pg',                   '~> 0.12.2'
