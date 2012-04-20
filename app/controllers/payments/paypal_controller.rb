@@ -11,7 +11,7 @@ class Payments::PaypalController < ApplicationController
   
   def request_for_course(course)
     Paypal::Payment::Request.new(
-      :description   => course.description,
+      :description   => course.title,
       :amount        => course.price,
     )
   end
