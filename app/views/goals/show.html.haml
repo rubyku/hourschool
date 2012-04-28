@@ -3,6 +3,8 @@
     = "You're a mentor!"
   - if @goal.teammate? current_user
     = "You're a teammate!"
+  - if @goal.teamlead? current_user
+    = "You're the teamlead!!"
 
 
 

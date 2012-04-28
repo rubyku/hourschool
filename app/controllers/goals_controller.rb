@@ -8,7 +8,6 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.create(params[:goal])
     @goal.city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
-    City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @goal.roles.create(:name => 'teamleader', :user => current_user)
     redirect_to @goal
   end

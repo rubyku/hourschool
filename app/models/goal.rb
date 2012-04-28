@@ -27,6 +27,10 @@ class Goal < Course
     roles.where(:name => 'mentor', :user_id => user).present?
   end
 
+  def teamlead?(user)
+    roles.where(:name => 'teamleader', :user_id => user).present?
+  end
+
   private
 
   def set_status
