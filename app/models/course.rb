@@ -10,10 +10,10 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
-  validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
+  validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => [:proposal?, :goal?]
 
   validate :default_validations, :message => "The fields cannot be empty"
-  validate :not_past_date, :unless => :proposal?, :on => :create
+  validate :not_past_date, :unless => [:proposal?, :goal?], :on => :create
 
   acts_as_taggable_on :categories
 
@@ -40,6 +40,19 @@ class Course < ActiveRecord::Base
   acts_as_voteable
 
   include Course::Searchable
+
+  ## BEWARE THERE BE DRAGONS
+  def type
+    if status == 'goal'
+      'Goal'
+    else
+      'Course'
+    end
+  end
+
+  def goal?
+    status == 'goal'
+  end
 
   def self.community
     where('account_id in (?) or account_id is null', Account.public_ids).where(:seed => false)

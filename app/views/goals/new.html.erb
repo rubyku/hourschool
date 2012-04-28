@@ -1,0 +1,18 @@
+<div class="page">
+    <div class="page-content">
+
+    <div class="page-section-float-left">
+      <% @goal.errors.full_messages.each do |message| %>
+        <div class="error-block"><div class="form-error">*<%= message %></div></div>
+      <% end %>
+    </div>
+
+  <%= form_for @goal, :html => { :multipart => true } do |f| %>
+    
+    <%= render :partial => 'form', :locals => {:f => f }%>
+    <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Create This Goal!" %>
+
+  <% end %>
+
+   </div>
+</div><!-- /end .page -->

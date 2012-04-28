@@ -1,0 +1,38 @@
+- if current_user
+  - if @goal.mentor? current_user
+    = "You're a mentor!"
+  - if @goal.teammate? current_user
+    = "You're a teammate!"
+
+
+
+
+%h2 Yo Dawg This is a Goal
+%div
+  = "Name: #{@goal.name}"
+%div
+  = "Description: #{@goal.description}"
+
+= link_to 'edit this suggestion', edit_goal_path(@goal)
+%hr
+
+%div
+  %p Teammates:
+  = @goal.teammates.map {|user| user.name }
+  %br
+  = link_to 'become a teammate', new_goal_teammate_path(@goal)
+%div
+  %p Mentors:
+  = @goal.mentors.map {|user| user.name }
+  %br
+  = link_to 'become a mentor', new_goal_mentor_path(@goal)
+
+%div
+  %p Teamleader:
+  = @goal.teamleader.name
+
+
+%hr
+= render :partial => "courses/comments", :locals => {:course => @goal}
+
+

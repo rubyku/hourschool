@@ -22,8 +22,9 @@ HourschoolV2::Application.routes.draw do
 
   resources :comments
 
-  resources :suggestions do
-    resources :nominations, :module => "suggestions"
+  resources :goals do
+    resources :teammates, :module => 'goals'
+    resources :mentors, :module => 'goals'
   end
 
 
@@ -71,8 +72,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/learn'                      => 'Courses::Browse#index'
   match '/teach'                      => 'home#teach'
-  match '/suggest'                    => 'suggestions#suggest'
-  match '/csvote'                     => 'suggestions#vote'
   match '/register'                   => 'courses#register'
   match '/register_for_reskilling'    => 'courses#register_for_reskilling'
   match '/register_with_amazon'       => 'courses#register_with_amazon'
@@ -86,7 +85,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/proposal'                   => 'courses#show_proposal'
   match '/approve'                    => 'courses#approve'
-    
   match '/courses-proposals'          => 'courses#proposals', :as => 'course_proposals'
   match '/courses-pending-live'       => 'courses#pending_live', :as => 'course_pending_live'
 
@@ -101,7 +99,6 @@ HourschoolV2::Application.routes.draw do
   match '/profile-suggest'            => 'users#profile_suggest'
   match '/profile-pending'            => 'users#profile_pending'
   match '/profile-approved'           => 'users#profile_approved'
-
   match '/my_classes'                 => 'users#my_classes'
   match '/classes_taken'              => 'users#classes_taken'
   match '/classes_taught'             => 'users#classes_taught'
