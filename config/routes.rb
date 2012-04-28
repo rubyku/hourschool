@@ -24,7 +24,7 @@ HourschoolV2::Application.routes.draw do
 
   resources :goals do
     resources :teammates, :module => 'goals'
-    resources :mentors, :module => 'goals'
+    resources :mentors,   :module => 'goals'
   end
 
 
