@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_filter :authenticate_admin!
 
   def confirm
     @payment = Payment.new(
