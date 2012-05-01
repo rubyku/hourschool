@@ -18,15 +18,15 @@
     .goal-description
       = "#{@goal.description}"
 
-  .goal-join-box
-    = link_to 'Join Mission', new_goal_teammate_path(@goal), :class => "join-goal-button"
+  = link_to 'Join Mission', new_goal_teammate_path(@goal), :class => "join-goal-button"
     
-  .goal-join-box  
+  .goal-teammate-box  
     .goal-teammates
       =image_tag(@goal.teamleader.photo.url(:thumb_small))
       - @goal.teammates.each do |teammate|
         = avatar_for(teammate, :photo_size => :thumb_small, :class => 'team-pic', :size => '50x50')
-
+      %br
+      = "#{@goal.teammates.count + 1} people are on this mission"
 
 .page
   .page-section-float-left
