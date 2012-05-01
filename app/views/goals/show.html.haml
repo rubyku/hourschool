@@ -1,40 +1,37 @@
-- if current_user
-  - if @goal.mentor? current_user
-    = "You're a mentor!"
-  - if @goal.teammate? current_user
-    = "You're a teammate!"
-  - if @goal.teamlead? current_user
-    = "You're the teamlead!!"
+/ - if current_user
+/   - if @goal.mentor? current_user
+/     = "You're a mentor!"
+/   - if @goal.teammate? current_user
+/     = "You're a teammate!"
+/   - if @goal.teamlead? current_user
+/     = "You're the teamlead!!"
 
 
+= image_tag(@goal.photo.url, :size => "960x349")
+
+.goal-banner-box
+  .goal-description-box
+    .goal-title-big
+      = "#{@goal.name}"
+    .heading10-sidebar
+      = "Organized by #{@goal.teamleader.name}"
+    .goal-description
+      = "#{@goal.description}"
+
+  .goal-join-box
+    = link_to 'Join Mission', new_goal_teammate_path(@goal), :class => "join-goal-button"
+    
+  .goal-join-box  
+    .goal-teammates
+      =image_tag(@goal.teamleader.photo.url(:thumb_small))
+      - @goal.teammates.each do |teammate|
+        = avatar_for(teammate, :photo_size => :thumb_small, :class => 'team-pic', :size => '50x50')
 
 
-%h2 Yo Dawg This is a Goal
-%div
-  = "Name: #{@goal.name}"
-%div
-  = "Description: #{@goal.description}"
-
-= link_to 'edit this suggestion', edit_goal_path(@goal)
-%hr
-
-%div
-  %p Teammates:
-  = @goal.teammates.map {|user| user.name }
-  %br
-  = link_to 'become a teammate', new_goal_teammate_path(@goal)
-%div
-  %p Mentors:
-  = @goal.mentors.map {|user| user.name }
-  %br
-  = link_to 'become a mentor', new_goal_mentor_path(@goal)
-
-%div
-  %p Teamleader:
-  = @goal.teamleader.name
+.page
+  .page-section-float-left
+    = render :partial => "courses/comments", :locals => {:course => @goal}
 
 
-%hr
-= render :partial => "courses/comments", :locals => {:course => @goal}
-
-
+= content_for :sidebar do
+  = render :partial => "sidebar"

@@ -8,6 +8,15 @@ class Goal < Course
   def teamleader
     roles.where(:name => 'teamleader').first.user
   end
+  
+  def teammates
+    teammates = roles.where(:name => 'teammate')
+    if teammates.any?
+      teammates.collect(&:user)
+    else
+      []
+    end
+  end
 
   def add_teammate(user)
     roles.create!(:name => 'teammate', :user => user)

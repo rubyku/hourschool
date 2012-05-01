@@ -1,47 +1,21 @@
-<div class="heading25_ccc">1. Overview</div>
 <div class="page-section-float-left">
 
 <p>
- <%= f.label :title, 'Give your class a title:', :class => "form-question" %>
+ <%= f.label :title, 'What is your goal?', :class => "form-question" %>
  <p class="tip">Max. length is 36 characters</p>
  <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle, :maxlength => "41" %>
  </p>
  <br><br>
 
 <p>
- <%= f.label :teaser, 'Offer a short description', :class => "form-question" %><br />
- <p class="tip">Only the first 70 characters will show</p>
- <%= f.text_area :teaser, :class => "form-with-margin", :value => @reqdescription %>
+ <%= f.label :description, 'Why do you want to do this?', :class => "form-question" %>
+ <%= f.text_area :description, :class => "form-tall" %>
  </p>
- <br><br>
+ </div>
 
-<!--
-<p>
- <%# f.label :categories, 'Categories', :class => "form-question" %><br />
- <p class="tip">Choose the best category this suggestion falls into.</p>
- <%# f.select 'categories[]', ['Presentation' , 'Round Table' , 'Demo', 'Hands-on'] %>
- </p>
- <br>
- -->
  <p>
  <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
  <p class="tip">If you don't have time to find a photo, we will auto-populate a default one based on the category. Of course you can always come back and change it.</p>
  <%= image_tag(@goal.photo,  :size => "190x120") if @goal.photo.present? %>
  <%= f.file_field :photo %>
  </p>
-
- </div>
-
- <hr id="class"><br>
-
- <div class="heading25_ccc">2. Game Plan</div>
- <div class="page-section-float-left">
-
-<p>
- <%= f.label :description, 'Describe your suggestion in more details', :class => "form-question" %>
- <p class="tip">No character limit</p>
- <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What are the 3 things they will get out of the class? What kind of material or equipment do they need ahead of time?" %>
- </p>
- </div>
-
-<hr id="class"><br>

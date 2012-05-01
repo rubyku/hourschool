@@ -1,0 +1,20 @@
+.sidebar-white
+  .mission-sidebar
+
+    .sidebar-block
+      .sidebar-heading Mission Mentors:
+      %p 
+        Mission mentors are folks in the know who can help you out while you are on your mission’s journey. They may also become the teachers for classes that become part of the mission curriculum.
+      %br
+      
+      - @goal.mentors.each do |mentor|
+        %table
+          %tr
+            %td
+              = avatar_for(mentor, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+            %td
+              = link_to mentor.name, mentor, :class => "profile-link"
+      
+    .sidebar-block-last 
+      = link_to 'Nominate a mentor', new_goal_mentor_path(@goal), :class => "nominate-mentor-button"
+      

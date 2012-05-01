@@ -27,6 +27,7 @@ class GoalsController < ApplicationController
   end
 
   def index
+    @goals.inspect
     @goals = Goal.order("created_at DESC")
   end
 
