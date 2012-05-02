@@ -40,7 +40,7 @@
           <% if user_signed_in? %>
               <div id="dropdown-box" style="display:none;">
                 <table id="dropdown-text">
-                  <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Profile", profile_path, :class => "dropdown-text" %></td></tr>
+                  <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "My Classes", profile_path, :class => "dropdown-text" %></td></tr>
                   <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "Settings", edit_user_registration_path, :class => "dropdown-text" %></td></tr>
                   <% if current_account && admin_of_current_account? %>
                     <tr id="dropdown-text">
