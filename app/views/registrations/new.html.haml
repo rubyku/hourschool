@@ -8,13 +8,14 @@
           %a.sub-nav-inactive(href="/users/sign_in") Sign in
 
     - if community_site?
-      .class-alternatives
+      = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
+      %p
         We will not post anything without your permission.
-        .page-section-float-left
-          = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
-        %hr
-        %br
-        %p Or sign up with email
+      %hr
+      %br
+      .heading15-campaign-orange Or sign up with email
+      .pagenote-box.clearfix
+        It's important to use your real email so you receive important information from your teachers such as location details or last minute changes! We won't spam you. 
 
     - if current_account && current_account.private?
       %p Please contact the school admin to invite you to sign up.
