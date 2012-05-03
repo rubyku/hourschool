@@ -15,11 +15,14 @@
         %tr
           %td.user-stat-icon
             = image_tag "v2/StatusIcon_CheckMark.png", :class => "class-details-icon-heart"
+            = "Classes taken"
           %td.user-stat-number
             .class-details-heart-number
               = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
+        %tr
           %td.user-stat-icon
             = image_tag "v2/StatusIcon_Star.png", :class => "class-details-icon-heart"
+            = "Classes taught"
           %td.user-stat-number
             .class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
@@ -33,31 +36,32 @@
           = "One of the HourSchoolmates!"
           =# link_to "here", edit_user_registration_path(@user)
 
-      %ul.noBullet
-        %li.noBullet
+      %table.user-stat
+        %tr
+          %td.user-stat-icon
           - if !@user.web.blank?
             %a.profile-link
               = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
-          %br
-        %li.noBullet
+        %tr
+          %td.user-stat-icon
           - if !@user.twitter_id.blank?
             %a.profile-link
               = link_to "Twitter", @user.twitter_url, :class => "profile-link"
 
-    - if @user.fetch_followed.present?
-      .sidebar-block-last
-        .sidebar-heading
-          = link_to 'Classmates', '#', :class => 'showClassmateModal', :onclick => "$('.ClassmateModal').show()"
-
-= render :layout => 'shared/page/modal', :locals => {:modal_class => 'ClassmateModal', :display => (params[:show_classmates].present? ? 'block': 'none'), :click_closes_overlay => true} do
-  %div
-    = content_tag(:h2, 'Classmates')
-    = content_tag(:p, "Classmates are friends at Hourschool. They're automatically added after each class and can be add or removed at any time")
-    - @user.fetch_followed.each do |user|
-      = render :partial => 'followings/user_following', :locals => {:user => user}
-
-- content_for :admin_action do
-  = link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
+/     - if @user.fetch_followed.present?
+/       .sidebar-block-last
+/         .sidebar-heading
+/           = link_to 'Classmates', '#', :class => 'showClassmateModal', :onclick => "$('.ClassmateModal').show()"
+/ 
+/ = render :layout => 'shared/page/modal', :locals => {:modal_class => 'ClassmateModal', :display => (params[:show_classmates].present? ? 'block': 'none'), :click_closes_overlay => true} do
+/   %div
+/     = content_tag(:h2, 'Classmates')
+/     = content_tag(:p, "Classmates are friends at Hourschool. They're automatically added after each class and can be add or removed at any time")
+/     - @user.fetch_followed.each do |user|
+/       = render :partial => 'followings/user_following', :locals => {:user => user}
+/ 
+/ - content_for :admin_action do
+/   = link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
   
   
   
