@@ -99,25 +99,25 @@
         <table id="menu">
           <tr id="menu">
             <td id="community_menu_learn">
-                <%= link_to learn_path, :id => "menu" do %>
+                <%= link_to learn_path, :id => "menu-#{'in' unless controller_name == 'browse' || controller_name == 'search' || controller_name == 'courses' && action_name == 'show' || controller_name == 'courses' && action_name == 'register_preview' || controller_name == 'courses' && action_name == 'course_confirm'}active" do %>
                   <div id="menu18">Learn</div> 
                   <div id="menu9">something new</div>
                 <% end %>
               </td>
               <td id="community_menu_teach">
-                <%= link_to teach_path, :id => "menu" do %>
+                <%= link_to teach_path, :id => "menu-#{'in' unless controller_name == 'home' || controller_name == 'courses' && action_name == 'new' || controller_name == 'courses' && action_name == 'edit' || controller_name == 'courses' && action_name == 'preview' || controller_name == 'courses' && action_name == 'confirm'}active" do %>
                   <div id="menu9">Offer to</div>
                   <div id="menu18">teach</div>
                 <% end %>
               </td>
             <td id="community_menu_suggest">
-              <%= link_to suggest_path, :id => "menu" do %>
+              <%= link_to suggest_path, :id => "menu-#{'in' unless controller_name == 'suggestions'}active" do %>
                 <div id="menu18">Suggest</div>
                 <div id="menu9">a class</div>
               <% end %>
             </td>
             <td id="community_menu_community">
-              <%= link_to about_path, :id => "menu" do %>
+              <%= link_to about_path, :id => "menu-#{'in' unless controller_name == 'pages'}active" do %>
                 <div id="menu9">Read our</div>
                 <div id="menu18">Mission</div>
               <% end %>
