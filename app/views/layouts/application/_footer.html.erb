@@ -10,7 +10,7 @@
               <div class="footer-heading">Recent Blog Post</div>
               <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
 
-              <p class="footer"><%= strip_tags(truncate(tum["regular_body"], :length => 600, :omission => "..."))%></p><br>
+              <p class="footer-message-description"><%= strip_tags(truncate(tum["regular_body"], :length => 600, :omission => "..."))%></p><br>
 
           <%- else -%>
               <div class="footer-heading">Our mission</div>
@@ -19,7 +19,7 @@
         <% rescue => ex %>
           <% Rails.logger.error "Tumblr Failed: #{ex}" %>
           <div class="footer-heading">What is HourSchool?</div>
-          <p class="footer">HourSchool is a social school built from your community. Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="http://www.hourschool.com/about">Learn more...</a></p><br>
+          <p class="footer-message-description">HourSchool is a social school built from your community. Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="http://www.hourschool.com/about">Learn more...</a></p><br>
         <% end %>
 
       </div>
@@ -29,7 +29,7 @@
           <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup">
             <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-              <p class="footer">Sign up for our newsletter to get updates on latest classes in your city!</p>
+              <p class="footer-message-description">Sign up for our newsletter to get updates on latest classes in your city!</p>
               <input type="email" value="" name="EMAIL" class="newsletterForm" placeholder="email address" required><br>
               <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="newsletterButton">
             </form>
