@@ -1,4 +1,5 @@
-= form_tag courses_search_path(:all), :method => :get do
-  = text_field_tag :q, request.params[:q], :class => 'searchForm', :placeholder => "Search"
-  = submit_tag '', :class => 'hiddenSubmit'
-  = image_tag 'v2/search-magnifying-glass-orange.png', :class => 'mag-glass'
+.container_16.searchBar.clearfix
+  = form_tag courses_search_path(:all), :method => :get do
+    = text_field_tag :q, request.params[:q], :class => 'searchForm', :placeholder => "Find a class to take"
+    = submit_tag 'Search', :class => "searchButton"
+    = image_tag 'v2/search-magnifying-glass-orange.png', :class => 'mag-glass'
