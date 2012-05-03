@@ -77,6 +77,9 @@
 
     .sidebar-block-last
       .sidebar-heading Teacher
+      - if course.teacher != current_user
+        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+        = link_to "Contact teacher", contact_teacher_path(:id => course), :class => "contact-link"
       .class-attendance-block
         - if course.teacher.photo.present?
           = image_tag(course.teacher.photo.url(:thumb_small))
@@ -91,9 +94,7 @@
           - else
             = course.experience
 
-      - if course.teacher != current_user
-        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Contact teacher", contact_teacher_path(:id => course), :class => "contact-link"
+
 
 
     - if course.students.any?

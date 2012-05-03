@@ -31,10 +31,13 @@
     .sidebar-block
       .sidebar-heading About
       %p.profile-bio
-        = @user.bio
         - if @user.bio.blank?
-          = "One of the HourSchoolmates!"
-          =# link_to "here", edit_user_registration_path(@user)
+          = "No bio yet."
+        - else 
+          = @user.bio
+        %br
+        - if current_user == @user
+          = link_to "Tell us more about you.", edit_user_registration_path(@user)
 
       %table.user-stat
         %tr
