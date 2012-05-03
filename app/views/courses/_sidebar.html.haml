@@ -129,7 +129,8 @@
 
 // Modal Layout for when a User tries to sign up for a course too far away
 = render :layout => 'shared/page/modal', :locals => {:modal_class => 'tooFarToRegisterModal'} do
-  = content_tag(:p, "Wait!! This class is in #{course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.")
+  %p
+    = content_tag(:p, "Wait!! This class is in #{course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.")
   %p
     = "If you're no longer in #{current_user.try(:location)} "
     = link_to "change your location here", edit_user_registration_path(:id => current_user)
@@ -137,7 +138,7 @@
 
   %div
     %br
-    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "register-class-button"
+    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "loginButton"
 
 
 
