@@ -1,0 +1,12 @@
+<div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
+  <div id="progressbar" class=""></div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready( function(){
+    $( "#progressbar" ).progressbar({
+    value: <%= @course.students.count/@course.max_seats.to_f * 100 %>
+    });
+  });
+</script>
