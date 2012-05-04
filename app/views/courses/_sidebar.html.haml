@@ -109,11 +109,10 @@
             %br
 
 
-
-
 // Feedback link on the admin bar
 - content_for :admin_action do
   = link_to "Feedback form", feedback_path(:id => course)
+
 
 
 // Modal Layout for when a User tries to sign up for a course too far away
@@ -128,7 +127,6 @@
   %div
     %br
     = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "loginButton"
-
 
 
 // Show the modal window if a person tries to register for a course too far away from them
