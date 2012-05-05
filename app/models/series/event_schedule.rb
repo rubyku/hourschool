@@ -37,8 +37,13 @@ module Series::EventSchedule
     stale_events.map(&:destroy) if return_val.present?
   end
 
+
   def schedule_out_to
     SCHEDULE_OUT_TO.months.from_now.in_time_zone
+  end
+
+  def entries(end_time = 52.weeks.from_now)
+    schedule.occurrences(end_time)
   end
 
   def build_events!
@@ -71,12 +76,17 @@ module Series::EventSchedule
     include IceCube
 
     def start_end_from_hash(options)
-      start_time = DateTime.parse(options[:start_time]).in_time_zone   if options[:start_time].present?
+      if options[:start_time].present?
+        start_time = options[:start_time] if options[:start_time].is_a? DateTime
+        start_time = DateTime.parse(options[:start_time]).in_time_zone if options[:start_time].is_a? String
+        start_time = DateTime.new(options[:start_time]['(1i)'].to_i, options[:start_time]['(2i)'].to_i, options[:start_time]['(3i)'].to_i).in_time_zone if options[:start_time].is_a? Hash
+      end
       end_time   = DateTime.parse(options[:end_time]  ).in_time_zone   if options[:end_time].present?
-      start_time ||= 1.year.from_now.in_time_zone
-      end_date   ||= 1.year.from_now.in_time_zone
+      start_time ||= 2.weeks.from_now.in_time_zone
+      end_time   ||= (start_time + 1.year).in_time_zone
       return start_time, end_time
     end
+
 
 
     def schedule_from_hash(options = {})
@@ -86,12 +96,17 @@ module Series::EventSchedule
 
       new_schedule = Schedule.new(start_time, :end_time => end_time)
 
-      weekdays   = options[:weekdays] || []
+      weekdays   = options[:weekdays]         || []
+      count      = options[:count].try(:to_i) || 4
+
       rule = IceCube::Rule.weekly
       weekdays.each do |weekday|
         rule.day(weekday.to_sym)
       end
+
+      rule.count(count)
       new_schedule.add_recurrence_rule(rule)
+
       new_schedule
     end
   end
