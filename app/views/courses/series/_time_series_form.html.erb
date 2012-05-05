@@ -1,5 +1,3 @@
-
-
 <% if @series.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@series.errors.count, "error") %> prohibited this series from being saved:</h2>
@@ -11,7 +9,6 @@
   </div>
 <% end %>
 
-<%= hidden_field_tag 'schedule[start_time]', Time.now %>
 <div>
   <h3>Repeat Every: </h3>
   <%= check_box_tag 'schedule[weekdays][]', :sunday,    checked_for_series_if(@series, :sunday) %> S
@@ -21,4 +18,16 @@
   <%= check_box_tag 'schedule[weekdays][]', :thursday,  checked_for_series_if(@series, :thursday)  %> T
   <%= check_box_tag 'schedule[weekdays][]', :friday,    checked_for_series_if(@series, :friday) %> F
   <%= check_box_tag 'schedule[weekdays][]', :saturday,  checked_for_series_if(@series, :saturday)  %> S
+</div>
+
+<div>
+  <h3>Start On: </h3>
+  <%= date_select nil, 'schedule[start_time]', :default => first_day_or_weeks_since_last_course(@series)  %><br><br>
+
+</div>
+
+<div>
+  <h3>Ends After: </h3>
+  <%= select nil,  'schedule[count]', 1.upto(52).collect(&:to_i), :selected => number_of_occurrences_in_series_or(@series, 4) %>
+   classes
 </div>

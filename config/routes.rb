@@ -30,7 +30,7 @@ HourschoolV2::Application.routes.draw do
   namespace :courses do
     resources :browse
     resources :search
-    resources :series
+    resources :series, :except => :create
   end
 
   namespace :payments do
@@ -45,6 +45,7 @@ HourschoolV2::Application.routes.draw do
   resources :courses do
     resources :owner,     :controller => 'courses/owner'
     resource  :duplicate, :controller => 'courses/duplicate'
+    resources :series,    :controller => 'courses/series', :only => :create
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
