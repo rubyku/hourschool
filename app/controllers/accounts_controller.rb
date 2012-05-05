@@ -56,27 +56,27 @@ class AccountsController < ApplicationController
   end
 
   private
-  def seed_course_and_user
-    # make ruby member of this school
-    Membership.create!(:user_id => 1, :account => @account) unless Membership.find_by_user_id_and_account_id(1, @account.id)
-
-    city    = City.find_or_create_by_name_and_state(@user.city, @user.state)
-    @course = Course.create!(
-      :title => "How to get the most out of your school",
-      :description => "Yeah!",
-      :price => 0,
-      :max_seats => 10,
-      :min_seats => 1,
-      :place_name => "webinar",
-      :status => "live",
-      :date => Date.today,
-      :time_range => "whenever you're available",
-      :phone_number => "(877) 246-4689",
-      :account => @account,
-      :city => city,
-      :seed => true
-    )
-    # make ruby the teacher (could be ruby)
-    @course.roles.create!(:attending => true, :name => 'teacher', :user_id => 1)
-  end
+  # def seed_course_and_user
+  #   # make ruby member of this school
+  #   Membership.create!(:user_id => 1, :account => @account) unless Membership.find_by_user_id_and_account_id(1, @account.id)
+  # 
+  #   city    = City.find_or_create_by_name_and_state(@user.city, @user.state)
+  #   @course = Course.create!(
+  #     :title => "How to get the most out of your school",
+  #     :description => "Yeah!",
+  #     :price => 0,
+  #     :max_seats => 10,
+  #     :min_seats => 1,
+  #     :place_name => "webinar",
+  #     :status => "live",
+  #     :date => Date.today,
+  #     :time_range => "whenever you're available",
+  #     :phone_number => "(877) 246-4689",
+  #     :account => @account,
+  #     :city => city,
+  #     :seed => true
+  #   )
+  #   # make ruby the teacher (could be ruby)
+  #   @course.roles.create!(:attending => true, :name => 'teacher', :user_id => 1)
+  # end
 end
