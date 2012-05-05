@@ -1,5 +1,5 @@
 class Series < ActiveRecord::Base
-  has_many    :courses, :dependent => :destroy
+  has_many    :courses
 
   before_save :update_last_course_id, :default_name
 
