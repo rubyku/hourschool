@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
       if @account.valid? && @account.save
         @user = current_user
         Membership.create!(:user => current_user, :account => @account, :admin => true)
-        seed_course_and_user
+        # seed_course_and_user
         redirect_to(learn_url(:admin, :subdomain => @account.subdomain)) && return
       end
     else
