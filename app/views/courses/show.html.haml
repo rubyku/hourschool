@@ -3,6 +3,8 @@
   
 = content_for(:document_title, "#{@course.name} in #{@course.city.try(:name_state)} | taught by #{@course.teacher.name} on Hourschool" )
 
+= render :partial => 'courses/search'
+
 .page
   .page-content
     .page-section-float-left
