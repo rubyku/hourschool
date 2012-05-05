@@ -3,7 +3,7 @@ module Series::EventSchedule
 
   include IceCube
 
-  DEFAULT_PUBLISH_DAYS_BEFORE = 7 # days
+  DEFAULT_PUBLISH_DAYS_BEFORE = 14 # days
   SCHEDULE_OUT_TO             = 6 # months
 
   included do
