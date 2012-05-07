@@ -159,7 +159,7 @@ class Course < ActiveRecord::Base
   end
 
   def students
-    students = roles.where(:name => 'student')
+    students = roles.where(:name => 'student').where(:attending => true)
     if students.any?
       students.collect(&:user)
     else
