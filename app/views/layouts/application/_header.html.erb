@@ -1,11 +1,13 @@
 <div id="header">
   <div class="container_16">
-
-    <% if community_site? %>
-      <%= link_to "", root_path, :id => "logo" %>
-    <% else %>
-      <div id="enterprise_peer_learning">Peer learning at <%= current_account.name %></li>
-    <% end %>
+    
+      <% if community_site? %>
+        <%= link_to "", root_path, :id => "logo" %>
+      <% else %>
+        <% if current_account == Account.find(6) %>
+          <%= image_tag 'v2-account/logo-feastfordays.png', :style => "float: left; margin-bottom: 20px", :size => "100x100" %>
+        <% end %>
+      <% end %>
 
 
     <div id="login">
@@ -37,7 +39,7 @@
 
           </li>
 
-          <% if user_signed_in? %>
+
               <div id="dropdown-box" style="display:none;">
                 <table id="dropdown-text">
                   <tr id="dropdown-text"><td id="dropdown-text"><%= link_to "My Classes", profile_path, :class => "dropdown-text" %></td></tr>
@@ -60,7 +62,7 @@
                   <tr id="dropdown-text-last"><td id="dropdown-text"> <%= link_to "Logout", destroy_user_session_path, :class => "dropdown-text" %></td></tr>
                 </table>
               </div>
-          <% end %>
+
 
       </ul>
     </div>
@@ -132,49 +134,33 @@
         </table>
 
       <% else %>
-
-        <table id="enterprise_menu">
-          <tr id="menu">
-            <td id="enterprise_menu_dashboard">
-              <a href="/profile" id="menu">
-                <div id="menu9">My</div>
-                <div id="menu18">Dashboard</div>
-              </a>
-            </td>
-            <td id="enterprise_menu_learn">
-              <a href="/learn" id="menu">
-                <div id="menu18">Learn</div> 
-                <div id="menu9">something new</div>
-              </a>
-            </td>
-            <td id="enterprise_menu_teach">
-              <a href="/teach" id="menu">
-                <div id="menu9">Offer to</div>
-                <div id="menu18">teach</div>
-              </a>
-            </td>
-            <td id="enterprise_menu_suggest">
-              <a href="/suggest" id="menu">
-                <div id="menu18">Suggest</div>
-                <div id="menu9">a class</div>
-              </a>
-            </td>
-            <td id="enterprise_menu_faq">
-              <a href="http://help.hourschool.com" id="menu">
-                <div id="menu_faq">F</div>
-                <div id="menu_faq">A</div>
-                <div id="menu_faq">Q</div>
-              </a>
-            </td>
-            <td id="enterprise_menu_community">
-              <a href="http://www.hourschool.com" id="menu" target="_new">
-                <div id="menu9">HourSchool in your</div>
-                <div id="menu18">City</div>
-              </a>
-            </td>
-          </tr>
-        </table>
-        
+      
+        <% if current_account == Account.find(6) %>
+          <div>
+            <ul id="feastfordays">
+              <li id="feastfordays"><a href="http://www.feastfordays.com/about.html">About</a></li>
+              <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/learn">Attend an event</a></li>
+              <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/teach">Host an event</a></li>
+              <li id="feastfordays">Recipes</li>
+              <li id="feastfordays">Contact</li>
+            </ul>
+          </div>
+        <% else %>
+          <table id="enterprise_menu">
+            <tr id="menu">
+              <td id="enterprise_menu_learn">
+                <a href="/learn" id="menu">
+                  <div id="enterprise_menu">Take a session</div> 
+                </a>
+              </td>
+              <td id="enterprise_menu_teach">
+                <a href="/teach" id="menu">
+                  <div id="enterprise_menu">Host a session</div>
+                </a>
+              </td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
 
 

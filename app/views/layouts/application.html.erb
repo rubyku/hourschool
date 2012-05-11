@@ -101,7 +101,13 @@
       </div>
     </div>
   <%- else -%>
-    <div class="brand_bg"></div>
+    <% if community_site? %>
+      <div class="brand_bg"></div>
+    <% else %>
+        <% if current_account == Account.find(6) %>
+          <div style="height: 60px; background-color: #134554;">
+        <%- end -%>
+    <%- end -%>
   <%- end -%>
 <%- end -%>
 
