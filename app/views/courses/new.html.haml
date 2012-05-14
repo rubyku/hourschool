@@ -1,23 +1,41 @@
-= render 'submit_proposal_form'
+- if current_account == Account.find(6) 
+  = render 'submit_event_form'
+  
+  .sidebar
+    .tipbox
+      = image_tag 'v2/Tape_White.png', :class => 'tape'
+      %center
+        .heading10 Have questions? We're here to help!
+        %br
+        = image_tag 'v2/icon_email.png'
+        %br
+        %a(href="mailto:hello@hourschool.com") hello@hourschool.com
+        %br
+        %br
+        = image_tag 'v2/icon_phone.png'
+        %br
+        (877) 246-4689
+   
+- else 
+  = render 'submit_proposal_form'
+  
+  .sidebar
+    .tipbox
+      = image_tag "v2/Tape_White.png", :class => 'tape'
+      .heading10 First time teaching? Check out our FAQ.
+      %a(href="http://help.hourschool.com/")
+        #tipboxButton Help me!
 
-.sidebar
-
-  .tipbox
-    = image_tag "v2/Tape_White.png", :class => 'tape'
-    .heading10 First time teaching? Check out our FAQ.
-    %a(href="http://help.hourschool.com/")
-      #tipboxButton Help me!
-
-  .tipbox
-    = image_tag 'v2/Tape_White.png', :class => 'tape'
-    %center
-      .heading10 Have more questions?
-      %br
-      = image_tag 'v2/icon_email.png'
-      %br
-      %a(href="mailto:hello@hourschool.com") hello@hourschool.com
-      %br
-      %br
-      = image_tag 'v2/icon_phone.png'
-      %br
-      (877) 246-4689
+    .tipbox
+      = image_tag 'v2/Tape_White.png', :class => 'tape'
+      %center
+        .heading10 Have more questions?
+        %br
+        = image_tag 'v2/icon_email.png'
+        %br
+        %a(href="mailto:hello@hourschool.com") hello@hourschool.com
+        %br
+        %br
+        = image_tag 'v2/icon_phone.png'
+        %br
+        (877) 246-4689
