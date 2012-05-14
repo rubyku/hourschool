@@ -121,7 +121,7 @@
         <li id="missionzero_profile"><%= link_to "Logout", destroy_user_session_path, :id => "missionzero" %>
       <% else %>
         <li id="missionzero_profile"><%= link_to "Sign in", new_user_session_path, :id => "missionzero" %>
-        <li id="missionzero_profile"><%= link_to "Sign in", new_registration_session_path, :id => "missionzero" %>
+        <li id="missionzero_profile"><%= link_to "Sign up", new_user_registration_path, :id => "missionzero" %>
       <% end %>
     </ul>
   </div><!-- /end .container_16 -->

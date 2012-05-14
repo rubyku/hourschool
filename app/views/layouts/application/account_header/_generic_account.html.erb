@@ -85,7 +85,7 @@
         <li id="generic_account_profile"><%= link_to "Logout", destroy_user_session_path, :id => "generic_account" %>
       <% else %>
         <li id="generic_account_profile"><%= link_to "Sign in", new_user_session_path, :id => "generic_account" %>
-        <li id="generic_account_profile"><%= link_to "Sign in", new_registration_session_path, :id => "generic_account" %>
+        <li id="generic_account_profile"><%= link_to "Sign up", new_user_registration_path, :id => "generic_account" %>
       <% end %>
     </ul>
 
