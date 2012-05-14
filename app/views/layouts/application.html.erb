@@ -107,9 +107,9 @@
 
   <% if community_site? %>
    <%# do nothing %>
-  <% elsif current_account == Account.find(6) %>
+  <% elsif current_account == Account.find(1) %>
     <%= render 'layouts/application/account_header/feastfordays' %>
-  <% elsif current_account == Account.find(8) %>
+  <% elsif current_account == Account.find(3) %>
     <%= render 'layouts/application/account_header/missionzero' %>
   <% else %>
     <%= render 'layouts/application/account_header/generic_account' %>
