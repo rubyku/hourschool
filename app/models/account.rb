@@ -11,9 +11,17 @@ class Account < ActiveRecord::Base
 
   scope :open, where(:private => false)
   scope :private, where(:private => true)
+  
+  has_attached_file :photo, :styles => { :small => "243x48" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => "user/:style/:id/:filename"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   def self.public_ids
-    self.open.collect(&:id) + [0]
+    self.open.collect(&:id) + [0] - [6]
   end
 
   private
