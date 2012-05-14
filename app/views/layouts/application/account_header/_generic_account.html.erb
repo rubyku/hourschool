@@ -1,0 +1,94 @@
+<style type="text/css">
+
+  #header_generic_account{
+    height: 50px; 
+    background-color: white;
+    border-bottom: 2px solid #666; 
+    padding-top: 20px;
+    margin-bottom: 30px
+  }
+  
+  #logo_generic_account{
+    float: left; 
+    margin-top: -10px;
+    margin-bottom: 40px;
+    margin-right: 40px;
+  }
+  
+  #name_generic_account{
+    float: left;
+    margin-top: 3px;
+    margin-bottom: 40px;
+    margin-right: 40px;
+    color: #666;
+    font-family: futura-pt-1, futura-pt-2;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 20px;
+  }
+
+  ul#generic_account{
+    float: left;
+  }
+  
+  ul#generic_account_profile{
+    float: right;
+  }
+
+  li#generic_account{
+    float: left;
+    margin-left: 30px;
+    padding-top: 5px;
+    color: #666;
+    font-family: futura-pt-1, futura-pt-2;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 20px;
+  }
+
+  li#generic_account_profile{
+    float: left;
+    margin-left: 10px;
+    padding-top: 5px;
+    color: #666;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  a#generic_account{color: #666;}
+  a#generic_account:visited{color: #666;}
+
+</style>
+
+<div id="header_generic_account">
+  <div class="container_16">
+    
+    <% if current_account.photo.present? %>
+      <div id="logo_generic_account"><%= image_tag current_account.photo.url(:small) %></div>
+    <% else %>
+      <div id="name_generic_account"><%= current_account.name %></div>
+    <% end %>
+    
+    <ul id="generic_account">
+      <li id="generic_account"><%= link_to "Attend a class", learn_path, :id => "generic_account" %></li>
+      <li id="generic_account"><%= link_to "Teach a class", teach_path, :id => "generic_account" %></li>
+    </ul>
+    
+    <ul id="generic_account_profile">
+      <% if user_signed_in? %>
+        <li id="generic_account_profile"><%= link_to "My profile", profile_path, :id => "generic_account" %>
+        <li id="generic_account_profile"><%= link_to "Logout", destroy_user_session_path, :id => "generic_account" %>
+      <% else %>
+        <li id="generic_account_profile"><%= link_to "Sign in", new_user_session_path, :id => "generic_account" %>
+        <li id="generic_account_profile"><%= link_to "Sign in", new_registration_session_path, :id => "generic_account" %>
+      <% end %>
+    </ul>
+
+  </div><!-- /end .container_16 -->
+</div><!-- /end #header -->
+

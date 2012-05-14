@@ -77,13 +77,12 @@
 
 <%- end -%>
 
-
-
 <%# Admin Bar %>
 <%= content_for :first_inside_body do %>
 <%- end -%>
 
 <%= content_for :first_inside_body do %>
+
   <% if current_user && !current_user.confirmed? %>
     <div class='userConfirm'>
       <div class='container_16'>
@@ -100,22 +99,26 @@
         </p>
       </div>
     </div>
-  <%- else -%>
-    <% if community_site? %>
-      <div class="brand_bg"></div>
-    <% else %>
-        <% if current_account == Account.find(6) %>
-          <div style="height: 60px; background-color: #134554;">
-        <%- end -%>
-    <%- end -%>
+  <% end %>
+
+  <% if community_site? %>
+   <%# do nothing %>
+  <% elsif current_account == Account.find(6) %>
+    <%= render 'layouts/application/account_header/feastfordays' %>
+  <% elsif current_account == Account.find(8) %>
+    <%= render 'layouts/application/account_header/missionzero' %>
+  <% else %>
+    <%= render 'layouts/application/account_header/generic_account' %>
   <%- end -%>
+  
 <%- end -%>
 
 <%# Main Layout %>
 <%= render :layout => 'layouts/document' do %>
 
-  <%# Header %>
+<% if community_site? %>
   <%= render 'layouts/application/header' %>
+<% end %>
 
   <%# Flash %>
   <div class='container_16'>

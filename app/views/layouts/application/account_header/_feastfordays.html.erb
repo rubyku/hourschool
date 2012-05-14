@@ -1,0 +1,58 @@
+<style type="text/css">
+
+  #header_feastfordays{
+    height: 60px; 
+    background-color: #134554; 
+    padding-top: 20px;
+    margin-bottom: 30px
+  }
+  
+  #logo_feastfordays{
+    float: left; 
+  }
+
+  ul#feastfordays{
+    float: left;
+  }
+
+  ul#feastfordays_profile{
+    float: right;
+  }
+
+  li#feastfordays{
+    float: left;
+    color: #F5F5F5;
+    font-size: 12px;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-top: 5px;
+  }
+
+  a#feastfordays{color: white;}
+  a#feastfordays:visited{color:white}
+
+</style>
+
+
+<div id="header_feastfordays">
+  <div class="container_16">
+    <%= link_to (image_tag 'v2-account/logo-feastfordays.png', :id => "logo_feastfordays"), "http://www.feastfordays.com" %>
+    <ul id="feastfordays">
+      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/learn" id="feastfordays">Attend an event</a></li>
+      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/teach" id="feastfordays">Host an event</a></li>
+      <li id="feastfordays"><a href="http://www.feastfordays.com/recipes.html" id="feastfordays">Recipes</a></li>
+      <li id="feastfordays"><a href="http://www.feastfordays.com/about.html" id="feastfordays">About</a></li>
+      <li id="feastfordays"><a href="http://www.feastfordays.com/contact.html" id="feastfordays">Contact</a></li>
+    </ul>
+    
+    <ul id="feastfordays_profile">
+      <% if user_signed_in? %>
+        <li id="feastfordays"><%= link_to "My profile", profile_path, :id => "feastfordays" %>
+        <li id="feastfordays"><%= link_to "Logout", destroy_user_session_path, :id => "feastfordays" %>
+      <% else %>
+        <li id="feastfordays"><%= link_to "Sign in", new_user_session_path, :id => "feastfordays" %>
+      <% end %>
+    </ul>
+  </div>
+</div>
