@@ -2,11 +2,13 @@
   a{color: #ff7733;}
 
 .page-section-float-left
-  = image_tag("v2/step3.png", :class => "steps")
+  - if community_site?
+    = image_tag("v2/step3.png", :class => "steps")
   #preview-box
     .preview-header Preview your class
     = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
     = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
+  
   #preview-box-tall
     .classBlock
       - if @course.photo.present?
@@ -16,7 +18,7 @@
       - if @course.donate?
         = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
       = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
-      
+    
       .class-description
         .heading13-class
           = "#{@course.title.truncate(45)}"
@@ -42,8 +44,6 @@
         %br
         %li.preview-checklist 3. Don't worry, you can always come back!
         %p You can always come back and edit your class widget and profile page at any time.
-
-
 
 .page
   .page-content
