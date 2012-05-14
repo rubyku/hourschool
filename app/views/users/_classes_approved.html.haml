@@ -12,4 +12,3 @@
     .class-description
       .heading13-class 
         = link_to "#{course.title}", edit_course_path(course.id)
-      %p= course.teaser.truncate(70).html_safe

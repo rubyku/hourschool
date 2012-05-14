@@ -24,8 +24,7 @@
     %br
       .class-description
         .heading13-class 
-          = link_to c.title.truncate(45), c
-        %p= c.teaser.truncate(49) unless c.teaser.blank?
+          = link_to c.title, c
       .class-note
         .heading9-class 
           - if c.days_left > 0
