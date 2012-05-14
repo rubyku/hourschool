@@ -30,6 +30,6 @@
         = form_for course.comments.new do |f|
           %div
             = f.hidden_field :course_id, :value => course.id
-            = f.text_area    :body,      :placeholder => "Have questions or feedback for the teacher? Leave a comment!", :class => "form-tall"
+            = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form-tall"
           %div
             = f.submit 'Leave Comment'
