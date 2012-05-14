@@ -930,7 +930,7 @@ a#logo:hover {
   letter-spacing: 0.1em;
 }
 li#login {
-  float: left;
+  float: right;
   color: #4f4e4e;
   text-decoration: none;
   margin-left: 10px;
@@ -944,6 +944,7 @@ li#login_peerlearning {
   margin-left: 10px;
   top: 0px;
 }
+
 
 #homepage li#login_peerlearning {
   float: left;
@@ -1136,12 +1137,13 @@ a#not_logged_in:hover{text-decoration: none;color: #ff7733;}
 }
 table#enterprise_menu {
   position: relative;
-  width: 100%;
-  float: right;
+  float: left;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-left: 20px;
 }
-td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, td#enterprise_menu_faq {
+
+/*td#enterprise_menu_learn, td#enterprise_menu_teach, td#enterprise_menu_suggest, td#enterprise_menu_faq {
   border: 1px solid #d0cdcd;
   height: 60px;
   vertical-align: bottom;
@@ -1157,24 +1159,24 @@ td#enterprise_menu_dashboard, td#enterprise_menu_community {
   vertical-align: bottom;
   text-align: center;
   vertical-align: middle;
-}
-td#enterprise_menu_dashboard {
-  width: 200px;
-}
+}*/
+
 td#enterprise_menu_learn {
-  width: 160px;
+  width: 180px;
 }
 td#enterprise_menu_teach {
-  width: 160px;
+  width: 180px;
 }
-td#enterprise_menu_suggest {
-  width: 160px;
-}
-td#enterprise_menu_community {
-  width: 200px;
-}
-td#enterprise_menu_faq {
-  width: 67px;
+
+#enterprise_menu{
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
 }
 
 #peer-learning-at {
@@ -1640,7 +1642,7 @@ img.class-arrow {
 }
 .class-description {
   padding: 10px;
-  height: 100px;
+  height: 105px;
 }
 
 .class-note{
@@ -2267,7 +2269,6 @@ img.steps {
   height: 50px;
   padding: 30px 30px 0px 30px;
   background: white;
-  margin-bottom: 20px;
 }
 
 .preview-header{

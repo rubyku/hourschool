@@ -1,0 +1,99 @@
+<div class="page-section-float-left">
+    <% if @course.status != "live" %>
+    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running!</div>
+    <% else %>
+    <div class="welcome-header">Edit your course</div>
+    <% end %>
+</div>
+
+<div class="page">
+    <div class="page-content">
+
+    <div class="page-section-float-left">
+      <% @course.errors.full_messages.each do |message| %>
+        <div class="error-block"><div class="form-error">*<%= message %></div></div>
+      <% end %>
+    </div>
+
+    <%= form_for @course, :html => { :multipart => true } do |f| %>
+
+    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
+
+    <div class="page-section-float-left">
+
+       <p>
+       <%= f.label :title, 'Event name:', :class => "form-question" %>
+       <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
+       </p>
+       <br><br>
+
+       <p>
+       <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
+       <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
+       <%= f.file_field :photo %>
+       </p>
+
+       <p>
+       <%= f.label :description, 'Event description:', :class => "form-question" %>
+       <%= f.text_area :description, :class => "form-tall" %>
+       </p>
+     
+       <div class="form-question">About the organizer</div>
+       <br><br>
+       <%= f.text_area :experience, :class => "form-med-with-margin" %>
+     </div>
+     
+     
+    <hr id="class"><br>
+
+    <div class="page-section-float-left">
+       <div class="class-form-question">Event Attendance</div><br>
+       <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to host this event" %>
+       <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I can have for this event" %>
+       <br><br>
+    </div>
+
+    <div class="page-section-float-left">
+       <div class="class-form-question">When</div><br>          
+       <%= f.date_select :date, :start_year => 2011, :end_year => 2012, :minute_step => 30 %><br><br>
+       <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
+    </div>
+
+
+    <div class="page-section-float-left">
+        <div class="class-form-question">Where</div><br>
+            <p>
+            <%= f.radio_button :public, true, :checked => true %>
+            <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
+            <br>
+            <%= f.radio_button :public, false %>
+            <%= f.label :public, 'Private (ie. your house)' %>
+            </p>
+            
+            <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+            <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
+    </div>
+
+    <div class="page-section-float-left">
+      <div class="class-form-question">Price</div><br>
+        <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 30 (no $ sign needed!)" %>
+        <div style="float: left; margin-top: 5px">per person</div> 
+    </div>
+
+    <div class="page-section-float-left">
+      <div class="form-question">Phone number (optional)</div><br>
+      
+      <%= f.text_field :phone_number, :class => "form-short", :placeholder => "ex. 321-111-1234" %>
+    </div>
+
+    <br><br>
+
+
+   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Preview my event" %>
+
+   <% end %>
+
+   </div>
+</div><!-- /end .page -->
+
+

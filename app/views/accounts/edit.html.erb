@@ -22,6 +22,11 @@
 
       <p>Your custom url is <%= @account.subdomain %>.hourschool.com<br />
       contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.</p>
+      
+      <p>
+       <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+       <%= f.file_field :photo %>
+      </p>
 
       <div class="control-group" style="margin-bottom:20px">
         <div class="controls">

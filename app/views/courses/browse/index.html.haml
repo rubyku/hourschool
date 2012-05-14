@@ -5,7 +5,7 @@
 
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
 
-      - if !community_site? && Account.first.courses.blank?
+      - if !community_site? && current_account.courses.first.blank?
         .pagenote-box.clearfix
           .pagenote-header
             = "There are no classes at #{community_site? ? 'HourSchool' : current_account.name} yet"

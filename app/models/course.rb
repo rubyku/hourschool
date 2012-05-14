@@ -256,7 +256,7 @@ class Course < ActiveRecord::Base
    #validations
   def default_validations
      if self.status == "proposal"
-       if self.title.blank? || self.teaser.blank? || self.experience.blank?
+       if self.title.blank? || self.experience.blank?
          #errors.add(:title, "Title cannot be blank!") unless !self.title.blank?
          #errors.add(:teaser, "About field cannot be blank!") unless !self.teaser.blank?
          #errors.add(:experience, "Experience field cannot be blank!") unless !self.experience.blank?
