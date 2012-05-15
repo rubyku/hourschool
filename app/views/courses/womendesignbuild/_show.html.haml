@@ -1,0 +1,30 @@
+= render :partial => "courses/womendesignbuild/sidebar_left", :locals => {:course => @course}
+
+.middle#middle_events
+  .page-section-float-left
+    .class-logistic-block
+      - if @course.photo.present?
+        = image_tag(@course.photo.url(:small), :size => "190x120")
+      - else
+        = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+    .class-description-block
+      .class-title-big
+        = "#{@course.title}"
+      %br
+      = render :partial => "add_this_small"
+
+  .page-section-float-left
+    .class-section-heading
+      = "Description"
+    %p= simple_format Rinku.auto_link(@course.description)
+
+  .comment-section
+    .class-section-heading
+      = "Join the conversation"
+    = render :partial => "comments", :locals => {:course => @course}
+
+  .page-section-float-left
+    = render :partial => "courses/womendesignbuild/register", :locals => {:course => @course}
+      
+      
+= render :partial => "courses/womendesignbuild/sidebar_right", :locals => {:course => @course}
