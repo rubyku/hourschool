@@ -1,5 +1,7 @@
 <div class="page-section-float-left">
-  <%= image_tag "v2/step2.png", :class => 'steps' %>
+  <% if community_site? %>
+    <%= image_tag "v2/step2.png", :class => 'steps' %>
+  <% end %>
     <% if @course.status != "live" %>
     <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your class up and running!</div>
     <p> We pre-populated some of the fields already from your proposal. Don't forget to check out the HourSchool tips!</p>

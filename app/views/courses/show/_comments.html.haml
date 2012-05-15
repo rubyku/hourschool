@@ -24,8 +24,8 @@
       
   - else
     %div.comment{:class => 'clearfix'}
-      %div.avatar
-        = avatar_for(current_user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+      / %div.avatar
+      /   = avatar_for(current_user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
       %div.content
         = form_for course.comments.new do |f|
           %div

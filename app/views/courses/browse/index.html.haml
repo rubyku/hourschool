@@ -1,23 +1,27 @@
-= render :partial => 'courses/search'
+-if current_account == Account.find(4)
+  = render :partial => 'courses/womendesignbuild/index'
 
-.page
-  .page-content
+- else 
+  = render :partial => 'courses/search'
 
-    = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
+  .page
+    .page-content
 
-      - if !community_site? && current_account.courses.first.blank?
-        .pagenote-box.clearfix
-          .pagenote-header
-            = "There are no classes at #{community_site? ? 'HourSchool' : current_account.name} yet"
-          = "Your organization and community has so much to share. And we encourage you to"
-          = link_to "schedule the first class!", new_course_path, :class => "pagenote-link"
+      = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
 
-      = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
-      .page-section-float-right
-        %table.view-more
-          %tr
-            %td
-              = will_paginate @courses, :previous_label => "Prev" 
+        - if !community_site? && current_account.courses.first.blank?
+          .pagenote-box.clearfix
+            .pagenote-header
+              = "There are no classes at #{community_site? ? 'HourSchool' : current_account.name} yet"
+            = "Your organization and community has so much to share. And we encourage you to"
+            = link_to "schedule the first class!", new_course_path, :class => "pagenote-link"
 
-- content_for :sidebar do
-  = render :partial => 'courses/browse/sidebar'
+        = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
+        .page-section-float-right
+          %table.view-more
+            %tr
+              %td
+                = will_paginate @courses, :previous_label => "Prev" 
+
+  - content_for :sidebar do
+    = render :partial => 'courses/browse/sidebar'
