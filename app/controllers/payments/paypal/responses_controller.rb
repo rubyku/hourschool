@@ -28,7 +28,7 @@ class Payments::Paypal::ResponsesController < Payments::PaypalController
         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
         flash[:notice] = "You're registered!!!"
-        redirect_to course_confirm_path(:id => @course.id)
+        redirect_to confirm_path(:id => @course.id)
     else
       redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
     end

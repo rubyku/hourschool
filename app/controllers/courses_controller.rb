@@ -1,44 +1,12 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
-
-  def index
-    #authenticate admin - change this.
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "live")
-    @courses = @courses.where(:account_id => current_account.id, :status => "live") if current_account
-    @user = current_user
-  end
-
-  def proposals
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "proposal")
-    @courses = @courses.where(:account_id => current_account.id, :status => "proposal") if current_account
-    @user = current_user
-  end
-  
-  def pending_live
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "approved")
-    @courses = @courses.where(:account_id => current_account.id, :status => "approved") if current_account
-    @user = current_user
-  end
-  
+    
   def show
     @course = Course.find(params[:id])
     @current_course = @course
   end
-
-  def show_proposal
-    @current_course = Course.find(params[:id])
-  end
   
-  def approve
-    @course = Course.find(params[:id])
-    @course.update_attribute :status, "approved"
-
-    #send email and other stuff here to the teacher
-    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
-    redirect_to course_proposals_path
-  end
-
   def new
     @course = Course.new
     @reqid = params[:req]
@@ -51,56 +19,16 @@ class CoursesController < ApplicationController
       @random_course = Course.random
     end
   end
-
-  def duplicate
-    @old_course = Course.find(params[:id])
-    @course = Course.duplicate(@old_course)
-    @course.save!
-
-    @user = current_user
-    @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
-    @user.save!
-
-    @series = Series.find_or_create_by_name(@old_course.title)
-    if @series.courses.empty?
-      @series.courses << @old_course << @course
+  
+  def edit
+    enqueue_warm_facebook_cache
+    @course = Course.find(params[:id])
+    if @course.teacher == current_user || current_user.admin?
     else
-      @series.courses << @course
-    end
-    @series.last_course_id = @course.id
-    @series.student_count = @series.count_students(@series.student_count)
-    @series.save!
-
-    redirect_to edit_course_path(@course.id)
-  end
-
-  def preview
-    id = params[:id]
-    @course = Course.find(id)
-    @current_course = @course
-  end
-
-  def confirm
-    id = params[:id]
-    @course = Course.find(id)
-
-    # temp twitter_hack
-    if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
-      redirect_to @course
-    else
-      if @course.status == "approved"
-        @course.update_attribute :status, "live"
-        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        post_to_twitter(@course)
-      end
+       redirect_to @course
     end
   end
-
-  def heart
-    @course = Course.find(params["id"])
-    current_user.vote_for(@course) unless current_user.voted_on?(@course)
-  end
-
+  
   def create
     city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @course      = Course.new(params[:course])
@@ -136,16 +64,7 @@ class CoursesController < ApplicationController
       render :action => 'new'
     end
   end
-
-  def edit
-    enqueue_warm_facebook_cache
-    @course = Course.find(params[:id])
-    if @course.teacher == current_user || current_user.admin?
-    else
-       redirect_to @course
-    end
-  end
-
+  
   def update
     @course = Course.find(params[:id])
     sanitize_price(params[:course][:price].to_s)
@@ -178,29 +97,12 @@ class CoursesController < ApplicationController
     else
       redirect_to :back, :alert => "You are not authorized to do this"
     end
+  end  
 
-  end
-
-  def drop
-      @course = Course.find(params[:id])
-      @user = current_user
-
-       # #remove the relevant role from user
-       #        @user.roles.delete(@user.roles.where(:course_id => @course.id).first)
-
-      #remove the course
-      @user.courses.delete(@user.courses.where(:id => @course.id).first)
-      @user.save
-
-      respond_to do |format|
-        format.html { redirect_to @course }
-        format.js { }
-      end
-  end
-
-  def register_preview
-    enqueue_warm_facebook_cache
-    @course = Course.find(params[:id])
+  def preview
+    id = params[:id]
+    @course = Course.find(id)
+    @current_course = @course
   end
 
 
@@ -226,59 +128,71 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to course_confirm_path(:id => @course.id)
+        redirect_to confirm_path(:id => @course.id)
       end
       format.js { }
     end
   end
 
-  def register_for_reskilling
+  def register_preview
+    enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
-    @user   = current_user
-    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
-    if @role.save
-      UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
-    else
-      if @course.is_a_student? @user
-        flash[:error] = "You are already registered for this course"
-      else
-        flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
-      end
-    end
-    respond_to do |format|
-      format.html do
-        redirect_to course_confirm_path(:id => @course.id)
-      end
-      format.js { }
-    end
   end
 
-  def register_with_amazon
-     @course = Course.find(params[:id])
 
-     @payment = Payment.new(
-       :transaction_amount => params[:transactionAmount],
-       :transaction_id     => params[:transactionId]
-     )
-      if @payment.save
-         @payment.update_attributes(:user => current_user, :course => @course)
-         @user = current_user
-         @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
-         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         redirect_to course_confirm_path(:id => @course.id)
-     else
-       redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
-     end
-  end
+  def confirm
+    id = params[:id]
+    @course = Course.find(id)
 
-  def course_confirm
-    @course = Course.find(params[:id])
-
-    # don't show this page to twitter followers, etc.
-    if current_user.blank? || (@course.is_not_a_student?(current_user) && !current_user.admin?)
+    # temp twitter_hack
+    if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
       redirect_to @course
+    else
+      if @course.status == "approved"
+        @course.update_attribute :status, "live"
+        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        post_to_twitter(@course)
+      end
     end
+  end
+  
+  def drop
+      @course = Course.find(params[:id])
+      @user = current_user
+
+       # #remove the relevant role from user
+       #        @user.roles.delete(@user.roles.where(:course_id => @course.id).first)
+
+      #remove the course
+      @user.courses.delete(@user.courses.where(:id => @course.id).first)
+      @user.save
+
+      respond_to do |format|
+        format.html { redirect_to @course }
+        format.js { }
+      end
+  end
+
+  def duplicate
+    @old_course = Course.find(params[:id])
+    @course = Course.duplicate(@old_course)
+    @course.save!
+
+    @user = current_user
+    @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
+    @user.save!
+
+    @series = Series.find_or_create_by_name(@old_course.title)
+    if @series.courses.empty?
+      @series.courses << @old_course << @course
+    else
+      @series.courses << @course
+    end
+    @series.last_course_id = @course.id
+    @series.student_count = @series.count_students(@series.student_count)
+    @series.save!
+
+    redirect_to edit_course_path(@course.id)
   end
 
   def contact_teacher
@@ -315,7 +229,6 @@ class CoursesController < ApplicationController
   end
 
   private
-
 
   def post_to_twitter(course)
     begin
