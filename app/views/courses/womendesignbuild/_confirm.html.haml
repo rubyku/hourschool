@@ -1,0 +1,150 @@
+:css
+  a{color: #ff7733;}
+  
+  .wdb-text-strong{
+    font-family: Georgia; 
+    font-weight: bold;
+    font-size: 13px
+  }
+  
+  p.wdb-text{
+    font-family: Georgia;
+  }
+
+  #wdb-confirm-box{
+    background-color: white;
+    width: 240px;
+    padding: 20px;
+  }
+  
+  #wdb-preview-header{
+    font-family: Georgia;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+    
+  .wdb-preview-button{
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+    font-family: BebasNeue;
+    font-size: 18px;
+    height: 28px;
+    padding: 6px;
+    width: 98px;
+    margin-bottom: 6px;
+    color: white;
+    background-color: #BA5F8F;
+    -moz-box-shadow: 0 2px 4px #999;
+    -webkit-box-shadow: 0 2px 4px #999;
+    box-shadow: 0 2px 4px #999;
+    cursor: pointer;
+  }
+
+  .wdb-edit-class-button{
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+    font-family: BebasNeue;
+    font-size: 18px;
+    height: 28px;
+    padding: 6px;
+    margin-bottom: 6px;
+    color: white;
+    background-color: #ccc;
+    -moz-box-shadow: 0 2px 4px #999;
+    -webkit-box-shadow: 0 2px 4px #999;
+    box-shadow: 0 2px 4px #999;
+    cursor: pointer;
+  }
+
+.container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
+
+  %div{:style => "margin-left: -75px; width: 150px"}
+    .left#left_events 
+      .wdb-text-strong Details
+      %table
+        %tr
+          %td.icon
+            = image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost"
+          %td
+            .class-details
+              = "$" "#{@course.price}"
+              %br/
+
+        %tr
+          %td.icon
+            = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"
+          %td
+            .class-details
+              = @course.date.strftime("%a %b %d, %Y")
+            .class-sidebar-details
+              = "#{@course.time_range}"
+
+        %tr
+          %td.icon
+            = image_tag "v2/icon_location.png", :class => "class-details-icon-where"
+          %td
+            .class-details
+              = @course.place_name
+            - if @course.public?
+              .class-sidebar-details
+                = @course.address
+            - else
+              = "Private Address"
+              
+  .middle#middle_events
+    .page-section-float-left
+      .class-logistic-block
+        - if @course.photo.present?
+          = image_tag(@course.photo.url(:small), :size => "190x120", :style => "float: left")
+        - else
+          = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+      .class-description-block
+        .class-title-big
+          = "#{@course.title}"
+        %br
+        = render :partial => "courses/show/add_this_small", :locals => {:course => @course}
+
+    .page-section-float-left
+      .wdb-text-strong
+        = "Description"
+      %p.wdb-text= simple_format Rinku.auto_link(@course.description)
+
+    .page-section-float-left
+      .wdb-text-strong
+        = "About teacher"
+      = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+    %td
+      = link_to @course.teacher.name, @course.teacher, :class => "profile-link"
+      = @course.teacher.bio
+      - if @course.teacher != current_user
+        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
+
+    .comment-section
+      .wdb-text-strong
+        = "Join the conversation"
+      = render :partial => "courses/show/comments", :locals => {:course => @course}
+
+
+  .right
+    #wdb-confirm-box
+      - if @course.has_teacher?(current_user)
+        #wdb-preview-header Your class is live!
+        %p.confirm HourSchool will help promote your classes as best as we can. If you already know people that are interested, get a head start and let them know about your class!
+      - else 
+        #wdb-preview-header You've signed up! 
+        %p.confirm Don't forget to bring a friend or two. It's always more fun to learn with friends. Share this with people you think might be interested.
+      = render :partial => "add_this"
+
+
+        
+
+
+

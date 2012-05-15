@@ -1,0 +1,101 @@
+<div class="page-section-float-left">
+  <% @course.errors.full_messages.each do |message| %>
+    <div class="error-block"><div class="form-error">*<%= message %></div></div>
+  <% end %>
+</div>
+
+<%= form_for @course, :html => { :multipart => true } do |f| %>
+
+  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
+
+  <div class="heading25_666">Create a class</div>
+  
+  <div class="page-section-float-left">
+
+   <p>
+   <%= f.label :title, 'Class name:', :class => "form-question" %>
+   <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle, :maxlength => "41" %>
+   </p>
+   <br><br>
+
+    <p>
+   <%= f.label :description, 'Class details', :class => "form-question" %>
+   <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What are the 3 things they will get out of the class? What kind of material or equipment do they need ahead of time?" %>
+   </p>
+   <br><br>
+
+   <p>
+   <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
+   <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
+   <%= f.file_field :photo %>
+   </p>
+ 
+   <p>
+   <%= f.label :experience, 'More about the teacher', :class => "form-question" %>
+   <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why is the teacher passionate about this subject? Why do they want to teach?" %>
+   </p>
+
+   <div class="page-section-float-left">
+   <p>
+     <%= f.label :min_seats, 'Class size (optional)', :class => "form-question" %>
+       <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Minimum class size" %>
+       <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Maximum class size" %>
+   </p>
+   </div>
+
+
+  <p>
+      <%= f.label :date, 'When', :class => "form-question" %></p>
+      <p>             
+      <%= f.date_select :date, :end_year => 2012, :minute_step => 30 %><br><br>
+      <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
+  </p>
+
+  <p>
+      <%= f.label :place_name, 'Where', :class => "form-question" %>
+        <p>
+        <%= f.radio_button :public, true, :checked => true %>
+        <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
+        <br>
+        <%= f.radio_button :public, false %>
+        <%= f.label :public, 'Private (ie. your house)' %>
+        
+        <br>
+        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+        <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
+        </p>
+  </p>
+
+  <p>
+    <%= f.label :price, 'Price', :class => "form-question" %>
+      <br>
+      <div style="float: left; margin-top: 5px; margin-right: 10px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 10 (no $ sign needed!)" %>
+      <div style="float: left; margin-top: 5px">per student</div> 
+  </p>
+  <br><br>
+
+  <% if current_account == Account.find(4) %>
+    <%= f.submit "Submit", :style => "border: none;
+    background: #00B6FF;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+      font-family: BebasNeue;
+      font-size: 18px;
+      height: 28px;
+      padding: 6px;
+      margin-bottom: 6px;
+      color: white;
+      background-color: #BA5F8F;
+      -moz-box-shadow: 0 2px 4px #999;
+      -webkit-box-shadow: 0 2px 4px #999;
+      box-shadow: 0 2px 4px #999;
+      cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
+  <% else %>
+    <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Preview my class profile" %>
+  <% end %>
+
+<% end %>
+
+
+

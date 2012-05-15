@@ -1,75 +1,81 @@
 :css
   a{color: #ff7733;}
-
-.page-section-float-left
-  - if community_site?
-    = image_tag("v2/step3.png", :class => "steps")
-  #preview-box
-    .preview-header Preview your class
-    = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
-    = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
   
-  #preview-box-tall
-    .classBlock
-      - if @course.photo.present?
-        = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
-      - else
-        = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
-      - if @course.donate?
-        = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
-      = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
-    
-      .class-description
-        .heading13-class
-          = "#{@course.title.truncate(45)}"
-        %p= "#{@course.teaser.truncate(60)}"
-      .class-note
-        .heading9-class
-          - if @course.active?  
-            - if @course.max_seats.blank?
-              = link_to "Unlimited seats |", @course
-            - elsif @course.seats_left == 0 
-              = link_to "Full! Request again |", @course
-            - elsif
-              = link_to "#{@course.seats_left} seats left |", @course
-          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
-    #preview-checklist-box
-      .welcome-header Preview CheckList
-      %ul
-        %li.preview-checklist 1. Check the widget to your left
-        %p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
-        %br
-        %li.preview-checklist 2. Check the class profile page below
-        %p Make sure to check out class specifics on the right hand column and your description.
-        %br
-        %li.preview-checklist 3. Don't worry, you can always come back!
-        %p You can always come back and edit your class widget and profile page at any time.
+- if current_account == Account.find(4)
+  = render :partial => 'courses/womendesignbuild/preview'
 
-.page
-  .page-content
-    .page-section-float-left
-      .class-logistic-block
-        - if @course.photo.exists?
-          = image_tag(@course.photo.url(:small), :size => "190x120")
-          = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
-        - else
-          - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
-            = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+- else
+
+  .page-section-float-left
+    - if community_site?
+      = image_tag("v2/step3.png", :class => "steps")
+    #preview-box
+      .preview-header Preview your class
+      = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
+      = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
+
+    - if community_site?
+      #preview-box-tall
+        .classBlock
+          - if @course.photo.present?
+            = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
           - else
-            = image_tag("v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
-            = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
-      .class-description-block
-        .class-title-big
-          = @course.title
-        .happening-message-header
-          = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
-        .heading10-class
-          = "Classes are always more fun with a group of friends. Share this class!"
-          = render :partial => "add_this_small"
-    .page-section-float-left
-      .class-section-heading This class will cover
-      .class-detail
-        %p= simple_format Rinku.auto_link(@course.description)
+            = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
+          - if @course.donate?
+            = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
+          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
+    
+          .class-description
+            .heading13-class
+              = "#{@course.title.truncate(45)}"
+            %p= "#{@course.teaser.truncate(60)}"
+          .class-note
+            .heading9-class
+              - if @course.active?  
+                - if @course.max_seats.blank?
+                  = link_to "Unlimited seats |", @course
+                - elsif @course.seats_left == 0 
+                  = link_to "Full! Request again |", @course
+                - elsif
+                  = link_to "#{@course.seats_left} seats left |", @course
+              = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
+        #preview-checklist-box
+          .welcome-header Preview CheckList
+          %ul
+            %li.preview-checklist 1. Check the widget to your left
+            %p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
+            %br
+            %li.preview-checklist 2. Check the class profile page below
+            %p Make sure to check out class specifics on the right hand column and your description.
+            %br
+            %li.preview-checklist 3. Don't worry, you can always come back!
+            %p You can always come back and edit your class widget and profile page at any time.
 
-= content_for :sidebar do
-  = render :partial => "sidebar", :locals => {:course => @course}
+  .page
+    .page-content
+      .page-section-float-left
+        .class-logistic-block
+          - if @course.photo.exists?
+            = image_tag(@course.photo.url(:small), :size => "190x120")
+            = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
+          - else
+            - if !@course.categories.first.nil? && DEF_IMAGES.has_key?(@course.categories.first.name)
+              = image_tag("#{DEF_IMAGES[@course.categories.first.name]}",:size => "190x120")
+            - else
+              = image_tag("v2-courses/DefaultClassPics_Generic.png", :size => "190x120")
+              = image_tag "v2/arrow_white_pointup.png", :class => "class-arrow"
+        .class-description-block
+          .class-title-big
+            = @course.title
+          .happening-message-header
+            = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
+          .heading10-class
+            = "Classes are always more fun with a group of friends. Share this class!"
+            = render :partial => "courses/show/add_this_small"
+      .page-section-float-left
+        .class-section-heading This class will cover
+        .class-detail
+          %p= simple_format Rinku.auto_link(@course.description)
+
+  = content_for :sidebar do
+    = render :partial => "sidebar", :locals => {:course => @course}

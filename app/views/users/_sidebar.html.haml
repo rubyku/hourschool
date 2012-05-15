@@ -1,16 +1,27 @@
 .sidebar
   .sidebar-content
-    = avatar_for(@user, :photo_size => :thumb_large)
+    = avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix")
 
-    .sidebar-block
-      %ul.noBullet
-        %li.noBullet
-          %p.profile-name-blurb
-            = @user.name
-        %li.noBullet
-          %p.profile-location-blurb
-            = @user.location
-
+    %ul.noBullet
+      %li.noBullet
+        %p{:style => "font-weight: bold; width: 200px"}
+          = @user.name
+        %p{:style => "font-weight: normal; width: 200px"}
+          = @user.location
+        %p{:style => "font-weight: normal; width: 200px"}
+          - if !@user.web.blank?
+            = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
+          - if !@user.twitter_id.blank?
+            = link_to "Twitter", @user.twitter_url, :class => "profile-link"      
+        %p{:style => "font-weight: normal; width: 200px"}
+          - if @user.bio.blank?
+            = "No bio yet."
+            - if current_user == @user
+              = link_to "Tell us more about you.", edit_user_registration_path(@user)
+          - else 
+            = @user.bio
+              
+    .page-content-float-left
       %table.user-stat
         %tr
           %td.user-stat-icon
@@ -27,29 +38,6 @@
             .class-details-heart-number
               = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
 
-
-    .sidebar-block
-      .sidebar-heading About
-      %p.profile-bio
-        - if @user.bio.blank?
-          = "No bio yet."
-        - else 
-          = @user.bio
-        %br
-        - if current_user == @user
-          = link_to "Tell us more about you.", edit_user_registration_path(@user)
-
-      %table.user-stat
-        %tr
-          %td.user-stat-icon
-          - if !@user.web.blank?
-            %a.profile-link
-              = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
-        %tr
-          %td.user-stat-icon
-          - if !@user.twitter_id.blank?
-            %a.profile-link
-              = link_to "Twitter", @user.twitter_url, :class => "profile-link"
 
 /     - if @user.fetch_followed.present?
 /       .sidebar-block-last
