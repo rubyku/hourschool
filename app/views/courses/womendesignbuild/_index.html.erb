@@ -1,0 +1,50 @@
+<style type="text/css">
+
+  .event_details{
+    font-family: Georgia; font-size: 16px; color: black;
+  }
+
+  .left_sidebar{
+    font-family: Georgia; font-size: 11px; padding-bottom: 10px; padding-right: 2px;
+  }
+  
+</style>
+
+<div class="container_16" style="margin-left: auto; margin-right: auto; width: 1110px;">
+
+  <%= render :partial => "courses/womendesignbuild/sidebar_left", :locals => {:course => @course} %>
+
+  <div class="middle" id="middle_events">
+    <%- @courses.each do |course| %>
+      <div class="entry" style="float: left; width: 550px; margin-bottom: -50px ">
+        <%- if course.present? %>
+          <%- if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120", :style => "float: left; margin-right: 20px")), course %>
+          <%- else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+      
+        	<div id="event_data-8" class="event_data event-data-display event-list-display event-display-boxes">
+            
+          <h2 class="event_title" style="font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"><%= link_to course.title, course, :class => "a_event_title" %></h2>
+          
+          <div class="event-meta">
+            <p class="event_details"><span class="section-title">Date:</span>  <%= course.date %></p>
+            <p class="event_details"><span class="section-title">Location:</span> <%= course.place_name %></p>
+           </div>
+
+            <!-- <p id="register_link-8" class="register-link-footer">
+               <%= link_to "Register", course, :class => "a_register_link", :id => "a_register_link-8" %>  
+            </p> -->
+          </div>
+        </div>
+      
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <%= render :partial => "courses/womendesignbuild/sidebar_right", :locals => {:course => @course} %>
+  
+</div>
+
