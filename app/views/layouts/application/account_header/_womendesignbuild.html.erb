@@ -1,0 +1,440 @@
+<style type="text/css">
+
+/*
+Theme Name: Women Design Build
+Theme URI: http://www.womendesignbuild.org/
+Description: Theme for Women Design Build
+Author: Jack Payne Currier
+Author URI: http://www.jackpaynecurrier.com
+Version: 1.0
+Tags: Women Design Build
+*/
+
+  *{ margin: 0; padding: 0; }
+
+  html, body{ height: 100%; }
+  img{ border: 0; }
+  @font-face { font-family: 'BebasNeue'; src: url('font/bebasneue.eot'); src: url('font/bebasneue.eot?#iefix') format('embedded-opentype'), url('font/bebasneue.woff') format('woff'), url('http://womendesignbuild.org/wp-content/themes/wdb/font/bebasneue.ttf') format('truetype'), url('font/bebasneue.svg#BebasNeueRegular') format('svg'); font-weight: normal; font-style: normal; }
+  @font-face { font-family: 'LeagueScript'; src: url('font/leaguescript.eot'); src: url('font/leaguescript.eot?#iefix') format('embedded-opentype'), url('font/leaguescript.woff') format('woff'), url('http://womendesignbuild.org/wp-content/themes/wdb/font/leaguescript.ttf') format('truetype'), url('font/leaguescript.svg#LeagueScriptThinLeagueScript') format('svg'); font-weight: normal; font-style: normal; }
+  body{ background-image: url(image/bg.jpg); background-position: 0 525px; font-family: Georgia, "Times New Roman", Times, serif; font-size: 11px; line-height: 14px; }
+  a{ text-decoration: none; color: #ba5f8f; }
+  a:hover{ color: #000; }
+  h1, h2, h3, h4{ font-family: BebasNeue; font-weight: normal; font-style: normal; color: #4b4b4b; }
+  h1{ font-size: 36px; line-height: 36px; }
+  h2{ font-size: 18px; }
+  h2 a:hover{ color: #4b4b4b; }
+  h3{ font-size: 14px; }
+  h4{ font-size: 18px; color: #fff; }
+  blockquote{ padding: 0 14px; }
+
+  p#sidebar{-webkit-box-shadow: none;
+  background-color: transparent;
+  background-image: none;
+  background-position: 0% 0%;
+  box-shadow: none;
+  color: #CCC;
+  display: block;
+  float: none;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 12px;
+  font-style: italic;
+  height: 84px;
+  line-height: 14px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  width: 224px;}
+
+  .post{ float: left; width: 525px; padding-bottom: 18px; font-style: italic; }
+  .entry{ float: left; width: 525px; padding-bottom: 48px; }
+  #respond{ float: left; width: 525px; }
+  #respond textarea{ width: 513px; padding: 6px; font-family: Georgia, "Times New Roman", Times, serif; }
+  .avatar-32{ display: none; }
+  #comments{ margin-bottom: 18px; }
+  .reply{ margin-bottom: 36px; }
+  .post_navigation{ font-family: 'BebasNeue'; font-size: 24px; font-weight: bold; }
+
+  .wrapper{ width: 1111px; margin: 0 auto; }
+
+  .header{ float: left; width: 1111px; height: 266px; z-index: 1;}
+  #header01{ float: left; width: 33px; height: 266px; background-image: url(image/top_ribbon_l.png); background-repeat: no-repeat; background-position: 0 221px; }
+  #header02{ float: left; width: 191px; height: 266px; padding: 0 8px 9px 6px; background-image: url(image/top_ribbon.png); background-repeat: repeat-x; background-position: 0 221px; }
+  #header02 img{ -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  #header02 img:hover{ -moz-box-shadow: 0 2px 8px #999; -webkit-box-shadow: 0 2px 10px #999; box-shadow: 0 2px 8px #999; }
+  #header03{ float: left; padding-left: 41px; width: 540px; height: 266px; background-image: url(image/top_ribbon.png); background-repeat: repeat-x; background-position: 0 221px; font-size: 18px; }
+  #header03a{ float: left; padding: 180px 0 33px 0; font-family: LeagueScript; }
+  #header03b{ float: left; width: 540px; font-family: BebasNeue; }
+  .header03b_menu{ float: left; padding-right: 36px; color: #ba5f8f; }
+  .header03b_menu a{ color: #e5e5e5; }
+  .header03b_menu a:hover{ color: #ba5f8f; }
+  #header04{ float: left; width: 253px; height: 266px; }
+  #header04a{ float: left; width: 253px; height: 221px; background-image: url(image/social.png); background-repeat: no-repeat; }
+  #newsletter{ float: left; height: 44px; font-style: italic; color: #dbdbdb; }
+
+  /* MailChimp Form Embed Code - Slim - 08/10/2011 */
+  #mc_embed_signup form { display:block; padding: 9px 9px 0 11px; }
+  #mc_embed_signup input{ border: 0 none; margin: 0; }
+  #mc_embed_signup input.email { background: none; text-indent: 5px; width: 132px; height: 15px; font-family: Georgia, "Times New Roman", Times, serif; font-style: italic; color: #e5e5e5; }
+  #mc_embed_signup input.button { width: 27px; background-color: #b91d7b; border: 0 none; color: #FFF; cursor: pointer; font-family: BebasNeue; font-size: 14px; line-height: 19px; height: 15px; padding:0; text-align: center; margin-left: -3px; }
+  #mc_embed_signup input.button:hover { background-color: #4b4b4b; }
+
+  #mc_embed_signup div#mce-responses {float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%;margin: 0 5%; clear: both;}
+  #mc_embed_signup div.response {margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;}
+  #mc_embed_signup #mce-error-response {display:none;}
+  #mc_embed_signup #mce-success-response {color:#529214; display:none;}
+  #mc_embed_signup label.error {display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
+
+  #donate{ float: left; padding-left: 23px; height: 67px; }
+  #donate img{ -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  #donate img:hover{ -moz-box-shadow: 0 1px 10px #fff; -webkit-box-shadow: 0 1px 10px #fff; box-shadow: 0 1px 10px #fff; }
+  #sm{ float: left; padding: 0 74px 0 14px; }
+  #sm img{ float: left; margin: 0 9px 9px 0; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  #sm img:hover{ -moz-box-shadow: 0 2px 8px #999; -webkit-box-shadow: 0 2px 8px #999; box-shadow: 0 2px 8px #999; }
+  #header04b{ float: left; width: 253px; height: 45px; background-image: url(image/top_ribbon.png); background-repeat: repeat-x; }
+  #header05{ float: left; width: 39px; height: 266px; background-image: url(image/top_ribbon_r.png); background-repeat: no-repeat; background-position: 0 221px; }
+
+  .splash{ float: left; width: 1033px; padding: 0 39px 24px 39px; }
+
+  .icontent{ float: left; width: 1111px; }
+  #icontent01{ float: left; width: 19px; height: 30px; background-image: url(image/bot_ribbon_l.png); background-repeat: no-repeat; background-position: 0 3px; }
+  #icontent02{ float: left; width: 345px; background-image: url(image/bot_ribbon.png); background-repeat: repeat-x; background-position: 0 3px; }
+  #icontent02_header{ float: left; color: #FFF; font-family: BebasNeue; font-size: 18px; padding: 10px 0; }
+  #icontent02_header a{ color: #fff; }
+  #icontent02_header a:hover{ color: #4b4b4b; }
+  #icontent02_body{ float: left; width: 305px; background-color: #4b4b4b; padding: 28px 20px 30px 20px; font-style: italic; color: #ccc; min-height: 318px; }
+  #icontent03{ float: left; width: 366px; padding: 0 8px; background-image: url(image/bot_ribbon.png); background-repeat: repeat-x; background-position: 0 3px; }
+  .iloop{ float: left; width: 337px; background-color: #FFF; padding: 14px; font-style: italic; color: #999; margin-bottom: 10px; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  .iloop a:hover{ color: #4b4b4b; }
+  .iloop_thumb{ float: left; width: 60px; background-image: url(image/thumbframe.png); background-repeat: no-repeat; padding: 5px 3px; }
+  .iloop_content{ float: left; width: 253px; padding-left: 14px; }
+  #icontent04{ float: left; width: 345px; background-image: url(image/bot_ribbon.png); background-repeat: repeat-x; background-position: 0 3px; padding-top: 34px; }
+  #icontent05{ float: left; width: 19px; height: 30px; background-image: url(image/bot_ribbon_r.png); background-repeat: no-repeat; background-position: 0 3px; }
+
+  li.widget_ad_rotator{ list-style-type: none; }
+
+  .footer{ float: left; width: 1111px; height: 63px; padding: 20px 0 30px; font-family: BebasNeue; font-size: 14px; }
+  .footer_container{ float: left; width: 1111px; height: 43px; padding: 10px 0; background-image: url(image/footer_bg.png); }
+  .footer_links{ float: left; width: 783px; padding: 15px 45px; text-align: right; }
+  .footer_links ul{ list-style-type: none; }
+  .footer_links li{ display: inline; padding-left: 18px; }
+  .footer_links a{ color: #fff; }
+  .footer_links a:hover{ color: #4b4b4b; }
+  .footer_copyright{ float: left; width: 173px; background-color: #dadada; color: #333; padding: 15px 10px 15px 45px; background-image: url(image/logo_footer.png); background-repeat: no-repeat; background-position: 5px; }
+
+  .left{ float: left; width: 230px; padding: 18px 0; text-align: right; font-family: BebasNeue; font-size: 18px; line-height: 24px; }
+  .left h2{ margin-bottom: 14px; }
+  .left ul, .left li{ list-style-type: none; }
+  .blog_widgets{ padding-top: 56px; font-family: Georgia, "Times New Roman", Times, serif; font-size: 11px; line-height: 14px; }
+  .blog_widgets li{ list-style-type: none; }
+  .blog_widgets h2{ font-size: 24px; }
+  .blog_widgets p{ margin-bottom: 14px; }
+  .newsarchives{ color: #ba5f8f; }
+  #na_header{ color: #4b4b4b; }
+  .middle{ float: left; width: 525px; padding: 18px 32px; font-size: 12px; line-height: 18px; }
+  .middle p{ padding-bottom: 18px; }
+  .middle a{ color: #b91d7b; }
+  .middle a:hover{ color: #000; }
+  .right{ float: left; width: 260px; padding: 18px 0; }
+  .right_box{ float: left; width: 224px; padding: 18px; margin-bottom: 36px; background-color: #4b4b4b; font-size: 12px; font-style: italic; color: #ccc; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  .right_box a:hover{ color: #fff; }
+  #press{ background-image: url(image/press.png); background-repeat: no-repeat; background-position: 18px 10px; }
+  .press_space{ float: left; width: 41px; height: 14px; }
+  .drop{ margin-top: 18px; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  #droptop{ margin: 0; }
+
+  #left_events{ text-align: left; font-family: Georgia, "Times New Roman", Times, serif; font-size: 11px; line-height: 14px; }
+  #left_events .gce-feed-1{ float: left; width: 100%; margin-bottom: 14px; }
+  .qtip-content .gce-list-event{ font-family: BebasNeue; color: #fff; font-size: 18px; line-height: 20px; font-style: normal; font-weight: normal !important; background: none !important; }
+  #middle_events{ z-index: -100; background: url(image/events_bg.png); margin: -20px 0; padding: 38px 32px 18px; -moz-box-shadow: 0 2px 4px #CCC; -webkit-box-shadow: 0 2px 4px #CCC; box-shadow: 0 2px 4px #CCC; }
+  #middle_events .event_data{ margin-bottom: 28px; font-size: 16px; line-height: 21px; padding-bottom: 14px; border-bottom: 1px dashed #CCC; }
+  #middle_events .event_data h2{ font-size: 36px; line-height: 35px; }
+  #middle_events .event_data p{ padding-bottom: 0; }
+  #middle_events .event_data .section-title{ font-weight:bold; }
+  #middle_events #event_espresso_registration_form{ border-bottom: 1px dashed #CCC; }
+  #middle_events .event_espresso_form_wrapper h2 { font-size: 36px; line-height: 35px; padding: 0 !important; }
+  #middle_events .event_espresso_form_wrapper .section-title{ display: none; }
+  #middle_events .event_espresso_form_wrapper .event_description{ float: left; width: 525px; font-size: 16px; line-height: 21px; }
+  #middle_events .event_data .register-link-footer a{ font-family: 'BebasNeue'; font-size: 24px; line-height: 49px; color: #333; }
+  #middle_events .event_data .register-link-footer a:hover{ color: #ba5f8f; }
+  #middle_events h3{ font-size: 18px; }
+  fieldset#event-reg-form-groups{ border: none; }
+  #registration_form .event_address{ float: left; width: 234px; margin-top: -14px; padding-right: 14px; border-right: 1px dashed #CCC; }
+  #registration_form .start_date{ float: left; width: 233px; padding-left: 14px; }
+  #registration_form .event_time{ float: left; width: 233px; margin-top: -18px; padding-left: 14px; }
+  #registration_form .event_prices{ float: left; width: 233px; padding-left: 14px; }
+  #event-reg-form-groups{ clear: both; padding-top: 14px; }
+  .event_espresso_form_wrapper h3 { padding: 0 !important; }
+  .event-display-tables{ font-size: 16px; line-height: 21px; margin: 14px 0; }
+  .event-display-tables tr{ height: auto; }
+  .event-display-tables th{ height: auto; }
+  .event-display-tables td{ height: auto; }
+  table#event_espresso_attendee_verify th, table#event_espresso_attendee_verify_questions th { text-align: right !important; width: 156px !important; margin-right: 6px; }
+  .event-display-boxes h2{ font-size: 36px; line-height: 35px; }
+  .event_questions input{ padding: 6px; font-family: Georgia, "Times New Roman", Times, serif; border: 0 none; -moz-box-shadow: inset 0 1px 4px #999; -webkit-box-shadow: inset 0 1px 4px #999; box-shadow: inner 0 1px 4px #999; }
+  .event_form_submit .btn_event_form_submit{ height: 28px; margin: 0; padding: 3px 6px; font-family: BebasNeue; font-size: 18px; line-height: 28px; color: #fff; background-color: #ba5f8f; border: none; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  .event_form_submit .btn_event_form_submit:hover{ background-color: #333; cursor: pointer; }
+  .espresso_confirm_registration .btn_event_form_submit{ height: 28px; margin: 0; padding: 3px 6px; font-family: BebasNeue; font-size: 18px; line-height: 28px; color: #fff; background-color: #ba5f8f; border: none; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  .espresso_confirm_registration .btn_event_form_submit:hover{ background-color: #333; cursor: pointer; }
+  #form1{ margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px dashed #CCC; }
+  #additional-conf-info{ display: none; }
+  #confirm2{ display: none; }
+  #espresso_confirmation_display{ padding-bottom: 28px; font-size: 16px; line-height: 21px; }
+  #espresso_confirmation_display h2{ font-size: 24px; line-height: 28px; }
+  #espresso_confirmation_display p{ padding: 0; }
+  #espresso_confirmation_display .instruct{ padding-bottom: 14px; }
+  #espresso_confirmation_display .section-title{ font-weight: bold; }
+  #off_site_payment{ display: none; }
+  #espresso_payment_buttons{ list-style-type: none; margin: 14px 0 28px; padding-bottom: 14px; border-bottom: 1px dashed #CCC; }
+
+  #contactform{ float: left; font-family: BebasNeue; font-size: 18px; line-height: 18px; color: #4b4b4b; }
+  #contactform input{ border: 0 none; margin-bottom: 18px; }
+  #c_left{ float: left; width: 60px; margin-right: 18px; padding-top: 28px; text-align: right; }
+  #c_left ul{ list-style-type: none; }
+  #c_left li{ margin-bottom: 30px; }
+  #c_right{ float: left; width: 447px; padding-top: 18px; }
+  .c_blank{ float: left; width: 188px;  height: 18px; font-family: Georgia, "Times New Roman", Times, serif; padding: 6px; margin-right: 247px; -moz-box-shadow: inset 0 1px 4px #999; -webkit-box-shadow: inset 0 1px 4px #999; box-shadow: inner 0 1px 4px #999; }
+  #contactform select{ float: left; width: 200px; font-family: Georgia, "Times New Roman", Times, serif; border: 0 none; margin: 9px 247px 24px 0; background-color: #fff; line-height: 18px; }
+  #contactform textarea{ float: left; width: 435px; padding: 6px; margin-bottom: 18px; min-height: 198px; font-family: Georgia, "Times New Roman", Times, serif; border: 0 none; -moz-box-shadow: inset 0 1px 4px #999; -webkit-box-shadow: inset 0 1px 4px #999; box-shadow: inner 0 1px 4px #999; }
+  .c_button{ cursor: pointer; font-family: BebasNeue; font-size: 18px; height: 28px; padding: 6px; margin-right: 6px; }
+  #c_button_submit{ color: #fff; background-color: #ba5f8f; -moz-box-shadow: 0 2px 4px #999; -webkit-box-shadow: 0 2px 4px #999; box-shadow: 0 2px 4px #999; }
+  #c_button_submit:hover{ background-color: #4b4b4b; }
+  #c_button_clear{ background: none; color: #ba5f8f; }
+  #c_button_clear:hover{ color: #4b4b4b; }
+
+  #icontent02_body .event_data{ margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px dashed #666; }
+  #icontent02_body .event_data h2{ font-size: 18px; line-height: 21px; margin-bottom: -4px; }
+  #icontent02_body .event_data h2 a{ color: #fff; }
+  #icontent02_body .event_data h2 a:hover{ color: #ba5f8f; }
+  #icontent02_body .event_data p{ padding-bottom: 0; }
+  #icontent02_body .event_data .section-title{ font-weight:bold; }
+  #icontent02_body .event_data .register-link-footer a{ font-family: 'BebasNeue'; }
+  #icontent02_body .event_price{ display: none; }
+  #icontent02_body .a_register_link{ display: none; }
+  #icontent02_body .event-meta p{ font-size: 14px; line-height: 21px; } }
+  #icontent02_body .event-meta .section-title{ display: none; }
+
+  /* The Nivo Slider styles */
+  .nivoSlider { position:relative; }
+  .nivoSlider img { position:absolute; top:0px; left:0px; }
+
+  /* If an image is wrapped in a link */
+  .nivoSlider a.nivo-imageLink { position:absolute; top:0px; left:0px; width:100%; height:100%; border:0; padding:0; margin:0; z-index:6; display:none; }
+
+  /* The slices and boxes in the Slider */
+  .nivo-slice { display:block; position:absolute; z-index:5; height:100%; }
+  .nivo-box { display:block; position:absolute; z-index:5; }
+
+  /* Caption styles */
+  .nivo-caption { position:absolute; left:0px; bottom:0px; background:#000; color:#fff; opacity:0.8; /* Overridden by captionOpacity setting */ width:100%; z-index:8; }
+  .nivo-caption p { padding:5px; margin:0; }
+  .nivo-caption a { display:inline !important; }
+  .nivo-html-caption { display:none; }
+
+  /* Direction nav styles (e.g. Next & Prev) */
+  .nivo-directionNav a { position:absolute; top:45%; z-index:9; cursor:pointer; }
+  .nivo-prevNav { left:0px; }
+  .nivo-nextNav { right:0px; }
+
+  /* Control nav styles (e.g. 1,2,3...) */
+  .nivo-controlNav a { position:relative; z-index:9; cursor:pointer; }
+  .nivo-controlNav a.active { font-weight:bold; }
+
+  /*
+  Skin Name: Nivo Slider Default Theme
+  Skin URI: http://nivo.dev7studios.com
+  Skin Type: flexible
+  Description: The default skin for the Nivo Slider.
+  Version: 1.0
+  Author: Gilbert Pellegrom
+  Author URI: http://dev7studios.com
+  */
+
+  .theme-default .nivoSlider {
+  	position:relative;
+  	background:#fff url(image/loading.gif) no-repeat 50% 50%;
+      -webkit-box-shadow: 0px 1px 5px 0px #4a4a4a;
+      -moz-box-shadow: 0px 1px 5px 0px #4a4a4a;
+      box-shadow: 0px 1px 5px 0px #4a4a4a;
+  }
+  .theme-default .nivoSlider img {
+  	position:absolute;
+  	top:0px;
+  	left:0px;
+  	display:none;
+  }
+  .theme-default .nivoSlider a {
+  	border:0;
+  	display:block;
+  }
+
+  .theme-default .nivo-controlNav {
+  	position:absolute;
+  	left:50%;
+  	bottom: -14px;
+      margin-left:-40px; /* Tweak this to center bullets */
+  }
+  .theme-default .nivo-controlNav a {
+  	display:block;
+  	width:22px;
+  	height:22px;
+  	background:url(image/bullets.png) no-repeat;
+  	text-indent:-9999px;
+  	border:0;
+  	margin-right:3px;
+  	float:left;
+  }
+  .theme-default .nivo-controlNav a.active {
+  	background-position:0 -22px;
+  }
+
+  .theme-default .nivo-directionNav a {
+  	display:block;
+  	width:30px;
+  	height:30px;
+  	background:url(image/arrows.png) no-repeat;
+  	text-indent:-9999px;
+  	border:0;
+  }
+  .theme-default a.nivo-nextNav {
+  	background-position:-30px 0;
+  	right:15px;
+  }
+  .theme-default a.nivo-prevNav {
+  	left:15px;
+  }
+
+  .theme-default .nivo-caption {
+      font-family: Helvetica, Arial, sans-serif;
+  }
+  .theme-default .nivo-caption a {
+      color:#fff;
+      border-bottom:1px dotted #fff;
+  }
+  .theme-default .nivo-caption a:hover {
+      color:#fff;
+  }
+</style>
+
+<div id="header_womendesignbuild">
+
+  <!DOCTYPE html>
+  <html dir="ltr" lang="en-US">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <title>Events | Women.Design.Build</title>
+
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+
+    <link rel="stylesheet" type="text/css" media="all" href="http://womendesignbuild.org/wp-content/themes/wdb/style.css" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="pingback" href="http://womendesignbuild.org/xmlrpc.php" />
+
+    <meta name="description" content="Community centered exploration of design and construction." />
+
+    <link rel="alternate" type="application/rss+xml" title="Women.Design.Build &raquo; Events Comments Feed" href="http://womendesignbuild.org/events/feed/" />
+    <link rel='stylesheet' id='gce_styles-css'  href='http://womendesignbuild.org/wp-content/plugins/google-calendar-events/css/gce-style.css?ver=3.3.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='gce_custom_styles-css'  href='http://www.womendesignbuild.org/wp-content/themes/wdb/style.css?ver=3.3.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='event_espresso_style_sheets-css'  href='http://womendesignbuild.org/wp-content/plugins/event-espresso-free/templates/event_espresso_style.css?ver=3.3.2' type='text/css' media='all' />
+    <script type='text/javascript' src='http://womendesignbuild.org/wp-includes/js/jquery/jquery.js?ver=1.7.1'></script>
+    <script type='text/javascript' src='http://womendesignbuild.org/wp-includes/js/comment-reply.js?ver=20090102'></script>
+    <script type='text/javascript' src='http://womendesignbuild.org/wp-content/plugins/google-calendar-events/js/jquery-qtip.js'></script>
+    <script type='text/javascript'>
+    /* <![CDATA[ */
+    var GoogleCalendarEvents = {"ajaxurl":"http:\/\/womendesignbuild.org\/wp-admin\/admin-ajax.php","loading":"Loading..."};
+    /* ]]> */
+    </script>
+    <script type='text/javascript' src='http://womendesignbuild.org/wp-content/plugins/google-calendar-events/js/gce-script.js'></script>
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://womendesignbuild.org/xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://womendesignbuild.org/wp-includes/wlwmanifest.xml" /> 
+    <link rel='prev' title='Contact' href='http://womendesignbuild.org/contact/' />
+    <link rel='next' title='FAQ' href='http://womendesignbuild.org/faq/' />
+    <meta name="generator" content="WordPress 3.3.2" />
+    <link rel='canonical' href='http://womendesignbuild.org/events/' />
+    <link rel='shortlink' href='http://wp.me/P2a6qj-y' />
+    <meta name='generator' content='Event Espresso Version 3.1.20.L' /><script src="http://womendesignbuild.org/wp-content/themes/wdb/script/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+  </head>
+
+  <body>
+
+  <div class="wrapper">
+
+  	  <div class="header">
+
+        <div id="header01"></div>
+
+        <div id="header02">
+        	<a href="http://womendesignbuild.org"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/logo.png" alt="Women Design Build" /></a>
+        </div>
+
+        <div id="header03">
+
+            <div id="header03a">
+        		creatively constructing community
+            </div>
+            <div id="header03b">
+                <div class="header03b_menu"><a href="http://womendesignbuild.org/events/about">about</a></div>
+                <div class="header03b_menu"><a href="http://womendesignbuild.hourschool.com" style="color: #ba5f8f;">events</a></div>
+                <div class="header03b_menu"><a href="http://womendesignbuild.org/events/community">community</a></div>
+                <div class="header03b_menu"><a href="http://womendesignbuild.org/events/new">news</a></div>
+                <div class="header03b_menu"><a href="http://womendesignbuild.org/events/contact">contact</a></div>
+            </div>
+
+        </div>
+
+        <div id="header04">
+
+        	<div id="header04a">
+
+            	<div id="newsletter">
+
+                    <!-- Begin MailChimp Signup Form -->
+                    <div id="mc_embed_signup">
+                        <form action="http://womendesignbuild.us2.list-manage.com/subscribe/post?u=37088539c4cfe720ddd0d9800&amp;id=a774420705" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+
+                            <input type="email" value="e-newsletter sign up" name="EMAIL" class="email" id="mce-EMAIL" onfocus="if (this.value == 'e-newsletter sign up') {this.value = '';}" onblur="if (this.value == '') {this.value = 'e-newsletter sign up';}">
+                            <input type="submit" value="JOIN" name="subscribe" id="mc-embedded-subscribe" class="button">
+
+                        </form>
+                    </div>
+
+                    <!--End mc_embed_signup-->
+
+                </div>
+
+                <div id="donate">
+                	<a href="community#donate"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/donate.png" alt="Donate" /></a>
+                </div>
+
+                <div id="sm">
+                	<a href="http://www.flickr.com/photos/womendesignbuild/" target="_blank"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/sm_flickr.png" alt="flickr" /></a>
+                    <a href="http://www.facebook.com/Women.Design.Build" target="_blank"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/sm_facebook.png" alt="Facebook" /></a>
+                    <a href="http://twitter.com/#!/WomenDB" target="_blank"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/sm_twitter.png" alt="Twitter" /></a>
+                    <a href="http://www.cafepress.com/WomenDB" target="_blank"><img src="http://womendesignbuild.org/wp-content/themes/wdb/image/sm_cafepress.png" alt="Cafe Press" /></a>
+                </div>
+
+            </div>
+
+            <div id="header04b"></div>
+
+        </div>
+
+        <div id="header05"></div>
+
+      </div>
+
+
+
+  </div><!-- /end .container_16 -->
+</div><!-- /end #header -->
+
