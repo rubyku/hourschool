@@ -218,45 +218,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  def register_for_reskilling
-    @course = Course.find(params[:id])
-    @user   = current_user
-    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
-    if @role.save
-      UserMailer.send_course_reskilling_mail(current_user.email, current_user.name, @course).deliver
-    else
-      if @course.is_a_student? @user
-        flash[:error] = "You are already registered for this course"
-      else
-        flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
-      end
-    end
-    respond_to do |format|
-      format.html do
-        redirect_to confirm_path(:id => @course.id)
-      end
-      format.js { }
-    end
-  end
-
-  def register_with_amazon
-     @course = Course.find(params[:id])
-
-     @payment = Payment.new(
-       :transaction_amount => params[:transactionAmount],
-       :transaction_id     => params[:transactionId]
-     )
-      if @payment.save
-         @payment.update_attributes(:user => current_user, :course => @course)
-         @user = current_user
-         @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
-         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
-         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         redirect_to confirm_path(:id => @course.id)
-     else
-       redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
-     end
-  end
   
   def confirm
     id = params[:id]
