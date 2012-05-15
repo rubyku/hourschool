@@ -80,21 +80,7 @@ class CoursesController < ApplicationController
     @current_course = @course
   end
 
-  def confirm
-    id = params[:id]
-    @course = Course.find(id)
 
-    # temp twitter_hack
-    if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
-      redirect_to @course
-    else
-      if @course.status == "approved"
-        @course.update_attribute :status, "live"
-        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        post_to_twitter(@course)
-      end
-    end
-  end
 
   def heart
     @course = Course.find(params["id"])
@@ -226,7 +212,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to course_confirm_path(:id => @course.id)
+        redirect_to confirm_path(:id => @course.id)
       end
       format.js { }
     end
@@ -247,7 +233,7 @@ class CoursesController < ApplicationController
     end
     respond_to do |format|
       format.html do
-        redirect_to course_confirm_path(:id => @course.id)
+        redirect_to confirm_path(:id => @course.id)
       end
       format.js { }
     end
@@ -266,20 +252,28 @@ class CoursesController < ApplicationController
          @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
          UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
          UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
-         redirect_to course_confirm_path(:id => @course.id)
+         redirect_to confirm_path(:id => @course.id)
      else
        redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"
      end
   end
+  
+  def confirm
+    id = params[:id]
+    @course = Course.find(id)
 
-  def course_confirm
-    @course = Course.find(params[:id])
-
-    # don't show this page to twitter followers, etc.
-    if current_user.blank? || (@course.is_not_a_student?(current_user) && !current_user.admin?)
+    # temp twitter_hack
+    if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
       redirect_to @course
+    else
+      if @course.status == "approved"
+        @course.update_attribute :status, "live"
+        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        post_to_twitter(@course)
+      end
     end
   end
+
 
   def contact_teacher
     @course = Course.find(params[:id])
