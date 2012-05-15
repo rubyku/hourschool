@@ -1,0 +1,140 @@
+.sidebar-white
+  .sidebar-content-white
+  
+    //todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css
+    .sidebar-block
+      .class-section-heading Details
+      %table
+        %tr
+          %td.icon
+            = image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost"
+          %td
+            .class-details
+              = "$" "#{course.price}"
+              %br/
+              - if course.has_student?(current_user)
+              - else
+                - if course.donate?
+                  .greendoors-alternatives All proceeds will be used to support the Peer Teaching Fund!
+
+        %tr
+          %td.icon
+            = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"
+          %td
+            .class-details
+              = course.date.strftime("%a %b %d, %Y")
+            .class-sidebar-details
+              = "#{course.time_range}"
+
+        %tr
+          %td.icon
+            = image_tag "v2/icon_location.png", :class => "class-details-icon-where"
+          %td
+            .class-details
+              = course.place_name
+            - if course.public?
+              .class-sidebar-details
+                = course.address
+            - else
+              = "Private Address"
+
+      %br
+      %div.user_status
+        = content_tag(:p, "You are teaching this class!", :class => "heading13-class")       if course.has_teacher?(current_user) && course.active?
+        = content_tag(:p, "You're registered for this course!", :class => "heading13-class") if course.has_student?(current_user) && course.active?
+      %div.course_status
+        = content_tag(:p, "This class is full!", :class => "heading13-class")                if course.sold_out? && course.active?
+        = content_tag(:p, "This class has passed.", :class => "heading13-class")             if course.inactive?
+        = content_tag(:p, "This class has been canceled!", :class => "heading13-class")      if course.canceled?
+        / = content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user)
+      %div.course_action
+        - if can? :sign_up_for_course, course
+          - if course.sold_out? || course.inactive?
+            = button_to "Pre-register for next class",  new_suggestion_path,  :class => "register-class-button", :method => :get
+          - else 
+            - if course.donate?
+              = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
+            - else
+              = button_to "Register for this class",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+        - if can? :edit_course, course
+          - if course.inactive?
+            = button_to "Teach this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
+          - else
+            = button_to "Edit class profile",           edit_course_path, :method => :get, :class => "edit-class-button"
+            = button_to "Cancel this Class",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
+          
+      .class-alternatives
+        = "This class has a min. of #{course.min_seats}"
+        / = render :partial => "progressbar"
+
+      - if course.donate?
+        .sidebar-block-last
+          = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
+
+    .sidebar-block-last
+      .sidebar-heading Teacher
+      - if course.teacher != current_user
+        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+        = link_to "Email teacher", contact_teacher_path(:id => course), :class => "contact-link"
+      .class-attendance-block
+        %table
+          %tr
+            %td
+              = avatar_for(course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+            %td
+              = link_to course.teacher.name, course.teacher, :class => "profile-link"
+        %p.class-details
+          - if course.experience.blank?
+            = "#{course.teacher.bio}"
+          - else
+            = course.experience
+
+    - if course.students.any?
+      .sidebar-block-last
+        - if course.max_seats.present? 
+          .sidebar-heading Students (#{course.students.count}/#{course.max_seats})
+        - else 
+          .sidebar-heading Students (#{course.students.count})
+        - if course.has_teacher?(current_user)
+          = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+          = link_to "Email students", contact_all_students_path(:id => course), :class => "contact-link"
+        .class-attendance-block
+          - course.students.each do |student|
+            %table
+              %tr
+                %td
+                  = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+                %td
+                  = link_to student.name, student, :class => "profile-link"
+            %br
+
+
+// Feedback link on the admin bar
+- content_for :admin_action do
+  = link_to "Feedback form", feedback_path(:id => course)
+
+
+
+// Modal Layout for when a User tries to sign up for a course too far away
+= render :layout => 'shared/page/modal', :locals => {:modal_class => 'tooFarToRegisterModal'} do
+  %p
+    = content_tag(:p, "Wait!! This class is in #{course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.")
+  %p
+    = "If you're no longer in #{current_user.try(:location)} "
+    = link_to "change your location here", edit_user_registration_path(:id => current_user)
+    = ", or continue signing up for this class"
+
+  %div
+    %br
+    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "loginButton"
+
+
+// Show the modal window if a person tries to register for a course too far away from them
+:javascript
+  $(document).ready( function(){
+    $('.tooFarToRegister').bind('click', function(){
+      $('.tooFarToRegisterModal').show();
+      return false;
+    })
+  });
+
