@@ -1,5 +1,10 @@
 <!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= course_url(@course)%>" addthis:title="Check out this class I'm teaching @hourschool!">
+
+<% if @course.has_teacher?(current_user) %>
+  <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= course_url(@course)%>" addthis:title="Check out this class I'm teaching @hourschool!">
+<% else %>
+  <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= course_url(@course)%>" addthis:title="Check out this class I'm taking @hourschool!">
+<% end %>
   
   <a class="addthis_button_facebook"></a>
   <a class="addthis_button_twitter"></a>

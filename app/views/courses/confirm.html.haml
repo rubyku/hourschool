@@ -53,11 +53,10 @@
       - if @course.has_teacher?(current_user)
         .confirm-bring-friend Invite people to take your class
         %p.confirm We will help promote your class in any way we can. If you already know people that are interested, get a head start and let them know about your class!
-        = render :partial => "add_this_teacher"
       - else 
         .confirm-bring-friend Bring a friend or two
         %p.confirm It's always more fun to learn with friends. Share this with people you think might be interested.
-        = render :partial => "add_this_student"
+      = render :partial => "add_this"
 
 
     .confirm-description-block
