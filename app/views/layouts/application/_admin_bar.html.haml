@@ -9,11 +9,11 @@
 		- else
 			%li{:class => "sub-nav-#{'in' unless controller_name == 'charts'}active"}
 				= link_to 'Metrics', admin_charts_path(:admin)
-		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'proposals'}active"}
+		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses/admin' && action_name == 'proposals'}active"}
 			= link_to 'Proposals', course_proposals_path
-		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'pending_live'}active"}
+		%li{:class => "sub-nav-#{'in' unless controller_name == 'Courses::Admin' && action_name == 'pending_live'}active"}
 			= link_to 'Pending Live', course_pending_live_path
 		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'index'}active"}
-			= link_to 'Courses', course_admin_path
+			= link_to 'Courses', '/courses'
 		%li{:class => "sub-nav-#{'in' unless controller_name == 'users'}active"}
 			= link_to 'Users', users_path

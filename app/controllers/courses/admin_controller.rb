@@ -1,12 +1,5 @@
 class Courses::AdminController < ApplicationController
   
-  def index
-    #authenticate admin - change this.
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "live")
-    @courses = @courses.where(:account_id => current_account.id, :status => "live") if current_account
-    @user = current_user
-  end
-  
   def proposals
     @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "proposal")
     @courses = @courses.where(:account_id => current_account.id, :status => "proposal") if current_account
