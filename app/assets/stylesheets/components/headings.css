@@ -1,0 +1,58 @@
+/* line 1, ../../sass/components/headings.scss */
+.heading25_ccc {
+  color: #cccccc;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+}
+
+/* line 10, ../../sass/components/headings.scss */
+.heading25_about {
+  text-transform: uppercase;
+  color: #cccccc;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  margin-bottom: 25px;
+  margin-top: 30px;
+}
+
+/* line 20, ../../sass/components/headings.scss */
+.welcome-header {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 20px;
+}
+
+/* line 31, ../../sass/components/headings.scss */
+.homepage-header {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-left: 30px;
+  padding-top: 35px;
+}
+
+/* line 42, ../../sass/components/headings.scss */
+.greyheader_half {
+  position: relative;
+  float: left;
+  width: 680px;
+  margin-top: -56px;
+  margin-left: -45px;
+  overflow: visible;
+  z-index: 10;
+  padding-bottom: 15px;
+}

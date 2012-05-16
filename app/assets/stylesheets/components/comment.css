@@ -1,0 +1,43 @@
+/* line 1, ../../sass/components/comment.scss */
+.comments {
+  margin-top: 20px;
+}
+
+/* line 5, ../../sass/components/comment.scss */
+.comments .avatar {
+  width: 50px;
+  margin-right: 10px;
+  float: left;
+}
+
+/* line 11, ../../sass/components/comment.scss */
+.comment .name {
+  float: left;
+  margin-right: 5px;
+}
+
+/* line 16, ../../sass/components/comment.scss */
+.comment .location {
+  font-weight: 400;
+  font-size: 9px;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* line 23, ../../sass/components/comment.scss */
+.comments .content {
+  float: left;
+  width: 90%;
+}
+
+/* line 28, ../../sass/components/comment.scss */
+.comment {
+  margin-bottom: 10px;
+}
+
+/* line 32, ../../sass/components/comment.scss */
+.comments textarea {
+  padding: 5px;
+  margin-top: 5px;
+  width: 530px;
+}

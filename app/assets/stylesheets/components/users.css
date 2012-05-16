@@ -1,0 +1,63 @@
+/* line 1, ../../sass/components/users.scss */
+.notification-center {
+  float: left;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid #cecfd1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fdfdfd;
+  margin-bottom: 30px;
+}
+
+/* line 13, ../../sass/components/users.scss */
+#notification-header {
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* line 24, ../../sass/components/users.scss */
+a.notification {
+  color: #ff7733;
+}
+
+/* line 28, ../../sass/components/users.scss */
+a.notification:hover {
+  color: #ff7733;
+}
+
+/* line 32, ../../sass/components/users.scss */
+tr.notification {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted #8f8f8f;
+}
+
+/* line 38, ../../sass/components/users.scss */
+td.notification {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted red;
+}
+
+/* line 43, ../../sass/components/users.scss */
+table.user-stat {
+  float: left;
+}
+
+/* line 47, ../../sass/components/users.scss */
+td.user-stat-icon {
+  padding-right: 5px;
+}
+
+/* line 51, ../../sass/components/users.scss */
+td.user-stat-number {
+  padding-right: 30px;
+}

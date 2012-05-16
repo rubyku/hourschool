@@ -1,0 +1,21 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+@import "components/960_grid";
+@import "components/admin";
+@import "components/comment";
+@import "components/courses";
+@import "components/email";
+@import "components/fb_share";
+@import "components/footer";
+@import "components/header";
+@import "components/headings";
+@import "components/homepage";
+@import "components/peerteachingfund";
+@import "components/search";
+@import "components/users";
+@import "components/accounts/womendesignbuild";

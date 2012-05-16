@@ -1,0 +1,205 @@
+/* line 1, ../../sass/components/footer.scss */
+.footerContent {
+  display: block;
+  width: 960px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+/* line 10, ../../sass/components/footer.scss */
+.footer-message-description {
+  padding-right: 10px;
+  font-size: 11px;
+}
+
+/* line 15, ../../sass/components/footer.scss */
+.footer {
+  margin-right: 10px;
+}
+
+/* line 18, ../../sass/components/footer.scss */
+.footer-right {
+  margin-right: 10px;
+  margin-left: 40px;
+}
+
+/* line 23, ../../sass/components/footer.scss */
+.bottom_bg {
+  background-color: #fff;
+}
+
+/* line 27, ../../sass/components/footer.scss */
+.three-col-left {
+  padding-right: 20px;
+}
+
+/* line 31, ../../sass/components/footer.scss */
+.three-col-middle {
+  margin-right: 20px;
+}
+
+/* line 35, ../../sass/components/footer.scss */
+.three-col-right {
+  margin-bottom: 100px;
+}
+
+/* line 39, ../../sass/components/footer.scss */
+.footer-heading {
+  color: #666;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* line 50, ../../sass/components/footer.scss */
+.footer-blog-title {
+  color: #999999;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+/* line 58, ../../sass/components/footer.scss */
+table#footer, tr#footer, td#footer {
+  padding-bottom: 10px;
+}
+
+/* line 62, ../../sass/components/footer.scss */
+img.footer_contact {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 68, ../../sass/components/footer.scss */
+.footer_contact {
+  position: relative;
+  float: left;
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+}
+
+/* line 77, ../../sass/components/footer.scss */
+p.footer {
+  font-family: verdana,sans-serif;
+  font-size: 11px;
+  color: #999999;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+
+/* line 85, ../../sass/components/footer.scss */
+a.footer {
+  font-family: verdana,sans-serif;
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+/* line 92, ../../sass/components/footer.scss */
+a.footer:hover {
+  color: #999999;
+  text-decoration: underline;
+}
+
+/* line 97, ../../sass/components/footer.scss */
+a.footer:visited {
+  color: #999999;
+  text-decoration: underline;
+}
+
+/* line 102, ../../sass/components/footer.scss */
+.newsletterForm {
+  border: 1px solid #eeeaea;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px;
+  float: left;
+  width: 98%;
+  height: 30px;
+  color: #666;
+  padding-left: 5px;
+  font-style: italic;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+/* line 117, ../../sass/components/footer.scss */
+.newsletterButton {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 84px;
+  height: 33px;
+  background-color: #999;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+/* line 139, ../../sass/components/footer.scss */
+.newsletterButton:hover {
+  background-color: #949393;
+}
+
+/* line 141, ../../sass/components/footer.scss */
+.heading10-footer {
+  float: left;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  margin-top: 30px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  color: #ccc;
+  letter-spacing: 0.1em;
+}
+
+/* line 153, ../../sass/components/footer.scss */
+.grasshopper-footer {
+  float: left;
+}
+
+/* line 157, ../../sass/components/footer.scss */
+.enterprise_footer {
+  margin-top: -40px;
+}
+
+/* line 161, ../../sass/components/footer.scss */
+table#powered-by {
+  margin-bottom: 60px;
+  float: right;
+}
+
+/* line 166, ../../sass/components/footer.scss */
+.footer-powered-by {
+  font-family: verdana,sans-serif;
+  font-size: 9px;
+  color: #a8a7a7;
+  text-transform: uppercase;
+  padding-right: 10px;
+}
+
+/* line 174, ../../sass/components/footer.scss */
+img#powered-by-logo {
+  padding-bottom: -40px;
+}

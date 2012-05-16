@@ -1,0 +1,53 @@
+.notification-center{
+  float: left;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px solid #cecfd1;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fdfdfd;
+  margin-bottom: 30px;
+}
+
+#notification-header{
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+a.notification{
+  color: #ff7733;
+}
+
+a.notification:hover{
+  color: #ff7733;
+}
+
+tr.notification{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted #8f8f8f;
+}
+
+td.notification{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px dotted red;
+}
+table.user-stat{
+  float: left;
+}
+
+td.user-stat-icon{
+  padding-right: 5px;
+}
+
+td.user-stat-number{
+  padding-right: 30px;
+}

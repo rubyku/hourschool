@@ -1,0 +1,33 @@
+/* line 1, ../../sass/components/email.scss */
+h1.email-header {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+/* line 7, ../../sass/components/email.scss */
+.email-body {
+  margin-bottom: 20px;
+}
+
+/* line 11, ../../sass/components/email.scss */
+.email-footer {
+  margin-top: 30px;
+}
+
+/* line 15, ../../sass/components/email.scss */
+.email-page {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+/* line 23, ../../sass/components/email.scss */
+.email-content {
+  padding: 30px 30px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}

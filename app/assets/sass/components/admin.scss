@@ -1,0 +1,49 @@
+.indent {
+  margin-left: 2em;
+}
+
+th.metrics{
+  padding-right: 20px;
+}
+
+td.metrics{
+  text-align: center;
+  padding-right: 20px;
+}
+
+tr.metrics_underline{
+  border-bottom: 1px solid #666;
+}
+
+.adminBar{
+  font-family: futura-pt-1, futura-pt-2;
+  background-color:black;
+  color:white;
+  padding:2px;
+  margin: 0 auto 0;
+}
+
+.adminBar a {
+  text-decoration: underline;
+  color:white;
+}
+
+
+td.metrics-seats{
+  text-align: center;
+  padding-right: 20px;
+}
+
+td.metrics-course-title{
+  width: 300px;
+  padding-right: 20px;
+}
+
+th.metrics{
+  padding-right: 20px;
+}
+
+.adminBar .actions {
+  float: right;
+}
+
