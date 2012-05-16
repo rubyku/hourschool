@@ -1,8 +1,15 @@
-//= require screen
-
-/*
-*= require_self
-*= require_tree .
-*/
+//= require components/960_grid
+//= require components/admin
+//= require components/comment
+//= require components/courses
+//= require components/email
+//= require components/fb_share
+//= require components/footer
+//= require components/header
+//= require components/headings
+//= require components/homepage
+//= require components/peerteachingfund
+//= require components/search
+//= require components/users
 
 

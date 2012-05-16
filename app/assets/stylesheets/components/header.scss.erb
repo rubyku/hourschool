@@ -13,7 +13,7 @@
   height: 125px;
   text-decoration: none;
   margin-bottom: 10px;
-  background: url('v2/Logo_Orange_withHover.png');
+  background: url( <%= asset_path 'v2/Logo_Orange_withHover.png' %> );
 }
 
 a#logo:hover {
@@ -124,13 +124,13 @@ td#dropdown-text {
   padding-right: 30px;
 }
 
-
 table#menu {
   position: relative;
   float: right;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
+
 td#menu_teach, td#menu_suggest, td#menu_business {
   border: 1px solid #d0cdcd;
   height: 60px;

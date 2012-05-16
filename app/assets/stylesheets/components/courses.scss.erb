@@ -1,4 +1,3 @@
-/* line 13, ../../sass/components/courses.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,69 +18,51 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
-
-/* line 21, ../../sass/components/courses.scss */
 body {
   line-height: 1;
 }
-
-/* line 24, ../../sass/components/courses.scss */
 ol, ul {
   list-style: none;
 }
-
-/* line 27, ../../sass/components/courses.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
-/* line 31, ../../sass/components/courses.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
-
-/* line 36, ../../sass/components/courses.scss */
 q, blockquote {
   quotes: none;
 }
 
-/* line 40, ../../sass/components/courses.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
-
-/* line 44, ../../sass/components/courses.scss */
 a img {
   border: none;
 }
-
-/* line 47, ../../sass/components/courses.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* line 51, ../../sass/components/courses.scss */
 * {
   margin: 0px;
   padding: 0px;
 }
 
-/* line 56, ../../sass/components/courses.scss */
 body {
   font-family: verdana,sans-serif;
   font-size: 13px;
   color: #4f4e4e;
   line-height: 18px;
   background-color: none;
-  background-image: url("v2/BG_grey.png");
+  background-image: url(<%= asset_path "v2/BG_grey.png" %>);
   position: relative;
 }
 
-/* line 66, ../../sass/components/courses.scss */
 p, ol, ul {
   font-family: verdana,sans-serif;
   font-size: 13px;
@@ -90,31 +71,24 @@ p, ol, ul {
   letter-spacing: auto;
 }
 
-/* line 74, ../../sass/components/courses.scss */
 a {
   text-decoration: none;
   color: #4f4e4e;
 }
-
-/* line 78, ../../sass/components/courses.scss */
 a:visited {
   text-decoration: none;
   color: #4f4e4e;
 }
-
-/* line 82, ../../sass/components/courses.scss */
 a:active {
   text-decoration: none;
   color: #ff7733;
 }
-
-/* line 86, ../../sass/components/courses.scss */
 a:hover {
   text-decoration: none;
   color: #ff7733;
 }
 
-/* line 92, ../../sass/components/courses.scss */
+
 img.class-arrow {
   position: relative;
   float: right;
@@ -122,36 +96,26 @@ img.class-arrow {
   margin-right: 10px;
 }
 
-/* line 100, ../../sass/components/courses.scss */
+
 .brand_bg {
   background-color: #ff7733;
   height: 3px;
 }
-
-/* line 104, ../../sass/components/courses.scss */
 .enterprise_brand_bg {
   background-color: #ff7733;
   height: 7px;
 }
-
-/* line 108, ../../sass/components/courses.scss */
 .middle_bg {
   background-image: url("v2/BG_grey.png");
 }
-
-/* line 111, ../../sass/components/courses.scss */
 .bottom_bg {
   background-color: #fff;
   padding-bottom: 100px;
 }
-
-/* line 115, ../../sass/components/courses.scss */
 .main {
   margin-bottom: 25px;
   padding-bottom: 25px;
 }
-
-/* line 119, ../../sass/components/courses.scss */
 .full-page {
   width: 960px;
   float: left;
@@ -160,8 +124,7 @@ img.class-arrow {
   background-color: #fff;
 }
 
-/* line 127, ../../sass/components/courses.scss */
-.marcomm-with-sidebar {
+.marcomm-with-sidebar{
   width: 760px;
   float: left;
   margin-bottom: 20px;
@@ -171,15 +134,13 @@ img.class-arrow {
   background-color: #fff;
 }
 
-/* line 137, ../../sass/components/courses.scss */
-hr.about {
+hr.about{
   width: 100%;
   margin-top: 30px;
   margin-bottom: 20px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid #F0F0F0
 }
 
-/* line 144, ../../sass/components/courses.scss */
 .page {
   width: 700px;
   float: left;
@@ -187,27 +148,21 @@ hr.about {
   background-color: #fff;
 }
 
-/* line 151, ../../sass/components/courses.scss */
-.page-wdb {
+.page-wdb{
   width: 600px;
   float: left;
   padding-bottom: 30px;
 }
 
-/* line 157, ../../sass/components/courses.scss */
 .page-content {
   padding: 30px 30px 30px;
 }
-
-/* line 160, ../../sass/components/courses.scss */
 .page-section-float-left {
   float: left;
   width: 100%;
   padding-bottom: 20px;
 }
-
-/* line 165, ../../sass/components/courses.scss */
-.comment-section {
+.comment-section{
   float: left;
   width: 100%;
   margin-top: 20px;
@@ -215,105 +170,79 @@ hr.about {
   padding-bottom: 20px;
   border-top: 1px dashed #ccc;
 }
-
-/* line 173, ../../sass/components/courses.scss */
 .page-section-float-right {
   float: right;
   width: 100%;
   padding-bottom: 20px;
 }
-
-/* line 178, ../../sass/components/courses.scss */
 .sidebar {
   width: 260px;
   float: left;
 }
-
-/* line 182, ../../sass/components/courses.scss */
 .sidebar-white {
   width: 250px;
   float: left;
   background-color: #fff;
   margin-left: -20px;
 }
-
-/* line 188, ../../sass/components/courses.scss */
 .sidebar-content {
   padding: 0px 0px 10px 30px;
 }
-
-/* line 191, ../../sass/components/courses.scss */
 .sidebar-content-white {
   padding: 20px 15px 10px 15px;
 }
-
-/* line 194, ../../sass/components/courses.scss */
 ul.noBullet {
   list-style-type: none;
 }
 
-/* line 198, ../../sass/components/courses.scss */
-ul.noBullet.course-when {
+ul.noBullet.course-when{
   list-style-type: none;
   padding-bottom: 40px;
 }
-
-/* line 202, ../../sass/components/courses.scss */
 li.noBullet {
   float: left;
 }
 
-/* line 210, ../../sass/components/courses.scss */
+
+
+
+
 .dashboard-story {
   float: left;
   width: 100%;
   padding: 20px 0px 20px 0px;
   border-bottom: 1px dashed #ccc;
 }
-
-/* line 216, ../../sass/components/courses.scss */
 .dashboard-story-first {
   float: left;
   width: 100%;
   padding: 0px 0px 20px 0px;
   border-bottom: 1px dashed #ccc;
 }
-
-/* line 222, ../../sass/components/courses.scss */
 .dashboard-story-last {
   float: left;
   width: 100%;
   padding: 20px 0px 20px 0px;
 }
-
-/* line 227, ../../sass/components/courses.scss */
 ul.dashboard-name {
   list-style: none;
   margin-top: 5px;
 }
-
-/* line 231, ../../sass/components/courses.scss */
 li.dashboard-name {
   float: left;
   top: 0px;
   padding-right: 7px;
   vertical-align: middle;
 }
-
-/* line 237, ../../sass/components/courses.scss */
 ul.class {
   float: left;
   top: 0px;
   margin-right: 10px;
 }
-
-/* line 242, ../../sass/components/courses.scss */
 ul.status {
   float: right;
   top: 0px;
 }
-
-/* line 246, ../../sass/components/courses.scss */
 ul.comment {
   float: left;
   position: absolute;
@@ -321,19 +250,13 @@ ul.comment {
   margin-top: 35px;
   margin-left: 125px;
 }
-
-/* line 253, ../../sass/components/courses.scss */
 img.dashboard-icon {
   float: left;
   margin-top: 1px;
 }
-
-/* line 257, ../../sass/components/courses.scss */
 img.dashboard-class {
   float: right;
 }
-
-/* line 260, ../../sass/components/courses.scss */
 .dashboard-name {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -342,22 +265,18 @@ img.dashboard-class {
   float: left;
 }
 
-/* line 268, ../../sass/components/courses.scss */
 .dashboard-name a {
   color: #ff7733;
 }
 
-/* line 272, ../../sass/components/courses.scss */
 .dashboard-name:visited {
   color: #ff7733;
 }
 
-/* line 276, ../../sass/components/courses.scss */
 .dashboard-name:hover {
   color: #ff7733;
 }
 
-/* line 280, ../../sass/components/courses.scss */
 ul.searchFilter {
   list-style-type: none;
   margin-bottom: 20px;
@@ -365,20 +284,16 @@ ul.searchFilter {
   line-height: 23px;
 }
 
-/* line 287, ../../sass/components/courses.scss */
-td.icon {
+td.icon{
   vertical-align: top;
 }
 
-/* line 291, ../../sass/components/courses.scss */
 .classRow {
   float: left;
   width: 650px;
   margin-top: 10px;
   margin-bottom: 30px;
 }
-
-/* line 297, ../../sass/components/courses.scss */
 .classBlock {
   float: left;
   width: 190px;
@@ -391,8 +306,6 @@ td.icon {
   margin-top: 10px;
   margin-bottom: 15px;
 }
-
-/* line 309, ../../sass/components/courses.scss */
 .classBlock_last {
   float: left;
   width: 190px;
@@ -404,56 +317,42 @@ td.icon {
   margin-top: 10px;
   margin-bottom: 15px;
 }
-
-/* line 320, ../../sass/components/courses.scss */
 img.class-arrow {
   position: relative;
   float: right;
   margin-top: -13px;
   margin-right: 10px;
 }
-
-/* line 326, ../../sass/components/courses.scss */
 .class-description {
   padding: 10px;
   height: 105px;
 }
 
-/* line 331, ../../sass/components/courses.scss */
-.class-note {
+.class-note{
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 336, ../../sass/components/courses.scss */
-a.class-note {
+a.class-note{
   color: #4f4e4e;
 }
-
-/* line 339, ../../sass/components/courses.scss */
 table.view-more, tr.view-more {
   float: right;
   margin-right: 10px;
   margin-bottom: 20px;
 }
-
-/* line 344, ../../sass/components/courses.scss */
 ul.view-more-arrow {
   float: left;
   list-style-type: none;
 }
 
-/* line 349, ../../sass/components/courses.scss */
-img.view-more-arrow {
+img.view-more-arrow{
   padding-left: 0px;
 }
 
-/* line 353, ../../sass/components/courses.scss */
-img.view-more {
+img.view-more{
   padding-left: 10px;
 }
-
-/* line 356, ../../sass/components/courses.scss */
 a.view-more {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -466,7 +365,6 @@ a.view-more {
   padding-bottom: 5px;
 }
 
-/* line 368, ../../sass/components/courses.scss */
 .heading13-class {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -475,37 +373,29 @@ a.view-more {
   margin-bottom: 5px;
 }
 
-/* line 376, ../../sass/components/courses.scss */
 .heading13-class a {
   color: #ff7733;
 }
 
-/* line 380, ../../sass/components/courses.scss */
 .heading13-class a:visited {
   color: #ff7733;
   text-decoration: none;
 }
 
-/* line 385, ../../sass/components/courses.scss */
 .heading13-class a:hover {
   color: #ff7733;
   text-decoration: none;
 }
-
-/* line 389, ../../sass/components/courses.scss */
 .heading9-class {
   font-weight: 400;
   font-size: 9px;
 }
-
-/* line 393, ../../sass/components/courses.scss */
 .heading10-class {
   font-weight: 400;
   font-size: 10px;
   margin-bottom: 10px;
 }
 
-/* line 399, ../../sass/components/courses.scss */
 .vote-class {
   margin-top: 0px;
   margin: 20px 20px 20px 0px;
@@ -513,13 +403,11 @@ a.view-more {
   border-bottom: 1px dashed #ccc;
 }
 
-/* line 406, ../../sass/components/courses.scss */
 .vote-class-title {
   float: left;
   width: 500px;
 }
 
-/* line 411, ../../sass/components/courses.scss */
 .heading20-vote {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -528,7 +416,6 @@ a.view-more {
   padding-bottom: 5px;
 }
 
-/* line 419, ../../sass/components/courses.scss */
 a.heading20-vote {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -537,47 +424,20 @@ a.heading20-vote {
   padding-bottom: 5px;
 }
 
-/* line 427, ../../sass/components/courses.scss */
-.heading20-vote a:hover {
-  color: #666;
-}
+.heading20-vote a:hover {color: #666;}
+.heading20-vote a:visited{color: #666;}
+.heading20-vote a:active{color: #666;}
 
-/* line 428, ../../sass/components/courses.scss */
-.heading20-vote a:visited {
-  color: #666;
-}
+img.view-more-arrow-orange{margin-right: 10px;}
 
-/* line 429, ../../sass/components/courses.scss */
-.heading20-vote a:active {
-  color: #666;
-}
+.vote-link{font-size: 11px;}
+.vote-link a:visited{color: #666;}
+.vote-link a:hover{color: #ff7733;}
 
-/* line 431, ../../sass/components/courses.scss */
-img.view-more-arrow-orange {
-  margin-right: 10px;
-}
-
-/* line 433, ../../sass/components/courses.scss */
-.vote-link {
-  font-size: 11px;
-}
-
-/* line 434, ../../sass/components/courses.scss */
-.vote-link a:visited {
-  color: #666;
-}
-
-/* line 435, ../../sass/components/courses.scss */
-.vote-link a:hover {
-  color: #ff7733;
-}
-
-/* line 437, ../../sass/components/courses.scss */
 .vote-class-number {
   float: right;
 }
 
-/* line 441, ../../sass/components/courses.scss */
 .heading35-vote {
   color: #ff7733;
   text-transform: uppercase;
@@ -589,7 +449,6 @@ img.view-more-arrow-orange {
   margin-bottom: 5px;
 }
 
-/* line 452, ../../sass/components/courses.scss */
 .heading10-vote {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -601,11 +460,11 @@ img.view-more-arrow-orange {
   margin-bottom: 3px;
 }
 
-/* line 463, ../../sass/components/courses.scss */
 a.vote-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
+
+    border: none;
+    background: #00B6FF;
+    color: #fff;
   padding-top: 7px;
   padding-right: 0px;
   width: 75px;
@@ -625,14 +484,10 @@ a.vote-button {
   cursor: pointer;
 }
 
-/* line 487, ../../sass/components/courses.scss */
-a.vote-button:hover {
-  background-color: #e46f28;
-  color: white;
-}
+a.vote-button:hover { background-color: #e46f28; color: white;}
 
-/* line 489, ../../sass/components/courses.scss */
 .voted-button {
+
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -653,7 +508,6 @@ a.vote-button:hover {
   letter-spacing: 0.1em;
 }
 
-/* line 511, ../../sass/components/courses.scss */
 .claim-class-button {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -675,19 +529,16 @@ a.vote-button:hover {
   letter-spacing: 0.1em;
 }
 
-/* line 532, ../../sass/components/courses.scss */
-.claim-class-button a {
+.claim-class-button a{
   color: white;
   text-decoration: none;
 }
 
-/* line 537, ../../sass/components/courses.scss */
-.claim-class-button a:hover {
+.claim-class-button a:hover{
   color: white;
   text-decoration: none;
 }
 
-/* line 542, ../../sass/components/courses.scss */
 .why-teach-short {
   width: 75%;
   float: left;
@@ -695,21 +546,18 @@ a.vote-button:hover {
   margin-bottom: 30px;
 }
 
-/* line 549, ../../sass/components/courses.scss */
 .why-teach-last {
   margin-top: 20px;
 }
 
-/* line 553, ../../sass/components/courses.scss */
-.teach_how_it_works {
-  width: 200px;
+.teach_how_it_works{
+  width: 200px; 
   margin-left: -10px;
-  margin-right: 15px;
+  margin-right: 15px; 
   margin-top: -20px;
   margin-bottom: -10px;
 }
 
-/* line 561, ../../sass/components/courses.scss */
 #create-class-button {
   float: right;
   width: 135px;
@@ -724,18 +572,13 @@ a.vote-button:hover {
   cursor: pointer;
 }
 
-/* line 575, ../../sass/components/courses.scss */
-#create-class-button:hover {
-  background-color: #e46f28;
-}
+#create-class-button:hover { background-color: #e46f28;}
 
-/* line 578, ../../sass/components/courses.scss */
+
 img#create-class-star {
   margin-top: 10px;
   margin-left: 46px;
 }
-
-/* line 582, ../../sass/components/courses.scss */
 .heading15-whyteach {
   color: #ff7733;
   text-transform: uppercase;
@@ -745,8 +588,6 @@ img#create-class-star {
   letter-spacing: 0.1em;
   padding-top: 20px;
 }
-
-/* line 591, ../../sass/components/courses.scss */
 .create-class-heading {
   float: left;
   padding-top: 5px;
@@ -758,8 +599,7 @@ img#create-class-star {
   font-size: 10;
 }
 
-/* line 602, ../../sass/components/courses.scss */
-.teach-start-block {
+.teach-start-block{
   float: left;
   width: 168px;
   margin-top: 31px;
@@ -771,7 +611,6 @@ img#create-class-star {
   border-radius: 5px;
 }
 
-/* line 614, ../../sass/components/courses.scss */
 #new-create-class-button {
   float: left;
   width: 135px;
@@ -786,13 +625,9 @@ img#create-class-star {
   cursor: pointer;
 }
 
-/* line 628, ../../sass/components/courses.scss */
-#new-create-class-button:hover {
-  background-color: #e46f28;
-}
+#new-create-class-button:hover { background-color: #e46f28;}
 
-/* line 630, ../../sass/components/courses.scss */
-.teach-resource-block {
+.teach-resource-block{
   float: right;
   width: 190px;
   margin-top: 31px;
@@ -804,8 +639,8 @@ img#create-class-star {
   border-radius: 5px;
 }
 
-/* line 643, ../../sass/components/courses.scss */
-.pagenote-box {
+
+.pagenote-box{
   border: 1px solid #ccc;
   width: 90%;
   margin-top: 20px;
@@ -813,8 +648,7 @@ img#create-class-star {
   padding: 20px;
 }
 
-/* line 651, ../../sass/components/courses.scss */
-.pagenote-header {
+.pagenote-header{
   text-transform: uppercase;
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -826,13 +660,11 @@ img#create-class-star {
   width: 100%;
 }
 
-/* line 663, ../../sass/components/courses.scss */
-a.pagenote-link {
+a.pagenote-link{
   color: #ff7733;
 }
 
-/* line 667, ../../sass/components/courses.scss */
-hr#pagenote {
+hr#pagenote{
   float: left;
   width: 98%;
   border: 1px dashed #999;
@@ -840,39 +672,28 @@ hr#pagenote {
   margin-bottom: 20px;
 }
 
-/* line 675, ../../sass/components/courses.scss */
 .class-logistic-block {
   float: left;
   width: 220px;
   margin-right: 0px;
 }
-
-/* line 680, ../../sass/components/courses.scss */
 .class-logistic-line {
   float: left;
   width: 200px;
   margin-right: 0px;
 }
-
-/* line 685, ../../sass/components/courses.scss */
 .class-description-block {
   float: left;
   width: 400px;
 }
-
-/* line 689, ../../sass/components/courses.scss */
 .class-attendance-block {
   float: left;
   width: 220px;
   padding: 10px 0px 0px 0px;
 }
-
-/* line 694, ../../sass/components/courses.scss */
 img#fb-comment {
   margin-top: 10px;
 }
-
-/* line 697, ../../sass/components/courses.scss */
 hr#class {
   border: 1px dashed #ededed;
   margin-left: auto;
@@ -880,23 +701,15 @@ hr#class {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
-/* line 704, ../../sass/components/courses.scss */
 p.class-detail {
   margin-bottom: 10px;
 }
-
-/* line 707, ../../sass/components/courses.scss */
 ul.withBullets {
   list-style-type: square;
 }
-
-/* line 710, ../../sass/components/courses.scss */
 li.withBullets {
   margin-bottom: 10px;
 }
-
-/* line 713, ../../sass/components/courses.scss */
 .class-section-heading {
   color: #666;
   font-family: futura-pt-1, futura-pt-2;
@@ -906,8 +719,6 @@ li.withBullets {
   letter-spacing: 0.1em;
   margin-bottom: 10px;
 }
-
-/* line 722, ../../sass/components/courses.scss */
 .class-details {
   float: left;
   margin-top: 8px;
@@ -916,8 +727,6 @@ li.withBullets {
   font-size: 12px;
   width: 190px;
 }
-
-/* line 730, ../../sass/components/courses.scss */
 p.class-details {
   color: #666;
   font-weight: 400;
@@ -925,50 +734,36 @@ p.class-details {
   width: 180px;
 }
 
-/* line 737, ../../sass/components/courses.scss */
-.class-sidebar-details {
+.class-sidebar-details{
   width: 150px;
   line-height: 14px;
 }
-
-/* line 741, ../../sass/components/courses.scss */
 .class-alternatives {
   float: left;
   font-weight: 400;
   font-size: 10px;
   color: #666;
 }
-
-/* line 747, ../../sass/components/courses.scss */
 img.class-details-icon-cost {
   margin-right: 3px;
   margin-top: 8px;
 }
-
-/* line 751, ../../sass/components/courses.scss */
 img.class-details-icon-when {
   margin-right: 7px;
   margin-top: 8px;
 }
-
-/* line 755, ../../sass/components/courses.scss */
 img.class-details-icon-where {
   margin-right: 10px;
   margin-top: 8px;
 }
-
-/* line 759, ../../sass/components/courses.scss */
 img.class-details-icon-heart {
   margin-left: 0px;
   margin-top: 0px;
 }
 
-/* line 764, ../../sass/components/courses.scss */
-img.class-details-icon-email {
+img.class-details-icon-email{
   margin-bottom: -5px;
 }
-
-/* line 767, ../../sass/components/courses.scss */
 .class-details-heart-number {
   font-size: 12px;
   font-weight: 700;
@@ -977,8 +772,7 @@ img.class-details-icon-email {
   color: #8f8f8f;
 }
 
-/* line 775, ../../sass/components/courses.scss */
-.register-class-button {
+.register-class-button{
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1002,13 +796,9 @@ img.class-details-icon-email {
   cursor: pointer;
 }
 
-/* line 799, ../../sass/components/courses.scss */
-.register-class-button:hover {
-  background-color: #e46f28;
-}
+.register-class-button:hover { background-color: #e46f28;}
 
-/* line 801, ../../sass/components/courses.scss */
-.approve-class-button {
+.approve-class-button{
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1032,18 +822,13 @@ img.class-details-icon-email {
   cursor: pointer;
 }
 
-/* line 825, ../../sass/components/courses.scss */
-.approve-class-button:hover {
-  background-color: #e46f28;
-}
+.approve-class-button:hover { background-color: #e46f28;}
 
-/* line 827, ../../sass/components/courses.scss */
-.approvalRow {
+.approvalRow{
   border-bottom: 1px solid #8f8f8f;
 }
 
-/* line 831, ../../sass/components/courses.scss */
-.grey-header {
+.grey-header{
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 12px;
@@ -1054,8 +839,7 @@ img.class-details-icon-email {
   float: left;
 }
 
-/* line 842, ../../sass/components/courses.scss */
-.edit-class-button {
+.edit-class-button{
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1079,16 +863,13 @@ img.class-details-icon-email {
   cursor: pointer;
 }
 
-/* line 866, ../../sass/components/courses.scss */
-.edit-class-button:hover {
-  background-color: #949393;
-}
+.edit-class-button:hover { background-color: #949393;}
 
-/* line 868, ../../sass/components/courses.scss */
 .edit-form-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
+
+    border: none;
+    background: #00B6FF;
+    color: #fff;
   float: right;
   width: 120px;
   padding-top: 12px;
@@ -1110,16 +891,13 @@ img.class-details-icon-email {
   height: 35px;
 }
 
-/* line 894, ../../sass/components/courses.scss */
-.edit-form-button:hover {
-  background-color: #949393;
-}
+.edit-form-button:hover { background-color: #949393;}
 
-/* line 896, ../../sass/components/courses.scss */
-.complete-class-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
+.complete-class-button{
+
+    border: none;
+    background: #00B6FF;
+    color: #fff;
   float: left;
   width: 170px;
   margin-left: 10px;
@@ -1144,12 +922,8 @@ img.class-details-icon-email {
   cursor: pointer;
 }
 
-/* line 925, ../../sass/components/courses.scss */
-.complete-class-button:hover {
-  background-color: #e46f28;
-}
+.complete-class-button:hover { background-color: #e46f28;}
 
-/* line 927, ../../sass/components/courses.scss */
 .class-title-big {
   float: left;
   color: #666;
@@ -1162,28 +936,25 @@ img.class-details-icon-email {
   margin-bottom: 10px;
 }
 
-/* line 939, ../../sass/components/courses.scss */
-.contact-link {
+.contact-link{
   color: #4f4e4e;
 }
 
-/* line 944, ../../sass/components/courses.scss */
+
 img.steps {
   margin-left: 20px;
   margin-top: 5px;
   margin-bottom: 35px;
 }
 
-/* line 950, ../../sass/components/courses.scss */
-#preview-box {
+#preview-box{
   width: 900px;
   height: 50px;
   padding: 30px 30px 0px 30px;
   background: white;
 }
 
-/* line 957, ../../sass/components/courses.scss */
-.preview-header {
+.preview-header{
   width: 500px;
   float: left;
   color: #ff7733;
@@ -1195,8 +966,8 @@ img.steps {
   letter-spacing: 0.1em;
 }
 
-/* line 969, ../../sass/components/courses.scss */
 .preview-button {
+
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1220,29 +991,22 @@ img.steps {
   cursor: pointer;
 }
 
-/* line 994, ../../sass/components/courses.scss */
-.preview-button:hover {
-  background-color: #e46f28;
-}
-
-/* line 995, ../../sass/components/courses.scss */
-#preview-box-tall {
+.preview-button:hover { background-color: #e46f28;}
+#preview-box-tall{
   width: 880px;
   height: 300px;
   padding: 30px 30px 0px 50px;
   background: white;
 }
 
-/* line 1002, ../../sass/components/courses.scss */
-#preview-checklist-box {
+#preview-checklist-box{
   width: 600px;
   float: right;
   margin-right: 30px;
   margin-top: 20px;
 }
 
-/* line 1009, ../../sass/components/courses.scss */
-li.preview-checklist {
+li.preview-checklist{
   color: #ff7733;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -1251,8 +1015,7 @@ li.preview-checklist {
   letter-spacing: 0.1em;
 }
 
-/* line 1018, ../../sass/components/courses.scss */
-a.orange-checklist {
+a.orange-checklist{
   color: #ff7733;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -1261,18 +1024,11 @@ a.orange-checklist {
   letter-spacing: 0.1em;
 }
 
-/* line 1027, ../../sass/components/courses.scss */
-a.orange-checklist:hover {
-  color: #ff7733;
-}
+a.orange-checklist:hover{color: #ff7733}
+a.orange-checklist:visited{color:#ff7733}
 
-/* line 1028, ../../sass/components/courses.scss */
-a.orange-checklist:visited {
-  color: #ff7733;
-}
 
-/* line 1031, ../../sass/components/courses.scss */
-.confirm-messageBlock {
+.confirm-messageBlock{
   float: left;
   width: 628px;
   height: 130px;
@@ -1281,7 +1037,6 @@ a.orange-checklist:visited {
   background-color: #f9f8f8;
 }
 
-/* line 1040, ../../sass/components/courses.scss */
 .confirm-classblock {
   float: left;
   width: 190px;
@@ -1292,42 +1047,34 @@ a.orange-checklist:visited {
   padding-bottom: 20px;
   margin-right: 40px;
 }
-
-/* line 1050, ../../sass/components/courses.scss */
 .confirm-class-description {
   padding: 10px;
 }
 
-/* line 1054, ../../sass/components/courses.scss */
-.confirm-description-block {
+.confirm-description-block{
   float: left;
   width: 390px;
   margin-bottom: 30px;
   margin-left: 20px;
 }
 
-/* line 1061, ../../sass/components/courses.scss */
-.confirm-description-share-block {
+.confirm-description-share-block{
   margin-top: 20px;
   margin-bottom: 40px;
 }
 
-/* line 1066, ../../sass/components/courses.scss */
-.vote-show-block {
+.vote-show-block{
   float: left;
   width: 600px;
   margin-bottom: 15px;
 }
 
-/* line 1072, ../../sass/components/courses.scss */
-.vote-share-block {
+.vote-share-block{
   float: left;
   width: 400px;
   margin-top: 10px;
   margin-bottom: 20px;
 }
-
-/* line 1078, ../../sass/components/courses.scss */
 .confirm-second-message {
   text-transform: uppercase;
   color: #ff7733;
@@ -1339,23 +1086,18 @@ a.orange-checklist:visited {
   float: left;
   letter-spacing: 0.05em;
 }
-
-/* line 1089, ../../sass/components/courses.scss */
 .confirm-grasshopper {
   float: right;
   margin-right: 10px;
   margin-top: -10px;
 }
 
-/* line 1095, ../../sass/components/courses.scss */
 hr#confirm {
   float: right;
   border: 1px dashed #ededed;
   width: 100%;
   margin-bottom: 30px;
 }
-
-/* line 1101, ../../sass/components/courses.scss */
 .confirm-bring-friend {
   text-transform: uppercase;
   color: #666;
@@ -1367,8 +1109,6 @@ hr#confirm {
   width: 100%;
   margin-bottom: 20px;
 }
-
-/* line 1112, ../../sass/components/courses.scss */
 .confirm-copy-url {
   float: left;
   text-transform: uppercase;
@@ -1381,19 +1121,16 @@ hr#confirm {
   margin-top: 21px;
 }
 
-/* line 1124, ../../sass/components/courses.scss */
 p.confirm {
   margin-bottom: 20px;
 }
 
-/* line 1128, ../../sass/components/courses.scss */
 p.warning {
   color: red;
   font-weight: 700;
 }
 
-/* line 1133, ../../sass/components/courses.scss */
-.form-short-edit-profile {
+.form-short-edit-profile{
   position: relative;
   float: left;
   width: 250px;
@@ -1407,24 +1144,17 @@ p.warning {
   border-radius: 5px;
 }
 
-/* line 1147, ../../sass/components/courses.scss */
-td.edit-profile {
+td.edit-profile{
   width: 250px;
 }
-
-/* line 1150, ../../sass/components/courses.scss */
 a.profile-link {
   color: #ff7733;
   font-weight: 700;
   font-size: 12px;
 }
-
-/* line 1155, ../../sass/components/courses.scss */
-img.notBig {
+img.notBig{
   margin-right: 10px;
 }
-
-/* line 1158, ../../sass/components/courses.scss */
 a.bio-detail-header {
   float: left;
   color: #8f8f8f;
@@ -1432,8 +1162,6 @@ a.bio-detail-header {
   font-weight: 700;
   font-size: 13px;
 }
-
-/* line 1165, ../../sass/components/courses.scss */
 .profile-heading10 {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -1443,21 +1171,15 @@ a.bio-detail-header {
   letter-spacing: 0.1em;
   padding-top: 10px;
 }
-
-/* line 1174, ../../sass/components/courses.scss */
 ul.avatar {
   float: left;
   list-style-type: none;
   margin-bottom: 20px;
   line-height: 23px;
 }
-
-/* line 1180, ../../sass/components/courses.scss */
 li.avatar {
   float: left;
 }
-
-/* line 1183, ../../sass/components/courses.scss */
 .avatar {
   width: 25px;
   height: 25px;
@@ -1466,8 +1188,6 @@ li.avatar {
   margin-top: 5px;
   background-color: #ccc;
 }
-
-/* line 1191, ../../sass/components/courses.scss */
 .avatar-30 {
   width: 30px;
   height: 30px;
@@ -1475,8 +1195,6 @@ li.avatar {
   margin-top: -5px;
   background-color: #ccc;
 }
-
-/* line 1198, ../../sass/components/courses.scss */
 .avatar-medium {
   float: left;
   width: 50px;
@@ -1484,8 +1202,6 @@ li.avatar {
   margin-right: 10px;
   background-color: #ccc;
 }
-
-/* line 1205, ../../sass/components/courses.scss */
 .avatar-big {
   width: 125px;
   height: 125px;
@@ -1495,14 +1211,13 @@ li.avatar {
   background-color: #ccc;
 }
 
-/* line 1215, ../../sass/components/courses.scss */
+
 img#amazon {
   float: left;
   margin-top: 80px;
   margin-left: -160px;
 }
 
-/* line 1221, ../../sass/components/courses.scss */
 .empty-prompt {
   color: #cccccc;
   text-transform: uppercase;
@@ -1516,29 +1231,23 @@ img#amazon {
   text-align: center;
 }
 
-/* line 1234, ../../sass/components/courses.scss */
 .form-question {
   float: left;
   width: 100%;
   font-size: 13px;
   font-weight: 700;
 }
-
-/* line 1240, ../../sass/components/courses.scss */
 .class-form-question {
   float: left;
+
   font-size: 13px;
   font-weight: 700;
 }
-
-/* line 1246, ../../sass/components/courses.scss */
 .form-question-tip {
   float: left;
   width: 100%;
   font-size: 12px;
 }
-
-/* line 1251, ../../sass/components/courses.scss */
 p.form-bg {
   float: left;
   background-color: #f7f9fa;
@@ -1551,8 +1260,7 @@ p.form-bg {
   border-radius: 5px;
 }
 
-/* line 1263, ../../sass/components/courses.scss */
-.feedback-form {
+.feedback-form{
   position: relative;
   float: left;
   width: 200px;
@@ -1566,8 +1274,6 @@ p.form-bg {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-
-/* line 1277, ../../sass/components/courses.scss */
 .form {
   position: relative;
   float: left;
@@ -1581,8 +1287,6 @@ p.form-bg {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-
-/* line 1290, ../../sass/components/courses.scss */
 .form-short {
   position: relative;
   float: left;
@@ -1597,7 +1301,6 @@ p.form-bg {
   border-radius: 5px;
 }
 
-/* line 1304, ../../sass/components/courses.scss */
 .form-short-with-margin {
   position: relative;
   float: left;
@@ -1611,8 +1314,6 @@ p.form-bg {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-
-/* line 1317, ../../sass/components/courses.scss */
 .form-med {
   position: relative;
   float: left;
@@ -1628,8 +1329,6 @@ p.form-bg {
   border-radius: 5px;
   vertical-align: text-top;
 }
-
-/* line 1332, ../../sass/components/courses.scss */
 .form-with-margin {
   position: relative;
   float: left;
@@ -1645,7 +1344,6 @@ p.form-bg {
   border-radius: 5px;
 }
 
-/* line 1347, ../../sass/components/courses.scss */
 .form-med-with-margin {
   position: relative;
   float: left;
@@ -1661,8 +1359,6 @@ p.form-bg {
   border-radius: 5px;
   vertical-align: text-top;
 }
-
-/* line 1362, ../../sass/components/courses.scss */
 .form-tall {
   position: relative;
   float: left;
@@ -1678,9 +1374,8 @@ p.form-bg {
   border-radius: 5px;
   vertical-align: text-top;
 }
-
-/* line 1377, ../../sass/components/courses.scss */
 .submit-proposal-button {
+
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1704,40 +1399,29 @@ p.form-bg {
   cursor: pointer;
 }
 
-/* line 1402, ../../sass/components/courses.scss */
-.submit-proposal-button:hover {
-  background-color: #e46f28;
-}
+.submit-proposal-button:hover { background-color: #e46f28;}
 
-/* line 1405, ../../sass/components/courses.scss */
+
 p.note {
   float: left;
   margin-bottom: 20px;
 }
-
-/* line 1409, ../../sass/components/courses.scss */
 p.tip {
   float: left;
   color: #8f8f8f;
   font-size: 11px;
   width: 100%;
 }
-
-/* line 1415, ../../sass/components/courses.scss */
 a.tip {
   float: left;
   color: #8f8f8f;
   font-size: 11px;
   text-decoration: underline;
 }
-
-/* line 1421, ../../sass/components/courses.scss */
 .form-error {
   color: red;
   font-weight: 700;
 }
-
-/* line 1425, ../../sass/components/courses.scss */
 .form-med-with-margin-error {
   position: relative;
   float: left;
@@ -1753,8 +1437,6 @@ a.tip {
   border-radius: 5px;
   vertical-align: text-top;
 }
-
-/* line 1440, ../../sass/components/courses.scss */
 .error-block {
   float: left;
   padding: 15px;
@@ -1768,7 +1450,6 @@ a.tip {
   width: 600px;
 }
 
-/* line 1453, ../../sass/components/courses.scss */
 .flash-notice {
   text-transform: uppercase;
   color: #ff7733;
@@ -1780,8 +1461,6 @@ a.tip {
   letter-spacing: 0.05em;
   width: 100%;
 }
-
-/* line 1464, ../../sass/components/courses.scss */
 .loginButton {
   border: none;
   background: #00B6FF;
@@ -1804,13 +1483,9 @@ a.tip {
   cursor: pointer;
 }
 
-/* line 1486, ../../sass/components/courses.scss */
-.loginButton:hover {
-  background-color: #e46f28;
-}
-
-/* line 1487, ../../sass/components/courses.scss */
+.loginButton:hover { background-color: #e46f28;}
 .send-message-button {
+
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -1832,17 +1507,16 @@ a.tip {
   cursor: pointer;
 }
 
-/* line 1510, ../../sass/components/courses.scss */
-.send-message-button:hover {
-  background-color: #e46f28;
+.send-message-button:hover { background-color: #e46f28;}
+
+table.feedback{
+
 }
 
-/* line 1516, ../../sass/components/courses.scss */
-td.feedback {
+td.feedback{
   padding: 10px;
 }
 
-/* line 1520, ../../sass/components/courses.scss */
 .sidebar-heading {
   color: #666;
   text-transform: uppercase;
@@ -1852,8 +1526,6 @@ td.feedback {
   letter-spacing: 0.2em;
   line-height: 26px;
 }
-
-/* line 1529, ../../sass/components/courses.scss */
 .heading10-sidebar {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -1864,18 +1536,15 @@ td.feedback {
   margin-top: 10px;
 }
 
-/* line 1539, ../../sass/components/courses.scss */
 ul.avatar-list {
   margin-top: 0px;
 }
 
-/* line 1543, ../../sass/components/courses.scss */
 li.avatar-list {
   float: left;
   margin-right: 3px;
 }
 
-/* line 1548, ../../sass/components/courses.scss */
 .sidebar-block {
   float: left;
   width: 220px;
@@ -1883,7 +1552,6 @@ li.avatar-list {
   border-bottom: 1px dashed #ccc;
 }
 
-/* line 1555, ../../sass/components/courses.scss */
 .sidebar-block-last {
   float: left;
   width: 220px;
@@ -1891,7 +1559,6 @@ li.avatar-list {
   border-bottom: 0px dashed #ccc;
 }
 
-/* line 1562, ../../sass/components/courses.scss */
 .partner-block {
   float: left;
   width: 220px;
@@ -1907,7 +1574,6 @@ li.avatar-list {
   margin-left: 23px;
 }
 
-/* line 1577, ../../sass/components/courses.scss */
 p.similar-class-description {
   float: left;
   width: 200px;
@@ -1915,7 +1581,6 @@ p.similar-class-description {
   padding-bottom: 10px;
 }
 
-/* line 1584, ../../sass/components/courses.scss */
 p.profile-name-blurb {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -1926,7 +1591,6 @@ p.profile-name-blurb {
   width: 150px;
 }
 
-/* line 1594, ../../sass/components/courses.scss */
 p.profile-location-blurb {
   float: left;
   width: 150px;
@@ -1935,20 +1599,17 @@ p.profile-location-blurb {
   padding-bottom: 10px;
 }
 
-/* line 1602, ../../sass/components/courses.scss */
 p.profile-bio {
   padding-bottom: 10px;
   width: 220px;
 }
 
-/* line 1607, ../../sass/components/courses.scss */
 .tape {
   float: left;
   margin-top: -31px;
   margin-left: 32px;
 }
 
-/* line 1613, ../../sass/components/courses.scss */
 .tipbox {
   position: relative;
   width: 160px;
@@ -1963,14 +1624,12 @@ p.profile-bio {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 1627, ../../sass/components/courses.scss */
 .tape-metrics {
   float: left;
   margin-top: -31px;
   margin-left: 55px;
 }
 
-/* line 1633, ../../sass/components/courses.scss */
 .tipbox-metrics {
   position: relative;
   width: 210px;
@@ -1985,14 +1644,14 @@ p.profile-bio {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 1649, ../../sass/components/courses.scss */
+
+
 .tape-metrics {
   float: left;
   margin-top: -31px;
   margin-left: 55px;
 }
 
-/* line 1655, ../../sass/components/courses.scss */
 .tipbox-metrics {
   position: relative;
   width: 210px;
@@ -2007,14 +1666,12 @@ p.profile-bio {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 1669, ../../sass/components/courses.scss */
-ol.metrics {
+ol.metrics{
   list-style-type: decimal;
   padding-left: 20px;
   padding-top: 10px;
 }
 
-/* line 1675, ../../sass/components/courses.scss */
 #tipboxButton {
   margin-top: 10px;
   padding: 7px;
@@ -2033,12 +1690,8 @@ ol.metrics {
   cursor: pointer;
 }
 
-/* line 1693, ../../sass/components/courses.scss */
-#tipboxButton:hover {
-  background-color: #949393;
-}
+#tipboxButton:hover { background-color: #949393;}
 
-/* line 1695, ../../sass/components/courses.scss */
 .heading10 {
   color: #8f8f8f;
   text-transform: uppercase;
@@ -2049,12 +1702,10 @@ ol.metrics {
   text-align: center;
 }
 
-/* line 1705, ../../sass/components/courses.scss */
 .marcomm-header {
   padding-top: 15px;
 }
 
-/* line 1709, ../../sass/components/courses.scss */
 .heading25_666 {
   color: #666;
   text-transform: uppercase;
@@ -2065,7 +1716,6 @@ ol.metrics {
   padding-bottom: 25px;
 }
 
-/* line 1719, ../../sass/components/courses.scss */
 .greyheader_full {
   position: left;
   float: left;
@@ -2076,7 +1726,6 @@ ol.metrics {
   z-index: 99;
 }
 
-/* line 1729, ../../sass/components/courses.scss */
 .greyheader_three_fouths {
   position: left;
   float: left;
@@ -2087,8 +1736,7 @@ ol.metrics {
   z-index: 99;
 }
 
-/* line 1739, ../../sass/components/courses.scss */
-.about-hourschool-box {
+.about-hourschool-box{
   float: left;
   width: 95%;
   margin-top: 20px;
@@ -2098,7 +1746,6 @@ ol.metrics {
   box-shadow: 1px 1px 1px 1px #F0F0F0, 1px 1px 2px 1px #F0F0F0;
 }
 
-/* line 1749, ../../sass/components/courses.scss */
 .heading15-marcomm {
   color: #e4652f;
   text-transform: uppercase;
@@ -2109,7 +1756,6 @@ ol.metrics {
   margin-bottom: 15px;
 }
 
-/* line 1759, ../../sass/components/courses.scss */
 .heading15-campaign {
   color: #5b7020;
   text-transform: uppercase;
@@ -2120,8 +1766,7 @@ ol.metrics {
   margin-bottom: 10px;
 }
 
-/* line 1769, ../../sass/components/courses.scss */
-.heading15-campaign-orange {
+.heading15-campaign-orange{
   color: #e4652f;
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -2131,7 +1776,6 @@ ol.metrics {
   margin-bottom: 10px;
 }
 
-/* line 1779, ../../sass/components/courses.scss */
 .heading15-marcomm-grey {
   color: #666;
   text-transform: uppercase;
@@ -2143,30 +1787,25 @@ ol.metrics {
   margin-bottom: 10px;
 }
 
-/* line 1790, ../../sass/components/courses.scss */
 ul.noBullet-marcomm {
   list-style-type: none;
   margin-bottom: 30px;
 }
 
-/* line 1795, ../../sass/components/courses.scss */
 li.noBullet-marcomm {
   margin-bottom: 3px;
 }
 
-/* line 1799, ../../sass/components/courses.scss */
 span.list-number {
   float: left;
   font-size: 20px;
   margin-right: 5px;
 }
 
-/* line 1805, ../../sass/components/courses.scss */
-p.about {
+p.about{
   padding-bottom: 10px;
 }
 
-/* line 1809, ../../sass/components/courses.scss */
 .about-bio-team-left {
   float: left;
   width: 410px;
@@ -2177,7 +1816,6 @@ p.about {
   box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0;
 }
 
-/* line 1819, ../../sass/components/courses.scss */
 .about-bio-team-right {
   float: left;
   width: 410px;
@@ -2187,12 +1825,10 @@ p.about {
   box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0;
 }
 
-/* line 1828, ../../sass/components/courses.scss */
 .about-bio-advisor {
   padding-bottom: 20px;
 }
 
-/* line 1832, ../../sass/components/courses.scss */
 .about-bio-team-photo {
   float: left;
   color: #ff7733;
@@ -2207,7 +1843,6 @@ p.about {
   background-color: #ccc;
 }
 
-/* line 1846, ../../sass/components/courses.scss */
 .about-bio-team-name {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -2216,7 +1851,6 @@ p.about {
   margin-top: 5px;
 }
 
-/* line 1854, ../../sass/components/courses.scss */
 .about-bio-team-title {
   font-weight: 400;
   font-size: 10px;
@@ -2224,26 +1858,22 @@ p.about {
   margin-bottom: 5px;
 }
 
-/* line 1861, ../../sass/components/courses.scss */
 .about-bio-team-blurb {
   float: left;
   width: 250px;
   font-style: italic;
 }
 
-/* line 1867, ../../sass/components/courses.scss */
 .about-bio-advisor-company {
   font-style: italic;
 }
 
-/* line 1871, ../../sass/components/courses.scss */
 .feature-row {
   padding-bottom: 30px;
   padding-left: 15px;
   float: left;
 }
 
-/* line 1877, ../../sass/components/courses.scss */
 .tipbox-marcomm {
   position: relative;
   width: 160px;
@@ -2258,8 +1888,12 @@ p.about {
   box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
 }
 
-/* line 1896, ../../sass/components/courses.scss */
-.ui-progressbar {
+
+
+
+
+
+.ui-progressbar{
   background-color: #f0f0f0;
   height: 10px;
   -moz-border-radius: 10px;
@@ -2268,8 +1902,7 @@ p.about {
   margin-top: 5px;
 }
 
-/* line 1905, ../../sass/components/courses.scss */
-.ui-progressbar .ui-progressbar-value {
+.ui-progressbar .ui-progressbar-value{
   background-color: #ff7744;
   height: 10px;
   -moz-border-radius: 10px;
@@ -2277,23 +1910,25 @@ p.about {
   border-radius: 10px;
 }
 
-/* line 1916, ../../sass/components/courses.scss */
+
+
+
 #homepage .teaser {
   height: 318px;
 }
 
-/* line 1922, ../../sass/components/courses.scss */
+
+
 .modal a {
   text-decoration: underline;
 }
 
-/* line 1927, ../../sass/components/courses.scss */
+
 .center {
   margin: 0 auto 0;
   text-align: center;
 }
 
-/* line 1932, ../../sass/components/courses.scss */
 h2 {
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
@@ -2304,25 +1939,22 @@ h2 {
   padding-left: 0px;
 }
 
-/* line 1942, ../../sass/components/courses.scss */
 .friendList {
   border-top: 1px dotted #8f8f8f;
   padding: 10px 0;
   height: 55px;
 }
 
-/* line 1948, ../../sass/components/courses.scss */
 .friendList .avatar {
   margin: 0px;
   padding: 0px;
 }
 
-/* line 1954, ../../sass/components/courses.scss */
+
 .friendList .name {
-  margin-top: 15px;
+  margin-top:15px;
 }
 
-/* line 1958, ../../sass/components/courses.scss */
 .friendList .name a {
   text-transform: uppercase;
   font-family: futura-pt-1, futura-pt-2;
@@ -2332,21 +1964,20 @@ h2 {
   padding-left: 10px;
   text-decoration: none;
   letter-spacing: 0.2em;
+
 }
 
-/* line 1970, ../../sass/components/courses.scss */
 .friendList .unfollow a {
   background: #ECECEC;
   color: #BCBABA;
   margin-top: 6px;
 }
 
-/* line 1976, ../../sass/components/courses.scss */
 .friendList .unfollow {
   margin-left: 50px;
 }
 
-/* line 1981, ../../sass/components/courses.scss */
+
 a.button {
   border: none;
   background: #00B6FF;
@@ -2369,7 +2000,6 @@ a.button {
   font-size: 11px;
 }
 
-/* line 2003, ../../sass/components/courses.scss */
 .userConfirm {
   background-color: #FF7543;
   height: 28px;
@@ -2379,44 +2009,38 @@ a.button {
   border-bottom: solid 2px #E56F45;
 }
 
-/* line 2012, ../../sass/components/courses.scss */
 .userConfirm p {
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 0;
-  height: 100%;
-  color: #8E381A;
-  font-family: futura-pt-1, futura-pt-2;
-  font-size: 11px;
-  margin-top: 5px;
-  letter-spacing: 0.2em;
+ text-transform: uppercase;
+ font-weight: 700;
+ margin-bottom: 0;
+ height: 100%;
+ color: #8E381A;
+ font-family: futura-pt-1, futura-pt-2;
+ font-size: 11px;
+ margin-top: 5px;
+ letter-spacing: 0.2em;
 }
 
-/* line 2024, ../../sass/components/courses.scss */
 .userConfirm .reminder {
   margin-right: 1em;
 }
 
-/* line 2029, ../../sass/components/courses.scss */
 .userConfirm a,
 .userConfirm a:visited {
-  color: white;
-  text-decoration: underline;
-  padding: 2px;
+  color:white;
+  text-decoration:underline;
+  padding:2px;
 }
 
-/* line 2035, ../../sass/components/courses.scss */
 .break-word {
   word-wrap: break-word;
 }
 
-/* line 2039, ../../sass/components/courses.scss */
-table.admin {
+table.admin{
   width: 100%;
 }
 
-/* line 2043, ../../sass/components/courses.scss */
-td.admin-id {
+td.admin-id{
   border: 1px solid black;
   width: 40px;
   padding-right: 10px;
@@ -2424,8 +2048,7 @@ td.admin-id {
   word-wrap: break-word;
 }
 
-/* line 2051, ../../sass/components/courses.scss */
-td.admin-name {
+td.admin-name{
   border: 1px solid black;
   width: 200px;
   padding-right: 10px;
@@ -2433,8 +2056,7 @@ td.admin-name {
   word-wrap: break-word;
 }
 
-/* line 2059, ../../sass/components/courses.scss */
-td.admin-email {
+td.admin-email{
   border: 1px solid black;
   width: 200px;
   padding-right: 10px;
@@ -2442,8 +2064,7 @@ td.admin-email {
   word-wrap: break-word;
 }
 
-/* line 2067, ../../sass/components/courses.scss */
-td.admin {
+td.admin{
   border: 1px solid black;
   width: 100px;
   padding-right: 10px;
@@ -2451,8 +2072,7 @@ td.admin {
   word-wrap: break-word;
 }
 
-/* line 2075, ../../sass/components/courses.scss */
-.invite-user-button {
+.invite-user-button{
   border: none;
   background: #00B6FF;
   color: #fff;
@@ -2474,3 +2094,4 @@ td.admin {
   margin-bottom: 20px;
   cursor: pointer;
 }
+
