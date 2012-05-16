@@ -13,7 +13,7 @@
             <a href="/team" class="sub-nav-inactive">Team</a>
         </li>   
         <li class="sub-nav-active">
-            <a href="/campaign" class="sub-nav-active">Peer Teaching Fund</a>
+            <a href="/campaign-greendoors" class="sub-nav-active">Peer Teaching Fund</a>
         </li>
         <li class="sub-nav-inactive">
             <a href="/business" class="sub-nav-inactive">For businesses</a>
@@ -24,31 +24,31 @@
     <center>
       <div class="marcomm-header">
         <div class="heading25_666">A peer teaching fund to discover more teachers</div>
-        <%= image_tag "v2/greyheader_full.png", :class => "greyheader_full" %>
+        <%= image_tag "v2/greyheader_full.png", :class => "greyheader full" %>
       </div>
     </center>
 
     <div class="grid_16">
 
       <div class="grid_6">
-        <div class="heading15-campaign" style="margin-top: 40px">What is the peer teaching fund?</div>
+        <div class="heading15 campaign-greendoors" style="margin-top: 40px">What is the peer teaching fund?</div>
         <p>HourSchool has partnered with two organizations working to serve those who have lost their homes. We are collaborating and co-designing to help build a series of educational and capacity building programs, with a goal to instill a sense of self-worth for those who have lost hope.</p>
       
-        <div class="heading15-campaign" style="margin-top: 30px">How you can help</div>
+        <div class="heading15 campaign-greendoors" style="margin-top: 30px">How you can help</div>
         <p>Teach a class or ask someone else to teach a class, and choose to donate your class proceeds towards our peer teaching fund! The fund will be used to plan events, cover cost of materials, and compensate time for trainers. Throughout the program, you will receive progress updates from HourSchool. You can’t donate directly without teaching, so start teaching today and empower someone else to do the same. </p>
         
       </div>
 
       <div class="grid_8" style="margin-left: 60px">
-        <%= image_tag "v2-campaign/frame_big2.png", :class => "campaign_frame_big" %>
-        <div class="campaign-frame-text">
+        <%= image_tag "v2-campaign-greendoors/frame_big2.png", :class => "campaign-greendoors_frame_big" %>
+        <div class="campaign-greendoors-frame-text">
 
-          <div class="campaign-frame-big-heading">Total amount raised to date <br>for the Peer Teaching Fund:</div>
-          <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
-          <p><div class="campaign-frame-bold-text"> 
+          <div class="campaign-greendoors-frame-big-heading">Total amount raised to date <br>for the Peer Teaching Fund:</div>
+          <%= image_tag "v2-campaign-greendoors/divider.png", :class => "campaign-greendoors-divider" %>
+          <p><div class="campaign-greendoors-frame-bold-text"> 
              <%= "#{number_to_currency @amount_raised, :precision => 0}" %>
           </div></p>          
-          <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
+          <%= image_tag "v2-campaign-greendoors/divider.png", :class => "campaign-greendoors-divider" %>
 
           <!-- <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
              <div id="progressbar" class=""></div>
@@ -63,9 +63,9 @@
           <br> -->
         </div>
          </div>   
-        <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), new_course_path  %>
-        <%= link_to image_tag("v2-campaign/button-take-class.png", :class => "campaign-button"), learn_path %>
-        <%= link_to image_tag("v2-campaign/button-nominate.png", :class => "campaign-button"), suggest_path %>    
+        <%= link_to image_tag("v2-campaign-greendoors/button-create-class.png", :class => "campaign-greendoors-button"), new_course_path  %>
+        <%= link_to image_tag("v2-campaign-greendoors/button-take-class.png", :class => "campaign-greendoors-button"), learn_path %>
+        <%= link_to image_tag("v2-campaign-greendoors/button-nominate.png", :class => "campaign-greendoors-button"), suggest_path %>    
 
     
     </div>
@@ -81,21 +81,21 @@
       </div>
       
       <div class="grid_10">
-        <div class="heading15-campaign">Returning to the founding story of HourSchool</div>
+        <div class="heading15 campaign-greendoors" >Returning to the founding story of HourSchool</div>
         <p>HourSchool evolved from a research project that co-founders Ruby Ku and Alex Pappas were conducting on homelessness while at Austin Center for Design. They found that people experiencing homelessness lack avenues to give back to the community and become disconnected from the communities in which they live. HourSchool was built based on the belief that everyone has knowledge to share with a mission to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="/story" style="color: #5b7020">[continue reading...]</a></p>
       </div>
     
     </div>
     
     <div class="grid_16" style="margin-top:30px">
-      <div class="heading15-campaign" style="margin-left: 10px; margin-bottom: 20px">About our partnered organizations</div>    
+      <div class="heading15 campaign-greendoors"  style="margin-left: 10px; margin-bottom: 20px">About our partnered organizations</div>    
       <div class="grid_7" style="margin-right: 30px">
         <a href="http://www.greendoors.org"><img src="http://www.workmancommercial.com/images/community/greendoor.jpg" width="100" style="float: left; margin-right: 15px"></a>
         <p>Green Doors is dedicated to transforming lives and neighborhoods for people in need by creating quality affordable housing and connecting residents to services that support self-sufficiency.</p>
       </div>
       
       <div class="grid_7" style="width: 450px">
-        <%= link_to image_tag("v2-campaign/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
+        <%= link_to image_tag("v2-campaign-greendoors/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
           <p>Front Steps' mission is to provide a pathway of hope through shelter, affordable housing and community education.</p>
       </div>
       
@@ -109,14 +109,14 @@
   <div class="page-content">
     
     <div class="grid_15" style="margin-top: -10px">
-      <div class="heading25_about">FAQs</div>
-      <div class="heading15-campaign">Can I get a tax deductible receipt for my contributions?</div>
+      <div class="heading25 light_grey">FAQs</div>
+      <div class="heading15 campaign-greendoors" >Can I get a tax deductible receipt for my contributions?</div>
       <p>The peer teaching fund will be used by HourSchool solely to create programs at these organizations to cover the costs of training and materials. HourSchool is a <a href="http://en.wikipedia.org/wiki/Social_enterprise">social enterprise</a>, not a 501(c), so we cannot issue tax deductible receipts. If you're interested in donating to these two organizations directly, please visit their websites.</p>
       
-      <div class="heading15-campaign" style="margin-top: 20px">How do I know if these peer teaching programs are working?</div>
+      <div class="heading15 campaign-greendoors"  style="margin-top: 20px">How do I know if these peer teaching programs are working?</div>
       <p>We will be working with a vulnerable population - though talented, all are going through different challenges. We are confident that a peer teaching program is a direct way to help them gain self-esteem and recovery from homelessness. At the same time, we don't expect overnight success and are prepared to create long-term partnerships with these two organizations.</p>
       
-      <div class="heading15-campaign" style="margin-top: 20px">I work for a non-profit and I'm interested in implementing a program like this. What should I do?</div>
+      <div class="heading15 campaign-greendoors"  style="margin-top: 20px">I work for a non-profit and I'm interested in implementing a program like this. What should I do?</div>
       <p>We would love to work with you and inspire more organizations to adopt the peer teaching model. Please email us at <a href="mailto:hello@hourschool.com" style="color: #5b7020">hello@hourschool.com</a> and we will chat more.</p>
     </div>    
   

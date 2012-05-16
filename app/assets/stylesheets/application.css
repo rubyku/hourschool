@@ -1,15 +1,15 @@
-//= require components/960_grid
-//= require components/admin
-//= require components/comment
-//= require components/courses
-//= require components/email
-//= require components/fb_share
-//= require components/footer
-//= require components/header
-//= require components/headings
-//= require components/homepage
-//= require components/peerteachingfund
-//= require components/search
-//= require components/users
+//= require hourschool/960_grid
+//= require hourschool/scaffold
 
-
+//= require hourschool/admin
+//= require hourschool/comment
+//= require hourschool/courses
+//= require hourschool/email
+//= require hourschool/fb_share
+//= require hourschool/footer
+//= require hourschool/header
+//= require hourschool/headings
+//= require hourschool/homepage
+//= require hourschool/peerteachingfund
+//= require hourschool/search
+//= require hourschool/users

@@ -1,0 +1,125 @@
+.vote-class {
+  margin-top: 0px;
+  margin: 20px 20px 20px 0px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #ccc; }
+
+.vote-class-title {
+  float: left;
+  width: 500px; }
+
+.heading20-vote, a.heading20-vote {
+  color: #666;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 5px; }
+
+.heading20-vote a {
+  &:hover, &:visited, &:active {
+    color: #666; } }
+
+img.view-more-arrow-orange {
+  margin-right: 10px; }
+
+.vote-link {
+  font-size: 11px;
+  a {
+    &:visited {
+      color: #666; }
+    &:hover {
+      color: #ff7733; } } }
+
+.vote-class-number {
+  float: right; }
+
+.heading35-vote {
+  color: #ff7733;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 35px;
+  text-align: center;
+  margin-left: -5px;
+  margin-bottom: 5px; }
+
+.heading10-vote {
+  color: #8f8f8f;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 3px; }
+
+a.vote-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding-top: 7px;
+  padding-right: 0px;
+  width: 75px;
+  height: 27px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28;
+    color: white; } }
+
+.voted-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding-top: 7px;
+  width: 75px;
+  height: 27px;
+  background-color: #ccc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em; }
+
+.claim-class-button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #ff7733;
+  color: white;
+  text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: white;
+      text-decoration: none; } } }

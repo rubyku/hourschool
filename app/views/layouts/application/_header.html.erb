@@ -65,75 +65,76 @@
       </ul>
     </div>
 
-    <script type="text/javascript">
-        $("#nav-dropdown").click(function() {
-            $("#dropdown-box").show();
-            $("#nav-dropdown").hide();
-            $("#nav-dropdown-selected").show();
-            return false;
-         });
-       $("#nav-dropdown-selected").click(function() {
-             $("#dropdown-box").hide();
-             $("#nav-dropdown").show();
-             $("#nav-dropdown-selected").hide();
-        });
-    </script>
+    <% if community_site? %>
 
-    <script type="text/javascript">
-        $("#nav-dropdown").click(function() {
-            $("#dropdown-box").show();
-            $("#nav-dropdown").hide();
-            $("#nav-dropdown-selected").show();
-            return false;
-         });
-       $("#nav-dropdown-selected").click(function() {
-             $("#dropdown-box").hide();
-             $("#nav-dropdown").show();
-             $("#nav-dropdown-selected").hide();
-             return false;
-        });
-    </script>
-
-      <% if community_site? %>
-
-        <table id="menu">
-          <tr id="menu">
-            <td id="community_menu_learn">
-                <%= link_to learn_path, :id => "menu-#{'in' unless controller_name == 'browse' || controller_name == 'search' || controller_name == 'courses' && action_name == 'show'}active" do %>
-                  <div id="menu18">Learn</div> 
-                  <div id="menu9">something new</div>
-                <% end %>
-              </td>
-              <td id="community_menu_teach">
-                <%= link_to teach_path, :id => "menu-#{'in' unless controller_name == 'home' || controller_name == 'courses' && action_name == 'new' || controller_name == 'courses' && action_name == 'edit'}active" do %>
-                  <div id="menu9">Offer to</div>
-                  <div id="menu18">teach</div>
-                <% end %>
-              </td>
-            <td id="community_menu_suggest">
-              <%= link_to suggest_path, :id => "menu-#{'in' unless controller_name == 'suggestions'}active" do %>
-                <div id="menu18">Suggest</div>
-                <div id="menu9">a class</div>
+      <table id="community_menu">
+        <tr>
+          <td id="community_menu_learn">
+              <%= link_to learn_path, :id => "menu-#{'in' unless controller_name == 'browse' || controller_name == 'search' || controller_name == 'courses' && action_name == 'show'}active" do %>
+                <div id="menu18">Learn</div> 
+                <div id="menu9">something new</div>
               <% end %>
             </td>
-            <td id="community_menu_community">
-              <%= link_to about_path, :id => "menu-#{'in' unless controller_name == 'pages'}active" do %>
-                <div id="menu9">Read our</div>
-                <div id="menu18">Mission</div>
+            <td id="community_menu_teach">
+              <%= link_to teach_path, :id => "menu-#{'in' unless controller_name == 'home' || controller_name == 'courses' && action_name == 'new' || controller_name == 'courses' && action_name == 'edit'}active" do %>
+                <div id="menu9">Offer to</div>
+                <div id="menu18">teach</div>
               <% end %>
             </td>
-            <td id="community_menu_faq">
-              <a href="http://help.hourschool.com/" id="menu">
-                <div id="menu_faq">F</div>
-                <div id="menu_faq">A</div>
-                <div id="menu_faq">Q</div>
-            </td>
-          </tr>
-        </table>
-        
-      <% end %>
+          <td id="community_menu_suggest">
+            <%= link_to suggest_path, :id => "menu-#{'in' unless controller_name == 'suggestions'}active" do %>
+              <div id="menu18">Suggest</div>
+              <div id="menu9">a class</div>
+            <% end %>
+          </td>
+          <td id="community_menu_community">
+            <%= link_to about_path, :id => "menu-#{'in' unless controller_name == 'pages'}active" do %>
+              <div id="menu9">Read our</div>
+              <div id="menu18">Mission</div>
+            <% end %>
+          </td>
+          <td id="community_menu_faq">
+            <a href="http://help.hourschool.com/" id="menu">
+              <div id="menu_faq">F</div>
+              <div id="menu_faq">A</div>
+              <div id="menu_faq">Q</div>
+          </td>
+        </tr>
+      </table>
+      
+    <% end %>
 
 
   </div><!-- /end .container_16 -->
 
 </div><!-- /end #header -->
+
+
+<script type="text/javascript">
+    $("#nav-dropdown").click(function() {
+        $("#dropdown-box").show();
+        $("#nav-dropdown").hide();
+        $("#nav-dropdown-selected").show();
+        return false;
+     });
+   $("#nav-dropdown-selected").click(function() {
+         $("#dropdown-box").hide();
+         $("#nav-dropdown").show();
+         $("#nav-dropdown-selected").hide();
+    });
+</script>
+
+<script type="text/javascript">
+    $("#nav-dropdown").click(function() {
+        $("#dropdown-box").show();
+        $("#nav-dropdown").hide();
+        $("#nav-dropdown-selected").show();
+        return false;
+     });
+   $("#nav-dropdown-selected").click(function() {
+         $("#dropdown-box").hide();
+         $("#nav-dropdown").show();
+         $("#nav-dropdown-selected").hide();
+         return false;
+    });
+</script>
