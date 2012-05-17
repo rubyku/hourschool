@@ -14,6 +14,15 @@ class CoursesController < ApplicationController
     @current_course = @course
   end
   
+  def approve
+    @course = Course.find(params[:id])
+    @course.update_attribute :status, "approved"
+
+    #send email and other stuff here to the teacher
+    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
+    redirect_to course_proposals_path
+  end
+  
   def new
     @course = Course.new
     @reqid = params[:req]

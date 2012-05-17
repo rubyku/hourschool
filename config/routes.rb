@@ -91,7 +91,7 @@ HourschoolV2::Application.routes.draw do
   match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
-  match '/approve'                    => 'courses/admin#approve'
+  match '/approve'                    => 'courses#approve'
 
   match '/courses-proposals'          => 'courses/admin#proposals', :as => 'course_proposals'
   match '/courses-pending-live'       => 'courses/admin#pending_live', :as => 'course_pending_live'

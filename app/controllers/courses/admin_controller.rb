@@ -10,14 +10,7 @@ class Courses::AdminController < ApplicationController
     @current_course = Course.find(params[:id])
   end
   
-  def approve
-    @course = Course.find(params[:id])
-    @course.update_attribute :status, "approved"
 
-    #send email and other stuff here to the teacher
-    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
-    redirect_to course_proposals_path
-  end
   
   def pending_live
     @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "approved")
