@@ -5,24 +5,25 @@
   float: left;
   overflow: visible;
   z-index: 99;
-  padding-top: 15px;
+  padding-top: 30px;
   padding-bottom: 40px;
   
   &.full{
-    margin-top: -59px;
+    margin-top: -90px;
     margin-left: -60px;
     width: 1020px; }
     
   &.half {
-    width: 680px;
-    margin-top: -56px;
-    margin-left: -45px; } }
+    margin-top: -85px;
+    margin-left: -45px;
+    width: 680px; } }
 
 .heading25 {
   @include hourschool-heading;
   font-size: 25px;
   margin-top: 30px;
   margin-bottom: 25px;
+  letter-spacing: 0.1em;
   
   &.light_grey{color: $hourschool-light-grey;}
   &.dark_grey{color: $hourschool-dark-grey;} }
@@ -40,7 +41,6 @@
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 14px;
-  margin: 0px 10px 10px 0px;
   
   a {
     color: $hourschool-house-color;

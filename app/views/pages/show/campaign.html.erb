@@ -23,7 +23,7 @@
 
     <center>
       <div class="marcomm-header">
-        <div class="heading25_666">A peer teaching fund to discover more teachers</div>
+        <div class="heading25 666">A peer teaching fund to discover more teachers</div>
         <%= image_tag "v2/greyheader_full.png", :class => "greyheader full" %>
       </div>
     </center>
@@ -31,7 +31,7 @@
     <div class="grid_16">
 
       <div class="grid_6">
-        <div class="heading15 campaign-greendoors" style="margin-top: 40px">What is the peer teaching fund?</div>
+        <div class="heading15 campaign-greendoors" >What is the peer teaching fund?</div>
         <p>HourSchool has partnered with two organizations working to serve those who have lost their homes. We are collaborating and co-designing to help build a series of educational and capacity building programs, with a goal to instill a sense of self-worth for those who have lost hope.</p>
       
         <div class="heading15 campaign-greendoors" style="margin-top: 30px">How you can help</div>
@@ -40,33 +40,24 @@
       </div>
 
       <div class="grid_8" style="margin-left: 60px">
-        <%= image_tag "v2-campaign-greendoors/frame_big2.png", :class => "campaign-greendoors_frame_big" %>
-        <div class="campaign-greendoors-frame-text">
-
-          <div class="campaign-greendoors-frame-big-heading">Total amount raised to date <br>for the Peer Teaching Fund:</div>
-          <%= image_tag "v2-campaign-greendoors/divider.png", :class => "campaign-greendoors-divider" %>
-          <p><div class="campaign-greendoors-frame-bold-text"> 
-             <%= "#{number_to_currency @amount_raised, :precision => 0}" %>
-          </div></p>          
-          <%= image_tag "v2-campaign-greendoors/divider.png", :class => "campaign-greendoors-divider" %>
-
-          <!-- <div class="ui-progressbar ui-widget ui-widget-content ui-corner-all">
-             <div id="progressbar" class=""></div>
+          <%= image_tag "v2-campaign/frame_big2.png", :class => "campaign_frame_big" %>
+          
+          <div class="campaign-frame-text">
+            <div class="campaign-frame-big-heading">Total amount raised to date <br>for the Peer Teaching Fund:</div>
+            <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
+            <p>
+              <div class="campaign-frame-bold-text"> 
+               <%= "#{number_to_currency @amount_raised, :precision => 0}" %>
+              </div>
+            </p>          
+            <%= image_tag "v2-campaign/divider.png", :class => "campaign-divider" %>
           </div>
-          <script type="text/javascript">
-            $(document).ready( function(){
-              $( "#progressbar" ).progressbar({
-              value: <%= @amount_raised/5000.to_f * 100 %>
-              });
-            });
-          </script>
-          <br> -->
-        </div>
-         </div>   
-        <%= link_to image_tag("v2-campaign-greendoors/button-create-class.png", :class => "campaign-greendoors-button"), new_course_path  %>
-        <%= link_to image_tag("v2-campaign-greendoors/button-take-class.png", :class => "campaign-greendoors-button"), learn_path %>
-        <%= link_to image_tag("v2-campaign-greendoors/button-nominate.png", :class => "campaign-greendoors-button"), suggest_path %>    
+              
 
+          <%= link_to image_tag("v2-campaign/button-create-class.png", :class => "campaign-button"), new_course_path  %>
+          <%= link_to image_tag("v2-campaign/button-take-class.png", :class => "campaign-button"), learn_path %>
+          <%= link_to image_tag("v2-campaign/button-nominate.png", :class => "campaign-button"), suggest_path %>    
+      </div>
     
     </div>
     
@@ -95,7 +86,7 @@
       </div>
       
       <div class="grid_7" style="width: 450px">
-        <%= link_to image_tag("v2-campaign-greendoors/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
+        <%= link_to image_tag("v2-campaign/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
           <p>Front Steps' mission is to provide a pathway of hope through shelter, affordable housing and community education.</p>
       </div>
       

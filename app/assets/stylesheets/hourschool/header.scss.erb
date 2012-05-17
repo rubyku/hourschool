@@ -119,7 +119,8 @@ table#community_menu {
   margin-top: 12px;
   border-collapse: collapse;
   margin-bottom: 20px; 
-  color: #4e4e4e;
+  height: 60px;
+  vertical-align: middle;
   &:hover {
     color: $hourschool-house-color; }
   &:active {
@@ -149,22 +150,26 @@ table#community_menu {
     #menu_faq {color: white; }
   }
 
-td {
-    height: 60px;
+#community_menu_teach, #community_menu_suggest, #community_menu_about{
+    border: 1px solid #d0cdcd;
     text-align: center;
-    vertical-align: middle;
-    width: 100%;
-  &#community_menu_teach, &#community_menu_suggest, &#community_menu_community {
-    border: 1px solid #d0cdcd;}
-  &#community_menu_learn, &#community_menu_faq {
+    }
+
+#community_menu_learn, #community_menu_faq {
     border-top: 1px solid #d0cdcd;
     border-bottom: 1px solid #d0cdcd;
     border-left: 0px;
-    border-right: 0px;}
-  &#community_menu_learn, &#community_menu_teach, &#community_menu_suggest, &#community_menu_community {
-    width: 189px; }
-  &#community_menu_faq {
-    width: 67px; } }
+    border-right: 0px;
+    text-align: center;
+    }
+    
+#community_menu_learn, #community_menu_teach, #community_menu_suggest, #community_menu_about {
+    width: 189px; 
+    }
+    
+#community_menu_faq {
+    width: 67px; 
+    }
 
 
 /*SUB-NAV*/

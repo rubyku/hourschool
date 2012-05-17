@@ -1,3 +1,5 @@
+@import 'hourschool/variables';
+
 .footerContent {
   display: block;
   width: 960px;
@@ -70,7 +72,7 @@ a.footer {
 
 .newsletterForm {
   border: 1px solid #eeeaea;
-  @include hourschool-border-radius
+  @include hourschool-border-radius;
   float: left;
   width: 98%;
   height: 30px;

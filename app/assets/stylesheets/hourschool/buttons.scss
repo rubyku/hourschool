@@ -1,3 +1,5 @@
+@import 'hourschool/variables';
+
 .register-class-button {
   border: none;
   background: #00B6FF;
@@ -308,5 +310,5 @@ a.button {
   letter-spacing: 0.1em;
   cursor: pointer;
   &:hover {
-    background-color: #949393; } }
+    background-color: #949393;}
 }
