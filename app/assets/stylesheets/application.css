@@ -2,6 +2,8 @@
 //= require hourschool/scaffold
 
 //= require hourschool/admin
+//= require hourschool/about
+//= require hourschool/buttons
 //= require hourschool/comment
 //= require hourschool/courses
 //= require hourschool/email
@@ -12,4 +14,5 @@
 //= require hourschool/homepage
 //= require hourschool/peerteachingfund
 //= require hourschool/search
+//= require hourschool/suggestion
 //= require hourschool/users
