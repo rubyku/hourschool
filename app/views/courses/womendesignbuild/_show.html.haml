@@ -84,14 +84,6 @@
       .wdb-text-strong
         = "Description"
       = simple_format Rinku.auto_link(@course.description), :style => "font-family: Georgia"
-    
-      .wdb-text-strong= "About teacher"
-      = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50', :style => "float: left;")
-      = link_to @course.teacher.name, @course.teacher, :class => "profile-link"
-      = @course.teacher.bio
-      - if @course.teacher != current_user
-        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
 
     .comment-section
       .wdb-text-strong= "Join the conversation"
@@ -132,5 +124,23 @@
                   = f.submit 'Leave Comment'
 
       
-      
-  = render :partial => "courses/womendesignbuild/sidebar_right", :locals => {:course => @course}
+  .right{:style => "margin-left: 20px"}
+    .wdb-section-heading= "About teacher"
+    %table
+      %tr
+        %td
+          = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50', :style => "float: left;")
+        %td
+          = link_to @course.teacher.name, @course.teacher, :id => "student_link"
+    .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}
+      - if @course.experience.blank? 
+        = @course.teacher.bio
+      - else 
+        = @course.experience
+    .class-attendance-block
+      - if @course.teacher != current_user
+        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
+
+
+

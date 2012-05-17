@@ -149,14 +149,6 @@
         = "Description"
       = simple_format Rinku.auto_link(@course.description), :style => "font-family: Georgia"
 
-      .wdb-text-strong= "About teacher"
-      = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50', :style => "float: left;")
-      = link_to @course.teacher.name, @course.teacher, :class => "profile-link"
-      = @course.teacher.bio
-      - if @course.teacher != current_user
-        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
-
     .comment-section
       .wdb-text-strong= "Join the conversation"
       %div{:class => 'clearfix'}

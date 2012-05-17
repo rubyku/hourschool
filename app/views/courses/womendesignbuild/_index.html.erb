@@ -1,12 +1,9 @@
 <style type="text/css">
 
-  .event_details{
-    font-family: Georgia; font-size: 16px; color: black; 
-  }
-  
-  .left_sidebar{
-    font-family: Georgia; font-size: 11px; padding-bottom: 10px; padding-right: 2px;
-  }
+  .event_details{font-family: Georgia; font-size: 16px; color: black; }
+  .left_sidebar{font-family: Georgia; font-size: 11px; padding-bottom: 10px; padding-right: 2px; }
+  a#schedule_class_link{font-family: 'BebasNeue'; font-size: 24px; line-height: 49px; color: #333; padding-left: 20px; }
+  a#schedule_class_link:hover{color: #B91D7B; }
   
 </style>
 
@@ -29,13 +26,9 @@
           <h2 class="event_title" style="font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"><%= link_to course.title, course, :class => "a_event_title" %></h2>
           
           <div class="event-meta">
-            <p class="event_details"><span class="section-title">Date:</span>  <%= course.date %></p><br>
+            <p class="event_details"><span class="section-title">Date:</span>  <%= "#{course.date.strftime("%a %b %d")}"  ", #{course.time_range}" %></p><br>
             <p class="event_details"><span class="section-title">Location:</span> <%= course.place_name %></p><br>
            </div>
-
-            <!-- <p id="register_link-8" class="register-link-footer">
-               <%= link_to "Register", course, :class => "a_register_link", :id => "a_register_link-8" %>  
-            </p> -->
           </div>
         </div>
       
@@ -44,6 +37,12 @@
 
   </div>
 
-  <%= render :partial => "courses/womendesignbuild/sidebar_right", :locals => {:course => @course} %>
+  <div class="right">
+    <div class="right_box">
+      <h4>Shop Talk</h4>
+        <p id="sidebar">A conversational workshop series directly providing participants design and build instruction from practitioners in the field. Shop Talks are held about once a month and can focus on anything from paper to power tools.</p>
+    </div>
+  </div>
+  
   
 </div>

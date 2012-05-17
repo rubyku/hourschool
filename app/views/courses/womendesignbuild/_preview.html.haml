@@ -1,5 +1,9 @@
 :css
-  a{color: #ff7733;}
+  a{color: #BA5F8F;}
+  
+  .wdb-class-title{
+    font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px;
+  }
   
   .wdb-text-strong{
     font-family: Georgia; 
@@ -106,7 +110,7 @@
         - else
           = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
       .class-description-block
-        .class-title-big
+        .wdb-class-title
           = "#{@course.title}"
         %br
         = render :partial => "courses/show/add_this_small", :locals => {:course => @course}
@@ -115,21 +119,6 @@
       .wdb-text-strong
         = "Description"
       %p.wdb-text= simple_format Rinku.auto_link(@course.description)
-
-      .wdb-text-strong
-        = "About teacher"
-      = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
-    %td
-      = link_to @course.teacher.name, @course.teacher, :class => "profile-link"
-      = @course.teacher.bio
-      - if @course.teacher != current_user
-        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
-
-    .comment-section
-      .wdb-text-strong
-        = "Join the conversation"
-      = render :partial => "courses/show/comments", :locals => {:course => @course}
 
 
   .right
