@@ -6,10 +6,10 @@ Stay up on the latest new classes, new teachers, new ideas about teaching, and l
 
 Your login is <%= @email %>. Come visit us again soon!
 
-Cheers!
-HourSchool HQ
-
---
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com/
-
-
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Thanks for being a part the HourSchool Community!
+  HourSchool HQ
+<% end %>

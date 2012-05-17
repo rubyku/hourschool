@@ -1,0 +1,99 @@
+@import 'hourschool/variables';
+  
+.greyheader {
+  position: relative;
+  float: left;
+  overflow: visible;
+  z-index: 99;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  
+  &.full{
+    margin-top: -90px;
+    margin-left: -60px;
+    width: 1020px; }
+    
+  &.half {
+    margin-top: -85px;
+    margin-left: -45px;
+    width: 680px; } }
+
+.heading25 {
+  @include hourschool-heading;
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  letter-spacing: 0.1em;
+  
+  &.light_grey{color: $hourschool-light-grey;}
+  &.dark_grey{color: $hourschool-dark-grey;} }
+
+.heading15{
+  @include hourschool-heading;
+  font-size: 15px;
+  margin-bottom: 15px; 
+
+  &.marcomm{color: #e4652f;}
+  &.campaign-greendoors{color: #5b7020;} }
+
+.heading13-class {
+  color: #ff7733;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 14px;
+  
+  a {
+    color: $hourschool-house-color;
+    &:visited {
+      color: $hourschool-house-color; }
+    &:hover {
+      color: $hourschool-house-color; } } }
+      
+.sidebar-heading {
+  @include hourschool-heading;
+  color: $hourschool-dark-grey;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  line-height: 26px; }
+      
+.heading10 {
+  @include hourschool-heading;
+  font-size: 10px;
+  margin: 0px 10px 10px 0px;
+
+  &.light_grey {color: $hourschool-light-grey;}
+  &.dark_grey {color: #8f8f8f;} }
+
+.heading9-class {
+  font-weight: 400;
+  font-size: 9px; }
+  
+
+  
+/* NEED NESTING */
+
+.welcome-header {
+  @include hourschool-heading;
+  color: $hourschool-dark-grey;
+  font-size: 20px;
+  padding-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.homepage-header {
+  @include hourschool-heading;
+  color: $hourschool-dark-grey;
+  font-size: 20px;
+  padding-bottom: 20px;
+  margin-left: 30px;
+  padding-top: 35px;
+}
+
+.heading15#marcomm-grey {
+  @include hourschool-heading;
+  color: $hourschool-dark-grey;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  line-height: 26px;
+  margin-bottom: 10px; }
+

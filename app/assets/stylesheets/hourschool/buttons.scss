@@ -1,0 +1,314 @@
+@import 'hourschool/variables';
+
+.register-class-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 220px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+
+.approve-class-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 170px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+
+
+.edit-class-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 220px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #a9a9a9;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #949393; } }
+
+.edit-form-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: right;
+  width: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #a9a9a9;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-right: 10px;
+  margin-top: -7px;
+  height: 35px;
+  &:hover {
+    background-color: #949393; } }
+
+.complete-class-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 170px;
+  margin-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  position: relative;
+  float: left;
+  overflow: visible;
+  z-index: 10;
+  margin-top: -90px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+    
+.preview-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: right;
+  width: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-top: -7px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+    
+.submit-proposal-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  width: 220px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+
+.loginButton {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: left;
+  width: 84px;
+  height: 33px;
+  background-color: #666;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+
+.send-message-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover {
+    background-color: #e46f28; } }
+
+#tipboxButton {
+  margin-top: 10px;
+  padding: 7px;
+  text-align: center;
+  background-color: #a9a9a9;
+  color: white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #949393; } }
+    
+a.button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding: 10px 12px;
+  text-decoration: none;
+  background-color: #81ae21;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  font-size: 11px; }
+      
+.invite-user-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  width: 160px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  cursor: pointer; }
+  
+.newsletterButton {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  position: relative;
+  float: right;
+  width: 84px;
+  height: 33px;
+  background-color: #999;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover {
+    background-color: #949393;}
+}

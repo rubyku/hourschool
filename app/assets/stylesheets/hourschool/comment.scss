@@ -1,0 +1,30 @@
+@import 'hourschool/variables';
+
+.comments {
+  margin-top: 20px;
+  .avatar {
+    width: 50px;
+    margin-right: 10px;
+    float: left; } }
+
+.comment {
+  .name {
+    float: left;
+    margin-right: 5px; }
+  .location {
+    font-weight: 400;
+    font-size: 9px;
+    color: #999;
+    margin-top: 2px; } }
+
+.comments .content {
+  float: left;
+  width: 90%; }
+
+.comment {
+  margin-bottom: 10px; }
+
+.comments textarea {
+  padding: 5px;
+  margin-top: 5px;
+  width: 530px; }

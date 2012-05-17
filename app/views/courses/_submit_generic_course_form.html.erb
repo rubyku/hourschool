@@ -8,7 +8,7 @@
 
   <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
 
-  <div class="heading25_666">Create a class</div>
+  <div class="heading25 666">Create a class</div>
   
   <div class="page-section-float-left">
 
@@ -43,16 +43,18 @@
    </p>
    </div>
 
-
-  <p>
+   <div class="page-section-float-left">
+     <p>
       <%= f.label :date, 'When', :class => "form-question" %></p>
       <p>             
       <%= f.date_select :date, :end_year => 2012, :minute_step => 30 %><br><br>
       <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
-  </p>
+    </p>
+  </div>
 
-  <p>
-      <%= f.label :place_name, 'Where', :class => "form-question" %>
+   <div class="page-section-float-left">
+    <p>
+      <%= f.label :place_name, 'Where', :class => "form-question" %></p>
         <p>
         <%= f.radio_button :public, true, :checked => true %>
         <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
@@ -62,17 +64,19 @@
         
         <br>
         <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
-        <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
+        <%= f.text_field :address, :class => "form", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
         </p>
-  </p>
 
-  <p>
-    <%= f.label :price, 'Price', :class => "form-question" %>
-      <br>
+  </div>
+
+     <p>
+    <%= f.label :price, 'Price', :class => "form-question" %></p>
       <div style="float: left; margin-top: 5px; margin-right: 10px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 10 (no $ sign needed!)" %>
       <div style="float: left; margin-top: 5px">per student</div> 
   </p>
+  </div>
   <br><br>
+    
 
   <% if current_account == Account.find(4) %>
     <%= f.submit "Submit", :style => "border: none;

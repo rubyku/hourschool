@@ -1,8 +1,18 @@
-//= require screen
+//= require hourschool/960_grid
+//= require hourschool/scaffold
 
-/*
-*= require_self
-*= require_tree .
-*/
-
-
+//= require hourschool/admin
+//= require hourschool/about
+//= require hourschool/buttons
+//= require hourschool/comment
+//= require hourschool/courses
+//= require hourschool/email
+//= require hourschool/fb_share
+//= require hourschool/footer
+//= require hourschool/header
+//= require hourschool/headings
+//= require hourschool/homepage
+//= require hourschool/peerteachingfund
+//= require hourschool/search
+//= require hourschool/suggestion
+//= require hourschool/users

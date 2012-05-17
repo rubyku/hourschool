@@ -1,0 +1,35 @@
+$womendesignbuild-heading-font: futura-pt-1, futura-pt-2;
+
+$womendesignbuild-body-font: Georgia;
+$womendesignbuild-body-font-size: 13px;
+$womendesignbuild-body-line-height: 18px;
+$womendesignbuild-body-color: #4f4e4e;
+
+$womendesignbuild-house-color: #ff7733;
+
+
+body {
+  font-family: $womendesignbuild-body-font;
+  font-size: $womendesignbuild-body-font-size;
+  color: $womendesignbuild-body-color;
+  line-height: $womendesignbuild-body-line-height;
+  background-color: none;
+  background-image: url(<%= asset_path "v2/BG_grey.png" %>);
+  position: relative;
+}
+
+p, ol, ul {
+  font-family: $womendesignbuild-body-font;
+  font-size: $womendesignbuild-body-font-size;
+  color: $womendesignbuild-body-color;
+  line-height: $womendesignbuild-body-line-height;
+  letter-spacing: auto;
+}
+
+a {
+  text-decoration: none;
+  color: $womendesignbuild-body-color;
+  &:visited {
+    color: $womendesignbuild-body-color; }
+  &:active, &:hover {
+    color: $womendesignbuild-link-color; } }

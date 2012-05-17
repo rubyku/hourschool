@@ -8,6 +8,7 @@ else
   PAYPAL_PASSWORD   = "1334775605"
   PAYPAL_SIGNATURE  = "AeNWZgb4y6.aace1AvBvOXarNJiaAj2Siu.0bC5Dt5F-Q6Bwt7B-Lq6P"
 end
+  
 
 
 PayPal::Recurring.configure do |config|

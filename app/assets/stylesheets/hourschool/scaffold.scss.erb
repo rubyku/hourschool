@@ -1,0 +1,175 @@
+@import 'hourschool/variables';
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+q, blockquote {
+  quotes: none;
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+a img {
+  border: none;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: $hourschool-body-font;
+  font-size: $hourschool-body-font-size;
+  color: $hourschool-body-color;
+  line-height: $hourschool-body-line-height;
+  background-color: none;
+  background-image: url(<%= asset_path "v2/BG_grey.png" %>);
+  position: relative;
+}
+
+p, ol, ul {
+  font-family: $hourschool-body-font;
+  font-size: $hourschool-body-font-size;
+  color: $hourschool-body-color;
+  line-height: $hourschool-body-line-height;
+  letter-spacing: auto;
+}
+
+a {
+  text-decoration: none;
+  color: $hourschool-body-color;
+  &:visited {
+    color: $hourschool-body-color; }
+  &:active, &:hover {
+    color: $hourschool-house-color; } }
+    
+.brand_bg {
+  background-color: $hourschool-house-color;
+  height: 3px; }
+    
+#header {
+  width: 100%;
+  padding-top: 15px;
+  overflow: hidden; }
+  
+  
+.middle_bg {
+  background-image: url("v2/BG_grey.png"); }
+
+.footer_bg {
+  background-color: $hourschool-wrapper-color;
+  padding-bottom: 100px; }
+  
+.full-page {
+  width: 960px;
+  float: left;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  background-color: $hourschool-wrapper-color;
+}
+
+.page {
+  width: 700px;
+  float: left;
+  padding-bottom: 30px;
+  background-color: $hourschool-wrapper-color;
+}
+
+.page-wdb{
+  width: 600px;
+  float: left;
+  padding-bottom: 30px;
+}
+
+.page-content {
+  padding: 30px;
+}
+.page-section-float-left {
+  float: left;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.page-section-float-right {
+  float: right;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.marcomm-with-sidebar{
+  width: 760px;
+  float: left;
+  margin-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+  background-color: $hourschool-wrapper-color;
+}
+
+.sidebar {
+  width: 260px;
+  float: left; }
+
+.sidebar-white {
+  width: 250px;
+  float: left;
+  background-color: $hourschool-wrapper-color;
+  margin-left: -20px; }
+  
+.sidebar-content {
+  padding: 0px 0px 10px 30px; }
+  
+.sidebar-content-white {
+  padding: 20px 15px 10px 15px; }
+  
+.sidebar-block {
+  float: left;
+  width: 220px;
+  padding: 15px 0px 15px 0px;
+  border-bottom: 1px dashed #ccc; }
+
+.sidebar-block-last {
+  float: left;
+  width: 220px;
+  padding: 15px 0px 20px 0px;
+  border-bottom: 0px dashed #ccc; }
+  
