@@ -2,14 +2,16 @@
   .container_16.middle#middle_events
     .page-section-float-left
       .heading15.sidebar Sign up
+      / = render 'sessions/facebook'
+      / 
+      /   .heading15.dark_grey Or sign up with email:
       = render 'form'
     
     %hr
     %br
     
     .page-section-float-left
-      .heading15.sidebar Already have an account?
-      .heading15.sidebar Sign in here:
+      .heading15.sidebar Already have an account? Sign in here:
       = render 'sessions/form'
 
 - else 

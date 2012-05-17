@@ -2,17 +2,14 @@
   
   <div class="container_16 middle" id="middle_events">
     
-    <div class="page-section-float-left"><br>
-      <div class="heading15 sidebar">Sign in to Women.Design.Build</div>
+    <div class="heading25 dark_grey">Sign in</div>
+
+    <!-- <%= render 'sessions/facebook' %> -->
+    
+    <div class="page-section-float-left">
+      <!-- <div class="heading15 sidebar">Or sign in with email:</div> -->
+      <%= render 'form' %>
     </div>
-
-    <%- if resource.present? && resource.email.present? -%>
-      <div class="page-section-float-left">
-          <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
-      </div>
-    <%- end -%>
-
-    <%= render 'form' %>
 
     <hr>
 
@@ -26,36 +23,22 @@
 <% else %>
 
   <div class="page">
-    <div class="page-content">
+  <div class="page-content">
 
-      <div class="page-section-float-left">
-      <div class="heading25 dark_grey">Sign in</div>
-      <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
-        <br>
-        <%  if resource_name.to_s == "user" %>
-        <%= link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook) %>
-        <% end %>
-      </div>
-
-      <br />
-      <div class="heading15 marcomm"> Or sign in with email:</div>
+    <%= render 'facebook' %>
     
-        <%- if resource.present? && resource.email.present? -%>
-          <div class="page-section-float-left">
-              <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
-          </div>
-        <%- end -%>
-
+    <div class="page-section-float-left">
       <%= render 'form' %>
-  
-      <hr>
-
-      <div class="page-section-float-left"><br>
-        <div class="heading15 marcomm">Don't have an account? <br> Sign up now!</div>
-        <%= render "registrations/form" %>
-      </div>
-
     </div>
+
+    <hr>
+
+    <div class="page-section-float-left"><br>
+      <div class="heading15 marcomm">Don't have an account? <br> Sign up now!</div>
+      <%= render "registrations/form" %>
+    </div>
+
+  </div>
   </div>
     
 <% end %>

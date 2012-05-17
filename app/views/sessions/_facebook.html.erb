@@ -1,0 +1,9 @@
+<%  if resource_name.to_s == "user" %>
+  <div class="page-section-float-left">
+    <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %>
+    <br>
+  <div class="class-alternatives">It's fast and easy. And we will not post anything without your permission.</div>
+  </div>
+  <br />
+<% end %>
+

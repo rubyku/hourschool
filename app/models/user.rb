@@ -302,6 +302,12 @@ class User < ActiveRecord::Base
   end
 
   def send_reg_email
-    UserMailer.send_registration_mail(self.email, self.name).deliver
+    membership = self.memberships.order('created_at desc').first
+    if membership
+      current_account = membership.account
+    else
+      current_account = nil
+    end
+    UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
   end
 end
