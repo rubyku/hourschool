@@ -7,15 +7,11 @@ If the teacher decides to have the class anyways, you will receive a separate em
 If you don't hear from the teacher and you're still interested in taking the class, let your teacher know!
 <%= contact_teacher_url(:id => @course) %>
 
-<% if current_account == Account.find(4) %>
-  Cheers,
-  Women.Design.Build
-<% else %>
+<% if community_site? %>
   Cheers!
   HourSchool HQ
+<% else %>
+  Cheers,
+  Women.Design.Build
 <% end %>
-
----
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com
-
 

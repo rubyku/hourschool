@@ -6,10 +6,10 @@ Stay up on the latest new classes, new teachers, new ideas about teaching, and l
 
 Your login is <%= @email %>. Come visit us again soon!
 
-<% if current_account == Account.find(4) %>
+<% if community_site? %>
+  Cheers!
+  HourSchool HQ
+<% else %>
   Cheers,
   Women.Design.Build
-<% else %>
-  Thanks for being a part the HourSchool Community!
-  HourSchool HQ
 <% end %>

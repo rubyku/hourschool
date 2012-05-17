@@ -4,14 +4,10 @@ The class you registered for,<%= @course.title %>, needs your help!
 
 The minimum number of seats hasn't been reached and unless it does, the class won't happen! You can help make it happen by letting people know about the class! Share this class on Facebook, Twitter, or send this link to anyone else who you think might be interested: <%= course_url(@course) %>
 
-<% if current_account == Account.find(4) %>
-  Cheers,
-  Women.Design.Build
-<% else %>
+<% if community_site? %>
   Cheers!
   HourSchool HQ
+<% else %>
+  Cheers,
+  Women.Design.Build
 <% end %>
-
----
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com
-

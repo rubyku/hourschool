@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
+  
 
   # def followed_created_a_course(current_user, followed, course)
   #   @user     = current_user

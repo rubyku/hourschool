@@ -7,14 +7,10 @@ If you have any feedback or suggestion for your teacher, you can leave it as a c
 If you have feedback specifically for HourSchool, please let us know here:
 <%= feedback_url(:id => @course) %>
 
-<% if current_account == Account.find(4) %>
+<% if community_site? %>
+  Cheers!
+  HourSchool HQ
+<% else %>
   Cheers,
   Women.Design.Build
-<% else %>
-  Thanks for being a part the HourSchool Community!
-  HourSchool HQ
 <% end %>
-
---
-If you have any questions, please don't hesitate to email us at hello@hourschool.com or simply call us at: (877) 246-4689.
-
