@@ -322,6 +322,12 @@ Tags: Women Design Build
   .theme-default .nivo-caption a:hover {
       color:#fff;
   }
+
+  .login_menu{ float: left; padding-left: 18px; color: #ba5f8f; font-size: 19px; margin-top: 7px }
+  .login_menu a{ color: #e5e5e5; }
+  .login_menu a:hover{ color: #ba5f8f; }
+
+  
 </style>
 
 <div id="header_womendesignbuild">
@@ -425,7 +431,16 @@ Tags: Women Design Build
           </div>
 
           <div id="header04b">
-           
+            <% if user_signed_in? %>
+              <div class="login_menu"><a href="http://womendesignbuild.hourschool.com/profile">My classes</a></div>
+                <% if current_account && admin_of_current_account? %>
+                  <div class="login_menu"><a href="http://womendesignbuild.hourschool.com/courses/new">Create</a></div>
+                <% end %>
+              <div class="login_menu"><a href="http://womendesignbuild.hourschool.com/sign_out">Sign out</a></div>
+            <% else %>
+              <div class="login_menu"><a href="http://womendesignbuild.hourschool.com/sign_up">Join</a></div>
+              <div class="login_menu"><a href="http://womendesignbuild.hourschool.com/sign_in">Sign in</a></div>
+            <% end %>
           </div>
 
         </div>
