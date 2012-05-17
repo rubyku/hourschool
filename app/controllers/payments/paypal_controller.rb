@@ -14,6 +14,7 @@ class Payments::PaypalController < ApplicationController
         :password   => PAYPAL_PASSWORD,
         :signature  => PAYPAL_SIGNATURE
       )
+    end
   end
   
   def request_for_course(course)
