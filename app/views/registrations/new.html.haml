@@ -1,56 +1,46 @@
-.page
-  .page-content
+- if current_account == Account.find(4)
+  .container_16.middle#middle_events
     .page-section-float-left
-      %ul.sub-nav
-        %li.sub-nav-active
-          %a.sub-nav-active(href="/users/sign_up") Register
-        %li.sub-nav-inactive
-          %a.sub-nav-inactive(href="/users/sign_in") Sign in
+      .heading15.sidebar Sign up
+      = render 'form'
+    
+    %hr
+    %br
+    
+    .page-section-float-left
+      .heading15.sidebar Already have an account?
+      .heading15.sidebar Sign in here:
+      = render 'sessions/form'
 
-    - if community_site?
-      = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
-      %p
-        We will not post anything without your permission.
+- else 
+  .page
+    .page-content
+      .page-section-float-left
+        %ul.sub-nav
+          %li.sub-nav-active
+            %a.sub-nav-active(href="/users/sign_up") Register
+          %li.sub-nav-inactive
+            %a.sub-nav-inactive(href="/users/sign_in") Sign in
+
+      .heading25.dark_grey Sign up
+      - if community_site?
+        .class-alternatives It's fast and easy. And we will not post anything without your permission.
+        %br
+        = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
+        %br
+        .heading15.marcomm Or sign up with email
+        .pagenote-box.clearfix
+          It's important to use your real email so you receive important information from your teachers such as location details or last minute changes! We won't spam you. 
+
+      - if current_account && current_account.private?
+        %p Please contact the school admin to invite you to sign up.
+      - else
+        = render 'form'
+        
       %hr
       %br
-      .heading15#marcomm Or sign up with email
-      .pagenote-box.clearfix
-        It's important to use your real email so you receive important information from your teachers such as location details or last minute changes! We won't spam you. 
 
-    - if current_account && current_account.private?
-      %p Please contact the school admin to invite you to sign up.
-    - else
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        %div{:class => "form-question"}
-          = f.label :name
-          %br/
-
-          = f.text_field :name, :class => "form-short-with-margin"
-
-        %div{:class => "form-question"}
-          = f.label "Zipcode"
-          %br/
-          = f.text_field :zipcode, :class => "form-short-with-margin"
-          / = f.text_field :location
-          / = f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
-
-        %div{:class => "form-question"}
-          = f.label :email
-          %br/
-          = f.email_field :email, :class => "form-short-with-margin"
-        %div{:class => "form-question"}
-          = f.label :password
-          %br/
-          = f.password_field :password, :class => "form-short-with-margin"
-
-        %div{:class => "form-question"}
-          = f.label :password_confirmation
-          %br/
-          = f.password_field :password_confirmation, :class => "form-short-with-margin"
-
-        .page-section-float-left
-          = f.submit "Sign up", :class => "loginButton", :id => 'user_submit'
-
-
-
+      .page-section-float-left
+        .heading15.marcomm Already have an account?
+        .heading15.marcomm Sign in here:
+        = render 'sessions/form'
