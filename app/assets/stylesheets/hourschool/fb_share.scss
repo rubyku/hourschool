@@ -1,0 +1,250 @@
+@import 'hourschool/variables';
+
+#lightbox-test{
+  display: none;
+}
+
+.social-share-left{
+  float: left;
+  position: relative;
+  width: 350px;
+}
+
+.social-share-right{
+  float: left;
+  position: relative;
+  width: 350px;
+  margin-left: 60px;
+}
+.share_header{
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2em;
+}
+
+table.fb_share_table{
+}
+
+tr.fb_share_table{
+  border-bottom: 1px dashed #ccc;
+}
+
+td.fb_share_table{
+  padding: 10px;
+}
+
+td.fb_share_table_name_column{
+  padding-left: 10px;
+  width: 200px;
+}
+
+.fb_friend_picture{
+  float: left;
+  margin-right: 0px;
+}
+
+.fb_friend_name{
+  margin-top: 10px;
+  color: #4f4e4e;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+#invite-button{
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.skip-link{
+  float: left;
+  position: relative;
+  width: 400px;
+  margin-top: 30px;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.facebookShareSubmit {
+  margin-left: 10px;
+}
+
+.facebookTypeAheadShare{
+  padding : 0;
+  position: relative;
+  float: left;
+  width: 250px;
+  height: 29px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border: 1px solid #d2d9dc;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
+
+.button_decline{
+  color: #999;
+}
+
+.ui-corner-all{
+  z-index: 0;
+}
+
+ul.ui-autocomplete {
+  width: 260px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
+}
+
+ul.ui-autocomplete span {
+  position: relative;
+  bottom: 20px;
+  left:   10px;
+}
+
+ul.ui-autocomplete  a {
+  background-color: white;
+  border-bottom: 1px solid #d2d9dc;
+  padding: 5px;
+  display: block;
+}
+
+ul.ui-autocomplete a.ui-state-hover {
+  cursor: pointer;
+  background-color: #f8f8ff;
+  border: 1px solid #d2d9dc;
+}
+
+#tweet-for-teacher{
+  float: left;
+  margin-top: 5px;
+  margin-left: 18px;
+}
+
+.flyer-preview{
+  width: 170px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #999;
+  margin-top: 20px;
+}
+
+.print-flyer-button {
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  float: left;
+  width: 150px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #ff7733;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.print-flyer-button:hover { background-color: #e46f28;}
+.modal .overlay{
+  display: block;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #eeeeee;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  opacity:0.8;
+  filter: alpha(opacity=80);
+}
+
+.modal .content {
+  display: block;
+  position: fixed;
+  left: 50%;
+  border-radius: 3px;
+  box-shadow:  rgba(0,0,0,0.1) 0 0 4px 0;
+  top: 150px;
+  margin-left: -250px;
+  width: 500px;
+  max-height: 50%;
+/*  min-height: 200px;*/
+  padding: 16px;
+  border: 1px solid #DEDEDE;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}
+
+.modal a.closeButton {
+  z-index: 1002;
+  cursor: pointer;
+  background-color:#dfdfdf;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  border-radius:4px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:white;
+  font-family:arial;
+  font-size:15px;
+  font-weight:normal;
+  padding:0 5px;
+  text-decoration:none;
+}
+
+a.closeButton:hover {
+  color: white;
+  background-color: #BABABA;
+}
+
+.modal .closeButton {
+  float:right;
+}
+
+.modal h2 {
+  padding: 0 0 10px;
+  min-height: 20px;
+  width: 100%;
+}
+
+.friendLocation {
+  font-size:0.8em;
+  color: #A19A95;
+}

@@ -1,12 +1,12 @@
 %div
-  .heading15-marcomm Month over month
+  .heading15#marcomm Month over month
   - @users_by_month.each do |month, count|
     = "#{Date::MONTHNAMES[month.last.to_i]}:"
     = "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }"
     %br
   
 %br    
-.heading15-marcomm Total To Date
+.heading15#marcomm Total To Date
 %table
   %tr
     %td= "Total Users:" 

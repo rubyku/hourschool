@@ -11,8 +11,10 @@ Got questions? You can message your teacher at <%= course_url(@course) %>
 
 Remember, classes are always more fun with friends. Share this class with people who you think might be interested.
   
-Cheers!
-HourSchool HQ
-
----
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Thanks for being a part the HourSchool Community!
+  HourSchool HQ
+<% end %>

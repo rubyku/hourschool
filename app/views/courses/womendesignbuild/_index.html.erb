@@ -1,9 +1,9 @@
 <style type="text/css">
 
   .event_details{
-    font-family: Georgia; font-size: 16px; color: black;
+    font-family: Georgia; font-size: 16px; color: black; 
   }
-
+  
   .left_sidebar{
     font-family: Georgia; font-size: 11px; padding-bottom: 10px; padding-right: 2px;
   }
@@ -29,8 +29,8 @@
           <h2 class="event_title" style="font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"><%= link_to course.title, course, :class => "a_event_title" %></h2>
           
           <div class="event-meta">
-            <p class="event_details"><span class="section-title">Date:</span>  <%= course.date %></p>
-            <p class="event_details"><span class="section-title">Location:</span> <%= course.place_name %></p>
+            <p class="event_details"><span class="section-title">Date:</span>  <%= course.date %></p><br>
+            <p class="event_details"><span class="section-title">Location:</span> <%= course.place_name %></p><br>
            </div>
 
             <!-- <p id="register_link-8" class="register-link-footer">
@@ -47,4 +47,3 @@
   <%= render :partial => "courses/womendesignbuild/sidebar_right", :locals => {:course => @course} %>
   
 </div>
-

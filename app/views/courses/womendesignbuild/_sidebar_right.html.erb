@@ -9,16 +9,6 @@
     <h4>Shop Talk</h4>
       <p id="sidebar">A conversational workshop series directly providing participants design and build instruction from practitioners in the field. Shop Talks are held about once a month and can focus on anything from paper to power tools.</p>
   </div>
-  
-  <% if user_signed_in? %>
-    <%= link_to "My Profile", profile_path, :id => "schedule_class_link"%>
-    <%= link_to "Logout", destroy_user_session_path, :id => "schedule_class_link" %>
-    <% if current_account && admin_of_current_account? %>
-      <%= link_to "Create a class", new_course_path, :id => "schedule_class_link" %>
-    <% end %>
-  <% else %>
-    <%= link_to "Sign in", new_user_session_path, :id => "schedule_class_link" %>
-    <%= link_to "Sign up", new_user_registration_path, :id => "schedule_class_link" %>
-  <% end %>
+
   
 </div>

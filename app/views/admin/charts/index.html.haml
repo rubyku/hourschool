@@ -18,21 +18,21 @@
                 %td= "$ #{course.price * course.students.size}"
 
       %div
-        .heading15-marcomm Goals for April 2012
+        .heading15#marcomm Goals for April 2012
         %br
         .bigNum 75 Classes
         = "#{@courses_this_month} to date"
   
       / %br
       / %div
-      /   .heading15-marcomm Last 7 days
+      /   .heading15#marcomm Last 7 days
       /   - @users.first(7).each do |date, count|
       /     = "#{date}: #{count} new users & #{@courses[date]||0} new courses & #{@students[date] ||0} new students"
       /     %br
 
       %br
       %div
-        .heading15-marcomm Next 7 days
+        .heading15#marcomm Next 7 days
         %table.metrics
           %tr
             %th= "Title"

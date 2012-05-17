@@ -1,0 +1,33 @@
+/*SETTING VARIABLES*/
+
+$hourschool-wrapper-color: #fff;
+
+$hourschool-house-font: futura-pt-1, futura-pt-2;
+$hourschool-house-color: #ff7733;
+
+$hourschool-body-font: verdana,sans-serif;
+$hourschool-body-font-size: 13px;
+$hourschool-body-line-height: 18px;
+$hourschool-body-color: #4f4e4e;
+
+$hourschool-dark-grey: #666;
+$hourschool-light-grey: #ccc;
+
+
+@mixin hourschool-heading {
+  text-transform: uppercase;
+  font-family: $hourschool-house-font;
+  font-weight: 700;
+}
+
+@mixin hourschool-border-radius{
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+@mixin hourschool-wrapper-block{
+  -moz-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  -webkit-box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+  box-shadow: 1px 1px 1px #f0f0f0, -1px 1px 1px #f0f0f0;
+}

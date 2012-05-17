@@ -8,8 +8,14 @@ Where: <%= @course.place_name %> - <%= @course.address %>
 Got questions? You can message your teacher at <%= contact_teacher_url(:id => @course) %>
 
 For more information see: <%= course_url(@course)%>
-Cheers!
-HourSchool HQ
+
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Cheers!
+  HourSchool HQ
+<% end %>
 
 ---
 Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com

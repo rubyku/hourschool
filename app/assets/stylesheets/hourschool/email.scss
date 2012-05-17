@@ -1,0 +1,30 @@
+@import 'hourschool/variables';
+
+h1.email-header {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.email-body {
+  margin-bottom: 20px;
+}
+
+.email-footer {
+  margin-top: 30px;
+}
+
+.email-page {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+.email-content {
+  padding: 30px 30px 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}

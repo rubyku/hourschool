@@ -1,27 +1,32 @@
 .sidebar
   .sidebar-content
     = avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix")
+    
+    .sidebar-block
+      %p{:style => "font-weight: bold; width: 200px"}
+        = @user.name
+      %p{:style => "font-weight: normal; width: 200px"}
+        = @user.location
+        
+    .sidebar-block
+      %p{:style => "font-weight: normal; width: 200px"}
+        - if @user.bio.blank?
+          = "No bio yet."
+          - if current_user == @user
+            = link_to "Tell us more about you.", edit_user_registration_path(@user)
+        - else 
+          = @user.bio
+      %br
+      %ul.noBullet
+        %li.noBullet
+          %p{:style => "font-weight: normal; width: 200px"}
+            - if !@user.web.blank?
+              = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
+            - if !@user.twitter_id.blank?
+              = link_to "Twitter", @user.twitter_url, :class => "profile-link"      
 
-    %ul.noBullet
-      %li.noBullet
-        %p{:style => "font-weight: bold; width: 200px"}
-          = @user.name
-        %p{:style => "font-weight: normal; width: 200px"}
-          = @user.location
-        %p{:style => "font-weight: normal; width: 200px"}
-          - if !@user.web.blank?
-            = link_to "Website", url_with_protocol(@user.web), :class => "profile-link"
-          - if !@user.twitter_id.blank?
-            = link_to "Twitter", @user.twitter_url, :class => "profile-link"      
-        %p{:style => "font-weight: normal; width: 200px"}
-          - if @user.bio.blank?
-            = "No bio yet."
-            - if current_user == @user
-              = link_to "Tell us more about you.", edit_user_registration_path(@user)
-          - else 
-            = @user.bio
               
-    .page-content-float-left
+    .sidebar-block-last
       %table.user-stat
         %tr
           %td.user-stat-icon

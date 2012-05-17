@@ -4,10 +4,10 @@ Thanks for submitting your proposal for <%= @course.title %>. Our team will get 
 
 In the meantime, check out the teacher's handbook for tips on setting up an HourSchool class: http://www.hourschool.com/pdf/TeachersHandbook-030812-rk.pdf
   
-Cheers!
-HourSchool HQ
-
----
-Learn more about HourSchool, give us feedback, or contact us with any questions here: http://help.hourschool.com
-
-
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Thanks for being a part the HourSchool Community!
+  HourSchool HQ
+<% end %>

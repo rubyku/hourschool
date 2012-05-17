@@ -6,7 +6,11 @@ The HourSchool team thinks it's awesome and wants to get your class up and runni
 
 If you have any questions, please don't hesitate to email us at hello@hourschool.com or simply call us at: (877) 246-4689.  
   
-Cheers!
-HourSchool HQ
-
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Cheers!
+  HourSchool HQ
+<% end %>
 

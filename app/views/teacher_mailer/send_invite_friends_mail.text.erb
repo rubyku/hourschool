@@ -7,8 +7,13 @@ Don't worry though - from our experience, classes don't generally get filled up 
 In the meantime, share this class on Facebook, Twitter, or send it to anyone you think might be interested: 
 <%= course_url(@course) %>
 
-Cheers!
-HourSchool HQ
+<% if current_account == Account.find(4) %>
+  Cheers,
+  Women.Design.Build
+<% else %>
+  Cheers!
+  HourSchool HQ
+<% end %>
 
 ---
 If you have any questions, please don't hesitate to email us at hello@hourschool.com or simply call us at: (877) 246-4689.  

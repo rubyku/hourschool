@@ -6,7 +6,7 @@
 
       <p><%= link_to '+ Invite a User', new_invite_users_path if current_account %></p>
       
-      <div class="heading15-marcomm">Total users: 
+      <div class="heading15 marcomm">Total users: 
         
       <% if community_site? %>
         <%= User.count %>
