@@ -8,11 +8,3 @@ Where: <%= @course.place_name %> - <%= @course.address %>
 Got questions? You can message your teacher at <%= contact_teacher_url(:id => @course) %>
 
 For more information see: <%= course_url(@course)%>
-
-<% if community_site? %>
-  Cheers!
-  HourSchool HQ
-<% else %>
-  Cheers,
-  Women.Design.Build
-<% end %>
