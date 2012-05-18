@@ -170,12 +170,12 @@ class CoursesController < ApplicationController
       redirect_to @course
     else
       if @course.status == "approved"
-        @course.update_attribute :status, "live"
+        @course.update_attributeste :status, "live"
         if @course.account.nil? 
           current_account = nil
         else 
           current_account = @course.account
-        ends
+        end
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         if community_site?
           post_to_twitter(@course)
