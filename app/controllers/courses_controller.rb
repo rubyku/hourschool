@@ -76,7 +76,7 @@ class CoursesController < ApplicationController
 
       if admin_of_current_account?
         @course.update_attribute(:status, 'approved')
-        redirect_to edit_course_path(@course)
+        redirect_to preview_path(@course)
       else
         UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         redirect_to current_user
@@ -176,7 +176,7 @@ class CoursesController < ApplicationController
         else 
           current_account = @course.account
         end
-        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
+        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
         if community_site?
           post_to_twitter(@course)
         end
