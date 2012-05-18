@@ -53,6 +53,7 @@ class CoursesController < ApplicationController
   def create
     city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @course      = Course.new(params[:course])
+    @course.update_attribute :status, "proposal"
 
     @course.city = city
     @course.account = current_account if current_account

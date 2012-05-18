@@ -6,9 +6,9 @@
       <div class="heading15 marcomm">Total proposals: 
         
         <% if community_site? %>
-          <%= Course.where(:status => "nil").count %>
+          <%= Course.where(:status => "proposal").count %>
         <% else %>
-          <%= current_account.courses.where(:status => "nil").count %>
+          <%= current_account.courses.where(:status => "proposal").count %>
         <% end %>
       
       </div>

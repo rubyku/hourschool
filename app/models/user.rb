@@ -180,9 +180,9 @@ class User < ActiveRecord::Base
   def pending(current_account=nil)
     if self.admin?
       #if user is admin return all pending in the dashbboard
-      Course.where(:status => "nil")
+      Course.where(:status => "proposal")
     else
-      pending = self.courses.where(:status => "nil")
+      pending = self.courses.where(:status => "proposal")
       pending = pending.where(:account_id => current_account.id) if current_account
       return pending
     end

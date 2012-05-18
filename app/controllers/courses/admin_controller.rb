@@ -1,8 +1,8 @@
 class Courses::AdminController < ApplicationController
   
   def proposals
-    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "nil")
-    @courses = @courses.where(:account_id => current_account.id, :status => "nil") if current_account
+    @courses = current_account ? current_account.courses.order('DATE(created_at) DESC') : Course.order('DATE(created_at) DESC').where(:status => "proposal")
+    @courses = @courses.where(:account_id => current_account.id, :status => "proposal") if current_account
     @user = current_user
   end
   
