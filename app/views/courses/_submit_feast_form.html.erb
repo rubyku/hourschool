@@ -16,6 +16,9 @@
     </div>
 
     <%= form_for @course, :html => { :multipart => true } do |f| %>
+    
+    <%= hidden_field_tag 'req', "#{@reqid}" %>
+    <%= f.hidden_field :status, :value => "proposal" %>
 
     <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
 
@@ -91,7 +94,7 @@
     <br><br>
 
 
-   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Preview my feast" %>
+   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Submit" %>
 
    <% end %>
 

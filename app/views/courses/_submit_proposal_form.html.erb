@@ -1,0 +1,123 @@
+<div class="page-section-float-left">
+    <% if @course.status != "live" %>
+    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your class up and running!</div>
+    <% else %>
+    <div class="welcome-header">Edit your class</div>
+    <% end %>
+</div>
+
+<div class="page-section-float-left">
+  <% @course.errors.full_messages.each do |message| %>
+    <div class="error-block"><div class="form-error">*<%= message %></div></div>
+  <% end %>
+</div>
+
+<%= form_for @course, :html => { :multipart => true } do |f| %>
+  <%= hidden_field_tag 'req', "#{@reqid}" %>
+  <%= f.hidden_field :status, :value => "proposal" %>
+
+<% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
+
+<div class="page-section-float-left">
+
+   <p>
+   <%= f.label :title, 'Class title:', :class => "form-question" %>
+   <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
+   </p>
+   <br><br>
+
+   <div class="page-section-float-left">
+   <p>
+   <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
+   <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
+   <%= f.file_field :photo %>
+   </p>
+   </div>
+
+   <p>
+   <%= f.label :description, 'Class description:', :class => "form-question" %>
+   <%= f.text_area :description, :class => "form-tall", :placeholder => "ex. Who should attend this class? What are the 3 things they will get out of the class? What kind of material or equipment do they need ahead of time?" %>
+   </p>
+ 
+   <div class="form-question">About the teacher</div>
+   <br><br>
+    <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to teach?" %>
+ </div>
+ 
+ 
+<hr id="class"><br>
+
+<div class="page-section-float-left">
+   <div class="class-form-question">Class Capacity</div><br>
+   <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to host this event" %>
+   <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I can have for this event" %>
+   <br><br>
+</div>
+
+<div class="page-section-float-left">
+  <div class="page-section-float-left">
+   <div class="class-form-question">When</div><br>   
+  <p class="tip">We highly recommend scheduling your class at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
+  </div>
+   <%= f.date_select :date, :start_year => 2012, :end_year => 2012, :minute_step => 30 %><br><br>
+   <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
+</div>
+
+
+<div class="page-section-float-left">
+
+    <div class="class-form-question">Where</div><br>
+      <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p>
+        <p>
+        <%= f.radio_button :public, true, :checked => true %>
+        <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
+        <br>
+        <%= f.radio_button :public, false %>
+        <%= f.label :public, 'Private (ie. your house) *only students who have signed up will see the address'  %>
+        </p>
+        
+        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+        <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
+</div>
+
+<div class="page-section-float-left">
+  <div class="class-form-question">Price</div><br>
+  <p class="tip">We recommend charging even if it’s just for $5. We find that charging a little ensures people actually show up if they sign up! Don't forget the amount of supplies, venue rental fee, snacks and other resources you’ll need. Finally, don't sell yourself short - your knowledge is valuable! </p>
+  <% if community_site? %>
+  <p class="tip">Note that HourSchool charges 15% of the total price of the class. See terms and conditions below.</p>
+  <% end %><br>
+    <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 30 (no $ sign needed!)" %>
+    <div style="float: left; margin-top: 5px">per person</div> 
+</div>
+
+
+<br><br>
+
+  <% if current_account == Account.find(4) %>
+    <%= f.submit "Submit", :style => "border: none;
+    background: #00B6FF;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+      font-family: BebasNeue;
+      font-size: 18px;
+      height: 28px;
+      padding: 6px;
+      margin-bottom: 6px;
+      color: white;
+      background-color: #BA5F8F;
+      -moz-box-shadow: 0 2px 4px #999;
+      -webkit-box-shadow: 0 2px 4px #999;
+      box-shadow: 0 2px 4px #999;
+      cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
+  <% else %>
+   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Submit" %>
+  <% end %>
+
+
+
+
+<% end %>
+
+
+

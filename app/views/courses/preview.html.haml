@@ -1,14 +1,10 @@
-:css
-  a{color: #ff7733;}
-  
+
 - if current_account == Account.find(4)
   = render :partial => 'courses/womendesignbuild/preview'
 
 - else
 
   .page-section-float-left
-    - if community_site?
-      = image_tag("v2/step3.png", :class => "steps")
     #preview-box
       .preview-header Preview before this goes live!
       = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put

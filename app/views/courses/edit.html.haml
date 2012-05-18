@@ -1,10 +1,7 @@
 - if current_account == Account.find(1) 
   = render 'submit_feast_form'
-- elsif current_account == Account.find(4) 
-  .container_16
-    .middle#middle_events
-      = render 'submit_generic_course_form'
-        
 - else 
-  = render 'submit_course_form'
-  = render 'sidebar'
+  .page
+    .page-content
+      = render 'submit_proposal_form'
+      = render 'sidebar'
