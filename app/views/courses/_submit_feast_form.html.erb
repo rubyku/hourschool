@@ -18,8 +18,7 @@
     <%= form_for @course, :html => { :multipart => true } do |f| %>
     
     <%= hidden_field_tag 'req', "#{@reqid}" %>
-    <%= f.hidden_field :status, :value => "proposal" %>
-
+    
     <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
 
     <div class="page-section-float-left">
