@@ -1,20 +1,4 @@
-- if current_account == Account.find(4)
-  .container_16.middle#middle_events
-    .page-section-float-left
-      .heading15.sidebar Sign up
-      / = render 'sessions/facebook'
-      / 
-      /   .heading15.dark_grey Or sign up with email:
-      = render 'form'
-    
-    %hr
-    %br
-    
-    .page-section-float-left
-      .heading15.sidebar Already have an account? Sign in here:
-      = render 'sessions/form'
-
-- else 
+- if community_site?
   .page
     .page-content
       .page-section-float-left
@@ -46,3 +30,20 @@
         .heading15.marcomm Already have an account?
         .heading15.marcomm Sign in here:
         = render 'sessions/form'
+        
+- else 
+
+  .container_16.middle#middle_events
+    .page-section-float-left
+      .heading25.dark_grey Sign up
+      / = render 'sessions/facebook'
+      / 
+      /   .heading15.dark_grey Or sign up with email:
+      = render 'form'
+  
+    %hr
+    %br
+  
+    .page-section-float-left
+      .heading15.sidebar Already have an account? Sign in here:
+      = render 'sessions/form'

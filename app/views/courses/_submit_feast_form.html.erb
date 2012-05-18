@@ -1,8 +1,8 @@
 <div class="page-section-float-left">
     <% if @course.status != "live" %>
-    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running!</div>
+    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your feast up and running!</div>
     <% else %>
-    <div class="welcome-header">Edit your course</div>
+    <div class="welcome-header">Edit your feast</div>
     <% end %>
 </div>
 
@@ -22,23 +22,25 @@
     <div class="page-section-float-left">
 
        <p>
-       <%= f.label :title, 'Event name:', :class => "form-question" %>
+       <%= f.label :title, 'Feast name:', :class => "form-question" %>
        <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
        </p>
        <br><br>
 
+       <div class="page-section-float-left">
        <p>
        <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
        <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
        <%= f.file_field :photo %>
        </p>
+       </div>
 
        <p>
-       <%= f.label :description, 'Event description:', :class => "form-question" %>
+       <%= f.label :description, 'Feast description:', :class => "form-question" %>
        <%= f.text_area :description, :class => "form-tall" %>
        </p>
      
-       <div class="form-question">About the organizer</div>
+       <div class="form-question">About the host</div>
        <br><br>
        <%= f.text_area :experience, :class => "form-med-with-margin" %>
      </div>
@@ -47,7 +49,7 @@
     <hr id="class"><br>
 
     <div class="page-section-float-left">
-       <div class="class-form-question">Event Attendance</div><br>
+       <div class="class-form-question">Feast Capacity</div><br>
        <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to host this event" %>
        <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I can have for this event" %>
        <br><br>
@@ -89,7 +91,7 @@
     <br><br>
 
 
-   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Preview my event" %>
+   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Preview my feast" %>
 
    <% end %>
 

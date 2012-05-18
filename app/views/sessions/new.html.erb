@@ -1,5 +1,26 @@
-<% if current_account == Account.find(4) %>
+<% if community_site? %>
   
+  <div class="page">
+  <div class="page-content">
+
+    <%= render 'facebook' %>
+  
+    <div class="page-section-float-left">
+      <%= render 'form' %>
+    </div>
+
+    <hr>
+
+    <div class="page-section-float-left"><br>
+      <div class="heading15 marcomm">Don't have an account? <br> Sign up now!</div>
+      <%= render "registrations/form" %>
+    </div>
+
+  </div>
+  </div>
+  
+<% else %>
+    
   <div class="container_16 middle" id="middle_events">
     
     <div class="heading25 dark_grey">Sign in</div>
@@ -20,27 +41,6 @@
       
   </div>
   
-<% else %>
-
-  <div class="page">
-  <div class="page-content">
-
-    <%= render 'facebook' %>
-    
-    <div class="page-section-float-left">
-      <%= render 'form' %>
-    </div>
-
-    <hr>
-
-    <div class="page-section-float-left"><br>
-      <div class="heading15 marcomm">Don't have an account? <br> Sign up now!</div>
-      <%= render "registrations/form" %>
-    </div>
-
-  </div>
-  </div>
-    
 <% end %>
 
 

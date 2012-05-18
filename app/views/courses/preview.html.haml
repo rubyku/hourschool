@@ -10,7 +10,7 @@
     - if community_site?
       = image_tag("v2/step3.png", :class => "steps")
     #preview-box
-      .preview-header Preview your class
+      .preview-header Preview before this goes live!
       = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
       = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
 
@@ -70,12 +70,11 @@
           .happening-message-header
             = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
           .heading10-class
-            = "Classes are always more fun with a group of friends. Share this class!"
             = render :partial => "courses/show/add_this_small"
       .page-section-float-left
-        .class-section-heading This class will cover
+        .class-section-heading Description
         .class-detail
           %p= simple_format Rinku.auto_link(@course.description)
 
   = content_for :sidebar do
-    = render :partial => "sidebar", :locals => {:course => @course}
+    = render :partial => "courses/show/sidebar", :locals => {:course => @course}

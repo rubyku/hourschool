@@ -40,28 +40,27 @@
 
       %br
       %div.user_status
-        = content_tag(:p, "You are teaching this class!", :class => "heading13-class")       if course.has_teacher?(current_user) && course.active?
-        = content_tag(:p, "You're registered for this course!", :class => "heading13-class") if course.has_student?(current_user) && course.active?
+        = content_tag(:p, "You're already registered!", :class => "heading13-class") if course.has_student?(current_user) && course.active?
       %div.course_status
-        = content_tag(:p, "This class is full!", :class => "heading13-class")                if course.sold_out? && course.active?
-        = content_tag(:p, "This class has passed.", :class => "heading13-class")             if course.inactive?
-        = content_tag(:p, "This class has been canceled!", :class => "heading13-class")      if course.canceled?
+        = content_tag(:p, "This session is full!", :class => "heading13-class")                if course.sold_out? && course.active?
+        = content_tag(:p, "This session has passed.", :class => "heading13-class")             if course.inactive?
+        = content_tag(:p, "This session has been canceled!", :class => "heading13-class")      if course.canceled?
         / = content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user)
       %div.course_action
         - if can? :sign_up_for_course, course
           - if course.sold_out? || course.inactive?
-            = button_to "Pre-register for next class",  new_suggestion_path,  :class => "register-class-button", :method => :get
+            = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
           - else 
             - if course.donate?
               = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
-              = button_to "Register for this class",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - if can? :edit_course, course
           - if course.inactive?
-            = button_to "Teach this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
+            = button_to "Schedule this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
           - else
-            = button_to "Edit class profile",           edit_course_path, :method => :get, :class => "edit-class-button"
-            = button_to "Cancel this Class",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
+            = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class-button"
+            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"
@@ -72,7 +71,10 @@
           = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
     .sidebar-block-last
-      .sidebar-heading Teacher
+      - if current_account == Account.find(1)
+        .sidebar-heading Host
+      - else 
+        .sidebar-heading Teacher
       - if course.teacher != current_user
         = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
         = link_to "Email teacher", contact_teacher_path(:id => course), :class => "contact-link"
@@ -91,10 +93,16 @@
 
     - if course.students.any?
       .sidebar-block-last
-        - if course.max_seats.present? 
-          .sidebar-heading Students (#{course.students.count}/#{course.max_seats})
+        - if current_account == Account.find(1)
+          - if course.max_seats.present? 
+            .sidebar-heading Guests (#{course.students.count}/#{course.max_seats})
+          - else 
+            .sidebar-heading Guests (#{course.students.count})
         - else 
-          .sidebar-heading Students (#{course.students.count})
+          - if course.max_seats.present? 
+            .sidebar-heading Students (#{course.students.count}/#{course.max_seats})
+          - else 
+            .sidebar-heading Students (#{course.students.count})
         - if course.has_teacher?(current_user)
           = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
           = link_to "Email students", contact_all_students_path(:id => course), :class => "contact-link"

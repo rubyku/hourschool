@@ -38,7 +38,7 @@
       .page-section-float-left
         .class-section-heading
           = "Description"
-        %p= simple_format Rinku.auto_link(@course.description)
+        %p= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px"
 
       .comment-section
         .class-section-heading

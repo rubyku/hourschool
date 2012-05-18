@@ -39,8 +39,8 @@
   <div class="container_16">
     <%= link_to (image_tag 'v2-account/logo-feastfordays.png', :id => "logo_feastfordays"), "http://www.feastfordays.com" %>
     <ul id="feastfordays">
-      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/learn" id="feastfordays">Attend an event</a></li>
-      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/teach" id="feastfordays">Host an event</a></li>
+      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/learn" id="feastfordays">Join a Feast</a></li>
+      <li id="feastfordays"><a href="http://feastfordays.hourschool.dev/courses/new" id="feastfordays">Host a Feast</a></li>
       <li id="feastfordays"><a href="http://www.feastfordays.com/recipes.html" id="feastfordays">Recipes</a></li>
       <li id="feastfordays"><a href="http://www.feastfordays.com/about.html" id="feastfordays">About</a></li>
       <li id="feastfordays"><a href="http://www.feastfordays.com/contact.html" id="feastfordays">Contact</a></li>
@@ -52,6 +52,7 @@
         <li id="feastfordays"><%= link_to "Logout", destroy_user_session_path, :id => "feastfordays" %>
       <% else %>
         <li id="feastfordays"><%= link_to "Sign in", new_user_session_path, :id => "feastfordays" %>
+        <li id="feastfordays"><%= link_to "Sign up", new_user_registration_path, :id => "feastfordays" %>
       <% end %>
     </ul>
   </div>
