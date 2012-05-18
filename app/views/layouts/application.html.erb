@@ -89,7 +89,7 @@
           <span class='whiteText'>
             Please confirm your account with the verification email we sent.
           </span>
-          <span class='right'>
+          <span class='whiteText_link', style="text-decoration: underline; margin-left: 30px">
             <%=  link_to 'Send Email Again', user_confirmation_path(:user => { :email => current_user.email }), :method => :post %>
           </span>
         </p>
