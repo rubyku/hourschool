@@ -97,7 +97,7 @@ class UserMailer < ActionMailer::Base
      @name = user_name
      @course = course
      @account = current_account
-     @url = @account.nil? ? "http://hourschool.com/confirm/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/confirm/#{@course.id}"
+     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
      mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@course.title} is live!")
    end
 
