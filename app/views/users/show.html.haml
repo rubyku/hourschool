@@ -4,7 +4,7 @@
     #attending.section
       .page-section-float-left
         .welcome-header
-          = "Upcoming classes"
+          = "Your classes"
         .classRow
           = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
     

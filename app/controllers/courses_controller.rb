@@ -170,7 +170,7 @@ class CoursesController < ApplicationController
       redirect_to @course
     else
       if @course.status == "approved"
-        @course.update_attributeste :status, "live"
+        @course.update_attribute :status, "live"
         if @course.account.nil? 
           current_account = nil
         else 

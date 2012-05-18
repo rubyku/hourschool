@@ -55,10 +55,8 @@
 </div>
 
 <div class="page-section-float-left">
-  <div class="page-section-float-left">
    <div class="class-form-question">When</div><br>   
   <p class="tip">We highly recommend scheduling your class at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
-  </div>
    <%= f.date_select :date, :start_year => 2012, :end_year => 2012, :minute_step => 30 %><br><br>
    <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
 </div>
@@ -113,8 +111,6 @@
   <% else %>
    <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Submit" %>
   <% end %>
-
-
 
 
 <% end %>
