@@ -10,12 +10,13 @@ class RegistrationsController < Devise::RegistrationsController
   # if on a non-community site
   def create
     build_resource
-
+    resource.dont_send_reg_email = true
     if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         Membership.create!(:user => resource, :account => current_account) if current_account
+        resource.send_reg_email
         respond_with resource, :location => redirect_location(resource_name, resource)
       else
         set_flash_message :notice, :inactive_signed_up, :reason => inactive_reason(resource) if is_navigational_format?

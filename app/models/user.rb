@@ -275,6 +275,16 @@ class User < ActiveRecord::Base
     Devise.secure_compare(password, self.encrypted_password)
   end
 
+  def send_reg_email
+    membership = self.memberships.order('created_at desc').first
+    if membership
+      current_account = membership.account
+    else
+      current_account = nil
+    end
+    UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
+  end
+  
   # ================================
   # End user conversion Code
   # ================================
@@ -299,15 +309,5 @@ class User < ActiveRecord::Base
       g = Geokit::Geocoders::GoogleGeocoder.geocode "#{self.zip}"
       City.create(:name => self.city, :state => self.state, :lat => g.lat, :lng => g.lng)
     end
-  end
-
-  def send_reg_email
-    membership = self.memberships.order('created_at desc').first
-    if membership
-      current_account = membership.account
-    else
-      current_account = nil
-    end
-    UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
   end
 end
