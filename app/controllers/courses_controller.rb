@@ -19,7 +19,12 @@ class CoursesController < ApplicationController
     @course.update_attribute :status, "approved"
 
     #send email and other stuff here to the teacher
-    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name,@course).deliver
+    if @course.account.nil? 
+      current_account = nil
+    else 
+      current_account = @course.account
+    end
+    UserMailer.send_course_approval_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
     redirect_to course_proposals_path
   end
   
@@ -166,6 +171,11 @@ class CoursesController < ApplicationController
     else
       if @course.status == "approved"
         @course.update_attribute :status, "live"
+        if @course.account.nil? 
+          current_account = nil
+        else 
+          current_account = @course.account
+        ends
         UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         if community_site?
           post_to_twitter(@course)
