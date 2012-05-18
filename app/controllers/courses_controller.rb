@@ -53,10 +53,10 @@ class CoursesController < ApplicationController
   def create
     city         = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
     @course      = Course.new(params[:course])
-    @course.update_attribute :status, "proposal"
-
+  
     @course.city = city
     @course.account = current_account if current_account
+  
 
     #was it from a request
     from_req = !params[:req].nil?
@@ -79,6 +79,7 @@ class CoursesController < ApplicationController
         @course.update_attribute(:status, 'approved')
         redirect_to preview_path(@course)
       else
+        @course.update_attribute(:status, 'proposal')
         UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
         redirect_to current_user
       end
