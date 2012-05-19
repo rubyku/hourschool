@@ -7,6 +7,10 @@
           = "Your classes"
         .classRow
           = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
+          
+    #teaching.section
+      .classRow
+        = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
     
   = render :partial => 'sidebar'
 
