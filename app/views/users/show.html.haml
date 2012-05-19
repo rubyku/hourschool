@@ -54,7 +54,7 @@
           .classRow
             = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
             - if current_user == @user
-              = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes(current_account)}
+              = render :partial => "classes_approved", :locals => {:classes_approved => @user.approved_classes(current_account)}
 
 
       #attending.section
@@ -81,7 +81,7 @@
       #approved.section{:style => 'display:none;'}
         .page-section-float-left
           .welcome-header Classes Approved
-          = render :partial => "classes_approved", :locals => {:pending => @user.approved_classes(current_account)}
+          = render :partial => "classes_approved", :locals => {:classes_approved => @user.approved_classes(current_account)}
 
 
       #pending.section{:style => ('display:none;' unless params[:show] == 'pending')}

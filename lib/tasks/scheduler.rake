@@ -21,7 +21,12 @@ namespace :schedule do
     puts "Sending class proposal reminder emails..."
     pending_courses = Course.where("status = ? AND updated_at < ? AND updated_at > ?", "approved", 7.days.ago, 8.days.ago)
     pending_courses.each do |course|
-        TeacherMailer.send_course_proposal_reminder(course).deliver
+      if course.account.nil? 
+        current_account = nil
+      else 
+        current_account = course.account
+      end
+        TeacherMailer.send_course_proposal_reminder(course, current_account).deliver
     end
     puts "done"
   end
@@ -31,10 +36,15 @@ namespace :schedule do
     courses_in_3_days = Course.where("date = :todays_date AND status = :live", {:todays_date => 3.days.from_now, :live => "live"})
     courses_in_3_days.each do |course|
       students = course.students
+      if course.account.nil? 
+        current_account = nil
+      else 
+        current_account = course.account
+      end
       if students.size < course.min_seats
-        TeacherMailer.send_invite_friends_mail(course).deliver
+        TeacherMailer.send_invite_friends_mail(course, current_account).deliver
         students.each do |student|
-          StudentMailer.send_invite_friends_mail(student,course).deliver
+          StudentMailer.send_invite_friends_mail(student,course, current_account).deliver
         end
       end
     end
@@ -46,10 +56,15 @@ namespace :schedule do
     courses_today = Course.where("date = :todays_date AND status = :live", {:todays_date => Date.today, :live => "live"})
     courses_today.each do |course|
       students = course.students
+      if course.account.nil? 
+        current_account = nil
+      else 
+        current_account = course.account
+      end
       if students.size >= course.min_seats
-        TeacherMailer.send_positive_confirmation(course).deliver
+        TeacherMailer.send_positive_confirmation(course, current_account).deliver
         students.each do |student|
-          StudentMailer.send_positive_confirmation(student, course).deliver
+          StudentMailer.send_positive_confirmation(student, course, current_account).deliver
         end
       else
         TeacherMailer.send_negative_confirmation(course).deliver
@@ -80,10 +95,15 @@ namespace :schedule do
     courses_yesterday = Course.where("(:yesterdays_date = date) AND status = :live", {:yesterdays_date => Date.yesterday, :live => "live"})
     courses_yesterday.each do |course|
       students = course.students
+      if course.account.nil? 
+        current_account = nil
+      else 
+        current_account = course.account
+      end
       if students.size >= course.min_seats
-        TeacherMailer.send_post_class_feedback(course).deliver
+        TeacherMailer.send_post_class_feedback(course, current_account).deliver
         students.each do |student|
-          StudentMailer.send_post_class_feedback(student, course).deliver
+          StudentMailer.send_post_class_feedback(student, course, current_account).deliver
         end
       end
     end

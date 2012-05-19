@@ -22,10 +22,12 @@ class UserMailer < ActionMailer::Base
     mail(:to => course.students.map(&:email), :bcc => "ruby@hourschool.com, alex@hourschool.com", :reply_to => course.teacher.email, :subject => "Your teacher sent a message about your class")
   end
 
-  def comment_on_course(user, comment, course)
+  def comment_on_course(user, comment, course, current_account)
     @user    = user
     @course  = course
     @comment = comment
+    @account = current_account
+    @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail(:to => user.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{comment.user.name} left you a comment about your class")
   end
 
@@ -56,10 +58,12 @@ class UserMailer < ActionMailer::Base
     mail(:to => user_email, :subject => subject)
   end
 
-   def send_course_registration_mail(user_email, user_name, course)
+   def send_course_registration_mail(user_email, user_name, course, current_account)
      @email = user_email
      @name = user_name
      @course = course
+     @account = current_account
+     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
      mail(:to => user_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "You've signed up for #{@course.title}!")
    end
 

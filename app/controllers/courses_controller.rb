@@ -139,7 +139,12 @@ class CoursesController < ApplicationController
       if !community_site?
         Membership.create(:user => @user, :account => @course.account, :admin => false) 
       end
-      UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course).deliver
+      if @course.account.nil? 
+        current_account = nil
+      else 
+        current_account = @course.account
+      end
+      UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
       UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
     else
       if @course.is_a_student? @user

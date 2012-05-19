@@ -7,7 +7,7 @@ Cover Charge: $ <%= @course.price %>
 When: <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
-Got questions? You can message your teacher at <%= course_url(@course) %>
+Got questions? You can message your teacher at <%= @url %>
 
 Remember, classes are always more fun with friends. Share this class with people who you think might be interested.
   

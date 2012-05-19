@@ -5,6 +5,7 @@
     = link_to "Teach your first class!", new_course_path, :class => "pagenote-link"
   - else
     = "#{@user.name} has not taught any classes yet!"
+    
 - classes_teaching.each do |c|
   - count = count + 1
   - if count%3 == 0

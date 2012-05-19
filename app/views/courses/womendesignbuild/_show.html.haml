@@ -59,7 +59,7 @@
   }
   
   .wdb-class-title{
-    font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px;
+    font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px; line-height: 40px;
   }
 
   
@@ -92,16 +92,18 @@
           %div.comment{:class => 'clearfix'}
             %div.avatar
               = avatar_for(comment.user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
-            %div.content{:style => "float: left; margin-left: 30px"}
+            %div.content{:style => "margin-left: 60px"}
               %div.name
                 = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
               %div.location{:style => "float: left;"}
                 = comment.user.location
-              %div.body
-                = simple_format Rinku.auto_link(comment.body), :style => "font-family: Georgia; font-weight: normal"
-              %div.created_at{:style => "margin-top: -10px"}
-                .class-alternatives
-                  = "#{time_ago_in_words comment.created_at} ago"
+              %br
+              %p{:style => "margin-top: -10px"}
+                %div.body
+                  = simple_format Rinku.auto_link(comment.body), :style => "font-family: Georgia; font-weight: normal"
+                %div.created_at{:style => "margin-top: -10px"}
+                  .class-alternatives
+                    = "#{time_ago_in_words comment.created_at} ago"
         %div.comment_form
         - if current_user.blank?
           %div.comment
@@ -113,15 +115,12 @@
 
         - else
           %div.comment{:class => 'clearfix'}
-            / %div.avatar
-            /   = avatar_for(current_user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
-            %div.content
-              = form_for @course.comments.new do |f|
-                %div
-                  = f.hidden_field :course_id, :value => @course.id
-                  = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form-tall"
-                %div
-                  = f.submit 'Leave Comment'
+            = form_for @course.comments.new do |f|
+              %div
+                = f.hidden_field :course_id, :value => @course.id
+                = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form-tall"
+              %div
+                = f.submit 'Leave Comment'
 
       
   .wdb-right{:style => "margin-left: 20px"}

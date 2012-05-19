@@ -5,6 +5,4 @@ This is a friendly reminder that the class you registered for, <%= @course.title
 When: <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
-Got questions? You can message your teacher at <%= contact_teacher_url(:id => @course) %>
-
-For more information see: <%= course_url(@course)%>
+Got questions? You can message your teacher at <%= @url %>
