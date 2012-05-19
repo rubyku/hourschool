@@ -1,22 +1,26 @@
 - if current_account == Account.find(4)
 
   - classes_taking.each do |course|
-    .entry{:style => "float: left; width: 550px; margin-bottom: -50px "}
-      - if course.present? 
-        - if course.photo.present?
+    .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}
+      - if course.present?
+        - if course.photo.present? 
           = link_to (image_tag(course.photo.url(:small), :size => "190x120", :style => "float: left; margin-right: 20px")), course
-        - else 
-          = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course 
-  
-      #event_data-8.event_data.event-data-display.event-list-displa.event-display-boxes
-        
-        %h2.event_title{:style => "font-size: 36px; line-height: 1em, padding-top: -25px; margin-bottom: 5px"}
-          = link_to course.title, course, :class => "a_event_title"
-      
-        .event-meta
-          .event_details= "Date: #{course.date}" 
-          .event_details= "Location: #{course.place_name}"
-          
+        - else
+          = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
+
+        #event_data-8.event_data.event-data-display.event-list-display.event-display-boxes
+
+          %div
+            %h2.event_title{:style => "font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"}
+              = link_to course.title, course, :class => "a_event_title"
+
+          .event-meta
+            %p.event_details
+              %span.section-title Date:
+              = "#{course.date.strftime("%a %b %d")}"  ", #{course.time_range}"
+            %p.event_details
+              %span.section-title Location: 
+              = course.place_name
 
 - else
 
