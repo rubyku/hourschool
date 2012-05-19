@@ -16,6 +16,7 @@
             = link_to "Tell us more about you.", edit_user_registration_path(@user)
         - else 
           = @user.bio
+        = link_to "Edit bio", edit_user_registration_path
       %br
       %ul.noBullet
         %li.noBullet
