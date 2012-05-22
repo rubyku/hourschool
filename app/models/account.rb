@@ -21,7 +21,7 @@ class Account < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   def self.public_ids
-    self.open.collect(&:id) + [0] - [1] - [2] - [3] - [4]
+    self.open.collect(&:id) + [0] - [1] - [2] - [3]
   end
 
   private
