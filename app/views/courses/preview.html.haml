@@ -23,7 +23,11 @@
           .class-description
             .heading13-class
               = "#{@course.title.truncate(45)}"
-            %p= "#{@course.teaser.truncate(60)}"
+            - if @course.teaser.blank?
+              = "#{@course.description.truncate(60)}"
+            - else
+              = "#{@course.teaser.truncate(60)}"
+
           .class-note
             .heading9-class
               - if @course.active?  
@@ -134,7 +138,7 @@
                   = link_to @course.teacher.name, @course.teacher, :class => "profile-link"
             %p.class-details
               - if @course.experience.blank?
-                = "#{course.teacher.bio}"
+                = "#{@course.teacher.bio}"
               - else
                 = @course.experience
 
@@ -142,17 +146,17 @@
           .sidebar-block-last
             - if current_account == Account.find(1)
               - if @course.max_seats.present? 
-                .sidebar-heading Guests (#{course.students.count}/#{course.max_seats})
+                .sidebar-heading Guests (#{@course.students.count}/#{@course.max_seats})
               - else 
-                .sidebar-heading Guests (#{course.students.count})
+                .sidebar-heading Guests (#{@course.students.count})
             - else 
               - if @course.max_seats.present? 
-                .sidebar-heading Students (#{course.students.count}/#{course.max_seats})
+                .sidebar-heading Students (#{@course.students.count}/#{@course.max_seats})
               - else 
-                .sidebar-heading Students (#{course.students.count})
-            - if course.has_teacher?(current_user)
+                .sidebar-heading Students (#{@course.students.count})
+            - if @course.has_teacher?(current_user)
               = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-              = link_to "Email students", contact_all_students_path(:id => course), :class => "contact-link"
+              = link_to "Email students", contact_all_students_path(:id => @course), :class => "contact-link"
             .class-attendance-block
               - @course.students.each do |student|
                 %table
