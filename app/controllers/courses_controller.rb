@@ -145,7 +145,7 @@ class CoursesController < ApplicationController
         current_account = @course.account
       end
       UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
-      UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course).deliver
+      UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
