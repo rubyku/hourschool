@@ -49,7 +49,7 @@
       %div.course_action
         - if can? :sign_up_for_course, course
           - if course.sold_out? || course.inactive?
-            = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
+            / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
           - else 
             - if course.donate?
               = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
