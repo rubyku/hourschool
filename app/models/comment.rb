@@ -42,5 +42,9 @@ class Comment < ActiveRecord::Base
       UserMailer.comment_on_course(user, self, self.course, current_account).deliver unless self.user == user
     end
   end
+  
+  def child_comments
+    Comment.where(:parent_id => self.id).order('DATE(created_at) ASC')
+  end
 
 end
