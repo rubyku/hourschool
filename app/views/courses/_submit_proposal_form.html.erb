@@ -64,9 +64,30 @@
 <div class="page-section-float-left">
    <div class="class-form-question">When</div><br>   
   <p class="tip">We highly recommend scheduling your class at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
-   <%= f.date_select :date, :start_year => 2012, :end_year => 2012, :minute_step => 30 %><br><br>
+   <%= f.date_select :date, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now %><br><br>
+   <div id="date-warning" style="display:none;color:red;">
+     Your class is less than 2 weeks away!
+     <%= link_to_function 'ignore', "$('#date-warning').hide(); SHOW_DATE_WARNING=false;" %>
+    </div>
    <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
 </div>
+
+<% if f.object.new_record? %>
+  <script type="text/javascript">
+    var SHOW_DATE_WARNING = true;
+    $('#course_date_1i, #course_date_2i, #course_date_3i').change(function() {
+      var now = new Date();
+      var twoWeeksFromNow = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000));
+      var selectedDate = new Date($('#course_date_1i').val(), ($('#course_date_2i').val() - 1), $('#course_date_3i').val());
+    
+      if (selectedDate < twoWeeksFromNow && SHOW_DATE_WARNING) {
+        $('#date-warning').show();
+      } else {
+        $('#date-warning').hide();
+      }
+    })
+  </script>
+<% end %>
 
 
 <div class="page-section-float-left">
