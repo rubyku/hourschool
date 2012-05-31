@@ -52,28 +52,34 @@
               %div.created_at
                 .class-alternatives
                   = "#{time_ago_in_words child_comment.created_at} ago"
-
-        = form_for course.comments.new do |f|
-          %div.clearfix
-            = f.hidden_field :parent_id, :value => comment.id
-            = f.hidden_field :course_id, :value => course.id
-            = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form"
-          %div.clearfix
-            = f.submit 'Leave Comment'
-    - else                 
-      .comment_form
+        
         - if current_user.blank?
-          %div.comment{:id => "comment_form-#{comment.id}", :style => "display:none;"}
+          %div.comment{:id => "comment_form-#{comment.id}", :style => "float: left; background-color: #f4f4f4; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; margin-bottom: 10px"}
+            %hr{:style => "border: 1px dashed #ccc; margin-bottom: 10px"}
             = "Please first"
             = link_to "sign up", new_user_registration_path
             = "or"
             = link_to "log in", new_user_session_path
             = "to leave a comment"
-
         - else
-          %div.comment{:class => 'clearfix'}
-            / %div.avatar
-            /   = avatar_for(current_user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')               
+          = form_for course.comments.new do |f|
+            %div.clearfix
+              = f.hidden_field :parent_id, :value => comment.id
+              = f.hidden_field :course_id, :value => course.id
+              = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form"
+            %div.clearfix
+              = f.submit 'Leave Comment'
+    - else                 
+      .comment_form
+        - if current_user.blank?
+          %div.comment{:id => "comment_form-#{comment.id}", :style => "display:none; margin-left:60px; background-color: #f4f4f4; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; margin-bottom: 10px"}
+            = "Please first"
+            = link_to "sign up", new_user_registration_path
+            = "or"
+            = link_to "log in", new_user_session_path
+            = "to leave a comment"
+        - else
+          .comment{:class => 'clearfix'}             
             .content{:id => "comment_form-#{comment.id}", :style => "display:none; margin-left:60px; background-color: #f4f4f4; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; margin-bottom: 10px"}
               = form_for course.comments.new do |f|
                 %div
