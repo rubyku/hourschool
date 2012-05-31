@@ -23,6 +23,7 @@
       <td><%= link_to user.name.split(" ").last, user_path(user.id) %></td>   
       <td><%= user.zip %></td>
       <td><%= user.location %></td>
+      <td><%= user.created_at.strftime("%b %d, %Y") %></td>
     </tr>
   <% end %>
   </table>
