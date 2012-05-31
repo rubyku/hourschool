@@ -37,7 +37,7 @@
             = link_to_function 'reply', "$('#comment_form-#{comment.id}').toggle()"
 
     - if comment.child_comments.present?        
-      .child_comments{:class => 'clearfix', :style => 'margin-left:60px; background-color: #f4f4f4; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; margin-bottom: 10px'}
+      .child_comments{:class => 'clearfix', :style => 'margin-left:60px; background-color: #f4f4f4; padding-left: 10px; padding-top: 5px; padding-bottom: 10px; padding-right: 15px; margin-bottom: 10px'}
         - comment.child_comments.each do |child_comment|
           %div.child_comment
             %div.avatar
