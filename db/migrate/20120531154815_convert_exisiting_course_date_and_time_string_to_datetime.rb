@@ -4,25 +4,27 @@ class ConvertExisitingCourseDateAndTimeStringToDatetime < ActiveRecord::Migratio
     skipped = []
     blank = []
     Course.all.each do |course|
-      if course.time_range.blank?
+      # puts "Course:#{course.id}"
+      if course.time_range.blank? || course.city.nil? || course.city.time_zone.blank?
         blank << course.id
 
       elsif course.time_range.downcase.include?('-') && (course.time_range.downcase.include?('am') || course.time_range.downcase.include?('pm') || course.time_range.downcase.include?('p'))
+        Time.zone = course.city.time_zone
         time_range = course.time_range.downcase
         start_time = course.time_range.split('-').first
         end_time = course.time_range.split('-').last
         
         if start_time.include?('am') || start_time.include?('pm') || start_time.include?('p')  
-          course.starts_at = "#{course.date} #{start_time}".to_time
+          course.starts_at = Time.zone.parse "#{course.date} #{start_time}"
         else
           ampm = end_time.include?('am') ? 'am' : 'pm'
-          course.starts_at = "#{course.date} #{start_time} #{ampm}".to_time
+          course.starts_at = Time.zone.parse "#{course.date} #{start_time} #{ampm}"
         end
 
         if end_time.include?('am') || end_time.include?('pm') || end_time.include?('p')
-          course.ends_at = "#{course.date} #{start_time}".to_time
+          course.ends_at = Time.zone.parse "#{course.date} #{end_time}"
           course.save!
-          puts "course:#{course.id} #{course.date} #{course.time_range} ====> #{course.starts_at} #{course.ends_at}"
+          puts "course:#{course.id} #{course.date} #{course.time_range} ====> #{course.starts_at.strftime('%D %r')} -> #{course.ends_at.strftime('%D %r')}"
           fixed << course.id
         else
          skipped << course.id
