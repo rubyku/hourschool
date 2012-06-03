@@ -126,10 +126,6 @@ class Course < ActiveRecord::Base
     where(:status => 'live').where("DATE(date) < (?)", Time.current)
   end
 
-  def starts_at
-    date
-  end
-
   def inactive?
     !active?
   end
