@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603154815) do
+ActiveRecord::Schema.define(:version => 20120604154815) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20120603154815) do
     t.float    "lat"
     t.float    "lng"
     t.string   "time_zone"
+    t.string   "country_code"
+    t.integer  "population"
   end
 
   create_table "comments", :force => true do |t|
