@@ -3,7 +3,10 @@
     %ul.searchFilter
       %li
         .sidebar-heading My Location
-        %li= link_to "#{current_user.city}, #{current_user.state}", courses_browse_path(:upcoming, :city => current_user.city)
+        - if current_user.city
+          %li= link_to "#{current_user.city.try(:name)}, #{current_user.city.try(:state)}", courses_browse_path(:upcoming, :city => current_user.city)
+        - else
+          // set my location
     %ul.searchFilter
       %li
         .sidebar-heading Browse By City

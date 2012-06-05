@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
+  belongs_to :city
+
   has_many :memberships
   has_many :accounts, :through => :memberships
 
@@ -226,11 +228,6 @@ class User < ActiveRecord::Base
     return teaching_courses.include?(course.id)
   end
 
-  def city
-    nil
-    location.split(',')[0].strip unless location.nil?
-  end
-
   def state
     loc = location || ","
     loc = loc.split(',')[1]
@@ -238,7 +235,7 @@ class User < ActiveRecord::Base
   end
 
   def twitter_url
-    "http://twitter.com/#!/#{self.twitter_id}"
+    "http://twitter.com/#{self.twitter_id}"
   end
 
   # ================================

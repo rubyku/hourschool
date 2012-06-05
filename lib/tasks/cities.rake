@@ -86,4 +86,43 @@ namespace :cities do
     end
 
   end
+
+  desc "relate exisiting users to new cities"
+  task :relate_users => :environment do
+    blank = []
+    not_matched = []
+    matched = []
+    User.all.each do |user|
+      if user.location.blank? || !user.location.include?(',') || user.location.split(',')[0].nil? || user.location.split(',')[1].nil?
+        blank << user.id
+      else
+        state = user.location.split(',')[1].strip
+        state = 'TX' if state.downcase == 'texas'
+        state = 'MI' if state.downcase == 'michigan'
+        state = '08' if state.downcase == 'ontario'
+        state = '08' if state.downcase == 'on'
+        state = 'CA' if state.downcase == 'california'
+        state = 'FL' if state.downcase == 'florida'
+        state = 'DC' if state.downcase == 'district of columbia'
+        state = 'WA' if state.downcase == 'washington'
+        state = 'TN' if state.downcase == 'tennessee'
+        state = 'OH' if state.downcase == 'ohio'
+        state = 'OR' if state.downcase == 'oregon'
+        state = 'NY' if state.downcase == 'new york'
+        state = 'IL' if state.downcase == 'illinois'
+        state = 'CO' if state.downcase == 'colorado'
+        state = 'MD' if state.downcase == 'maryland'
+        city = City.where('name ilike ?', user.location.split(',')[0].strip).where('state ilike ?', state).first
+        if city
+          matched << user.id
+          user.update_attributes!(:city => city)
+        else
+          not_matched << user.id
+        end
+      end
+    end
+    puts "#{matched.length} users matched: #{matched.inspect}"
+    puts "#{blank.length} users with blank (or no ,) locations: #{blank.inspect}"
+    puts "#{not_matched.length} users didn't match: #{not_matched.inspect}"
+  end
 end

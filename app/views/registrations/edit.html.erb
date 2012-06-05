@@ -28,9 +28,36 @@
       <tr>
         <td id="edit-profile">
           <p>
-           <%= f.label :zip, 'Zip Code / Postal Code', :class => "form-question" %><br />
-           <%= f.text_field :zip, :class => "form-short-edit-profile"  %>
+           <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+           <%= text_field_tag :location_lookup, "#{current_user.city.name}, #{current_user.city.state}", :class => "form-short-edit-profile"  %>
+           <%= f.hidden_field :city_id %>
           </p>
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $('#location_lookup').keyup(function() {
+                jQuery.get('<%= cities_path(:format => :json) %>',
+                  {q: $('#location_lookup').val()},
+                  function(data){
+                    $('#city_select').html('');
+                    if data.length == 0
+                    jQuery.each(data, function(index, value) {
+                      $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
+                          value.city.name + ', ' + value.city.state +
+                        '</li>');
+                    })
+                  }
+                )
+              })
+
+              $('li.select-a-city').live("click", function() {
+                $('#city_select').html('');
+                $('#location_lookup').val($(this).text());
+                $('#user_city_id').val($(this).attr('data-city-id'));
+              })
+            })
+          </script>
+          <ul id="city_select">
+          </ul>
           <br><br>
         </td>
         <td id="edit-profile">
