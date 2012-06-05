@@ -42,7 +42,7 @@
           - @courses_next7days.each do |course|
             %tr
               %td.metrics-course-title= link_to course.title, course
-              %td.metrics= course.date
+              %td.metrics= course.starts_at
               %td.metrics-seats= course.min_seats
               %td.metrics-seats= course.students.size
 

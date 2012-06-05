@@ -17,7 +17,7 @@
           .event-meta
             %p.event_details
               %span.section-title Date:
-              = "#{course.date.strftime("%a %b %d")}"  ", #{course.time_range}"
+              = "#{course.starts_at.strftime("%a %b %d, %Y")}"  ", #{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}"
             %p.event_details{:style => "margin-bottom: 40px"}
               %span.section-title Location: 
               = course.place_name

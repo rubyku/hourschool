@@ -86,9 +86,9 @@
             = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"
           %td
             .class-details
-              = @course.date.strftime("%a %b %d, %Y")
+              = @course.starts_at.strftime("%a %b %d, %Y")
             .class-sidebar-details
-              = "#{@course.time_range}"
+              = "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}"
 
         %tr
           %td.icon

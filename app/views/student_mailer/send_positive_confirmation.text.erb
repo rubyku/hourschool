@@ -2,7 +2,7 @@ Hello <%= @student.name.split(" ").first %>,
 
 This is a friendly reminder that the class you registered for, <%= @course.title %>, is happening today. We hope you're all ready and excited. Here are some handy details for you:
 
-When: <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
+When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
 Got questions? You can message your teacher at <%= @url %>

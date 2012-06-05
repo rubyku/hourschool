@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
       all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
     end
     classes = (all_upcoming_classes & all_student_roles)
-    return classes.sort_by {|course| course.date }
+    return classes.sort_by {|course| course.starts_at }
   end
 
   def recent_classes_as_teacher(current_account=nil)
@@ -146,7 +146,7 @@ class User < ActiveRecord::Base
       all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
     end
     classes = (all_upcoming_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.date }
+    return classes.sort_by {|course| course.starts_at }
    end
 
   def past_classes_as_student(current_account=nil)
@@ -157,7 +157,7 @@ class User < ActiveRecord::Base
       all_past_classes = all_past_classes.where(:account_id => current_account.id)
     end
     classes = (all_past_classes & all_student_roles)
-    return classes.sort_by {|course| course.date }
+    return classes.sort_by {|course| course.starts_at }
   end
 
   def past_classes_as_teacher(current_account=nil)
@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
       all_past_classes = all_past_classes.where(:account_id => current_account.id)
     end
     classes = (all_past_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.date }
+    return classes.sort_by {|course| course.starts_at }
    end
 
   def suggestions(current_account=nil)

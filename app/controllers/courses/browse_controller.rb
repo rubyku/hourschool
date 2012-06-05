@@ -1,7 +1,7 @@
 class Courses::BrowseController < ApplicationController
 
   def index
-    @courses = Course.active.order(:date, :created_at)
+    @courses = Course.active.order(:starts_at, :created_at)
     if community_site?
       @courses = @courses.community
       if current_user
@@ -30,7 +30,7 @@ class Courses::BrowseController < ApplicationController
     if params[:id] == 'all'
       courses = courses.random
     else
-      courses = courses.active.order(:date, :created_at)
+      courses = courses.active.order(:starts_at, :created_at)
     end
     if community_site?
       courses = courses.community

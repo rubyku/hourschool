@@ -25,7 +25,7 @@
           <div class="class-description">
             <div class="heading13-class"><%= link_to course.title, course %></div>
             <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
-            Date: <%= course.date %><br>
+            Date: <%= course.starts_at.strftime("%a %b %d, %Y") %><br>
             Attendance: <%= course.students.count %> out of <%= course.max_seats %><br>
             <% if course.status == 'proposal' %>
               (<%= link_to 'approve', proposal_path(:id => course.id) %>)

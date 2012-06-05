@@ -15,7 +15,7 @@ ActiveAdmin.register Course do
     column :title
     column :teaser
     column :status
-    column "Course Date", :date
+    column "Course Date", :starts_at
     column :price, :sortable => :price do |course|
       number_to_currency course.price
     end
