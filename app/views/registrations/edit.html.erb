@@ -39,12 +39,16 @@
                   {q: $('#location_lookup').val()},
                   function(data){
                     $('#city_select').html('');
-                    if data.length == 0
-                    jQuery.each(data, function(index, value) {
-                      $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
-                          value.city.name + ', ' + value.city.state +
-                        '</li>');
-                    })
+                    if (data.length == 0) {
+                      $('#city_select').append('<li>nothing found...</li>');
+                    } else {
+                      jQuery.each(data, function(index, value) {
+                        $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
+                            value.city.name + ', ' + value.city.state +
+                          '</li>');
+                      });
+                    }
+                    
                   }
                 )
               })
