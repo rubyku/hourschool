@@ -3,7 +3,8 @@ Hey <%= @user.name.split(" ").first %>,
 One of your <%= @user.relationship(@followed) %>'s, <%= @followed.name %>, just signed up teach a class, and we thought you might be interested!
 
 Class:  <%= @course.title %>
-When:   <%= @course.date.strftime("%a %b %d, %Y") %> at <%= @course.time_range %>
+When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+
 
 Check it out: <%= course_url(@course) %>.
 

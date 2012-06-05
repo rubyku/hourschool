@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
-  validates_presence_of :title, :description, :date, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
+  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
@@ -267,7 +267,7 @@ class Course < ActiveRecord::Base
 
    def not_past_date
      if self.date < Date.today
-       errors.add(:date, 'is in the past')
+       errors.add(:starts_at, 'is in the past')
      end
    end
 

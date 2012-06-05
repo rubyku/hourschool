@@ -59,8 +59,8 @@
 
     <div class="page-section-float-left">
        <div class="class-form-question">When</div><br>          
-       <%= f.date_select :date, :start_year => 2011, :end_year => 2012, :minute_step => 30 %><br><br>
-       <%= f.text_field :time_range, :class => "form-short", :placeholder => "Time (ex. 6-7pm)" %>
+         <%= f.datetime_select :starts_at, :ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now %><br>
+         <%= f.datetime_select :ends_at, :ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now %>
     </div>
 
 
