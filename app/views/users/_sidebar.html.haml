@@ -35,14 +35,14 @@
             = "Classes taken"
           %td.user-stat-number
             .class-details-heart-number
-              = @user.recent_classes_as_student.count + @user.past_classes_as_student.count
+              = @user.courses_attended.in_account(current_account).count
         %tr
           %td.user-stat-icon
             = image_tag "v2/StatusIcon_Star.png", :class => "class-details-icon-heart"
             = "Classes taught"
           %td.user-stat-number
             .class-details-heart-number
-              = @user.recent_classes_as_teacher.count + @user.past_classes_as_teacher.count
+              = @user.courses_taught.in_account(current_account).count
 
 
 /     - if @user.fetch_followed.present?

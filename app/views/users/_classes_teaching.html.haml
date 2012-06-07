@@ -1,6 +1,6 @@
 - if current_account == Account.find(4)
 
-  - classes_teaching.each do |course|
+  - @classes_teaching.each do |course|
     .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}
       - if course.present?
         - if course.photo.present? 
@@ -25,14 +25,14 @@
 - else 
 
   - count = 0
-  - if classes_teaching.blank?
+  - if @classes_teaching.blank?
     - if current_user == @user
       = "Aw..you haven't taught any classes yet."
       = link_to "Teach your first class!", new_course_path, :class => "pagenote-link"
     - else
       = "#{@user.name} has not taught any classes yet!"
     
-  - classes_teaching.each do |c|
+  - @classes_teaching.order('starts_at desc').uniq_by {|c| c.name.downcase.strip }.each do |c|
     - count = count + 1
     - if count%3 == 0
       - className = "classBlock_last"

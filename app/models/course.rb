@@ -41,6 +41,10 @@ class Course < ActiveRecord::Base
 
   include Course::Searchable
 
+  def self.in_account(account)
+    where('account_id in (?)', account ? [account.id] : [0,nil])
+  end
+
   def self.community
     where('account_id in (?) or account_id is null', Account.public_ids).where(:seed => false)
   end

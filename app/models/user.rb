@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   has_many :courses_attended, :through => :roles, :conditions => ["name = (?)", "student"], :source => :course
 
 
-
   has_many :payments
   has_many :comments, :dependent => :destroy
 
@@ -124,52 +123,6 @@ class User < ActiveRecord::Base
     end
     sum
   end
-
-  def recent_classes_as_student(current_account=nil)
-    date = Date.today
-    all_student_roles = self.roles.where(:name => "student").map(&:course).reject {|c| c.nil?}
-    all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
-    if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
-      all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_upcoming_classes & all_student_roles)
-    return classes.sort_by {|course| course.starts_at }
-  end
-
-  def recent_classes_as_teacher(current_account=nil)
-    date = Date.today
-    all_teacher_roles = self.roles.where(:name => "teacher").map(&:course).reject {|c| c.nil?}
-    all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
-    if current_account
-      all_teacher_roles = all_teacher_roles.select {|c| c.account_id == current_account.id}
-      all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_upcoming_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.starts_at }
-   end
-
-  def past_classes_as_student(current_account=nil)
-    all_student_roles = self.roles.where(:name => "student").map(&:course).reject {|c| c.nil?}
-    all_past_classes = self.courses.where(['date < ?', DateTime.now])
-    if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
-      all_past_classes = all_past_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_past_classes & all_student_roles)
-    return classes.sort_by {|course| course.starts_at }
-  end
-
-  def past_classes_as_teacher(current_account=nil)
-    all_teacher_roles = self.roles.where(:name => "teacher").map(&:course).reject {|c| c.nil?}
-    all_past_classes = self.courses.where(['date < ?', DateTime.now])
-    if current_account
-      all_teacher_roles = all_teacher_roles.select {|c| c.account_id == current_account.id}
-      all_past_classes = all_past_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_past_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.starts_at }
-   end
 
   def suggestions(current_account=nil)
     suggestions = Suggestion.where(:requested_by => self.id)

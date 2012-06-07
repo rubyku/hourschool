@@ -11,9 +11,11 @@
       .welcome-header
         = "Your classes"
       .classRow
-        = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
+        - @classes_teaching = @user.courses_taught.in_account(current_account)
+        = render :partial => "classes_teaching"
           
-        = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
+        - @classes_taking = @user.courses_attended.in_account(current_account)
+        = render :partial => "classes_taking"
     
   = render :partial => 'sidebar'
 
@@ -59,7 +61,8 @@
             - else
               = "Classes #{@user.name} teaches"
           .classRow
-            = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
+            - @classes_teaching = @user.courses_taught.in_account(current_account)
+            = render :partial => "classes_teaching"
 
 
       #attending.section
@@ -70,17 +73,8 @@
             - else
               = "Classes #{@user.name} takes"
           .classRow
-            = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
-
-
-      #suggestions.section
-        .page-section-float-left
-          .welcome-header 
-            - if current_user == @user
-              = "Classes I suggested"
-            - else
-              = "Classes #{@user.name} suggested"
-          = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions(current_account)}
+            - @classes_taking = @user.courses_attended.in_account(current_account)
+            = render :partial => "classes_taking"
  
 
   = render :partial => 'sidebar'
