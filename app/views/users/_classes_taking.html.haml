@@ -1,4 +1,4 @@
-- if current_account == Account.find(4)
+- if current_account == Account.where(:id => 4).first
 
   - @classes_taking.each do |course|
     .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}

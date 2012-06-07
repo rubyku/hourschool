@@ -1,0 +1,19 @@
+<h2>Recurring Class</h2>
+Name: <%= @series.last_course.name %>
+
+<%= form_for(@series, :url => courses_series_path(@series.id), :method => :put) do |f| %>
+  <%= render :partial => "courses/series/time_series_form" %>
+  <div class="actions">
+    <%= f.submit 'Edit Class Schedule' %>
+  </div>
+<% end %>
+
+<p>
+  Next course is scheduled for <%= @series.schedule.occurrences(52.weeks.from_now).first.try(:strftime, '%A, %B %e') %>.
+
+  It will be live on the site 14 days before your class. You will be emailed when it goes live.
+</p>
+
+
+Recurring courses are based on the last scheduled class, to change the name, description or any other details:
+<%= link_to "edit last course's information", edit_course_path(@series.last_course) %>

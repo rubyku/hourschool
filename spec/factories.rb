@@ -66,6 +66,8 @@ FactoryGirl.define do
 
   factory :course do
     association :city
+    starts_at   2.weeks.from_now
+    ends_at     2.weeks.from_now
     title       { FactoryGirl.generate(:course_name) }
     teaser      { Forgery(:lorem_ipsum).words(rand(5) + 1) }
     experience  { Forgery(:lorem_ipsum).words(rand(30) + 1) }

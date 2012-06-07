@@ -1,8 +1,14 @@
 desc "Send scheduled emails"
 namespace :schedule do
 
-  task :generate_sitemap => :environment do
+  task :schedule_events => :environment do
+    ScheduleEvent.where("DATE(publish_on) <= DATE(:today) and published = false", :today => Date.today).each do |event|
+      event.publish!
+    end
+  end
 
+
+  task :generate_sitemap => :environment do
     SitemapGenerator::Sitemap.sitemaps_host = "https://s3.amazonaws.com/hourschool-sitemap/"
     SitemapGenerator::Sitemap.public_path = 'tmp/'
     SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
