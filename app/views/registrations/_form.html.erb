@@ -1,0 +1,76 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+  <%= devise_error_messages! %>
+  <div class="form-question">
+    <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :class => "form-short-with-margin" %>
+    </p>
+  </div>
+
+  <div class="form-question">
+
+    <p>
+     <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+     <%= text_field_tag :location_lookup, '', :class => "form-short-with-margin"  %>
+     <%= f.hidden_field :city_id %>
+    </p>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#location_lookup').keyup(function() {
+          jQuery.get('<%= cities_path(:format => :json) %>',
+            {q: $('#location_lookup').val()},
+            function(data){
+              $('#city_select').html('');
+              if (data.length == 0) {
+                $('#city_select').append('<li>nothing found...</li>');
+              } else {
+                jQuery.each(data, function(index, value) {
+                  $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
+                      value.city.name + ', ' + value.city.state +
+                    '</li>');
+                });
+              }
+              
+            }
+          )
+        })
+
+        $('li.select-a-city').live("click", function() {
+          $('#city_select').html('');
+          $('#location_lookup').val($(this).text());
+          $('#user_city_id').val($(this).attr('data-city-id'));
+        })
+      })
+    </script>
+
+    <ul id="city_select" style="border: 1px solid #D2D9DC; background-color: #fff; border-raduis: 5px; width: 190px; padding-left: 10px; padding-bottom: 10px; padding-top: -10px; margin-top: 20px">
+    </ul>
+
+  </div>
+
+  <div class="form-question">
+    <%= f.label :email %>
+    <br>
+    <%= f.email_field :email, :class => "form-short-with-margin" %>
+  </div>
+
+  <div class="form-question">
+    <%= f.label :password %>
+    <br>
+    <%= f.password_field :password, :class => "form-short-with-margin" %>
+  </div>
+
+  <div class="form-question">
+    <%= f.label :password_confirmation %>
+    <br>
+    <%= f.password_field :password_confirmation, :class => "form-short-with-margin" %>
+  </div>
+
+  <div class="page-section-float-left">
+    <%= f.submit "Sign up", :class => "loginButton", :id => 'user_submit'%>
+  </div>
+
+
+<% end %> 

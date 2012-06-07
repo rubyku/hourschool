@@ -112,6 +112,15 @@ namespace :cities do
         state = 'IL' if state.downcase == 'illinois'
         state = 'CO' if state.downcase == 'colorado'
         state = 'MD' if state.downcase == 'maryland'
+        state = 'VA' if state.downcase == 'virginia'
+        state = 'AL' if state.downcase == 'alabama'
+        state = 'GA' if state.downcase == 'georgia'
+        state = 'WI' if state.downcase == 'wisconsin'
+        state = 'VT' if state.downcase == 'vermont'
+        state = 'PA' if state.downcase == 'pennsylvania'
+        state = 'IA' if state.downcase == 'iowa'
+        state = 'SC' if state.downcase == 'south carolina'
+        state = 'MA' if state.downcase == 'massachusetts'
         city = City.where('name ilike ?', user.location.split(',')[0].strip).where('state ilike ?', state).first
         if city
           matched << user.id
