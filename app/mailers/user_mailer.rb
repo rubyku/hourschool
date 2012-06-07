@@ -54,6 +54,7 @@ class UserMailer < ActionMailer::Base
     @email = user_email
     @name = user_name
     @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
     subject = @account.nil? ? "Welcome to HourSchool" : "Welcome to #{@account.name}"
     mail(:to => user_email, :subject => subject)
   end
