@@ -53,7 +53,7 @@ describe Series::EventSchedule do
 
     describe 'schedule' do
       it 'is nil when hash is empty' do
-        Factory.stub(:series).schedule.should be_nil
+        Factory.stub(:series).send(:attribute, :schedule).should be_nil
       end
     end
 

@@ -78,7 +78,7 @@
 
 
     .sidebar-block-last
-      - if current_account == Account.find(1)
+      - if current_account == Account.where(:id => 1).first
         .sidebar-heading Host
       - else 
         .sidebar-heading Teacher
@@ -100,7 +100,7 @@
 
     - if course.students.any?
       .sidebar-block-last
-        - if current_account == Account.find(1)
+        - if current_account == Account.where(:id => 1).first
           - if course.max_seats.present? 
             .sidebar-heading Guests (#{course.students.count}/#{course.max_seats})
           - else 

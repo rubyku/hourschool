@@ -1,7 +1,7 @@
 <div class="full-page">
   <div class="page-content">
 
-    <% if current_account == Account.find(1) %>
+    <% if account = Account.where(:id => 1).first && account == current_account %>
       Here's why you should host a Feast for Days session!
     <% else %>
 
