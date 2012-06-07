@@ -70,6 +70,13 @@
         .sidebar-block-last
           = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
+    .sidebar-block
+      .class-section-heading Past Dates
+      - Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').each do |course|
+        %p= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course
+
+
+
     .sidebar-block-last
       - if current_account == Account.find(1)
         .sidebar-heading Host

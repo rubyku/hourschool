@@ -54,5 +54,7 @@
             = link_to c.title, c
         .class-note
           .heading9-class 
-            - if c.days_left > 0
-              = "#{ c.days_left } days from today"
+            = "Taught #{Course.where('title ilike ?', c.title).count} times"
+
+
+
