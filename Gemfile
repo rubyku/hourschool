@@ -9,8 +9,14 @@ group :assets do
 end
 
 
+gem 'sextant'
+
 gem 'paypal-express'
 gem "paypal-recurring"
+
+gem 'ice_cube',             '~> 0.8.0'
+
+gem 'sass-rails',           '~> 3.2.4'
 
 gem 'pg',                   '~> 0.12.2'
 
@@ -48,7 +54,7 @@ gem 'haml',                 '~> 3.1.4'
 gem 'rake',                 '~> 0.9.2'
 gem 'jquery-rails',         '>= 1.0.19'
 
-gem 'friendly_id',          '4.0.0'
+gem 'friendly_id',          '4.0.4'
 
 # gem 'mysql2',               '~> 0.2.6'
 

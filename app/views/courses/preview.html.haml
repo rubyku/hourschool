@@ -1,4 +1,4 @@
-- if current_account == Account.find(4)
+- if current_account == Account.where(:id => 4).first
   = render :partial => 'courses/womendesignbuild/preview'
 
 - else
@@ -122,7 +122,7 @@
               = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
         .sidebar-block-last
-          - if current_account == Account.find(1)
+          - if current_account == Account.where(:id => 1).first
             .sidebar-heading Host
           - else 
             .sidebar-heading Teacher
@@ -144,7 +144,7 @@
 
         - if @course.students.any?
           .sidebar-block-last
-            - if current_account == Account.find(1)
+            - if current_account == Account.where(:id => 1).first
               - if @course.max_seats.present? 
                 .sidebar-heading Guests (#{@course.students.count}/#{@course.max_seats})
               - else 

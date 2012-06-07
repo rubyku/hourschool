@@ -281,8 +281,10 @@ ActiveRecord::Schema.define(:version => 20120603154815) do
     t.string   "slug"
     t.integer  "last_course_id"
     t.integer  "student_count"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.text     "schedule_hash"
+    t.integer  "publish_days_before"
   end
 
   create_table "sessions", :force => true do |t|

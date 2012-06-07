@@ -57,7 +57,7 @@
               = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - if can? :edit_course, course
           - if course.inactive?
-            = button_to "Schedule this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
+            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "register-class-button"
           - else
             = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class-button"
             = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
@@ -78,7 +78,7 @@
 
 
     .sidebar-block-last
-      - if current_account == Account.find(1)
+      - if current_account == Account.where(:id => 1).first
         .sidebar-heading Host
       - else 
         .sidebar-heading Teacher
@@ -100,7 +100,7 @@
 
     - if course.students.any?
       .sidebar-block-last
-        - if current_account == Account.find(1)
+        - if current_account == Account.where(:id => 1).first
           - if course.max_seats.present? 
             .sidebar-heading Guests (#{course.students.count}/#{course.max_seats})
           - else 
