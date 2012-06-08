@@ -1,81 +1,31 @@
 <div class="container_16 teaser">
-   <%= image_tag("v2/hp_transparent.png", :id => "hp_transparent") %>
-
- <div class="grid_8" style="width: 470px">
-
-   <div id="homepage_headline_1">Learn from your community</div>
-   <div id="homepage_headline_2">One hour at a time</div>
-   <div id="homepage_headline_3">Build a social school from your community. Everybody has something they can teach. People learn the most, and are most willing to learn, when they are learning from their peers.</div>
-
- </div><!-- /end .twoCol_left -->
-
- <div class="grid_8" style="width: 450px">
-  <% if user_signed_in? %>
-    <div id="homepage_headline_7_signedin">Find a class</div>
-    <div id="homeSearchForm-background"></div>
-    <%= form_tag courses_search_path(:all), :method => :get do %>
-    <%= text_field_tag :q, request.params[:q], :id => 'homepageSearchForm', :placeholder => "Nutrition, boxing conditioning, typography...and more!" %>
-    <%= image_tag("v2/search-magnifying-glass-orange.png", :class => "mag-glass-homepage") %>
-    <br>
-    <%= submit_tag 'Search', :id => 'homepageSearchButton'%>
-    <% end %>
-  <% else %>
-    <div id="homepage_headline_7">Join HourSchool now</div>
-    <%= link_to image_tag('v2/fb-signup.png', :id => "fb-signup"),  user_omniauth_authorize_path(:facebook) %>
-    <%= image_tag('v2/fb-signup-bg.png', :id => "fb-signup-bg") %>
-    <a href="/users/sign_up" id="homepage_headline_8">or sign up with email</a>
-  <% end %>
-
- </div><!-- /end .twoCol_right-->
+  <div id="homepage_headline">
+    Inspire to Aspire
+ </div>
+</div><!-- /end .teaser -->
 
 
-</div><!-- /end .container16 -->
+<div class="container_16 featured clearfix">
+  <div class="sidebar-left">
+
+    <div class="brand_bg"></div>
+      <div class="prompt-box white">  
+        <%= image_tag "v3/homepage/mission-star.png" %>
+        <p class="prompt-text">What is one thing you want to accomplish by the end of the year?</p>
+
+        <p>   
+         <%= text_field_tag :prompt, "", :class => "form-short-edit-profile"  %>
+        </p>
+    </div>
+  
+  </div><!-- end .sidebar-left -->
 
 
+  <div class="content-right white">
+    <p class="big-text">We are a group of doers, thinkers, writers, designers, filmmakers, chefs, mechanics, engineers and explorers who get together to share knowledge, skills and resources in order to push each other to keep picking up new skills and do new things. </p>
+    
+    <div class="heading11">What we do</div>
+    <p class="body-text">We provide each other with people, a framework, tools and support to do just about anything you could want to — from building websites to fixing motorcycles. We do that by organizing Missions</p>
+  </div><!-- end .content-right -->
 
-<%# Featured !!!!!!!!!!!!!!! %>
-
-<div class="container_16 white">
-
-  <div class="featured-content clearfix">
-    <div class="homepage-header">Hourschool Happenings</div><br><br>
-
-    <div class="classRow-homepage clearfix">
-
-        <div class="happeningBlock-homepage">
-            <a href="../../../pdf/TeachersHandbook-030812-rk.pdf">
-            <%= image_tag "v2/screenshot_teacherHandbook.png" %>
-            <div class="happening-message-header">
-                Want to teach a class?
-            </div>
-            </a>
-            <div class="happening-message-description">
-                Our teacher's handbook is a great guide to help you get started.
-            </div>
-        </div><!-- /happeningBlock-homepage -->
-
-        <div class="happeningBlock-homepage">
-            <%= link_to image_tag("newsletter/campaign4.jpg"), "/campaign" %>
-            <div class="happening-message-header">
-                Peer Teaching Fund
-            </div>
-            </a>
-            <div class="happening-message-description">
-                Learn about our partnerships with 2 non-profits serving the homeless.
-            </div>
-        </div><!-- /happeningBlock-homepage -->
-
-        <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ff9933" width="438" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-        <a href="http://vimeo.com/user7331787" target="_blank">
-        <div class="happening-message-header">
-            What is HourSchool?
-        </div>
-        </a>
-        <div style="float: left; padding-right: 10px; font-size: 11px; width: 350px;">
-            Learning with your network, one hour at a time.<br>
-        </div>
-
-
-    </div><!-- /end .classRow-homepage -->
-  </div><!-- /end .featured-content -->
-</div>
+</div><!-- end .featured -->
