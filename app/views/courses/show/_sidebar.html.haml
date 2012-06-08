@@ -54,13 +54,13 @@
             - if course.donate?
               = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
-              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class button #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - if can? :edit_course, course
           - if course.inactive?
-            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "register-class-button"
+            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "register-class button"
           - else
-            = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class-button"
-            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
+            = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class button"
+            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class button"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"
@@ -141,7 +141,7 @@
 
   %div
     %br
-    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "loginButton"
+    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "grey button"
 
 
 // Show the modal window if a person tries to register for a course too far away from them

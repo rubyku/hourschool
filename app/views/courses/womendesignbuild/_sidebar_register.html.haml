@@ -43,7 +43,7 @@
     %div.course_action
       - if can? :sign_up_for_course, course
         - if course.sold_out? || course.inactive?
-          = button_to "Pre-register for next class",  new_suggestion_path,  :class => "register-class-button", :method => :get
+          = button_to "Pre-register for next class",  new_suggestion_path,  :class => "wdb-register-class-button", :method => :get
         - else 
           - if @course.price == 0
             = button_to "Register for this class", register_path(:id => course), :class => "wdb-register-class-button"
