@@ -102,9 +102,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/users-table'                => 'users#table'
 
-  match '/community'                  => 'home#community'
-  match '/community_faq'              => 'home#community_faq'
-
   match '/profile'                    => 'users#show', :id => 'current'
   match '/profile_past_taught'        => 'users#profile_past_taught'
   match '/profile_past_attended'      => 'users#profile_past_attended'
@@ -119,8 +116,6 @@ HourschoolV2::Application.routes.draw do
   match '/contact'                    => 'home#contactus'
   match '/search'                     => 'home#search'
 
-  match '/search_by_tg'               => 'home#search_by_tg', :as => "tags"
-  match '/organization'               => 'home#organization'
   match '/nominate'                   => 'home#nominate'
   match '/nominate_send'              => 'home#nominate_send'
   match '/nominate_confirm'           => 'home#nominate_confirm'
