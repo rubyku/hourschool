@@ -44,7 +44,7 @@ class SuggestionsController < ApplicationController
     #need to have validations
     if @suggestion.save
       current_user.vote_for(@suggestion)
-      city = City.find_or_create_by_name_and_state(current_user.city, current_user.state)
+      city = current_user.city
       city.suggestions << @suggestion
       city.save
       UserMailer.send_suggestion_received_to_hourschool_mail(current_user.email, current_user.name, @suggestion).deliver

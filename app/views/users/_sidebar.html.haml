@@ -6,7 +6,7 @@
       %p{:style => "font-weight: bold; width: 200px"}
         = @user.name
       %p{:style => "font-weight: normal; width: 200px"}
-        = @user.location
+        = "#{@user.city.name}, #{@user.city.state}"
         
     .sidebar-block
       %p{:style => "font-weight: normal; width: 200px"}

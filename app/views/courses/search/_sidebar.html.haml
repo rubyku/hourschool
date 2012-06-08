@@ -3,32 +3,7 @@
     %ul.searchFilter
       %li
         .sidebar-heading My Location
-        %li= link_to "#{current_user.city}, #{current_user.state}", courses_search_path(add_filter(:city => current_user.city))
-    %ul.searchFilter
-      %li
-        .sidebar-heading Browse By City
-        %li= link_to "All Cities",        courses_search_path(add_filter(:city => "All"))
-        %li= link_to "Ann Arbor, MI",     courses_search_path(add_filter(:city => "Ann Arbor"))     unless current_user.city == "Ann Arbor"
-        %li= link_to "Austin, TX",        courses_search_path(add_filter(:city => "Austin"))        unless current_user.city == "Austin"
-        %li= link_to "Loveland, CO",      courses_search_path(add_filter(:city => "Loveland"))      unless current_user.city == "Loveland"
-        %li= link_to "New York, NY",      courses_search_path(add_filter(:city => "New York"))      unless current_user.city == "New York"
-        %li= link_to "San Francisco, CA", courses_search_path(add_filter(:city => "San Francisco")) unless current_user.city == "San Francisco"
-        %li= link_to "Santa Monica, CA",  courses_search_path(add_filter(:city => "Santa Monica"))  unless current_user.city == "Santa Monica"
-        %li= link_to "Toronto, ON",       courses_search_path(add_filter(:city => "Toronto"))       unless current_user.city == "Toronto"
-        %li= link_to "Windsor, CO",       courses_search_path(add_filter(:city => "Windsor"))       unless current_user.city == "Windsor"
-  - else
-    %ul.searchFilter
-      %li
-        .sidebar-heading Browse By City
-        %li= link_to "All",               courses_search_path(add_filter(:city => "All"))
-        %li= link_to "Ann Arbor, MI",     courses_search_path(add_filter(:city => "Ann Arbor"))
-        %li= link_to "Austin, TX",        courses_search_path(add_filter(:city => "Austin"))
-        %li= link_to "Loveland, CO",      courses_search_path(add_filter(:city => "Loveland"))
-        %li= link_to "New York, NY",      courses_search_path(add_filter(:city => "New York"))
-        %li= link_to "San Francisco, CA", courses_search_path(add_filter(:city => "San Francisco"))
-        %li= link_to "Santa Monica, CA",  courses_search_path(add_filter(:city => "Santa Monica"))
-        %li= link_to "Toronto, ON",       courses_search_path(add_filter(:city => "Toronto"))
-        %li= link_to "Windsor, CO",       courses_search_path(add_filter(:city => "Windsor"))
+        %li= link_to "#{current_user.city.try(:name)}, #{current_user.city.try(:state)}", courses_browse_path(:upcoming, :city => current_user.city.name)
 
 %ul.searchFilter
   %li
