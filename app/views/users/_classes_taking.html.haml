@@ -1,6 +1,6 @@
-- if current_account == Account.find(4)
+- if current_account == Account.where(:id => 4).first
 
-  - classes_taking.each do |course|
+  - @classes_taking.each do |course|
     .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}
       - if course.present?
         - if course.photo.present? 
@@ -25,13 +25,13 @@
 - else
 
   - count = 0
-  - if classes_taking.blank?
+  - if @classes_taking.blank?
     - if current_user == @user
       = "Aw..you haven't taken any classes yet."
       = link_to "Go look around!", learn_path, :class => "pagenote-link"
     - else
       = "#{@user.name} has not taken any classes yet!"
-  - classes_taking.each do |c|
+  - @classes_taking.each do |c|
     - count = count + 1
     - if count%3 == 0
       - className = "classBlock_last"
@@ -51,7 +51,3 @@
         .class-description
           .heading13-class 
             = link_to c.title, c
-        .class-note
-          .heading9-class 
-            - if c.days_left > 0
-              = "#{ c.days_left } days from today"

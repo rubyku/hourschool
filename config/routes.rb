@@ -1,8 +1,10 @@
 HourschoolV2::Application.routes.draw do
 
-  resources :series
+
 
   resources :tracks
+
+  resources :cities, :only => [:index]
 
   # temp hack, remove after Febuary 2011
   match "/confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/confirm" }
@@ -30,6 +32,7 @@ HourschoolV2::Application.routes.draw do
   namespace :courses do
     resources :browse
     resources :search
+    resources :series, :except => :create
   end
 
   namespace :payments do
@@ -42,7 +45,9 @@ HourschoolV2::Application.routes.draw do
   match '/payments/paypal/responses' => 'Payments::Paypal::Responses#create'
 
   resources :courses do
-    resources :owner, :controller => 'courses/owner'
+    resources :owner,     :controller => 'courses/owner'
+    resource  :duplicate, :controller => 'courses/duplicate'
+    resources :series,    :controller => 'courses/series', :only => :create
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
@@ -116,7 +121,6 @@ HourschoolV2::Application.routes.draw do
   match '/search'                     => 'home#search'
 
   match '/search_by_tg'               => 'home#search_by_tg', :as => "tags"
-  match '/search_by_city'             => 'home#search_by_city', :as => "cities"
   match '/organization'               => 'home#organization'
   match '/nominate'                   => 'home#nominate'
   match '/nominate_send'              => 'home#nominate_send'
@@ -139,7 +143,8 @@ HourschoolV2::Application.routes.draw do
 
   match '/start'                      => 'pages#index'
 
-  post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
+  # post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
+
 
   root :to                            => "pages#index"
 

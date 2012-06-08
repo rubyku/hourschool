@@ -1,4 +1,4 @@
--if current_account == Account.find(4)
+-if current_account == Account.where(:id => 4).first
   = render :partial => 'courses/womendesignbuild/index'
 
 - else 

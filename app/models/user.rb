@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   devise :omniauthable
 
-  validates :zip, :presence => true, :if => :active?
   attr_accessor :dont_send_reg_email
 
   validates_presence_of :name
@@ -16,15 +15,17 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
+  belongs_to :city
+
   has_many :memberships
   has_many :accounts, :through => :memberships
 
-  has_many :roles, :dependent => :destroy
+  has_many :roles,   :dependent => :destroy
   has_many :courses, :through => :roles
-  has_many :courses_taught,   :through => :roles, :conditions => ["name = (?)", "teacher"], :source => :course
-  has_many :courses_attended, :through => :roles, :conditions => ["name = (?)", "student"], :source => :course
+  has_many :courses_taught,   :through => :roles, :conditions => ["roles.name = (?)", "teacher"], :source => :course
+  has_many :courses_attended, :through => :roles, :conditions => ["roles.name = (?)", "student"], :source => :course
 
-
+  has_many :series, :through => :courses_taught
 
   has_many :payments
   has_many :comments, :dependent => :destroy
@@ -125,52 +126,6 @@ class User < ActiveRecord::Base
     sum
   end
 
-  def recent_classes_as_student(current_account=nil)
-    date = Date.today
-    all_student_roles = self.roles.where(:name => "student").map(&:course).reject {|c| c.nil?}
-    all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
-    if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
-      all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_upcoming_classes & all_student_roles)
-    return classes.sort_by {|course| course.starts_at }
-  end
-
-  def recent_classes_as_teacher(current_account=nil)
-    date = Date.today
-    all_teacher_roles = self.roles.where(:name => "teacher").map(&:course).reject {|c| c.nil?}
-    all_upcoming_classes = self.courses.where(['date >= ?', Time.now])
-    if current_account
-      all_teacher_roles = all_teacher_roles.select {|c| c.account_id == current_account.id}
-      all_upcoming_classes = all_upcoming_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_upcoming_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.starts_at }
-   end
-
-  def past_classes_as_student(current_account=nil)
-    all_student_roles = self.roles.where(:name => "student").map(&:course).reject {|c| c.nil?}
-    all_past_classes = self.courses.where(['date < ?', DateTime.now])
-    if current_account
-      all_student_roles = all_student_roles.select {|c| c.account_id == current_account.id}
-      all_past_classes = all_past_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_past_classes & all_student_roles)
-    return classes.sort_by {|course| course.starts_at }
-  end
-
-  def past_classes_as_teacher(current_account=nil)
-    all_teacher_roles = self.roles.where(:name => "teacher").map(&:course).reject {|c| c.nil?}
-    all_past_classes = self.courses.where(['date < ?', DateTime.now])
-    if current_account
-      all_teacher_roles = all_teacher_roles.select {|c| c.account_id == current_account.id}
-      all_past_classes = all_past_classes.where(:account_id => current_account.id)
-    end
-    classes = (all_past_classes & all_teacher_roles)
-    return classes.sort_by {|course| course.starts_at }
-   end
-
   def suggestions(current_account=nil)
     suggestions = Suggestion.where(:requested_by => self.id)
     suggestions = suggestions.where(:account_id => current_account.id) if current_account
@@ -226,11 +181,6 @@ class User < ActiveRecord::Base
     return teaching_courses.include?(course.id)
   end
 
-  def city
-    nil
-    location.split(',')[0].strip unless location.nil?
-  end
-
   def state
     loc = location || ","
     loc = loc.split(',')[1]
@@ -238,7 +188,7 @@ class User < ActiveRecord::Base
   end
 
   def twitter_url
-    "http://twitter.com/#!/#{self.twitter_id}"
+    "http://twitter.com/#{self.twitter_id}"
   end
 
   # ================================

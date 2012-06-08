@@ -1,90 +1,109 @@
 <%= devise_error_messages! %>
 
-<div class="page">
+<div class="full-page">
   <div class="page-content">
     <div class="heading25 light_grey">Edit your profile</div>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
 
-    <table>
-      <tr>
-        <td class="edit-profile">
-          <p>
-           <%= f.label :name, 'Name', :class => "form-question" %><br />
-           <%= f.text_field :name, :class => "form-short-edit-profile" %>
-          </p>
-          <br><br>
-        </td>
-        <td class="edit-profile">
-          <p>
-           <%= f.label :email, 'Email', :class => "form-question" %><br />
-           <%= f.text_field :email, :class => "form-short-edit-profile" %>
-          </p>
-          <br><br>
-        </td>
-      </tr>
+      <div class="clearfix">
+
+        <div class="grid_8" style="margin-left: 0px">
+
+        <p>
+         <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+         <%= f.text_field :name, :class => "form-short-edit-profile" %>
+        </p>
+        <br><br>
+
+        <p>
+         <%= f.label :email, 'Email', :class => "form-question" %><br />
+         <%= f.text_field :email, :class => "form-short-edit-profile" %>
+        </p>
+        <br><br>
+
+        <p>
+         <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+         <%= text_field_tag :location_lookup, "#{current_user.city.name}, #{current_user.city.state}", :class => "form-short-edit-profile"  %>
+         <%= f.hidden_field :city_id %>
+        </p>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#location_lookup').keyup(function() {
+              jQuery.get('<%= cities_path(:format => :json) %>',
+                {q: $('#location_lookup').val()},
+                function(data){
+                  $('#city_select').html('');
+                  if (data.length == 0) {
+                    $('#city_select').append('<li>nothing found...</li>');
+                  } else {
+                    jQuery.each(data, function(index, value) {
+                      $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
+                          value.city.name + ', ' + value.city.state +
+                        '</li>');
+                    });
+                  }
+                  
+                }
+              )
+            })
+
+            $('li.select-a-city').live("click", function() {
+              $('#city_select').html('');
+              $('#location_lookup').val($(this).text());
+              $('#user_city_id').val($(this).attr('data-city-id'));
+            })
+          })
+        </script>
+
+        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 35px">
+        </ul>
+        <br><br>
 
 
-      <tr>
-        <td id="edit-profile">
-          <p>
-           <%= f.label :zip, 'Zip Code / Postal Code', :class => "form-question" %><br />
-           <%= f.text_field :zip, :class => "form-short-edit-profile"  %>
-          </p>
-          <br><br>
-        </td>
-        <td id="edit-profile">
-          <p>
-           <%= f.label :web, 'Website', :class => "form-question"  %><br />
-           <%= f.text_field :web, :class => "form-short-edit-profile"   %>
-          </p>
-          <br><br>
-        </td>
-      </tr>
+        <p>
+         <%= f.label :web, 'Website', :class => "form-question"  %><br />
+         <%= f.text_field :web, :class => "form-short-edit-profile"   %>
+        </p>
 
-      <tr>
-        <td id="edit-profile">
-          <p>
-           <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
-           <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
-          </p>
-          <br><br>
-        </td>
-        <td>
-          <p>
-            <% unless current_user.facebook? || current_account %>
-              <%= render :partial => 'users/facebook/connect_button' %>
-            <%- end -%>
-          </p>
-        </td>
-      </tr>
+        <p>
+         <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
+         <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
+        </p>
+        <br><br>
 
-      <tr>
-        <td id="edit-profile">
-          <p>
-           <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-           <%= f.file_field :photo %>
-          </p>
-          <br><br>
-        </td>
-      </tr>
+        <p>
+          <% unless current_user.facebook? || current_account %>
+            <%= render :partial => 'users/facebook/connect_button' %>
+          <%- end -%>
+        </p>
 
-      <tr>
-        <td id="edit-profile">
-          <p>
-           <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
-           <%= f.text_area :bio, :class => "form-med-with-margin" %>
-          </p>
-          <br><br>
-        </td>
-      </tr>
-    </table>
+        <p>
+         <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
+         <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
+        </p>
+
+      </div>
+
+      <div class="grid_7">
+        <p>
+         <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+         <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") if @user.photo.present? %>
+         <%= f.file_field :photo %>
+        </p>
+        <br><br>
+      </div>
+
+    </div>
 
 
-    <br>
-    <%= f.submit "Update", :class => "loginButton" %>
+        <br>
+        <%= f.submit "Update", :class => "loginButton" %>
 
-    <% end %>
+        <% end %>
+
+    
 
   </div>
 </div>

@@ -4,16 +4,18 @@
   a#schedule_class_link{font-family: 'BebasNeue'; font-size: 24px; line-height: 49px; color: #333; padding-left: 20px; }
   a#schedule_class_link:hover{color: #B91D7B; }
 
-- if current_account == Account.find(4)
+- if current_account == Account.where(:id => 4).first
 
   .middle#middle_events                       
     .page-section-float-left
       .welcome-header
         = "Your classes"
       .classRow
-        = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
+        - @classes_teaching = @user.courses_taught.in_account(current_account)
+        = render :partial => "classes_teaching"
           
-        = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
+        - @classes_taking = @user.courses_attended.in_account(current_account)
+        = render :partial => "classes_taking"
     
   = render :partial => 'sidebar'
 
@@ -59,7 +61,8 @@
             - else
               = "Classes #{@user.name} teaches"
           .classRow
-            = render :partial => "classes_teaching", :locals => {:classes_teaching => @user.recent_classes_as_teacher(current_account) + @user.past_classes_as_teacher(current_account)}
+            - @classes_teaching = @user.courses_taught.in_account(current_account)
+            = render :partial => "classes_teaching"
 
 
       #attending.section
@@ -70,17 +73,8 @@
             - else
               = "Classes #{@user.name} takes"
           .classRow
-            = render :partial => "classes_taking", :locals => {:classes_taking => @user.recent_classes_as_student(current_account) + @user.past_classes_as_student(current_account)}
-
-
-      #suggestions.section
-        .page-section-float-left
-          .welcome-header 
-            - if current_user == @user
-              = "Classes I suggested"
-            - else
-              = "Classes #{@user.name} suggested"
-          = render :partial => "suggestions", :locals => {:suggestions => @user.suggestions(current_account)}
+            - @classes_taking = @user.courses_attended.in_account(current_account)
+            = render :partial => "classes_taking"
  
 
   = render :partial => 'sidebar'

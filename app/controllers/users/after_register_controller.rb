@@ -1,6 +1,6 @@
 class Users::AfterRegisterController < Wicked::WizardController
   before_filter :authenticate_user!
-  steps :confirm_password, :confirm_zip, :confirm_avatar, :invite_fb
+  steps :confirm_password, :confirm_avatar, :invite_fb
 
 
   def show
@@ -12,8 +12,8 @@ class Users::AfterRegisterController < Wicked::WizardController
       else
         skip_step
       end
-    when :confirm_zip
-      skip_step if @user.zip.present?
+    # when :confirm_zip
+    #   skip_step if @user.zip.present?
     when :confirm_avatar
       skip_step if @user.photo?
     when :invite_fb

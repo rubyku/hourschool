@@ -25,7 +25,6 @@ feature "Acceptance courses#create" do
         click_link('createCourse')
         current_path.should == new_course_path
         fill_in 'course_title',       :with => course_stub.title
-        fill_in 'course_teaser',      :with => course_stub.teaser
         fill_in 'course_experience',  :with => course_stub.experience
         click_button 'Submit'
 
@@ -45,11 +44,15 @@ feature "Acceptance courses#create" do
         fill_in 'course_max_seats',   :with => course_stub.max_seats
 
 
-        select course_stub.date.year.to_s      , :from => 'course_date_1i' # 2011
-        select course_stub.date.strftime("%B") , :from => 'course_date_2i' # January
-        select course_stub.date.day.to_s       , :from => 'course_date_3i' # 18
+        select course_stub.starts_at.year.to_s      , :from => 'course_starts_at_1i' # 2011
+        select course_stub.starts_at.strftime("%B") , :from => 'course_starts_at_2i' # January
+        select course_stub.starts_at.day.to_s       , :from => 'course_starts_at_3i' # 18
 
-        fill_in 'course_time_range', :with => course_stub.time_range
+
+        select course_stub.ends_at.year.to_s      , :from => 'course_ends_at_1i' # 2011
+        select course_stub.ends_at.strftime("%B") , :from => 'course_ends_at_2i' # January
+        select course_stub.ends_at.day.to_s       , :from => 'course_ends_at_3i' # 18
+
 
         if course_stub.public?
           choose 'course_public_true'
