@@ -11,8 +11,4 @@ class HomeController < ApplicationController
     @fav4 = Course.find(237)
   end
 
-  def teach
-  end
-
-
 end
