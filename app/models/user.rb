@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   devise :omniauthable
 
-  validates :zip, :presence => true, :if => :active?
   attr_accessor :dont_send_reg_email
 
   validates_presence_of :name
