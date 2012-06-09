@@ -64,21 +64,11 @@
   
   <!-- Google Analytics Social Button Tracking -->
   <script type="text/javascript" src="https://s3.amazonaws.com/ha_js/ga_social_tracking.js"></script>
-  
-<%- end -%>
-
-
-<%- content_for :after_main do  -%>
-
-
-<%- end -%>
-
-<%# Admin Bar %>
-<%= content_for :first_inside_body do %>
 <%- end -%>
 
 <%= content_for :first_inside_body do %>
 
+  <%# Notice Bar %>
   <% if current_user && !current_user.confirmed? %>
     <div class='userConfirm'>
       <div class='container_16'>
@@ -97,8 +87,9 @@
     </div>
   <% end %>
 
+  <%# Header %>
   <% if community_site? %>
-   <%# do nothing %>
+    <%# do nothing %>
   <% elsif current_account == Account.where(:id => 1).first %>
     <%= render 'layouts/application/account_header/feastfordays' %>
   <% elsif current_account == Account.where(:id => 3).first %>
@@ -108,15 +99,15 @@
   <% else %>
     <%= render 'layouts/application/account_header/generic_account' %>
   <%- end -%>
-  
+
 <%- end -%>
 
-<%# Main Layout %>
-<%= render :layout => 'layouts/document' do %>
 
-<% if community_site? %>
+<%# Main Layout %>
+
+<%= render :layout => 'layouts/document' do %>
+  
   <%= render 'layouts/application/header' %>
-<% end %>
 
   <%# Flash %>
   <div class='container_16'>
@@ -136,18 +127,25 @@
       </div>
     <%- end -%>
   </div>
+  
+  <%# Page Content %>
+  <div class='container_16'>
 
-  <%# Main Content %>
-  <%= yield %>
-
-  <%# Sidebar %>
-  <% if content_for?(:sidebar) %>
-    <div class='sidebar'>
-      <div class='sidebar-content'>
-        <%= yield :sidebar %>
+    <%= yield %>
+  
+    <%# Sidebar %>
+    <% if content_for?(:sidebar) %>
+      <div class='sidebar'>
+        <div class='sidebar-content'>
+          <%= yield :sidebar %>
+        </div>
       </div>
-    </div>
-  <%- end -%>
+    <%- end -%>
+  </div>
+
+<%- end -%>
+
+<%- content_for :after_main do  -%>
 <%- end -%>
 
 <%= render 'layouts/application/footer' %>

@@ -1,10 +1,7 @@
 <div id="header">
   <div class="container_16">
+    <%= link_to "", root_path, :id => "logo" %>
 
-    <% if community_site? %>
-        <%= link_to "", root_path, :id => "logo" %>
-
-        <div class="container_16">
           
           <ul class="nav">
             <li class="nav"><%= link_to "Explore", learn_path, :class => "nav" %></li>
@@ -18,12 +15,8 @@
               <li class="nav"><%= link_to "Sign up", new_user_registration_path, :class => "nav" %></li>
             <% end %>
           </ul>
-        </div>
+
  
-      
-    <% end %>
-
-
   </div><!-- /end .container_16 -->
 
 </div><!-- /end #header -->

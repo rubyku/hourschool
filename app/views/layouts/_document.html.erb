@@ -42,11 +42,9 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <%= yield :first_inside_body %>
-    <div class="<%= content_for?(:main_class) ? yield(:main_class) :  "container_16 main clearfix" %>">
-      <%= yield :before_main %>
-      <%= yield %>
-      <%= yield :after_main %>
-    </div>
+      <div class="<%= content_for?(:main_class) ? yield(:main_class) :  "clearfix" %>">
+        <%= yield %>
+      </div>
     <%= yield :foot %>
     <%= yield :foot_libraries %>
     <%= yield :foot_scripts %>
