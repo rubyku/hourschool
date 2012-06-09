@@ -49,18 +49,18 @@
       %div.course_action
         - if can? :sign_up_for_course, course
           - if course.sold_out? || course.inactive?
-            / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
+            / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get
           - else 
             - if course.donate?
               = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
-              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "orange button #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - if can? :edit_course, course
           - if course.inactive?
-            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "register-class button"
+            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "orange button"
           - else
-            = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class button"
-            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class button"
+            = button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button"
+            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "grey button"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"

@@ -5,7 +5,11 @@
   float: left;
   width: 77px;
   height: 76px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  background: url( <%= asset_path 'v3/logo-black.png' %> );
+}
+
+#homepage #logo{
   background: url( <%= asset_path 'v3/logo-white.png' %> );
 }
 
@@ -26,6 +30,12 @@ li.nav{
 }
 
 a.nav{
+  color: black;
+  &:visisted{color: black;}
+  &:hover{color: black;}
+}
+
+#homepage a.nav{
   color: white;
   &:visisted{color: white;}
   &:hover{color: white;}

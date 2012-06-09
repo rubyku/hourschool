@@ -118,7 +118,7 @@
 </div>
 
 
-<br><br>
+<br><br><br>
 
   <% if current_account == Account.find(4) %>
     <%= f.submit "Submit", :style => "border: none;
@@ -138,7 +138,7 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
   <% else %>
-   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Submit" %>
+   <%= f.submit "Submit", :class => "orange button", :id => 'course_submit', :value => "Submit" %>
   <% end %>
 
 

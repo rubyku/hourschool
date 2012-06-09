@@ -1,5 +1,5 @@
 - if community_site?
-  .container_16.searchBar.clearfix
+  .searchBar.clearfix
     = form_tag courses_search_path(:all), :method => :get do
       = text_field_tag :q, request.params[:q], :class => 'searchForm', :placeholder => "Find a class to take"
       = submit_tag 'Search', :class => "searchButton"

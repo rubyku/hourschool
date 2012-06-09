@@ -34,7 +34,7 @@
        <div class="form-question">Price</div>
        <div class="form-question-tip">$ <%= @current_course.price %></div>
 
-      <%= button_to "Approve this course", approve_path(:id => @current_course.id), :class => "submit-proposal-button", :method => :put %>
+      <%= button_to "Approve this course", approve_path(:id => @current_course.id), :class => "orange button", :method => :put %>
       
     </div>
 

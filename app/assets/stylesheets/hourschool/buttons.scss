@@ -11,13 +11,25 @@
   @include hourschool-border-radius;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: inline-block;
   letter-spacing: 0.1em;
   text-align: center;
+  font-size: 12px;
   cursor: pointer;
 
-  &.register-class{
+  /*custom style*/
+
+  &.grey {
+  width: 84px;
+  height: 33px;
+  background-color: #666;
+  &:hover {
+    background-color: #a9a9a9; } 
+  }
+
+  &.orange{
     width: 220px;
     background-color: $hourschool-house-color;
     &:hover {
@@ -31,7 +43,16 @@
       background-color: #949393; } 
   }
 
-  &.edit-form{
+  &.preview-publish {
+  float: right;
+  width: 120px;
+  background-color: $hourschool-house-color;
+  margin-top: -7px;
+  &:hover {
+    background-color: #e46f28; } 
+  }
+
+  &.preview-edit{
     float: right;
     width: 120px;
     padding-top: 12px;
@@ -43,204 +64,39 @@
     &:hover {
       background-color: #949393; }
   }
-
-  .grey {
-    width: 84px;
-    height: 33px;
-    background-color: #666;
-    &:hover {
-      background-color: #a9a9a9; } }
-
-
-}
-
-
-.complete-class-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: left;
-  width: 170px;
-  margin-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  position: relative;
-  float: left;
-  overflow: visible;
-  z-index: 10;
-  margin-top: -90px;
-  cursor: pointer;
-  &:hover {
-    background-color: #e46f28; } }
-    
-.preview-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: right;
-  width: 120px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  margin-top: -7px;
-  cursor: pointer;
-  &:hover {
-    background-color: #e46f28; } }
-    
-.submit-proposal-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: left;
-  margin-top: 10px;
-  width: 220px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  &:hover {
-    background-color: #e46f28; } }
-
-
-
-.send-message-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  float: left;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  &:hover {
-    background-color: #e46f28; } }
-
-#tipboxButton {
-  margin-top: 10px;
-  padding: 7px;
-  text-align: center;
-  background-color: #a9a9a9;
-  color: white;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #949393; } }
-    
-a.button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  padding: 10px 12px;
-  text-decoration: none;
-  background-color: #81ae21;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  letter-spacing: 0.1em;
-  font-size: 11px; }
-      
-.invite-user-button {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  width: 160px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #ff7733;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  margin-bottom: 20px;
-  cursor: pointer; }
   
-.newsletterButton {
-  border: none;
-  background: #00B6FF;
-  color: #fff;
-  position: relative;
-  float: right;
-  width: 84px;
-  height: 33px;
-  background-color: #999;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  color: white;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  &:hover {
-    background-color: #949393;}
+  &.complete-profile {
+    width: 170px;
+    background-color: $hourschool-house-color;
+    overflow: visible;
+    z-index: 10;
+    margin-top: -90px;
+    &:hover {
+      background-color: #e46f28; } 
+  }  
+
+  &.newsletter {
+    float: right;
+    width: 120px;
+    background-color: #999;
+    &:hover {
+      background-color: #949393;}
+  }
+
+  &#tipbox {
+    width: 160px;
+    background-color: #a9a9a9;
+    &:hover {
+      background-color: #949393; } 
+  }
+
 }
+
+
+
+
+
+
+
+    
+ 
