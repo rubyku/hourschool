@@ -1,4 +1,4 @@
-class Admin::ChartsController < Admin::AdminController
+class Admin::MetricsController < Admin::AdminController
 
   def index
     

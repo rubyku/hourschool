@@ -1,7 +1,7 @@
 .modal
   .welcome-header Contact your students
 
-  = form_tag contact_all_students_send_path, :method => 'post' do
+  = form_tag course_attendee_contacts_path, :method => 'post'  do
     = hidden_field_tag 'id', @course.id
     .form-question= "Message or question for all the students of the #{@course.title} class:"
     = text_area_tag 'message', '', :class => 'form-tall'

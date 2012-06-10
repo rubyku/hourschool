@@ -124,7 +124,7 @@
   .wdb-right
     #wdb-preview-box
       #wdb-preview-header Preview your class
-      = button_to "Publish now!", confirm_path(@course), :class => "wdb-preview-button", :method => :put
+      = button_to "Publish now!", course_attendee_registration_path(@course), :class => "wdb-preview-button", :method => :put
       = button_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :method => :get
           
           

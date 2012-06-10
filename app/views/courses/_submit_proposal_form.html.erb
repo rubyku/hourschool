@@ -103,8 +103,45 @@
         <%= f.label :public, 'Private (ie. your house) *only students who have signed up will see the address'  %>
         </p>
         
-        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
-        <%= f.text_field :address, :class => "form-with-margin", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
+        <p>
+          <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
+          <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)" %>
+          <%= text_field_tag :location_lookup, "#{@course.city.try(:name)}, #{@course.city.try(:state)}" || "#{current_user.city.name}, #{current_user.city.state}", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile"  %>
+          <%= f.hidden_field :city_id %>
+        </p>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#location_lookup').keyup(function() {
+              jQuery.get('<%= cities_path(:format => :json) %>',
+                {q: $('#location_lookup').val()},
+                function(data){
+                  $('#city_select').html('');
+                  if (data.length == 0) {
+                    $('#city_select').append('<li>nothing found...</li>');
+                  } else {
+                    jQuery.each(data, function(index, value) {
+                      $('#city_select').append('<li class="select-a-city" data-city-id="' + value.city.id + '">' +
+                          value.city.name + ', ' + value.city.state +
+                        '</li>');
+                    });
+                  }
+                  
+                }
+              )
+            })
+
+            $('li.select-a-city').live("click", function() {
+              $('#city_select').html('');
+              $('#location_lookup').val($(this).text());
+              $('#course_city_id').val($(this).attr('data-city-id'));
+            })
+          })
+        </script>
+
+        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 65px">
+        </ul>
+        <br><br>
 </div>
 
 <div class="page-section-float-left">

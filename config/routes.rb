@@ -1,7 +1,5 @@
 HourschoolV2::Application.routes.draw do
 
-
-
   resources :tracks
 
   resources :cities, :only => [:index]
@@ -16,10 +14,8 @@ HourschoolV2::Application.routes.draw do
   end
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
-    resources :charts
-    namespace :charts do
-      resources :months
-    end
+    resources :courses
+    resources :metrics
   end
 
   resources :comments
@@ -32,7 +28,27 @@ HourschoolV2::Application.routes.draw do
   namespace :courses do
     resources :browse
     resources :search
+
+    # course_id is required
     resources :series, :except => :create
+  end
+
+  resources :courses
+  resources :courses, :module => 'courses' do # courses/:course_id
+    resources :organizer
+
+    resource  :duplicate
+    resources :feedback
+    resources :series,   :only => :create 
+    
+    namespace :attendee do
+      resources :contacts
+      resources :registrations
+    end
+
+    namespace :organizer do
+      resources :contacts
+    end
   end
 
   namespace :payments do
@@ -44,11 +60,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/payments/paypal/responses' => 'Payments::Paypal::Responses#create'
 
-  resources :courses do
-    resources :owner,     :controller => 'courses/owner'
-    resource  :duplicate, :controller => 'courses/duplicate'
-    resources :series,    :controller => 'courses/series', :only => :create
-  end
+
 
   devise_for :users, :controllers => { :omniauth_callbacks  => "users/omniauth_callbacks",
                                        :registrations       => "registrations",
@@ -68,8 +80,6 @@ HourschoolV2::Application.routes.draw do
     end
   end
 
-  ActiveAdmin.routes(self)
-
   scope :module => 'users' do
     resources :after_register, :only => [:show, :update]
   end
@@ -86,19 +96,13 @@ HourschoolV2::Application.routes.draw do
   match '/learn'                      => 'Courses::Browse#index'
   match '/suggest'                    => 'suggestions#suggest'
   match '/csvote'                     => 'suggestions#vote'
-  match '/register'                   => 'courses#register'
-  match '/drop'                       => 'courses#drop'
+
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
-  match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
-  match '/payment_preview'            => 'courses#register_preview'
   
   match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
   match '/approve'                    => 'courses#approve'
-
-  match '/courses-proposals'          => 'courses/admin#proposals', :as => 'course_proposals'
-  match '/courses-pending-live'       => 'courses/admin#pending_live', :as => 'course_pending_live'
 
   match '/users-table'                => 'users#table'
 
@@ -113,20 +117,12 @@ HourschoolV2::Application.routes.draw do
   match '/classes_taken'              => 'users#classes_taken'
   match '/classes_taught'             => 'users#classes_taught'
 
-  match '/contact'                    => 'home#contactus'
-  match '/search'                     => 'home#search'
-
   match '/nominate'                   => 'home#nominate'
   match '/nominate_send'              => 'home#nominate_send'
   match '/nominate_confirm'           => 'home#nominate_confirm'
   match '/nominate_reject'            => 'home#nominate_reject'
   match '/nominate_reject_send'       => 'home#nominate_reject_send'
-  match '/contact_teacher'            => 'courses#contact_teacher', :as => "contact_teacher"
-  match '/contact_teacher_send'       => 'courses#contact_teacher_send'
-  match '/contact_all_students'       => 'courses#contact_all_students'
-  match '/contact_all_students_send'  => 'courses#contact_all_students_send'
-  match '/feedback'                   => 'courses#feedback', :as => 'feedback'
-  match '/feedback_send'              => 'courses#feedback_send'
+  
 
   match '/business'                   => 'pages#show', :id => 'business'
   match '/about'                      => 'pages#show', :id => 'about'
