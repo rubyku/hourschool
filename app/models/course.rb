@@ -10,7 +10,7 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
-  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :time_range, :place_name, :min_seats, :unless => :proposal?
+  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
