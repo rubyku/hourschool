@@ -98,15 +98,11 @@ HourschoolV2::Application.routes.draw do
   match '/csvote'                     => 'suggestions#vote'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
-  match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
   
   match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
   match '/approve'                    => 'courses#approve'
-
-  match '/courses-proposals'          => 'courses/admin#proposals', :as => 'course_proposals'
-  match '/courses-pending-live'       => 'courses/admin#pending_live', :as => 'course_pending_live'
 
   match '/users-table'                => 'users#table'
 
