@@ -2,7 +2,7 @@
   .container_16.middle#middle_events
     .welcome-header= "Tell us how your #{@course.title} class went!"
 
-    = form_tag feedback_send_path, :method => 'post' do
+    = form_tag course_feedback_index_path, :method => 'post' do
       = hidden_field_tag 'id', @course.id
   
       - if @course.teacher == current_user
@@ -28,7 +28,7 @@
   .modal
     .welcome-header= "Tell us how your #{@course.title} class went!"
 
-    = form_tag feedback_send_path, :method => 'post' do
+    = form_tag course_feedback_index_path, :method => 'post' do
       = hidden_field_tag 'id', @course.id
     
       - if @course.teacher == current_user

@@ -53,6 +53,17 @@
         - else
           /do nothing
 
+      - if current_user == @user
+        #proposals.section
+
+        #approved.section
+          .page-section-float-left
+            .welcome-header 
+              = "Approved, pending live"
+            .classRow
+              - @classes_teaching = @user.courses_approved.in_account(current_account)
+              = render :partial => "classes_teaching"
+
       #teaching.section
         .page-section-float-left
           .welcome-header 
@@ -78,3 +89,5 @@
  
 
   = render :partial => 'sidebar'
+
+

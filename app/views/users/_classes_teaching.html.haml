@@ -54,7 +54,7 @@
             = link_to c.title, c
         .class-note
           .heading9-class 
-            = "Taught #{Course.where('title ilike ?', c.title).count} times"
+            = "Taught #{Course.where('title ilike ?', c.title).where(:status => 'live').count} times"
 
 
 

@@ -1,0 +1,78 @@
+<div class="full-page">
+  <div class="page-content">
+    
+    <% if current_user && admin_of_current_account? %> 
+      <%= render :partial => 'layouts/application/admin_bar' %>
+
+      <% if community_site? %>
+        <div class="heading15 marcomm"><%= link_to_function 'Total proposals: ', "$('.section').hide(); $('#proposals').show()" %><%= @proposals.count %></div>
+        <div class="heading15 marcomm"><%= link_to_function 'Total approved: ', "$('.section').hide(); $('#approved').show()" %><%= @approved.count %></div>
+        <div class="heading15 marcomm"><%= link_to_function 'Total live: ', "$('.section').hide(); $('#live').show()" %><%= @courses.count %></div>
+      <% else %>
+        <div class="heading15 marcomm">Total classes: <%= current_account.courses.count %></div><br>
+      <% end %>
+
+      <div id="proposals" class="section" style="display:none;">
+        <div class="heading15 marcomm">Proposals:</div>    
+        <% @proposals.each do |course| %> 
+          <div class="classBlock">
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Pending_Orange.png"), admin_course_path(:id => course.id) %>              
+            <div class="class-description">
+              <div class="heading13-class"><%= link_to course.title, admin_course_path(:id => course.id) %></div>
+              <p><%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
+              <p>Submitted on:<br>
+              <%= course.created_at.strftime("%b %d, %Y") %></p>
+            </div>
+          </div>
+        <% end %>   
+      </div>
+
+      <div id="approved" class="section" style="display:none;">
+        <div class="heading15 marcomm">Approved classes:</div>    
+        <% @approved.each do |course| %> 
+          <div class="classBlock">                   
+            <div class="class-description">
+              <div class="heading13-class"><%= link_to course.title, course %></div>
+              <p><%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
+              <p>Approval on:<br>
+              <%= course.updated_at.strftime("%b %d, %Y") %></p>
+              <p><%= image_tag "v2/arrow_orange_pointright.png", :class => "view-more-arrow" %> <%= link_to 'Finish profile', edit_course_path(course) %><br>
+              <%= image_tag "v2/arrow_orange_pointright.png", :class => "view-more-arrow" %> <%= link_to 'Email teacher', "mailto: #{course.teacher.email}" %></p>
+            </div>
+          </div>
+        <% end %>   
+      </div>
+
+      <div id="live" class="section" style="display:none;">
+        <div class="heading15 marcomm">Live classes:</div>
+        <% @courses.each do |course| %> 
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <%= image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow' %>
+                     
+            <div class="class-description">
+              <div class="heading13-class"><%= link_to course.title, course %></div>
+              <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
+              Date: <%= course.starts_at.strftime("%a %b %d, %Y") %><br>
+              Attendance: <%= course.students.count %> out of <%= course.max_seats %><br>
+              <% if course.status == 'proposal' %>
+                (<%= link_to 'approve', proposal_path(:id => course.id) %>)
+              <% end %>
+              <br>
+              <%= link_to 'Edit', edit_course_path(course) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    <% else %>
+      Sorry, you don't have admin access to this page. <br>
+      Have a question? Please email us at hello at hourschool dot com.
+    <% end %>
+
+  </div>
+</div>

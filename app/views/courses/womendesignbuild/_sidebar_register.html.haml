@@ -54,7 +54,7 @@
           = button_to "Teach this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
         - else
           = button_to "Edit class details",           edit_course_path, :method => :get, :class => "wdb-edit-class-button"
-          = button_to "Cancel this Class",            course_owner_path(course, :cancel), :method => :get, :class => "wdb-edit-class-button"
+          = button_to "Cancel this Class",            course_organizer_path(course, :cancel), :method => :get, :class => "wdb-edit-class-button"
       
     .class-alternatives
       = "This class has a min. of #{course.min_seats}"
@@ -69,7 +69,7 @@
             .wdb-section-heading Students (#{course.students.count})
           - if course.has_teacher?(current_user)
             = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-            = link_to "Email students", contact_all_students_path(:id => course), :class => "contact-link"
+            = link_to "Email students", new_course_attendee_contact_path(course), :class => "contact-link"
           .class-attendance-block
             - course.students.each do |student|
               %table

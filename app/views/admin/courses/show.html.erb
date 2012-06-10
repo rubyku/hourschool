@@ -1,0 +1,42 @@
+<div class="page">
+  <div class="page-content">
+
+    <div class="page-section-float-left">
+
+       <div class="form-question">Proposal's Topic:</div>
+       <div class="form-question-tip"><%= @course.title %></div>
+       
+       <div class="form-question">Proposal's Description:</div>
+       <div class="form-question-tip"><p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p></div>
+    
+       <div class="form-question">Teacher/host's name:</div>
+       <div class="form-question-tip"><%= @course.teacher.name %></div> 
+        
+       <div class="form-question">Teacher/host's city:</div>
+       <div class="form-question-tip"><%= @course.city.name %></div> 
+       
+       <div class="form-question">About the teacher/host</div>
+       <div class="form-question-tip"><%= @course.experience %></div>
+       
+       <div class="form-question">Capacity</div>
+       <div class="form-question-tip">A minimum of <%= @course.min_seats %></div>
+       <div class="form-question-tip">A maximum of <%= @course.max_seats %></div>
+
+       <div class="form-question">Date & Time</div>
+       <div class="form-question-tip"><%= @course.starts_at.strftime("%a %b %d, %Y") %></div>
+       <div class="form-question-tip"><%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %></div>
+       
+       <div class="form-question">Location</div>
+       <div class="form-question-tip">Pubic location? <%= @course.public %></div>
+       <div class="form-question-tip"><%= @course.place_name %></div>
+       <div class="form-question-tip"><%= @course.address %></div>
+  
+       <div class="form-question">Price</div>
+       <div class="form-question-tip">$ <%= @course.price %></div>
+
+      <%= button_to "Approve this course", admin_course_path(:course_id => @course), :class => "submit-proposal-button", :method => :put %>
+      
+    </div>
+
+  </div>
+</div>
