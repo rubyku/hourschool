@@ -113,6 +113,7 @@
                 - if @course.public?
                   .class-sidebar-details
                     = @course.address
+                    = "#{@course.city.name}, #{@course.city.state}"
                 - else
                   %p= "Private Address"
 
