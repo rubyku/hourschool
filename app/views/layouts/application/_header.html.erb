@@ -11,8 +11,8 @@
     <div id="login">
       <ul id="login">
           <% if user_signed_in? %>
-            <% if current_user.city.name? && community_site? %>
-              <li id="login_peerlearning">Peer learning in <%= current_user.city.name %></li>
+            <% if current_user.city.try(:name)? && community_site? %>
+              <li id="login_peerlearning">Peer learning in <%= current_user.city.try(:name) %></li>
             <% end %>
            
             <li id="login">

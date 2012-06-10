@@ -4,7 +4,7 @@
       %li
         .sidebar-heading My Location
         - if current_user.city
-          %li= link_to "#{current_user.city.try(:name)}, #{current_user.city.try(:state)}", courses_browse_path(:upcoming, :city => current_user.city.name)
+          %li= link_to "#{current_user.city.try(:name)}, #{current_user.city.try(:state)}", courses_browse_path(:upcoming, :city => current_user.city.try(:name))
         - else
           // set my location
     

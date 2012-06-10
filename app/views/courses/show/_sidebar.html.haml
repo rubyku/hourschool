@@ -35,7 +35,7 @@
             - if course.public?
               .class-sidebar-details
                 = course.address
-                = "#{course.city.name}, #{course.city.state}"
+                = "#{course.city.try(:name)}, #{course.city.try(:state)}"
             - else
               %p= "Private Address"
 
