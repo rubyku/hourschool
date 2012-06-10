@@ -123,11 +123,11 @@ class Course < ActiveRecord::Base
   end
 
   def self.active
-    live.where('date <= ?', 1.year.from_now.to_date).where('date >= ?', Date.today)
+    live.where('starts_at <= ?', 1.year.from_now.to_date).where('starts_at >= ?', Date.today)
   end
 
   def self.past
-    where(:status => 'live').where("DATE(date) < (?)", Time.current)
+    where(:status => 'live').where("DATE(starts_at) < (?)", Time.current)
   end
 
   def inactive?
@@ -141,8 +141,8 @@ class Course < ActiveRecord::Base
   alias :full?    :sold_out?
 
   def active?
-    return false if date.blank?
-    self.date < 1.year.from_now.to_date && self.date >= Date.today
+    return false if starts_at.blank?
+    self.starts_at < 1.year.from_now.to_date && self.starts_at >= Date.today
   end
 
   def self.active_tags
@@ -232,15 +232,15 @@ class Course < ActiveRecord::Base
   end
 
    def future?
-     date - Date.today > 0
+     starts_at - Date.today > 0
    end
 
    def today?
-     date - Date.today == 0
+     starts_at - Date.today == 0
    end
 
    def past?
-     date - Date.today < 0
+     starts_at - Date.today < 0
    end
 
 
@@ -287,7 +287,7 @@ class Course < ActiveRecord::Base
    end
 
    def not_past_date
-     if self.date < Date.today
+     if self.starts_at < Date.today
        errors.add(:starts_at, 'is in the past')
      end
    end
