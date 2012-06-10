@@ -6,7 +6,7 @@
   .page-section-float-left
     #preview-box
       .preview-header Preview before this goes live!
-      = button_to "Publish now!", confirm_path(@course), :class => "preview-button", :method => :put
+      = button_to "Publish now!", course_attendee_registration_path(@course), :class => "preview-button", :method => :put
       = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :method => :get
 
     - if community_site?
@@ -128,7 +128,7 @@
             .sidebar-heading Teacher
           - if @course.teacher != current_user
             = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-            = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
+            = link_to "Email teacher", new_course_organizer_contact_path(@course), :class => "contact-link"
           .class-attendance-block
             %table
               %tr
@@ -156,7 +156,7 @@
                 .sidebar-heading Students (#{@course.students.count})
             - if @course.has_teacher?(current_user)
               = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-              = link_to "Email students", contact_all_students_path(:id => @course), :class => "contact-link"
+              = link_to "Email students", new_course_attendee_contact_path(@course), :class => "contact-link"
             .class-attendance-block
               - @course.students.each do |student|
                 %table

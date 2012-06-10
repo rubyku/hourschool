@@ -70,7 +70,7 @@ feature "Acceptance courses#create" do
 
         click_button 'Publish now!'
 
-        current_path.should == confirm_path(@course)
+        current_path.should == course_attendee_registration_path(@course)
         successfully_renders
 
         @course = Course.where(:title => course_stub.title).last

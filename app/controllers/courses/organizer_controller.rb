@@ -1,8 +1,8 @@
-class Courses::OwnerController < ApplicationController
+class Courses::OrganizerController < ApplicationController
   before_filter :find_course
 
   def show
-    render "courses/owner/show/#{params[:id]}"
+    render "courses/organizer/show/#{params[:id]}"
   end
 
   def update

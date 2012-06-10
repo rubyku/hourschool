@@ -121,7 +121,7 @@
               .wdb-section-heading Students (#{@course.students.count})
             - if @course.has_teacher?(current_user)
               = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-              = link_to "Email students", contact_all_students_path(:id => @course), :class => "contact-link"
+              = link_to "Email students", new_course_attendee_contact_path(@course), :class => "contact-link"
             .class-attendance-block
               - @course.students.each do |student|
                 %table

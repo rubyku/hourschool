@@ -139,7 +139,7 @@
     .class-attendance-block
       - if @course.teacher != current_user
         = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", contact_teacher_path(:id => @course), :class => "contact-link"
+        = link_to "Email teacher", new_course_organizer_contact_path(@course), :class => "contact-link"
 
 
 
