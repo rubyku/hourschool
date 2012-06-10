@@ -13,6 +13,7 @@ class Courses::BrowseController < ApplicationController
       @courses = @courses.where(:account_id => current_account.id)
     end
     @courses = @courses.paginate(:page => params[:page], :per_page => 9)
+
   end
 
 

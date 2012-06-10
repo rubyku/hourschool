@@ -35,6 +35,7 @@
             - if course.public?
               .class-sidebar-details
                 = course.address
+                = "#{course.city.name}, #{course.city.state}"
             - else
               %p= "Private Address"
 
@@ -52,15 +53,15 @@
             / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
           - else 
             - if course.donate?
-              = button_to " ",                          payment_preview_path(:id => course), :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to " ",                          new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
-              = button_to "Register for this session",    payment_preview_path(:id => course), :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
         - if can? :edit_course, course
           - if course.inactive?
             = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "register-class-button"
           - else
             = button_to "Edit details",           edit_course_path, :method => :get, :class => "edit-class-button"
-            = button_to "Cancel this session",            course_owner_path(course, :cancel), :method => :get, :class => "edit-class-button"
+            = button_to "Cancel this session",            course_organizer_path(course, :cancel), :method => :get, :class => "edit-class-button"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"
@@ -72,7 +73,7 @@
 
     .sidebar-block
       .class-section-heading Past Dates
-      - Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').each do |course|
+      - Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").each do |course|
         %p= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course
 
 
@@ -84,7 +85,7 @@
         .sidebar-heading Teacher
       - if course.teacher != current_user
         = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", contact_teacher_path(:id => course), :class => "contact-link"
+        = link_to "Email teacher", new_course_organizer_contact_path(@course), :class => "contact-link"
       .class-attendance-block
         %table
           %tr
@@ -112,7 +113,7 @@
             .sidebar-heading Students (#{course.students.count})
         - if course.has_teacher?(current_user)
           = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-          = link_to "Email students", contact_all_students_path(:id => course), :class => "contact-link"
+          = link_to "Email students", new_course_attendee_contact_path(@course), :class => "contact-link"
         .class-attendance-block
           - course.students.each do |student|
             %table
@@ -125,8 +126,8 @@
 
 
 // Feedback link on the admin bar
-- content_for :admin_action do
-  = link_to "Feedback form", feedback_path(:id => course)
+//- content_for :admin_action do
+//  = link_to "Feedback form", feedback_path(:id => course)
 
 
 
@@ -141,7 +142,7 @@
 
   %div
     %br
-    = button_to "Signup", payment_preview_path(:id => course.to_params), :class => "loginButton"
+    = button_to "Signup", new_course_attendee_registration_path(:course_id => course), :class => "loginButton"
 
 
 // Show the modal window if a person tries to register for a course too far away from them

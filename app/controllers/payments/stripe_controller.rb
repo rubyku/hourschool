@@ -1,0 +1,3 @@
+class StripeController < ApplicationController
+
+end
