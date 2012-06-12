@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @pre_mission_signup.email %>
+</p>
+
+<p>
+  <b>Mission:</b>
+  <%= @pre_mission_signup.mission %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @pre_mission_signup.description %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @pre_mission_signup.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_pre_mission_signup_path(@pre_mission_signup) %> |
+<%= link_to 'Back', pre_mission_signups_path %>

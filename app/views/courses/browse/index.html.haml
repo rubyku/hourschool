@@ -6,6 +6,13 @@
   .page
     .page-content
 
+      %div{:style => "float: left; width: 150px; height: 150px; margin-right: 10px; background-color: grey"}
+      %div{:style => "float: left; width: 150px; height: 150px; margin-right: 10px; background-color: grey"}
+      %div{:style => "float: left; width: 150px; height: 150px; margin-right: 10px; background-color: grey"}
+
+  .page
+    .page-content
+
       = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
 
         - if !community_site? && current_account.courses.first.blank?
@@ -21,6 +28,3 @@
             %tr
               %td
                 = will_paginate @courses, :previous_label => "Prev" 
-
-  - content_for :sidebar do
-    = render :partial => 'courses/browse/sidebar'
