@@ -71,9 +71,9 @@
         .sidebar-block-last
           = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
-    .sidebar-block
-      - @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id)
-      - if @past_dates.any?
+    - @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id)
+    - if @past_dates.any?
+      .sidebar-block
         .class-section-heading Past Dates
         - @past_dates.each do |course|
           %p= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course
