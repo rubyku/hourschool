@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605141008) do
+ActiveRecord::Schema.define(:version => 20120612154530) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -241,6 +241,22 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
 
   add_index "memberships", ["account_id"], :name => "index_memberships_on_account_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
+  create_table "missions", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "account_id"
+    t.integer  "city_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "missions", ["account_id"], :name => "index_missions_on_account_id"
+  add_index "missions", ["city_id"], :name => "index_missions_on_city_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id_id"

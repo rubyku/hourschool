@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :missions
+
   resources :tracks
 
   resources :cities, :only => [:index]
