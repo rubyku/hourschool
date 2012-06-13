@@ -6,55 +6,101 @@
     <!-- Section 1 -->
     <div style="float: left; width: 300px; margin-right: 25px;">
 
-      <div style="float: left; width: 300px; height: 225px; background-color: grey; margin-bottom: 15px"></div>
+      <div style="background-color: #ff7733; height: 7px; margin-top: -7px"></div> 
+      <div style="float: left; width: 300px; margin-bottom: 25px; background-color: white; text-align: center; padding-top: 15px; padding-bottom: 15px">
+        
+          <%= image_tag "v3/homepage/mission-star.png" %>
+          <p class="prompt-text">What is one thing you want to accomplish by the end of the year?</p>
 
-      <div style="float: left; width: 300px; height: 180px; background-color: grey; margin-bottom: 20px"></div>
+          <p>   
+           <%= text_field_tag :prompt, "", :class => "form", :style => "width: 70%; margin-left: 40px" %>
+          </p>
 
-      <div style="float: left; width: 300px; height: 60px; background-color: grey"></div>
+          <%= button_to "Let us know", "", :class => "orange button" %>
+      </div>
+
+      <div style="float: left; width: 300px; height: 170px; margin-bottom: 20px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center; padding-top: 30px">
+          <div class="heading14">Already have a <br>mission in mind you <br>want to create?</div>
+          <br>
+          <%= button_to "Launch a new mission", "", :class => "orange button" %>
+      </div>
 
     </div><!-- End Section 1 -->
 
     <!-- Section 2 -->
     <div style="float: left; width: 630px;">
 
-      <div style="float: left; width: 630px; height: 400px; background-color: grey; margin-top: 30px"></div>
+      <div style="float: left; width: 630px; height: 400px;">
+        <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path %>
+      </div>
 
-      <div style="float: left; width: 630px; height: 70px; background-color: white"></div>
+      <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
+        <div class="heading11" id="explore">Launching the So Good Network</div>
+        <div class="title-text" id="explore">Build a growing community of socially-minded folks.</div>
+      </div>
 
     </div><!-- End Section 2 -->
 
     <!-- Section 3 -->
     <div style="float: left; width: 960px; margin-top: 30px; margin-bottom: 30px">
 
-      <div style="float: left; width: 960px; height: 180px; background-color: grey;"></div>
+      <div style="float: left; width: 960px; height: 180px;">
+        <%= image_tag 'v3/explore/mission-foodTruck.png' %>
+      </div>
 
-      <div style="float: left; width: 960px; height: 70px; background-color: white;"></div>
+      <div style="float: left; width: 945px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+
+        <div class="heading11" id="explore">Opening a food truck</div>
+        <div class="title-text" id="explore">It's been a dream of mine to open a food truck in Austin. I know food but don't know how to begin.</div>
+
+      </div>
 
     </div><!-- End Section 3 -->
 
     <!-- Section 4 -->
     <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
 
-      <div style="float: left; width: 300px; height: 180px; background-color: grey; margin-right: 30px;"></div>
+      <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
+        <%= image_tag 'v3/explore/mission-bikeAcrossFrance.png' %>
+      </div>
 
-      <div style="float: left; width: 300px; height: 180px; background-color: grey;"></div>
+      <div style="float: left; width: 300px; height: 180px;">
+        <%= image_tag 'v3/explore/mission-greenHouse.png' %>
+      </div>
 
-      <div style="float: left; width: 300px; height: 70px; background-color: white; margin-right: 30px; margin-bottom: 30px"></div>
+      <div style="float: left; width: 285px; height: 60px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="heading11" id="explore">Bicycling across France</div>
+        <div class="title-text" id="explore">I want to bike across France.</div>
+      </div>
 
-      <div style="float: left; width: 300px; height: 70px; background-color: white; margin-bottom: 30px"></div>
+      <div style="float: left; width: 285px; height: 60px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="heading11" id="explore">A more energy efficient house</div>
+        <div class="title-text" id="explore">Starting small and cheap</div>
+      </div>
 
-      <div style="float: left; width: 630px; height: 180px; background-color: grey"></div>
-      <div style="float: left; width: 630px; height: 70px; background-color: white;"></div>
+      <div style="float: left; width: 630px; height: 180px;">
+        <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
+      </div>
+
+      <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="heading11" id="explore">Learning about interaction design</div>
+        <div class="title-text" id="explore">I want to learn more about how to think like an interaction designer</div>
+      </div>
 
     </div><!-- End section 5 left -->
 
     <!-- Section 6 right -->
-    <div style="float: left; width: 300px; height: 530px; background-color: white; overflow:scroll;">
+    <div style="float: left; width: 285px; height: 530px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding-left: 15px">
 
-      <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-      <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-      <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-      <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
+      <div class="heading11">Looking for an old class?</div>
+
+      <% @courses.each do |course| %>
+        <div class="heading13-class">
+          <%= link_to (image_tag(course.photo.url(:small), :size => "85x85")), course %>
+          <%= link_to course.title.truncate(40), course %>
+        </div>
+      <% end %> 
+
       <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
       <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
       <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>

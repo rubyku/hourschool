@@ -36,6 +36,16 @@
   &.marcomm{color: #e4652f;}
   &.campaign-greendoors{color: #5b7020;} }
 
+
+.heading14{
+  @include hourschool-heading;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+}
+
 .heading13-class {
   color: #ff7733;
   font-family: futura-pt-1, futura-pt-2;
@@ -60,6 +70,15 @@
   @include hourschool-heading;
   font-size: 11px;
   letter-spacing: 0.2em;
+  color: #333333;
+
+  &#homepage {
+    margin-bottom: 10px;
+  }
+
+  &#explore {
+    margin-bottom: 5px;
+  }
 }
 
 .heading10 {

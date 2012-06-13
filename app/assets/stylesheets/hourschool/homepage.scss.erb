@@ -15,7 +15,6 @@
 
 #homepage .featured {
   position: relative;
-  margin-top: 40px;
   margin-bottom: 60px; }
 
 #homepage_headline{
@@ -34,15 +33,24 @@
 }
 
 .brand_bg {
-  margin-top: -48px;
+  margin-top: -18px;
   background-color: $hourschool-house-color;
   height: 7px; }
 
 .prompt-box{
   text-align: center;
-  padding: 15px;
-  height: 220px;
+  padding: 20px;
   opacity: 0.85;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+}
+
+#homepage .content-right{
+  margin-top: 40px;
+  float :left;
+  width: 570px;
+  padding: 40px 30px 40px 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
@@ -57,33 +65,27 @@ p.prompt-text{
   margin: 10px 0px 20px 0px;
 }
 
-#homepage .content-right{
-  float :left;
-  width: 570px;
-  padding: 40px 30px 40px 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
-  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
-}
-
-#homepage p.big-text{
+.title-text{
   font-family: Georgia;
-  font-size: 26px;
-  color: #666;
-  line-height: 34pt;
-  margin-bottom: 20px;
+
+  &#homepage{
+    font-size: 26px;
+    color: #666;
+    line-height: 34pt;
+    margin-bottom: 20px;
+  }
+
+  &#explore{
+    font-size: 20px;
+    color: $hourschool-house-color;
+  }
 }
 
-#homepage p.body-text{
+#homepage .body-text{
   font-family: Georgia;
   font-size: 16px;
   color: #333;
   line-height: 20pt;
-}
-
-#homepage .heading11{
-  color: #333;
-  margin-bottom: 10px;
 }
 
 .white {
