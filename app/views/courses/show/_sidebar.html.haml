@@ -144,7 +144,7 @@
 
   %div
     %br
-    = button_to "Signup", new_course_attendee_registration_path(:course_id => course), :class => "loginButton"
+    = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get
 
 
 // Show the modal window if a person tries to register for a course too far away from them
