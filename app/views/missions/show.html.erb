@@ -17,3 +17,9 @@
   <%= @mission.city.name %>
 </p>
 
+<p>
+  <b>Topics:</b>
+  <% @mission.topics.each do |topic| %>
+    <%= topic.title %>, added by <%= topic.user.name %>
+  <% end %>
+</p>

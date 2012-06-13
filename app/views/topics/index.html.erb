@@ -4,8 +4,6 @@
   <tr>
     <th>Title</th>
     <th>User</th>
-    <th>Type</th>
-    <th>Follow</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +13,8 @@
   <tr>
     <td><%= topic.title %></td>
     <td><%= topic.user %></td>
-    <td><%= topic.type %></td>
-    <td><%= topic.follow %></td>
-    <td><%= link_to 'Show', topic %></td>
-    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+    <td><%= link_to 'Show', mission_topic_path %></td>
+    <td><%= link_to 'Edit', edit_mission_topic_path(topic) %></td>
     <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
@@ -26,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Topic', new_topic_path %>
+<%= link_to 'New Topic', new_mission_topic_path %>

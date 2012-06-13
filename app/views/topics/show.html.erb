@@ -7,9 +7,5 @@
 
 <p>
   <b>User:</b>
-  <%= @topic.user.inspect %>
+  <%= @topic.user.name %>
 </p>
-
-
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
