@@ -1,0 +1,32 @@
+<%= form_for(@topic) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.radio_button :type, true, :checked => true %>
+    <%= f.label :type, 'I can teach this' %>
+    <%= f.radio_button :type, false %>
+    <%= f.label :type, 'I want to take this' %>
+  </div>
+  <div class="field">
+    <%= f.label :follow %><br />
+    <%= f.check_box :follow %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

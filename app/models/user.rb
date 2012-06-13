@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   belongs_to :city
 
+  has_many :topics
+
   has_many :memberships
   has_many :accounts, :through => :memberships
 

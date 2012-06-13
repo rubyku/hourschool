@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :topics
+
   resources :missions
 
   resources :tracks

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612154530) do
+ActiveRecord::Schema.define(:version => 20120613032905) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -276,6 +276,17 @@ ActiveRecord::Schema.define(:version => 20120612154530) do
     t.datetime "updated_at"
   end
 
+  create_table "pre_mission_signups", :force => true do |t|
+    t.string   "email"
+    t.string   "mission"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "pre_mission_signups", ["user_id"], :name => "index_pre_mission_signups_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -364,6 +375,17 @@ ActiveRecord::Schema.define(:version => 20120612154530) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.boolean  "type"
+    t.boolean  "follow"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
 
   create_table "tracks", :force => true do |t|
     t.string   "title"

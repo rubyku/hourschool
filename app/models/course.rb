@@ -3,6 +3,8 @@ class Course < ActiveRecord::Base
   belongs_to :series
   belongs_to :account
 
+  has_many :topics
+
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
   alias_attribute :name, :title
