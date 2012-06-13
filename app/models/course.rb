@@ -4,7 +4,7 @@ class Course < ActiveRecord::Base
   belongs_to :account
   belongs_to :mission
 
-  has_many :topics
+  has_and_belongs_to_many :topics
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
