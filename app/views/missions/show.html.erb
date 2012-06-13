@@ -20,11 +20,13 @@
 <hr>
 
 <p>
-  <b>Topics:</b><br>
+  <b>Topics:</b>
+  <%= button_to "Add New Topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
+  <br>
   <% @mission.topics.each do |topic| %>
-    <%= topic.title %>, added by <%= topic.user.name %><br>
+    <%= topic.title %>, added by <%= topic.user.name %>, <%= button_to "Organize something for this topic", new_course_path(:topic_id => topic), :method => :get %>
+    <br>
   <% end %>
-  <%= button_to "Add topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
 </p>
 
 <hr>
@@ -38,9 +40,9 @@
 <p>
   <b>Events:</b><br>
     <% @courses.each do |course| %>
-    <%= course.title %><br>
+    <%= link_to course.title, course %><br>
   <% end %>
-  <%= button_to "Create event", new_course_path(:mission_id => @mission), :method => :get %>
+  <%= button_to "Create New Event", new_course_path(:mission_id => @mission), :method => :get %>
 </p>
 <hr>
 
@@ -49,7 +51,6 @@
   <% @users.each do |user| %>
     <%= user.name %><br>
   <% end %>
-  <%= button_to "Add topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
 </p>
 
 
