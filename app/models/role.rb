@@ -1,9 +1,10 @@
 class Role < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
+  belongs_to :mission
 
-  validates :course_id, :presence => true
-  validates :user_id,   :presence => true, :uniqueness => { :scope => :course_id }
+  #validates :course_id, :presence => true
+  #validates :user_id,   :presence => true, :uniqueness => { :scope => :course_id }
 
   after_create :notify_followers
 

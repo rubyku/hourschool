@@ -1,8 +1,9 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
+  belongs_to :mission
 
-  validates :course_id, :presence => true
+  #validates :course_id, :presence => true
   validates :user_id,   :presence => true
 
   def body_with_links

@@ -17,9 +17,39 @@
   <%= @mission.city.name %>
 </p>
 
+<hr>
+
 <p>
-  <b>Topics:</b>
+  <b>Topics:</b><br>
   <% @mission.topics.each do |topic| %>
-    <%= topic.title %>, added by <%= topic.user.name %>
+    <%= topic.title %>, added by <%= topic.user.name %><br>
   <% end %>
+  <%= button_to "Add topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
 </p>
+
+<hr>
+
+<p>
+  <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+</p>
+
+<hr>
+
+<p>
+  <b>Events:</b><br>
+    <% @courses.each do |course| %>
+    <%= course.title %><br>
+  <% end %>
+  <%= button_to "Create event", new_course_path(:mission_id => @mission), :method => :get %>
+</p>
+<hr>
+
+<p>
+  <b>Crew:</b><br>
+  <% @users.each do |user| %>
+    <%= user.name %><br>
+  <% end %>
+  <%= button_to "Add topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
+</p>
+
+

@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
 
   has_many :roles,   :dependent => :destroy
   has_many :courses, :through => :roles
+  has_many :missions, :through => :roles
   has_many :courses_taught,   :through => :roles, :conditions => ["roles.name = (?) and status = 'live'", "teacher"], :source => :course
   has_many :courses_approved, :through => :roles, :conditions => ["roles.name = (?) and status = 'approved'", "teacher"], :source => :course
   has_many :courses_attended, :through => :roles, :conditions => ["roles.name = (?)", "student"], :source => :course

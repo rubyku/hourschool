@@ -14,6 +14,8 @@ class MissionsController < ApplicationController
   # GET /missions/1.json
   def show
     @mission = Mission.find(params[:id])
+    @users = Mission.find(params[:id]).users
+    @courses = Mission.find(params[:id]).courses
 
     respond_to do |format|
       format.html # show.html.erb
