@@ -25,11 +25,6 @@ class PreMissionSignupsController < ApplicationController
   # GET /pre_mission_signups/new.json
   def new
     @pre_mission_signup = PreMissionSignup.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @pre_mission_signup }
-    end
   end
 
   # GET /pre_mission_signups/1/edit

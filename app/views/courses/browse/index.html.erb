@@ -31,7 +31,7 @@
     <div style="float: left; width: 630px;">
 
       <div style="float: left; width: 630px; height: 400px;">
-        <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path %>
+        <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network') %>
       </div>
 
       <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
@@ -45,7 +45,7 @@
     <div style="float: left; width: 960px; margin-top: 30px; margin-bottom: 30px">
 
       <div style="float: left; width: 960px; height: 180px;">
-        <%= image_tag 'v3/explore/mission-foodTruck.png' %>
+        <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck') %>
       </div>
 
       <div style="float: left; width: 945px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
