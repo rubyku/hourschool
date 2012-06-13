@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = @mission.topic.find(params[:id])
+    @topic = @mission.topics.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    @topic = @mission.topic.new
+    @topic = @mission.topics.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,15 +36,14 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-    @topic = @mission.topic.find(params[:id])
+    @topic = @mission.topics.find(params[:id])
   end
 
   # POST /topics
   # POST /topics.json
   def create
-    @topic = @mission.topic.new(params[:topic])
+    @topic = @mission.topics.new(params[:topic])
     @topic.user = current_user
-    @topic.mission = c
 
     respond_to do |format|
       if @topic.save
@@ -60,7 +59,7 @@ class TopicsController < ApplicationController
   # PUT /topics/1
   # PUT /topics/1.json
   def update
-    @topic = @mission.topic.find(params[:id])
+    @topic = @mission.topics.find(params[:id])
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
@@ -76,7 +75,7 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @topic = @mission.topic.find(params[:id])
+    @topic = @mission.topics.find(params[:id])
     @topic.destroy
 
     respond_to do |format|
@@ -87,6 +86,6 @@ class TopicsController < ApplicationController
 
   private
   def find_mission
-    @mission = Mission.find(params[:id])
+    @mission = Mission.find(params[:mission_id])
   end
 end
