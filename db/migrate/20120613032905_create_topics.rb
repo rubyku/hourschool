@@ -3,10 +3,10 @@ class CreateTopics < ActiveRecord::Migration
     create_table :topics do |t|
       t.string :title
       t.references :user
-      t.boolean :type
-      t.boolean :follow
+      t.references :mission
       t.timestamps
     end
     add_index :topics, :user_id
+    add_index :topics, :mission_id
   end
 end

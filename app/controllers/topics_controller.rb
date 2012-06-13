@@ -1,8 +1,10 @@
 class TopicsController < ApplicationController
+  before_filter :find_mission
+
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @topics = @mission.topics.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @topic = Topic.find(params[:id])
+    @topic = @mission.topic.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.json
   def new
-    @topic = Topic.new
+    @topic = @mission.topic.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,14 +36,15 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-    @topic = Topic.find(params[:id])
+    @topic = @mission.topic.find(params[:id])
   end
 
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(params[:topic])
-    @user = current_user
+    @topic = @mission.topic.new(params[:topic])
+    @topic.user = current_user
+    @topic.mission = c
 
     respond_to do |format|
       if @topic.save
@@ -57,7 +60,7 @@ class TopicsController < ApplicationController
   # PUT /topics/1
   # PUT /topics/1.json
   def update
-    @topic = Topic.find(params[:id])
+    @topic = @mission.topic.find(params[:id])
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
@@ -73,12 +76,17 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @topic = Topic.find(params[:id])
+    @topic = @mission.topic.find(params[:id])
     @topic.destroy
 
     respond_to do |format|
       format.html { redirect_to topics_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def find_mission
+    @mission = Mission.find(params[:id])
   end
 end

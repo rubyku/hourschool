@@ -17,14 +17,10 @@
   </div>
 
   <div class="field">
-    <%= f.radio_button :type, true, :checked => true %>
-    <%= f.label :type, 'I can teach this' %>
-    <%= f.radio_button :type, false %>
-    <%= f.label :type, 'I want to take this' %>
-  </div>
-  <div class="field">
-    <%= f.label :follow %><br />
-    <%= f.check_box :follow %>
+    <%= radio_button_tag :follow_type, 'teach', :checked => true %>
+    <%= label_tag :follow_type, 'I can teach this' %>
+    <%= radio_button_tag :follow_type, 'learn' %>
+    <%= label_tag :follow_type, 'I want to take this' %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   belongs_to :city
   belongs_to :series
   belongs_to :account
+  belongs_to :mission
 
   has_many :topics
 

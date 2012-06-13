@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613032905) do
+ActiveRecord::Schema.define(:version => 20120613163504) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(:version => 20120613032905) do
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
+
+  create_table "courses_topics", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "topic_id"
+  end
+
+  add_index "courses_topics", ["course_id", "topic_id"], :name => "index_courses_topics_on_course_id_and_topic_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -379,12 +386,12 @@ ActiveRecord::Schema.define(:version => 20120613032905) do
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.boolean  "type"
-    t.boolean  "follow"
+    t.integer  "mission_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  add_index "topics", ["mission_id"], :name => "index_topics_on_mission_id"
   add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
 
   create_table "tracks", :force => true do |t|

@@ -41,6 +41,8 @@ class MissionsController < ApplicationController
   # POST /missions.json
   def create
     @mission = Mission.new(params[:mission])
+    @mission.account = current_account if current_account
+    @mission.city = current_user.city
 
     respond_to do |format|
       if @mission.save
