@@ -12,10 +12,10 @@
 <% @topics.each do |topic| %>
   <tr>
     <td><%= topic.title %></td>
-    <td><%= topic.user %></td>
-    <td><%= link_to 'Show', mission_topic_path %></td>
-    <td><%= link_to 'Edit', edit_mission_topic_path(topic) %></td>
-    <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= topic.user.name %></td>
+    <td><%= link_to 'Show', mission_topic_path(@mission, topic) %></td>
+    <td><%= link_to 'Edit', edit_mission_topic_path(@mission, topic) %></td>
+    <td><%= link_to 'Destroy', mission_topic_path(@mission, topic), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
