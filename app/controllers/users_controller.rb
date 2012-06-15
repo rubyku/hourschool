@@ -9,6 +9,13 @@ class UsersController < ApplicationController
       @users = current_account.users
     end
   end
+
+  def search
+    user = params[:q]
+    response = User.where('name ilike ?', "#{user}%").limit(10)
+    logger.info("RESPONSE:#{response.to_json(:only => [:id, :name])}")
+    render :json => response.to_json(:only => [:id, :name])
+  end
   
   def table
     if community_site?

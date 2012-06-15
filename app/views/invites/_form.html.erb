@@ -1,0 +1,75 @@
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+      <ul>
+      <% @invite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :inviter %><br />
+    <%= f.text_field :inviter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :invitee %><br />
+
+
+        <%= text_field_tag :invitee_lookup, "", :class => "form-short-edit-profile"  %>
+        <%= f.hidden_field :invitee_id %>
+
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#invitee_lookup').keyup(function() {
+              jQuery.get('<%= search_users_path(:format => :json) %>',
+                {q: $('#invitee_lookup').val()},
+                function(data){
+                  $('#user_select').html('');
+                  if (data.length == 0) {
+                    $('#user_select').append('<li>nothing found...</li>');
+                  } else {
+                    jQuery.each(data, function(index, value) {
+                      $('#user_select').append('<li class="select-a-user" data-invitee-id="' + value.invitee.id + '">' + value.user.name + '</li>');
+                    });
+                  }
+                  
+                }
+              )
+            })
+
+            $('li.select-a-user').live("click", function() {
+              $('#user_select').html('');
+              $('#invitee_lookup').val($(this).text());
+              $('#invitee_id').val($(this).attr('data-invitee-id'));
+            })
+          })
+        </script>
+
+        <ul id="user_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 65px">
+        </ul>
+      
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.label :invitable %><br />
+    <%= f.text_field :invitable_id %>
+  </div>
+  <div class="field">
+    <%= f.label :invitable_type %><br />
+    <%= f.text_field :invitable_type %>
+  </div>
+  <div class="field">
+    <%= f.label :invite_action %><br />
+    <%= f.text_field :invite_action %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

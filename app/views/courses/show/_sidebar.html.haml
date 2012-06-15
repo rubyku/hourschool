@@ -67,6 +67,9 @@
         = "This class has a min. of #{course.min_seats}"
         / = render :partial => "progressbar"
 
+      = link_to "Invite someone", new_invite_path(:invitable_id => @course.id, :invitable_type => "Course")
+
+
       - if course.donate?
         .sidebar-block-last
           = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path

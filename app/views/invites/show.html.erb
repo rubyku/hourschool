@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Inviter:</b>
+  <%= @invite.inviter.name %>
+</p>
+
+<p>
+  <b>Invitee:</b>
+  <%= @invite.invitee_id %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @invite.message %>
+</p>
+
+<p>
+  <b>Invitable ID:</b>
+  <%= @invite.invitable.id %>
+</p>
+
+<p>
+  <b>Invitable type:</b>
+  <%= @invite.invitable_type %>
+</p>
+
+<p>
+  <b>Invite action:</b>
+  <%= @invite.invite_action %>
+</p>
+
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>

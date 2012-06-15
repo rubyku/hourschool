@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% if params[:q] == 'learn' %>
+you're invited to learn
+<% elsif params[:q] == 'teach' %>
+you're invited to teach
+<% end %>
+
 <p>
   <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
 </p>
@@ -24,7 +30,11 @@
   <%= button_to "Add New Topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
   <br>
   <% @mission.topics.each do |topic| %>
-    <%= topic.title %>, added by <%= topic.user.name %>, <%= button_to "Organize something for this topic", new_course_path(:topic_id => topic), :method => :get %>
+    <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic) %></div><br>
+    Added by <%= link_to topic.user.name, topic.user %><br>
+    Have <%= topic.courses.count %> events<br>
+    <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+    <%= link_to "Invite someone", new_invite_path(:invitable_id => topic.id, :invitable_type => "Topic") %>
     <br>
   <% end %>
 </p>
@@ -41,8 +51,11 @@
   <b>Events:</b><br>
     <% @courses.each do |course| %>
     <%= link_to course.title, course %><br>
+    Organized by <%= link_to course.teacher.name, course.teacher %><br>
+    Covers <%= course.topics.count %> topics<br>
+    <br>
   <% end %>
-  <%= button_to "Create New Event", new_course_path(:mission_id => @mission), :method => :get %>
+  <%= link_to "Create New Event", new_course_path(:mission_id => @mission.id) %>
 </p>
 <hr>
 
@@ -51,6 +64,9 @@
   <% @users.each do |user| %>
     <%= user.name %><br>
   <% end %>
+
 </p>
 
+
+<%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission") %>
 

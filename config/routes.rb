@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :invites
+
   resources :missions do
     resources :topics
   end
@@ -81,6 +83,7 @@ HourschoolV2::Application.routes.draw do
     collection do
       get 'new_invite'
       post 'send_invite'
+      get :search
     end
   end
 

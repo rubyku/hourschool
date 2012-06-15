@@ -13,6 +13,8 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
+  has_many :invites, :as => :invitable
+
   validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
 
   validate :default_validations, :message => "The fields cannot be empty"

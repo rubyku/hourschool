@@ -7,6 +7,7 @@ class Mission < ActiveRecord::Base
   has_many :courses
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
+  has_many :invites, :as => :invitable
   
   has_attached_file :photo, :styles => { :thumbnail => "75x75#", :large => "570x360>" },
                     :storage => :s3,

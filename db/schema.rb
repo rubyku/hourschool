@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613211429) do
+ActiveRecord::Schema.define(:version => 20120615160540) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -219,6 +219,23 @@ ActiveRecord::Schema.define(:version => 20120613211429) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "invites", :force => true do |t|
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.string   "invitee_email"
+    t.text     "message"
+    t.integer  "invitable_id"
+    t.string   "invitable_type"
+    t.string   "invite_action"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "invites", ["invitable_id"], :name => "index_invites_on_invitable_id"
+  add_index "invites", ["invitable_type"], :name => "index_invites_on_invitable_type"
+  add_index "invites", ["invitee_id"], :name => "index_invites_on_invitee_id"
+  add_index "invites", ["inviter_id"], :name => "index_invites_on_inviter_id"
 
   create_table "members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
