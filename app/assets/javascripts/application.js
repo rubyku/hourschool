@@ -7,7 +7,5 @@
 
 //= require jquery.cookie
 
-//= require jquery.lettering-0.6.1.min
-
 //= require_self
 //= require_tree .
