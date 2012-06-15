@@ -1,15 +1,17 @@
 class CommentsController < ApplicationController
 
   def create
-    @course = Course.find(params[:comment][:course_id]) unless :course_id => 'nil'
-    @mission = Mission.find(params[:comment][:mission_id] )
     @comment = current_user.comments.create(params[:comment])
     if @comment.save
-    #    if current_user == @course.teacher
-    #      @comment.notify_participants_and_students
-    #    else 
-    #      @comment.notify_participants
-    #    end
+      if @comment.course
+        if current_user == @course.teacher
+          @comment.notify_participants_and_students
+        else
+          @comment.notify_participants
+        end
+      elsif @comment.mission
+        # something
+      end
     end
     redirect_to :back
   end
