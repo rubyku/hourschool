@@ -17,8 +17,8 @@
 
 <div class="page-section-float-left">
 
-  <%= f.text_field :mission_id, :value => params[:mission_id] %>
-  <%= f.text_field :topic_id, :value => params[:topic_id] %>
+  <%= f.text_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
+  <%= text_field_tag :topic_id, params[:topic_id] %>
 
    <p>
    <%= f.label :title, 'Class title:', :class => "form-question" %>
@@ -33,6 +33,15 @@
      </p>
      <br><br>
    <% end %>
+
+   <%= @course.mission.topics.collect(&:title).to_sentence %>
+
+    <% for topic in Topic.find(:all) %>
+      <div>
+        <%= check_box_tag "course[topic_ids][]", topic.id, @course.topics.include?(topic) %>
+        <%= topic.title %>
+      </div>
+    <% end %>
 
    <div class="page-section-float-left">
    <p>

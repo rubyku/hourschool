@@ -2,26 +2,24 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
 
+  def new
+    @course = Course.new
+    @course.mission = Mission.find(params[:mission_id])
+  end
 
   def create
     @course      = Course.new(params[:course])
     @course.account = current_account if current_account
-  
-    #was it from a request
-    from_req = !params[:req].nil?
+
+    @topic = Topic.find(params[:topic_id]) if params[:topic_id].present?
 
     @user = current_user
     if @course.save
+      @course.topics << @topic if @topic
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
-      end
-
-      if from_req
-        #delele the suggestion
-        Suggestion.delete(params[:req].to_s)
-        # here email people who voted, etc etc
       end
 
       if admin_of_current_account?
@@ -37,15 +35,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  def new
-    @course = Course.new
-    @reqid = params[:req]
-    if !@reqid.nil?
-      req = Suggestion.find(@reqid.to_i)
-      @reqtitle = req.name
-      @reqdescription = req.description
-    end
-  end
 
   def edit
     enqueue_warm_facebook_cache
@@ -64,6 +53,7 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     sanitize_price(params[:course][:price].to_s)
+    params[:course][:topic_ids] ||= []
     cat = []
     cat << (params[:course][:categories]).to_s
     params[:course].delete(:categories)

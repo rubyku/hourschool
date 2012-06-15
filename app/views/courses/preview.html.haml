@@ -27,6 +27,7 @@
               = "#{@course.description.truncate(60)}"
             - else
               = "#{@course.teaser.truncate(60)}"
+            = "#{@course.topics.collect(&:title).to_sentence}"
 
           .class-note
             .heading9-class

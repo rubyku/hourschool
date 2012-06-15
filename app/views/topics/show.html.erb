@@ -1,11 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Mission:</b>
+  <%= link_to @topic.mission.title, @topic.mission %>
+</p>
+
+<p>
   <b>Title:</b>
   <%= @topic.title %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @topic.user.name %>
+  <%= link_to @topic.user.name, @topic.user %>
 </p>
+
+<p>
+  <b>Events:</b>
+  <% @topic.courses.each do |course| %>
+    <%= link_to course.title, course %>
+    <br>
+  <% end %>
+</p>
+ 

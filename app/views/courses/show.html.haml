@@ -40,6 +40,13 @@
           = "Description"
         %p= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px"
 
+      .page-section-float-left
+        .class-section-heading
+          = "Related Topics"
+          - @course.topics.each do |topic|
+            = link_to topic.title, mission_topic_path(@course.mission, topic)
+            %br
+
       .comment-section
         .class-section-heading
           = "Join the conversation"
