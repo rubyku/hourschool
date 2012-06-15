@@ -3,8 +3,8 @@ class Comment < ActiveRecord::Base
   belongs_to :course
   belongs_to :mission
 
-  #validates :course_id, :presence => true
   validates :user_id,   :presence => true
+  validates :body,      :presence => true
 
   def body_with_links
     stripped_message = ERB::Util.html_escape(self.body)
