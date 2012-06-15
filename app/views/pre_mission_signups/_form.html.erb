@@ -20,10 +20,10 @@
     </div>
   <% end %>
 
-  <%= f.text_field :mission, :value => params[:mission] %>
+  <%= f.hidden_field :mission, :value => params[:mission] %>
 
   <div class="field">
-    <%= f.label :description, 'Why?' %><br />
+    <%= f.label :description, 'Why are you interested?' %><br />
     <%= f.text_area :description %>
   </div>
   <div class="actions">

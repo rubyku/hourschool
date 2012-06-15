@@ -31,7 +31,7 @@
     <div style="float: left; width: 630px;">
 
       <div style="float: left; width: 630px; height: 400px;">
-        <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network') %>
+        <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network'), :class => "preMissionSignup" %>
       </div>
 
       <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
@@ -106,8 +106,26 @@
       <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
       <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
 
-
     </div><!-- End section 6 right -->
 
+<% end %>
+
+
+<!-- Modal Layout for when a User tries to sign up for a course too far away -->
+<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'preMissionSignupModal'} do %>
+  <p>
+    <%= content_tag(:p, "Tell us why you are interested in this mission") %>
+  </p>
 
 <% end %>
+
+<!-- Show the modal window if a person tries to register for a course too far away from them -->
+<script type="text/javascript">
+  $(document).ready( function(){
+    $('.preMissionSignup').bind('click', function(){
+      $('.preMissionSignupModal').show();
+      return false;
+    })
+  });
+</script>
+
