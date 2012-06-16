@@ -105,6 +105,8 @@
    <%# do nothing %>
   <% elsif current_account == Account.where(:id => 1).first %>
     <%= render 'layouts/application/account_header/feastfordays' %>
+  <% elsif current_account == Account.where(:id => 2).first %>
+    <%= render 'layouts/application/account_header/a2reskilling' %>
   <% elsif current_account == Account.where(:id => 3).first %>
     <%= render 'layouts/application/account_header/missionzero' %>
   <% elsif current_account == Account.where(:id => 4).first %>
