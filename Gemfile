@@ -9,7 +9,9 @@ group :assets do
 end
 
 
-gem 'sextant'
+gem 'sextant', :group => :development
+gem 'quiet_assets', :group => :development
+
 
 gem 'paypal-express'
 gem "paypal-recurring"

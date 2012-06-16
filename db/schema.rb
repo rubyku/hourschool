@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605141008) do
+ActiveRecord::Schema.define(:version => 20120616223040) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -83,9 +83,11 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "parent_id"
+    t.integer  "mission_id"
   end
 
   add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
+  add_index "comments", ["mission_id"], :name => "index_comments_on_mission_id"
   add_index "comments", ["parent_id"], :name => "index_comments_on_parent_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
@@ -122,11 +124,20 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.integer  "series_id"
     t.integer  "account_id",         :default => 0,     :null => false
     t.boolean  "seed",               :default => false, :null => false
+    t.integer  "mission_id"
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
   add_index "courses", ["featured"], :name => "index_courses_on_featured"
+  add_index "courses", ["mission_id"], :name => "index_courses_on_mission_id"
   add_index "courses", ["slug"], :name => "index_courses_on_slug", :unique => true
+
+  create_table "courses_topics", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "topic_id"
+  end
+
+  add_index "courses_topics", ["course_id", "topic_id"], :name => "index_courses_topics_on_course_id_and_topic_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -209,6 +220,23 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "invites", :force => true do |t|
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.string   "invitee_email"
+    t.text     "message"
+    t.integer  "invitable_id"
+    t.string   "invitable_type"
+    t.string   "invite_action"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "invites", ["invitable_id"], :name => "index_invites_on_invitable_id"
+  add_index "invites", ["invitable_type"], :name => "index_invites_on_invitable_type"
+  add_index "invites", ["invitee_id"], :name => "index_invites_on_invitee_id"
+  add_index "invites", ["inviter_id"], :name => "index_invites_on_inviter_id"
+
   create_table "members", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -242,6 +270,22 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
   add_index "memberships", ["account_id"], :name => "index_memberships_on_account_id"
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
+  create_table "missions", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "account_id"
+    t.integer  "city_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "missions", ["account_id"], :name => "index_missions_on_account_id"
+  add_index "missions", ["city_id"], :name => "index_missions_on_city_id"
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id_id"
     t.integer  "course_id_id"
@@ -260,6 +304,17 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.datetime "updated_at"
   end
 
+  create_table "pre_mission_signups", :force => true do |t|
+    t.string   "email"
+    t.string   "mission"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "pre_mission_signups", ["user_id"], :name => "index_pre_mission_signups_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -267,7 +322,10 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.datetime "updated_at"
     t.string   "name"
     t.boolean  "attending"
+    t.integer  "mission_id"
   end
+
+  add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"
 
   create_table "schedule_events", :force => true do |t|
     t.integer  "series_id"
@@ -349,6 +407,17 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.string "name"
   end
 
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "mission_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "topics", ["mission_id"], :name => "index_topics_on_mission_id"
+  add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
+
   create_table "tracks", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -396,6 +465,7 @@ ActiveRecord::Schema.define(:version => 20120605141008) do
     t.datetime "confirmation_sent_at"
     t.string   "status"
     t.integer  "city_id"
+    t.string   "preferences"
   end
 
   add_index "users", ["city_id"], :name => "index_users_on_city_id"
