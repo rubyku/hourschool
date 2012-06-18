@@ -1,0 +1,13 @@
+<%= @user.preferences %>
+
+<%= form_for @user, :url => user_registration_path do |f| %>
+
+  Send me the Weekly Newsletter
+  <%= check_box_tag 'user[preferences][weekly_newsletter]', 1, @user.preferences['weekly_newsletter'] %><br />
+
+
+  Send me an email when a teacher teaches again
+  <%= check_box_tag 'user[preferences][teacher_teaches_again]', 1, @user.preferences['teacher_teaches_again'] %>
+  <br />
+  <%= f.submit %>
+<% end %>

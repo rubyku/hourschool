@@ -14,6 +14,7 @@ HourschoolV2::Application.routes.draw do
   match "/confirm" => redirect {|params, response| "/courses/#{response.query_parameters[:id]}/confirm" }
 
   namespace :users do
+    resources  :settings
     namespace :facebook do
       resources :share
     end

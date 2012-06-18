@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120615160540) do
+=======
+ActiveRecord::Schema.define(:version => 20120616223040) do
+>>>>>>> master
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -316,6 +320,17 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.datetime "updated_at"
   end
 
+  create_table "pre_mission_signups", :force => true do |t|
+    t.string   "email"
+    t.string   "mission"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "pre_mission_signups", ["user_id"], :name => "index_pre_mission_signups_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -466,6 +481,7 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.datetime "confirmation_sent_at"
     t.string   "status"
     t.integer  "city_id"
+    t.string   "preferences"
   end
 
   add_index "users", ["city_id"], :name => "index_users_on_city_id"

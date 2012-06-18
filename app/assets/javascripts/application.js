@@ -7,7 +7,8 @@
 
 //= require jquery.cookie
 
-//= require jquery.lettering-0.6.1.min
 
 //= require_self
+//= require bootstrap
+//= require bootstrap-typeahead-fork
 //= require_tree .
