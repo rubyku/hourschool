@@ -15,42 +15,47 @@
     <%= f.label :inviter %><br />
     <%= f.text_field :inviter_id %>
   </div>
+
+
+
   <div class="field">
     <%= f.label :invitee %><br />
 
-
-        <%= text_field_tag :invitee_lookup, "", :class => "form-short-edit-profile"  %>
-        <%= f.hidden_field :invitee_id %>
+        <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
+          <%= f.text_field :invitee_id %>
+        </p>
 
         <script type="text/javascript">
-          $(document).ready(function() {
-            $('#invitee_lookup').keyup(function() {
-              jQuery.get('<%= search_users_path(:format => :json) %>',
-                {q: $('#invitee_lookup').val()},
-                function(data){
-                  $('#user_select').html('');
-                  if (data.length == 0) {
-                    $('#user_select').append('<li>nothing found...</li>');
-                  } else {
-                    jQuery.each(data, function(index, value) {
-                      $('#user_select').append('<li class="select-a-user" data-invitee-id="' + value.invitee.id + '">' + value.user.name + '</li>');
-                    });
-                  }
-                  
-                }
-              )
-            })
-
-            $('li.select-a-user').live("click", function() {
-              $('#user_select').html('');
-              $('#invitee_lookup').val($(this).text());
-              $('#invitee_id').val($(this).attr('data-invitee-id'));
-            })
-          })
+        $('#userSearch').typeahead({
+          source: function(typeahead, query) {
+            var _this = this;
+            return $.ajax({
+              url: "<%= search_users_path(:format => :json) %>?q=" + query,
+              success: function(data) {
+                return typeahead.process(data);
+              }
+            });
+          },
+          property: "name",
+          onselect: function (obj) {
+            if (obj.id == 0) {
+              $('#invite_invitee_email').focus()
+            } else {
+              $('#invite_invitee_id').val(obj.id);
+            }
+          }
+        });
         </script>
 
-        <ul id="user_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 65px">
+        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 105px; margin-left: 0px; list-style: none">
         </ul>
+        <br><br>
+
+  <div class="field" id="invite_by_email">
+    <%= f.label :invitee_email, 'Invite by email' %><br />
+    <%= f.text_field :invitee_email %>
+  </div>
+
       
   </div>
   <div class="field">

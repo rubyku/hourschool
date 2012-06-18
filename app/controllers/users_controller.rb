@@ -13,8 +13,12 @@ class UsersController < ApplicationController
   def search
     user = params[:q]
     response = User.where('name ilike ?', "#{user}%").limit(10)
-    logger.info("RESPONSE:#{response.to_json(:only => [:id, :name])}")
-    render :json => response.to_json(:only => [:id, :name])
+    response = response.collect{|u| {:name => u.name, :id => u.id}}
+    if response.empty?
+      response = [{:name => "Looks like #{params[:q]} isn't a member. Give us their email and we'll send em an invite.", :id => 0}]
+    end
+    logger.info("RESPONSE:#{response}")
+    render :json => response
   end
   
   def table

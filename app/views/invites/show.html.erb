@@ -7,7 +7,12 @@
 
 <p>
   <b>Invitee:</b>
-  <%= @invite.invitee_id %>
+  <%= @invite.invitee.try(:name) %>
+</p>
+
+<p>
+  <b>Invitee Email:</b>
+  <%= @invite.invitee_email %>
 </p>
 
 <p>
