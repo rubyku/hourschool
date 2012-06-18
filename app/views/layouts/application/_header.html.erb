@@ -9,7 +9,7 @@
 
 
     <div id="login">
-      <ul id="login">
+      <ul id="login" style="list-style: none">
           <% if user_signed_in? %>
             <% if community_site? %>
               <li id="login_peerlearning">Peer learning in <%= current_user.city.try(:name) %></li>
