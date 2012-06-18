@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    @course.mission = Mission.find(params[:mission_id])
+    @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
   end
 
   def create

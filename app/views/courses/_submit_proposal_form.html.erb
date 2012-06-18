@@ -34,14 +34,16 @@
      <br><br>
    <% end %>
 
-   <%= @course.mission.topics.collect(&:title).to_sentence %>
+   <% if @mission %>
+     <%= @course.mission.topics.collect(&:title).to_sentence %>
 
-    <% for topic in Topic.find(:all) %>
-      <div>
-        <%= check_box_tag "course[topic_ids][]", topic.id, @course.topics.include?(topic) %>
-        <%= topic.title %>
-      </div>
-    <% end %>
+      <% for topic in Topic.find(:all) %>
+        <div>
+          <%= check_box_tag "course[topic_ids][]", topic.id, @course.topics.include?(topic) %>
+          <%= topic.title %>
+        </div>
+      <% end %>
+  <% end %>
 
    <div class="page-section-float-left">
    <p>
