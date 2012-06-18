@@ -1,6 +1,7 @@
 class Courses::BrowseController < ApplicationController
 
   def index
+    @pre_mission_signup = PreMissionSignup.new
     @courses = Course.active.order(:starts_at, :created_at)
     if community_site?
       @courses = @courses.community
