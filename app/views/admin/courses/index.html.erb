@@ -4,13 +4,11 @@
     <% if current_user && admin_of_current_account? %> 
       <%= render :partial => 'layouts/application/admin_bar' %>
 
-      <% if community_site? %>
+     
         <div class="heading15 marcomm"><%= link_to_function 'Total proposals: ', "$('.section').hide(); $('#proposals').show()" %><%= @proposals.count %></div>
         <div class="heading15 marcomm"><%= link_to_function 'Total approved: ', "$('.section').hide(); $('#approved').show()" %><%= @approved.count %></div>
         <div class="heading15 marcomm"><%= link_to_function 'Total live: ', "$('.section').hide(); $('#live').show()" %><%= @courses.count %></div>
-      <% else %>
-        <div class="heading15 marcomm">Total classes: <%= current_account.courses.count %></div><br>
-      <% end %>
+
 
       <div id="proposals" class="section" style="display:none;">
         <div class="heading15 marcomm">Proposals:</div>    
