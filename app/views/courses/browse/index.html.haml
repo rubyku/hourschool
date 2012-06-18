@@ -6,22 +6,18 @@
 
   .page
     .page-content
+      = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
+      .page-section-float-right
+        %table.view-more
+          %tr
+            %td
+              = will_paginate @courses, :previous_label => "Prev" 
 
-      = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
 
-        - if !community_site? && current_account.courses.first.blank?
-          .pagenote-box.clearfix
-            .pagenote-header
-              = "There are no classes at #{community_site? ? 'HourSchool' : current_account.name} yet"
-            = "Your organization and community has so much to share. And we encourage you to"
-            = link_to "schedule the first class!", new_course_path, :class => "pagenote-link"
+  - content_for :sidebar do
+    = link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px"
 
-        = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
-        .page-section-float-right
-          %table.view-more
-            %tr
-              %td
-                = will_paginate @courses, :previous_label => "Prev" 
+
 
 - else 
   = render :partial => 'courses/search'

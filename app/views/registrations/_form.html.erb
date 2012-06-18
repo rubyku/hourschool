@@ -12,7 +12,7 @@
 
     <p>
      <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
-     <%= text_field_tag :location_lookup, '', :class => "form-short-with-margin"  %>
+     <%= text_field_tag :location_lookup, '', :class => "form-short-with-margin", :autocomplete => "off" %>
      <%= f.hidden_field :city_id %>
     </p>
 
@@ -45,7 +45,7 @@
       })
     </script>
 
-    <ul id="city_select" style="border: 1px solid #D2D9DC; background-color: #fff; border-raduis: 5px; width: 190px; padding-left: 10px; padding-bottom: 10px; padding-top: -10px; margin-top: 20px">
+    <ul id="city_select" style="border: 1px solid #D2D9DC; background-color: #fff; border-raduis: 5px; width: 190px; padding-left: 10px; padding-bottom: 10px; padding-top: -10px; margin-top: 10px; margin-left: 0px; list-style: none">
     </ul>
 
   </div>

@@ -98,13 +98,13 @@
         <p>
         <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
         <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
-        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px"  %>
+        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px; margin-left: -22px"  %>
         <%= f.label :public, 'Private (ie. your house) *only students who have signed up will see the address'  %>
         </p>
         
         <p>
-          <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
-          <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)" %>
+          <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
+          <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
           <%= text_field_tag :location_lookup, "", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
           <%= f.hidden_field :city_id %>
         </p>
