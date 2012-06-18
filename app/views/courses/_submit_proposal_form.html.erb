@@ -97,9 +97,9 @@
       <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p>
         <p>
         <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
-        <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
-        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px; margin-left: -22px"  %>
-        <%= f.label :public, 'Private (ie. your house) *only students who have signed up will see the address'  %>
+        <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
+        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
+        <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
         </p>
         
         <p>

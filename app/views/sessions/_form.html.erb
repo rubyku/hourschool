@@ -5,18 +5,18 @@
 <%- end -%>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class="form-question">
-    <%= f.label :email %><br />
+    <p>
+    <%= f.label :email, :class => "form-question" %><br />
     <%= f.email_field :email, :class => "form-short" %>
-    </div>
+    </p>
 
-    <div class="form-question"><%= f.label :password %><br />
+    <p><%= f.label :password, :class => "form-question"%><br />
       <%= f.password_field :password , :class => "form-short" %>
-    </div>
+    </p>
 
     <div class="page-section-float-left">
       <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me, :checked => true %>
+      <%= f.check_box :remember_me, :checked => true, :style => "float: left; margin-right: 10px" %>
       <%= f.label :remember_me %>
       <% end -%>
     </div>
