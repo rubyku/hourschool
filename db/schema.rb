@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
+  create_table "admin_notes", :force => true do |t|
+    t.integer  "resource_id",     :null => false
+    t.string   "resource_type",   :null => false
+    t.integer  "admin_user_id"
+    t.string   "admin_user_type"
+    t.text     "body"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "admin_notes", ["admin_user_type", "admin_user_id"], :name => "index_admin_notes_on_admin_user_type_and_admin_user_id"
+
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -163,8 +175,8 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.time     "time"
     t.string   "place"
     t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "minimum"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -173,8 +185,8 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
 
   create_table "enterprises", :force => true do |t|
     t.string   "area"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "name"
     t.string   "domain"
   end
@@ -192,8 +204,8 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.string   "name"
     t.text     "description"
     t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "requested_by"
   end
 
@@ -250,8 +262,8 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "organization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.integer  "enterprise_id"
   end
 
@@ -303,17 +315,6 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "pre_mission_signups", :force => true do |t|
-    t.string   "email"
-    t.string   "mission"
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "pre_mission_signups", ["user_id"], :name => "index_pre_mission_signups_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.integer  "user_id"
@@ -372,8 +373,8 @@ ActiveRecord::Schema.define(:version => 20120615160540) do
   create_table "subdomains", :force => true do |t|
     t.string   "name"
     t.integer  "enterprise_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "suggestions", :force => true do |t|
