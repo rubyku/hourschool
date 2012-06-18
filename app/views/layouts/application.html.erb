@@ -110,7 +110,9 @@
 
 <%= render :layout => 'layouts/document' do %>
   
-  <%= render 'layouts/application/header' %>
+  <% if community_site? %>
+    <%= render 'layouts/application/header' %>
+  <% end %>
 
   <%# Flash %>
   <div class='container_16'>
