@@ -6,7 +6,7 @@ class Courses::BrowseController < ApplicationController
     if community_site?
       @courses = @courses.community
       if current_user
-        @no_courses_in_user_city = current_user.city.name.nil? || current_user.city.courses.empty?
+        @no_courses_in_user_city = current_user.city.try(:name).nil? || current_user.city.courses.empty?
       else
         @no_courses_in_user_city = false
       end
@@ -23,7 +23,7 @@ class Courses::BrowseController < ApplicationController
 
   def show
     if current_user
-      @no_courses_in_user_city = current_user.city.name.nil? || current_user.city.courses.empty?
+      @no_courses_in_user_city = current_user.city.try(:name).nil? || current_user.city.courses.empty?
     else
       @no_courses_in_user_city = false
     end

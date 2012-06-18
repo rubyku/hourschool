@@ -10,7 +10,8 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
-  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
+  validates_presence_of :title, :description
+  validates_presence_of :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id unless Account.where(:id => 2).first
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
@@ -196,7 +197,7 @@ class Course < ActiveRecord::Base
   # return true if user is blank (we don't know where they are)
   # or false if the cities don't match
   def near_user?(user)
-     user.blank? || user.city.name.nil? || self.city.name == user.city.name
+     user.blank? || user.city.try(:name).nil? || self.city.name == user.city.try(:name)
   end
 
   def is_a_student?(user)

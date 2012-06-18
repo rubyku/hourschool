@@ -35,7 +35,7 @@
             - if course.public?
               .class-sidebar-details
                 = course.address
-                = "#{course.city.name}, #{course.city.state}"
+                = "#{course.city.try(:name)}, #{course.city.try(:state)}"
             - else
               %p= "Private Address"
 
@@ -72,10 +72,12 @@
         .sidebar-block-last
           = link_to image_tag("v2-campaign/frame_filled.png", :class => "greendoors-frame"), campaign_path
 
-    .sidebar-block
-      .class-section-heading Past Dates
-      - Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").each do |course|
-        %p= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course
+    - @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id)
+    - if @past_dates.any?
+      .sidebar-block
+        .class-section-heading Past Dates
+        - @past_dates.each do |course|
+          %p= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course
 
 
 
@@ -143,7 +145,8 @@
 
   %div
     %br
-    = button_to "Signup", new_course_attendee_registration_path(:course_id => course), :class => "grey Button"
+
+    = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "grey Button"
 
 
 // Show the modal window if a person tries to register for a course too far away from them

@@ -6,7 +6,7 @@
       - if @no_courses_in_user_city
         .pagenote-box.clearfix
           .pagenote-header 
-            = "We haven't quite made it to #{@current_user.city.name} yet!"
+            = "We haven't quite made it to #{@current_user.city.try(:name)} yet!"
           = "Want HourSchool in your city? "
           = link_to "Teach the first class", new_course_path, :class => "pagenote-link"
           = "or"

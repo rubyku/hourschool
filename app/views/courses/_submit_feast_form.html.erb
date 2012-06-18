@@ -77,7 +77,7 @@
             <p>
               <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)" %>
               <%= f.text_field :address, :class => "form", :placeholder => "Full address of location (Please enter #, Street, Suite and City)" %>
-              <%= text_field_tag :location_lookup, "#{@course.city.try(:name)}, #{@course.city.try(:state)}" || "#{current_user.city.name}, #{current_user.city.state}", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile"  %>
+              <%= text_field_tag :location_lookup, "#{@course.city.try(:name)}, #{@course.city.try(:state)}" || "#{current_user.city.try(:name)}, #{current_user.city.try(:state)}", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile"  %>
               <%= f.hidden_field :city_id %>
             </p>
 

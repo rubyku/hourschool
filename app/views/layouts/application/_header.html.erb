@@ -1,5 +1,6 @@
 <div id="header">
   <div class="container_16">
+
     <%= link_to "", root_path, :id => "logo" %>          
       <ul class="nav">
         <% if user_signed_in? %>
@@ -15,6 +16,7 @@
           <li class="nav"><%= link_to "Sign up", new_user_registration_path, :class => "nav" %></li>
         <% end %>
       </ul> 
+
   </div><!-- /end .container_16 -->
 </div><!-- /end #header -->
 

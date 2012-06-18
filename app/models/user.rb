@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => :slugged
 
+
+  serialize :preferences, Hash
+
   belongs_to :city
 
   has_many :pre_missions_signups
@@ -59,6 +62,10 @@ class User < ActiveRecord::Base
   include User::Facebook
   include User::FollowingMethods
 
+  def wants_newsletter?
+    return true unless preferences.has_key?('wants_newsletter')
+    preferences['wants_newsletter'].present?
+  end
 
   def active?
     status == "active"
