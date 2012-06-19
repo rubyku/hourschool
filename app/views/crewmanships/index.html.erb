@@ -1,0 +1,33 @@
+<h1>Listing crewmanships</h1>
+
+<table>
+  <tr>
+    <th>Mission</th>
+    <th>User</th>
+    <th>Role</th>
+    <th>Status</th>
+    <th>Trial expires at</th>
+    <th>Canceled at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @crewmanships.each do |crewmanship| %>
+  <tr>
+    <td><%= crewmanship.mission %></td>
+    <td><%= crewmanship.user %></td>
+    <td><%= crewmanship.role %></td>
+    <td><%= crewmanship.status %></td>
+    <td><%= crewmanship.trial_expires_at %></td>
+    <td><%= crewmanship.canceled_at %></td>
+    <td><%= link_to 'Show', crewmanship %></td>
+    <td><%= link_to 'Edit', edit_crewmanship_path(crewmanship) %></td>
+    <td><%= link_to 'Destroy', crewmanship, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Crewmanship', new_crewmanship_path %>

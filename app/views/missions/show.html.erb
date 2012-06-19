@@ -6,6 +6,8 @@ you're invited to learn
 you're invited to teach
 <% end %>
 
+<%= link_to 'Join!', new_mission_crewmanship_path(@mission) %>
+
 <p>
   <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
 </p>

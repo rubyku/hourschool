@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings, :foreign_key => 'follower_id', :dependent => :destroy
   has_many :followed,  :through => :followings, :foreign_key => 'followed_id', :dependent => :destroy
 
+  has_many :crewmanships
+  has_many :missions, :through => :crewmanships
+
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
                                         :thumb_large => ["125x125#", :jpg],

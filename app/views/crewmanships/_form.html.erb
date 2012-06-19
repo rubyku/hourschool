@@ -1,0 +1,41 @@
+<%= form_for(@crewmanship) do |f| %>
+  <% if @crewmanship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@crewmanship.errors.count, "error") %> prohibited this crewmanship from being saved:</h2>
+
+      <ul>
+      <% @crewmanship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mission %><br />
+    <%= f.text_field :mission %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.text_field :role %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :trial_expires_at %><br />
+    <%= f.datetime_select :trial_expires_at %>
+  </div>
+  <div class="field">
+    <%= f.label :canceled_at %><br />
+    <%= f.datetime_select :canceled_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

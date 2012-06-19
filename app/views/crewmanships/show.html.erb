@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Mission:</b>
+  <%= @crewmanship.mission %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @crewmanship.user %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @crewmanship.role %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @crewmanship.status %>
+</p>
+
+<p>
+  <b>Trial expires at:</b>
+  <%= @crewmanship.trial_expires_at %>
+</p>
+
+<p>
+  <b>Canceled at:</b>
+  <%= @crewmanship.canceled_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_crewmanship_path(@crewmanship) %> |
+<%= link_to 'Back', crewmanships_path %>
