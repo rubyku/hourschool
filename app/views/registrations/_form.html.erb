@@ -6,20 +6,20 @@
    <%= f.label :name, 'Full Name', :class => "form-question" %><br />
    <%= f.text_field :name, :class => "form-short-edit-profile" %>
   </p>
-  <br><br>
+  <br>
 
   <p>
    <%= f.label :email, 'Email', :class => "form-question" %><br />
    <%= f.text_field :email, :class => "form-short-edit-profile" %>
-  </p>
-  <br><br>
-
+  </p>  
+  <br>
 
   <p>
     <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
-    <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off" %>
+    <%= text_field_tag :citySearch, "", :class => "form-short-edit-profile", :autocomplete => "off" %>
     <%= f.hidden_field :city_id %>
-  </p>
+  </p>  
+  <br>
 
   <script type="text/javascript">
     $("ul.typeahead.dropdown-menu").find('li.active').data('value')
@@ -43,7 +43,8 @@
   <p>
     <%= f.label :password, :class => "form-question" %><br>
     <%= f.password_field :password, :class => "form-short-edit-profile" %>
-  </p>
+  </p>  
+  <br>
 
   <p>
     <%= f.label :password_confirmation, :class => "form-question" %><br>

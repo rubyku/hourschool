@@ -106,7 +106,7 @@
           <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
           <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
 
-          <%= text_field_tag :citySearch, "", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
+          <%= text_field_tag :citySearch, "#{@course.city.try(:name)}, #{@course.city.try(:state)}", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
           <%= f.hidden_field :city_id %>
         </p>
 
