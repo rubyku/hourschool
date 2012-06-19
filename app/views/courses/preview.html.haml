@@ -7,7 +7,7 @@
     #preview-box
       .preview-header Preview before this goes live!
       = button_to "Publish now!", course_attendee_registration_path(@course), :class => "preview-button", :style => "width: 120px", :method => :put
-      = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :style => "width: 120px", :method => :get
+      = button_to "Make changes", edit_course_path(@course.id), :class => "edit-form-button", :style => "width: 120px; margin-top: -6px", :method => :get
 
     - if community_site?
       #preview-box-tall
