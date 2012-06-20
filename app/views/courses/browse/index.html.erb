@@ -53,10 +53,10 @@
   <div style="float: left; width: 630px;">
 
     <div style="float: left; width: 630px; height: 400px;">
-      <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network'), :class => "preMissionSignup" %>
+      <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network'), :class => "preMissionSignup", 'data-mission' => 'good-network' %>
     </div>
 
-    <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
+    <div style="float: left; width: 605px; height: 53px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
       <div class="heading11" id="explore">Launching the So Good Network</div>
       <div class="title-text" id="explore">Build a growing community of socially-minded folks.</div>
     </div>
@@ -64,13 +64,13 @@
   </div><!-- End Section 2 -->
 
   <!-- Section 3 -->
-  <div style="float: left; width: 960px; margin-top: 30px; margin-bottom: 30px">
+  <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
 
     <div style="float: left; width: 960px; height: 180px;">
-      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck') %>
+      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck'), 'data-mission' => 'food-truck' %>
     </div>
 
-    <div style="float: left; width: 945px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+    <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
 
       <div class="heading11" id="explore">Opening a food truck</div>
       <div class="title-text" id="explore">It's been a dream of mine to open a food truck in Austin. I know food but don't know how to begin.</div>
@@ -83,19 +83,19 @@
   <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
 
     <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-      <%= image_tag 'v3/explore/mission-bikeAcrossFrance.png' %>
+      <%= image_tag 'v3/explore/mission-motorcycle.png' %>
     </div>
 
     <div style="float: left; width: 300px; height: 180px;">
       <%= image_tag 'v3/explore/mission-greenHouse.png' %>
     </div>
 
-    <div style="float: left; width: 285px; height: 60px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-      <div class="heading11" id="explore">Bicycling across France</div>
-      <div class="title-text" id="explore">I want to bike across France.</div>
+    <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+      <div class="heading11" id="explore">Vintage Motorcycle Maintenance</div>
+      <div class="title-text" id="explore">The Art and Philosophy</div>
     </div>
 
-    <div style="float: left; width: 285px; height: 60px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+    <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
       <div class="heading11" id="explore">A more energy efficient house</div>
       <div class="title-text" id="explore">Starting small and cheap</div>
     </div>
@@ -104,9 +104,9 @@
       <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
     </div>
 
-    <div style="float: left; width: 615px; height: 60px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+    <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
       <div class="heading11" id="explore">Learning about interaction design</div>
-      <div class="title-text" id="explore">I want to learn more about how to think like an interaction designer</div>
+      <div class="title-text" id="explore">Learn more about how to think like an interaction designer</div>
     </div>
 
   </div><!-- End section 5 left -->
@@ -134,49 +134,61 @@
 
 <!-- Modal Layout for when a User tries to sign up for a course too far away -->
 <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'preMissionSignupModal'} do %>
-  <p>
-    <%= content_tag(:p, "Tell us why you are interested in this mission!") %>
-  </p>
+  <div id="signup">
+    <p>
+      <div class="sidebar-heading">
+        Tell us why you are interested in this mission!
+      </div>
+    </p>
 
-  <%= form_for(@pre_mission_signup) do |f| %>
-  <% if @pre_mission_signup.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pre_mission_signup.errors.count, "error") %> prohibited this pre_mission_signup from being saved:</h2>
+    <%= form_for(@pre_mission_signup, :remote => true) do |f| %>
+    <% if @pre_mission_signup.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@pre_mission_signup.errors.count, "error") %> prohibited this pre_mission_signup from being saved:</h2>
 
-      <ul>
-      <% @pre_mission_signup.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+        <% @pre_mission_signup.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <% if current_user %>
-    <%= f.hidden_field :user, :value => current_user.id %>
-  <% else %>
+    <% if current_user %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% else %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.text_field :email %>
+      </div>
+    <% end %>
+
+    <%= f.text_field :mission, :value => params[:mission] %>
+
     <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
+      <%= f.text_area :description, :class => "form-med-with-margin" %>
     </div>
-  <% end %>
-
-  <%= f.hidden_field :mission, :value => params[:mission] %>
-
-  <div class="field">
-    <%= f.text_area :description %>
+    <div class="actions">
+      <%= f.submit "Notify me when mission is launched!", :class => "button", :style => "background-color: #ff7733; width: 300px; margin-bottom: -10px" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div id="response" style="display:none;">
+    <p>
+      Congratulations! You've successfully pre-registered. We will notify you when this mission is live.
+    </p>
   </div>
 <% end %>
 
 
 <% end %>
 
-<!-- Show the modal window if a person tries to register for a course too far away from them -->
+<!-- Show the modal window when someone clicks on a mission -->
 <script type="text/javascript">
   $(document).ready( function(){
     $('.preMissionSignup').bind('click', function(){
+      $('.preMissionSignupModal #signup').show();
+      $('.preMissionSignupModal #response').hide();
+      $('.preMissionSignupModal #pre_mission_signup_mission').val($(this).attr('data-mission'));
       $('.preMissionSignupModal').show();
       return false;
     })

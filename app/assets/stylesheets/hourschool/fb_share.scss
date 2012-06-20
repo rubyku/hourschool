@@ -198,7 +198,7 @@ ul.ui-autocomplete a.ui-state-hover {
   display: block;
   position: fixed;
   left: 50%;
-  border-radius: 3px;
+  border-radius: 10px;
   box-shadow:  rgba(0,0,0,0.1) 0 0 4px 0;
   top: 150px;
   margin-left: -250px;
@@ -206,7 +206,7 @@ ul.ui-autocomplete a.ui-state-hover {
   max-height: 50%;
 /*  min-height: 200px;*/
   padding: 16px;
-  border: 1px solid #DEDEDE;
+  border: 17px solid #DEDEDE;
   background-color: white;
   z-index:1002;
   overflow: auto;
