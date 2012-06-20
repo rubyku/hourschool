@@ -41,9 +41,11 @@ class PreMissionSignupsController < ApplicationController
       if @pre_mission_signup.save
         format.html { redirect_to @pre_mission_signup, notice: 'Pre mission signup was successfully created.' }
         format.json { render json: @pre_mission_signup, status: :created, location: @pre_mission_signup }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @pre_mission_signup.errors, status: :unprocessable_entity }
+        format.js { render action: "create_failed" }
       end
     end
   end
