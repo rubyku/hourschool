@@ -3,15 +3,39 @@
 <div style="float: left; width: 630px">
   <div class="page-main">
     <div class="page-content">
-      <div class="heading11 marcomm">Who we are</div>
+      <div class="heading11 marcomm" id ="who-we-are">Who we are</div>
       <p>We are a group of students, teachers, writers, designers, filmmakers, chefs, mechanics, engineers, thinkers and explorers who meet in person to share knowledge, skills, and resources to continually push each other to keep learning and doing new things.</p>
+      <div style="margin-bottom: 5px;">
+      <%= image_tag(User.find(7).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(3).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(4).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(13).photo.url(:thumb_small)) %>        
+      <%= image_tag(User.find(237).photo.url(:thumb_small)) %>     
+      <%= image_tag(User.find(208).photo.url(:thumb_small)) %>             
+      <%= image_tag(User.find(335).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(86).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(51).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(38).photo.url(:thumb_small)) %>
+      </div>
+
+      <%= image_tag(User.find(1435).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(1069).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(298).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(12).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(30).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(72).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(235).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(320).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(333).photo.url(:thumb_small)) %>
+      <%= image_tag(User.find(343).photo.url(:thumb_small)) %>
+
     </div>
   </div>
 
   <div class="page-main">
     <div class="page-content">
-      <div class="heading11 marcomm">What we do</div>
-      <p>Simply put, we run Missions.  We pick things we want to accomplish, and we connect each other with the necessary people, tools, frameworks, and support to get it done.  Oh, and we make sure we’re all having a grand ‘ol time along the way.</p>
+      <div class="heading11 marcomm" id="what-we-do">What we do</div>
+      <p>Simply put, we run missions.  We pick things we want to accomplish, and we connect each other with the necessary people, tools, frameworks, and support to get it done.  Oh, and we make sure we’re all having a grand ‘ol time along the way.</p>
       <div class="big-quote">“Information is not knowledge. The only source of knowledge is experience.”</div>
       <p style="text-align: right; margin-bottom: 20px">-Albert Einstein</p>
       <p>If the basic building block of traditional learning is lessons, and the basic building block for solo endeavors is mistakes and hard knocks, our kind of learning is all about missions. Missions can be self-created, or co-created, but you always share them with other people – experts and peers alike.</p>
@@ -22,7 +46,7 @@
 
   <div class="page-main">
     <div class="page-content">
-      <div class="heading11 marcomm">What we believe</div>
+      <div class="heading11 marcomm" id="what-we-believe">What we believe</div>
       <p>It’s simple. We think life is better when you’re learning. We think it’s deceptively easy to slip into the routine and to stick with what you know.  We think sometimes the best way to keep growing is to get together with other people and learn. </p>
       <div class="big-quote">We think school doesn’t have to be about classrooms and curriculums.  It can be about garages and get-togethers. </div>
       <p>We belive that everyone can and should teach.  You are the expert of your own stories, share them!</p>
@@ -32,25 +56,36 @@
 </div>
 
 <div style="float: left; width: 300px; margin-left: 30px">
+  
   <div class="page-right-sidebar">
     <div class="page-content">
-    <div class="heading11 marcomm">About</div>
-    <div class="heading16">Who we are</div>
-    <p style="font-size: 11px; margin-bottom: 15px">
-      Meet a community of awesome people who believe in doing
-    </p>
+      <div class="heading11 marcomm">About</div>
 
-    <div class="heading16">What we do</div>
+      <div class="heading16"><a href="#who-we-are">Who we are</a></div>
       <p style="font-size: 11px; margin-bottom: 15px">
-        What's all this about anyways?
+        A community of awesome people who believe in life-wide learning
       </p>
 
-    <div class="heading16">What we believe</div>
-    
+      <div class="heading16"><a href="#what-we-do">What we do</div>
+      <p style="font-size: 11px; margin-bottom: 15px">
+        We pick things we want to accomplish and we start doing
+      </p>
+
+      <div class="heading16"><a href="#what-we-believe">What we believe</a></div>
+      <p style="font-size: 11px; margin-bottom: 15px">
+        Everyone should teach because life is better when you participate
+      </p>
     </div>
-    
   </div>
 
-  <p>Quote here</p>
+  <div style="float: left; border-top: 3px solid #999; border-bottom: 3px solid #999; padding: 10px; padding-bottom: 30px; margin-top: 20px; margin-left: 20px; width: 230px">
+
+    <%= image_tag 'v3/pages/icon-quote.png', :style => "margin-left: 90px; margin-top: 10px; margin-bottom: 10px" %>
+
+    <div class="heading11" style="text-align: center">I don't want to get to the <br>end of my life and find <br>that I lived just the <br>length of it. I want to <br>have lived the width <br>of it as well.</div>
+
+    <p style="font-style: italic; text-align: center; color: #999; font-family: Georgia; margin-top: 20px">Diane Ackerman</p>
+
+  </div>
 
 </div>

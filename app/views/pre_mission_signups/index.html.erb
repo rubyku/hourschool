@@ -2,21 +2,18 @@
 
 <table>
   <tr>
-    <th>Email</th>
     <th>Mission</th>
     <th>Description</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>User Name</th>
+    <th>Email</th>
   </tr>
 
 <% @pre_mission_signups.each do |pre_mission_signup| %>
   <tr>
-    <td><%= pre_mission_signup.email %></td>
     <td><%= pre_mission_signup.mission %></td>
     <td><%= pre_mission_signup.description %></td>
     <td><%= pre_mission_signup.user %></td>
+    <td><%= pre_mission_signup.email %></td>
     <td><%= link_to 'Show', pre_mission_signup %></td>
     <td><%= link_to 'Edit', edit_pre_mission_signup_path(pre_mission_signup) %></td>
     <td><%= link_to 'Destroy', pre_mission_signup, confirm: 'Are you sure?', method: :delete %></td>

@@ -67,7 +67,7 @@
   <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
 
     <div style="float: left; width: 960px; height: 180px;">
-      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck'), 'data-mission' => 'food-truck' %>
+      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck'), :class => "preMissionSignup", 'data-mission' => 'food-truck' %>
     </div>
 
     <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
@@ -83,11 +83,11 @@
   <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
 
     <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-      <%= image_tag 'v3/explore/mission-motorcycle.png' %>
+      <%= link_to image_tag('v3/explore/mission-motorcycle.png'), new_pre_mission_signup_path(:mission => 'motorcycle'), :class => "preMissionSignup", 'data-mission' => 'motorcycle' %>
     </div>
 
     <div style="float: left; width: 300px; height: 180px;">
-      <%= image_tag 'v3/explore/mission-greenHouse.png' %>
+      <%= link_to image_tag('v3/explore/mission-greenHouse.png'), new_pre_mission_signup_path(:mission => 'greenhouse'), :class => "preMissionSignup", 'data-mission' => 'greenhouse' %>
     </div>
 
     <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
@@ -101,7 +101,7 @@
     </div>
 
     <div style="float: left; width: 630px; height: 180px;">
-      <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
+      <%= link_to image_tag('v3/explore/mission-interactionDesign.png'), new_pre_mission_signup_path(:mission => 'interaction-design'), :class => "preMissionSignup", 'data-mission' => 'interaction-design' %>
     </div>
 
     <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
@@ -112,21 +112,30 @@
   </div><!-- End section 5 left -->
 
   <!-- Section 6 right -->
-  <div style="float: left; width: 285px; height: 530px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding-left: 15px">
+  <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
 
-    <div class="heading11">Looking for an old class?</div>
+    <div style="background-color: #ff7733; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+    </div> 
+
+    <div class="heading14">Upcoming events</div>
 
     <% @courses.each do |course| %>
-      <div class="heading13-class">
-        <%= link_to (image_tag(course.photo.url(:small), :size => "85x85")), course %>
-        <%= link_to course.title.truncate(40), course %>
-      </div>
-    <% end %> 
 
-    <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-    <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-    <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
-    <div style="float: left; width: 300px; height: 85px; background-color: grey; margin-bottom: 10px"></div>
+    <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 20px; margin-top: 10px; margin-bottom: 10px" %>
+      <div style="margin-bottom: 5px">
+      <%= link_to course.title, course, :style => "font-family: Georgia; font-size: 14px; color: #ff6633" %>
+      </div>
+      
+      <div style="margin-bottom: 5px">
+        <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
+        <%= "#{course.city.name}, #{course.city.state}" %><br>
+      </div>
+      
+      <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+      <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
+    </div>
+    
+    <% end %>
 
   </div><!-- End section 6 right -->
 
@@ -135,11 +144,6 @@
 <!-- Modal Layout for when a User tries to sign up for a course too far away -->
 <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'preMissionSignupModal'} do %>
   <div id="signup">
-    <p>
-      <div class="sidebar-heading">
-        Tell us why you are interested in this mission!
-      </div>
-    </p>
 
     <%= form_for(@pre_mission_signup, :remote => true) do |f| %>
     <% if @pre_mission_signup.errors.any? %>
@@ -156,18 +160,23 @@
 
     <% if current_user %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="sidebar-heading">Hi, <%= current_user.name.split(" ").first %>! It's awesome to see you back.</div>
     <% else %>
+      <div class="sidebar-heading">Hello there! First time here?</div><br>
+      <p>What's your email? (Already an HourSchoolmate? <%= link_to "Log in first", new_user_session_path %>)</p>
       <div class="field">
-        <%= f.label :email %><br />
         <%= f.text_field :email %>
       </div>
     <% end %>
 
-    <%= f.text_field :mission, :value => params[:mission] %>
+    <%= f.hidden_field :mission, :value => params[:mission] %>
+
+    <p>Tell us a little more about why you are interested in this mission.</p>
 
     <div class="field">
       <%= f.text_area :description, :class => "form-med-with-margin" %>
     </div>
+
     <div class="actions">
       <%= f.submit "Notify me when mission is launched!", :class => "button", :style => "background-color: #ff7733; width: 300px; margin-bottom: -10px" %>
     </div>
