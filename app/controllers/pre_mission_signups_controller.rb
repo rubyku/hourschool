@@ -1,4 +1,7 @@
 class PreMissionSignupsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :authenticate_admin!, :only => [:index]
+
   # GET /pre_mission_signups
   # GET /pre_mission_signups.json
   def index
