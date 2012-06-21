@@ -39,6 +39,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @course.city = current_user.city
     @reqid = params[:req]
     if !@reqid.nil?
       req = Suggestion.find(@reqid.to_i)
