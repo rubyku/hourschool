@@ -101,7 +101,7 @@ class ApplicationController < ActionController::Base
 
 
     def skip_if_logged_in
-      redirect_to learn_path if current_user.present?
+      redirect_to explore_path if current_user.present?
     end
 
 
@@ -133,7 +133,7 @@ class ApplicationController < ActionController::Base
 
 
     def after_sign_in_path_for(resource)
-      previous_path_or(learn_path)
+      previous_path_or(explore_path)
     end
 
 end
