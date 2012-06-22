@@ -18,6 +18,13 @@
     margin-left: -45px;
     width: 680px; } }
 
+.heading32{
+  font-size: 32px;
+  font-family: Georgia;
+  color: #ff6600;
+  margin: 20px 0px 20px 0px;
+}
+
 .heading25 {
   @include hourschool-heading;
   font-size: 25px;

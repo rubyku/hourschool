@@ -6,69 +6,77 @@ you're invited to learn
 you're invited to teach
 <% end %>
 
-<%= link_to 'Join!', new_mission_crewmanship_path(@mission) %>
+<div class="full-page">
 
-<p>
-  <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
-</p>
+  <p>
+    <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
+  </p>
 
-<p>
-  <%= @mission.title %>
-</p>
+  <div class="heading32">
+    <%= @mission.title %>
+  </div>
 
-<p>
-  <%= @mission.description %>
-</p>
+  <div class="heading10">
+    <%= "#{@mission.city.name}, #{@mission.city.state}" %>
+  </div>
 
-<p>
-  <b>City:</b>
-  <%= @mission.city.name %>
-</p>
-
-<hr>
-
-<p>
-  <b>Topics:</b>
-  <%= button_to "Add New Topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
-  <br>
-  <% @mission.topics.each do |topic| %>
-    <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic) %></div><br>
-    Added by <%= link_to topic.user.name, topic.user %><br>
-    Have <%= topic.courses.count %> events<br>
-    <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
-    <%= link_to "Invite someone", new_invite_path(:invitable_id => topic.id, :invitable_type => "Topic") %>
-    <br>
-  <% end %>
-</p>
-
-<hr>
-
-<p>
-  <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
-</p>
-
-<hr>
-
-<p>
-  <b>Events:</b><br>
-    <% @courses.each do |course| %>
-    <%= link_to course.title, course %><br>
-    Organized by <%= link_to course.teacher.name, course.teacher %><br>
-    Covers <%= course.topics.count %> topics<br>
-    <br>
-  <% end %>
-  <%= link_to "Create New Event", new_course_path(:mission_id => @mission.id) %>
-</p>
-<hr>
-
-<p>
-  <b>Crew:</b><br>
-  <% @users.each do |user| %>
-    <%= user.name %><br>
-  <% end %>
-
-</p>
+  <p>
+    <%= @mission.description %>
+  </p>
 
 
-<%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission") %>
+
+  <%= link_to 'Join!', new_mission_crewmanship_path(@mission) %>
+  <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission") %>
+
+
+</div>
+
+<div class="page">
+  <div class="page-content">
+    <p>
+      <b>Events:</b><br>
+        <% @courses.each do |course| %>
+        <%= link_to course.title, course %><br>
+        Organized by <%= link_to course.teacher.name, course.teacher %><br>
+        Covers <%= course.topics.count %> topics<br>
+        <br>
+      <% end %>
+      <%= link_to "Create New Event", new_course_path(:mission_id => @mission.id) %>
+    </p>
+
+    <p>
+      <b>Crew:</b><br>
+      <% @users.each do |user| %>
+        <%= user.name %><br>
+      <% end %>
+    </p>
+
+    <p>
+      <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+    </p>
+  </div>
+</div>
+
+<div class="sidebar-white">
+  <div class="sidebar-content-white">
+    <p>
+      <b>Topics:</b>
+      <%= button_to "Add New Topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
+      <br>
+      <% @mission.topics.each do |topic| %>
+        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic) %></div><br>
+        Added by <%= link_to topic.user.name, topic.user %><br>
+        Have <%= topic.courses.count %> events<br>
+        <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+        <%= link_to "Invite someone", new_invite_path(:invitable_id => topic.id, :invitable_type => "Topic") %>
+        <br>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+
+
+
 
