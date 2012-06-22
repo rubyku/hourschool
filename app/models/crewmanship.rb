@@ -6,6 +6,6 @@ class Crewmanship < ActiveRecord::Base
 
   private
   def set_expires_at
-    update_attribute(:expires_at, 30.days.from_now)
+    update_attribute(:trial_expires_at, 30.days.from_now)
   end
 end

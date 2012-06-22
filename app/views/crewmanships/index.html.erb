@@ -21,13 +21,11 @@
     <td><%= crewmanship.status %></td>
     <td><%= crewmanship.trial_expires_at %></td>
     <td><%= crewmanship.canceled_at %></td>
-    <td><%= link_to 'Show', crewmanship %></td>
-    <td><%= link_to 'Edit', edit_crewmanship_path(crewmanship) %></td>
-    <td><%= link_to 'Destroy', crewmanship, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', mission_crewmanship_path(@mission, crewmanship) %></td>
+    <td><%= link_to 'Edit', edit_mission_crewmanship_path(@mission, crewmanship) %></td>
+    <td><%= link_to 'Destroy', mission_crewmanship_path(@mission, crewmanship), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Crewmanship', new_crewmanship_path %>

@@ -1,4 +1,5 @@
 class CrewmanshipsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update]
   before_filter :find_mission
 
   # GET /crewmanships
@@ -27,7 +28,7 @@ class CrewmanshipsController < ApplicationController
   # GET /crewmanships/new.json
   def new
     @crewmanship = @mission.crewmanships.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @crewmanship }
@@ -43,12 +44,13 @@ class CrewmanshipsController < ApplicationController
   # POST /crewmanships.json
   def create
     @crewmanship = @mission.crewmanships.new(params[:crewmanship])
+    @crewmanship.user = current_user
     @crewmanship.status = 'trial'
 
     respond_to do |format|
       if @crewmanship.save
-        format.html { redirect_to @crewmanship, notice: 'Crewmanship was successfully created.' }
-        format.json { render json: @crewmanship, status: :created, location: @crewmanship }
+        format.html { redirect_to @mission, notice: 'Crewmanship was successfully created.' }
+        format.json { render json: @mission, status: :created, location: @crewmanship }
       else
         format.html { render action: "new" }
         format.json { render json: @crewmanship.errors, status: :unprocessable_entity }
