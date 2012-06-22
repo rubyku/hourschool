@@ -1,6 +1,6 @@
 <% if @existing_user %>
 Check it out!
-<%= learn_url(:subdomain => @account.subdomain) %>
+<%= explore_url(:subdomain => @account.subdomain) %>
 <% else %>
 Create a password and signup here:
 <%= edit_password_url(@user, :reset_password_token => @user.reset_password_token, :subdomain => @account.subdomain) %>

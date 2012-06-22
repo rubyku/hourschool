@@ -62,7 +62,7 @@ body {
   color: $hourschool-body-color;
   line-height: $hourschool-body-line-height;
   background-color: none;
-  background-image: url(<%= asset_path "v2/BG_grey.png" %>);
+  background-image: url(<%= asset_path "v3/bg.png" %>);
   position: relative;
 }
 
@@ -81,23 +81,28 @@ a {
     color: $hourschool-body-color; }
   &:active, &:hover {
     color: $hourschool-house-color; } }
-    
-.brand_bg {
-  background-color: $hourschool-house-color;
-  height: 3px; }
-    
-#header {
+  
+
+#header{
   width: 100%;
   padding-top: 15px;
-  overflow: hidden; }
-  
+  margin-bottom: 30px;
+  overflow: hidden; 
+  background-color: white;
+}
+
+#homepage #header{
+  background-color: transparent;
+}
   
 .middle_bg {
   background-image: url("v2/BG_grey.png"); }
 
 .footer_bg {
   background-color: $hourschool-wrapper-color;
-  padding-bottom: 100px; }
+  margin-top: 40px;
+  padding-bottom: 100px; 
+}
   
 .full-page {
   width: 960px;

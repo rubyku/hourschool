@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
       if @account.valid? && @account.save
         @user = current_user
         Membership.create!(:user => current_user, :account => @account, :admin => true)
-        redirect_to(learn_url(:admin, :subdomain => @account.subdomain)) && return
+        redirect_to(explore_url(:admin, :subdomain => @account.subdomain)) && return
       end
     else
       @user = User.new_with_session(params[:user], session)
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
       if (@user.valid? && @account.valid?) && (@user.save && @account.save)
         sign_in('user', @user)
         Membership.create!(:user => @user, :account => @account, :admin => true)
-        redirect_to(learn_url(:admin, :subdomain => @account.subdomain)) && return
+        redirect_to(explore(:admin, :subdomain => @account.subdomain)) && return
       end
     end
 
