@@ -1,37 +1,36 @@
-<%= form_for([@mission, @crewmanship]) do |f| %>
-  <% if @crewmanship.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@crewmanship.errors.count, "error") %> prohibited this crewmanship from being saved:</h2>
+<div style="width: 400px; background-color: white; padding-top: 30px; padding-bottom: 30px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #AA9C84"> 
 
-      <ul>
-      <% @crewmanship.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <%= form_for([@mission, @crewmanship]) do |f| %>
+    <% if @crewmanship.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@crewmanship.errors.count, "error") %> prohibited this crewmanship from being saved:</h2>
+
+        <ul>
+        <% @crewmanship.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <% if current_user %>
+
+      <div class="field">
+        <%= f.label :role, "I'm joining as:", :class => "heading32 orange" %><br>
+        <%= f.select :role, [['Explorer','explorer'],['Guide','guide']] %>
+      </div>
+
+    <% else %>
+
+    
+
+    <% end %>
+
+    <br>
+    <div class="actions">
+      <%= f.submit "Make it happen!" %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :role, "I'm joining as:" %><br />
-    <%= f.select :role, [['Explorer','explorer'],['Guide','guide']] %>
-  </div>
-
-<!--   <% if current_user.admin? %>
-    <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-    </div>
-    <div class="field">
-      <%= f.label :trial_expires_at %><br />
-      <%= f.datetime_select :trial_expires_at %>
-    </div>
-    <div class="field">
-      <%= f.label :canceled_at %><br />
-      <%= f.datetime_select :canceled_at %>
-    </div>
-  <% end %> -->
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

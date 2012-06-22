@@ -1,5 +1,18 @@
-<h1>This page will contain information about membership and what being a member means.
-</h1>
+<center>
+  <% if current_user %>
+  
+    <h1>Joining a mission? Way to go, <%= current_user.name.split(" ").first %>!</h1>
+    <h3>Remember, the first 30 days are on us.</h3>
+  
+  <% else %>
 
-<%= render 'form' %>
+    <h1>Try this mission for free for 30 days. It’s on us. 30-day unlimited free trial. No obligation, no credit card required.</h1>
+ 
+  <% end %>
+
+  <br><br>
+
+  <%= render 'form' %>
+ 
+</center>
 

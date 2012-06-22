@@ -16,6 +16,7 @@ class MissionsController < ApplicationController
     @mission = Mission.find(params[:id])
     @users = Mission.find(params[:id]).users
     @courses = Mission.find(params[:id]).courses
+    @topic = @mission.topics.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

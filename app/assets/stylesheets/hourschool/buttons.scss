@@ -1,6 +1,6 @@
 @import 'hourschool/variables';
 
-.button{
+a.button{
   /*reset style*/
   border: none;
   background: #00B6FF;
@@ -24,7 +24,6 @@
 
   &.grey {
   width: 84px;
-  height: 33px;
   background-color: #666;
   &:hover {
     background-color: #a9a9a9; } 
@@ -33,6 +32,11 @@
   &.orange{
     width: 220px;
     background-color: $hourschool-house-color;
+
+    &.short{
+      width: 120px;
+    }
+
     &:hover {
       background-color: #e46f28; } 
   }
@@ -56,11 +60,9 @@
   &.preview-edit{
     float: right;
     width: 120px;
-    padding-top: 12px;
-    padding-bottom: 12px;
     background-color: #a9a9a9;
     margin-right: 10px;
-    margin-top: -7px;
+    margin-top: -23px;
     height: 35px;
     &:hover {
       background-color: #949393; }

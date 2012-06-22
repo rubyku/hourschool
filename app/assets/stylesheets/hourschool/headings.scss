@@ -21,8 +21,9 @@
 .heading32{
   font-family: Georgia;
   font-size: 32px;
-  color: #4a8488;
-  margin-bottom: 25px;
+
+  &.orange{color: #ff6600; margin: 20px 0px 10px 0px;}
+  &.green{color: #4a8488; margin-bottom: 25px;}
 }
 
 .heading25 {
@@ -34,6 +35,18 @@
   
   &.light_grey{color: $hourschool-light-grey;}
   &.dark_grey{color: $hourschool-dark-grey;} }
+
+.heading20{
+  font-family: Georgia;
+  font-size: 20px;
+  color: #ff6633;
+  margin-bottom: 5px;
+}
+
+a.heading20{
+  &:visited{color: #ff6633;}
+  &:hover{color: #ff6633;}
+}
 
 .heading16{
   font-family: Georgia;

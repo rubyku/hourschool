@@ -15,7 +15,7 @@
       = form_for mission.comments.new do |f|
         %div
           = f.hidden_field :mission_id, :value => mission.id
-          = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form-tall"
+          = f.text_area    :body,      :placeholder => "Do you have a question?", :class => "form"
         %div
           = f.submit 'Leave Comment'
 
@@ -66,7 +66,7 @@
             %div.clearfix
               = f.hidden_field :parent_id, :value => comment.id
               = f.hidden_field :mission_id, :value => mission.id
-              = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form"
+              = f.text_area    :body,      :placeholder => "What do you think?", :class => "form"
             %div.clearfix
               = f.submit 'Leave Comment'
     - else                 

@@ -49,7 +49,7 @@ class CrewmanshipsController < ApplicationController
 
     respond_to do |format|
       if @crewmanship.save
-        format.html { redirect_to @mission, notice: 'Crewmanship was successfully created.' }
+        format.html { redirect_to @mission, notice: 'You have joined this mission!' }
         format.json { render json: @mission, status: :created, location: @crewmanship }
       else
         format.html { render action: "new" }

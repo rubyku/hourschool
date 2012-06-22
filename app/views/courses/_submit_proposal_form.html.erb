@@ -25,14 +25,6 @@
    <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
    </p>
    <br><br>
-   
-   <% if community_site? %>
-     <p>
-     <%= f.label :teaser, 'Add a little teaser:', :class => "form-question" %>
-     <%= f.text_area :teaser, :class => "form-with-margin" %>
-     </p>
-     <br><br>
-   <% end %>
 
    <% if @mission %>
      <%= @course.mission.topics.collect(&:title).to_sentence %>

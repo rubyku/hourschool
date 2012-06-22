@@ -8,75 +8,179 @@ you're invited to teach
 
 <div class="full-page">
 
-  <p>
-    <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
-  </p>
+  <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
+  
+  <div class="mission-description-box">
+    <div class="heading32 orange">
+      <%= @mission.title %>
+    </div>
 
-  <div class="heading32">
-    <%= @mission.title %>
-  </div>
-
-  <div class="heading10">
-    <%= "#{@mission.city.name}, #{@mission.city.state}" %>
-  </div>
-
-  <p>
-    <%= @mission.description %>
-  </p>
-
-
-
-  <%= link_to 'Join!', new_mission_crewmanship_path(@mission) %>
-  <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission") %>
-
-
-</div>
-
-<div class="page">
-  <div class="page-content">
-    <p>
-      <b>Events:</b><br>
-        <% @courses.each do |course| %>
-        <%= link_to course.title, course %><br>
-        Organized by <%= link_to course.teacher.name, course.teacher %><br>
-        Covers <%= course.topics.count %> topics<br>
-        <br>
-      <% end %>
-      <%= link_to "Create New Event", new_course_path(:mission_id => @mission.id) %>
-    </p>
+    <div class="heading10">
+      <%= "#{@mission.city.name}, #{@mission.city.state}" %>
+    </div>
 
     <p>
-      <b>Crew:</b><br>
-      <% @users.each do |user| %>
-        <%= user.name %><br>
-      <% end %>
-    </p>
-
-    <p>
-      <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+      <%= @mission.description %>
     </p>
   </div>
-</div>
 
-<div class="sidebar-white">
+  <div class="mission-status-box">
+    <%= link_to 'Join mission', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange short button" %>
+  </div>
+
+</div><!-- end full page -->
+
+<div class="page-main">
+  <div class="tabbable"> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Conversation</a></li>
+      <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
+      <li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li>
+    </ul>
+    <div style="padding: 2px 20px 20px 20px">
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <div style="width: 97%">
+            <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+          </div>
+        </div>     
+        <div class="tab-pane" id="tab2">
+          <%= button_to "New Event", new_course_path(:mission_id => @mission.id), :method => :get, :style => "float: right;" %><br><br>
+          <% @courses.each do |course| %>
+          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
+              <%= link_to course.title, course, :class => "heading20" %><br>
+              Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+              <!-- Covers <%= course.topics.count %> topics -->
+        
+            <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+            <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
+
+            <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
+            <%= course.place_name %>
+          </div>
+        <% end %>
+        </div>
+        <div class="tab-pane" id="tab3">
+          <%= button_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :style => "float: right;" %><br><br>
+          <% @users.each do |user| %>
+            <div class="crewman-box">
+              <div class="crewman-photo">
+                <%= image_tag(user.photo.url(:thumb_large)) %>
+              </div>
+              <div class="crewman-description">
+                <div class="heading13-class"><%= user.name %></div>
+                <%= user.bio %>
+              </div>
+            </div><!-- end crewman-box -->
+          <% end %>
+        </div>
+        <div class="tab-pane" id="tab4"><br>
+          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
+            <div class="heading32 green">Online Tools</div>
+            <ol>
+              <li>Invite friends from Facebook</li>
+              <li>Invite friends from Twitter</li>
+              <li>Write a blog post</li>
+            </ul>
+          </div>
+          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
+            <div class="heading32 green">Printable Tools</div>
+          </div>
+        </div>
+
+      </div><!-- end tab-content -->
+
+    </div><!-- end page-content -->
+  </div><!-- end tabbable -->
+</div><!-- end page -->
+
+<div class="page-right-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
-    <p>
-      <b>Topics:</b>
-      <%= button_to "Add New Topic", new_mission_topic_path(:mission_id => @mission), :method => :get %>
-      <br>
+      <div class="heading11" style="float: left">Topic Library:</div>
+      <%= link_to "Add", new_mission_topic_path(:mission_id => @mission), :method => :get, :class => "grey button", :style => "float: right; margin-top: -5px", :class => "newTopic" %>
+      <br><br>
       <% @mission.topics.each do |topic| %>
-        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic) %></div><br>
-        Added by <%= link_to topic.user.name, topic.user %><br>
-        Have <%= topic.courses.count %> events<br>
-        <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
-        <%= link_to "Invite someone", new_invite_path(:invitable_id => topic.id, :invitable_type => "Topic") %>
-        <br>
+        <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
+          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :class => "moreInfo" %></div>
+          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+          <% if topic.courses.count <= 1 %>
+            <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+          <% else %>
+            <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+          <% end %>
+          <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+        </div>
+
+        <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'moreInfoModal'} do %>
+
+          <div class="heading13-class"><%= topic.title %></div>
+          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+          <hr>
+          <div class="heading11">Related Events:</div>
+            <% topic.courses.each do |course| %>
+              <%= link_to course.title, course %>
+              <br>
+            <% end %>
+
+        <% end %>
+
+        <script type="text/javascript">
+          $(document).ready( function(){
+            $('.moreInfo').bind('click', function(){
+              $('.moreInfoModal').show();
+              return false;
+            })
+          });
+        </script>
+
       <% end %>
-    </p>
   </div>
-</div>
+</div><!-- end sidebar-white -->
 
 
+<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'newTopicModal'} do %>
+
+  <%= form_for([@mission, @topic]) do |f| %>
+    <% if @topic.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+        <ul>
+        <% @topic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= radio_button_tag :follow_type, 'teach', :checked => true, :style => "float: left" %>
+      <%= label_tag :follow_type, 'I can teach this' %>
+      <%= radio_button_tag :follow_type, 'learn', :style => "float: left"  %>
+      <%= label_tag :follow_type, 'I want to take this' %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready( function(){
+    $('.newTopic').bind('click', function(){
+      $('.newTopicModal').show();
+      return false;
+    })
+  });
+</script>
 
 
 
