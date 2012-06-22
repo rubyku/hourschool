@@ -1,62 +1,55 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
   <%= devise_error_messages! %>
-  <div class="form-question">
-    <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name, :class => "form-short-with-margin" %>
-    </p>
-  </div>
 
-  <div class="form-question">
+  <p>
+   <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+   <%= f.text_field :name, :class => "form-short-edit-profile" %>
+  </p>
+  <br>
 
-    <p>
-     <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
-          <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
-          <%= f.text_field :city_id %>
-        </p>
+  <p>
+   <%= f.label :email, 'Email', :class => "form-question" %><br />
+   <%= f.text_field :email, :class => "form-short-edit-profile" %>
+  </p>  
+  <br>
 
-        <script type="text/javascript">
-        $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-        $('#citySearch').typeahead({
-          source: function(typeahead, query) {
-            var _this = this;
-            return $.ajax({
-              url: "<%= cities_path(:format => :json) %>?q=" + query,
-              success: function(data) {
-                return typeahead.process(data);
-              }
-            });
-          },
-          property: "name",
-          onselect: function (obj) {
-            $('#user_city_id').val(obj.id);
+  <p>
+    <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+    <%= text_field_tag :citySearch, "", :class => "form-short-edit-profile", :autocomplete => "off" %>
+    <%= f.hidden_field :city_id %>
+  </p>  
+  <br>
+
+  <script type="text/javascript">
+    $("ul.typeahead.dropdown-menu").find('li.active').data('value')
+    $('#citySearch').typeahead({
+      source: function(typeahead, query) {
+        var _this = this;
+        return $.ajax({
+          url: "<%= cities_path(:format => :json) %>?q=" + query,
+          success: function(data) {
+            return typeahead.process(data);
           }
         });
-        </script>
+      },
+      property: "name",
+      onselect: function (obj) {
+        $('#user_city_id').val(obj.id);
+      }
+    });
+  </script>
 
-        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 105px; margin-left: 0px; list-style: none">
-        </ul>
+  <p>
+    <%= f.label :password, :class => "form-question" %><br>
+    <%= f.password_field :password, :class => "form-short-edit-profile" %>
+  </p>  
+  <br>
 
-  </div>
-
-  <div class="form-question">
-    <%= f.label :email %>
-    <br>
-    <%= f.email_field :email, :class => "form-short-with-margin" %>
-  </div>
-
-  <div class="form-question">
-    <%= f.label :password %>
-    <br>
-    <%= f.password_field :password, :class => "form-short-with-margin" %>
-  </div>
-
-  <div class="form-question">
-    <%= f.label :password_confirmation %>
-    <br>
-    <%= f.password_field :password_confirmation, :class => "form-short-with-margin" %>
-  </div>
+  <p>
+    <%= f.label :password_confirmation, :class => "form-question" %><br>
+    <%= f.password_field :password_confirmation, :class => "form-short-edit-profile" %>
+  </p>
 
   <div class="page-section-float-left">
     <%= f.submit "Sign up", :class => "grey button", :id => 'user_submit'%>

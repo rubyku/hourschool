@@ -53,13 +53,13 @@
             / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get
           - else 
             - if course.donate?
-              = button_to " ",                          new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
               = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "orange button #{'tooFarToRegister' unless course.near_user?(current_user) }"
 
         - if can? :edit_course, course
           - if course.inactive?
-            = button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :class => "orange button"
+            /= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button"
           - else
             = button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button"
             = button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "grey button"
