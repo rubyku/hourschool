@@ -14,15 +14,15 @@ a {
 
     <%= link_to "", root_path, :id => "logo" %>          
       <ul class="main-nav">
-        <% if user_signed_in? %>
-          <li class="main-nav"><%= link_to "Me", profile_path, :class => "main-nav" %></li>
-        <% end %>
         
         <li class="main-nav"><%= link_to "Explore", explore_path, :class => "main-nav" %></li>
         <li class="main-nav"><%= link_to "Blog", "http://blog.hourschool.com", :class => "main-nav" %></li>
         <li class="main-nav"><%= link_to "About", about_path, :class => "main-nav" %></li>
         
-        <% if !user_signed_in? %>
+        <% if user_signed_in? %>
+          <li class="main-nav"><%= link_to "My Profile", profile_path, :class => "main-nav" %></li>
+          <li class="main-nav"><%= link_to "Sign out", destroy_user_session_path, :class => "main-nav" %></li>
+        <% else %>
           <li class="main-nav"><%= link_to "Login", new_user_session_path, :class => "main-nav" %></li>
           <li class="main-nav"><%= link_to "Sign up", new_user_registration_path, :class => "main-nav" %></li>
         <% end %>
