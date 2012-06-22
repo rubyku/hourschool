@@ -43,7 +43,7 @@
     %div.course_action
       - if can? :sign_up_for_course, course
         - if course.sold_out? || course.inactive?
-          = button_to "Pre-register for next class",  new_suggestion_path,  :class => "register-class-button", :method => :get
+          = button_to "Pre-register for next class",  new_suggestion_path,  :class => "wdb-register-class-button", :method => :get
         - else 
           - if @course.price == 0
             = button_to "Register for this class", register_path(:id => course), :class => "wdb-register-class-button"
@@ -51,7 +51,7 @@
             = button_to "Register for this class", payments_paypal_requests_path(:course_id => course.id), :method => :POST, :class => "wdb-register-class-button"
       - if can? :edit_course, course
         - if course.inactive?
-          = button_to "Teach this again",             duplicate_course_path(course), :method => :post, :class => "register-class-button"
+          / = link_to "Teach this again",             new_course_duplicate_path(course), :class => "register-class-button"
         - else
           = button_to "Edit class details",           edit_course_path, :method => :get, :class => "wdb-edit-class-button"
           = button_to "Cancel this Class",            course_organizer_path(course, :cancel), :method => :get, :class => "wdb-edit-class-button"

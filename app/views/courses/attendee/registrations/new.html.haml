@@ -47,7 +47,7 @@
       .confirm-bring-friend You're a couple short steps from signing up for this class!
       %br
       - if @course.price == 0
-        = button_to "Yes I'm in!", course_attendee_registrations_path(:course_id => @course), :class => "register-class-button"
+        = button_to "Yes I'm in!", course_attendee_registrations_path(:course_id => @course), :class => "orange button"
       - else
         = link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), payments_paypal_requests_path(:course_id => @course.id), :method => :POST
 
@@ -57,4 +57,4 @@
     = image_tag 'v2/Tape_White.png', :class => 'tape'
     .heading10 Have questions?
     %a(href="http://hourschool.assistly.com/customer/portal/emails/new")
-      #tipboxButton Contact us!
+      #tipbox.button Contact us!

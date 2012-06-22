@@ -25,8 +25,8 @@
         <p>
          <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
 
-          <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
-          <%= f.text_field :city_id %>
+          <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
+          <%= f.hidden_field :city_id %>
         </p>
 
         <script type="text/javascript">
@@ -48,8 +48,6 @@
         });
         </script>
 
-        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 105px; margin-left: 0px; list-style: none">
-        </ul>
         <br><br>
 
 
@@ -90,8 +88,8 @@
 
 
         <br>
-        <%= f.submit "Update", :class => "loginButton", :style => "width: 84px" %>
-
+        <%= f.submit "Update", :class => "grey button" %>
+        
         <% end %>
 
     

@@ -15,8 +15,7 @@ class Course < ActiveRecord::Base
 
   has_many :invites, :as => :invitable
 
-  validates_presence_of :title, :description
-  validates_presence_of :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id unless Account.where(:id => 2).first
+  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id 
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create

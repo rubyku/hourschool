@@ -109,16 +109,16 @@
       <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p>
         <p>
         <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
-        <%= f.label :public, 'Public location (ie. cafes, offices, etc)' %>
-        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px; margin-left: -22px"  %>
-        <%= f.label :public, 'Private (ie. your house) *only students who have signed up will see the address'  %>
+        <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
+        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
+        <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
         </p>
         
         <p>
           <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
           <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
 
-          <%= text_field_tag :citySearch, "", :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
+          <%= text_field_tag :citySearch, (@course.city ? "#{@course.city.name}, #{@course.city.state}" : ''), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
           <%= f.hidden_field :city_id %>
         </p>
 
@@ -157,7 +157,7 @@
 </div>
 
 
-<br><br>
+<br><br><br>
 
   <% if current_account == Account.find(4) %>
     <%= f.submit "Submit", :style => "border: none;
@@ -177,7 +177,7 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
   <% else %>
-   <%= f.submit "Submit", :class => "submit-proposal-button", :id => 'course_submit', :value => "Submit", :style => "width: 220px" %>
+   <%= f.submit "Submit", :class => "orange button", :id => 'course_submit', :value => "Submit" %>
   <% end %>
 
 

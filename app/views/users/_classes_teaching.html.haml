@@ -41,17 +41,17 @@
     %div{:class => "#{className}"}
       - if c.photo.exists?
         = link_to (image_tag(c.photo.url(:small), :size => "190x120")), c
-        = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
       - else
         - if !c.categories.first.nil?
           = link_to image_tag("#{DEF_IMAGES[c.categories.first.name]}"), c
         - else
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), c
-          = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
+
       %br
         .class-description
           .heading13-class 
             = link_to c.title, c
+          = link_to "Edit class", edit_course_path(c)
         .class-note
           .heading9-class 
             = "Taught #{Course.where('title ilike ?', c.title).where(:status => 'live').count} times"

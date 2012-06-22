@@ -1566,8 +1566,6 @@
  /* TYPEAHEAD PUBLIC CLASS DEFINITION
   * ================================= */
 
-  console.log('they said we couldn"t do it');
-
   var Typeahead = function (element, options) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.typeahead.defaults, options)

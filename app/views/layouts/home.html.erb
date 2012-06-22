@@ -1,10 +1,10 @@
 <%- content_for :main_class do -%>
-  <%- bg_image_class = [ 'homePageBackgroundImage1',
-                         'homePageBackgroundImage2'
+  <%- bg_image_class = [ 'homePageBackgroundImage1'
                          ].sample -%>
-  <%= "homepage_top_bg #{bg_image_class} main " %>
+  <%= "homepage_top_bg #{bg_image_class} " %>
 <%- end -%>
 
 <%- content_for(:body_id) { "homepage" } -%>
+
 
 <%= render :template => "layouts/application" %>

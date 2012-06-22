@@ -35,7 +35,6 @@ class CoursesController < ApplicationController
     end
   end
 
-
   def edit
     enqueue_warm_facebook_cache
     @course = Course.find(params[:id])

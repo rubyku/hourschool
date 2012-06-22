@@ -1,140 +1,130 @@
 @import 'hourschool/variables';
 
 .homePageBackgroundImage1 {
-  background-image: url( <%= asset_path 'v2/hp-bg1.jpg' %> );
-  background-repeat:no-repeat;
-  background-repeat: no-repeat;
-}
-
-.homePageBackgroundImage2 {
-  background-image: url( <%= asset_path 'v2/hp-bg12.jpg' %> );
+  background-image: url( <%= asset_path 'v3/homepage/Background.png' %> );
   background-repeat:no-repeat;
 }
 
-.homepage_top_bg {
-  padding-bottom: 40px;
+#homepage_headline_1{
+  position: relative;
+  margin-left: 570px;
+  margin-top: 11px;
+  @include hourschool-heading;
+  text-align: center;
+  color: white;
+  z-index: 100;
 }
 
-.homepage_middle_bg {
-  background-image: url( <%= asset_path 'v2/BG_grey.png' %> );
+.font48{
+  font-size: 48px;
+  letter-spacing: 10px;
+  line-height: 36pt;
 }
 
-.homepage_middle_bg2 {
-  background-image: url( <%= asset_path 'v2/BG_grey2.png' %> );
+.font24{
+  font-size: 24px;
+  letter-spacing: 10px;
+  line-height: 36pt;
+}
+
+a#homepageInfoModal{
+  position: relative;
+  margin-left: 600px;
+  font-family: Georgia; 
+  font-size: 14px; 
+  font-style: italic; 
+  text-align: center;
+  color: white;
+  z-index: 100;
+}
+
+#homepage .teaser {
+  position: relative;
+  height: 255px; 
+  width: 400px;
+  margin-left: 560px;
+  margin-top: -210px;
+  @include hourschool-border-radius;
+  background-color: black;
+  opacity: 0.2;
 }
 
 
-#homepage_logo {
+#homepage .featured {
   position: relative;
+  margin-top: 62px;
+  margin-bottom: 60px; }
+
+#homepage .sidebar-left{
   float: left;
+  width: 300px;
+  margin-right: 30px;
 }
 
+.brand_bg {
+  background-color: $hourschool-house-color;
+  height: 7px; }
 
-#homepage_headline_1 {
-  position: relative;
-  float: left;
-  @include hourschool-heading;
-  letter-spacing: 0.15em;
-  font-size: 23px;
-  margin-top: 70px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  color: white; }
+.prompt-box{
+  text-align: center;
+  padding: 20px;
+  opacity: 0.85;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+}
 
-#homepage_headline_2 {
-  position: relative;
-  float: left;
-  @include hourschool-heading;
-  letter-spacing: 0.15em;
-  font-size: 23px;
-  margin-bottom: 24px;
-  margin-left: 30px;
-  color: white; }
+#homepage .content-right{
+  margin-top: 40px;
+  float :left;
+  width: 570px;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+}
 
-#homepage_headline_3 {
-  position: relative;
-  float: left;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 30px;
-  margin-bottom: 30px;
-  margin-left: 30px;
-  color: white; }
-
-#homepage_headline_7 {
-  position: relative;
-  float: left;
-  @include hourschool-heading;
-  font-size: 18px;
-  margin-top: 120px;
-  margin-left: 80px;
-  letter-spacing: 0.25em;
-  color: white; }
-
-#homepage_headline_8 {
-  position: relative;
-  float: left;
-  letter-spacing: 0.1em;
-  @include hourschool-heading;
+p.prompt-text{
+  font-family: Georgia;
   font-style: italic;
-  font-size: 10px;
-  margin-left: 80px;
-  margin-top: 20px;
-  color: white; }
+  font-size: 16px;
+  color: #333333;
+  text-align: center;
+  margin: 10px 0px 20px 0px;
+}
 
-#homepage a#menu:hover, a#homepage_headline_8:hover {
-  color: #fae4da; }
+.title-text{
+  font-family: Georgia;
 
-img {
-  &#fb-signup {
-    position: relative;
-    float: left;
-    margin-top: 20px;
-    margin-left: 76px;
-    z-index: 2; }
-  &#fb-signup-bg {
-    position: relative;
-    float: left;
-    margin-top: -52px;
-    margin-left: 71px; } }
+  &#homepage{
+    font-size: 26px;
+    color: #666;
+    line-height: 36pt;
+    margin-bottom: 20px;
+  }
 
-#hp_transparent {
-  margin-bottom: -328px;
-  z-index: 1; }
+  &#explore{
+    font-size: 20px;
+    line-height: 20pt;
+    color: $hourschool-house-color;
+  }
+}
 
-#hp_white {
-  margin-top: -783px;
-  margin-bottom: 45px; }
-
-.featured-content {
-  position: relative;
-  float: left;
-  margin-top: -25px;
-  padding-bottom: 20px; }
+#homepage .body-text{
+  font-family: Georgia;
+  font-size: 16px;
+  color: #333;
+  line-height: 20pt;
+}
 
 .white {
-  background-color: white;
-  margin-top: 25px;
-  padding-top: 20px; }
+  background-color: white; }
 
 .whiteText {
   color: white; }
 
 .right {
   float: right; }
-
-#homepage_headline_7_signedin {
-  position: relative;
-  float: left;
-  text-transform: uppercase;
-  font-family: futura-pt-1, futura-pt-2;
-  font-weight: 700;
-  font-size: 18px;
-  margin-top: 100px;
-  margin-left: 35px;
-  letter-spacing: 0.25em;
-  color: white; }
 
 #homeSearchForm-background {
   position: relative;
@@ -162,8 +152,8 @@ img.mag-glass-homepage {
   float: left;
   border: 0px solid white;
   @include hourschool-border-radius;
-  width: 355px;
-  height: 40px;
+  width: 352px;
+  height: 32px;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 400;
   font-size: 13px;

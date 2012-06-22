@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
 
   has_many :topics
 
+  has_many :pre_missions_signups
+
   has_many :memberships
   has_many :accounts, :through => :memberships
 
