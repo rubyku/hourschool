@@ -44,7 +44,7 @@
          <%= text_field_tag :prompt, "", :class => "form", :style => "width: 70%; margin-left: 40px" %>
         </p>
 
-        <%= button_to "Let us know", "", :class => "orange button" %>
+        <%= button_to_function "Let us know", "$('.preMissionSignupModal #signup').show(); $('.preMissionSignupModal #response').hide(); $('.preMissionSignupModal').show(); $('.preMissionSignupModal #pre_mission_signup_mission').val($('#prompt').val());", :class => "orange button" %>
     </div>
 
   </div><!-- End Section 1 -->
