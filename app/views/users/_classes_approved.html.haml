@@ -8,7 +8,7 @@
   %div{:class => "#{className}"}
     = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), edit_course_path(course.id)
     = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
-    = button_to "Complete class profile", preview_path(course.id), :class => "complete-class-button", :method => :get
+    = button_to "Complete class profile", preview_path(course.id), :class => "complete-profile button", :method => :get
     .class-description
       .heading13-class 
         = link_to "#{course.title}", preview_path(course.id)

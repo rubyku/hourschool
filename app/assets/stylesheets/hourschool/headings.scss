@@ -18,6 +18,13 @@
     margin-left: -45px;
     width: 680px; } }
 
+.heading32{
+  font-family: Georgia;
+  font-size: 32px;
+  color: #4a8488;
+  margin-bottom: 25px;
+}
+
 .heading25 {
   @include hourschool-heading;
   font-size: 25px;
@@ -28,6 +35,13 @@
   &.light_grey{color: $hourschool-light-grey;}
   &.dark_grey{color: $hourschool-dark-grey;} }
 
+.heading16{
+  font-family: Georgia;
+  font-size: 16px;
+  color: #ff7733;
+  margin-bottom: 5px;
+}
+
 .heading15{
   @include hourschool-heading;
   font-size: 15px;
@@ -35,6 +49,16 @@
 
   &.marcomm{color: #e4652f;}
   &.campaign-greendoors{color: #5b7020;} }
+
+
+.heading14{
+  @include hourschool-heading;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 0.2em;
+  line-height: 20px;
+}
 
 .heading13-class {
   color: #ff7733;
@@ -56,6 +80,25 @@
   letter-spacing: 0.2em;
   line-height: 26px; }
       
+.heading11{
+  @include hourschool-heading;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #333333;
+
+  &#homepage {
+    margin-bottom: 10px;
+  }
+
+  &#explore {
+    margin-bottom: 5px;
+  }
+
+  &.marcomm{
+    margin-bottom: 10px;
+  }
+}
+
 .heading10 {
   @include hourschool-heading;
   font-size: 10px;

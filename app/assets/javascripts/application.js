@@ -7,7 +7,6 @@
 
 //= require jquery.cookie
 
-
 //= require_self
 //= require bootstrap
 //= require bootstrap-typeahead-fork

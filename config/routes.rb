@@ -1,5 +1,7 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :pre_mission_signups
+
   resources :tracks
 
   resources :cities, :only => [:index]
@@ -94,7 +96,7 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  match '/learn'                      => 'Courses::Browse#index'
+  match '/explore'                      => 'Courses::Browse#index'
   match '/suggest'                    => 'suggestions#suggest'
   match '/csvote'                     => 'suggestions#vote'
 
@@ -133,6 +135,7 @@ HourschoolV2::Application.routes.draw do
   match '/teach'                      => 'pages#show', :id => 'teach'
 
   match '/start'                      => 'pages#index'
+  match '/learn'                      => 'pages#index'
 
   # post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
 

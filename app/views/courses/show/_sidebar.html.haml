@@ -50,18 +50,19 @@
       %div.course_action
         - if can? :sign_up_for_course, course
           - if course.sold_out? || course.inactive?
-            / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "register-class-button", :method => :get
+            / = button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get
           - else 
             - if course.donate?
               = button_to "",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }"
             - else
-              = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "register-class-button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+              = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "orange button #{'tooFarToRegister' unless course.near_user?(current_user) }"
+
         - if can? :edit_course, course
           - if course.inactive?
             /= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button"
           - else
-            = button_to "Edit details",           edit_course_path, :method => :get, :style => "width: 220px", :class => "edit-class-button"
-            = button_to "Cancel this session",            course_organizer_path(course, :cancel), :method => :get, :style => "width: 220px", :class => "edit-class-button"
+            = button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button"
+            = button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "grey button"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"
@@ -144,7 +145,8 @@
 
   %div
     %br
-    = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get
+
+    = button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "grey Button"
 
 
 // Show the modal window if a person tries to register for a course too far away from them

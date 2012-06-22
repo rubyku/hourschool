@@ -42,15 +42,14 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <%= yield :first_inside_body %>
-    <div class="<%= content_for?(:main_class) ? yield(:main_class) :  "container_16 main clearfix" %>">
-      <%= yield :before_main %>
-      <%= yield %>
-      <%= yield :after_main %>
-    </div>
+      <div class="<%= content_for?(:main_class) ? yield(:main_class) :  "clearfix" %>">
+        <%= yield %>
+      </div>
     <%= yield :foot %>
     <%= yield :foot_libraries %>
     <%= yield :foot_scripts %>
     <%= yield :foot_analytics %>
     <script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   </body>
 </html>
