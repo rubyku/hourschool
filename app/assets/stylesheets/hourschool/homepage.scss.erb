@@ -5,30 +5,54 @@
   background-repeat:no-repeat;
 }
 
+#homepage_headline_1{
+  position: relative;
+  margin-left: 570px;
+  margin-top: 11px;
+  @include hourschool-heading;
+  text-align: center;
+  color: white;
+  z-index: 100;
+}
+
+.font48{
+  font-size: 48px;
+  letter-spacing: 10px;
+  line-height: 36pt;
+}
+
+.font24{
+  font-size: 24px;
+  letter-spacing: 10px;
+  line-height: 36pt;
+}
+
+a#homepageInfoModal{
+  position: relative;
+  margin-left: 600px;
+  font-family: Georgia; 
+  font-size: 14px; 
+  font-style: italic; 
+  text-align: center;
+  color: white;
+  z-index: 100;
+}
+
 #homepage .teaser {
+  position: relative;
   height: 255px; 
   width: 400px;
-  margin-left: 530px;
+  margin-left: 560px;
+  margin-top: -210px;
   @include hourschool-border-radius;
   background-color: black;
   opacity: 0.2;
-  }
-
-#homepage_headline{
-  height: 255px; 
-  width: 400px;
-  margin-left: 530px;
-  @include hourschool-heading;
-  font-size: 48px;
-  text-align: center;
-  color: white;
-  letter-spacing: 10px;
-  line-height: 36pt;
-  padding: 20px;
 }
+
 
 #homepage .featured {
   position: relative;
+  margin-top: 62px;
   margin-bottom: 60px; }
 
 #homepage .sidebar-left{
@@ -38,7 +62,6 @@
 }
 
 .brand_bg {
-  margin-top: 35px;
   background-color: $hourschool-house-color;
   height: 7px; }
 
@@ -52,7 +75,7 @@
 }
 
 #homepage .content-right{
-  margin-top: 80px;
+  margin-top: 40px;
   float :left;
   width: 570px;
   padding: 30px 30px 30px 30px;
@@ -76,12 +99,13 @@ p.prompt-text{
   &#homepage{
     font-size: 26px;
     color: #666;
-    line-height: 34pt;
+    line-height: 36pt;
     margin-bottom: 20px;
   }
 
   &#explore{
     font-size: 20px;
+    line-height: 20pt;
     color: $hourschool-house-color;
   }
 }

@@ -12,7 +12,9 @@
   <tr>
     <td><%= pre_mission_signup.mission %></td>
     <td><%= pre_mission_signup.description %></td>
-    <td><%= pre_mission_signup.user %></td>
+    <% if pre_mission_signup.user.present? %>
+      <td><%= pre_mission_signup.user.name %></td>
+    <% end %>
     <td><%= pre_mission_signup.email %></td>
     <td><%= link_to 'Show', pre_mission_signup %></td>
     <td><%= link_to 'Edit', edit_pre_mission_signup_path(pre_mission_signup) %></td>

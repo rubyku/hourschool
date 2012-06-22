@@ -26,7 +26,13 @@
 <% else community_site? %>
 
   <!-- Section 1 -->
-  <div style="float: left; width: 300px; margin-right: 25px;">
+  <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
+
+    <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center; padding-top: 30px">
+      <div class="heading14">What happened to <br>HourSchool?</div>
+      <br>
+      <%= button_to "Find out yourself!", about_path, :class => "orange button" %>
+    </div>
 
     <div style="background-color: #ff7733; height: 7px; margin-top: -7px"></div> 
     <div style="float: left; width: 300px; margin-bottom: 25px; background-color: white; text-align: center; padding-top: 15px; padding-bottom: 15px">
@@ -41,24 +47,19 @@
         <%= button_to "Let us know", "", :class => "orange button" %>
     </div>
 
-    <div style="float: left; width: 300px; height: 170px; margin-bottom: 20px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center; padding-top: 30px">
-        <div class="heading14">Already have a <br>mission in mind you <br>want to create?</div>
-        <br>
-        <%= button_to "Launch a new mission", "", :class => "orange button" %>
-    </div>
-
   </div><!-- End Section 1 -->
 
   <!-- Section 2 -->
   <div style="float: left; width: 630px;">
 
     <div style="float: left; width: 630px; height: 400px;">
-      <%= link_to image_tag("v3/explore/mission-soGoodNetwork.png"), new_pre_mission_signup_path(:mission => 'good-network'), :class => "preMissionSignup", 'data-mission' => 'good-network' %>
+      <%= link_to image_tag("v3/explore/mission-greenHouse.png"), new_pre_mission_signup_path(:mission => 'Make my house more energy efficient and sustainable'), :class => "preMissionSignup", 'data-mission' => 'Make my house more energy efficient and sustainable' %>
     </div>
 
-    <div style="float: left; width: 605px; height: 53px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 15px; padding-left: 15px">
-      <div class="heading11" id="explore">Launching the So Good Network</div>
-      <div class="title-text" id="explore">Build a growing community of socially-minded folks.</div>
+    <div style="float: left; width: 605px; height: 57px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 1px; padding-top: 15px; padding-left: 15px">
+      
+      <div class="title-text" id="explore">Make my house more energy efficient and sustainable</div>
+      <div class="heading11" id="explore">Austin, TX</div>
     </div>
 
   </div><!-- End Section 2 -->
@@ -67,13 +68,13 @@
   <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
 
     <div style="float: left; width: 960px; height: 180px;">
-      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'food-truck'), :class => "preMissionSignup", 'data-mission' => 'food-truck' %>
+      <%= link_to image_tag('v3/explore/mission-soGoodNetwork.png'), new_pre_mission_signup_path(:mission => 'Launch the So Good Network'), :class => "preMissionSignup", 'data-mission' => 'Launch the So Good Network' %>
     </div>
 
-    <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+    <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 3px; padding-top: 10px; padding-left: 15px">
 
-      <div class="heading11" id="explore">Opening a food truck</div>
-      <div class="title-text" id="explore">It's been a dream of mine to open a food truck in Austin. I know food but don't know how to begin.</div>
+      <div class="title-text" id="explore">Launch the So Good Network, striving to be the heart of social innovation and change</div>
+      <div class="heading11" id="explore">Austin, TX</div>
 
     </div>
 
@@ -83,30 +84,30 @@
   <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
 
     <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-      <%= link_to image_tag('v3/explore/mission-motorcycle.png'), new_pre_mission_signup_path(:mission => 'motorcycle'), :class => "preMissionSignup", 'data-mission' => 'motorcycle' %>
+      <%= link_to image_tag('v3/explore/mission-interactionDesign.png'), new_pre_mission_signup_path(:mission => 'Design thinking and making'), :class => "preMissionSignup", 'data-mission' => 'Design thinking and making' %>
     </div>
 
     <div style="float: left; width: 300px; height: 180px;">
-      <%= link_to image_tag('v3/explore/mission-greenHouse.png'), new_pre_mission_signup_path(:mission => 'greenhouse'), :class => "preMissionSignup", 'data-mission' => 'greenhouse' %>
+      <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'Open a food truck'), :class => "preMissionSignup", 'data-mission' => 'Open a food truck' %>
     </div>
 
     <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-      <div class="heading11" id="explore">Vintage Motorcycle Maintenance</div>
-      <div class="title-text" id="explore">The Art and Philosophy</div>
+      <div class="title-text" id="explore">Design thinking and making</div>
+      <div class="heading11" id="explore">Austin, TX</div>
     </div>
 
     <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
-      <div class="heading11" id="explore">A more energy efficient house</div>
-      <div class="title-text" id="explore">Starting small and cheap</div>
+      <div class="title-text" id="explore">Open a food truck</div>
+      <div class="heading11" id="explore">Austin, TX</div>
     </div>
 
     <div style="float: left; width: 630px; height: 180px;">
-      <%= link_to image_tag('v3/explore/mission-interactionDesign.png'), new_pre_mission_signup_path(:mission => 'interaction-design'), :class => "preMissionSignup", 'data-mission' => 'interaction-design' %>
+      <%= link_to image_tag('v3/explore/mission-motorcycle.png'), new_pre_mission_signup_path(:mission => 'Practice the art and philosophy of vintage motorcycle maintenance'), :class => "preMissionSignup", 'data-mission' => 'Practice the art and philosophy of vintage motorcycle maintenance' %>
     </div>
 
-    <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-      <div class="heading11" id="explore">Learning about interaction design</div>
-      <div class="title-text" id="explore">Learn more about how to think like an interaction designer</div>
+    <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+      <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+      <div class="heading11" id="explore">Austin, TX</div>
     </div>
 
   </div><!-- End section 5 left -->
@@ -160,7 +161,7 @@
 
     <% if current_user %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="sidebar-heading">Hi, <%= current_user.name.split(" ").first %>! It's awesome to see you back.</div>
+      <div class="sidebar-heading">Hi, <%= current_user.name.split(" ").first %>! It's awesome to see you back.</div><br>
     <% else %>
       <div class="sidebar-heading">Hello there! First time here?</div><br>
       <p>What's your email? (Already an HourSchoolmate? <%= link_to "Log in first", new_user_session_path %>)</p>
@@ -169,7 +170,8 @@
       </div>
     <% end %>
 
-    <%= f.hidden_field :mission, :value => params[:mission] %>
+    <p>You're signing up to get notified when the following mission launches.</p>
+    <%= f.text_field :mission, :class => "form-with-margin", :value => params[:mission] %>
 
     <p>Tell us a little more about why you are interested in this mission.</p>
 
