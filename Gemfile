@@ -101,6 +101,9 @@ gem 'sitemap_generator',  '~> 3.0.0'
 gem 'carrierwave',        '~> 0.5.8'
 gem 'fog',                '~> 1.1.2'
 
+
+gem "stripe", "~> 1.6.3"
+
 group :development do
   gem 'heroku',           '~> 2.18.1'
 end

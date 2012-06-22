@@ -30,3 +30,6 @@
   <%= @crewmanship.canceled_at %>
 </p>
 
+<h1>your trial expires in <%= time_ago_in_words(@crewmanship.trial_expires_at) %></h1>
+
+<%= link_to 'enter credit card details', add_payment_information_mission_crewmanship_path() %>

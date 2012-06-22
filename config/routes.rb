@@ -1,10 +1,13 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :subscriptions
+
   resources :invites
 
   resources :missions do
     resources :topics
-    resources :crewmanships
+    resources :crewmanships do
+    end
   end
 
   resources :tracks
