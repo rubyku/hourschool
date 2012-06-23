@@ -17,7 +17,7 @@
           = f.hidden_field :mission_id, :value => mission.id
           = f.text_area    :body,      :placeholder => "Do you have a question?", :class => "form"
         %div
-          = f.submit 'Leave Comment'
+          = f.submit 'Leave Comment', :class => "btn"
 
 %div.comments
   - mission.comments.where(:parent_id => nil).each do |comment|
@@ -68,7 +68,7 @@
               = f.hidden_field :mission_id, :value => mission.id
               = f.text_area    :body,      :placeholder => "What do you think?", :class => "form"
             %div.clearfix
-              = f.submit 'Leave Comment'
+              = f.submit 'Leave Comment', :class => "btn"
     - else                 
       .comment_form
         - if current_user.blank?

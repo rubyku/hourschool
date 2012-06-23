@@ -17,8 +17,8 @@
 
 <div class="page-section-float-left">
 
-  <%= f.text_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
-  <%= text_field_tag :topic_id, params[:topic_id] %>
+  <%= f.hidden_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
+  <%= hidden_field_tag :topic_id, params[:topic_id] %>
 
    <p>
    <%= f.label :title, 'Class title:', :class => "form-question" %>
@@ -169,7 +169,7 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
   <% else %>
-   <%= f.submit "Submit", :class => "orange button", :id => 'course_submit', :value => "Submit" %>
+   <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Submit" %>
   <% end %>
 
 

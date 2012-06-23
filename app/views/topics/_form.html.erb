@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, "Topic" %>
     <%= f.text_field :title %>
   </div>
-
   <div class="field">
-    <%= radio_button_tag :follow_type, 'teach', :checked => true, :style => "float: left; margin-right: 10px"  %>
+    <%= radio_button_tag :follow_type, 'teach', true, :style => "float: left; margin-right: 10px"  %>
     <%= label_tag :follow_type, 'I can teach this' %>
-    <%= radio_button_tag :follow_type, 'learn', :style => "float: left; margin-right: 10px"  %>
+    <%= radio_button_tag :follow_type, 'learn', false, :style => "float: left; margin-right: 10px"  %>
     <%= label_tag :follow_type, 'I want to take this' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <br><br>
+  <%= f.submit "Add Topic", :class => "btn btn-primary"%>
+  <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+
 <% end %>

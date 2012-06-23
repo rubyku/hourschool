@@ -19,6 +19,8 @@ a.button{
   font-size: 12px;
   cursor: pointer;
 
+  &:hover{text-decoration: none; color: white;}
+
 
   /*custom style*/
 
@@ -30,8 +32,11 @@ a.button{
   }
 
   &.orange{
-    width: 220px;
     background-color: $hourschool-house-color;
+
+    &.long{
+      width: 220px;
+    }
 
     &.short{
       width: 120px;
