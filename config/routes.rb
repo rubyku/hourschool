@@ -144,6 +144,8 @@ HourschoolV2::Application.routes.draw do
   match '/story'                      => 'pages#show', :id => 'story'
   match '/campaign'                   => 'pages#show', :id => 'campaign'
   match '/teach'                      => 'pages#show', :id => 'teach'
+  match '/build_mission'              => 'pages#show', :id => 'build_mission'
+  match '/build_school'               => 'pages#show', :id => 'build_school'
 
   match '/start'                      => 'pages#index'
   match '/learn'                      => 'pages#index'
