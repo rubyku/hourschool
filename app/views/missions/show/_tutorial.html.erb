@@ -1,0 +1,93 @@
+<% if @mission.creator == current_user %>
+  <div class="alert alert-info">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading">SOME TIPS AND TRICKS TO HELP YOU BUILD YOUR MISSION</h4>
+    <br>
+    <p>
+      <% if @mission.photo.present? && @mission.description.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
+      <% end %>
+
+      <% if @mission.topics.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#addATopic"><i class="icon-tasks"></i> Add a topic</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#addATopic"><i class="icon-tasks"></i> Add a topic</a>
+      <% end %>
+
+      <% if @mission.comments.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
+      <% end %>
+
+      <% if @mission.courses.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
+      <% end %>
+      
+      <a class="btn" data-toggle="modal" href="#rallyACrew"><i class="icon-bullhorn"></i> Rally a crew</a>
+    </p>
+  </div>
+<% end %>
+
+<div class="modal hide" id="addBasicInfo">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Basic info</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for(@mission) do |f| %>
+      <% if @mission.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@mission.errors.count, "error") %> prohibited this mission from being saved:</h2>
+
+          <ul>
+          <% @mission.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="field">
+        <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :photo, 'Upload a photo that represent your mission' %>
+        <%= f.file_field :photo %>
+        <%= image_tag(@mission.photo, :size => "384x144") if @mission.photo.present? %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+      <%= f.submit "Save changes", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal hide" id="addAnEvent">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add an event</h3>
+  </div>
+  <div class="modal-body">
+    <p>Which type of event best suit what you want to do?</p>
+    <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  $('#addBasicInfo').modal(options)
+  $('#addATopic').modal(options)
+  $('#askAQuestion').modal(options)
+  $('#addAnEvent').modal(options)
+  $('#rallyACrew').modal(options)
+</script>

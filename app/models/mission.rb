@@ -14,4 +14,14 @@ class Mission < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "/:style/:id/:filename"
 
+
+  def creator
+    creators = crewmanships.where(:role => 'creator')
+    if creators.any?
+      creators.first.user
+    else
+      nil
+    end
+  end
+
 end

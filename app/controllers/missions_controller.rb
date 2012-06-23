@@ -16,8 +16,11 @@ class MissionsController < ApplicationController
     @mission = Mission.find(params[:id])
     @users = Mission.find(params[:id]).users
     @courses = Mission.find(params[:id]).courses
-    @topic = @mission.topics.find(params[:id])
-
+    @course = Course.new
+    #@topic = @mission.topics.new
+    if Mission.find(params[:id]).topics.present?
+      @topic = @mission.topics.find(params[:id])
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mission }

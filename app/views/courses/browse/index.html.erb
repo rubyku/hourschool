@@ -28,12 +28,6 @@
   <!-- Section 1 -->
   <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
 
-    <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
-      <div class="heading14" style="margin-top: 30px">What happened to <br>HourSchool?</div>
-      <br>
-      <%= button_to "Find out yourself!", about_path, :class => "orange button" %>
-    </div>
-
     <div style="background-color: #ff7733; height: 7px; margin-top: -7px"></div> 
     <div style="float: left; width: 300px; margin-bottom: 25px; background-color: white; text-align: center; padding-top: 15px; padding-bottom: 15px">
       
@@ -44,7 +38,13 @@
          <%= text_field_tag :prompt, "", :class => "form", :style => "width: 70%; margin-left: 40px" %>
         </p>
 
-        <%= button_to_function "Let us know", "$('.preMissionSignupModal #signup').show(); $('.preMissionSignupModal #response').hide(); $('.preMissionSignupModal').show(); $('.preMissionSignupModal #pre_mission_signup_mission').val($('#prompt').val());", :class => "orange button" %>
+        <%= link_to_function "Let us know", "$('.preMissionSignupModal #signup').show(); $('.preMissionSignupModal #response').hide(); $('.preMissionSignupModal').show(); $('.preMissionSignupModal #pre_mission_signup_mission').val($('#prompt').val());", :class => "orange button long" %>
+    </div>
+
+    <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
+      <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
+      <br>
+      <%= link_to "Go build one!", new_mission_path, :class => "orange button long" %>
     </div>
 
   </div><!-- End Section 1 -->

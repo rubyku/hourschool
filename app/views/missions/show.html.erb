@@ -1,15 +1,18 @@
-<p id="notice"><%= notice %></p>
+<%= render 'missions/show/tutorial' %>
+<%= render 'missions/show/invitee_landing_page' %>
 
-<% if params[:q] == 'learn' %>
-you're invited to learn
-<% elsif params[:q] == 'teach' %>
-you're invited to teach
-<% end %>
 
 <div class="full-page">
+  <% if @mission.photo.present? %>
+    <%= image_tag(@mission.photo, :size => "960x360") %>
+  <% else %>
+    <div style="background-color: #333; width: 960px; height: 360px;">
+      <div class="heading11" style="text-align: center; padding-top: 60px">
+        <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your mission</a>
+      </div>
+    </div>
+  <% end %> 
 
-  <%= image_tag(@mission.photo, :size => "960x360") if @mission.photo.present? %>
-  
   <div class="mission-description-box">
     <div class="heading32 orange">
       <%= @mission.title %>
@@ -25,10 +28,11 @@ you're invited to teach
   </div>
 
   <div class="mission-status-box">
-    <%= link_to 'Join mission', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange short button" %>
+    <%= link_to 'Join mission', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange button short" %>
   </div>
 
 </div><!-- end full page -->
+
 
 <div class="page-main">
   <div class="tabbable"> 
@@ -46,12 +50,11 @@ you're invited to teach
           </div>
         </div>     
         <div class="tab-pane" id="tab2">
-          <%= button_to "New Event", new_course_path(:mission_id => @mission.id), :method => :get, :style => "float: right;" %><br><br>
+          <%= link_to "Add an event", new_course_path(:mission_id => @mission.id), :method => :get, :class => "btn", :style => "float: right;" %><br><br>
           <% @courses.each do |course| %>
           <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
               <%= link_to course.title, course, :class => "heading20" %><br>
               Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-              <!-- Covers <%= course.topics.count %> topics -->
         
             <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
             <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
@@ -62,7 +65,7 @@ you're invited to teach
         <% end %>
         </div>
         <div class="tab-pane" id="tab3">
-          <%= button_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :style => "float: right;" %><br><br>
+          <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %><br><br>
           <% @users.each do |user| %>
             <div class="crewman-box">
               <div class="crewman-photo">
@@ -98,7 +101,7 @@ you're invited to teach
 <div class="page-right-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
       <div class="heading11" style="float: left">Topic Library:</div>
-      <%= link_to "Add", new_mission_topic_path(:mission_id => @mission), :method => :get, :class => "grey button", :style => "float: right; margin-top: -5px", :class => "newTopic" %>
+      <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
       <br><br>
       <% @mission.topics.each do |topic| %>
         <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
@@ -110,77 +113,43 @@ you're invited to teach
             <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
           <% end %>
           <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+        </div> 
+
+        <div class="modal hide" id="newTopic">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Add a new topic</h3>
+          </div>
+          <div class="modal-body">              
+            <%= render 'topics/form' %>
+          </div>
         </div>
 
         <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'moreInfoModal'} do %>
-
           <div class="heading13-class"><%= topic.title %></div>
           <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
           <hr>
           <div class="heading11">Related Events:</div>
-            <% topic.courses.each do |course| %>
-              <%= link_to course.title, course %>
-              <br>
-            <% end %>
+          <% topic.courses.each do |course| %>
+            <%= link_to course.title, course %>
+            <br>
+          <% end %>
+        <% end %><!-- end modal -->
 
-        <% end %>
-
-        <script type="text/javascript">
-          $(document).ready( function(){
-            $('.moreInfo').bind('click', function(){
-              $('.moreInfoModal').show();
-              return false;
-            })
-          });
-        </script>
-
-      <% end %>
+      <% end %><!-- end mission.topic each block -->
   </div>
 </div><!-- end sidebar-white -->
 
 
-<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'newTopicModal'} do %>
-
-  <%= form_for([@mission, @topic]) do |f| %>
-    <% if @topic.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
-
-        <ul>
-        <% @topic.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
-    </div>
-
-    <div class="field">
-      <%= radio_button_tag :follow_type, 'teach', :checked => true, :style => "float: left" %>
-      <%= label_tag :follow_type, 'I can teach this' %>
-      <%= radio_button_tag :follow_type, 'learn', :style => "float: left"  %>
-      <%= label_tag :follow_type, 'I want to take this' %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-
-
-<% end %>
-
 <script type="text/javascript">
   $(document).ready( function(){
-    $('.newTopic').bind('click', function(){
-      $('.newTopicModal').show();
+    $('.moreInfo').bind('click', function(){
+      $('.moreInfoModal').show();
       return false;
     })
   });
-</script>
 
+  $('#newTopic').modal(options)
+</script>
 
 
