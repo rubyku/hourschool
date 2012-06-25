@@ -3,8 +3,18 @@ class Comment < ActiveRecord::Base
   belongs_to :course
   belongs_to :mission
 
+  has_attached_file :photo, :styles => { :normal => "510x381" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :path => "comment/:style/:id/:filename"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  #validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
   validates :user_id,   :presence => true
   validates :body,      :presence => true
+
+  default_scope :order => 'created_at DESC'
 
   def body_with_links
     stripped_message = ERB::Util.html_escape(self.body)

@@ -1,0 +1,116 @@
+<style type="text/css">
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover {
+  color: black;
+  background-color: white;
+}
+</style>
+
+<div class="well">
+  <% if current_user %>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#comment-note" data-toggle="tab" class="heading9 bold"><i class="icon-comment"></i> Note</a></li>
+      <li><a href="#comment-question" data-toggle="tab" class="heading9 bold"><i class="icon-question-sign"></i> Question</a></li>
+      <li><a href="#comment-link" data-toggle="tab" class="heading9 bold"><i class="icon-bookmark"></i> Link</a></li>
+      <li><a href="#comment-photo" data-toggle="tab" class="heading9 bold"><i class="icon-picture"></i> Photo</a></li>
+      <li><a href="#comment-file" data-toggle="tab" class="heading9 bold"><i class="icon-file"></i> File</a></li>
+    </ul>
+    <%= form_for mission.comments.new do |f| %>
+      <%= f.hidden_field :mission_id, :value => mission.id %>
+      <%= f.hidden_field :comment_type, :value => "note" %>
+      <div class="tab-content">
+        <div class="tab-pane active" id="comment-note">
+          <%= f.text_area    :body,      :placeholder => "I've been working on...", :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
+        </div>     
+        <div class="tab-pane" id="comment-question">
+          <%= f.text_area    :body,      :placeholder => "I'm stuck on...", :class => "form-med-with-margin", 'data-comment_type' => 'question' %>
+        </div>
+        <div class="tab-pane" id="comment-link">
+          <%= f.text_area    :body,      :placeholder => "Hey check out HourSchool: www.hourschool.com", :class => "form-med-with-margin", 'data-comment_type' => 'link' %>
+        </div>
+        <div class="tab-pane" id="comment-photo">
+          <p>Upload a photo from your computer</p>
+          <%= f.file_field   :photo %>
+          <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin", 'data-comment_type' => 'photo' %>
+        </div>
+        <div class="tab-pane" id="comment-file">
+          <p>Upload a file from your computer</p>
+          <%= f.file_field   :photo %>
+          <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin", 'data-comment_type' => 'file' %>
+        </div>
+      </div><!-- end tab-content -->
+      <%= f.hidden_field :body, :id => 'submit_body_value' %>
+      <%= f.submit 'Leave Comment', :class => "btn" %>
+    <% end %>
+  <% else %>
+    <p>Please first sign up or log in to leave a comment</p>
+  <% end %>
+</div>
+
+<script type='text/javascript' >
+  $('[data-comment_type]').bind('blur', function() {
+    $('#submit_body_value').val($(this).val());
+    $('#comment_comment_type').val($(this).attr('data-comment_type'));
+  })
+</script>
+
+
+<% mission.comments.where(:parent_id => nil).each do |comment| %>
+  <div class="divider">
+    <div class="comment-box parent">
+      <div class="commenter-photo">
+        <%= image_tag(comment.user.photo.url(:thumb_small)) %>
+      </div>
+      <div class="comment-body parent">
+        <div style="float: left; margin-right: 10px; font-size: 13px; font-weight: 700">
+          <%= comment.user.name %>
+        </div>
+        <div style="font-size: 10px">
+          <%= "#{time_ago_in_words comment.created_at} ago" %>
+        </div>
+        <%= simple_format Rinku.auto_link(comment.body) %>
+        <% if comment.photo.present? %>
+          <%= link_to comment.photo_file_name, comment.photo.url %>
+          <%#= image_tag(comment.photo.url(:normal)) %>
+        <% end %>  
+      </div><!-- end comment-body parent -->
+    </div><!-- end comment-box parent -->
+
+    <% if comment.child_comments.present? %>
+      <div class="comment-box child">
+        <% comment.child_comments.each do |child_comment| %>
+          <div class="commenter-photo">
+            <%= image_tag(child_comment.user.photo.url(:thumb_small)) %>
+          </div>
+          <div class="comment-body child">
+            <div class="heading13-class" style="float: left; margin-right: 10px">
+              <%= child_comment.user.name %>
+            </div>
+            <div style="font-size: 10px">
+              <%= "#{time_ago_in_words comment.created_at} ago" %>
+            </div>
+            <%= simple_format Rinku.auto_link(child_comment.body) %>
+          </div>
+        <% end %><!-- end child-comment each block -->
+      </div><!-- end child-comment-box -->
+    <% end %><!-- end if child_comments.present? -->
+
+        <div class="comment-box reply">
+          <% if current_user %>
+            <%= form_for mission.comments.new do |f| %>
+              <%= f.hidden_field :mission_id, :value => mission.id %>
+              <div class="commenter-photo">
+                <%= image_tag(current_user.photo.url(:thumb_small)) %>
+              </div>
+              <%= f.text_area :body, :placeholder => "Leave a comment", :class => "comment-field" %>
+              <br>
+              <%= f.submit 'Reply', :class => "btn btn-small", :style => "float: right" %>
+            <% end %>
+          <% else %>
+            <p>Please first sign up or log in to leave a comment</p>
+          <% end %>
+        </div><!-- end comment-box reply -->
+  </div><!-- end comment-box thread -->
+<% end %><!-- end mission.comment each block -->
+
+

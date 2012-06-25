@@ -42,7 +42,7 @@
       <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
       <li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li>
     </ul>
-    <div style="padding: 2px 20px 20px 20px">
+    <div style="padding: 0px 20px 20px 20px">
       <div class="tab-content">
         <div class="tab-pane active" id="tab1">
           <div style="width: 97%">
@@ -50,53 +50,104 @@
           </div>
         </div>     
         <div class="tab-pane" id="tab2">
-          <%= link_to "Add an event", new_course_path(:mission_id => @mission.id), :method => :get, :class => "btn", :style => "float: right;" %><br><br>
-          <% @courses.each do |course| %>
-          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
-              <%= link_to course.title, course, :class => "heading20" %><br>
-              Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-        
-            <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-            <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
-
-            <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
-            <%= course.place_name %>
+          <div class="mission-tab-intro">
+            <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
           </div>
-        <% end %>
+          <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
+          <br><br><br><br>
+          <% @courses.each do |course| %>
+            <div class="divider">
+              <%= link_to course.title, course, :class => "heading20" %><br>
+               Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+              <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+              <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
+              <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
+              <%= course.place_name %>
+            </div>
+          <% end %>
         </div>
         <div class="tab-pane" id="tab3">
-          <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %><br><br>
+          <div class="field">
+            <%= text_field_tag :userSearch, "", :placeholder => "Search for someone", :class => "form-short-edit-profile", :autocomplete => "off" %>
+            <script type="text/javascript">
+              $('#userSearch').typeahead({
+                source: function(typeahead, query) {
+                  var _this = this;
+                  return $.ajax({
+                    url: "<%= search_users_path(:format => :json) %>?q=" + query,
+                    success: function(data) {
+                      return typeahead.process(data);
+                    }
+                  });
+                },
+                property: "name",
+                onselect: function (obj) {
+                  if (obj.id == 0) {
+                    $('#invite_invitee_email').focus()
+                  } else {
+                    $('#invite_invitee_id').val(obj.id);
+                  }
+                }
+              });
+            </script>
+          </div>
+          <%#= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %>
+          <br><br><br><br>
           <% @users.each do |user| %>
-            <div class="crewman-box">
+            <div class="divider">             
               <div class="crewman-photo">
                 <%= image_tag(user.photo.url(:thumb_large)) %>
               </div>
               <div class="crewman-description">
                 <div class="heading13-class"><%= user.name %></div>
                 <%= user.bio %>
-              </div>
-            </div><!-- end crewman-box -->
+              </div>           
+            </div>
           <% end %>
         </div>
         <div class="tab-pane" id="tab4"><br>
-          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
-            <div class="heading32 green">Online Tools</div>
-            <ol>
-              <li>Invite friends from Facebook</li>
-              <li>Invite friends from Twitter</li>
-              <li>Write a blog post</li>
-            </ul>
+          <div class="divider">
+            <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
+            <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and retweet's.</p>
+            <%= render 'courses/add_this' %>
           </div>
-          <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
-            <div class="heading32 green">Printable Tools</div>
+          <div class="divider">
+            <div style="font-size: 13px; font-weight: 700">Get personal:</div>
+            <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
+            <a class="btn" href="#">Write a tiny letter</a>
+          </div>
+          <div class="divider">
+            <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
+            <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
+            <div class="well">
+              <p>No one has uploaded anything yet.</p>
+              <a class="btn" data-toggle="modal" href="#addRallyTool">Share yours now</a>
+            </div>
+            <div class="modal hide" id="addRallyTool">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Share a rally tool</h3>
+              </div>
+              <div class="modal-body">                
+                <% if current_user %>
+                  <%= form_for @mission.comments.new do |f| %>
+                    <%= f.hidden_field :mission_id, :value => @mission.id %>
+                    <%= f.hidden_field :comment_type, :value => "rally" %>
+                    <%= f.file_field   :photo %>
+                    <%= f.text_area    :body, :class => "form-with-margin", 'data-comment_type' => 'rally' %><br>
+                    <%= f.submit 'Leave Comment', :class => "btn" %>
+                  <% end %>
+                <% else %>
+                  <p>Please first sign up or log in to leave a comment</p>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
-
       </div><!-- end tab-content -->
-
     </div><!-- end page-content -->
   </div><!-- end tabbable -->
-</div><!-- end page -->
+</div><!-- end page-main -->
 
 <div class="page-right-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
@@ -104,7 +155,7 @@
       <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
       <br><br>
       <% @mission.topics.each do |topic| %>
-        <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 10px; margin-top: 10px; margin-bottom: 10px">
+        <div class="divider">
           <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :class => "moreInfo" %></div>
           <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
           <% if topic.courses.count <= 1 %>
@@ -150,6 +201,8 @@
   });
 
   $('#newTopic').modal(options)
+  $('#addAnEvent').modal(options)
+  $('#addRallyTool').modal(options)
 </script>
 
 

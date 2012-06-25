@@ -122,8 +122,18 @@ a.heading20{
 
 .heading9-class {
   font-weight: 400;
-  font-size: 9px; }
-  
+  font-size: 9px; 
+}
+
+.heading9{
+  font-size: 9px; 
+
+  &.bold{
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+  }  
+}
 
   
 /* NEED NESTING */

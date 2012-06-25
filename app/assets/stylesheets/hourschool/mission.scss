@@ -1,3 +1,11 @@
+.divider{
+  float: left;
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
 .mission-description-box{
   float: left;
   width: 730px;
@@ -7,6 +15,10 @@
 .mission-status-box{
   float: left;
   margin: 10px 0px 10px 57px
+}
+
+.mission-tab-intro{
+  width: 500px;
 }
 
 .crewman-box{
@@ -22,4 +34,54 @@
 .crewman-description{
   float: left;
   width: 420px;
+}
+
+.comment-box{
+  float: left;
+
+  &.thread{
+    width: 570px;
+  }
+
+  &.parent{  
+  }
+
+  &.child{ 
+    margin-left: 60px;
+    background-color: whiteSmoke;
+    padding: 10px;
+    width: 490px;
+  }
+
+  &.reply{
+    margin-left: 60px;
+    background-color: whiteSmoke;
+    padding: 10px;
+    width: 490px;
+    margin-top: 10px;
+
+  }
+}
+
+.commenter-photo{
+  float: left;
+  margin-right: 10px;
+}
+
+.comment-body{
+  float: left;
+  margin-bottom: 10px;
+
+  &.parent{
+    width: 510px;
+  }
+
+  &.child{
+    width: 430px;
+  }
+}
+
+.comment-field{
+  width:  420px;
+  height: 40px;
 }
