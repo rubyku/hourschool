@@ -250,6 +250,11 @@ class User < ActiveRecord::Base
     end
     UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
   end
+
+  def balance
+    puts "crewmanships.collect(&:price): #{crewmanships.collect(&:price)}"
+    crewmanships.collect(&:price).inject{|sum,x| sum + x }
+  end
   
   # ================================
   # End user conversion Code
