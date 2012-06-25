@@ -14,13 +14,10 @@ class MissionsController < ApplicationController
   # GET /missions/1.json
   def show
     @mission = Mission.find(params[:id])
-    @users = Mission.find(params[:id]).users
-    @courses = Mission.find(params[:id]).courses
+    @users = @mission.users
+    @courses = @mission.courses
     @course = Course.new
-    #@topic = @mission.topics.new
-    if Mission.find(params[:id]).topics.present?
-      @topic = @mission.topics.find(params[:id])
-    end
+    @topic = Topic.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mission }
@@ -52,6 +49,7 @@ class MissionsController < ApplicationController
 
     respond_to do |format|
       if @mission.save
+        @mission.crewmanships.create(:user => current_user, :role => 'creator', :status => "trial_active")
         format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
         format.json { render json: @mission, status: :created, location: @mission }
       else

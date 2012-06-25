@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
                     :path => "comment/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
-  #validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'application/pdf', 'application/msword', 'text/plain']
 
   validates :user_id,   :presence => true
   validates :body,      :presence => true

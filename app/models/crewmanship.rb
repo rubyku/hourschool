@@ -1,4 +1,5 @@
 class Crewmanship < ActiveRecord::Base
+  # status(trial_active,trial_expired,trial_canceled,active,canceled,completed)
   belongs_to :mission
   belongs_to :user
 

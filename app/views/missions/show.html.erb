@@ -56,7 +56,7 @@
           <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
           <br><br><br><br>
           <% @courses.each do |course| %>
-            <div class="divider">
+            <div class="mission-divider">
               <%= link_to course.title, course, :class => "heading20" %><br>
                Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
               <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
@@ -67,7 +67,7 @@
           <% end %>
         </div>
         <div class="tab-pane" id="tab3">
-          <div class="field">
+<!--           <div class="field">
             <%= text_field_tag :userSearch, "", :placeholder => "Search for someone", :class => "form-short-edit-profile", :autocomplete => "off" %>
             <script type="text/javascript">
               $('#userSearch').typeahead({
@@ -90,11 +90,11 @@
                 }
               });
             </script>
-          </div>
-          <%#= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %>
+          </div> -->
+          <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %>
           <br><br><br><br>
           <% @users.each do |user| %>
-            <div class="divider">             
+            <div class="mission-divider">             
               <div class="crewman-photo">
                 <%= image_tag(user.photo.url(:thumb_large)) %>
               </div>
@@ -106,23 +106,35 @@
           <% end %>
         </div>
         <div class="tab-pane" id="tab4"><br>
-          <div class="divider">
+          <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
             <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and retweet's.</p>
-            <%= render 'courses/add_this' %>
+            <%#= render 'courses/add_this' %>
           </div>
-          <div class="divider">
+          <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">Get personal:</div>
             <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
             <a class="btn" href="#">Write a tiny letter</a>
           </div>
-          <div class="divider">
+          <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
             <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
-            <div class="well">
-              <p>No one has uploaded anything yet.</p>
-              <a class="btn" data-toggle="modal" href="#addRallyTool">Share yours now</a>
-            </div>
+            <a class="btn" data-toggle="modal" href="#addRallyTool" style="margin-bottom: 10px">Share yours now</a>
+            <% if @mission.comments.where(:comment_type => 'rally').present? %>
+              <% @mission.comments.where(:parent_id => nil, :comment_type => 'rally').each do |comment| %>
+                <div class="well">
+                  
+                    <%= simple_format Rinku.auto_link(comment.body) %>
+                    <div style="font-size: 10px; margin-top: -9px; margin-bottom: 10px">Posted by <%= comment.user.name %></div>
+                  
+                  <i class="icon-bullhorn"></i> <%= link_to comment.photo_file_name, comment.photo.url %>  
+                </div>
+              <% end %>
+            <% else %>
+              <div class="well">
+                <p>No one has uploaded any tools yet.</p>
+              </div>
+            <% end %>
             <div class="modal hide" id="addRallyTool">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
@@ -134,11 +146,11 @@
                     <%= f.hidden_field :mission_id, :value => @mission.id %>
                     <%= f.hidden_field :comment_type, :value => "rally" %>
                     <%= f.file_field   :photo %>
-                    <%= f.text_area    :body, :class => "form-with-margin", 'data-comment_type' => 'rally' %><br>
-                    <%= f.submit 'Leave Comment', :class => "btn" %>
+                    <%= f.text_area    :body, :placeholder => "Description", :class => "form-with-margin", 'data-comment_type' => 'rally' %><br>
+                    <%= f.submit 'Post', :class => "btn" %>
                   <% end %>
                 <% else %>
-                  <p>Please first sign up or log in to leave a comment</p>
+                  <p>Please first sign up or log in</p>
                 <% end %>
               </div>
             </div>
@@ -155,8 +167,8 @@
       <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
       <br><br>
       <% @mission.topics.each do |topic| %>
-        <div class="divider">
-          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :class => "moreInfo" %></div>
+        <div class="mission-divider">
+          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
           <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
           <% if topic.courses.count <= 1 %>
             <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
@@ -166,17 +178,7 @@
           <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
         </div> 
 
-        <div class="modal hide" id="newTopic">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Add a new topic</h3>
-          </div>
-          <div class="modal-body">              
-            <%= render 'topics/form' %>
-          </div>
-        </div>
-
-        <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'moreInfoModal'} do %>
+        <div class="modal hide" id="viewTopic<%= topic.id %>">
           <div class="heading13-class"><%= topic.title %></div>
           <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
           <hr>
@@ -185,12 +187,22 @@
             <%= link_to course.title, course %>
             <br>
           <% end %>
-        <% end %><!-- end modal -->
+        </div><!-- end modal -->
 
       <% end %><!-- end mission.topic each block -->
   </div>
 </div><!-- end sidebar-white -->
 
+<% @topic = Topic.new %>
+<div class="modal hide" id="newTopic">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add a new topic</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'topics/form' %>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready( function(){
@@ -198,11 +210,12 @@
       $('.moreInfoModal').show();
       return false;
     })
+
+    if(window.location.hash) {
+      $('.nav-tabs [href=' + window.location.hash + ']').tab('show');
+    }
   });
 
-  $('#newTopic').modal(options)
-  $('#addAnEvent').modal(options)
-  $('#addRallyTool').modal(options)
 </script>
 
 

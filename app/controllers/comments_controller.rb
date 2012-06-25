@@ -13,7 +13,11 @@ class CommentsController < ApplicationController
         # something
       end
     end
-    redirect_to :back
+    if @comment.comment_type == 'rally'
+      redirect_to mission_url(@comment.mission, :anchor => 'tab4')
+    else
+      redirect_to :back
+    end
   end
 
 end
