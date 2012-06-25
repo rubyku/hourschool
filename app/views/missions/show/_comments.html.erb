@@ -55,8 +55,8 @@
 </script>
 
 
-<% mission.comments.where(:parent_id => nil).each do |comment| %>
-  <div class="divider">
+<% mission.comments.where(:parent_id => nil).where("comment_type = 'note' or comment_type = 'question' or comment_type = 'link' or comment_type = 'photo' or comment_type = 'file'").each do |comment| %>
+  <div class="mission-divider">
     <div class="comment-box parent">
       <div class="commenter-photo">
         <%= image_tag(comment.user.photo.url(:thumb_small)) %>
@@ -69,9 +69,10 @@
           <%= "#{time_ago_in_words comment.created_at} ago" %>
         </div>
         <%= simple_format Rinku.auto_link(comment.body) %>
-        <% if comment.photo.present? %>
+        <% if comment.comment_type == 'file' %>
           <%= link_to comment.photo_file_name, comment.photo.url %>
-          <%#= image_tag(comment.photo.url(:normal)) %>
+        <% elsif comment.comment_type == 'photo' %>
+          <%= image_tag(comment.photo.url(:normal)) %>
         <% end %>  
       </div><!-- end comment-body parent -->
     </div><!-- end comment-box parent -->
