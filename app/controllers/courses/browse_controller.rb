@@ -13,7 +13,7 @@ class Courses::BrowseController < ApplicationController
     else
       @courses = @courses.where(:account_id => current_account.id)
     end
-    @courses = @courses.paginate(:page => params[:page], :per_page => 9)
+    @courses = @courses.paginate(:page => params[:page], :per_page => 99)
 
   end
 
@@ -41,7 +41,7 @@ class Courses::BrowseController < ApplicationController
     end
     courses  = courses.located_in(params[:city])         if params[:city].present?
     courses  = courses.tagged_with(params[:tag])         if params[:tag].present?
-    @courses = courses.paginate(:page => params[:page], :per_page => 9)
+    @courses = courses.paginate(:page => params[:page], :per_page => 99)
     @params  = params
   end
 
