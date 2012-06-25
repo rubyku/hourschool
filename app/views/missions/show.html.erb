@@ -121,7 +121,7 @@
           <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">Get personal:</div>
             <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
-            <a class="btn" href="#">Write a tiny letter</a>
+            <a class="btn" data-toggle="modal" href="#tinyLetter">Write a tiny letter</a>
           </div>
           <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
@@ -130,10 +130,8 @@
             <% if @mission.comments.where(:comment_type => 'rally').present? %>
               <% @mission.comments.where(:parent_id => nil, :comment_type => 'rally').each do |comment| %>
                 <div class="well">
-                  
-                    <%= simple_format Rinku.auto_link(comment.body) %>
-                    <div style="font-size: 10px; margin-top: -9px; margin-bottom: 10px">Posted by <%= comment.user.name %></div>
-                  
+                  <%= simple_format Rinku.auto_link(comment.body) %>
+                  <div style="font-size: 10px; margin-top: -9px; margin-bottom: 10px">Posted by <%= comment.user.name %></div>
                   <i class="icon-bullhorn"></i> <%= link_to comment.photo_file_name, comment.photo.url %>  
                 </div>
               <% end %>
@@ -168,39 +166,47 @@
   </div><!-- end tabbable -->
 </div><!-- end page-main -->
 
+<div class="modal hide" id="tinyLetter">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Write a tiny letter</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'invites/form' %>
+  </div>
+</div>
+
 <div class="page-right-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
-      <div class="heading11" style="float: left">Topic Library:</div>
-      <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
-      <br><br>
-      <% @mission.topics.each do |topic| %>
-        <div class="mission-divider">
-          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
-          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-          <% if topic.courses.count <= 1 %>
-            <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
-          <% else %>
-            <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
-          <% end %>
-          <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
-        </div> 
+    <div class="heading11" style="float: left">Topic Library:</div>
+    <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
+    <br><br>
+    <% @mission.topics.each do |topic| %>
+      <div class="mission-divider">
+        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
+        <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+        <% if topic.courses.count <= 1 %>
+          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+        <% else %>
+          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+        <% end %>
+        <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+      </div> 
 
-        <div class="modal hide" id="viewTopic<%= topic.id %>">
-          <div class="heading13-class"><%= topic.title %></div>
-          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-          <hr>
-          <div class="heading11">Related Events:</div>
-          <% topic.courses.each do |course| %>
-            <%= link_to course.title, course %>
-            <br>
-          <% end %>
-        </div><!-- end modal -->
-
-      <% end %><!-- end mission.topic each block -->
+      <div class="modal hide" id="viewTopic<%= topic.id %>">
+        <div class="heading13-class"><%= topic.title %></div>
+        <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+        <hr>
+        <div class="heading11">Related Events:</div>
+        <% topic.courses.each do |course| %>
+          <%= link_to course.title, course %>
+          <br>
+        <% end %>
+      </div><!-- end modal -->
+    <% end %><!-- end mission.topic each block -->
   </div>
 </div><!-- end sidebar-white -->
 
-<% @topic = Topic.new %>
 <div class="modal hide" id="newTopic">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>

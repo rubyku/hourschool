@@ -18,6 +18,10 @@ class MissionsController < ApplicationController
     @courses = @mission.courses
     @course = Course.new
     @topic = Topic.new
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mission }
