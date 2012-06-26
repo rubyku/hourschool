@@ -61,8 +61,8 @@
           - if course.inactive?
             /= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button"
           - else
-            = button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button"
-            = button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "grey button"
+            = button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button", :style => "width: 220px; margin-bottom: -15px"
+            = button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "grey button", :style => "width: 220px"
           
       .class-alternatives
         = "This class has a min. of #{course.min_seats}"
