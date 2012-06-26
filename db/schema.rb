@@ -506,6 +506,8 @@ ActiveRecord::Schema.define(:version => 20120625210727) do
     t.integer  "city_id"
     t.string   "preferences"
     t.datetime "last_invoiced_at"
+    t.integer  "billing_day_of_month"
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["city_id"], :name => "index_users_on_city_id"

@@ -3,26 +3,28 @@ class Crewmanship < ActiveRecord::Base
   belongs_to :mission
   belongs_to :user
 
-  after_create :set_expires_at
-
-  def price
-    full_price = 10.00
-    if trial_expires_at == Date.today
-      full_price
+  def make_active_or_expire
+    if user.has_valid_payment_info?
+      update_attributes(:status => 'active')
+      user.update_attributes(:billing_day_of_month => Time.now.day)
+      user.charge_for_active_crewmanships
     else
-      offset = [user.last_invoiced_at, trial_expires_at.to_time].max()
-      prorate = canceled_at || Time.now
-      days_since_last_invoice = ((prorate - offset) / 86400).round
-      days_in_month = Time.days_in_month(Time.now.month, Time.now.year)
-      # puts "offset: #{offset}"
-      # puts "prorate: #{prorate}"
-      # puts "#{full_price} / #{days_in_month} * #{days_since_last_invoice}"
-      (full_price / days_in_month * days_since_last_invoice).round(2)
+      update_attributes(:status => 'trial_expired')
     end
   end
 
-  private
-  def set_expires_at
-    update_attribute(:trial_expires_at, 30.days.from_now.to_date)
+  def price
+    if status == 'active'
+      10.00
+    else
+      0
+    end
   end
+
+  def self.activate_or_expire_crewmanships
+    Crewmanship.where(:status => 'trial_active').where(:trial_expires_at => Date.today).each do |crewmanship|
+      crewmanship.make_active_or_expire
+    end
+  end
+
 end

@@ -45,7 +45,8 @@ class CrewmanshipsController < ApplicationController
   def create
     @crewmanship = @mission.crewmanships.new(params[:crewmanship])
     @crewmanship.user = current_user
-    @crewmanship.status = 'trial'
+    @crewmanship.status = 'trial_active'
+    @crewmanship.trial_expires_at = 30.days.from_now if current_user.crewmanships.count == 0
 
     respond_to do |format|
       if @crewmanship.save

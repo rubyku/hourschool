@@ -251,9 +251,44 @@ class User < ActiveRecord::Base
     UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
   end
 
+  def stripe_customer
+    if stripe_customer_id.present?
+      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+    else
+      nil 
+    end
+  end
+
+  def has_valid_payment_info?
+    stripe_customer && stripe_customer.active_card
+  end
+
+  def create_stripe_customer(params)
+    stripe_customer = Stripe::Customer.create(params)
+    if stripe_customer
+      update_attribute(:stripe_customer_id, stripe_customer.id)
+    else
+      false
+    end
+  end
+
   def balance
-    puts "crewmanships.collect(&:price): #{crewmanships.collect(&:price)}"
     crewmanships.collect(&:price).inject{|sum,x| sum + x }
+  end
+
+  def charge_for_active_crewmanships
+    Stripe::Charge.create(
+       :amount => (balance * 100).to_i,
+       :currency => "usd",
+       :card => stripe_customer.active_card.id,
+       :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:name).to_sentence}"
+     )
+  end
+
+  def self.monthly_charge
+    User.where(:billing_day_of_month => Time.now.date).each do |user|
+      user.charge_for_active_crewmanships
+    end
   end
   
   # ================================
