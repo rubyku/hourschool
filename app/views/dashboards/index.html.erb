@@ -1,0 +1,13 @@
+<% @feed.each do |feed_item| %>
+  <%= feed_item.id %> 
+  <% if feed_item.is_a? Course %>
+  <%= render :partial => 'dashboards/course', :locals => {:course => feed_item} %>
+  <% else %>
+  <%= feed_item.class %> happened at 
+  <%= feed_item.created_at %><br />
+  <% end %>
+<% end %>
+
+<% if @can_paginate %>
+  <%= link_to "NEXT", dashboards_path(:last_item_displayed_at => @last_item_displayed_at ) %>
+<% end %>

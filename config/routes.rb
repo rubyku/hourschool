@@ -2,6 +2,8 @@ HourschoolV2::Application.routes.draw do
 
   resources :subscriptions
 
+  resources :dashboards
+
   resources :invites
 
   resources :missions do
