@@ -91,7 +91,6 @@
               });
             </script>
           </div> -->
-          <%= link_to "Invite someone", new_invite_path(:invitable_id => @mission.id, :invitable_type => "Mission"), :method => :get, :class => "btn", :style => "float: right;" %>
           <br><br><br><br>
           <% @users.each do |user| %>
             <div class="mission-divider">             
@@ -123,6 +122,17 @@
             <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
             <a class="btn" data-toggle="modal" href="#tinyLetter">Write a tiny letter</a>
           </div>
+          <!-- Modal BEGIN -->
+          <div class="modal hide" id="tinyLetter">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h3>Write a tiny letter</h3>
+            </div>
+            <div class="modal-body">              
+              <%= render 'invites/form' %>
+            </div>
+          </div>
+          <!-- Modal END -->
           <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
             <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
@@ -140,6 +150,7 @@
                 <p>No one has uploaded any tools yet.</p>
               </div>
             <% end %>
+            <!-- Modal BEGIN -->
             <div class="modal hide" id="addRallyTool">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
@@ -159,6 +170,7 @@
                 <% end %>
               </div>
             </div>
+            <!-- Modal END -->
           </div>
         </div>
       </div><!-- end tab-content -->
@@ -166,15 +178,6 @@
   </div><!-- end tabbable -->
 </div><!-- end page-main -->
 
-<div class="modal hide" id="tinyLetter">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Write a tiny letter</h3>
-  </div>
-  <div class="modal-body">              
-    <%= render 'invites/form' %>
-  </div>
-</div>
 
 <div class="page-right-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
@@ -186,23 +189,31 @@
         <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
         <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
         <% if topic.courses.count <= 1 %>
-          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
         <% else %>
-          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :class => "moreInfo" %><br>
+          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
         <% end %>
         <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
       </div> 
 
+      <!-- Modal BEGIN -->
       <div class="modal hide" id="viewTopic<%= topic.id %>">
-        <div class="heading13-class"><%= topic.title %></div>
-        <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-        <hr>
-        <div class="heading11">Related Events:</div>
-        <% topic.courses.each do |course| %>
-          <%= link_to course.title, course %>
-          <br>
-        <% end %>
-      </div><!-- end modal -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Add a new topic</h3>
+        </div>
+        <div class="modal-body">              
+          <div class="heading13-class"><%= topic.title %></div>
+          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+          <hr>
+          <div class="heading11">Related Events:</div>
+          <% topic.courses.each do |course| %>
+            <%= link_to course.title, course %>
+            <br>
+          <% end %>
+        </div>
+      </div>
+      <!-- Modal END -->
     <% end %><!-- end mission.topic each block -->
   </div>
 </div><!-- end sidebar-white -->

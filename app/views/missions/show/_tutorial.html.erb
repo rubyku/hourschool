@@ -11,9 +11,9 @@
       <% end %>
 
       <% if @mission.topics.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#addATopic"><i class="icon-tasks"></i> Add a topic</a>
+        <a class="btn disabled" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
       <% else %>
-        <a class="btn" data-toggle="modal" href="#addATopic"><i class="icon-tasks"></i> Add a topic</a>
+        <a class="btn" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
       <% end %>
 
       <% if @mission.comments.present? %>
@@ -28,7 +28,7 @@
         <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
       <% end %>
       
-      <a class="btn" data-toggle="modal" href="#rallyACrew"><i class="icon-bullhorn"></i> Rally a crew</a>
+      <a class="btn" data-toggle="modal" href="#tinyLetter"><i class="icon-bullhorn"></i> Rally a crew</a>
     </p>
   </div>
 <% end %>
@@ -69,6 +69,31 @@
   <% end %>
 </div>
 
+<div class="modal hide" id="newTopic">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add a new topic</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'topics/form' %>
+  </div>
+</div>
+
+<div class="modal hide" id="askAQuestion">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Ask a question</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for @mission.comments.new do |f| %>
+      <%= f.hidden_field :mission_id, :value => @mission.id %>
+      <%= f.hidden_field :comment_type, :value => "question" %>
+      <%= f.text_area    :body, :placeholder => "I have a question about...", :class => "form-with-margin", 'data-comment_type' => 'question' %><br>
+      <%= f.submit 'Post', :class => "btn" %>
+    <% end %>
+  </div>
+</div>
+
 <div class="modal hide" id="addAnEvent">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -79,5 +104,15 @@
     <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
     <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
     <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+  </div>
+</div>
+
+<div class="modal hide" id="tinyLetter">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Write a tiny letter</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'invites/form' %>
   </div>
 </div>
