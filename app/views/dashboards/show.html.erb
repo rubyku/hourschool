@@ -1,0 +1,23 @@
+<div class="page-main">
+  <div class="page-content">
+  <% @feed.each do |feed_item| %>
+    <div class="mission-divider"> 
+      <% if feed_item.is_a? Course %>
+        <%= render :partial => 'dashboards/course', :locals => {:course => feed_item} %>
+      <% elsif feed_item.is_a? Topic %>
+        <%= render :partial => 'dashboards/topic', :locals => {:topic => feed_item} %>
+      <% elsif feed_item.is_a? Crewmanship %>
+        <%= render :partial => 'dashboards/crewmanship', :locals => {:crewmanship => feed_item} %>
+      <% elsif feed_item.is_a? Comment %>
+          <%= render :partial => 'dashboards/comment', :locals => {:comment => feed_item} %>
+      <% else %>
+        <%= feed_item.class %> happened at 
+        <%= feed_item.created_at %><br />
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render :partial => 'dashboards/paginate' %>
+  
+  </div>
+</div>

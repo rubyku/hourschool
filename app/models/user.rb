@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
 
   has_many :crewmanships
   has_many :missions, :through => :crewmanships
+  has_many :subscription_charges
 
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
@@ -251,18 +252,7 @@ class User < ActiveRecord::Base
     UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
   end
 
-  def stripe_customer
-    if stripe_customer_id.present?
-      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
-    else
-      nil 
-    end
-  end
-
-  def has_valid_payment_info?
-    stripe_customer && stripe_customer.active_card
-  end
-
+  #after user has put in payment info, a stripe customer is created 
   def create_stripe_customer(params)
     stripe_customer = Stripe::Customer.create(params)
     if stripe_customer
@@ -272,22 +262,50 @@ class User < ActiveRecord::Base
     end
   end
 
+  #setting variable for stripe customer (to charge..etc)
+  def stripe_customer
+    if stripe_customer_id.present?
+      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+    else
+      nil 
+    end
+  end
+
+  #balance based on # of crewmanships a user has
   def balance
     crewmanships.collect(&:price).inject{|sum,x| sum + x }
   end
 
+  #this creates a stripe charge 
   def charge_for_active_crewmanships
-    Stripe::Charge.create(
-       :amount => (balance * 100).to_i,
-       :currency => "usd",
-       :card => stripe_customer.active_card.id,
-       :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:name).to_sentence}"
-     )
+    charge = Stripe::Charge.create(
+      :amount => (balance * 100).to_i,
+      :currency => "usd",
+      :customer => stripe_customer.id,
+      :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:mission).collect(&:title).to_sentence}"
+    )
+    # puts "charge: #{charge.inspect}"
+    subscription_charges.create(
+      :params => charge.inspect,
+      :amount => charge.amount,
+      :paid => charge.paid,
+      :stripe_card_fingerprint => charge.card.fingerprint,
+      :stripe_customer_id => charge.customer,
+      :stripe_id => charge.id,
+      :card_last_4 => charge.card.last4,
+      :card_type => charge.card.type,
+      :description => charge.description
+    )
+    charge.paid
   end
 
+  #this gets run by the daily rake task which charge customers on their billing date
   def self.monthly_charge
     User.where(:billing_day_of_month => Time.now.date).each do |user|
-      user.charge_for_active_crewmanships
+      if user.charge_for_active_crewmanships.paid?
+      else
+        # make crewmanships past due
+      end
     end
   end
   

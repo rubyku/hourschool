@@ -1,13 +1,55 @@
-<% @feed.each do |feed_item| %>
-  <%= feed_item.id %> 
-  <% if feed_item.is_a? Course %>
-  <%= render :partial => 'dashboards/course', :locals => {:course => feed_item} %>
-  <% else %>
-  <%= feed_item.class %> happened at 
-  <%= feed_item.created_at %><br />
-  <% end %>
-<% end %>
+<div class="heading32 green">
+  Welcome back, <%= current_user.name.split(" ").first %>!
+</div>
 
-<% if @can_paginate %>
-  <%= link_to "NEXT", dashboards_path(:last_item_displayed_at => @last_item_displayed_at ) %>
-<% end %>
+<div class="page-main">
+  <div class="page-content">
+  <% @feed.each do |feed_item| %>
+    <div class="mission-divider"> 
+
+      <% if feed_item.is_a?(Course) %>
+        New event: <%= feed_item.title %><br />
+        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item .created_at} ago" %></div>
+
+      <% elsif feed_item.is_a?(Topic) %>
+        New topic: <%= feed_item.title %><br />
+        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+      <% elsif feed_item.is_a?(Crewmanship) %>
+        <%= feed_item.user.name %> joined <%= feed_item.mission.title %> <br /> 
+        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+      
+      <% elsif feed_item.is_a?(Comment) %>
+        <%= feed_item.user.name %> left a comment 
+        "<%= feed_item.body %>"<br />
+        <br />
+        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+      <% else %>
+        <%= feed_item.class %> happened at 
+        <%= feed_item.created_at %><br />
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render :partial => 'dashboards/paginate' %>
+  
+  </div>
+</div>
+
+<div class="page-right-sidebar" style="margin-bottom: 30px">
+  <div class="sidebar-content-white">m
+    <div class="sidebar-heading">My Missions</div>
+    <% current_user.missions.each do |mission| %>
+      <%= link_to mission.title, mission %><br>
+      <%= image_tag(mission.photo, :size => "250x") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="page-right-sidebar">
+  <div class="sidebar-content-white">
+    <div class="sidebar-heading">To-do's</div>
+
+  </div>
+</div>

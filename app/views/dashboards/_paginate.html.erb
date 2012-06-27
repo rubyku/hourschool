@@ -1,0 +1,17 @@
+<% if @can_paginate %>
+  <%= link_to "NEXT", dashboards_path(:last_item_displayed_at => @last_item_displayed_at), :remote => false, 'data-type' => 'dashboard-pagination'  %>
+<% end %>
+
+<script type='text/javascript'>
+  // $(document).ready(function(){
+
+  //   $('[data-type=dashboard-pagination]').bind('ajax:success', function(evt, data, status, xhr){
+  //       console.log('yay');
+  //       alert('yay');
+  //     }).bind('ajax:beforeSend', function() {
+  //             alert('yay2');
+
+  //   })
+  // });
+
+</script>
