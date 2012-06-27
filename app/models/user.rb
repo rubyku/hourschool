@@ -278,34 +278,37 @@ class User < ActiveRecord::Base
 
   #this creates a stripe charge 
   def charge_for_active_crewmanships
-    charge = Stripe::Charge.create(
-      :amount => (balance * 100).to_i,
-      :currency => "usd",
-      :customer => stripe_customer.id,
-      :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:mission).collect(&:title).to_sentence}"
-    )
-    # puts "charge: #{charge.inspect}"
-    subscription_charges.create(
-      :params => charge.inspect,
-      :amount => charge.amount,
-      :paid => charge.paid,
-      :stripe_card_fingerprint => charge.card.fingerprint,
-      :stripe_customer_id => charge.customer,
-      :stripe_id => charge.id,
-      :card_last_4 => charge.card.last4,
-      :card_type => charge.card.type,
-      :description => charge.description
-    )
-    charge.paid
+    begin
+      charge = Stripe::Charge.create(
+        :amount => (balance * 100).to_i,
+        :currency => "usd",
+        :customer => stripe_customer.id,
+        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:mission).collect(&:title).to_sentence}"
+      )
+      # puts "charge: #{charge.inspect}"
+      subscription_charges.create(
+        :params => charge.inspect,
+        :amount => charge.amount,
+        :paid => charge.paid,
+        :stripe_card_fingerprint => charge.card.fingerprint,
+        :stripe_customer_id => charge.customer,
+        :stripe_id => charge.id,
+        :card_last_4 => charge.card.last4,
+        :card_type => charge.card.type,
+        :description => charge.description
+      )
+      charge.paid
+    rescue
+      crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
+      # send an email tell them their payment failed
+      false
+    end
   end
 
   #this gets run by the daily rake task which charge customers on their billing date
   def self.monthly_charge
     User.where(:billing_day_of_month => Time.now.date).each do |user|
-      if user.charge_for_active_crewmanships.paid?
-      else
-        # make crewmanships past due
-      end
+      user.charge_for_active_crewmanships
     end
   end
   
