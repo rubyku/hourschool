@@ -1,13 +1,19 @@
 class Crewmanship < ActiveRecord::Base
-  # status(trial_active,trial_expired,trial_canceled,active,canceled,completed)
+  # status(trial_active,trial_expired,trial_canceled,active,past_due,canceled,completed)
   belongs_to :mission
   belongs_to :user
 
   def make_active_or_expire
-    if user.has_valid_payment_info?
-      update_attributes(:status => 'active')
-      user.update_attributes(:billing_day_of_month => Time.now.day)
-      user.charge_for_active_crewmanships
+    if user.stripe_customer
+      user.update_attributes!(:billing_day_of_month => Time.now.day)
+      if user.charge_for_active_crewmanships
+        update_attributes(:status => 'active')
+        true
+      else
+        #usermailer
+        update_attributes(:status => 'past_due')
+        false
+      end
     else
       update_attributes(:status => 'trial_expired')
     end

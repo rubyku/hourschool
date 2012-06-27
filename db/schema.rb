@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625210727) do
+ActiveRecord::Schema.define(:version => 20120627164319) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -406,6 +406,23 @@ ActiveRecord::Schema.define(:version => 20120625210727) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  create_table "subscription_charges", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "params"
+    t.decimal  "amount",                  :precision => 8, :scale => 2
+    t.boolean  "paid",                                                  :default => false, :null => false
+    t.string   "stripe_card_fingerprint"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_id"
+    t.string   "card_last_4"
+    t.string   "card_type"
+    t.text     "description"
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+  end
+
+  add_index "subscription_charges", ["user_id"], :name => "index_subscription_charges_on_user_id"
 
   create_table "subscriptions", :force => true do |t|
     t.string   "subscribable_type"
