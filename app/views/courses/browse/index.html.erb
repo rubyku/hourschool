@@ -23,6 +23,25 @@
     </div>
   </div>
 
+ <% elsif current_account == Account.where(:id => 1).first %>
+
+  <div class="page">
+    <div class="page-content">
+      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
+      <div class="page-section-float-right">
+        <table class="view-more">
+          <tr>
+            <td>
+              <%= will_paginate @courses, :previous_label => "Prev" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+ 
+
 <% else community_site? %>
 
   <!-- Section 1 -->

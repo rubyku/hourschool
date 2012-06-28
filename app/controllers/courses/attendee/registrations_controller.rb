@@ -1,5 +1,5 @@
 class Courses::Attendee::RegistrationsController < ApplicationController
-  
+  before_filter :authenticate_user!
   # TODO, validate user has paid
 
   # if free 
@@ -53,10 +53,22 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
       redirect_to @course
     end
+
+
+
   end
 
   def update    
     @course = Course.find(params[:course_id])
+    if @course.status == "approved"
+      @course.update_attribute :status, "live"
+      if @course.account.nil?
+        current_account = nil
+      else 
+        current_account = @course.account
+      end
+      UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+    end
     render :action => 'show'
   end
 
