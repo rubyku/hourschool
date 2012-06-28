@@ -297,7 +297,13 @@ class User < ActiveRecord::Base
         :card_type => charge.card.type,
         :description => charge.description
       )
-      charge.paid
+      if charge.paid
+        crewmanships.where(:status => %w(trial_active trial_expired past_due)).collect {|c| c.update_attribute(:status, 'active')}
+        # email a receipt
+        true
+      else
+        false
+      end
     rescue
       crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
       # send an email tell them their payment failed

@@ -1,6 +1,6 @@
 HourschoolV2::Application.routes.draw do
 
-  resources :subscriptions
+  resources :subscription_charges
 
   resources :dashboards
 

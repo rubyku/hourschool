@@ -4,7 +4,7 @@
 
 <div class="full-page">
   <% if @mission.photo.present? %>
-    <%= image_tag @mission.photo.url(:banner) %>
+    <%= image_tag(@mission.photo, :size => "960x360") %>
   <% else %>
     <div style="background-color: #333; width: 960px; height: 360px;">
       <div class="heading11" style="text-align: center; padding-top: 60px">

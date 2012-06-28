@@ -1,4 +1,4 @@
-<div style="width: 400px; background-color: white; padding-top: 30px; padding-bottom: 30px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border: 2px solid #AA9C84"> 
+<div class="well" style="text-align: left"> 
 
   <%= form_for([@mission, @crewmanship]) do |f| %>
     <% if @crewmanship.errors.any? %>
@@ -15,16 +15,8 @@
 
 
     <% if current_user %>
-
-      <div class="field">
-        <%= f.label :role, "I'm joining as:", :class => "heading32 orange" %><br>
-        <%= f.select :role, [['Explorer','explorer'],['Guide','guide']] %>
-      </div>
-
     <% else %>
-
-    
-
+      <%= render 'registrations/form' %>
     <% end %>
 
     <br>
