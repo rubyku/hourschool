@@ -28,7 +28,7 @@
   </div>
 
   <div class="mission-status-box">
-    <%= link_to 'Join mission', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange button short" %>
+    <%= link_to 'Become a member', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange button short" %>
   </div>
 
 </div><!-- end full page -->
@@ -55,14 +55,20 @@
           </div>
           <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
           <br><br><br><br>
-          <% @courses.each do |course| %>
-            <div class="mission-divider">
-              <%= link_to course.title, course, :class => "heading20" %><br>
-               Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-              <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-              <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
-              <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
-              <%= course.place_name %>
+          <% if @courses.present? %>
+            <% @courses.each do |course| %>
+              <div class="mission-divider">
+                <%= link_to course.title, course, :class => "heading20" %><br>
+                 Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+                <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+                <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
+                <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
+                <%= course.place_name %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="well">
+              When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!
             </div>
           <% end %>
         </div>
@@ -98,13 +104,20 @@
                 <%= image_tag(user.photo.url(:thumb_large)) %>
               </div>
               <div class="crewman-description">
-                <div class="heading13-class"><%= user.name %></div>
-                <%= user.bio %>
+                <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                <%if user.crewmanships.where(:role => "creator") %>
+                  <span class="label label-info">Mission Creator</span>
+                <% end %>
+                <p><%= user.bio %></p>
               </div>           
             </div>
           <% end %>
         </div>
         <div class="tab-pane" id="tab4"><br>
+          <div class="mission-tab-intro">
+            <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Rally is all about getting people excited about your mission. We learn better when we are learning with and from each other.</p>
+          </div>
+          <br><br><br><br>
           <div class="mission-divider">
             <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
             <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and retweet's.</p>
@@ -184,37 +197,43 @@
     <div class="heading11" style="float: left">Topic Library:</div>
     <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
     <br><br>
-    <% @mission.topics.each do |topic| %>
-      <div class="mission-divider">
-        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
-        <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-        <% if topic.courses.count <= 1 %>
-          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
-        <% else %>
-          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
-        <% end %>
-        <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
-      </div> 
-
-      <!-- Modal BEGIN -->
-      <div class="modal hide" id="viewTopic<%= topic.id %>">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Add a new topic</h3>
-        </div>
-        <div class="modal-body">              
-          <div class="heading13-class"><%= topic.title %></div>
+    <% if @mission.topics.present? %>
+      <% @mission.topics.each do |topic| %>
+        <div class="mission-divider">
+          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
           <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-          <hr>
-          <div class="heading11">Related Events:</div>
-          <% topic.courses.each do |course| %>
-            <%= link_to course.title, course %>
-            <br>
+          <% if topic.courses.count <= 1 %>
+            <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
+          <% else %>
+            <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
           <% end %>
+          <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+        </div> 
+
+        <!-- Modal BEGIN -->
+        <div class="modal hide" id="viewTopic<%= topic.id %>">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Add a new topic</h3>
+          </div>
+          <div class="modal-body">              
+            <div class="heading13-class"><%= topic.title %></div>
+            <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+            <hr>
+            <div class="heading11">Related Events:</div>
+            <% topic.courses.each do |course| %>
+              <%= link_to course.title, course %>
+              <br>
+            <% end %>
+          </div>
         </div>
+        <!-- Modal END -->
+      <% end %><!-- end mission.topic each block -->
+    <% else %>
+      <div class="well">
+        The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".
       </div>
-      <!-- Modal END -->
-    <% end %><!-- end mission.topic each block -->
+    <% end %> 
   </div>
 </div><!-- end sidebar-white -->
 
@@ -241,5 +260,3 @@
   });
 
 </script>
-
-
