@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
 
   has_many :roles,   :dependent => :destroy
   has_many :courses, :through => :roles
-  has_many :missions, :through => :roles
   has_many :courses_taught,   :through => :roles, :conditions => ["roles.name = (?) and status = 'live'", "teacher"], :source => :course
   has_many :courses_approved, :through => :roles, :conditions => ["roles.name = (?) and status = 'approved'", "teacher"], :source => :course
   has_many :courses_attended, :through => :roles, :conditions => ["roles.name = (?)", "student"], :source => :course
@@ -42,8 +41,9 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings, :foreign_key => 'follower_id', :dependent => :destroy
   has_many :followed,  :through => :followings, :foreign_key => 'followed_id', :dependent => :destroy
 
-  has_many :crewmanships
+  has_many :crewmanships,   :dependent => :destroy
   has_many :missions, :through => :crewmanships
+  
   has_many :subscription_charges
 
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
