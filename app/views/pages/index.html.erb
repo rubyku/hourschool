@@ -1,70 +1,170 @@
-<div id="homepage_headline_1">
-  <div class="font48">School's</div>
-  <div class="font24">out for</div>
-  <div class="font48">summer</div>
-</div>
-
-<div style="margin-top: 20px">
-  <a href="www.hourschool.com" id="homepageInfoModal" class="moreInfo">
-    Times they are a changing!  Where’s the old site? 
-  </a>
-</div>
-
-<div class="teaser"></div>
-
-<div class="featured">
-  <div class="sidebar-left">
-
-    <div class="brand_bg"></div>
-      <div class="prompt-box white">  
-        <%= image_tag "v3/homepage/mission-star.png" %>
-        <p class="prompt-text">What is one thing you want to accomplish by the end of the year?</p>
-
-        <p>   
-         <%= text_field_tag :prompt, "", :class => "form-short-edit-profile"  %>
-        </p>
-
-        <%= button_to "Let us know", "", :class => "orange button", :style => "margin-bottom: -10px" %>
+<% if current_account == Account.where(:id => 4).first %>
+  <%= render :partial => 'courses/womendesignbuild/index' %>
+<% elsif current_account == Account.where(:id => 2).first %>
+  <div class="page">
+    <div class="page-content">
+      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
+      <div class="page-section-float-right">
+        <table class="view-more">
+          <tr>
+            <td>
+              <%= will_paginate @courses, :previous_label => "Prev" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <% content_for :sidebar do %>
+        <%= link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px" %>
+      <% end %>
     </div>
+  </div>
+<% else community_site? %>
 
-    <div class="featured-box">  
-    </div>
-  
-  </div><!-- end .sidebar-left -->
+  <div style="position: relative; float: right; width: 300px; z-index: 100; margin: 20px 40px 0px 0px; padding: 20px"> 
+    <%= image_tag 'v3/homepage/mission-star.png' %>
+    <p class="prompt-text">What is one thing you want to accomplish by the end of the year?</p>
+    <p><%= text_field_tag :prompt, "", :style => "width: 300px; height: 30px"  %></p>
+  </div>
+  <div class="teaser"></div>
 
-
-  <div class="content-right white">
-    <div class="title-text" id="homepage" style="font-weight: 700; margin-bottom: 0px">So, it’s time to start learning.</div>
+  <div class="brand_bg" style="margin-top: 91px"></div>
+  <div class="featured white">
+    <div class="title-text" id="homepage" style="font-weight: 700">So, it’s time.</div>
     <div class="heading16" style="color: #333; line-height: 22px">
-    Learning what?  Anything and everything, from building websites to fixing motorcycles to making your home more energy eficient.  We know that everyone has at least one thing they’ve always wanted to do, to make, or to learn.  Begin it now. <%= link_to "Begin here", explore_path, :style => "color: #ff7733" %>.
+    We believe that it's time to take responsibility for how interesting our own lives are. We believe in being beginners; because we know that passions are found through experimentation and involvement, not through sitting around thinking about what our passions might be.  We believe that if learning isn’t a little bit scary, we’re doing it wrong.  We believe that we are the expert of our own experiences.  No one tells our own stories better than we do. We believe that learning isn't consumption, it's participation, and it's time to participate in our own lives. From building websites to building motorcycles, we know that everyone has at least one thing they’ve always wanted to do, to make, or to learn. Start now. Right here.
     </div>
-    
-  </div><!-- end .content-right -->
+  </div><!-- end .featured -->
 
-</div><!-- end .featured -->
+  <div style="float: left; margin-top: 60px">
+    <div class="heading32 green">Join us in beginning a mission...</div>
+    <!-- Section 1 -->
+    <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
+      <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
+        <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
+        <br>
+        <%= link_to "Go build one!", new_mission_path, :class => "orange button long" %>
+      </div>
 
-<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'moreInfoModal'} do %>
+      <div>
+        <%= link_to image_tag("v3/homepage/start-here.png"), ""  %>
+      </div>
 
-  <div class="heading13-class">What happened to HourSchool?!</div>
-  <p>Well, since school's out for summer, we're busy working on redesigning the HourSchool site based on your feedback! We're making it easier for you to learn what you want to learn, while meeting rad people and having fun. In-person classes are still at the core of what we do. Learn more about <%= link_to "what we're up to", about_path %>.</p> 
+    </div><!-- End Section 1 -->
+
+    <!-- Section 2 -->
+    <div style="float: left; width: 630px; margin-bottom: 20px">
+
+      <div style="float: left; width: 630px; height: 180px;">
+        <%= link_to image_tag("v3/explore/mission-greenHouse.png"), new_pre_mission_signup_path(:mission => 'Make my home more sustainable'), :class => "preMissionSignup", 'data-mission' => 'Make my home more sustainable' %>
+      </div>
+
+      <div style="float: left; width: 605px; height: 57px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 1px; padding-top: 15px; padding-left: 15px">
+        
+        <div class="title-text" id="explore">Make my home more sustainable</div>
+        <div class="heading11" id="explore">Austin, TX</div>
+      </div>
+
+    </div><!-- End Section 2 -->
+
+    <!-- Section 3 -->
+    <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
+
+      <div style="float: left; width: 960px; height: 180px;">
+        <%= link_to image_tag('v3/explore/mission-soGoodNetwork.png'), new_pre_mission_signup_path(:mission => 'Launch the So Good Network'), :class => "preMissionSignup", 'data-mission' => 'Launch the So Good Network' %>
+      </div>
+
+      <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 3px; padding-top: 10px; padding-left: 15px">
+
+        <div class="title-text" id="explore">Launch the So Good Network, striving to be the heart of social innovation and change</div>
+        <div class="heading11" id="explore">Austin, TX</div>
+
+      </div>
+
+    </div><!-- End Section 3 -->
+
+    <!-- Section 4 -->
+    <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
+
+      <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
+        <%= link_to image_tag('v3/explore/mission-interactionDesign.png'), new_pre_mission_signup_path(:mission => 'Design thinking and making'), :class => "preMissionSignup", 'data-mission' => 'Design thinking and making' %>
+      </div>
+
+      <div style="float: left; width: 300px; height: 180px;">
+        <%= link_to image_tag('v3/explore/mission-foodTruck.png'), new_pre_mission_signup_path(:mission => 'Open a food truck'), :class => "preMissionSignup", 'data-mission' => 'Open a food truck' %>
+      </div>
+
+      <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore">Design thinking and making</div>
+        <div class="heading11" id="explore">Austin, TX</div>
+      </div>
+
+      <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore">Open a food truck</div>
+        <div class="heading11" id="explore">Austin, TX</div>
+      </div>
+
+      <div style="float: left; width: 630px; height: 180px;">
+        <%= link_to image_tag('v3/explore/mission-motorcycle.png'), new_pre_mission_signup_path(:mission => 'Practice the art and philosophy of vintage motorcycle maintenance'), :class => "preMissionSignup", 'data-mission' => 'Practice the art and philosophy of vintage motorcycle maintenance' %>
+      </div>
+
+      <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+        <div class="heading11" id="explore">Austin, TX</div>
+      </div>
+
+    </div><!-- End section 5 left -->
+
+    <!-- Section 6 right -->
+    <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
+
+      <div style="background-color: #ff7733; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+      </div> 
+
+      <div class="heading14">Upcoming events</div>
+
+      <% @courses.each do |course| %>
+
+      <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 20px; margin-top: 10px; margin-bottom: 10px" %>
+        <div style="margin-bottom: 5px">
+        <%= link_to course.title, course, :style => "font-family: Georgia; font-size: 14px; color: #ff6633" %>
+        </div>
+        
+        <div style="margin-bottom: 5px">
+          <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
+          <%= "#{course.city.name}, #{course.city.state}" %><br>
+        </div>
+        
+        <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
+      </div>
+      
+      <% end %>
+    </div><!-- End section 6 right -->
+  </div>
+
+  <div style="float: left">
+    <div class="heading32 green">Join us in celebrating a mission accomplished...</div>
+    <div style="float: left;">
+      <%= image_tag 'v3/homepage/mission-accomplished-3.png', :style => "margin-bottom: 15px" %>
+      <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 10px" %>
+      <%= image_tag 'v3/homepage/mission-accomplished-2.png' %>
+      
+    </div>
+  </div>
+
+    <div style="float: left; margin-top: 60px">
+    <div class="heading32 green">And join us in building communities that never stop learning.</div>
+    <div style="float: left;">
+      <iframe src="http://player.vimeo.com/video/42154383?color=ffffff" width="956" height="538" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+  </div>
 
 
-  <div class="heading13-class">What about the classes that were already posted?</div>
-  <p>You can still sign up for them and you can find them on our new <%= link_to "Explore page", explore_path %>. All your past classes are available for viewing in your profile/</p>
-
-  <div class="heading13-class">Where can I post my class? </div>
-  <p>At the moment, you cannot post classes.  Once we relaunch in August, you'll be able to post classes again. It'll be a lot better - take our words for it.</p>
-
-  <p>Love,<br>
-  HourSchool</p>
 
 <% end %>
 
-<script type="text/javascript">
-  $(document).ready( function(){
-    $('.moreInfo').bind('click', function(){
-      $('.moreInfoModal').show();
-      return false;
-    })
-  });
-</script>
+
+
+
+
+
