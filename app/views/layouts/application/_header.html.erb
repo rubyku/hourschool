@@ -24,10 +24,12 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "Join a mission", explore_path %></li>
-            <li><a href="#">Partner Schools</a></li>
-            <li><a href="http://blog.hourschool.com">Read our Blog</a></li>
-            <li><a href="#">Browse the Store</a></li>
+            <li><%= link_to "Wall of Missions", wall_of_missions_path %></li>
+            <li><%= link_to "Wall of Awesome", wall_of_awesome_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Partner Schools", partner_schools_path %></li>
+            <li><a href="http://blog.hourschool.com">HourSchool Blog</a></li>
+            <li><a href="#">HourSchool Lab</a></li>
           </ul>
         </li>
         <li class="dropdown" id="menu3">
@@ -36,14 +38,10 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
+            <li><%= link_to "Invite a friend", new_invite_path %></li>
+            <li><%= link_to "Organize an event", teach_path %></li>
             <li><%= link_to "Build a Mission", build_mission_path %></li>
             <li><%= link_to "Build a School", build_school_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Invite a friend", new_invite_path %></li>
-            <li><%= link_to "Nominate a friend", new_invite_path %></li>
-            <li class="divider"></li>
-            <li><a href="#">HourSchool Lab</a></li>
-
           </ul>
         </li>
         <li class="dropdown" id="menu4">

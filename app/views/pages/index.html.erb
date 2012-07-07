@@ -31,7 +31,7 @@
   <div class="featured white">
     <div class="title-text" id="homepage" style="font-weight: 700">So, it’s time.</div>
     <div class="heading16" style="color: #333; line-height: 22px">
-    We believe that it's time to take responsibility for how interesting our own lives are. We believe in being beginners; because we know that passions are found through experimentation and involvement, not through sitting around thinking about what our passions might be.  We believe that if learning isn’t a little bit scary, we’re doing it wrong.  We believe that we are the expert of our own experiences.  No one tells our own stories better than we do. We believe that learning isn't consumption, it's participation, and it's time to participate in our own lives. From building websites to building motorcycles, we know that everyone has at least one thing they’ve always wanted to do, to make, or to learn. Start now. Right here.
+    We believe that it's time to take responsibility for how interesting our own lives are. We believe that we have to go out and do stuff, or we’ll become boring. We know that stories come from new experiences. We believe it's a lot more fun to have a few beers with the people we’ve just done something with than to sit around and talk all night about the things we might do.  We believe that if we can't fix it, we don't truly own it.  We believe there’s an enormous amount of knowledge in our neighborhoods — we just need to talk to our neighbors more.  We believe that success isn't about what we have, but about what we have to share.  We believe that trying new things isn’t something we have to justify to anybody. We believe in being beginners; because we know that passions are found through experimentation and involvement, not through sitting around thinking about what our passions might be.  We believe that if learning isn’t a little bit scary, we’re doing it wrong.  We believe that we are the expert of our own experiences.  No one tells our own stories better than we do. We believe that as soon as we take a risk, people will come out of the woodwork to help us.  Learning isn't consumption, it's participation, and it's time to participate in our own lives. From building websites to building motorcycles, we know that everyone has at least one thing they’ve always wanted to do, to make, or to learn. Begin now. Right here.
     </div>
   </div><!-- end .featured -->
 
@@ -58,7 +58,7 @@
         <%= link_to image_tag("v3/explore/mission-greenHouse.png"), new_pre_mission_signup_path(:mission => 'Make my home more sustainable'), :class => "preMissionSignup", 'data-mission' => 'Make my home more sustainable' %>
       </div>
 
-      <div style="float: left; width: 605px; height: 57px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 1px; padding-top: 15px; padding-left: 15px">
+      <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 1px; padding-top: 15px; padding-left: 15px">
         
         <div class="title-text" id="explore">Make my home more sustainable</div>
         <div class="heading11" id="explore">Austin, TX</div>
@@ -83,7 +83,7 @@
     </div><!-- End Section 3 -->
 
     <!-- Section 4 -->
-    <div style="float: left; width: 630px; height: 530px; margin-bottom: 50px; margin-right: 25px">
+    <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
 
       <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
         <%= link_to image_tag('v3/explore/mission-interactionDesign.png'), new_pre_mission_signup_path(:mission => 'Design thinking and making'), :class => "preMissionSignup", 'data-mission' => 'Design thinking and making' %>
@@ -140,22 +140,35 @@
       
       <% end %>
     </div><!-- End section 6 right -->
+
+    <div style="float: left; margin-top: 20px; width: 100%">
+      <%= image_tag 'v2/arrow_grey_pointright.png', :style => "float: left; margin-right: 10px" %>
+      <div class="heading10">See the Wall of Missions</div>
+    </div>
   </div>
 
-  <div style="float: left">
+  <div style="float: left; margin-top: 60px">
     <div class="heading32 green">Join us in celebrating a mission accomplished...</div>
     <div style="float: left;">
       <%= image_tag 'v3/homepage/mission-accomplished-3.png', :style => "margin-bottom: 15px" %>
       <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 10px" %>
-      <%= image_tag 'v3/homepage/mission-accomplished-2.png' %>
-      
+      <%= image_tag 'v3/homepage/mission-accomplished-2.png' %>  
+    </div>
+    <div style="float: left; margin-top: 20px; width: 100%">
+      <%= image_tag 'v2/arrow_grey_pointright.png', :style => "float: left; margin-right: 10px" %>
+      <div class="heading10">See the Wall of Awesome</div>
     </div>
   </div>
 
-    <div style="float: left; margin-top: 60px">
+  <div style="float: left; margin-top: 60px">
     <div class="heading32 green">And join us in building communities that never stop learning.</div>
     <div style="float: left;">
       <iframe src="http://player.vimeo.com/video/42154383?color=ffffff" width="956" height="538" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+
+    <div style="float: left; margin-top: 20px; width: 100%">
+      <%= image_tag 'v2/arrow_grey_pointright.png', :style => "float: left; margin-right: 10px" %>
+      <div class="heading10">Read the HourSchool philosophy</div>
     </div>
   </div>
 
