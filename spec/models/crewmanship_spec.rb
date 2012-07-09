@@ -70,7 +70,7 @@ describe Crewmanship do
       user.balance.should == 10.00
     end
 
-    it "if a crewmanship is past_due and user enters correct payment info and pay off balance, balance should be zero and status returns to active", :focus => true do
+    it "if a crewmanship is past_due and user enters correct payment info and pay off balance, balance should be zero and status returns to active" do
       mock_stripe(true)
       mission = Mission.create(:title => 'fishing')
       course = Factory.create(:course, :mission => mission)
@@ -175,6 +175,23 @@ describe Crewmanship do
 
       crewmanship.status.should == 'past_due'
       crewmanship2.status.should == 'canceled' # make sure we only change active crewmanships to past_due
+      user.subscription_charges.count == 1
+    end
+
+    it "if a user has a trial_expired crewmanship, then enters payment info, make crewmanship active", :focus => true do
+      mock_stripe(true)
+      user = Factory.create(:user)
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      crewmanship = user.crewmanships.create!(:status => 'trial_expired', :mission => mission)
+      user.create_stripe_customer(test_card)
+
+      user.charge_for_active_crewmanships
+      crewmanship.reload;
+
+      user.billing_day_of_month == Date.today.day
+      crewmanship.status.should == 'active'
       user.subscription_charges.count == 1
     end
 

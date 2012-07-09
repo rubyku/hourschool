@@ -84,4 +84,10 @@ FactoryGirl.define do
     date        3.weeks.from_now
     min_seats   { rand(5) }
   end
+
+  factory :mission do
+    title       { FactoryGirl.generate(:course_name) }
+    description { Forgery(:lorem_ipsum).words(rand(30) + 1) }
+    association :city
+  end
 end
