@@ -1,21 +1,77 @@
+<div class="page-sidebar left" style="width: 250px">
+  <%= avatar_for(current_user, :photo_size => :thumb_large, :class => "clearfix") %>
+
+  <div style="float: left; border-top: 3px solid #999; border-bottom: 3px solid #999; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
+    <%= image_tag 'v3/pages/icon-quote.png', :style => "margin-left: 90px; margin-top: 10px; margin-bottom: 10px" %>
+    <div class="heading11" style="text-align: center">“Develop an interest in life as you see it; the people, things, literature, music—-the world is so rich, simply throbbing with rich treasures, beautiful souls and interesting people. Forget yourself.”</div>
+    <p style="font-style: italic; text-align: center; color: #999; font-family: Georgia; margin-top: 20px">Henry Miller</p>
+  </div>
+
+  <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
+  <p style="float: left">
+    <% if current_user.bio.blank? %>
+      No bio yet.
+    <% elsif current_user == @user %>
+      <%= link_to "Tell us more about you.", edit_user_registration_path(@user) %>
+    <% else %>
+      <%= current_user.bio %><br>
+      <%= link_to "Edit bio", edit_user_registration_path %>
+    <% end %>
+  </p>
+</div>
+
+
+<div class="heading32 green">
+  <%= current_user.name %>
+</div>
+
 <div class="page-main">
   <div class="page-content">
-  <% @feed.each do |feed_item| %>
-    <div class="mission-divider"> 
-      <% if feed_item.is_a?(Course) %>
-        <%= current_user.name %> joined <%= feed_item.title %> <br /> 
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-      <% elsif feed_item.is_a?(Topic) %>
-        <%= current_user.name %> added <%= feed_item.title %> <br /> 
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-      <% else %>
-        <%= feed_item.class %> happened at 
-        <%= feed_item.created_at %><br />
-      <% end %>
-    </div>
-  <% end %>
 
-  <%= render :partial => 'dashboards/paginate' %>
+    <div class="mission-divider"> 
+      <div class="heading11">Journey</div>
+    </div>
+    <% @feed.each do |feed_item| %>
+      <div class="mission-divider"> 
+        <% if feed_item.is_a?(Crewmanship) %>
+          <%= image_tag 'v3/profile/journey-glyph-mission.png' %>
+          <% if feed_item.role == "creator" %>
+            I created the mission 
+          <% elsif feed_item.role == "explorer" %>
+            I joined the mission 
+          <% end %>
+          <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+          <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+        <% elsif feed_item.is_a?(Comment) %>
+          I commented on the mission 
+          <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+          "<%= feed_item.body %>" <br />
+          <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+        <% elsif feed_item.is_a?(Course) %>
+          <%= image_tag 'v3/profile/journey-glyph-event.png' %>
+          I registered for the event from the mission
+          <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+           <div style="font-weight: 700;"><%= link_to feed_item.title, feed_item %></div> <br />
+          <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+        
+        <% elsif feed_item.is_a?(Topic) %>
+          <%= image_tag 'v3/profile/journey-glyph-topic.png' %>
+          I added a topic to the mission
+          <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+          <%= feed_item.title %> <br /> 
+          <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+        
+        <% else %>
+          <%= feed_item.class %> happened at 
+          <%= feed_item.created_at %><br />
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= render :partial => 'dashboards/paginate' %>
   
   </div>
 </div>
+

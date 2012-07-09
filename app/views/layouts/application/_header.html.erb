@@ -10,7 +10,8 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "My Journey", profile_path %></li>
+              <li><%= link_to "My Dashboard", dashboards_path %></li>
+              <li><%= link_to "My Journey", '/dashboards/me' %></li>
               <li><%= link_to "My HourSchoolmates", profile_path %></li>
               <li class="divider"></li>
               <li><%= link_to "Settings", edit_user_registration_path %></li>

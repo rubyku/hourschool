@@ -38,7 +38,7 @@ private
   end
 
   def feed_query_items_for_me
-    missions         = current_user.missions
+    created_mission  = current_user.crewmanships.where(:role => "creator")
     joined_mission   = current_user.crewmanships.where(:role => "explorer")
     guided_mission   = current_user.crewmanships.where(:role => "guide")
     completed_mission= current_user.crewmanships.where(:role => "completed")
@@ -47,7 +47,7 @@ private
     courses_attended = current_user.courses_attended
     topics           = current_user.topics
 
-    feed_query_items = [missions, 
+    feed_query_items = [created_mission,
                         joined_mission, 
                         guided_mission, 
                         completed_mission, 
