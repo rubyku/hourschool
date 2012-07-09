@@ -2,22 +2,95 @@ require 'spec_helper'
 
 describe Crewmanship do
   describe 'active' do
-    it 'price is full when trial ends' do
-      crewmanship = Crewmanship.create!(:status => 'active')
+    it 'price is zero if they have taught a class in the last billing cycle' do
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      user = Factory.create(:user, :billing_day_of_month => Date.today.day)
+      Role.create!(:course => course, :user => user, :name => "teacher")
+      crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
+
+      crewmanship.price.should == 0.00
+    end
+
+    it 'price is full if they have not taught a class in the last billing cycle' do
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      user = Factory.create(:user, :billing_day_of_month => Date.today.day)
+      crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
+
+      crewmanship.price.should == 10.00
+    end
+
+    it 'price is zero there were no event in the last billing cycle' do
+      mission = Mission.create(:title => 'fishing')
+      user = Factory.create(:user, :billing_day_of_month => Date.today.day)
+      crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
+
+      crewmanship.price.should == 0.00
+    end
+
+    it 'price is full there were events in the last billing cycle' do
+      mission = Mission.create(:title => 'fishing')
+      user = Factory.create(:user, :billing_day_of_month => Date.today.day)
+      crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
       crewmanship.price.should == 10.00
     end
 
     it "user.balance combines crewmanship.prices" do
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
       user = Factory.create(:user)
-      user.crewmanships.create!(:status => 'active') # on jun 15, trial expires jul 15
-      user.crewmanships.create!(:status => 'active') # on jun 15, trial expires jul 15
+      user.crewmanships.create!(:status => 'active', :mission => mission)
+      user.crewmanships.create!(:status => 'active', :mission => mission)
+
       user.balance.should == 20.00
     end
 
-    it 'user cancels one crewmanship' do
+    it "if a crewmanship is past_due for an entire billing cycle, change status to abandoned and revoke access" do
       user = Factory.create(:user)
-      crewmanship = user.crewmanships.create!(:status => 'active')
-      crewmanship = user.crewmanships.create!(:status => 'canceled', :canceled_at => Time.now)
+      crewmanship = Crewmanship.create!(:status => 'past_due', :user => user)
+      user.charge_for_active_crewmanships
+      crewmanship.reload
+
+      crewmanship.status.should == 'abandoned'
+    end
+
+    it "if a crewmanship is past_due, show user the past due amount" do
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      user = Factory.create(:user)
+      crewmanship = Crewmanship.create!(:status => 'past_due', :user => user, :mission => mission)
+
+      user.balance.should == 10.00
+    end
+
+    it "if a crewmanship is past_due and user enters correct payment info and pay off balance, balance should be zero and status returns to active", :focus => true do
+      mock_stripe(true)
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      user = Factory.create(:user)
+      crewmanship = Crewmanship.create!(:status => 'past_due', :user => user, :mission => mission)
+      user.create_stripe_customer(test_card)
+      user.charge_for_active_crewmanships
+      crewmanship.reload
+
+      crewmanship.status.should == 'active'
+    end
+
+    it 'user cancels one crewmanship' do
+      mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      user = Factory.create(:user)
+      crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
+      crewmanship = user.crewmanships.create!(:status => 'canceled', :mission => mission, :canceled_at => Time.now)
       user.balance.should == 10.00
     end
 
@@ -34,6 +107,8 @@ describe Crewmanship do
       mock_stripe(true)
       user = Factory.create(:user)
       mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
       user.create_stripe_customer(test_card)
       
@@ -49,6 +124,8 @@ describe Crewmanship do
       mock_stripe(false)
       user = Factory.create(:user)
       mission = Mission.create(:title => 'fishing')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
       user.create_stripe_customer(test_card)
 
@@ -65,6 +142,10 @@ describe Crewmanship do
       user = Factory.create(:user)
       mission = Mission.create(:title => 'fishing')
       mission2 = Mission.create(:title => 'hiking')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      course2 = Factory.create(:course, :mission => mission2)
+      course2.update_attribute(:starts_at, 1.day.ago)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
       crewmanship2 = user.crewmanships.create!(:status => 'active', :mission => mission2)
       user.create_stripe_customer(test_card)
@@ -76,11 +157,15 @@ describe Crewmanship do
       user.subscription_charges.count == 1
     end
 
-    it "if a user's monthly charge fails, make crewmanships past_due and email them", :focus => true do
+    it "if a user's monthly charge fails, make crewmanships past_due and email them" do
       mock_stripe(false)
       user = Factory.create(:user)
       mission = Mission.create(:title => 'fishing')
       mission2 = Mission.create(:title => 'hiking')
+      course = Factory.create(:course, :mission => mission)
+      course.update_attribute(:starts_at, 1.day.ago)
+      course2 = Factory.create(:course, :mission => mission2)
+      course2.update_attribute(:starts_at, 1.day.ago)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
       crewmanship2 = user.crewmanships.create!(:status => 'canceled', :mission => mission2)
       user.create_stripe_customer(test_card)

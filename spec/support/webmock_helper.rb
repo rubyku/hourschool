@@ -73,7 +73,7 @@ end
 def test_card
   {
     :card => {
-      :number => 4000000000000002,
+      :number => 4242424242424242,
       :exp_month => 01,
       :exp_year => Time.now.year+1
     }
@@ -168,16 +168,12 @@ def mock_stripe(success=true)
   eos
 
   stub_request(:post, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers").
-  with(:body => {"card"=>{"number"=>"4000000000000002", "exp_month"=>"1", "exp_year"=>"#{Time.now.year+1}"}},
-    :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'67', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Stripe/v1 RubyBindings/1.6.3', 'X-Stripe-Client-User-Agent'=>'{"bindings_version":"1.6.3","lang":"ruby","lang_version":"1.9.3 p-1 (2011-09-23)","platform":"x86_64-darwin11.3.0","publisher":"stripe","uname":"Darwin Chaps-MacBook-Pro.local 11.3.0 Darwin Kernel Version 11.3.0: Thu Jan 12 18:47:41 PST 2012; root:xnu-1699.24.23~1/RELEASE_X86_64 x86_64"}'}).
+  with(:body => {"card"=>{"number"=>"4242424242424242", "exp_month"=>"1", "exp_year"=>"#{Time.now.year+1}"}}).
   to_return(:status => 200, :body => stripe_create_customer_response, :headers => {})
 
   stub_request(:get, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers/cus_Uw1IRh2oPsmeD0").
-  with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'User-Agent'=>'Stripe/v1 RubyBindings/1.6.3', 'X-Stripe-Client-User-Agent'=>'{"bindings_version":"1.6.3","lang":"ruby","lang_version":"1.9.3 p-1 (2011-09-23)","platform":"x86_64-darwin11.3.0","publisher":"stripe","uname":"Darwin Chaps-MacBook-Pro.local 11.3.0 Darwin Kernel Version 11.3.0: Thu Jan 12 18:47:41 PST 2012; root:xnu-1699.24.23~1/RELEASE_X86_64 x86_64"}'}).
   to_return(:status => 200, :body => stripe_retrieve_customer_response, :headers => {})
 
   stub_request(:post, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/charges").
-  with(:body => {"amount"=>"1000", "currency"=>"usd", "customer"=>"cus_Uw1IRh2oPsmeD0", "description"=>"Charge for June 06/27/12. Missions: fishing"},
-    :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'124', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Stripe/v1 RubyBindings/1.6.3', 'X-Stripe-Client-User-Agent'=>'{"bindings_version":"1.6.3","lang":"ruby","lang_version":"1.9.3 p-1 (2011-09-23)","platform":"x86_64-darwin11.3.0","publisher":"stripe","uname":"Darwin Chaps-MacBook-Pro.local 11.3.0 Darwin Kernel Version 11.3.0: Thu Jan 12 18:47:41 PST 2012; root:xnu-1699.24.23~1/RELEASE_X86_64 x86_64"}'}).
   to_return(:status => (success ? create_charge_code : create_charge_fail_code), :body => (success ? create_charge_response : create_charge_fail_response), :headers => {})
 end

@@ -279,24 +279,9 @@ class User < ActiveRecord::Base
   #this creates a stripe charge 
   def charge_for_active_crewmanships
     begin
-      charge = Stripe::Charge.create(
-        :amount => (balance * 100).to_i,
-        :currency => "usd",
-        :customer => stripe_customer.id,
-        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{crewmanships.where(:status => 'active').collect(&:mission).collect(&:title).to_sentence}"
-      )
-      # puts "charge: #{charge.inspect}"
-      subscription_charges.create(
-        :params => charge.inspect,
-        :amount => charge.amount,
-        :paid => charge.paid,
-        :stripe_card_fingerprint => charge.card.fingerprint,
-        :stripe_customer_id => charge.customer,
-        :stripe_id => charge.id,
-        :card_last_4 => charge.card.last4,
-        :card_type => charge.card.type,
-        :description => charge.description
-      )
+      amount   = (balance * 100).to_i
+      missions = crewmanships.where('status in (?)', %w(active past_due)).collect(&:mission)
+      charge   = make_charge_with_stripe(amount, missions)
       if charge.paid
         crewmanships.where(:status => %w(trial_active trial_expired past_due)).collect {|c| c.update_attribute(:status, 'active')}
         # email a receipt
@@ -304,11 +289,37 @@ class User < ActiveRecord::Base
       else
         false
       end
-    rescue
-      crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
-      # send an email tell them their payment failed
+    rescue => e
+      if crewmanships.where(:status => 'past_due').any?
+        crewmanships.where(:status => 'past_due').collect {|c| c.update_attribute(:status, 'abandoned')}
+        # send an email tell them their account is abandoned
+      else
+        crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
+        # send an email tell them their payment failed
+      end
       false
     end
+  end
+
+  def make_charge_with_stripe(amount, missions)
+    charge = Stripe::Charge.create(
+      :amount => amount,
+      :currency => "usd",
+      :customer => stripe_customer.id,
+      :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+    )
+    subscription_charges.create(
+      :params => charge.inspect,
+      :amount => charge.amount,
+      :paid => charge.paid,
+      :stripe_card_fingerprint => charge.card.fingerprint,
+      :stripe_customer_id => charge.customer,
+      :stripe_id => charge.id,
+      :card_last_4 => charge.card.last4,
+      :card_type => charge.card.type,
+      :description => charge.description
+    )
+    charge
   end
 
   #this gets run by the daily rake task which charge customers on their billing date
@@ -316,6 +327,24 @@ class User < ActiveRecord::Base
     User.where(:billing_day_of_month => Time.now.date).each do |user|
       user.charge_for_active_crewmanships
     end
+  end
+
+  def last_months_billing_date
+    one = 1.month.ago
+    Date.parse("#{one.year}-#{one.month}-#{billing_day_of_month}")
+  end
+
+  def this_months_billing_date
+    one = Time.now
+    Date.parse("#{one.year}-#{one.month}-#{billing_day_of_month}")
+  end
+
+  def taught_class_between_last_billing_cycle?(mission)
+    courses_taught.
+    where('starts_at >= ?', last_months_billing_date.beginning_of_day).
+    where('starts_at <= ?', (this_months_billing_date - 1.day).end_of_day).
+    where(:mission_id => mission.id).
+    any?
   end
   
   # ================================

@@ -1,27 +1,34 @@
 class Crewmanship < ActiveRecord::Base
-  # status(trial_active,trial_expired,trial_canceled,active,past_due,canceled,completed)
+  # status(trial_active,trial_expired,trial_canceled,active,past_due,abandoned(past_due for a month),canceled,completed)
   belongs_to :mission
   belongs_to :user
 
   def make_active_or_expire
-    if user.stripe_customer
+    if user.stripe_customer #do we have their credit card details?
       user.update_attributes!(:billing_day_of_month => Time.now.day)
-      if user.charge_for_active_crewmanships
+      if user.charge_for_active_crewmanships #if charge is successful 
         update_attributes(:status => 'active')
         true
       else
-        #usermailer
+        #usermailer (ask user to enter payment info so we can charge)
         update_attributes(:status => 'past_due')
         false
       end
     else
+      # UserMailer.subscription_expired()
       update_attributes(:status => 'trial_expired')
     end
   end
 
   def price
-    if status == 'active'
-      10.00
+    if status == 'active' || status == 'past_due'
+      if user.taught_class_between_last_billing_cycle?(mission) || 
+        mission.courses.where('starts_at >= ?', user.last_months_billing_date.beginning_of_day).
+        where('starts_at <= ?', user.this_months_billing_date.end_of_day).length == 0
+        0
+      else
+        10.00
+      end
     else
       0
     end

@@ -56,6 +56,7 @@ FactoryGirl.define do
     password      { Forgery(:basic).password }
     bio           { Forgery(:lorem_ipsum).words(rand(10)) }
     confirmed_at  { Time.now }
+    billing_day_of_month { Time.now.day }
   end
 
 
