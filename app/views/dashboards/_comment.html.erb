@@ -1,4 +1,18 @@
-<%= comment.user.name %> left a comment 
-"<%= comment.body %>"<br />
-<br />
-<div style="font-size: 10px"><%= "#{time_ago_in_words comment.created_at} ago" %></div>
+<div class="dashboard-feed-thumbnail">
+  <%= image_tag(comment.user.photo.url(:thumb_small)) %>
+  <div style="font-size: 9px"><%= "#{time_ago_in_words comment.created_at} ago" %></div>
+</div>
+
+
+<div class="dashboard-feed-body">
+  <%= comment.user.name %> left a comment in <%= link_to comment.mission.title, comment.mission %>
+  <%= simple_format Rinku.auto_link(comment.body) %>
+  <% if comment.comment_type == 'file' %>
+    <%= link_to comment.photo_file_name, comment.photo.url %>
+  <% elsif comment.comment_type == 'photo' %>
+    <%= image_tag(comment.photo.url(:normal)) %>
+  <% end %>  
+</div>
+
+
+

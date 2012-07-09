@@ -1,2 +1,15 @@
-<%= topic.title %> <br />
-<div style="font-size: 10px"><%= "#{time_ago_in_words topic.created_at} ago" %></div>
+<div class="dashboard-feed-thumbnail">
+  <%= image_tag(topic.mission.photo.url(:thumbnail)) %>
+  <div class="heading9">Topic posted to <%= topic.mission.title %></div>
+  <div style="font-size: 10px"><%= "#{time_ago_in_words topic.created_at} ago" %></div>
+</div>
+
+<div class="dashboard-feed-body">
+  <div class="heading20"><%= topic.title %></div>
+  <%= image_tag(topic.user.photo.url(:thumb_small)) %>
+  <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+</div>
+
+
+
+

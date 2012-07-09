@@ -30,7 +30,7 @@ private
 
   def feed_query_items_for_mission
     mission_ids      = current_user.missions.map(&:id)
-    comments         = Comment.where(:mission_id => mission_ids)
+    comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
     courses          = Course.where(:mission_id => mission_ids)
     topics           = Topic.where(:mission_id => mission_ids)
     crewmanships     = Crewmanship.where(:mission_id => mission_ids)

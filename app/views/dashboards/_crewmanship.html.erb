@@ -1,3 +1,14 @@
-<%= crewmanship.user.name %> joined <%= crewmanship.mission.title %> 
-<br />
-<div style="font-size: 10px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
+<div class="dashboard-feed-thumbnail">
+  <%= image_tag(crewmanship.user.photo.url(:thumb_small)) %>
+  <div style="font-size: 9px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
+</div>
+
+<div class="dashboard-feed-body">
+  <% if crewmanship.user.crewmanships.where(:role => "creator").last %>
+    <%= link_to crewmanship.user.name, crewmanship.user %> created the mission <%= link_to crewmanship.mission.title, crewmanship.mission %> 
+  <% else %>
+    <%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to crewmanship.mission.title, crewmanship.mission %> 
+  <% end %>
+  <%= image_tag(crewmanship.mission.photo.url(:preview)) %>
+</div>
+

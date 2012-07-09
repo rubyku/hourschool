@@ -3,28 +3,22 @@
 </div>
 
 <div class="page-main">
-  <div class="page-content">
+    <div style="padding: 18px">
+  
+    <div class="mission-divider"> 
+      <div class="heading11">News Feed</div>
+    </div>
   <% @feed.each do |feed_item| %>
     <div class="mission-divider"> 
 
-      <% if feed_item.is_a?(Course) %>
-        New event: <%= feed_item.title %><br />
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item .created_at} ago" %></div>
-
-      <% elsif feed_item.is_a?(Topic) %>
-        New topic: <%= feed_item.title %><br />
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-
-      <% elsif feed_item.is_a?(Crewmanship) %>
-        <%= feed_item.user.name %> joined <%= feed_item.mission.title %> <br /> 
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-      
-      <% elsif feed_item.is_a?(Comment) %>
-        <%= feed_item.user.name %> left a comment 
-        "<%= feed_item.body %>"<br />
-        <br />
-        <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-
+      <% if feed_item.is_a? Course %>
+        <%= render :partial => 'dashboards/course', :locals => {:course => feed_item} %>
+      <% elsif feed_item.is_a? Topic %>
+        <%= render :partial => 'dashboards/topic', :locals => {:topic => feed_item} %>
+      <% elsif feed_item.is_a? Crewmanship %>
+        <%= render :partial => 'dashboards/crewmanship', :locals => {:crewmanship => feed_item} %>
+      <% elsif feed_item.is_a? Comment %>
+        <%= render :partial => 'dashboards/comment', :locals => {:comment => feed_item} %>
       <% else %>
         <%= feed_item.class %> happened at 
         <%= feed_item.created_at %><br />

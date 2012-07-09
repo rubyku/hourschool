@@ -1,3 +1,18 @@
-New event: <%= course.title %>
-<br />
-<div style="font-size: 10px"><%= "#{time_ago_in_words course.created_at} ago" %></div>
+<div class="dashboard-feed-thumbnail">
+  <%= image_tag(course.mission.photo.url(:thumbnail)) %>
+  <div class="heading9">Event posted to <%= course.mission.title %></div>
+  <div style="font-size: 9px"><%= "#{time_ago_in_words course.created_at} ago" %></div>
+</div>
+
+<div class="dashboard-feed-body">
+  <div class="heading20"><%= course.title %></div>
+  <p><%= course.description %></p>
+  <div style="margin-bottom: 5px">
+  <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
+    <%= "#{course.city.name}, #{course.city.state}" %><br>
+  </div>
+      
+  <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+  <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
+</div>
+
