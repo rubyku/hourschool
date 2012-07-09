@@ -26,8 +26,9 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Wall of Missions", wall_of_missions_path %></li>
             <li><%= link_to "Wall of Awesome", wall_of_awesome_path %></li>
-            <li class="divider"></li>
             <li><%= link_to "Partner Schools", partner_schools_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "HourSchool Philosophy", about_path %></li>
             <li><a href="http://blog.hourschool.com">HourSchool Blog</a></li>
             <li><a href="#">HourSchool Lab</a></li>
           </ul>
@@ -50,10 +51,7 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "About HourSchool", about_path %></li>
             <li><a href="http://hourschool.com/pdf/TeachersHandbook-030812-rk.pdf">Mission Handbook</a></li>
-            <li><a href="#">Guidelines</a></li>
-            <li><a href="http://help.hourschool.com">FAQs</a></li>
           </ul>
         </li>
         <% if !current_user %>
