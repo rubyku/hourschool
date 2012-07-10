@@ -2,12 +2,12 @@
   Welcome back, <%= current_user.name.split(" ").first %>!
 </div>
 
-<div class="page-main">
-    <div style="padding: 18px">
-  
-    <div class="mission-divider"> 
-      <div class="heading11">News Feed</div>
-    </div>
+<div class="page-main white">
+  <div style="padding: 18px">
+
+  <div class="mission-divider"> 
+    <div class="heading11">News Feed</div>
+  </div>
   <% @feed.each do |feed_item| %>
     <div class="mission-divider"> 
 
@@ -31,17 +31,17 @@
   </div>
 </div>
 
-<div class="page-right-sidebar" style="margin-bottom: 30px">
-  <div class="sidebar-content-white">m
+<div class="white right page-sidebar" style="margin-bottom: 30px">
+  <div class="sidebar-content-white">
     <div class="sidebar-heading">My Missions</div>
     <% current_user.missions.each do |mission| %>
       <%= link_to mission.title, mission %><br>
-      <%= image_tag(mission.photo, :size => "250x") %>
+      <%= image_tag(mission.photo, :size => "250x") if mission.photo.present? %>
     <% end %>
   </div>
 </div>
 
-<div class="page-right-sidebar">
+<div class="white right page-sidebar">
   <div class="sidebar-content-white">
     <div class="sidebar-heading">To-do's</div>
 

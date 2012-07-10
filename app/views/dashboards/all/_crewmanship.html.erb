@@ -9,6 +9,8 @@
   <% else %>
     <%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to crewmanship.mission.title, crewmanship.mission %> 
   <% end %>
-  <%= image_tag(crewmanship.mission.photo.url(:preview)) %>
+
+  <%= image_tag(crewmanship.mission.photo.url(:preview)) if crewmanship.mission.photo.present? %>
+
 </div>
 
