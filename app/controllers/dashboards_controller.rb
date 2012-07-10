@@ -21,6 +21,8 @@ class DashboardsController < ApplicationController
     #   feed_query_items_for_friends
     when :me
       feed_query_items = feed_query_items_for_me
+      @user = User.me_or_find(params[:id], current_user)
+      @comment = current_user.comments.create(params[:comment])
     end
 
     @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
