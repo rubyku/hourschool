@@ -20,9 +20,14 @@
     <% end %>
 
     <br>
-    <div class="actions">
-      <%= f.submit "Make it happen!", :class => "btn btn-primary" %>
-    </div>
+ 
+    <% if current_user.crewmanships.collect(&:status).include?('past_due') %>
+      <%= link_to "Pay now", new_subscription_charge_path %>
+    <% else %>
+      <div class="actions">
+        <%= f.submit "Make it happen!", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
   <% end %>
 
 </div>
