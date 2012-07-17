@@ -21,13 +21,34 @@
 
     <br>
  
-    <% if current_user.crewmanships.collect(&:status).include?('past_due') %>
-      <%= link_to "Pay now", new_subscription_charge_path %>
+    <% if current_user.crewmanships.empty? %>
+      Join now and try for free for 30 days!
+    <% elsif current_user.crewmanships.collect(&:status).include?('trial_active')  %>
+      Looks like you already have a trial going. You can try this mission for free until your other trial expires. 
+    <% elsif current_user.crewmanships.collect(&:status).include?('active') %>
+      Looks like you already have a mission going. You can try this mission for free until your next billing date. 
     <% else %>
-      <div class="actions">
-        <%= f.submit "Make it happen!", :class => "btn btn-primary" %>
-      </div>
+      <ul>
+        <% current_user.crewmanships.each do |crewmanship| %>
+          <li>
+            <strong><%= number_to_currency crewmanship.price[:amount] %></strong>
+            <%= crewmanship.mission.title %>: <%= crewmanship.status %>
+            <%= "(#{crewmanship.price[:details]})" if crewmanship.price[:details].present? %>
+          </li>
+        <% end %>
+        <li><strong><%= number_to_currency Crewmanship.default_price %></strong> <%= @crewmanship.mission.title %>: New</li>
+
+        <li><strong><%= number_to_currency(current_user.balance + Crewmanship.default_price) %> Total to be paid now</strong></li>
+      </ul>
+      <% if current_user.stripe_customer %>
+        on your card <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %>
+      <% else %>
+        <h3>Enter your card details</h3>
+        <%= render :partial => 'subscription_charges/credit_card_fields' %>
+      <% end %>
     <% end %>
+
+    <%= f.submit "Make it happen!", :class => "btn btn-primary" %>
   <% end %>
 
 </div>

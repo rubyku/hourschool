@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   def index
     feed_query_items = feed_query_items_for_mission
     @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+    @user = User.me_or_find(params[:id], current_user)
     respond_to do |format|
       format.html
       format.js do

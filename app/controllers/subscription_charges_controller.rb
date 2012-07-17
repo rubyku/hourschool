@@ -38,7 +38,7 @@ class SubscriptionChargesController < ApplicationController
          :description => "user_#{current_user.id}",
          :email => current_user.email
        )
-      redirect_to subscription_charge_url(:current), notice: 'Subscription was successfully created.'
+      redirect_to subscription_charge_url(:current), notice: 'Your payment was successfully saved. Your card will be charged on your next billing date.'
     else
       render action: "new"
     end

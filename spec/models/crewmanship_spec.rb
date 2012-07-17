@@ -10,7 +10,7 @@ describe Crewmanship do
       Role.create!(:course => course, :user => user, :name => "teacher")
       crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
 
-      crewmanship.price.should == 0.00
+      crewmanship.price[:amount].should == 0.00
     end
 
     it 'price is full if they have not taught a class in the last billing cycle' do
@@ -20,7 +20,7 @@ describe Crewmanship do
       user = Factory.create(:user, :billing_day_of_month => Date.today.day)
       crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
 
-      crewmanship.price.should == 10.00
+      crewmanship.price[:amount].should == 10.00
     end
 
     it 'price is zero there were no event in the last billing cycle' do
@@ -28,7 +28,7 @@ describe Crewmanship do
       user = Factory.create(:user, :billing_day_of_month => Date.today.day)
       crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
 
-      crewmanship.price.should == 0.00
+      crewmanship.price[:amount].should == 0.00
     end
 
     it 'price is full there were events in the last billing cycle' do
@@ -37,7 +37,7 @@ describe Crewmanship do
       crewmanship = Crewmanship.create!(:status => 'active', :mission => mission, :user => user)
       course = Factory.create(:course, :mission => mission)
       course.update_attribute(:starts_at, 1.day.ago)
-      crewmanship.price.should == 10.00
+      crewmanship.price[:amount].should == 10.00
     end
 
     it "user.balance combines crewmanship.prices" do

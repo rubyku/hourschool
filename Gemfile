@@ -125,6 +125,7 @@ group :development, :test do
   gem "rspec-rails",        "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
   gem 'rb-fsevent',         '~> 0.4.3.1'
+  gem "selenium-webdriver", "~> 2.24.0"
 
   # Guard
   gem 'guard-livereload',   '~> 0.4.0'

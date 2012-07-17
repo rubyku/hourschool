@@ -42,43 +42,45 @@ class CrewmanshipsController < ApplicationController
   end
 
   # POST /crewmanships
-  # POST /crewmanships.json
   def create
     @crewmanship = @mission.crewmanships.new(params[:crewmanship])
     @crewmanship.user = current_user
 
-    if current_user.crewmanships.collect(&:status).include?('canceled')
+    # credit card details entered?
+    # create a stripe customer with this card
+    if params[:stripeToken].present?
+      current_user.create_stripe_customer(
+        :card => params[:stripeToken],
+        :description => "user_#{current_user.id}",
+        :email => current_user.email
+      )
+    end
+
+    #look at user's existing crewmanships and decide what to do with the new one
+    if current_user.crewmanships.empty?
+      @crewmanship.status = 'trial_active'
+      charge_now = false
+      @crewmanship.trial_expires_at = 30.days.from_now
+    elsif current_user.crewmanships.collect(&:status).include?('trial_active')
       @crewmanship.status = 'active'
-      charge_now = true
-    elsif current_user.crewmanships.collect(&:status).include?('past_due')
-      @crewmanship.status = 'active'
-      charge_now = true
+      charge_now = false
+      @crewmanship.trial_expires_at = current_user.crewmanships.first.trial_expires_at
     elsif current_user.crewmanships.collect(&:status).include?('active')
       @crewmanship.status = 'active'
       charge_now = false
     else
-      @crewmanship.status = 'trial_active'
-      charge_now = false
+      @crewmanship.status = 'active'
+      charge_now = true
     end
 
-    if current_user.crewmanships.count == 0
-      @crewmanship.trial_expires_at = 30.days.from_now
-    else
-      @crewmanship.trial_expires_at = current_user.crewmanships.first.trial_expires_at
-    end
-
-    respond_to do |format|
-      if @crewmanship.save
-        if charge_now
-          current_user.update_attributes(:billing_day_of_month => Date.today)
-          current_user.charge_for_active_crewmanships
-        end
-        format.html { redirect_to @mission, notice: 'You have joined this mission!' }
-        format.json { render json: @mission, status: :created, location: @crewmanship }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @crewmanship.errors, status: :unprocessable_entity }
+    if @crewmanship.save
+      if charge_now
+        current_user.update_attributes(:billing_day_of_month => Date.today.day)
+        current_user.charge_for_active_crewmanships 
       end
+      redirect_to @mission, notice: 'You have joined this mission!'
+    else
+      render action: "new"
     end
   end
 

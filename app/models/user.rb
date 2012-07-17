@@ -273,7 +273,7 @@ class User < ActiveRecord::Base
 
   #balance based on # of crewmanships a user has
   def balance
-    crewmanships.collect(&:price).inject{|sum,x| sum + x }
+    crewmanships.collect(&:price).map {|p| p[:amount] }.inject{|sum,x| sum + x }
   end
 
   #this creates a stripe charge 
@@ -282,9 +282,10 @@ class User < ActiveRecord::Base
       amount   = (balance * 100).to_i
       missions = crewmanships.where('status in (?)', %w(active past_due)).collect(&:mission)
       charge   = make_charge_with_stripe(amount, missions)
-      if charge.paid
+      if charge
         crewmanships.where(:status => %w(trial_active trial_expired past_due)).collect {|c| c.update_attribute(:status, 'active')}
         # email a receipt
+        # mention in the receipt if their charge was $0
         true
       else
         false
@@ -295,6 +296,7 @@ class User < ActiveRecord::Base
         # send an email tell them their account is abandoned
       else
         crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
+        # logger.info "[Crewmanship: #{crewmanships.where(:status => 'active').collect(&:id).inspect}] active => past_due"
         # send an email tell them their payment failed
       end
       false
@@ -302,24 +304,33 @@ class User < ActiveRecord::Base
   end
 
   def make_charge_with_stripe(amount, missions)
-    charge = Stripe::Charge.create(
-      :amount => amount,
-      :currency => "usd",
-      :customer => stripe_customer.id,
-      :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
-    )
-    subscription_charges.create(
-      :params => charge.inspect,
-      :amount => charge.amount,
-      :paid => charge.paid,
-      :stripe_card_fingerprint => charge.card.fingerprint,
-      :stripe_customer_id => charge.customer,
-      :stripe_id => charge.id,
-      :card_last_4 => charge.card.last4,
-      :card_type => charge.card.type,
-      :description => charge.description
-    )
-    charge
+    if amount == 0
+      subscription_charges.create(
+        :amount => 0,
+        :paid => true,
+        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+      )
+      true
+    else
+      charge = Stripe::Charge.create(
+        :amount => amount,
+        :currency => "usd",
+        :customer => stripe_customer.id,
+        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+      )
+      subscription_charges.create(
+        :params => charge.inspect,
+        :amount => charge.amount,
+        :paid => charge.paid,
+        :stripe_card_fingerprint => charge.card.fingerprint,
+        :stripe_customer_id => charge.customer,
+        :stripe_id => charge.id,
+        :card_last_4 => charge.card.last4,
+        :card_type => charge.card.type,
+        :description => charge.description
+      )
+      charge.paid
+    end
   end
 
   #this gets run by the daily rake task which charge customers on their billing date
