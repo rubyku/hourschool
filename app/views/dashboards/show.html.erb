@@ -27,16 +27,6 @@
     <% end %>
   </p>
 
-  <div class="heading11" style="float: left; margin-top: 30px; width: 100%">People you should follow</div><br>
-  <p style="float: left">
-    <% @user.courses_attended.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-      <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>    
-    <% end %>
-    <% @user.courses_taught.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-      <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
-    <% end %>
-  </p>
-
 </div>
 
 <div class="heading32 green" style="float: left">

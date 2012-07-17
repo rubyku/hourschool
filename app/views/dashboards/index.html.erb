@@ -31,19 +31,47 @@
   </div>
 </div>
 
-<div class="white right page-sidebar" style="margin-bottom: 30px">
+<div class="white right page-sidebar">
   <div class="sidebar-content-white">
-    <div class="sidebar-heading">My Missions</div>
-    <% current_user.missions.each do |mission| %>
-      <%= link_to mission.title, mission %><br>
-      <%= image_tag(mission.photo, :size => "250x") if mission.photo.present? %>
-    <% end %>
+    <div class="sidebar-heading">People you should follow</div>
+    <p style="float: left">
+      <% @user.courses_attended.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
+        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>    
+      <% end %>
+      <% @user.courses_taught.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
+        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
+      <% end %>
+    </p>
   </div>
 </div>
 
 <div class="white right page-sidebar">
   <div class="sidebar-content-white">
     <div class="sidebar-heading">To-do's</div>
+    <!-- to-do items here -->
+  </div>
+</div>
 
+<div class="white right page-sidebar">
+  <div class="sidebar-content-white">
+    <div class="sidebar-heading">Latest from the blog</div>
+      <div class="well">
+      <% begin %>
+      <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
+          <% tum = get_tumblr_first_regular_post %>
+          <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
+
+          <p class="footer-message-description"><%= strip_tags(truncate(tum["regular_body"], :length => 600, :omission => "..."))%></p><br>
+
+      <%- else -%>
+          <div class="footer-heading">Our mission</div>
+          <div class="footer-blog-title">HourSchool started because...</div><br>
+      <% end %>
+    <% rescue => ex %>
+      <% Rails.logger.error "Tumblr Failed: #{ex}" %>
+      <div class="footer-heading">What is HourSchool?</div>
+      <p class="footer-message-description">HourSchool is a social school built from your community. Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="http://www.hourschool.com/about">Learn more...</a></p><br>
+    <% end %>
+  </div>
   </div>
 </div>
