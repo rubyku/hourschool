@@ -1,98 +1,158 @@
-<%= devise_error_messages! %>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+    <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
+    <li><a href="#tab2" data-toggle="tab">Crewmanships</a></li>
+    <li><a href="#tab3" data-toggle="tab">Account Setting</a></li>
+    <li><a href="#tab4" data-toggle="tab">Notification Center</a></li>
+    <li><a href="#tab5" data-toggle="tab">Billing</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div class="full-page tab-border">
+        <div class="page-content">
+          <%= devise_error_messages! %>
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
+            <div class="clearfix">
+              <div class="grid_8" style="margin-left: 0px">
+              <p>
+               <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+               <%= f.text_field :name, :class => "form-short-edit-profile" %>
+              </p>
+              <br><br>
+              <p>
+               <%= f.label :email, 'Email', :class => "form-question" %><br />
+               <%= f.text_field :email, :class => "form-short-edit-profile" %>
+              </p>
+              <br><br>
+              <p>
+                <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+                <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
+                <%= f.hidden_field :city_id %>
+              </p>
 
-<div class="full-page">
-  <div class="page-content">
-    <div class="heading25 light_grey">Edit your profile</div>
+              <script type="text/javascript">
+              $("ul.typeahead.dropdown-menu").find('li.active').data('value')
+              $('#citySearch').typeahead({
+                source: function(typeahead, query) {
+                  var _this = this;
+                  return $.ajax({
+                    url: "<%= cities_path(:format => :json) %>?q=" + query,
+                    success: function(data) {
+                      return typeahead.process(data);
+                    }
+                  });
+                },
+                property: "name",
+                onselect: function (obj) {
+                  $('#user_city_id').val(obj.id);
+                }
+              });
+              </script>
 
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
+              <br><br>
 
-      <div class="clearfix">
+              <p>
+               <%= f.label :web, 'Website', :class => "form-question"  %><br />
+               <%= f.text_field :web, :class => "form-short-edit-profile"   %>
+              </p>
 
-        <div class="grid_8" style="margin-left: 0px">
+              <p>
+               <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
+               <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
+              </p>
+              <br><br>
 
-        <p>
-         <%= f.label :name, 'Full Name', :class => "form-question" %><br />
-         <%= f.text_field :name, :class => "form-short-edit-profile" %>
-        </p>
-        <br><br>
+              <p>
+                <% unless current_user.facebook? || current_account %>
+                  <%= render :partial => 'users/facebook/connect_button' %>
+                <%- end -%>
+              </p>
 
-        <p>
-         <%= f.label :email, 'Email', :class => "form-question" %><br />
-         <%= f.text_field :email, :class => "form-short-edit-profile" %>
-        </p>
-        <br><br>
+              <p>
+               <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
+               <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
+              </p>
 
-        <p>
-         <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+            </div>
 
-          <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
-          <%= f.hidden_field :city_id %>
-        </p>
-
-        <script type="text/javascript">
-        $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-        $('#citySearch').typeahead({
-          source: function(typeahead, query) {
-            var _this = this;
-            return $.ajax({
-              url: "<%= cities_path(:format => :json) %>?q=" + query,
-              success: function(data) {
-                return typeahead.process(data);
-              }
-            });
-          },
-          property: "name",
-          onselect: function (obj) {
-            $('#user_city_id').val(obj.id);
-          }
-        });
-        </script>
-
-        <br><br>
-
-
-        <p>
-         <%= f.label :web, 'Website', :class => "form-question"  %><br />
-         <%= f.text_field :web, :class => "form-short-edit-profile"   %>
-        </p>
-
-        <p>
-         <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
-         <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
-        </p>
-        <br><br>
-
-        <p>
-          <% unless current_user.facebook? || current_account %>
-            <%= render :partial => 'users/facebook/connect_button' %>
-          <%- end -%>
-        </p>
-
-        <p>
-         <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
-         <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
-        </p>
-
+            <div class="grid_7">
+              <p>
+               <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+               <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") if @user.photo.present? %>
+               <%= f.file_field :photo %>
+              </p>
+              <br><br>
+            </div>
+          </div>
+          <br>
+          <%= f.submit "Update", :class => "btn" %>    
+          <% end %>
+        </div><!-- end page-content -->
+      </div><!-- end full-page -->
+    </div><!-- end tab1 -->
+    <div class="tab-pane" id="tab2">
+      <div class="full-page tab-border">
+        <div class="page-content"> 
+          <% current_user.missions.each do |mission| %>
+            <div class="mission-divider">
+              <div class="clearfix" style="margin-bottom: 20px">
+                <div class="left" style="margin-right: 20px">
+                  <%= image_tag(mission.photo.url(:thumbnail)) if mission.photo.present? %>
+                </div>
+                <div class="left">
+                  <div class="heading20 orange"><%= link_to mission.title, mission %></div><br>
+                  Joined mission on: <%= mission.crewmanships.first.created_at.strftime("%a %b %d, %Y") %><br>
+                  Crewmanship status: <%= mission.crewmanships.first.status %><br>
+                  <a class="btn" data-toggle="modal" href="#updateCrewmanship">Update crewmanship</a>
+                  <!-- Modal BEGIN -->
+                  <div class="modal hide" id="updateCrewmanship">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">×</button>
+                      <h3>Update Crewmanship</h3>
+                    </div>
+                    <div class="modal-body">              
+                      <%= render 'crewmanships/edit' %>
+                    </div>
+                  </div>
+                  <!-- Modal END -->
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <div class="grid_7">
-        <p>
-         <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-         <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") if @user.photo.present? %>
-         <%= f.file_field :photo %>
-        </p>
-        <br><br>
+    </div><!-- end tab2 -->
+    <div class="tab-pane" id="tab3">
+      <div class="full-page tab-border">
+        <div class="page-content">
+          Account Setting
+        </div>
       </div>
-
-    </div>
-
-
-        <br>
-        <%= f.submit "Update", :class => "grey button" %>
+    </div><!-- end tab3 -->
+    <div class="tab-pane" id="tab4">
+      <div class="full-page tab-border">
+        <div class="page-content">
+          Notification Center
+        </div>
+      </div>
+    </div><!-- end tab4 -->
+    <div class="tab-pane" id="tab5">
+      <div class="full-page tab-border">
+        <div class="page-content">
         
-        <% end %>
+          <% if current_user.stripe_customer %>
+            <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
+          <% end %>
 
-    
+          <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
 
-  </div>
-</div>
+
+          <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+
+
+        </div>
+      </div>
+    </div><!-- end tab5 -->
+
+  </div><!-- end tab-content -->
+</div><!-- end tabbable -->
