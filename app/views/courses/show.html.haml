@@ -16,7 +16,9 @@
   = render :partial => 'courses/womendesignbuild/show'
   
 - else 
-  .page
+
+  = render 'courses/show/toolbox'
+  .page-main.white
     .page-content
       .page-section-float-left
         .class-logistic-block
@@ -50,14 +52,6 @@
         .class-section-heading
           = "Join the conversation"
         = render :partial => "courses/show/comments", :locals => {:course => @course}
-
-
-  = content_for :head do
-    :erb
-      <meta property="og:description" content="<%= @course.description %>"        />
-      <meta property="og:image"       content="<%= @course.photo.url(:small) %>"  />
-      <meta property="og:title"       content="<%= @course.title %>"              />
-      <meta property="og:url"         content="<%= course_url(@course) %>"        />
 
 
   = content_for :sidebar do

@@ -1,0 +1,10 @@
+<% if @course.teacher == current_user %>
+  <div class="alert alert-info">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading">Teacher's Toolbox</h4>
+    <br>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Promote my event</a>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Invite someone</a>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Email all attendees</a>
+<% end %>
+
