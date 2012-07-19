@@ -42,8 +42,21 @@
       <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
         <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
         <br>
-        <%= link_to "Go build one!", new_mission_path, :class => "orange button long" %>
+        <a class="orange button long" data-toggle="modal" href="#newMission">Go build one!</a>
       </div>
+
+      <!--  modal -->
+      <div class="modal hide" id="newMission">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Build a new mission</h3>
+        </div>
+        <div class="modal-body">          
+          I want to build:
+          <%= render 'missions/form' %>
+        </div>
+      </div>
+      <!-- modal end --> 
 
       <div>
         <%= link_to image_tag("v3/homepage/start-here.png"), ""  %>
@@ -120,7 +133,7 @@
       <div style="background-color: #ff7733; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
       </div> 
 
-      <div class="heading14">Upcoming events</div>
+      <div class="heading14" style="text-align: center">Upcoming events</div>
 
       <% @courses.each do |course| %>
 

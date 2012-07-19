@@ -209,8 +209,21 @@
           <% else %>
             <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
           <% end %>
-          <%= link_to "Organize something for this topic", new_course_path(:mission_id => @mission.id, :topic_id => topic) %><br>
+          <a data-toggle="modal" href="#addAnEventWithTopic">Organize something for this topic</a>
         </div> 
+
+        <div class="modal hide" id="addAnEventWithTopic">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Add an event</h3>
+          </div>
+          <div class="modal-body">
+            <p>Which type of event best suit what you want to do?</p>
+            <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+            <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+            <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+          </div>
+        </div>
 
         <!-- Modal BEGIN -->
         <div class="modal hide" id="viewTopic<%= topic.id %>">
