@@ -5,9 +5,13 @@
 
 <div class="dashboard-feed-body">
   <% if crewmanship.user.crewmanships.where(:role => "creator").last %>
-    <%= link_to crewmanship.user.name, crewmanship.user %> created the mission <%= link_to crewmanship.mission.title, crewmanship.mission %> 
+    <div style="margin-bottom: 10px">
+   		<%= link_to crewmanship.user.name, crewmanship.user %> created the mission <%= link_to crewmanship.mission.title, crewmanship.mission %>
+    </div>
   <% else %>
-    <%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to crewmanship.mission.title, crewmanship.mission %> 
+  	<div style="margin-bottom: 10px">
+    	<%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to crewmanship.mission.title, crewmanship.mission %>
+     </div>
   <% end %>
 
   <%= image_tag(crewmanship.mission.photo.url(:preview)) if crewmanship.mission.photo.present? %>

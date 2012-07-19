@@ -36,10 +36,10 @@
     <div class="sidebar-heading">People you should follow</div>
     <p style="float: left">
       <% @user.courses_attended.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>    
+        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small, :style => "margin-bottom: 5px" %>    
       <% end %>
       <% @user.courses_taught.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
+        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small, :style => "margin-bottom: 5px"  %>
       <% end %>
     </p>
   </div>

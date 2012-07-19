@@ -34,9 +34,9 @@
 </div>
 
 <% if current_user == @user %>
-  <a class="btn" style="float: right">Edit my profile</a>
+  <a href="/users/edit" class="btn" style="float: right">Edit my profile</a>
 <% else %>
-  <a class="btn" style="float: right">Add as friend</a>
+  <a class="btn" style="float: right">Follow</a>
 <% end %>
 
 <div style="float: left; width: 630px">
@@ -106,9 +106,13 @@
               </div>
               <div class="left">
                 <div class="heading20 orange"><%= link_to mission.title, mission %></div><br>
-                <a class="btn">Complete this mission</a><br>
-                <a class="btn">Reveal letter to self</a><br><br>
-                Joined mission on: <%= mission.crewmanships.first.created_at.strftime("%a %b %d, %Y") %>
+                  <a class="btn">Reveal letter to self</a><br><br>
+                  <%#= link_to "Update crewmanship", edit_mission_crewmanship_path(mission, crewmanship) %>
+                  <a class="btn" data-toggle="modal" href="#updateCrewmanship">Update crewmanship</a>
+
+                Joined mission on: <%= mission.crewmanships.first.created_at.strftime("%a %b %d, %Y") %><br>
+                Crewmanship status: <%= mission.crewmanships.first.status %><br>
+                Price: <%= mission.crewmanships.first.price %><br>
                 <% if mission.topics.present? %><br><br>
                   Tracking topics: <br>
                   <% mission.topics.each do |topic| %>

@@ -5,7 +5,9 @@
 
 
 <div class="dashboard-feed-body">
-  <%= comment.user.name %> left a comment in <%= link_to comment.mission.title, comment.mission %>
+  <div style="margin-bottom: 10px">
+  	<%= link_to comment.user.name, comment.user %> left a comment in <%= link_to comment.mission.title, comment.mission %>
+  </div>
   <%= simple_format Rinku.auto_link(comment.body) %>
   <% if comment.comment_type == 'file' %>
     <%= link_to comment.photo_file_name, comment.photo.url %>
