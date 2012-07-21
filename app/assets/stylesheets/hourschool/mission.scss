@@ -8,13 +8,13 @@
 
 .mission-description-box{
   float: left;
-  width: 730px;
+  width: 700px;
   margin: 0px 20px 0px 20px;
 }
 
 .mission-status-box{
   float: left;
-  margin: 10px 0px 10px 57px
+  margin: 20px 0px 10px 0px
 }
 
 .mission-tab-intro{
@@ -33,7 +33,7 @@
 
 .crewman-description{
   float: left;
-  width: 420px;
+  width: 410px;
 }
 
 .comment-box{
@@ -48,8 +48,6 @@
 
   &.child{ 
     margin-left: 60px;
-    background-color: whiteSmoke;
-    padding: 10px;
     width: 490px;
   }
 
@@ -73,7 +71,7 @@
   margin-bottom: 10px;
 
   &.parent{
-    width: 510px;
+    width: 480px;
   }
 
   &.child{

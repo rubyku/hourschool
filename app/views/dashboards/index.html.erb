@@ -47,14 +47,14 @@
 
 <div class="white right page-sidebar">
   <div class="sidebar-content-white">
-    <div class="sidebar-heading">To-do's</div>
-    <!-- to-do items here -->
+    <div class="sidebar-heading">Wondering what else you can do next?</div>
+      <%= render :partial => 'dashboards/all/notification_center' %>
   </div>
 </div>
 
 <div class="white right page-sidebar">
   <div class="sidebar-content-white">
-    <div class="sidebar-heading">Latest from the blog</div>
+    <div class="sidebar-heading">Latest from the HourSchool community</div>
       <div class="well">
       <% begin %>
       <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>

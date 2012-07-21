@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   # homepage
   def index
     @pre_mission_signup = PreMissionSignup.new
-    @mission = Mission.new
     @courses = Course.active.order(:starts_at, :created_at)
     if community_site?
       @courses = @courses.community
@@ -30,7 +29,8 @@ class PagesController < ApplicationController
   end
 
   def show
-    @missions = Mission.all
+    @mission = Mission.new
+    @live_missions = Mission.where(:status => "live").where('photo_file_name is not null')
     @exception = env["action_dispatch.exception"]
     if params[:id] == "campaign"
       @amount_raised = Payment.joins(:course).where("courses.donate = 'true'").select('SUM(amount) as sum').first.sum.to_f

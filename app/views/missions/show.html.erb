@@ -1,277 +1,231 @@
 <%= render 'missions/show/tutorial' %>
 <%= render 'missions/show/invitee_landing_page' %>
 
+<%= render 'missions/show/banner' %>
 
-<div class="full-page">
-  <% if @mission.photo.present? %>
-    <%= image_tag(@mission.photo, :size => "960x360") %>
-  <% else %>
-    <div style="background-color: #333; width: 960px; height: 360px;">
-      <div class="heading11" style="text-align: center; padding-top: 60px">
-        <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your mission</a>
-      </div>
-    </div>
-  <% end %> 
-
-  <div class="mission-description-box">
-    <div class="heading32 orange">
-      <%= @mission.title %>
-    </div>
-
-    <div class="heading10">
-      <%= "#{@mission.city.name}, #{@mission.city.state}" %>
-    </div>
-
-    <p>
-      <%= @mission.description %>
-    </p>
-  </div>
-
-  <div class="mission-status-box">
-    <%= link_to 'Become a member', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "orange button short" %>
-  </div>
-
-</div><!-- end full page -->
-
-
-<div class="page-main white">
+<div class="page-main">
   <div class="tabbable"> 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Conversation</a></li>
       <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
       <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
       <li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li>
     </ul>
-    <div style="padding: 0px 20px 20px 20px">
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-          <div style="width: 97%">
-            <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
-          </div>
-        </div>     
-        <div class="tab-pane" id="tab2">
-          <div class="mission-tab-intro">
-            <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
-          </div>
-          <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
-          <br><br><br><br>
-          <% if @courses.present? %>
-            <% @courses.each do |course| %>
-              <div class="mission-divider">
-                <%= link_to course.title, course, :class => "heading20" %><br>
-                 Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-                <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-                <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
-                <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
-                <%= course.place_name %>
-              </div>
-            <% end %>
-          <% else %>
-            <div class="well">
-              When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <div style="width: 97%">
+              <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
             </div>
-          <% end %>
+          </div>
         </div>
-        <div class="tab-pane" id="tab3">
-<!--           <div class="field">
-            <%= text_field_tag :userSearch, "", :placeholder => "Search for someone", :class => "form-short-edit-profile", :autocomplete => "off" %>
-            <script type="text/javascript">
-              $('#userSearch').typeahead({
-                source: function(typeahead, query) {
-                  var _this = this;
-                  return $.ajax({
-                    url: "<%= search_users_path(:format => :json) %>?q=" + query,
-                    success: function(data) {
-                      return typeahead.process(data);
-                    }
-                  });
-                },
-                property: "name",
-                onselect: function (obj) {
-                  if (obj.id == 0) {
-                    $('#invite_invitee_email').focus()
-                  } else {
-                    $('#invite_invitee_id').val(obj.id);
-                  }
-                }
-              });
-            </script>
-          </div> -->
-          <br><br><br><br>
-          <% @users.each do |user| %>
-            <div class="mission-divider">             
-              <div class="crewman-photo">
-                <%= image_tag(user.photo.url(:thumb_large)) %>
-              </div>
-              <div class="crewman-description">
-                <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
-                <%if user.crewmanships.where(:role => "creator").last %>
-                  <span class="label label-info">Mission Creator</span>
-                <% else user.crewmanships.where(:role => "explorer").last %>
-                  <span class="label">Explorer</span>
-                <% end %>
-                <p><%= user.bio %></p>
-              </div>           
+      </div><!-- end tab1 -->   
+      <div class="tab-pane" id="tab2">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <div class="mission-tab-intro">
+              <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
             </div>
-          <% end %>
-        </div>
-        <div class="tab-pane" id="tab4"><br>
-          <div class="mission-tab-intro">
-            <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Rally is all about getting people excited about your mission. We learn better when we are learning with and from each other.</p>
-          </div>
-          <br><br><br><br>
-          <div class="mission-divider">
-            <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
-            <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and retweet's.</p>
-              <!-- AddThis Follow BEGIN -->
-              <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
-              <a class="addthis_button_facebook_follow" addthis:userid="hourschool"></a>
-              <a class="addthis_button_twitter_follow" addthis:userid="hourschool"></a>
-              <a class="addthis_button_tumblr_follow" addthis:userid="hourschool"></a>
-              </div>
-              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ef1765a3967f9ca"></script>
-              <!-- AddThis Follow END -->
-          </div>
-          <div class="mission-divider">
-            <div style="font-size: 13px; font-weight: 700">Get personal:</div>
-            <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
-            <a class="btn" data-toggle="modal" href="#tinyLetter">Write a tiny letter</a>
-          </div>
-          <!-- Modal BEGIN -->
-          <div class="modal hide" id="tinyLetter">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">×</button>
-              <h3>Write a tiny letter</h3>
-            </div>
-            <div class="modal-body">              
-              <%= render 'invites/form' %>
-            </div>
-          </div>
-          <!-- Modal END -->
-          <div class="mission-divider">
-            <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
-            <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
-            <a class="btn" data-toggle="modal" href="#addRallyTool" style="margin-bottom: 10px">Share yours now</a>
-            <% if @mission.comments.where(:comment_type => 'rally').present? %>
-              <% @mission.comments.where(:parent_id => nil, :comment_type => 'rally').each do |comment| %>
-                <div class="well">
-                  <%= simple_format Rinku.auto_link(comment.body) %>
-                  <div style="font-size: 10px; margin-top: -9px; margin-bottom: 10px">Posted by <%= comment.user.name %></div>
-                  <i class="icon-bullhorn"></i> <%= link_to comment.photo_file_name, comment.photo.url %>  
+            <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
+            <br><br><br><br>
+            <% if @courses.present? %>
+              <% @courses.each do |course| %>
+                <div class="mission-divider">
+                  <%= link_to course.title, course, :class => "heading20" %><br>
+                   Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+                  <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+                  <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
+                  <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
+                  <%= course.place_name %>
                 </div>
               <% end %>
             <% else %>
               <div class="well">
-                <p>No one has uploaded any tools yet.</p>
+                When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!
               </div>
             <% end %>
+          </div>
+        </div>
+      </div><!-- end tab2 -->
+      <div class="tab-pane" id="tab3">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <% @users.each do |user| %>
+              <div class="mission-divider">             
+                <div class="crewman-photo">
+                  <%= image_tag(user.photo.url(:thumb_large)) %>
+                </div>
+                <div class="crewman-description">
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                  <%if user.crewmanships.where(:role => "creator").last %>
+                    <span class="label label-info">Mission Creator</span>
+                  <% else user.crewmanships.where(:role => "explorer").last %>
+                    <span class="label">Explorer</span>
+                  <% end %>
+                  <p><%= user.bio %></p>
+                </div>           
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end tab3 -->
+      <div class="tab-pane" id="tab4">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <div class="mission-tab-intro">
+              <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Rally is all about getting people excited about your mission. We learn better when we are learning with and from each other.</p>
+            </div>
+            <br><br><br><br>
+            <div class="mission-divider">
+              <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
+              <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and retweet's.</p>
+                <!-- AddThis Follow BEGIN -->
+                <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+                <a class="addthis_button_facebook_follow" addthis:userid="hourschool"></a>
+                <a class="addthis_button_twitter_follow" addthis:userid="hourschool"></a>
+                <a class="addthis_button_tumblr_follow" addthis:userid="hourschool"></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ef1765a3967f9ca"></script>
+                <!-- AddThis Follow END -->
+            </div>
+            <div class="mission-divider">
+              <div style="font-size: 13px; font-weight: 700">Get personal:</div>
+              <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
+              <a class="btn" data-toggle="modal" href="#tinyLetter">Write a tiny letter</a>
+            </div>
             <!-- Modal BEGIN -->
-            <div class="modal hide" id="addRallyTool">
+            <div class="modal hide" id="tinyLetter">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Share a rally tool</h3>
+                <h3>Write a tiny letter</h3>
               </div>
-              <div class="modal-body">                
-                <% if current_user %>
-                  <%= form_for @mission.comments.new do |f| %>
-                    <%= f.hidden_field :mission_id, :value => @mission.id %>
-                    <%= f.hidden_field :comment_type, :value => "rally" %>
-                    <%= f.file_field   :photo %>
-                    <%= f.text_area    :body, :placeholder => "Description", :class => "form-with-margin", 'data-comment_type' => 'rally' %><br>
-                    <%= f.submit 'Post', :class => "btn" %>
-                  <% end %>
-                <% else %>
-                  <p>Please first sign up or log in</p>
-                <% end %>
+              <div class="modal-body">              
+                <%= render 'invites/form' %>
               </div>
             </div>
             <!-- Modal END -->
+            <div class="mission-divider">
+              <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
+              <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
+              <a class="btn" data-toggle="modal" href="#addRallyTool" style="margin-bottom: 10px">Share yours now</a>
+              <% if @mission.comments.where(:comment_type => 'rally').present? %>
+                <% @mission.comments.where(:parent_id => nil, :comment_type => 'rally').each do |comment| %>
+                  <div class="well">
+                    <%= simple_format Rinku.auto_link(comment.body) %>
+                    <div style="font-size: 10px; margin-top: -9px; margin-bottom: 10px">Posted by <%= comment.user.name %></div>
+                    <i class="icon-bullhorn"></i> <%= link_to comment.photo_file_name, comment.photo.url %>  
+                  </div>
+                <% end %>
+              <% else %>
+                <div class="well">
+                  <p>No one has uploaded any tools yet.</p>
+                </div>
+              <% end %>
+              <!-- Modal BEGIN -->
+              <div class="modal hide" id="addRallyTool">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Share a rally tool</h3>
+                </div>
+                <div class="modal-body">                
+                  <% if current_user %>
+                    <%= form_for @mission.comments.new do |f| %>
+                      <%= f.hidden_field :mission_id, :value => @mission.id %>
+                      <%= f.hidden_field :comment_type, :value => "rally" %>
+                      <%= f.file_field   :photo %>
+                      <%= f.text_area    :body, :placeholder => "Description", :class => "form-with-margin", 'data-comment_type' => 'rally' %><br>
+                      <%= f.submit 'Post', :class => "btn" %>
+                    <% end %>
+                  <% else %>
+                    <p>Please first sign up or log in</p>
+                  <% end %>
+                </div>
+              </div>
+              <!-- Modal END -->
+            </div>
           </div>
         </div>
-      </div><!-- end tab-content -->
-    </div><!-- end page-content -->
-  </div><!-- end tabbable -->
-</div><!-- end page-main -->
-
+      </div><!-- end tab4 -->
+    </div><!-- end tab-content -->
+  
+  </div><!-- end tabable -->
+</div>
 
 <div class="white right page-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
-    <div class="heading11" style="float: left">Topic Library:</div>
+    <div class="heading11" style="float: left">Topic Library:
+      <a href="#" rel="tooltip" id="tooltip" title="hello first try!"><i class="icon-question-sign"></i></a>
+    </div>
     <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px">Add</a>
-    <br><br>
-    <% if @mission.topics.present? %>
-      <% @mission.topics.each do |topic| %>
-        <div class="mission-divider">
-          <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
-          <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-          <% if topic.courses.count <= 1 %>
-            <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
-          <% else %>
-            <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %><br>
-          <% end %>
-          <a data-toggle="modal" href="#addAnEventWithTopic">Organize something for this topic</a>
-        </div> 
-
-        <div class="modal hide" id="addAnEventWithTopic">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Add an event</h3>
-          </div>
-          <div class="modal-body">
-            <p>Which type of event best suit what you want to do?</p>
-            <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-            <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-            <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-          </div>
+    <div class="well" style="margin: 35px 0px 20px 0px">
+      <% if @mission.topics.present? %>
+        <p>The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant.</p>
+      <% else %>
+        <p>The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".</p>
+      <% end %>
+    </div>
+    <% @mission.topics.each do |topic| %>
+      <div class="mission-divider">
+        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
+        <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+          Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
         </div>
+        <% if topic.courses.count <= 1 %>
+          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
+        <% else %>
+          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
+        <% end %>
+        <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize something for this topic</a>
+      </div> 
 
-        <!-- Modal BEGIN -->
-        <div class="modal hide" id="viewTopic<%= topic.id %>">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Add a new topic</h3>
-          </div>
-          <div class="modal-body">              
-            <div class="heading13-class"><%= topic.title %></div>
-            <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
-            <hr>
-            <div class="heading11">Related Events:</div>
+      <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Add an event</h3>
+        </div>
+        <div class="modal-body">
+          <p>Which type of event best suit what you want to do?</p>
+          <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+          <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+          <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+        </div>
+      </div>  <!-- Modal END -->
+      <div class="modal hide" id="viewTopic<%= topic.id %>"><!-- Modal BEGIN -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Topic Details</h3>
+        </div>
+        <div class="modal-body">              
+          <div class="heading13-class"><%= topic.title %></div>
+          <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">Added by <%= link_to topic.user.name, topic.user %></div>
+          <br>
+          <div class="heading11">Related Events:</div><br>
+          <% if topic.courses.present? %>
             <% topic.courses.each do |course| %>
               <%= link_to course.title, course %>
               <br>
             <% end %>
-          </div>
+          <% else %>
+            No related event yet.
+          <% end %>
         </div>
-        <!-- Modal END -->
-      <% end %><!-- end mission.topic each block -->
-    <% else %>
-      <div class="well">
-        The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".
       </div>
-    <% end %> 
+    <% end %><!-- end mission.topic each block -->
+    <div class="modal hide" id="newTopic"><!-- modal begins -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Add a new topic</h3>
+      </div>
+      <div class="modal-body">              
+        <%= render 'topics/form' %>
+      </div>
+    </div><!-- modal ends -->
   </div>
 </div><!-- end sidebar-white -->
 
-<div class="modal hide" id="newTopic">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Add a new topic</h3>
-  </div>
-  <div class="modal-body">              
-    <%= render 'topics/form' %>
-  </div>
-</div>
 
 <script type="text/javascript">
-  $(document).ready( function(){
-    $('.moreInfo').bind('click', function(){
-      $('.moreInfoModal').show();
-      return false;
-    })
-
-    if(window.location.hash) {
-      $('.nav-tabs [href=' + window.location.hash + ']').tab('show');
-    }
-  });
-
+  $('#tooltip').tooltip(show)
 </script>

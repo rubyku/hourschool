@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.create(params[:comment])
     if @comment.save
       if @comment.course
-        if current_user == @course.teacher
+        if current_user == @comment.course.teacher
           @comment.notify_participants_and_students
         else
           @comment.notify_participants

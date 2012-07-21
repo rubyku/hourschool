@@ -14,19 +14,8 @@
       <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
     <% else %>
       <%= @user.bio %><br>
-      <%= link_to "Edit bio", edit_user_registration_path %>
     <% end %>
   </p>
-
-  <div class="heading11" style="float: left; margin-top: 30px; width: 100%">HourSchoolmates</div><br>
-  <p style="float: left">
-    <% @user.fetch_followed.first(20).each do |user| %>
-      <% if user.photo.present? %>
-        <%= link_to_avatar user, :size => '50x50', :class => "" , :photo_size => :thumb_small %>
-      <% end %>
-    <% end %>
-  </p>
-
 </div>
 
 <div class="heading32 green" style="float: left">
@@ -39,91 +28,134 @@
   <a class="btn" style="float: right">Follow</a>
 <% end %>
 
-<div style="float: left; width: 630px">
-  <%= render :partial => "users/show/comments" %>
-</div>
+<div class="page-main">
+  <%#= render :partial => "users/show/comments" %>
 
-<div class="page-main white">
   <div class="tabbable"> 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
       <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-      <li><a href="#tab3" data-toggle="tab" class="heading11">Impact</a></li>
-      <li><a href="#tab4" data-toggle="tab" class="heading11">HourSchoolmates</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">HourSchoolmates</a></li>
     </ul>
-  </div>
 
-  <div style="padding: 0px 20px 20px 20px">
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
-        <% @feed.each do |feed_item| %>
-          <div class="mission-divider"> 
-            <% if feed_item.is_a?(Crewmanship) %>
-              <%= image_tag 'v3/profile/journey-glyph-mission.png' %>
-              <% if feed_item.role == "creator" %>
-                I created the mission 
-              <% elsif feed_item.role == "explorer" %>
-                I joined the mission 
-              <% end %>
-              <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-              <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-
-            <% elsif feed_item.is_a?(Comment) %>
-              <%= image_tag 'v3/profile/journey-glyph-comment.png' %>
-              I commented on the mission 
-              <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-              "<%= feed_item.body %>" <br />
-              <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-
-            <% elsif feed_item.is_a?(Course) %>
-              <%= image_tag 'v3/profile/journey-glyph-event.png' %>
-              I registered for the event from the mission
-              <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-               <div style="font-weight: 700;"><%= link_to feed_item.title, feed_item %></div> <br />
-              <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-            
-            <% elsif feed_item.is_a?(Topic) %>
-              <%= image_tag 'v3/profile/journey-glyph-topic.png' %>
-              I added a topic to the mission
-              <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-              <%= feed_item.title %> <br /> 
-              <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
-            
-            <% else %>
-              <%= feed_item.class %> happened at 
-              <%= feed_item.created_at %><br />
-            <% end %>
-          </div>
-        <% end %>
-        <%= render :partial => 'dashboards/paginate' %>
-      </div><!-- end tab1 -->  
-      <div class="tab-pane" id="tab2">
-        <% @user.missions.each do |mission| %>
-          <div class="mission-divider">
-            <div class="clearfix" style="margin-bottom: 20px">
-              <div class="left" style="margin-right: 20px">
-                <%= image_tag(mission.photo.url(:thumbnail)) if mission.photo.present? %>
-              </div>
-              <div class="left">
-                <div class="heading20 orange"><%= link_to mission.title, mission %></div><br>
-                  <a class="btn">Reveal letter to self</a><br><br>
-                  <%#= link_to "Update crewmanship", edit_mission_crewmanship_path(mission, crewmanship) %>
-                  <a class="btn" data-toggle="modal" href="#updateCrewmanship">Update crewmanship</a>
-
-                Joined mission on: <%= mission.crewmanships.first.created_at.strftime("%a %b %d, %Y") %><br>
-                Crewmanship status: <%= mission.crewmanships.first.status %><br>
-                Price: <%= mission.crewmanships.first.price %><br>
-                <% if mission.topics.present? %><br><br>
-                  Tracking topics: <br>
-                  <% mission.topics.each do |topic| %>
-                    <%= topic.title %><br>
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <% @feed.each do |feed_item| %>
+              <div class="mission-divider"> 
+                <% if feed_item.is_a?(Crewmanship) %>
+                  <%= image_tag 'v3/profile/journey-glyph-mission.png' %>
+                  <% if feed_item.role == "creator" %>
+                    I created the mission 
+                  <% elsif feed_item.role == "explorer" %>
+                    I joined the mission 
                   <% end %>
+                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+
+                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+                <% elsif feed_item.is_a?(Comment) %>
+                  <%= image_tag 'v3/profile/journey-glyph-comment.png' %>
+                  I commented on the mission 
+                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+                  "<%= feed_item.body %>" <br />
+                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
+                <% elsif feed_item.is_a?(Course) %>
+                  <%= image_tag 'v3/profile/journey-glyph-event.png' %>
+                  I registered for the event from the mission
+                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+                   <div style="font-weight: 700;"><%= link_to feed_item.title, feed_item %></div> <br />
+                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                
+                <% elsif feed_item.is_a?(Topic) %>
+                  <%= image_tag 'v3/profile/journey-glyph-topic.png' %>
+                  I added a topic to the mission
+                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
+                  <%= feed_item.title %> <br /> 
+                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                
+                <% else %>
+                  <%= feed_item.class %> happened at 
+                  <%= feed_item.created_at %><br />
                 <% end %>
               </div>
-            </div>
+            <% end %>
+            <%= render :partial => 'dashboards/paginate' %>
           </div>
-        <% end %>
-      </div><!-- end tab2 -->  
+        </div>
+      </div><!-- end tab1 -->  
+      <div class="tab-pane" id="tab2">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <% @user.missions.each do |mission| %>
+              <% @crewmanship = mission.crewmanships.where(:user_id => @user.id).first %>
+              <div class="mission-divider">                
+                <div style="margin: 0px 20px 20px 0px; width: 100%">
+                  <%= image_tag(mission.photo.url(:thumbnail)) if mission.photo.present? %>
+                  <a class="btn right">Reveal begin letter</a>
+                  <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => @crewmanship), :class => "btn right" %>
+                </div>
+                <div>
+                  <div class="heading20 orange"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
+                  <div class="well">
+                    <h3>Stats</h3>
+                    <p>Mission Crew Badge: <%= @crewmanship.role %></p>
+                    <p>Joined mission on: <%= @crewmanship.created_at.strftime("%b %d, %Y") %></p>
+                    <p>Days on mission: <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %></p>
+                    <p>Comments made: <%= mission.comments.where(:user_id => @user).count %></p>
+                    <p>Events organized: <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %></p>
+                    <p>Events attended: <%= @crewmanship.user.courses_attended.where(:mission_id => mission).count %></p>
+                    <p>Topics created: <%= mission.topics.count %></p>
+                  </div>
+                </div>             
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end tab2 --> 
+      <div class="tab-pane" id="tab3">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <%= @user.followed.count + @user.following.count %> HourSchoolmates
+            <% @user.followed.each do |user| %>
+              <div class="mission-divider">             
+                <div class="crewman-photo">
+                  <% if user.photo.present? %>
+                    <%= image_tag(user.photo.url(:thumb_large)) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
+                  <% end %>
+                  <br><br>
+                  <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
+                </div>
+                <div class="crewman-description">
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                  <p><%= user.bio %></p>
+                </div>           
+              </div>
+            <% end %>
+            <% @user.following.each do |user| %>
+              <div class="mission-divider">             
+                <div class="crewman-photo">
+                  <% if user.photo.present? %>
+                    <%= image_tag(user.photo.url(:thumb_large)) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
+                  <% end %>
+                </div>
+                <div class="crewman-description">
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                  <p><%= user.bio %></p>
+                </div>           
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end tab3 --> 
     </div><!-- end tab-content -->
-  </div>
-</div><!-- end page-main -->
+  </div><!-- end tabbable -->
+
+</div>
+

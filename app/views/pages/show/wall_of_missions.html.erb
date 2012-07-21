@@ -1,16 +1,20 @@
 <div class="heading32 green">Wall of Missions</div>
 
-<div style="float: right; margin-top: -50px; margin-right: 20px">
-  Choose a city:
-  <select class="span3">
-    <option>Austin, TX</option>
-    <option>Ann Arbor, MI</option>
-    <option>Waterloo, ON</option>
-    <option>San Francisco, CA</option>
-  </select>
+<a class="orange button long" data-toggle="modal" href="#newMission">Go build one!</a>
+<!--  modal -->
+<div class="modal hide" id="newMission">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">×</button>
+  <h3>Build a new mission</h3>
 </div>
+<div class="modal-body">          
+  <%= render 'missions/form' %>
+</div>
+</div>
+<!-- modal end --> 
 
-<% @missions.each do |mission| %>
+
+<% @live_missions.each do |mission| %>
   <div style="float: left"%>
     <div style="width: 300px; height: 180px; margin-right: 20px">
       <% if mission.photo.present? %>
@@ -18,7 +22,7 @@
       <% end %>
     </div>
     <div style="background-color: white; width: 280px; padding: 10px">
-      <div class="title-text" id="explore"><%= mission.title %></div>
+      <div class="title-text" id="explore"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
       <div class="heading11" id="explore"><%= mission.city.name %>, <%= mission.city.state %></div>
     </div>
   </div>
