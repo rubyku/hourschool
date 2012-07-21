@@ -42,20 +42,30 @@ class MissionsController < ApplicationController
   # GET /missions/1/edit
   def edit
     @mission = Mission.find(params[:id])
+
+    render :layout => 'mission_builder'
   end
 
   # POST /missions
   # POST /missions.json
   def create
     @mission = Mission.new(params[:mission])
+    @users = @mission.users
+    @courses = @mission.courses
+    @course = Course.new
+    @topic = Topic.new
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
     @mission.account = current_account if current_account
     @mission.city = current_user.city
 
     respond_to do |format|
       if @mission.save
-        @mission.crewmanships.create(:user => current_user, :role => 'creator', :status => "trial_active")
-        format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
-        format.json { render json: @mission, status: :created, location: @mission }
+        @mission.crewmanships.create(:user => current_user, :role => 'creator', :status => "trial_active", :trial_expires_at => 30.days.from_now.to_date)
+        @mission.update_attribute(:status, 'draft')
+        format.html { render action: "edit", :layout => 'mission_builder' }
       else
         format.html { render action: "new" }
         format.json { render json: @mission.errors, status: :unprocessable_entity }

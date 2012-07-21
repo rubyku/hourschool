@@ -109,7 +109,7 @@
 <%= render :layout => 'layouts/document' do %>
   
   <% if community_site? %>
-    <%= render 'layouts/application/header' %>
+    <%= render 'layouts/application/header' unless yield(:body_id) == "mission_builder" %>
   <% end %>
 
   <%# Flash %>

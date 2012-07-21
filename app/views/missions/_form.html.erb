@@ -2,7 +2,6 @@
   <% if @mission.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@mission.errors.count, "error") %> prohibited this mission from being saved:</h2>
-
       <ul>
       <% @mission.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,11 +10,17 @@
     </div>
   <% end %>
 
+
+  <div style="text-transform: uppercase; font-size: 20px; font-weight: 700; font-family: futura-pt-1, futura-pt-2; letter-spacing: 0.15em;">
+    <span style="color: #333">I want to:</span>
+    <%= f.select :verb, ['Build', 'Make', 'Create', 'Grow', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'] , :style => "color: #ff7733" %>
+  </div>
+
   <div class="field">
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => "form" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Let's make this happen!", :class => "btn right" %>
   </div>
 <% end %>
