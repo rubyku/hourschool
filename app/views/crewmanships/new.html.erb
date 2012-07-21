@@ -1,40 +1,80 @@
 <center>
   <% if current_user %>
-  
     <h1>Joining a mission? Way to go, <%= current_user.name.split(" ").first %>!</h1>
     <h3>Remember, the first 30 days are on us.</h3>
-  
   <% else %>
-
     <h1>Try this mission for free for 30 days. It’s on us.</h1>
     <h3>No obligation, no credit card required.</h3>
- 
   <% end %>
 
   <br><br>
 
+</center>
+
   <%= render 'form' %>
 
-  <h2>Have more questions?</h2>
+<div class="well left">
 
-  <div class="heading13-class">What is a mission?</div>
-  <p>A mission is a new way of learning. Learn about how missions work here.</p>
+  <h2>How tuition works</h2>
 
-  <div class="heading13-class">What does joining as a member get me?</div>
-  <p>
+  <div class="grid_5">
 
-  </p>
+    <div class="heading13-class">What is a mission?</div>
+    <p>A mission is a new way of learning. Learn about how missions work here.</p>
+    <div class="heading13-class">Why do I have to pay?</div>
+    <p>
+    Instead of buying textbooks, you’ll be paying for hands-on lessons from community experts. Instead of taking twice as long doing-it-yourself, you’ll receive guidance and community support. Instead of paying big bucks for a short-lived course, you’ll be meeting passionate people, gaining knowledge, and engaging with a community that can stick with you beyond your mission’s end date. The fee covers the cost of community management, either by HourSchool or Mission Organizers. 
+    </p>
 
-  <div class="heading13-class">Why do I have to pay?</div>
-  <p>
-  
-  </p>
+    <div class="heading13-class">What does joining as a member get me?</div>
+    <p>
+      You’ll be getting early access to local events, conversation, resources, and in-person learning—all catered to helping you accomplish your mission. There are also going to be member's discount on classes. 
+    </p>
 
-  <div class="heading13-class">Do I need a credit card to sign up?</div>
-  <p>
-  
-  </p>
+  </div>
+
+  <div class="grid_5">
+
+    <div class="heading13-class">How many events are there going to be per month?</div>
+    <p>
+      Because missions are meant to be community-driven, the schedule may vary from month to month depending on how active the collective community is that month. Typically, there will at least be 1-2 events per month.  
+    </p>
+    <p>
+      Once in awhile, a mission might not be very active for a month when everyone is busy. We will try to encourage everyone to participate. But if there are no events in the last 30 days, we also waive your membership fee just to keep it all fair and cool.
+    </p>
+
+    <div class="heading13-class">How long can I be in a mission for?</div>
+    <p>
+      For however long you want! You set your own goal, your own milestone, and you are done when you decide you are done. 
+    </p>
+
+  </div>
+
+  <div class="grid_4 footer-right">
+
+    <div class="heading13-class">I'm not a teacher, can I teach a class or organize an event?</div>
+    <p>
+      Absolutely! In fact, we highly encourage it. We believe everyone can teach and should teach. It's all about sharing your own experiences, stories, and passsion with your community. 
+    </p>
+    <p>
+      On top of that, if you teach or lead an event, your membership fee is waived for that month because the more active you are in your mission, the better the community becomes for everyone. 
+    </p>
+
+
+    <div class="heading13-class">Can I try it first?</div>
+    <p>
+      Yup! The first 30 days are free, and we won’t take your credit card information until after the trial period is over.
+    </p>
+
+    <div class="heading13-class">Do I need a credit card to sign up?</div>
+    <p>
+      No, you will not need to put in your credit card info until your trial is over. We use stripe to securely process credit cards and we don't save any sensitive personal info.
+    </p>
+
+  </div>
+
+</div>
 
  
-</center>
+
 

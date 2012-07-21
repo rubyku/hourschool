@@ -1,5 +1,3 @@
-<h1>Listing crewmanships</h1>
-
 <table>
   <tr>
     <th>Mission</th>
@@ -14,9 +12,10 @@
   </tr>
 
 <% @crewmanships.each do |crewmanship| %>
+  
   <tr>
-    <td><%= crewmanship.mission %></td>
-    <td><%= crewmanship.user %></td>
+    <td><%= crewmanship.mission.title %></td>
+    <td><%= crewmanship.user.name %></td>
     <td><%= crewmanship.role %></td>
     <td><%= crewmanship.status %></td>
     <td><%= crewmanship.trial_expires_at %></td>

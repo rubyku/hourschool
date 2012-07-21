@@ -1,14 +1,14 @@
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-    <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
-    <li><a href="#tab2" data-toggle="tab">Crewmanships</a></li>
-    <li><a href="#tab3" data-toggle="tab">Account Setting</a></li>
-    <li><a href="#tab4" data-toggle="tab">Notification Center</a></li>
-    <li><a href="#tab5" data-toggle="tab">Billing</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Profile</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Account Setting</a></li>
+    <li><a href="#tab4" data-toggle="tab" class="heading11">Notification Center</a></li>
+    <li><a href="#tab5" data-toggle="tab" class="heading11">Billing</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <div class="full-page tab-border">
+      <div class="full-page tab-border full">
         <div class="page-content">
           <%= devise_error_messages! %>
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
@@ -91,53 +91,34 @@
       </div><!-- end full-page -->
     </div><!-- end tab1 -->
     <div class="tab-pane" id="tab2">
-      <div class="full-page tab-border">
-        <div class="page-content"> 
+      <div class="full-page tab-border full">
+        <div class="page-content">
           <% current_user.missions.each do |mission| %>
             <div class="mission-divider">
-              <div class="clearfix" style="margin-bottom: 20px">
-                <div class="left" style="margin-right: 20px">
-                  <%= image_tag(mission.photo.url(:thumbnail)) if mission.photo.present? %>
-                </div>
-                <div class="left">
-                  <div class="heading20 orange"><%= link_to mission.title, mission %></div><br>
-                  Joined mission on: <%= mission.crewmanships.first.created_at.strftime("%a %b %d, %Y") %><br>
-                  Crewmanship status: <%= mission.crewmanships.first.status %><br>
-                  <a class="btn" data-toggle="modal" href="#updateCrewmanship">Update crewmanship</a>
-                  <!-- Modal BEGIN -->
-                  <div class="modal hide" id="updateCrewmanship">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">×</button>
-                      <h3>Update Crewmanship</h3>
-                    </div>
-                    <div class="modal-body">              
-                      <%= render 'crewmanships/edit' %>
-                    </div>
-                  </div>
-                  <!-- Modal END -->
-                </div>
-              </div>
+              Mission: <%= "#{mission.verb} #{mission.title}" %><br>
+              School: <%= mission.account.nil? ? "HourSchool" : mission.account.name %>
+              <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => mission.crewmanships.where(:user_id => current_user.id).first), :class => "btn right" %>
             </div>
           <% end %>
         </div>
       </div>
-    </div><!-- end tab2 -->
+    </div><!-- end tab3 -->
     <div class="tab-pane" id="tab3">
-      <div class="full-page tab-border">
+      <div class="full-page tab-border full">
         <div class="page-content">
           Account Setting
         </div>
       </div>
     </div><!-- end tab3 -->
     <div class="tab-pane" id="tab4">
-      <div class="full-page tab-border">
+      <div class="full-page tab-border full">
         <div class="page-content">
           Notification Center
         </div>
       </div>
     </div><!-- end tab4 -->
     <div class="tab-pane" id="tab5">
-      <div class="full-page tab-border">
+      <div class="full-page tab-border full">
         <div class="page-content">
         
           <% if current_user.stripe_customer %>
@@ -156,3 +137,6 @@
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
+
+
+<!-- status(trial_active,trial_expired,trial_canceled,active,past_due,abandoned(past_due for a month),canceled,completed) -->

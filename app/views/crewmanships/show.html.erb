@@ -1,35 +1,61 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Mission:</b>
-  <%= @crewmanship.mission %>
-</p>
+<h1>
+  Mission Name:
+  <%= @crewmanship.mission.title %>
+</h1><br>
 
-<p>
-  <b>User:</b>
-  <%= @crewmanship.user %>
-</p>
+<div class="page-main white">
+  <div class="page-content">
+    <div class="well">
+      <h3>Stats</h3>
+      <p>Mission Crew Badge: <%= @crewmanship.role %></p>
+      <p>Joined mission on: <%= @crewmanship.created_at.strftime("%b %d, %Y") %></p>
+      <p>Days on mission: <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %></p>
+      <p>Comments made: <%= @crewmanship.mission.comments.count %></p>
+      <p>Events organized: <%= @crewmanship.user.courses_taught.where(:mission_id => @mission).count %></p>
+      <p>Events attended: <%= @crewmanship.user.courses_attended.where(:mission_id => @mission).count %></p>
+      <p>Topics created: <%= @crewmanship.mission.topics.count %></p>
+      <a class="btn">Reveal begin letter</a><br><br>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Role:</b>
-  <%= @crewmanship.role %>
-</p>
+<div class="white right page-sidebar">
+  <div class="page-content">
+    <h3>What's next?!</h3>
 
-<p>
-  <b>Status:</b>
-  <%= @crewmanship.status %>
-</p>
+    <p>Crewmanship Status: <%= @crewmanship.status %></p>
 
-<p>
-  <b>Trial expires at:</b>
-  <%= @crewmanship.trial_expires_at %>
-</p>
+    <% if @crewmanship.status == "active" %>
+      <%= button_to 'Mission Accomplished', mission_crewmanship_path(@mission, @crewmanship, :crewmanship => {:status => 'completed'}), :class => "btn btn-inverse", :style => "color: white", :method => :put %>
+      <a href="#">Leave mission</a>
+    <% elsif @crewmanship.status == "completed" %>
+      <a class="btn">Reveal begin letter</a><br><br>
+      <a class="btn">Write finish letter</a><br><br>
+      <a class="btn">Submit photo to Wall of Awesome</a><br><br>
+      <a class="btn">Join another mission</a><br><br>
+    <% else %>
+      <% if @crewmanship.status == "trial_active" %>
+        <p>Your trial expires on:<%= @crewmanship.trial_expires_at %></p>
+        <a class="btn">Continue your crewmanship after trial</a><br><br>
+      <% elsif @crewmanship.status == "trial_expired" || @crewmanship.status == "trial_canceled" %>
+        <p>Your trial expired on:<%= @crewmanship.trial_expires_at %></p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "past_due" %>
+        <p>You have a past due balance because your credit card information was invalid.</p>
+        <a class="btn">Continue your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "abandoned" %>
+        <p>Your crewmanship is marked as abandoned, because you have a past due balance for more than a month.</p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "canceled" %>
+        <p>You left this mission on <%= @crewmanship.canceled_at %></p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <b>Canceled at:</b>
-  <%= @crewmanship.canceled_at %>
-</p>
 
-<h1>your trial expires in <%= time_ago_in_words(@crewmanship.trial_expires_at) %></h1>
+<%#= link_to 'enter credit card details', add_payment_information_mission_crewmanship_path() %>
 
-<%= link_to 'enter credit card details', add_payment_information_mission_crewmanship_path() %>

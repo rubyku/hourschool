@@ -23,6 +23,11 @@
 
   .page{:style => "width: 700px"}
     .page-content
+      - if current_user && current_user == @user
+        %a{:href => "/users/edit", :class => "btn", :style => "float: right"}Edit my profile
+      - else
+        = link_to "Follow", user_followings_path(:user_id => current_user, :id => @user), :class => 'btn', :method => :post
+
       .page-section-float-left  
         - if (@approved_courses.any? || @pending_courses.count != 0 || !@user.photo.exists? || @user.zip.blank? || @user.location.blank?) && current_user == @user
           .notification-center

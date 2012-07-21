@@ -91,7 +91,7 @@ class CrewmanshipsController < ApplicationController
 
     respond_to do |format|
       if @crewmanship.update_attributes(params[:crewmanship])
-        format.html { redirect_to @crewmanship, notice: 'Crewmanship was successfully updated.' }
+        format.html { redirect_to mission_crewmanship_path, notice: 'Crewmanship was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
