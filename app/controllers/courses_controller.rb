@@ -8,28 +8,21 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course      = Course.new(params[:course])
+    @course         = Course.new(params[:course])
     @course.account = current_account if current_account
 
     @topic = Topic.find(params[:topic_id]) if params[:topic_id].present?
 
     @user = current_user
     if @course.save
+      @course.update_attribute(:status, 'approved')
       @course.topics << @topic if @topic
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
-
-      if admin_of_current_account?
-        @course.update_attribute(:status, 'approved')
-        redirect_to preview_path(@course)
-      else
-        @course.update_attribute(:status, 'proposal')
-        UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        redirect_to current_user
-      end
+      redirect_to preview_path(@course)
     else
       render :action => 'new'
     end
@@ -100,18 +93,14 @@ class CoursesController < ApplicationController
   ## teacher.html.erb student.html.erb
   ## "Congrats! Your class is now live"
   def confirm
-    if @course.status == "approved"
-        @course.update_attribute :status, "live"
-        if @course.account.nil?
-          current_account = nil
-        else 
-          current_account = @course.account
-        end
-        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-        if community_site?
-          post_to_twitter(@course)
-        end
+    @course = Course.find(params[:id])
+    if @course.account.nil?
+      current_account = nil
+    else 
+      current_account = @course.account
     end
+    UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+
   end
 
 ##-------------------------------------------------------------------------------------------------------------

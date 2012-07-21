@@ -1,0 +1,69 @@
+<div class="full-page">
+  <div class="page-content">
+    <div class="heading14">Event Details</div>
+    <div class="heading13-class"><%= @course.title %></div>
+      <table>
+        <tr>
+          <td class="icon">
+            <%= image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost" %>
+          </td>
+          <td>
+            <div class="class-details"><%= "$ #{@course.price}" %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="icon">
+            <%= image_tag "v2/icon_calendar.png", :class => "class-details-icon-when" %>
+          </td>
+          <td>
+            <div class="class-details"><%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="icon">
+            <%= image_tag "v2/icon_location.png", :class => "class-details-icon-where" %>
+          </td>
+          <td>
+            <div class="class-details"><%= "#{@course.place_name}" %></div>
+            <% if @course.public? %>
+              <p><%= "#{@course.address}" %>
+              <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %></p>
+            <% else %>
+              <p>Private Address</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+  </div>
+</div>
+
+<div class="full-page">
+  <div class="page-content">
+    <div class="heading14">Ticket information</div>
+
+  </div>
+</div>
+
+<div class="full-page">
+  <div class="page-content">
+    <div class="heading14">Billing information</div>
+    <p>The following will be charged to your credit card on file: </p>
+    <% if current_user.stripe_customer %>
+      <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
+      <a class="btn right" data-toggle="modal" href="#addBasicInfo">Update card on file</a>
+    <% end %>
+  </div>
+</div>
+
+<div class="full-page">
+  <div class="page-content">
+    <div class="heading14">Refund and cancellation policy</div>
+    <ul>
+      <li>If class doesn’t reach minimum, you’ll get your money back.</li>
+      <li>Once class hits minimum, there will be no refunds.</li>
+      <li>The organizer will take registrations up to 48 hours before the event starts.</li>
+    </ul>
+    I agree with the refund and cancellation policy.
+  </div>
+</div>

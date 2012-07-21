@@ -6,49 +6,8 @@
   .page-section-float-left
     #preview-box
       .preview-header Preview before this goes live!
-      = button_to "Publish now!", course_attendee_registration_path(@course), :class => "preview-publish button", :method => :put
-      = button_to "Make changes", edit_course_path(@course.id), :class => "preview-edit button", :method => :get
-
-    - if community_site?
-      #preview-box-tall
-        .classBlock
-          - if @course.photo.present?
-            = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
-          - else
-            = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
-          - if @course.donate?
-            = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
-    
-          .class-description
-            .heading13-class
-              = "#{@course.title.truncate(45)}"
-            - if @course.teaser.blank?
-              = "#{@course.description.truncate(60)}"
-            - else
-              = "#{@course.teaser.truncate(60)}"
-            = "#{@course.topics.collect(&:title).to_sentence}"
-
-          .class-note
-            .heading9-class
-              - if @course.active?  
-                - if @course.max_seats.blank?
-                  = link_to "Unlimited seats |", @course
-                - elsif @course.seats_left == 0 
-                  = link_to "Full! Request again |", @course
-                - elsif
-                  = link_to "#{@course.seats_left} seats left |", @course
-              = "#{@course.city.try(:name)}, #{@course.city.try(:state)}"
-        #preview-checklist-box
-          .welcome-header Preview CheckList
-          %ul
-            %li.preview-checklist 1. Check the widget to your left
-            %p Does the photo look good? Do the words fit well? This is what people will see when they browse classes so first impressions count!
-            %br
-            %li.preview-checklist 2. Check the class profile page below
-            %p Make sure to check out class specifics on the right hand column and your description.
-            %br
-            %li.preview-checklist 3. Don't worry, you can always come back!
-            %p You can always come back and edit your class widget and profile page at any time.
+      = button_to 'Publish now', confirm_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put
+      = button_to "Make changes", edit_course_path(@course.id), :class => "btn right", :method => :get
 
   .page
     .page-content
@@ -80,6 +39,7 @@
       .sidebar-content-white
 
         //todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css
+        = @course.status
         .sidebar-block
           .class-section-heading Details
           %table

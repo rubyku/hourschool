@@ -1,0 +1,141 @@
+<%= content_for(:document_title, "#{@course.name} in #{@course.city.try(:name_state)} | taught by #{@course.teacher.name} on Hourschool" ) %>
+
+<%= content_for :head do %>
+  <meta property="og:description" content="<%= @course.description %>"        />
+  <meta property="og:image"       content="<%= @course.photo.url(:small) %>"  />
+  <meta property="og:title"       content="<%= @course.title %>"              />
+  <meta property="og:url"         content="<%= course_url(@course) %>"        />
+<% end %>
+
+
+<% if current_account == Account.where(:id => 4).first %>
+  <%= render :partial => 'courses/womendesignbuild/show' %>
+  
+<% else %>
+
+  <div class="class-title-big"><%= "#{@course.title}" %></div>
+  <div class="happening-message-header"><%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" if community_site? %></div>
+  <%#= render :partial => "courses/show/add_this_small" %>
+  <br>
+
+  <div class="page-main">
+    <div class="tabbable"> 
+      <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+        <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Description</a></li>
+        <li><a href="#tab2" data-toggle="tab" class="heading11">Participants</a></li>
+        <li><a href="#tab3" data-toggle="tab" class="heading11">Conversation</a></li>
+        <li><a href="#tab4" data-toggle="tab" class="heading11">Related</a></li>
+      </ul>
+
+      <div class="tab-content">
+        
+        <div class="tab-pane active" id="tab1">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div style="width: 97%">
+                <%= image_tag(@course.photo.url(:large)) if @course.photo.present? %>
+                <div class="class-section-heading" style="margin-top: 10px">Description</div>
+                <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p>
+              </div>
+            </div>
+          </div>
+        </div><!-- end tab1 -->   
+        
+        <div class="tab-pane" id="tab2">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+                
+              <div class="sidebar-heading">Organizer</div>
+              <table>
+                <tr>
+                  <td>
+                    <%= avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50') %>
+                  </td>
+                  <td>
+                    <%= link_to @course.teacher.name, @course.teacher, :class => "profile-link" %>
+                  </td>
+                </tr>
+              </table>
+
+              <p class="class-details">
+                <% if @course.experience.blank? %>
+                 <%= @course.teacher.bio %>
+                <% else %>
+                  <%= @course.experience %>
+                <% end %>
+              </p>
+              <% if @course.teacher != current_user %>
+                <%= link_to "Email organizer", new_course_organizer_contact_path(@course), :class => "btn" %>
+              <% end %>
+
+              <% if @course.students.any? %>                  
+                <% if @course.max_seats.present? %>
+                  <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}/#{@course.max_seats}" %>)</div>
+                <% else %>
+                  <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
+                <% end %>
+
+                <% if @course.has_teacher?(current_user) %>
+                  <%= link_to "Email attendees", new_course_attendee_contact_path(@course), :class => "btn" %>
+                <% end %>
+              <% end %>
+
+            
+              <% @course.students.each do |student| %>
+                <table>
+                  <tr>
+                    <td>
+                      <%= avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50') %>
+                    </td>
+                    <td>
+                      <%= link_to student.name, student, :class => "profile-link" %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+
+            </div>
+          </div>
+        </div><!-- end tab2 -->
+      
+        <div class="tab-pane" id="tab3">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div class="class-section-heading">Join the conversation</div><br>
+              <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
+            </div>
+          </div>
+        </div><!-- end tab3 -->
+
+        <div class="tab-pane" id="tab4">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div class="class-section-heading">Related Topics</div><br>
+              <% if @course.topics.present? %>
+                <% @course.topics.each do |topic| %>
+                  <%= link_to topic.title, mission_topic_path(@course.mission, topic) %><br>
+                <% end %>
+              <% end %>
+              <div class="class-section-heading">Part of Mission</div><br>
+              <%= link_to @course.mission.title, @course.mission if @course.mission.present? %>  
+            </div>
+          </div>
+        </div><!-- end tab 4 -->
+
+      </div><!-- end tab-content -->
+    </div><!-- end tabbable -->
+  </div><!-- end page-main -->
+
+  <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+    <div class="sidebar-content-white">
+      <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
+    </div>
+  </div>
+
+  <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+    <div class="sidebar-content-white">
+      <%= render 'courses/show/toolbox' %>
+    </div>
+  </div>
+
+<% end %>

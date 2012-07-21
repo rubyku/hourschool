@@ -3,8 +3,13 @@
     <a class="close" data-dismiss="alert" href="#">×</a>
     <h4 class="alert-heading">Teacher's Toolbox</h4>
     <br>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Promote my event</a>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Invite someone</a>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Email all attendees</a>
+    <%= link_to "Edit event", edit_course_path, :class => "btn" %>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo">Promote my event</a>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo">Invite someone</a>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo">Email all attendees</a>
+  </div>
+<% else %>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo">Invite someone</a>
+    <a class="btn" data-toggle="modal" href="#addBasicInfo">Email organizer</a>
 <% end %>
 

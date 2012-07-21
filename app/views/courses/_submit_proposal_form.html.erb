@@ -20,22 +20,25 @@
   <%= f.hidden_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
   <%= hidden_field_tag :topic_id, params[:topic_id] %>
 
+  <%= "Create an event in #{@course.mission.title}" if @course.mission_id.present? %>
+
    <p>
    <%= f.label :title, 'Class title:', :class => "form-question" %>
    <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
    </p>
-   <br><br>
+   <br><br>
 
-   <% if @mission %>
-     <%= @course.mission.topics.collect(&:title).to_sentence %>
-
-      <% for topic in Topic.find(:all) %>
-        <div>
-          <%= check_box_tag "course[topic_ids][]", topic.id, @course.topics.include?(topic) %>
-          <%= topic.title %>
-        </div>
-      <% end %>
+  <% if @course.mission %>
+  Does your event cover any of the following topics? 
+    <% for topic in @course.mission.topics.find(:all) %>
+      <div>
+        <%= check_box_tag "course[topic_ids][]", topic.id %>
+        <%= topic.title %>
+      </div>
+    <% end %>
   <% end %>
+
+  <br><br>
 
    <div class="page-section-float-left">
    <p>

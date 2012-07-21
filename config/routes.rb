@@ -114,6 +114,7 @@ HourschoolV2::Application.routes.draw do
   match '/csvote'                     => 'suggestions#vote'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
+  match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
   
   match '/courses'                    => 'Courses::Admin#index'
 
