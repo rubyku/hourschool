@@ -10,19 +10,41 @@ class Courses::Attendee::RegistrationsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @user   = current_user
-    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user)
+    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user, :quantity => params[:role][:quantity])
+    if params[:stripeToken].present?
+      @user.create_stripe_customer(
+       :card => params[:stripeToken],
+       :description => "user_#{current_user.id}",
+       :email => current_user.email
+      )
+    end
 
     if @role.save
-      if !community_site?
-        Membership.create(:user => @user, :account => @course.account, :admin => false) 
+      unless @course.free?
+        amount = @role.quantity * @course.price
+        fee = amount * 0.029 + 0.30
+        total = ((amount + fee) * 100).to_i
+        charge = Stripe::Charge.create(
+          :amount => total,
+          :currency => "usd",
+          :customer => @user.stripe_customer_id,
+          :description => "#{@role.quantity} tickets to #{@course.name}."
+        )
+        @role.destroy unless charge.paid
       end
-      if @course.account.nil? 
-        current_account = nil
-      else 
-        current_account = @course.account
+
+      if @course.free? || charge.paid
+        if !community_site?
+          Membership.create(:user => @user, :account => @course.account, :admin => false) 
+        end
+        if @course.account.nil? 
+          current_account = nil
+        else 
+          current_account = @course.account
+        end
+        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
       end
-      UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
-      UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
     else
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
@@ -33,7 +55,12 @@ class Courses::Attendee::RegistrationsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to course_attendee_registration_path(:course_id => @course, :id => 'confirm')
+        if @course.free? || charge.paid
+          redirect_to course_attendee_registration_url(:course_id => @course, :id => 'confirm')
+        else
+          flash[:error] = "Your charge didn't go through, try again or contact hello@hourschool.com for help"
+          new_course_attendee_registration_url(@course)
+        end
       end
       format.js { }
     end
@@ -42,6 +69,8 @@ class Courses::Attendee::RegistrationsController < ApplicationController
   def new
     enqueue_warm_facebook_cache
     @course = Course.find(params[:course_id])
+    @role = @course.roles.new
+
   end
 
 

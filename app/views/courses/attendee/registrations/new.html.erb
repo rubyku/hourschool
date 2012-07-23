@@ -27,7 +27,7 @@
             <div class="class-details"><%= "#{@course.place_name}" %></div>
             <% if @course.public? %>
               <p><%= "#{@course.address}" %>
-              <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %></p>
+              <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %></p>
             <% else %>
               <p>Private Address</p>
             <% end %>
@@ -38,32 +38,63 @@
   </div>
 </div>
 
-<div class="full-page">
-  <div class="page-content">
-    <div class="heading14">Ticket information</div>
+<%= form_for(@role, :url => course_attendee_registrations_path(@course)) do |f| %>
+  <div class="full-page">
+    <div class="page-content">
+      <div class="heading14">Ticket information</div>
+        
+      <%= f.select :quantity, options_for_select(1..20), :class => 'span1' %>
+      # of tickets
 
+      <% if @course.free? %>
+      Course is free
+      <% else %>
+        <br />
+        Price per ticket: <%= number_to_currency @course.price %>
+        <br />
+        + Transaction fee: $<span id="transaction_fee"><%= fee = (@course.price * 0.029 + 0.3).round(2) %></span>
+        <hr />
+        <h3>
+          $<span id="total_price"><%= @course.price + fee %></span>
+          Total Due
+        </h3>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div class="full-page">
-  <div class="page-content">
-    <div class="heading14">Billing information</div>
-    <p>The following will be charged to your credit card on file: </p>
-    <% if current_user.stripe_customer %>
-      <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
-      <a class="btn right" data-toggle="modal" href="#addBasicInfo">Update card on file</a>
-    <% end %>
-  </div>
-</div>
+  <script type="text/javascript">
+    $('#role_quantity').change(function() {
+      new_total = $('#role_quantity').val() * <%= @course.price %>;
+      fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+      total_price = new_total + fee;
+      $('#total_price').text(total_price);
+      $('#transaction_fee').text(fee);
+    })
+  </script>
 
-<div class="full-page">
-  <div class="page-content">
-    <div class="heading14">Refund and cancellation policy</div>
-    <ul>
-      <li>If class doesn’t reach minimum, you’ll get your money back.</li>
-      <li>Once class hits minimum, there will be no refunds.</li>
-      <li>The organizer will take registrations up to 48 hours before the event starts.</li>
-    </ul>
-    I agree with the refund and cancellation policy.
+  <div class="full-page">
+    <div class="page-content">
+      <div class="heading14">Billing information</div>
+      <% if current_user.stripe_customer %>
+        <p>The following will be charged to your credit card on file: </p>
+        <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
+        <a class="btn right" data-toggle="modal" href="#addBasicInfo">Update card on file</a>
+      <% else %>
+        <%= render :partial => 'subscription_charges/credit_card_fields' %>
+      <% end %>
+    </div>
   </div>
-</div>
+
+  <div class="full-page">
+    <div class="page-content">
+      <div class="heading14">Refund and cancellation policy</div>
+      <ul>
+        <li>If class doesn’t reach minimum, you’ll get your money back.</li>
+        <li>Once class hits minimum, there will be no refunds.</li>
+        <li>The organizer will take registrations up to 48 hours before the event starts.</li>
+      </ul>
+      I agree with the refund and cancellation policy.
+      <p><%= f.submit 'Continue' %></p>
+    </div>
+  </div>
+<% end %>

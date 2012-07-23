@@ -78,6 +78,9 @@ class Course < ActiveRecord::Base
     city.try(:lng)
   end
 
+  def free?
+    self.price == 0
+  end
 
   def days_left
     (date - Time.current.to_date).to_i

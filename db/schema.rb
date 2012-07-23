@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719164344) do
+ActiveRecord::Schema.define(:version => 20120723151928) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -356,6 +356,8 @@ ActiveRecord::Schema.define(:version => 20120719164344) do
     t.string   "name"
     t.boolean  "attending"
     t.integer  "mission_id"
+    t.integer  "quantity"
+    t.string   "note"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"
