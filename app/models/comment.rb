@@ -55,7 +55,7 @@ class Comment < ActiveRecord::Base
   end
   
   def child_comments
-    Comment.where(:parent_id => self.id).order('DATE(created_at) ASC')
+    Comment.where(:parent_id => self.id).reverse_order
   end
 
 end
