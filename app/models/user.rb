@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def full_state
-    StateAbreviations[state.upcase]
+    StateAbreviations[city.try(:state).try(:upcase)]
   end
 
   def self.ap; where(:email => 'alex@hourschool.com').first; end
