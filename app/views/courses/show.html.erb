@@ -12,6 +12,16 @@
   <%= render :partial => 'courses/womendesignbuild/show' %>
   
 <% else %>
+  <% if @course.status == 'draft' && @course.teacher == current_user %> 
+    <div class="full-page">
+      <div class="page-content">
+        <div class="preview-header">Preview before this goes live!</div>
+        <%= button_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put %>
+        <%= link_to "Make changes", edit_course_path(@course.id), :method => :get %>
+        <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}),  :method => :put %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="class-title-big"><%= "#{@course.title}" %></div>
   <div class="happening-message-header"><%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" if community_site? %></div>
@@ -23,8 +33,7 @@
       <ul class="nav nav-tabs" style="margin-bottom: 0px;">
         <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Description</a></li>
         <li><a href="#tab2" data-toggle="tab" class="heading11">Participants</a></li>
-        <li><a href="#tab3" data-toggle="tab" class="heading11">Conversation</a></li>
-        <li><a href="#tab4" data-toggle="tab" class="heading11">Related</a></li>
+        <li><a href="#tab3" data-toggle="tab" class="heading11">Related</a></li>
       </ul>
 
       <div class="tab-content">
@@ -39,34 +48,36 @@
               </div>
             </div>
           </div>
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div style="width: 97%">
+                <div class="class-section-heading" style="margin-top: 10px">Comments</div>
+                <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
+              </div>
+            </div>
+          </div>
+
         </div><!-- end tab1 -->   
         
         <div class="tab-pane" id="tab2">
           <div class="page-main white tab-border main">
             <div class="page-content"> 
-                
-              <div class="sidebar-heading">Organizer</div>
-              <table>
-                <tr>
-                  <td>
-                    <%= avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50') %>
-                  </td>
-                  <td>
-                    <%= link_to @course.teacher.name, @course.teacher, :class => "profile-link" %>
-                  </td>
-                </tr>
-              </table>
-
-              <p class="class-details">
-                <% if @course.experience.blank? %>
-                 <%= @course.teacher.bio %>
-                <% else %>
-                  <%= @course.experience %>
-                <% end %>
-              </p>
-              <% if @course.teacher != current_user %>
-                <%= link_to "Email organizer", new_course_organizer_contact_path(@course), :class => "btn" %>
-              <% end %>
+              <div class="mission-divider">
+                <div class="sidebar-heading">Organizer</div>
+                <div class="crewman-photo">
+                  <%= image_tag(@course.teacher.photo.url(:thumb_large)) %>
+                </div>
+                <div class="crewman-description">
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
+                  <p>                
+                    <% if @course.experience.blank? %>
+                     <%= @course.teacher.bio %>
+                    <% else %>
+                      <%= @course.experience %>
+                    <% end %>
+                  </p>
+                </div> 
+              </div>    
 
               <% if @course.students.any? %>                  
                 <% if @course.max_seats.present? %>
@@ -74,40 +85,27 @@
                 <% else %>
                   <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
                 <% end %>
-
-                <% if @course.has_teacher?(current_user) %>
-                  <%= link_to "Email attendees", new_course_attendee_contact_path(@course), :class => "btn" %>
+                <% @course.students.each do |student| %>
+                  <div class="mission-divider">             
+                    <div class="crewman-photo">
+                      <%= image_tag(student.photo.url(:thumb_large)) %>
+                    </div>
+                    <div class="crewman-description">
+                      <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to student.name, student %></div>
+                      <p><%= student.bio %></p>
+                      <% if student == current_user %>
+                        <%= link_to "edit your bio", edit_user_registration_path, :class => "btn" %>
+                      <% end %>
+                    </div>           
+                  </div>
                 <% end %>
               <% end %>
-
             
-              <% @course.students.each do |student| %>
-                <table>
-                  <tr>
-                    <td>
-                      <%= avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50') %>
-                    </td>
-                    <td>
-                      <%= link_to student.name, student, :class => "profile-link" %>
-                    </td>
-                  </tr>
-                </table>
-              <% end %>
-
             </div>
           </div>
         </div><!-- end tab2 -->
-      
-        <div class="tab-pane" id="tab3">
-          <div class="page-main white tab-border main">
-            <div class="page-content"> 
-              <div class="class-section-heading">Join the conversation</div><br>
-              <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
-            </div>
-          </div>
-        </div><!-- end tab3 -->
 
-        <div class="tab-pane" id="tab4">
+        <div class="tab-pane" id="tab3">
           <div class="page-main white tab-border main">
             <div class="page-content"> 
               <div class="class-section-heading">Related Topics</div><br>
@@ -115,9 +113,19 @@
                 <% @course.topics.each do |topic| %>
                   <%= link_to topic.title, mission_topic_path(@course.mission, topic) %><br>
                 <% end %>
+              <% else %>
+                <div class="well">
+                  There are no related topics to this mission.
+                </div>
               <% end %>
               <div class="class-section-heading">Part of Mission</div><br>
-              <%= link_to @course.mission.title, @course.mission if @course.mission.present? %>  
+              <% if @course.mission.present? %>
+                <%= link_to @course.mission.title, @course.mission if @course.mission.present? %>
+              <% else %>
+                <div class="well">
+                  This event is not associated with a mission.
+                </div>
+              <% end %>  
             </div>
           </div>
         </div><!-- end tab 4 -->
@@ -126,16 +134,36 @@
     </div><!-- end tabbable -->
   </div><!-- end page-main -->
 
-  <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
-    <div class="sidebar-content-white">
-      <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
+  <div class="left" style="width: 290px"><!-- sidebar container -->
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+      <div class="sidebar-content-white">
+        <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
+      </div>
     </div>
-  </div>
 
-  <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
-    <div class="sidebar-content-white">
-      <%= render 'courses/show/toolbox' %>
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+      <div class="sidebar-content-white">
+        <%= render 'courses/show/toolbox' %>
+      </div>
     </div>
-  </div>
+
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+      <div class="sidebar-content-white">
+        <div class="heading11">Invite and rally</div>
+        <p class="confirm">Learning is more fun with friends. If you already know people that are interested, get a head start and let them know!</p>
+        <div class="heading11">Invite friends from Facebook</div>
+        <% if current_user.facebook? %>
+          <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
+          <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+        <% else %>
+          <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
+          <%= render :partial => 'users/facebook/connect_button' %>
+        <% end %>
+        <div class="heading11">Invite friends by email</div>
+        <div class="heading11">Promote in my community</div>
+        <a class="btn">Print a flyer</a>
+      </div>
+    </div>
+  </div><!-- end sidebar container -->
 
 <% end %>

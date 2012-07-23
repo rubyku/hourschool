@@ -1,15 +1,45 @@
 <% if @course.teacher == current_user %>
-  <div class="alert alert-info">
-    <a class="close" data-dismiss="alert" href="#">×</a>
-    <h4 class="alert-heading">Teacher's Toolbox</h4>
-    <br>
+  <h4 class="alert-heading">Tools</h4>
+  <br>
+
+  <div class="btn-group" style="margin-bottom: 10px">
     <%= link_to "Edit event", edit_course_path, :class => "btn" %>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo">Promote my event</a>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo">Invite someone</a>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo">Email all attendees</a>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% if @course.starts_at < Date.today %></li>
+        <li><%= link_to "Cancel this event", "" %></li>
+        <li><%= link_to "Reschedule this event", "" %>
+      <% else %>
+        <li><a class="btn" data-toggle="modal" href="#addBasicInfo">Schedule another class</a></li>
+        <li><a class="btn" data-toggle="modal" href="#addBasicInfo">Schedule a series of classes</a></li>
+      <% end %>
+    </ul>
   </div>
-<% else %>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo">Invite someone</a>
-    <a class="btn" data-toggle="modal" href="#addBasicInfo">Email organizer</a>
+    
+  <div class="btn-group">
+      <%= link_to "Email attendees", new_course_attendee_contact_path(@course), :class => "btn" %>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Export email addresses", "" %></li>
+    </ul>
+  </div>
+<% else %><!-- if current_user is not this course's teacher -->
+  <%= link_to "Email organizer", new_course_organizer_contact_path(@course), :class => "btn" %>
+  <a class="btn" data-toggle="modal" href="#addBasicInfo">Cancel registration</a>
 <% end %>
 
+<div class="heading11">Need more help?</div>
+  <table id="footer">
+    <tr id="footer">
+     <td id="footer">
+       <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
+     </td>
+     <td id="footer">
+        <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
+     </td>
+    </tr>
+  </table>
