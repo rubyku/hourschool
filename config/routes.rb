@@ -15,6 +15,7 @@ HourschoolV2::Application.routes.draw do
   resources :pre_mission_signups
 
   resources :tracks
+  resources :flowcharts
 
   resources :cities, :only => [:index]
 
