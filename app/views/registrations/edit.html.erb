@@ -121,14 +121,23 @@
       <div class="full-page tab-border full">
         <div class="page-content">
         
+        <div id="billing_show">
           <% if current_user.stripe_customer %>
             <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
           <% end %>
 
           <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
 
-
           <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+
+          <%= link_to_function 'Edit Info', "$('#billing_show').hide(); $('#billing_edit').show();" %>
+        </div>
+        <div id="billing_edit" style="display:none;">
+          <%= form_tag(update_billing_info_users_setting_path(:current), :method => :put) do |f| %>
+            <%= render :partial => 'subscription_charges/credit_card_fields' %>
+            <%= submit_tag %>
+          <% end %>
+        </div>
 
 
         </div>
