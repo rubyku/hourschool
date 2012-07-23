@@ -44,20 +44,35 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
+
     sanitize_price(params[:course][:price].to_s)
     params[:course][:topic_ids] ||= []
     cat = []
     cat << (params[:course][:categories]).to_s
     params[:course].delete(:categories)
     @course.category_list = cat.join(", ").to_s
-    if @course.update_attributes(params[:course])
-      redirect_to preview_path(@course)
-    else
-      render :action => 'edit'
-    end
+
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+        if @course.status == 'live'  
+          if @course.account.nil?
+            current_account = nil
+          else 
+            current_account = @course.account
+          end
+          UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
+          format.json { head :no_content }
+        elsif @course.status == 'draft'
+          format.html { redirect_to @course}
+        end
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end    
   end
  
-
   def destroy
     @course = Course.find(params[:id])
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
@@ -76,35 +91,6 @@ class CoursesController < ApplicationController
       redirect_to :back, :alert => "You are not authorized to do this"
     end
   end  
-
-  ## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  ## "Look over your prososal, if need changes, course#edit, else, course#confirm"
-  ## courses#show
-  def preview
-    id = params[:id]
-    @course = Course.find(id)
-    @current_course = @course
-  end
-
-
-  ## courses/confirm#show # params[:id] == :teacher || :student
-  ## courses/confirm/teacher  
-  ## teacher.html.erb student.html.erb
-  ## "Congrats! Your class is now live"
-  def confirm
-    @course = Course.find(params[:id])
-    if @course.account.nil?
-      current_account = nil
-    else 
-      current_account = @course.account
-    end
-    UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-
-  end
-
-##-------------------------------------------------------------------------------------------------------------
-
 
   private
 
@@ -131,9 +117,3 @@ class CoursesController < ApplicationController
   end
 
 end
-
-
-## Find links to old controller actions, move to these controller actions
-## Move views
-## Fix bugs
-## Remove old controller action routes
