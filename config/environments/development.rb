@@ -47,4 +47,3 @@ HourschoolV2::Application.configure do
 
 end
 
-Stripe.api_key = "08YRJcknyvtlMDhneFawvZ8a3JWveCaW"

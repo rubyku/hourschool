@@ -42,4 +42,3 @@ HourschoolV2::Application.configure do
   config.action_mailer.default_url_options = { :host => "example.com" }
 end
 
-Stripe.api_key = "08YRJcknyvtlMDhneFawvZ8a3JWveCaW"
