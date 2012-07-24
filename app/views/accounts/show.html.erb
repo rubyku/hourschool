@@ -25,7 +25,7 @@
 
 <% elsif current_account == Account.where(:id => 5).first %>
 
-  <div class="full-page">
+  <div class="full-page white">
     <% if @account.photo.present? %>
       <%= image_tag(@account.photo) %>
     <% else %>

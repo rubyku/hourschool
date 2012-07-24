@@ -1,6 +1,6 @@
 <%= form_for(@role, :url => course_attendee_registrations_path(@course)) do |f| %>
 
-  <div class="full-page">
+  <div class="full-page white">
     <div class="page-content">
       <div class="heading14">Event Details</div>
       <div class="heading13-class"><%= @course.title %></div>
@@ -42,7 +42,7 @@
   </div>
 
 
-  <div class="full-page">
+  <div class="full-page white">
     <div class="page-content">
       <div class="heading14">Ticket information</div>
         
@@ -75,7 +75,7 @@
     })
   </script>
 
-  <div class="full-page">
+  <div class="full-page white">
     <div class="page-content">
       <div class="heading14">Billing information</div>
       <% if current_user.stripe_customer %>
@@ -88,7 +88,7 @@
     </div>
   </div>
 
-  <div class="full-page">
+  <div class="full-page white">
     <div class="page-content">
       <div class="heading14">Refund and cancellation policy</div>
       <ul>

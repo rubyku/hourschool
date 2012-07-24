@@ -1,6 +1,8 @@
 //= require hourschool/960_grid
 //= require hourschool/scaffold
 
+
+
 //= require hourschool/admin
 //= require hourschool/about
 //= require hourschool/buttons
@@ -19,3 +21,5 @@
 //= require hourschool/search
 //= require hourschool/suggestion
 //= require hourschool/users
+
+//= require bootstrap/bootstrap

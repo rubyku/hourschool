@@ -13,7 +13,7 @@
   
 <% else %>
   <% if @course.status == 'draft' && @course.teacher == current_user %> 
-    <div class="full-page">
+    <div class="full-page white">
       <div class="page-content">
         <div class="preview-header">Preview before this goes live!</div>
         <%= button_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put %>
