@@ -69,9 +69,17 @@ class User < ActiveRecord::Base
   include User::Facebook
   include User::FollowingMethods
 
+  def unsubscribed?(key)
+    !wants?(key)
+  end
+
+  def wants?(key)
+    return true  if preferences.blank?
+    preferences[key].present?
+  end
+
   def wants_newsletter?
-    return true unless preferences.has_key?('wants_newsletter')
-    preferences['wants_newsletter'].present?
+    wants?('mission_news')
   end
 
   def active?

@@ -107,6 +107,8 @@
       <div class="full-page white tab-border full">
         <div class="page-content">
           Account Setting
+
+
         </div>
       </div>
     </div><!-- end tab3 -->
@@ -114,6 +116,20 @@
       <div class="full-page white tab-border full">
         <div class="page-content">
           Notification Center
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <ul>
+              <li>
+                <%= check_box_tag('user[preferences][mission_news]', 1, resource.wants?('mission_news') ) %> Mission News
+              </li>
+              <li>
+                <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %> Event News
+              </li>
+              <hr />
+              <%= hidden_field_tag('user[preferences][touched]', 1) %>
+            </ul>
+            <%= f.submit "Update", :class => "btn" %>    
+          <% end %>
+
         </div>
       </div>
     </div><!-- end tab4 -->
@@ -133,10 +149,10 @@
           <%= link_to_function 'Edit Info', "$('#billing_show').hide(); $('#billing_edit').show();" %>
         </div>
         <div id="billing_edit" style="display:none;">
-          <%= form_tag(update_billing_info_users_setting_path(:current), :method => :put) do |f| %>
-            <%= render :partial => 'subscription_charges/credit_card_fields' %>
-            <%= submit_tag %>
-          <% end %>
+          <%#= form_tag(update_billing_info_users_setting_path(:current), :method => :put) do |f| %>
+            <%#= render :partial => 'subscription_charges/credit_card_fields' %>
+            <%#= submit_tag %>
+          <%# end %>
         </div>
 
 
