@@ -1,31 +1,68 @@
-<a class="orange button long" data-toggle="modal" href="#newMission">Go build one!</a>
-<!--  modal -->
-<div class="modal hide" id="newMission">
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">×</button>
-  <h3>Build a new mission</h3>
-</div>
-<div class="modal-body">          
-  <%= render 'missions/form' %>
-</div>
-</div>
-<!-- modal end --> 
-
-<div class="heading32 green">Build a Mission</div>
-<div class="intro-text">Learning isn’t consumption, it’s participation. A mission is a new way of learning where you define your own goals, set personal milesstones, co-create the curriculum, and learn from your community.</div>
-
-<div class="full-page" style="height: 1614px">
+<div class="full-page">
   <div class="page-content">
-    <center><%= image_tag 'v3/build_mission/mission.png' %></center>
-
-      <div class="screen-tip" style="margin-top: -150px; margin-left: 600px; z-index: 1001; position: relative">
-        A topic library co-created by everyone 
-      </div>
-
-      <div class="screen-tip" style="margin-top: -400px; margin-left: 0px; z-index: 1001; position: relative">
-        Continue discussions between classes and workshops to support and share resources
-      </div>
-
-    
+    <center>
+      <div class="heading32" style="margin-bottom: 15px">You've dreamed it, now it's now to make it happen.</div>
+      <div class="intro-text">Learning isn’t consumption, it’s participation. A mission is a new way of learning where you define your own goals, set personal milesstones, co-create the curriculum, and learn from your community.</div>
+      <a class="orange button long" data-toggle="modal" href="#newMission">Build my own mission</a>
+    </center>
   </div>
 </div>
+
+    <!--  modal -->
+    <div class="modal hide" id="newMission">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Build a new mission</h3>
+    </div>
+    <div class="modal-body">          
+      <%= render 'missions/form' %>
+    </div>
+    </div>
+    <!-- modal end --> 
+
+<div class="full-page">
+  <div class="page-content">
+    <center><div class="heading32" style="margin-bottom: 15px">What missions can you start?</div></center>
+    <div style="float: left"%>
+      <%= image_tag 'v3/build_mission/explore.png', :style => "width: 288px; margin-right: 12px" %>
+      <div style="background-color: white; width: 280px; padding: 10px">
+        <div class="title-text" id="explore">Explore</div>
+        <div class="heading11" id="explore">Whether you’re looking to begin a new adventure or embark on a path to uncover new perspectives, set forth from here.</div>
+      </div>
+    </div>
+    <div style="float: left">
+      <%= image_tag 'v3/build_mission/create.png', :style => "width: 288px; margin-right: 12px" %>
+      <div style="background-color: white; width: 280px; padding: 10px">
+        <div class="title-text" id="explore">Create</div>
+        <div class="heading11" id="explore">From starting a business to writing a book, create something out of nothing, make your ideas real, and share with the world.</div>
+      </div>
+    </div>
+    <div style="float: left; margin-bottom: 10px"%>
+      <%= image_tag 'v3/build_mission/self-sufficiency.png', :style => "width: 288px; margin-right: 12px" %>
+      <div style="background-color: white; width: 280px; padding: 10px">
+        <div class="title-text" id="explore">Self-Sufficiency</div>
+        <div class="heading11" id="explore">From taking care of your home to replacing the timing belt on your car, regain lost skills and live closer to things around us.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-page">
+  <div class="page-content">
+    <center><div class="heading32" style="margin-bottom: 15px">Why run a mission on HourSchoool?</div></center>
+    <div style="margin-bottom: 20px">
+      <div class="title-text" id="explore">Missions, not lessons</div>
+      <p>Milestones are determined individually. Your curriculum will be dependent on your goals, not by degree requirements. We encourage you to keep experimenting on your own terms while defining your own goals. You’re never done until you decide you’re done.</p>
+    </div>
+    <div style="margin-bottom: 20px">
+      <div class="title-text" id="explore">Social, not solo</div>
+      <p>There are lots of way to learn something, from watching online videos to attending an university. We believe in learning in person, through bite-sized classes, workshops and meetups, with and from your community.</p>
+    </div>
+    <div style="margin-bottom: 20px">
+      <div class="title-text" id="explore">Fluid, not static</div>
+      <p>We believe people with rich life experiences make the best teacher, where you are not just picking up hard skills, but also their stories and experiences. We go out of our way to find the hidden experts, so they can share their passions, trials and tribulations.
+      </p>
+    </div>
+  </div>
+</div>
+

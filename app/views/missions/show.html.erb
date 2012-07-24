@@ -156,12 +156,12 @@
 <div class="white right page-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
     <div class="heading11" style="float: left">Topic Library:</div>
-      <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px" rel="tooltip" id="topicLibraryTip" title="The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant.">Add</a>
-      <% if @mission.topics.blank? %>
-        <div class="well" style="margin: 35px 0px 20px 0px">
-          <p>The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".</p>
-        </div>
-      <% end %>
+    <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px" rel="tooltip" id="topicLibraryTip" title="The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant.">Add</a>
+    <% if @mission.topics.blank? %>
+      <div class="well" style="margin: 35px 0px 20px 0px">
+        <p>The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".</p>
+      </div>
+    <% end %>
     <% @mission.topics.each do |topic| %>
       <div class="mission-divider">
         <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>

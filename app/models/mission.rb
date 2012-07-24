@@ -9,7 +9,7 @@ class Mission < ActiveRecord::Base
   has_many :crewmanships
   has_many :users, :through => :crewmanships
   
-  has_attached_file :photo, :styles => { :thumbnail => "75x75#", :preview => "570x360>", :banner => "960x360>" },
+  has_attached_file :photo, :styles => { :thumbnail => "75x75#", :preview => "570x360>", :banner => "959x349>" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "/:style/:id/:filename"

@@ -1,19 +1,5 @@
 <div class="heading32 green">Wall of Missions</div>
 
-<a class="orange button long" data-toggle="modal" href="#newMission">Go build one!</a>
-<!--  modal -->
-<div class="modal hide" id="newMission">
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal">×</button>
-  <h3>Build a new mission</h3>
-</div>
-<div class="modal-body">          
-  <%= render 'missions/form' %>
-</div>
-</div>
-<!-- modal end --> 
-
-
 <% @live_missions.each do |mission| %>
   <div style="float: left"%>
     <div style="width: 300px; height: 180px; margin-right: 20px">

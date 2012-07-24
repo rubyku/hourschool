@@ -1,4 +1,4 @@
-<div class="page-sidebar left" style="width: 250px">
+<div class="page-sidebar left" style="width: 250px; border: 0px">
   <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") %>
 
   <div style="float: left; border-top: 3px solid #999; border-bottom: 3px solid #999; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
@@ -35,7 +35,8 @@
     <ul class="nav nav-tabs" style="margin-bottom: 0px;">
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
       <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-      <li><a href="#tab3" data-toggle="tab" class="heading11">HourSchoolmates</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">Followers</a></li>
+      <li><a href="#tab4" data-toggle="tab" class="heading11">Followings</a></li>
     </ul>
 
     <div class="tab-content">
@@ -52,7 +53,7 @@
                     I joined the mission 
                   <% end %>
                   <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-
+                  <%= image_tag(feed_item.mission.photo.url(:preview)) if feed_item.mission.photo.present? %>
                   <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
 
                 <% elsif feed_item.is_a?(Comment) %>
@@ -118,7 +119,7 @@
       <div class="tab-pane" id="tab3">
         <div class="page-main white tab-border main">
           <div class="page-content"> 
-            <%= @user.followed.count + @user.following.count %> HourSchoolmates
+            <%= @user.followed.count %> followed
             <% @user.followed.each do |user| %>
               <div class="mission-divider">             
                 <div class="crewman-photo">
@@ -136,6 +137,13 @@
                 </div>           
               </div>
             <% end %>
+          </div>
+        </div>
+      </div><!-- end tab3 --> 
+      <div class="tab-pane" id="tab4">
+        <div class="page-main white tab-border main">
+          <div class="page-content"> 
+            <%= @user.following.count %> following
             <% @user.following.each do |user| %>
               <div class="mission-divider">             
                 <div class="crewman-photo">
@@ -154,6 +162,7 @@
           </div>
         </div>
       </div><!-- end tab3 --> 
+
     </div><!-- end tab-content -->
   </div><!-- end tabbable -->
 

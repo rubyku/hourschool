@@ -1,8 +1,10 @@
 <div class="full-page">
   <% if @mission.photo.present? %>
-    <%= image_tag(@mission.photo, :size => "960x360") %>
+    <div style="background-color: #333; width: 960px; height: 349px;">
+      <%= image_tag(@mission.photo.url(:preview)) %>
+    </div>
   <% else %>
-    <div style="background-color: #333; width: 960px; height: 360px;">
+    <div style="background-color: #333; width: 960px; height: 349px;">
       <div style="text-align: center; padding-top: 60px;">
         <a data-toggle="modal" href="#addBasicInfo" class="heading11" style="color: white">Upload a photo that represent your mission</a>
       </div>

@@ -1,13 +1,13 @@
 <div class="dashboard-feed-thumbnail">
   <%= image_tag(topic.mission.photo.url(:thumbnail)) %>
-  <div class="heading9">Topic posted to <%= topic.mission.title %></div>
   <div style="font-size: 10px"><%= "#{time_ago_in_words topic.created_at} ago" %></div>
 </div>
 
 <div class="dashboard-feed-body">
-  <div class="heading20"><%= topic.title %></div>
-  <%= image_tag(topic.user.photo.url(:thumb_small)) %>
-  <div class="heading9-class">Added by <%= link_to topic.user.name, topic.user %></div>
+  <div class="heading20" style="margin-bottom: 5px"><%= topic.title %></div>
+  <div class="heading9" style="margin-bottom: 30px">New topic posted to <%= link_to topic.mission.title, topic.mission %></div>
+  <div class="left"><%= link_to (image_tag(topic.user.photo.url, :size => "35x35")), topic.user %></div>
+  <div style="font-size: 11px; margin: 7px 0px 0px 10px">Added by <%= link_to topic.user.name, topic.user %></div>
 </div>
 
 

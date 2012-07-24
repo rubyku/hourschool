@@ -35,20 +35,29 @@
   <div class="sidebar-content-white">
     <div class="sidebar-heading">People you should follow</div>
     <p style="float: left">
-      <% @user.courses_attended.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small, :style => "margin-bottom: 5px" %>    
+      <% @user.courses_attended.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.reject {|student| student.photo_file_name.blank? }.first(3).each do |student| %>
+        <div class="mission-divider">             
+          <div class="crewman-photo">
+            <%= image_tag(student.photo.url(:thumb_small)) %>
+          </div>
+          <div style="float: left">
+            <div style="font-weight: 700; float: left; margin-right: 10px"><%= student.name %></div><br>
+            <%= link_to "Follow", user_followings_path(:user_id => current_user, :id => student), :class => 'btn', :method => :post %>
+          </div>           
+        </div>
       <% end %>
-      <% @user.courses_taught.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.first(4).each do |student| %>
-        <%= link_to_avatar student, :size => '50x50', :class => "" , :photo_size => :thumb_small, :style => "margin-bottom: 5px"  %>
+      <% @user.courses_taught.map {|course| course.students }.flatten.uniq.reject {|student| student == @user }.reject {|u| @user.followed_ids.include? u.id }.reject {|student| student.photo_file_name.blank? }.first(3).each do |student| %>
+        <div class="mission-divider">             
+          <div class="crewman-photo">
+            <%= image_tag(student.photo.url(:thumb_small)) %>
+          </div>
+          <div style="float: left">
+            <div style="font-weight: 700; float: left; margin-right: 10px"><%= student.name %></div><br>
+            <%= link_to "Follow", user_followings_path(:user_id => current_user, :id => student), :class => 'btn', :method => :post %>
+          </div>           
+        </div>
       <% end %>
     </p>
-  </div>
-</div>
-
-<div class="white right page-sidebar">
-  <div class="sidebar-content-white">
-    <div class="sidebar-heading">Wondering what else you can do next?</div>
-      <%= render :partial => 'dashboards/all/notification_center' %>
   </div>
 </div>
 

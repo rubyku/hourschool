@@ -1,44 +1,47 @@
-<div class="full-page">
-  <div class="page-content">
-    <div class="heading14">Event Details</div>
-    <div class="heading13-class"><%= @course.title %></div>
-      <table>
-        <tr>
-          <td class="icon">
-            <%= image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost" %>
-          </td>
-          <td>
-            <div class="class-details"><%= "$ #{@course.price}" %></div>
-          </td>
-        </tr>
-        <tr>
-          <td class="icon">
-            <%= image_tag "v2/icon_calendar.png", :class => "class-details-icon-when" %>
-          </td>
-          <td>
-            <div class="class-details"><%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %></div>
-          </td>
-        </tr>
-        <tr>
-          <td class="icon">
-            <%= image_tag "v2/icon_location.png", :class => "class-details-icon-where" %>
-          </td>
-          <td>
-            <div class="class-details"><%= "#{@course.place_name}" %></div>
-            <% if @course.public? %>
-              <p><%= "#{@course.address}" %>
-              <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %></p>
-            <% else %>
-              <p>Private Address</p>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-
-  </div>
-</div>
-
 <%= form_for(@role, :url => course_attendee_registrations_path(@course)) do |f| %>
+
+  <div class="full-page">
+    <div class="page-content">
+      <div class="heading14">Event Details</div>
+      <div class="heading13-class"><%= @course.title %></div>
+        <table>
+          <tr>
+            <td class="icon">
+              <%= image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost" %>
+            </td>
+            <td>
+              <div class="class-details"><%= "$ #{@course.price}" %></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <%= image_tag "v2/icon_calendar.png", :class => "class-details-icon-when" %>
+            </td>
+            <td>
+              <div class="class-details"><%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <%= image_tag "v2/icon_location.png", :class => "class-details-icon-where" %>
+            </td>
+            <td>
+              <div class="class-details"><%= "#{@course.place_name}" %></div>
+              <% if @course.public? %>
+                <p><%= "#{@course.address}" %>
+                <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %></p>
+              <% else %>
+                <p>Private Address</p>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      <div class="heading14">What do you want to get out of the class?</div>
+      <%= f.text_area :note, :class => "form-tall" %>
+    </div>
+  </div>
+
+
   <div class="full-page">
     <div class="page-content">
       <div class="heading14">Ticket information</div>

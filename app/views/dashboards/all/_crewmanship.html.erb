@@ -1,5 +1,5 @@
 <div class="dashboard-feed-thumbnail">
-  <%= image_tag(crewmanship.user.photo.url(:thumb_small)) %>
+  <%= image_tag(crewmanship.user.photo.url, :size => "75x75") %>
   <div style="font-size: 9px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
 </div>
 
