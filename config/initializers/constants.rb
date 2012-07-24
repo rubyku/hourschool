@@ -3,6 +3,9 @@ module FacebookConfig; end
 if Rails.env.development?
   FacebookConfig::ID     = '116183295130221'
   FacebookConfig::Secret = '83d6e8f67cf05b1710d073ac1af99a70'
+elsif Rails.env.staging?
+  FacebookConfig::ID     = '193570644023207'
+  FacebookConfig::Secret = '59060320b34e4f44c682fc5a647ed098'
 else
   FacebookConfig::ID     = '144671482261988'
   FacebookConfig::Secret = 'a7f47f266872b6ce3847c9b7720bcdf4'
