@@ -170,8 +170,12 @@ HourschoolV2::Application.routes.draw do
 
   resources :test
 
+
+
   if Rails.env.development?
-    mount StudentMailer::Preview => 'mail_view'
+    ["UserMailer", "StudentMailer"].each do |klass|
+      mount "#{klass.gsub('::', '')}::Preview".constantize => "mail_view/#{klass.underscore}/preview"
+    end
   end
 
 end
