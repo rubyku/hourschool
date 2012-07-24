@@ -1,5 +1,7 @@
 class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
+
+  layout 'layouts/email_layout'
   
 
   # def followed_created_a_course(current_user, followed, course)
@@ -17,6 +19,7 @@ class UserMailer < ActionMailer::Base
   # end
 
   def comment_on_course(user, comment, course, current_account)
+    return false if user.unsubscribed?("mission_news")
     @user    = user
     @course  = course
     @comment = comment
@@ -145,5 +148,17 @@ class UserMailer < ActionMailer::Base
      @body = options[:body].to_s
      mail(options)
    end
+
+
+  class Preview < MailView
+    # Pull data from existing fixtures
+    def send_course_registration_mail
+      user   = User.last
+      course = Course.first
+      current_account = nil
+      UserMailer.send_course_registration_mail(user.email, user.name, course, current_account)
+    end
+  end
+
 
 end
