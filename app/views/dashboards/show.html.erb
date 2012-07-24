@@ -119,8 +119,8 @@
       <div class="tab-pane" id="tab3">
         <div class="page-main white tab-border main">
           <div class="page-content"> 
-            <%= @user.followed.count %> followed
-            <% @user.followed.each do |user| %>
+            <%= @user.followers.count %> followers
+            <% @user.followers.each do |user| %>
               <div class="mission-divider">             
                 <div class="crewman-photo">
                   <% if user.photo.present? %>
