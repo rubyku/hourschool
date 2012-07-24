@@ -1,7 +1,7 @@
 <div class="full-page">
   <% if @mission.photo.present? %>
     <div style="background-color: #333; width: 960px; height: 349px;">
-      <%= image_tag(@mission.photo.url(:preview)) %>
+      <%= image_tag(@mission.photo.url(:banner)) %>
     </div>
   <% else %>
     <div style="background-color: #333; width: 960px; height: 349px;">
