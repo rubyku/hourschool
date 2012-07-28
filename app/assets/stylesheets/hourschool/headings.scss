@@ -27,6 +27,14 @@
   &.green{color: #4a8488; margin-bottom: 35px;}
 }
 
+.heading28{
+  font-family: adelle-1, adelle-2;
+  font-size: 28px;
+  line-height: 32px;
+
+  &.brown{color: #6a4a3b;}
+}
+
 .heading25 {
   @include hourschool-heading;
   font-size: 25px;
@@ -50,10 +58,15 @@ a.heading20{
 }
 
 .heading16{
-  font-family: Georgia;
   font-size: 16px;
-  color: #ff7733;
-  margin-bottom: 5px;
+
+  &.adelle{
+    font-family: adelle-1, adelle-2;
+    color: #6a4a3b;}
+
+  &.futura{
+    font-family: futura-pt-1, futura-pt-2;
+    color: #333;}
 }
 
 .heading15{
@@ -63,7 +76,6 @@ a.heading20{
 
   &.marcomm{color: #e4652f;}
   &.campaign-greendoors{color: #5b7020;} }
-
 
 .heading14{
   @include hourschool-heading;
@@ -85,6 +97,18 @@ a.heading20{
       color: $hourschool-house-color; }
     &:hover {
       color: $hourschool-house-color; } } }
+
+.heading13{
+  font-family: adelle-1, adelle-2;
+  font-size: 13px;
+
+  &.brown{
+    color: #6a4a3b;}
+}
+
+a.heading13{color: #6a4a3b;}
+a:hover.heading13{color: #6a4a3b;}
+a:visited.heading13{color: #6a4a3b;}
       
 .sidebar-heading {
   @include hourschool-heading;

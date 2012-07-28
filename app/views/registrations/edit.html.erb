@@ -91,7 +91,7 @@
       </div><!-- end full-page -->
     </div><!-- end tab1 -->
     <div class="tab-pane" id="tab2">
-      <div class="full-page tab-border full">
+      <div class="full-page white tab-border full">
         <div class="page-content">
           <% current_user.missions.each do |mission| %>
             <div class="mission-divider">
@@ -117,7 +117,7 @@
         <div class="page-content">
           Notification Center
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <ul>
+            <ul style="list-style: none; margin-left: 0px">
               <li>
                 <%= check_box_tag('user[preferences][mission_news]', 1, resource.wants?('mission_news') ) %> Mission News
               </li>

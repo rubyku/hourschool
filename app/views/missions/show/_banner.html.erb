@@ -1,4 +1,4 @@
-<div class="full-page">
+<div class="full-page white">
   <% if @mission.photo.present? %>
     <div style="background-color: #333; width: 960px; height: 349px;">
       <%= image_tag(@mission.photo.url(:banner)) %>
@@ -12,11 +12,11 @@
   <% end %> 
 
   <div class="mission-description-box">
-    <div class="heading32 orange">
+    <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
       <%= "#{@mission.verb} #{@mission.title}" %>
     </div>
 
-    <div class="heading10">
+    <div class="heading9 bold" style="color: #999">
       <%= "#{@mission.city.name}, #{@mission.city.state}" %>
     </div>
 

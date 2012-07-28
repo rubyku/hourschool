@@ -26,7 +26,7 @@
         <div class="page-main white tab-border main">
           <div class="page-content"> 
             <div class="mission-tab-intro">
-              <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
+              <p style="float: left; width: 420px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
             </div>
             <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
             <br><br><br><br>
@@ -155,7 +155,7 @@
 
 <div class="white right page-sidebar" style="max-height: 550px; overflow: auto">
   <div class="sidebar-content-white">
-    <div class="heading11" style="float: left">Topic Library:</div>
+    <div class="heading11" style="float: left; margin-bottom: 20px">Topic Library:</div>
     <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px" rel="tooltip" id="topicLibraryTip" title="The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant.">Add</a>
     <% if @mission.topics.blank? %>
       <div class="well" style="margin: 35px 0px 20px 0px">
@@ -164,7 +164,7 @@
     <% end %>
     <% @mission.topics.each do |topic| %>
       <div class="mission-divider">
-        <div class="heading13-class"><%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal' %></div>
+        <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
         <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
           Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
         </div>

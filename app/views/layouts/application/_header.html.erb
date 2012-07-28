@@ -11,23 +11,10 @@
     color: black;
   }
 
-  .dropdown-menu a{
-    padding: 0px;
-    font-weight: 700;
-  }
-
-  ul.dropdown-menu{
-    text-align: left;
-    border: 0px;
-    border-radius: 0px;
-    box-shadow: 0 0px;
-    width: 200px;
-  }
-
   li.dropdown-menu-wrapper{
-    background-color: white;
+    background-color: black;
     padding: 10px;
-    opacity: 0.5;
+    opacity: 0.8;
     margin-bottom: 5px;
     height: 60px;
     width: 200px;
@@ -37,17 +24,19 @@
     padding: 0px 0px 21px 10px; 
     position: relative; 
     z-index: 1000; 
-    margin-top: -75px
+    margin-top: -75px;
   }
 
-  .dropdown-menu{
+  .dropdown-menu.main-nav{
     background-color: transparent;
   }
 
   p.nav-description{
     font-size: 11px;
     margin-bottom: 0px;
+    color: white;
   }
+
 
 </style>
 
@@ -61,25 +50,25 @@
             <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu1">
               Me
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
               <li class="dropdown-menu-wrapper"></li>  
               <div class="dropdown-menu-item">
-                <div class="nav-heading"><%= link_to "My Dashboard", dashboards_path %></div>
+                <%= link_to "My Dashboard", dashboards_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                 <p class="nav-description">Everything you've missed since you were last here.</p>
               </div>  
               <li class="dropdown-menu-wrapper"></li>
               <div class="dropdown-menu-item">
-                <div class="nav-heading"><%= link_to "My Journey", '/dashboards/me' %></div>
+                <%= link_to "My Journey", '/dashboards/me', :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                 <p class="nav-description">Keep track of what your steps and milestones.</p>
               </div>
               <li class="dropdown-menu-wrapper"></li>
               <div class="dropdown-menu-item">
-                <div class="nav-heading"><%= link_to "Settings", edit_user_registration_path %></div>
+                <%= link_to "Settings", edit_user_registration_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                 <p class="nav-description">Update profile? Less emails? Not a problem!</p>
               </div>
               <li class="dropdown-menu-wrapper"></li>
               <div class="dropdown-menu-item">
-                <div class="nav-heading"><%= link_to "Sign out", destroy_user_session_path %></div>
+                <%= link_to "Sign out", destroy_user_session_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                 <p class="nav-description">Come back and visit soon!</p>
               </div>
             </ul>
@@ -89,20 +78,20 @@
           <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu2">
             Explore
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Wall of Missions", wall_of_missions_path %></div>
+              <%= link_to "Wall of Missions", wall_of_missions_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">Discover the new passion you never knew you had.</p>
             </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Wall of Awesome", wall_of_awesome_path %></div>
+              <%= link_to "Wall of Awesome", wall_of_awesome_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">Congratulate those who had a mission accomlished.</p>
             </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Partner Schools", partner_schools_path %></div>
+              <%= link_to "Partner Schools", partner_schools_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">We collaborate with great peopele doing great things.</p>
             </div>
           </ul>
@@ -111,26 +100,21 @@
           <a class="dropdown-toggle  main-nav" data-toggle="dropdown" href="#menu3">
             Tools
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Invite a friend", new_invite_path %></div>
+              <%= link_to "Invite a friend", new_invite_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">Don't go solo. Rally your troops and build a micro-movement.</p>
             </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Organize an event", teach_path %></div>
+              <%= link_to "Organize an event", teach_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">Teach a class, plan a happy hour, host a working session.</p>
             </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Build a Mission", build_mission_path %></div>
+              <%= link_to "Build a Mission", build_mission_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
               <p class="nav-description">You've dream it, and now it's time to make it happen.</p>
-            </div>
-            <li class="dropdown-menu-wrapper"></li>
-            <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "Build a School", build_school_path %></div>
-              <p class="nav-description">Are you a community architect? We can help.</p>
             </div>
           </ul>
         </li>
@@ -138,21 +122,16 @@
           <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu4">
             About
           </a>
-          <ul class="dropdown-menu" style="width: 220px">
+          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><%= link_to "HourSchool Philosophy", about_path %></div>
-              <p class="nav-description">We believe in giving people a place to give and to grow</p>
+              <%= link_to "HourSchool Philosophy", about_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+              <p class="nav-description">We believe in giving people a place to give and to grow.</p>
             </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
-              <div class="nav-heading"><a href="http://blog.hourschool.com">HourSchool Blog</a></div>
-              <p class="nav-description">Heart-warming stories, cool tricks, candid moments and more</p>
-            </div>
-            <li class="dropdown-menu-wrapper"></li>
-            <div class="dropdown-menu-item">
-              <div class="nav-heading"><a href="#">HourSchool Lab</a></div>
-              <p class="nav-description">We are constantly running new experiments. Get the scoops.</p>
+              <a href="http://blog.hourschool.com" class="nav-heading", style="padding: 0px; font-weight: 700">HourSchool Blog</a>
+              <p class="nav-description">Heart-warming stories, cool tricks, and candid moments.</p>
             </div>
           </ul>
         </li>

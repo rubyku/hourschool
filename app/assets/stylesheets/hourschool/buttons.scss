@@ -46,6 +46,22 @@ a.button{
       background-color: #e46f28; } 
   }
 
+  &.yellow{
+    background-color: #d89f24;
+
+    &.long{
+      width: 220px;
+    }
+
+    &.short{
+      width: 120px;
+    }
+
+    &:hover {
+      background-color: #d89f24; } 
+
+  }
+
   &.edit-class{
     width: 220px;
     background-color: #a9a9a9;
