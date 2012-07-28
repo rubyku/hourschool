@@ -1,10 +1,25 @@
-<div class="page-sidebar left" style="width: 250px; border: 0px">
+<style type="text/css">
+  .mission-stats-16{
+    position: relative; 
+    z-index: 100; 
+    margin-top: -40px; 
+    margin-left: 55px; 
+    font-weight: 700;
+  }
+
+  a{color: #6a4a3b;}
+  a:visited{color: #6a4a3b;}
+  a:hover{color: #6a4a3b;}
+  a:active{color: #6a4a3b;}
+</style>
+
+<div class="page-sidebar left" style="width: 243px; margin-right: 27px; border: 0px">
   <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") %>
 
-  <div style="float: left; border-top: 3px solid #999; border-bottom: 3px solid #999; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
+  <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
     <%= image_tag 'v3/pages/icon-quote.png', :style => "margin-left: 90px; margin-top: 10px; margin-bottom: 10px" %>
-    <div class="heading11" style="text-align: center">“Develop an interest in life as you see it; the people, things, literature, music—-the world is so rich, simply throbbing with rich treasures, beautiful souls and interesting people. Forget yourself.”</div>
-    <p style="font-style: italic; text-align: center; color: #999; font-family: Georgia; margin-top: 20px">Henry Miller</p>
+    <div class="heading11" style="text-align: center; color: #5382a4">“Develop an interest in life as you see it; the people, things, literature, music—-the world is so rich, simply throbbing with rich treasures, beautiful souls and interesting people. Forget yourself.”</div>
+    <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em">Henry Miller</div>
   </div>
 
   <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
@@ -18,7 +33,7 @@
   </p>
 </div>
 
-<div class="heading32 green" style="float: left">
+<div class="heading28 brown" style="float: left; margin-bottom: 20px">
   <%= current_user.name %>
 </div>
 
@@ -28,54 +43,64 @@
   <a class="btn" style="float: right">Follow</a>
 <% end %>
 
-<div class="page-main">
+<div class="page-main" style="width: 690px">
   <%#= render :partial => "users/show/comments" %>
 
   <div class="tabbable"> 
     <ul class="nav nav-tabs" style="margin-bottom: 0px;">
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
       <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-      <li><a href="#tab3" data-toggle="tab" class="heading11">Followers</a></li>
-      <li><a href="#tab4" data-toggle="tab" class="heading11">Followings</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
+      <li><a href="#tab4" data-toggle="tab" class="heading11">Followings (<%= @user.following.count %>)</a></li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
-        <div class="page-main white tab-border main">
+        <div class="page-main white tab-border main" style="width: 690px">
           <div class="page-content"> 
             <% @feed.each do |feed_item| %>
               <div class="mission-divider"> 
                 <% if feed_item.is_a?(Crewmanship) %>
-                  <%= image_tag 'v3/profile/journey-glyph-mission.png' %>
+                  <%= image_tag 'v3/profile/journey-glyph-mission.png', :class => "left" %>
+                  <hr style="width: 22px; float: left">
                   <% if feed_item.role == "creator" %>
-                    I created the mission 
+                    <div style="float: left; margin: 10px 5px 20px 5px">I created the mission </div>
                   <% elsif feed_item.role == "explorer" %>
-                    I joined the mission 
+                    <div style="float: left; margin: 10px 5px 20px 5px">I joined the mission </div>
                   <% end %>
-                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-                  <%= image_tag(feed_item.mission.photo.url(:preview)) if feed_item.mission.photo.present? %>
-                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                  <div style="font-weight: 700; margin-top: 10px"><%= link_to " #{feed_item.mission.title}", feed_item.mission if feed_item.mission.present? %></div><br />
+                  <div style="margin-left: 57px"><%= image_tag(feed_item.mission.photo.url(:preview)) if feed_item.mission.photo.present? %></div>
+                  <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
 
                 <% elsif feed_item.is_a?(Comment) %>
-                  <%= image_tag 'v3/profile/journey-glyph-comment.png' %>
-                  I commented on the mission 
-                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-                  "<%= feed_item.body %>" <br />
-                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                  <%= image_tag 'v3/profile/journey-glyph-comment.png', :class => "left"  %>
+                  <hr style="width: 22px; float: left">
+                  <div style="width: 100%">
+                    <div style="float: left; margin: 0px 5px 0px 5px">I commented on the mission </div>
+                    <div style="font-weight: 700; margin-top: 10px"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div>
+                  </div><br />
+                  <div style="margin-left: 57px; color: #6a4a3b">"<%= feed_item.body %>" </div><br />
+                  <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
 
                 <% elsif feed_item.is_a?(Course) %>
-                  <%= image_tag 'v3/profile/journey-glyph-event.png' %>
-                  I registered for the event from the mission
-                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-                   <div style="font-weight: 700;"><%= link_to feed_item.title, feed_item %></div> <br />
-                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                  <%= image_tag 'v3/profile/journey-glyph-event.png', :class => "left"  %>
+                  <hr style="width: 22px; float: left">
+                  <div style="width: 100%">
+                    <div style="float: left; margin: 0px 5px 0px 5px">I registered for the event from the mission</div>
+                    <div style="font-weight: 700; margin-top: 10px"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div>
+                  </div><br />
+                  <div style="font-weight: 700; margin-left: 57px; color: #6a4a3b"><%= link_to feed_item.title, feed_item %></div> <br />
+                  <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
                 
                 <% elsif feed_item.is_a?(Topic) %>
-                  <%= image_tag 'v3/profile/journey-glyph-topic.png' %>
-                  I added a topic to the mission
-                  <div style="font-weight: 700;"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div><br />
-                  <%= feed_item.title %> <br /> 
-                  <div style="font-size: 10px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+                  <%= image_tag 'v3/profile/journey-glyph-topic.png', :class => "left"  %>
+                  <hr style="width: 22px; float: left">
+                  <div style="width: 100%">
+                    <div style="float: left; margin: 0px 5px 0px 5px">I added a topic to the mission</div>
+                    <div style="font-weight: 700; margin-top: 10px"><%= link_to feed_item.mission.title, feed_item.mission if feed_item.mission.present? %></div>
+                  </div><br />
+                  <div style="margin-left: 57px; color: #6a4a3b"><%= feed_item.title %></div> <br /> 
+                  <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
                 
                 <% else %>
                   <%= feed_item.class %> happened at 
@@ -88,27 +113,69 @@
         </div>
       </div><!-- end tab1 -->  
       <div class="tab-pane" id="tab2">
-        <div class="page-main white tab-border main">
-          <div class="page-content"> 
+        <div class="page-main white tab-border main" style="width: 690px">
+          <div style="padding: 20px"> 
             <% @user.missions.each do |mission| %>
               <% @crewmanship = mission.crewmanships.where(:user_id => @user.id).first %>
-              <div class="mission-divider">                
-                <div style="margin: 0px 20px 20px 0px; width: 100%">
-                  <%= image_tag(mission.photo.url(:thumbnail)) if mission.photo.present? %>
-                  <a class="btn right">Reveal begin letter</a>
-                  <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => @crewmanship), :class => "btn right" %>
-                </div>
+              <div class="mission-divider">                                
+                <%= image_tag(mission.photo, :size => "650x137") if mission.photo.present? %>
+                
+                <%#= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => @crewmanship), :class => "btn right" %>
                 <div>
-                  <div class="heading20 orange"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
-                  <div class="well">
-                    <h3>Stats</h3>
-                    <p>Mission Crew Badge: <%= @crewmanship.role %></p>
-                    <p>Joined mission on: <%= @crewmanship.created_at.strftime("%b %d, %Y") %></p>
-                    <p>Days on mission: <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %></p>
-                    <p>Comments made: <%= mission.comments.where(:user_id => @user).count %></p>
-                    <p>Events organized: <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %></p>
-                    <p>Events attended: <%= @crewmanship.user.courses_attended.where(:mission_id => mission).count %></p>
-                    <p>Topics created: <%= mission.topics.count %></p>
+                  <div style="background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
+                  <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
+                  </div>
+                  <div style="background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
+                    <div style="padding: 20px">
+                      <div style="float: left; margin-right: 20px">
+                        <% if @crewmanship.role == 'explorer' %>
+                          <%= image_tag 'v3/badge-explorer.png' %>
+                        <% end %>
+                      </div>
+                      <div style="float: left; width: 472px">
+                        <div style="float: left; margin: 0px 20px 20px 0px">
+                          <%= image_tag 'v3/stats-joined-mission.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
+                          </div>
+                          <div class="heading9 bold" style="margin-left: 55px; color: #ccc">joined on</div>
+                        </div>
+                       <div style="float: left;  margin: 0px 20px 20px 0px">
+                          <%= image_tag 'v3/stats-mission-days.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
+                          </div>
+                          <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
+                        </div>
+                        <div style="float: left;">
+                          <%= image_tag 'v3/stats-comments-made.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= mission.comments.where(:user_id => @user).count %>
+                          </div>
+                          <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
+                        </div>
+                        <div style="float: left; margin: 0px 20px 20px 0px">
+                          <%= image_tag 'v3/stats-events-organized.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %></div>
+                          <div class="heading9 bold" style="margin-left: 55px; color: #ccc">events hosted</div>
+                        </div>
+                        <div style="float: left; margin: 0px 20px 20px 0px">
+                          <%= image_tag 'v3/stats-events-attended.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= @crewmanship.user.courses_attended.where(:mission_id => mission).count %>
+                          </div>
+                          <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
+                        </div>
+                        <div style="float: left;">
+                          <%= image_tag 'v3/stats-topics-created.png' %>
+                          <div class="heading16 futura mission-stats-16">
+                            <%= mission.topics.count %>
+                          </div>
+                          <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>             
               </div>
@@ -117,11 +184,10 @@
         </div>
       </div><!-- end tab2 --> 
       <div class="tab-pane" id="tab3">
-        <div class="page-main white tab-border main">
-          <div class="page-content"> 
-            <%= @user.followers.count %> followers
+        <div class="page-main white tab-border main" style="width: 690px">
+          <div class="page-content">
             <% @user.followers.each do |user| %>
-              <div class="mission-divider">             
+              <div class="mission-divider">            
                 <div class="crewman-photo">
                   <% if user.photo.present? %>
                     <%= image_tag(user.photo.url(:thumb_large)) %>
@@ -134,18 +200,17 @@
                 <div class="crewman-description">
                   <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
                   <p><%= user.bio %></p>
-                </div>           
+                </div>          
               </div>
             <% end %>
           </div>
         </div>
-      </div><!-- end tab3 --> 
+      </div><!-- end tab3 -->
       <div class="tab-pane" id="tab4">
-        <div class="page-main white tab-border main">
-          <div class="page-content"> 
-            <%= @user.following.count %> following
+        <div class="page-main white tab-border main" style="width: 690px">
+          <div class="page-content">
             <% @user.following.each do |user| %>
-              <div class="mission-divider">             
+              <div class="mission-divider">            
                 <div class="crewman-photo">
                   <% if user.photo.present? %>
                     <%= image_tag(user.photo.url(:thumb_large)) %>
@@ -156,12 +221,13 @@
                 <div class="crewman-description">
                   <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
                   <p><%= user.bio %></p>
-                </div>           
+                </div>          
               </div>
             <% end %>
           </div>
         </div>
-      </div><!-- end tab3 --> 
+      </div><!-- end tab4 --> 
+
 
     </div><!-- end tab-content -->
   </div><!-- end tabbable -->
