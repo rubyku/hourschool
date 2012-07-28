@@ -5,6 +5,13 @@ class DashboardsController < ApplicationController
     feed_query_items = feed_query_items_for_mission
     @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
     @user = User.me_or_find(params[:id], current_user)
+
+    if @feed.blank?
+      feed_query_items = staff_picks_feed
+      @staff_feed = true
+      @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+    end
+
     respond_to do |format|
       format.html
       format.js do
@@ -18,6 +25,8 @@ class DashboardsController < ApplicationController
     case params[:id].to_sym
     when :mission
       feed_query_items = feed_query_items_for_mission
+      @user = current_user
+
     # when :friends
     #   feed_query_items_for_friends
     when :me
@@ -25,14 +34,28 @@ class DashboardsController < ApplicationController
       @user = User.me_or_find(params[:id], current_user)
       @comment = current_user.comments.create(params[:comment])
     end
-
     @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+
+    if @feed.blank?
+      @staff_feed = true
+      feed_query_items = staff_picks_feed
+      @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+    end
   end
 
 private
 
+  def staff_picks_feed
+    mission_ids      = Mission.where(:featured => true).map(&:id) + [-1]
+    comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
+    courses          = Course.where(:mission_id => mission_ids)
+    topics           = Topic.where(:mission_id => mission_ids)
+    crewmanships     = Crewmanship.where(:mission_id => mission_ids)
+    feed_query_items = [courses, comments, topics, crewmanships]
+  end
+
   def feed_query_items_for_mission
-    mission_ids      = current_user.missions.map(&:id)
+    mission_ids      = current_user.missions.map(&:id) + [-1]
     comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
     courses          = Course.where(:mission_id => mission_ids)
     topics           = Topic.where(:mission_id => mission_ids)
