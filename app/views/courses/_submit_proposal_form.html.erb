@@ -117,6 +117,7 @@
 
           <%= text_field_tag :citySearch, (@course.city ? "#{@course.city.name}, #{@course.city.state}" : ''), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
           <%= f.hidden_field :city_id %>
+          <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
         </p>
 
         <script type="text/javascript">

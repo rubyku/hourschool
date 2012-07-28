@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723151928) do
+ActiveRecord::Schema.define(:version => 20120727230903) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20120723151928) do
     t.integer  "account_id",         :default => 0,     :null => false
     t.boolean  "seed",               :default => false, :null => false
     t.integer  "mission_id"
+    t.string   "zip"
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
@@ -310,10 +311,11 @@ ActiveRecord::Schema.define(:version => 20120723151928) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "status"
     t.string   "verb"
+    t.boolean  "featured",           :default => false
   end
 
   add_index "missions", ["account_id"], :name => "index_missions_on_account_id"
