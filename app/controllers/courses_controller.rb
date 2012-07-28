@@ -15,14 +15,14 @@ class CoursesController < ApplicationController
 
     @user = current_user
     if @course.save
-      @course.update_attribute(:status, 'approved')
+      @course.update_attribute(:status, 'draft')
       @course.topics << @topic if @topic
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         @user.save
       end
-      redirect_to preview_path(@course)
+      redirect_to @course
     else
       render :action => 'new'
     end
