@@ -1,42 +1,38 @@
 <!-- todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css -->
-<div class="sidebar-block-last">
-  <div class="class-section-heading">Registration</div>
-    <table>
-    <tr>
-      <td class="icon">
-        <%= image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost" %>
-      </td>
-      <td>
-        <div class="class-details"><%= "$ #{@course.price}" %></div>
-      </td>
-    </tr>
-    <tr>
-      <td class="icon">
-        <%= image_tag "v2/icon_calendar.png", :class => "class-details-icon-when" %>
-      </td>
-      <td>
-        <div class="class-details">
-            <%= course.starts_at.strftime("%a %b %d, %Y") %>
-        <div class="class-details">
-          <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %></div>
-      </td>
-    </tr>
-    <tr>
-      <td class="icon">
-        <%= image_tag "v2/icon_location.png", :class => "class-details-icon-where" %>
-      </td>
-      <td>
-        <div class="class-details"><%= "#{@course.place_name}" %></div>
-        <% if @course.public? %>
-          <%= "#{@course.address}" %>
-          <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
-        <% else %>
-          <p>Private Address</p>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+<div>
+  <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
+    Register for event
+  </div>
 
+  <div style="width: 270">
+    <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
+    <div class="class-details"><%= "$ #{@course.price}" %></div>
+  </div>
+
+  <div style="width: 270">
+    <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
+    <div class="class-details">
+      <%= course.starts_at.strftime("%a %b %d, %Y") %>
+    </div>
+    <div style="margin-left: 22px">
+      <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+    </div>
+  </div>
+
+  <div style="width: 270; margin-bottom: 20px">
+    <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
+    <div class="class-details"><%= "#{@course.place_name}" %></div>
+    <div style="margin-left: 21px">
+      <% if @course.public? %>
+        <%= @course.address %>
+        <%= "#{course.city.try(:name)}, #{course.city.try(:state)}, " %>
+        <%= @course.zip %>
+      <% else %>
+        Residential address<br>
+        Area: <%= @course.zip %>
+    <% end %>
+    </div>
+  </div>
 
   <div class="user_status">
     <%= content_tag(:p, "You're already registered!", :class => "heading13-class") if course.has_student?(current_user) && course.active? %>
@@ -68,7 +64,7 @@
       <% end %>
     <% end %>
   </div>   
-  <div class="class-alternatives">
+  <div class="class-alternatives" style="margin-bottom: 30px">
     <%= "This class has a min. of #{course.min_seats}" %>
     <%#= render :partial => "progressbar" %>
   </div>

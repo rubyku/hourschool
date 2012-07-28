@@ -12,21 +12,47 @@
   <%= render :partial => 'courses/womendesignbuild/show' %>
   
 <% else %>
-  <% if @course.status == 'draft' && @course.teacher == current_user %> 
-    <div class="full-page white">
-      <div class="page-content">
-        <div class="preview-header">Preview before this goes live!</div>
-        <%= button_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put %>
-        <%= link_to "Make changes", edit_course_path(@course.id), :method => :get %>
-        <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}),  :method => :put %>
+  <!-- preview box -->
+  <div class="full-page">
+    <% if @course.status == 'draft' && @course.teacher == current_user %> 
+      <div class="full-page white">
+        <div class="page-content">
+          <div class="preview-header">Preview before this goes live!</div>
+          <%= button_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put %>
+          <%= link_to "Make changes", edit_course_path(@course.id), :method => :get %>
+          <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}),  :method => :put %>
+        </div>
+      </div>
+    <% end %>
+    <div class="page-main">
+      <div class="heading28 brown" style="width: 600px; margin-bottom: 5px"><%= "#{@course.title}" %></div>
+      <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em"><%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %></div>
+    </div>
+    <div style="float: right">
+      <div class="btn-group" style="float: right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <%= image_tag 'v3/icon-tools.png' %>
+        </a>
+        <ul class="dropdown-menu pull-right">
+          <% if @course.teacher == current_user %>
+            <%= link_to "Edit event", edit_course_path %>
+            <%= link_to "Email attendees", new_course_attendee_contact_path(@course) %>
+            <% if @course.starts_at < Date.today %></li>
+              <li><%= link_to "Cancel this event", "" %></li>
+              <li><%= link_to "Reschedule this event", "" %>
+            <% else %>
+              <li><a>Schedule another class</a></li>
+              <li><a>Schedule a series of classes</a></li>
+            <% end %>
+          <% else %><!-- if current_user is not this course's teacher -->
+            <%= link_to "Email organizer", new_course_organizer_contact_path(@course) %>
+            <a>Cancel registration</a>
+          <% end %>
+        </ul>
       </div>
     </div>
-  <% end %>
 
-  <div class="class-title-big"><%= "#{@course.title}" %></div>
-  <div class="happening-message-header"><%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" if community_site? %></div>
-  <%#= render :partial => "courses/show/add_this_small" %>
-  <br>
+
 
   <div class="page-main">
     <div class="tabbable"> 
@@ -141,22 +167,18 @@
   </div><!-- end page-main -->
 
   <div class="left" style="width: 290px"><!-- sidebar container -->
-    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px">
       <div class="sidebar-content-white">
         <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
       </div>
     </div>
 
-    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px; padding-bottom: 30px">
       <div class="sidebar-content-white">
-        <%= render 'courses/show/toolbox' %>
-      </div>
-    </div>
-
-    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 290px">
-      <div class="sidebar-content-white">
-        <div class="heading11">Invite and rally</div>
-        <p class="confirm">Learning is more fun with friends. If you already know people that are interested, get a head start and let them know!</p>
+       <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
+          Invite and rally
+       </div>
+       <p class="confirm">Learning is more fun with friends. If you already know people that are interested, get a head start and let them know!</p>
         <div class="heading11">Invite friends from Facebook</div>
         <% if current_user.facebook? %>
           <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
@@ -165,9 +187,6 @@
           <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
           <%= render :partial => 'users/facebook/connect_button' %>
         <% end %>
-        <div class="heading11">Invite friends by email</div>
-        <div class="heading11">Promote in my community</div>
-        <a class="btn">Print a flyer</a>
       </div>
     </div>
   </div><!-- end sidebar container -->

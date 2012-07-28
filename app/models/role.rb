@@ -5,7 +5,7 @@ class Role < ActiveRecord::Base
 
   #validates :course_id, :presence => true
   validates :user_id,   :presence => true, :uniqueness => { :scope => :course_id }
-  validates_presence_of :note
+  #validates_presence_of :note
 
   after_create :notify_followers
 

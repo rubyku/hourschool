@@ -1,7 +1,4 @@
 <% if @course.teacher == current_user %>
-  <h4 class="alert-heading">Tools</h4>
-  <br>
-
   <div class="btn-group" style="margin-bottom: 10px">
     <%= link_to "Edit event", edit_course_path, :class => "btn" %>
     <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -16,8 +13,7 @@
         <li><a class="btn" data-toggle="modal" href="#addBasicInfo">Schedule a series of classes</a></li>
       <% end %>
     </ul>
-  </div>
-    
+  </div>    
   <div class="btn-group">
       <%= link_to "Email attendees", new_course_attendee_contact_path(@course), :class => "btn" %>
     <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -32,14 +28,3 @@
   <a class="btn" data-toggle="modal" href="#addBasicInfo">Cancel registration</a>
 <% end %>
 
-<div class="heading11">Need more help?</div>
-  <table id="footer">
-    <tr id="footer">
-     <td id="footer">
-       <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
-     </td>
-     <td id="footer">
-        <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
-     </td>
-    </tr>
-  </table>
