@@ -80,7 +80,7 @@ class MissionsController < ApplicationController
 
     respond_to do |format|
       if @mission.update_attributes(params[:mission])
-        format.html { redirect_to @mission, notice: 'Mission was successfully updated.' }
+        format.html { redirect_to @mission, notice: 'Mission is launched!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
