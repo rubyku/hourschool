@@ -1,8 +1,15 @@
 <style type="text/css">
+
   a:hover.dropdown-toggle.main-nav{
-    background-color: white;
+    background-color: transparent;
     color: black;
     border-top: 3px solid black;
+    border-radius: 0px;
+  }
+
+  a:hover.dropdown-toggle.main-nav #homepage{
+    background-color: transparent;
+    border-top: 3px solid white;
     border-radius: 0px;
   }
 
@@ -10,6 +17,11 @@
     background-color: white;
     color: black;
   }
+
+  .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover #homepage{
+      background-color: transparent;
+      color: black;
+    }
 
   li.dropdown-menu-wrapper{
     background-color: black;
@@ -50,7 +62,7 @@
             <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu1">
               Me
             </a>
-            <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+            <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
               <li class="dropdown-menu-wrapper"></li>  
               <div class="dropdown-menu-item">
                 <%= link_to "My Dashboard", dashboards_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
@@ -78,7 +90,7 @@
           <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu2">
             Explore
           </a>
-          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+          <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
               <%= link_to "Wall of Missions", wall_of_missions_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
@@ -100,7 +112,7 @@
           <a class="dropdown-toggle  main-nav" data-toggle="dropdown" href="#menu3">
             Tools
           </a>
-          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+          <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
               <%= link_to "Invite a friend", new_invite_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
@@ -122,7 +134,7 @@
           <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu4">
             About
           </a>
-          <ul class="dropdown-menu" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+          <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
               <%= link_to "HourSchool Philosophy", about_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
