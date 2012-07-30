@@ -37,7 +37,7 @@
     <% end %> 
 
     <div style="margin: 0px 20px 0px 20px;">
-      <div class="heading32 orange">
+      <div class="heading28 brown" style="margin-top: 10px">
         <%= @account.name %>
       </div>
 
@@ -90,24 +90,21 @@
 
   <div class="page-main">
     
-    <div style="margin-bottom: 30px">
+    <div style="float: left; argin-bottom: 30px; height: 250px">
       
       <div class="heading14" style="margin-bottom: 10px">Featured Mission:</div>
-      <div>
-        <% if @account.missions.last.photo.present? %>
-          <%= image_tag(@account.missions.last.photo, :size => "600x180") %>
-        <% else %>
-          <div style="background-color: #333; width: 630px; height: 180px;"></div>
-        <% end %>
+      
+      <div style="background-color: #333; width: 630px; height: 180px;">
+        <%= image_tag(@account.missions.last.photo.url(:stats)) %>
       </div>
-
+      
       <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
-        <div class="heading32 orange"><%= link_to @account.missions.last.title, @account.missions.last %></div>
+        <div class="heading28 brown"><%= link_to @account.missions.last.title, @account.missions.last %></div>
       </div>
 
     </div>
 
-    <div style="margin-bottom: 30px">
+    <div style="float: left; margin-bottom: 30px; margin-top: 30px">
 
       <div class="heading14" style="margin-bottom: 10px">Featured Events:</div>
 
@@ -115,7 +112,7 @@
         <div style="background-color: #333; width: 300px; height: 180px;">
         </div>
         <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
-          <div class="heading32 orange"><%= link_to @account.courses.last.title, @account.courses.last %></div>
+          <div class="heading28 brown"><%= link_to @account.courses.last.title, @account.courses.last %></div>
         </div>
       </div>
 
@@ -123,36 +120,31 @@
         <div style="background-color: #333; width: 300px; height: 180px;">
         </div>
         <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
-          <div class="heading32 orange"><%= @account.courses.last.title %></div>
+          <div class="heading28 brown"><%= @account.courses.last.title %></div>
         </div>
       </div>
     </div>
   
   </div>
 
-  <div class="white right page-sidebar" style="margin-top: 27px; margin-bottom: 40px">
-    <div class="sidebar-content-white">
-      <div style="background-color: #ff7733; height: 7px; margin-left: -15px; margin-top: -20px; margin-right: -15px; margin-bottom: 20px">
-      </div> 
-
-      <div class="heading14" style="margin-bottom: 10px">Members</div>
-      <% @account.memberships.each do |membership| %>
-        <%= link_to_avatar membership.user, :size => '50x50', :class => "" , :photo_size => :thumb_small %>    
-      <% end %>
-    </div>
+  <div style="float: left; width: 270px; background-color: white;overflow-x: hidden; padding-top: 15px; padding: 15px; margin: 5px 0px 20px 30px">
+    <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+    </div> 
+    <div class="heading14" style="margin-bottom: 10px">Members</div>
+    <% @account.memberships.each do |membership| %>
+      <%= image_tag(membership.user.photo.url(:thumb_small)) %>
+    <% end %>
   </div>
 
-  <div class="white right page-sidebar" style="margin-top: 27px; margin-bottom: 40px">
-    <div class="sidebar-content-white">
-      <div style="background-color: #ff7733; height: 7px; margin-left: -15px; margin-top: -20px; margin-right: -15px; margin-bottom: 20px">
-      </div> 
-
-      <div class="heading14" style="margin-bottom: 10px">Partners</div>
-      <img src="http://www.center61.com/images/Member%20Logos/EntrepreneursFoundation_logo.png">
-      <img src="http://www.center61.com/images/Member%20Logos/UrbanRoots_logo.png">
-      <img src="http://begreenpackaging.files.wordpress.com/2012/02/whole-planet-foundation.jpg" width="50%">
-      <img src="http://kammok.files.wordpress.com/2011/10/307882_10150266185336496_83048466495_8097797_75821_n.jpg" width="50%">
-    </div>
+  <div style="float: left; width: 270px; background-color: white; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px; margin-left: 30px">
+    <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+    </div> 
+    <div class="heading14" style="margin-bottom: 10px">Partners</div>    
+    <img src="http://www.center61.com/images/Member%20Logos/EntrepreneursFoundation_logo.png">
+    <img src="http://www.center61.com/images/Member%20Logos/UrbanRoots_logo.png">
+    <img src="http://begreenpackaging.files.wordpress.com/2012/02/whole-planet-foundation.jpg" width="80%"><br>
+    <img src="http://kammok.files.wordpress.com/2011/10/307882_10150266185336496_83048466495_8097797_75821_n.jpg" width="50%">
   </div>
+
 
 <% end %>

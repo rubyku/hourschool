@@ -1,49 +1,129 @@
-<div class="full-page white">
-  <div class="page-content">
-    <%= render :partial => 'layouts/application/admin_bar' %>
-
-    <%= form_for @account do |f| %>
-      <% if @account.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
-          <ul>
-          <% @account.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Missions</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
+    <li><a href="#tab4" data-toggle="tab" class="heading11">Settings</a></li>
+    <li><a href="#tab5" data-toggle="tab" class="heading11">Billing</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <% @account.missions.each do |mission| %>
+            <%= mission.title %><br>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="form-question">
-        <%= f.label :name, "Organization Name" %><br />
-        <%= f.text_field :name, :class => "form-short-with-margin" %>
-      </div>
-
-      <p>Your custom url is <%= @account.subdomain %>.hourschool.com<br />
-      contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.</p>
-      
-      <p>
-       <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-       <%= f.file_field :photo %>
-      </p>
-
-      <div class="control-group" style="margin-bottom:20px">
-        <div class="controls">
-          <label class="radio">
-            <%= f.radio_button :private, false %>
-            Promote my classes on the main hourschool.com site where anyone can view and attend.
-          </label>
-          <label class="radio">
-            <%= f.radio_button :private, true %>
-            Please keep my classes private, only the people I invite can view or attend classes.
-          </label>
         </div>
       </div>
-
-      <div class="actions">
-        <%= f.submit 'Save', :class => "grey button" %>
+    </div><!-- end tab1 -->
+    <div class="tab-pane" id="tab2">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <% @account.courses.each do |course| %>
+            <%= course.title %><br>
+          <% end %>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>
+    </div><!-- end tab2 -->
+    <div class="tab-pane" id="tab3">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <% @account.users.each do |user| %>
+            <%= user.name %><br>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- end tab3 -->
+    <div class="tab-pane" id="tab4">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <%= form_for @account do |f| %>
+            <% if @account.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+                <ul>
+                <% @account.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="form-question">
+              <%= f.label :name, "Organization Name" %><br />
+              <%= f.text_field :name, :class => "form-short-with-margin" %>
+            </div>
+
+            <p>Your custom url is <%= @account.subdomain %>.hourschool.com<br />
+            contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.</p>
+            
+            <p>
+             <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+             <%= f.file_field :photo %>
+            </p>
+
+            <div class="control-group" style="margin-bottom:20px">
+              <div class="controls">
+                <label class="radio">
+                  <%= f.radio_button :private, false %>
+                  Promote my classes on the main hourschool.com site where anyone can view and attend.
+                </label>
+                <label class="radio">
+                  <%= f.radio_button :private, true %>
+                  Please keep my classes private, only the people I invite can view or attend classes.
+                </label>
+              </div>
+            </div>
+
+            <div class="control-group" style="margin-bottom:20px">
+              <div class="controls">
+                <label class="radio">
+                  <%= f.radio_button :charge, true %>
+                  Charge a member fee
+                </label>
+                <label class="radio">
+                  <%= f.radio_button :charge, false %>
+                  Membership is free
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <%= f.text_field :charge_amount, :class => "form-short-with-margin", :placeholder => "Membership per month" %>
+            </div><br><br>
+
+            <div class="control-group" style="margin-bottom:20px">
+              <div class="controls">
+                <label class="radio">
+                  <%= f.radio_button :charge, true %>
+                  Only members can register for event
+                </label>
+                <label class="radio">
+                  <%= f.radio_button :charge, false %>
+                  Everyone can register for event
+                </label>
+              </div>
+            </div>
+
+            <%= f.text_field :discount, :class => "form-short-with-margin", :placeholder => "Discount for member" %>
+
+            <br><br><br>
+
+            <div class="actions">
+              <%= f.submit 'Save', :class => "btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- end tab4 -->
+    <div class="tab-pane" id="tab5">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+        </div>
+      </div>
+    </div><!-- end tab5 -->
+
+  </div><!-- end tab-content -->
+</div><!-- end tabbable -->
+
