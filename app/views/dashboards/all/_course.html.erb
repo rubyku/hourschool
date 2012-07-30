@@ -1,11 +1,14 @@
 <div class="dashboard-feed-thumbnail">
   <%= image_tag(course.mission.photo.url(:thumbnail)) %>
-  <div class="heading9">Event posted to <%= course.mission.title %></div>
   <div style="font-size: 9px"><%= "#{time_ago_in_words course.created_at} ago" %></div>
+  <% if course.mission.featured == true %>
+    <span class="label">Staff picks</span>
+  <% end %>
 </div>
 
 <div class="dashboard-feed-body">
   <div class="heading16 adelle"><%= course.title %></div>
+  <div class="heading9">Event posted to <%= "#{course.mission.verb} #{course.mission.title}" %></div>
   <p><%= course.description %></p>
   <div style="margin-bottom: 5px">
   <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
