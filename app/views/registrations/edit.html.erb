@@ -145,7 +145,7 @@
               <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
             <% end %>
 
-            <% if current_user.this_months_billing_date %>
+            <% if current_user.billing_day_of_month.present? %>
               <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
             <% end %>
 

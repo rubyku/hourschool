@@ -1,0 +1,10 @@
+<div class="clearfix">
+<% if current_user && current_user.facebook? %>
+  <%= render :partial => "users/facebook/grid/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me on this mission!"} %>
+<% else %>
+  <p>Classes are more fun with friends! Connect Facebook to your account today!</p>
+  <%= render :partial => 'users/facebook/connect_button' %>
+<% end %>
+</div>
+    
+</div>
