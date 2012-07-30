@@ -1,18 +1,12 @@
 - if community_site?
   .page
     .page-content
-      .page-section-float-left
-        %ul.sub-nav
-          %li.sub-nav-active
-            %a.sub-nav-active(href="/users/sign_up") Register
-          %li.sub-nav-inactive
-            %a.sub-nav-inactive(href="/users/sign_in") Sign in
 
       .heading25.dark_grey Sign up
       - if community_site?
         .class-alternatives It's fast and easy. And we will not post anything without your permission.
         %br
-        = link_to image_tag('fb_connect.jpg'), user_omniauth_authorize_path(:facebook)
+        = link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook)
         %br
         %br
         .heading15.marcomm Or sign up with email
