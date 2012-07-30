@@ -20,6 +20,9 @@ class CoursesController < ApplicationController
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
+        if @course.mission && @course.mission.crewmanships.where(:user_id => current_user).blank?
+          @course.mission.crewmanships.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'active', :role => 'guide')
+        end
         @user.save
       end
       redirect_to @course
