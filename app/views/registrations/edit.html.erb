@@ -2,9 +2,8 @@
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
     <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Profile</a></li>
     <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-    <li><a href="#tab3" data-toggle="tab" class="heading11">Account Setting</a></li>
-    <li><a href="#tab4" data-toggle="tab" class="heading11">Notification Center</a></li>
-    <li><a href="#tab5" data-toggle="tab" class="heading11">Billing</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Notification Center</a></li>
+    <li><a href="#tab4" data-toggle="tab" class="heading11">Billing</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -93,26 +92,23 @@
     <div class="tab-pane" id="tab2">
       <div class="full-page white tab-border full">
         <div class="page-content">
-          <% current_user.missions.each do |mission| %>
-            <div class="mission-divider">
-              Mission: <%= "#{mission.verb} #{mission.title}" %><br>
-              School: <%= mission.account.nil? ? "HourSchool" : mission.account.name %>
-              <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => mission.crewmanships.where(:user_id => current_user.id).first), :class => "btn right" %>
+          <% if current_user.missions.blank? %>
+            <div class="well">
+              You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
             </div>
+          <% else %>
+            <% current_user.missions.each do |mission| %>
+              <div class="mission-divider">
+                Mission: <%= "#{mission.verb} #{mission.title}" %><br>
+                School: <%= mission.account.nil? ? "HourSchool" : mission.account.name %>
+                <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => mission.crewmanships.where(:user_id => current_user.id).first), :class => "btn right" %>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
-    </div><!-- end tab3 -->
+    </div><!-- end tab2 -->
     <div class="tab-pane" id="tab3">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-          Account Setting
-
-
-        </div>
-      </div>
-    </div><!-- end tab3 -->
-    <div class="tab-pane" id="tab4">
       <div class="full-page white tab-border full">
         <div class="page-content">
           Notification Center
@@ -132,33 +128,40 @@
 
         </div>
       </div>
-    </div><!-- end tab4 -->
-    <div class="tab-pane" id="tab5">
+    </div><!-- end tab3 -->
+    <div class="tab-pane" id="tab4">
       <div class="full-page white tab-border full">
-        <div class="page-content">
-        
-        <div id="billing_show">
-          <% if current_user.stripe_customer %>
-            <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
-          <% end %>
+        <div class="page-content">      
+          <div id="billing_show">
+            <% if current_user.stripe_customer %>
+              <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
+            <% else %>
+              <p>You have no credit card on file</p>
+            <% end %>
 
-          <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
+            <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
 
-          <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+            <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
 
-          <%= link_to_function 'Edit Info', "$('#billing_show').hide(); $('#billing_edit').show();" %>
-        </div>
-        <div id="billing_edit" style="display:none;">
-          <%#= form_tag(update_billing_info_users_setting_path(:current), :method => :put) do |f| %>
-            <%#= render :partial => 'subscription_charges/credit_card_fields' %>
-            <%#= submit_tag %>
-          <%# end %>
-        </div>
+            <a class="btn" data-toggle="modal" href="#updateCard">Update credit card</a>
 
-
+            <!-- modal begins -->
+            <div class="modal hide" id="updateCard">              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Update credit card details</h3>
+              </div>
+              <div class="modal-body">              
+                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                  <%= render :partial => 'subscription_charges/credit_card_fields' %>
+                  <%= f.submit "Update", :class => "btn" %>    
+                <% end %>
+              </div>
+            </div><!-- modal ends -->
+               
+          </div>
         </div>
       </div>
-    </div><!-- end tab5 -->
+    </div><!-- end tab4 -->
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
