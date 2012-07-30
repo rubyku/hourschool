@@ -1,4 +1,4 @@
-<%= content_for(:document_title, "#{@course.name} in #{@course.city.try(:name_state)} | taught by #{@course.teacher.name} on Hourschool" ) %>
+<%= content_for(:document_title, "#{@course.name} in #{@course.city.try(:name)} | taught by #{@course.teacher.name} on Hourschool" ) %>
 
 <%= content_for :head do %>
   <meta property="og:description" content="<%= @course.description %>"        />
@@ -68,7 +68,7 @@
           <div class="page-main white tab-border main">
             <div class="page-content"> 
               <div style="width: 97%">
-                <%= image_tag(@course.photo.url(:large)) if @course.photo.present? %>
+                <%= image_tag(@course.photo.url(:large), :style => "float: none") if @course.photo.present? %>
                 <div class="class-section-heading" style="margin-top: 10px">Description</div>
                 <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p>
               </div>
@@ -152,7 +152,7 @@
               <% end %>
               <div class="class-section-heading">Part of Mission</div><br>
               <% if @course.mission.present? %>
-                <%= link_to @course.mission.title, @course.mission if @course.mission.present? %>
+                <%= link_to "#{@course.mission.verb} #{@course.mission.title}", @course.mission if @course.mission.present? %>
               <% else %>
                 <div class="well">
                   This event is not associated with a mission.
@@ -180,7 +180,7 @@
        </div>
        <p class="confirm">Learning is more fun with friends. If you already know people that are interested, get a head start and let them know!</p>
         <div class="heading11">Invite friends from Facebook</div>
-        <% if current_user.facebook? %>
+        <% if current_user && current_user.facebook? %>
           <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
           <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
         <% else %>

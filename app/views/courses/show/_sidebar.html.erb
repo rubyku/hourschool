@@ -6,13 +6,14 @@
 
   <div style="width: 270">
     <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
-    <div class="class-details"><%= "$ #{@course.price}" %></div>
+    <div class="class-details" style="width: 240px"><%= "$ #{@course.price} for members" %></div>
+    <div style="margin-left: 21px"><%= "$ #{@course.price + 5} for non-members" %></div>
   </div>
 
   <div style="width: 270">
     <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
-    <div class="class-details">
-      <%= course.starts_at.strftime("%a %b %d, %Y") %>
+    <div class="class-details" style="width: 240px">
+      <%= @course.starts_at.strftime("%a %b %d, %Y") %>
     </div>
     <div style="margin-left: 22px">
       <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
@@ -21,12 +22,12 @@
 
   <div style="width: 270; margin-bottom: 20px">
     <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
-    <div class="class-details"><%= "#{@course.place_name}" %></div>
+    <div class="class-details" style="width: 240px"><%= "#{@course.place_name}" %></div>
     <div style="margin-left: 21px">
       <% if @course.public? %>
         <%= @course.address %>
-        <%= "#{course.city.try(:name)}, #{course.city.try(:state)}, " %>
-        <%= @course.zip %>
+        <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
+        <%= ", #{@course.zip}" if @course.zip.present? %>
       <% else %>
         Residential address<br>
         Area: <%= @course.zip %>
@@ -49,9 +50,9 @@
         <%#= button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get %>
       <% else %>
         <% if course.donate? %>
-          <%= button_to "",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "greendoorsRegister #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
+          <%= button_to "",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
         <% else %>
-          <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "orange button #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
+          <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
         <% end %>
       <% end %>
     <% end %>
@@ -59,14 +60,13 @@
       <% if course.inactive? %>
         <%#= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button" %>
       <% else %>
-        <%= button_to "Edit details",           edit_course_path, :method => :get, :class => "grey button" %>
-        <%= button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "grey button" %>
+        <%= button_to "Edit details",           edit_course_path, :method => :get, :class => "btn" %>
+        <%= button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "btn" %>
       <% end %>
     <% end %>
   </div>   
   <div class="class-alternatives" style="margin-bottom: 30px">
     <%= "This class has a min. of #{course.min_seats}" %>
-    <%#= render :partial => "progressbar" %>
   </div>
 
 </div>
@@ -92,7 +92,7 @@
     <%= link_to "change your location here", edit_user_registration_path(:id => current_user) %>
     <%= ", or continue signing up for this class" %>
   </p>
-  <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "grey Button" %>
+  <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn" %>
 <% end %>
 
 <!-- Show the modal window if a person tries to register for a course too far away from them -->
