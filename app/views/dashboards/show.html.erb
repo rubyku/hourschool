@@ -64,13 +64,14 @@
                   <%= image_tag 'v3/profile/journey-glyph-mission.png', :class => "left" %>
                   <hr style="width: 22px; float: left">
                   <% if feed_item.role == "creator" %>
-                    <div style="float: left; margin: 10px 5px 20px 5px">I created the mission </div>
+                    <div style="float: left; margin: 10px 5px 0px 5px">I created the mission </div>
                   <% elsif feed_item.role == "explorer" %>
-                    <div style="float: left; margin: 10px 5px 20px 5px">I joined the mission </div>
+                    <div style="float: left; margin: 10px 5px 0px 5px">I joined the mission </div>
                   <% end %>
                   <div style="font-weight: 700; margin-top: 10px"><%= link_to "#{feed_item.mission.verb} #{feed_item.mission.title}", feed_item.mission if feed_item.mission.present? %></div><br />
+                  <div style="font-size: 10px; margin-left: 57px; margin-top: -15px; margin-bottom: 15px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
                   <div style="margin-left: 57px"><%= image_tag(feed_item.mission.photo.url(:preview)) if feed_item.mission.photo.present? %></div>
-                  <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
+
 
                 <% elsif feed_item.is_a?(Comment) %>
                   <%= image_tag 'v3/profile/journey-glyph-comment.png', :class => "left"  %>

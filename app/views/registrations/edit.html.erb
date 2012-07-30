@@ -100,7 +100,9 @@
             <% current_user.missions.each do |mission| %>
               <div class="mission-divider">
                 Mission: <%= "#{mission.verb} #{mission.title}" %><br>
-                School: <%= mission.account.nil? ? "HourSchool" : mission.account.name %>
+                <% if mission.account.present? %>
+                  School: mission.account.name %>
+                <% end %>
                 <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => mission.crewmanships.where(:user_id => current_user.id).first), :class => "btn right" %>
               </div>
             <% end %>
@@ -139,7 +141,7 @@
               <p>You have no credit card on file</p>
             <% end %>
 
-            <% if current_user.subscription_charges %>
+            <% if current_user.subscription_charges.present? %>
               <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
             <% end %>
 
