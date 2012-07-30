@@ -1,6 +1,11 @@
-<div class="heading14" style="color: #9a9591; margin-bottom: 40px">
+<style type="text/css">
+  a{color:#6a4a3b ;}
+</style>
+
+<div class="heading28 brown" style="margin-bottom: 25px">
   Welcome back, <%= current_user.name.split(" ").first %>!
 </div>
+<%= render 'dashboards/all/news' %>
 
 <div class="page-main white">
   <div style="padding: 18px">
@@ -32,24 +37,22 @@
 
 <div class="white right page-sidebar">
   <div class="sidebar-content-white">
-    <div class="sidebar-heading">Latest from the HourSchool community</div>
-      <div class="well">
-      <% begin %>
-      <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
-          <% tum = get_tumblr_first_regular_post %>
-          <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
-
-          <p class="footer-message-description"><%= strip_tags(truncate(tum["regular_body"], :length => 600, :omission => "..."))%></p><br>
-
-      <%- else -%>
-          <div class="footer-heading">Our mission</div>
-          <div class="footer-blog-title">HourSchool started because...</div><br>
-      <% end %>
-    <% rescue => ex %>
-      <% Rails.logger.error "Tumblr Failed: #{ex}" %>
-      <div class="footer-heading">What is HourSchool?</div>
-      <p class="footer-message-description">HourSchool is a social school built from your community. Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="http://www.hourschool.com/about">Learn more...</a></p><br>
-    <% end %>
-  </div>
+    <div class="heading11" style="margin-bottom: 20px">Get started here</div>
+    <div class="mission-divider">
+      <div class="heading16 adelle">Wall of Missions</div>
+      <p>Discover the new passion you never knew you had.</p>
+    </div>
+    <div class="mission-divider">
+      <div class="heading16 adelle">Wall of Awesome</div>
+      <p>Congratulate those who had a mission accomlished.</p>
+    </div>
+    <div class="mission-divider">      
+      <div class="heading16 adelle">Partner Schools</div>
+      <p>We collaborate with great peopele doing great things.</p>      
+    </div>
+    <div class="mission-divider">      
+      <div class="heading16 adelle">HourSchool Philosophy</div>
+      <p>We believe in giving people a place to give and to grow.</p>      
+    </div>  
   </div>
 </div>

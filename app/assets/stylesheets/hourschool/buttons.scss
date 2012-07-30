@@ -62,6 +62,22 @@ a.button{
 
   }
 
+  &.blue{
+    background-color: #5382a4;
+
+    &.long{
+      width: 220px;
+    }
+
+    &.short{
+      width: 120px;
+    }
+
+    &:hover {
+      background-color: #5382a4; } 
+
+  }
+
   &.edit-class{
     width: 220px;
     background-color: #a9a9a9;

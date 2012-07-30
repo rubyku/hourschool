@@ -1,91 +1,104 @@
-<div class="full-page white">
-  <div class="page-content">
-    <div class="heading32" style="margin-bottom: 25px">Rally your troops and make missions social</div>
-    <%= form_for(@invite) do |f| %>
-      <% if @invite.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+<div class="heading32" style="margin-bottom: 25px">Rally your troops and make missions social</div>
 
-          <ul>
-          <% @invite.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+      <ul>
+      <% @invite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <div class="field">
-        <%= f.label :invitee, "Invite an HourSchool user" %>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Invite an HourSchool user</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Invite by Facebook</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Invite by email</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <div class="field">
+            <%= f.label :invitee, "Invite an HourSchool user" %>
+              <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off" %>
+                <%= f.hidden_field :invitee_id %>
+              </p>
 
-            <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off" %>
-              <%= f.hidden_field :invitee_id %>
-            </p>
-
-            <script type="text/javascript">
-            $('#userSearch').typeahead({
-              source: function(typeahead, query) {
-                var _this = this;
-                return $.ajax({
-                  url: "<%= search_users_path(:format => :json) %>?q=" + query,
-                  success: function(data) {
-                    return typeahead.process(data);
+              <script type="text/javascript">
+              $('#userSearch').typeahead({
+                source: function(typeahead, query) {
+                  var _this = this;
+                  return $.ajax({
+                    url: "<%= search_users_path(:format => :json) %>?q=" + query,
+                    success: function(data) {
+                      return typeahead.process(data);
+                    }
+                  });
+                },
+                property: "name",
+                onselect: function (obj) {
+                  if (obj.id == 0) {
+                    $('#invite_invitee_email').focus()
+                  } else {
+                    $('#invite_invitee_id').val(obj.id);
                   }
-                });
-              },
-              property: "name",
-              onselect: function (obj) {
-                if (obj.id == 0) {
-                  $('#invite_invitee_email').focus()
-                } else {
-                  $('#invite_invitee_id').val(obj.id);
                 }
-              }
-            });
-            </script>
-      </div><br><br>
-
-      <div class="field" id="invite_by_email">
-        <%= f.label :invitee_email, 'Invite by email' %>
-        <%= f.text_field :invitee_email %>
-      </div><br><br>
-
-      <div class="field">
-        Invite by Facebook<br>
-
-        <div class="clearfix">
-        <% if current_user.facebook? %>
-          <%= render :partial => "users/facebook/grid/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me on this mission!"} %>
-        <% else %>
-          <p>Classes are more fun with friends! Connect Facebook to your account today!</p>
-          <%= render :partial => 'users/facebook/connect_button' %>
-        <% end %>
+              });
+              </script>
+          </div><br><br>
+          <div class="actions">
+            <%= f.submit "Send invite", :class => "btn btn-primary" %>
+          </div>
         </div>
-            
-      </div><br><br>
-
-      <div class="field">
-        <%= f.label :message, "Message" %>
-        <%= f.text_area :message, :class => "form-med-with-margin", :style => "95%",                     
-        :value => 
-                         "I am starting this mission to make my home more sustainable. I know you have always been interested so you should join me! You can try it for free for 30 days. So sign up here: [URL]" %>
-
-      </div><br><br>
-
-    <!--   <div class="field">
-        <%= f.label :invitable_type, "I want to invite them to" %>
-        <%= f.select :invitable_type, [['this topic only','this topic only'],['this mission','this mission'],['HourSchool','HourSchool']]   %>
-      </div> -->
-      <div class="field">
-        <%= f.label :invite_action, "I'm inviting this person to" %>
-        <%= f.select :invite_action, [['organize','organize'],['join','join']]  %>
       </div>
+    </div><!-- end tab1 -->
+    <div class="tab-pane" id="tab2">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <div class="field">
+            Invite by Facebook<br><br>
 
-      <br>
-
-      <div class="actions">
-        <%= f.submit "Send invite", :class => "btn btn-primary" %>
+            <div class="clearfix">
+            <% if current_user && current_user.facebook? %>
+              <%= render :partial => "users/facebook/grid/share", :locals => {:limit => 5, :message => "I just signed up for Hourschool", :link    => root_url, :name    => "Join me on this mission!"} %>
+            <% else %>
+              <p>Classes are more fun with friends! Connect Facebook to your account today!</p>
+              <%= render :partial => 'users/facebook/connect_button' %>
+            <% end %>
+            </div>
+                
+          </div>
+        </div>
       </div>
-    <% end %>
-  </div>
-</div>
+    </div><!-- end tab2 -->
+    <div class="tab-pane" id="tab3">
+      <div class="full-page white tab-border full">
+        <div class="page-content">
+          <div class="field" id="invite_by_email">
+            <%= f.label :invitee_email, 'Invite by email' %>
+            <%= f.text_field :invitee_email %>
+          </div><br>
+
+          <div class="field">
+            <%= f.label :message, "Message" %>
+            <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 550px",                     
+            :value => 
+                             "I am starting this mission to make my home more sustainable. I know you have always been interested so you should join me! You can try it for free for 30 days. So sign up here: [URL]" %>
+
+          </div><br><br><br><br><br>
+          <div class="actions">
+            <%= f.submit "Send invite", :class => "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div><!-- end tab3 -->
+  </div><!-- end tab-content -->
+
+<% end %>
+
 

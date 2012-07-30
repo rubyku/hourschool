@@ -2,7 +2,7 @@
   .mission-stats-16{
     position: relative; 
     z-index: 100; 
-    margin-top: -40px; 
+    margin-top: 8px; 
     margin-left: 55px; 
     font-weight: 700;
   }
@@ -17,7 +17,7 @@
   <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") %>
 
   <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
-    <%= image_tag 'v3/pages/icon-quote.png', :style => "margin-left: 90px; margin-top: 10px; margin-bottom: 10px" %>
+    <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 110px;" %>
     <div class="heading11" style="text-align: center; color: #5382a4">“Develop an interest in life as you see it; the people, things, literature, music—-the world is so rich, simply throbbing with rich treasures, beautiful souls and interesting people. Forget yourself.”</div>
     <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em">Henry Miller</div>
   </div>
@@ -68,7 +68,7 @@
                   <% elsif feed_item.role == "explorer" %>
                     <div style="float: left; margin: 10px 5px 20px 5px">I joined the mission </div>
                   <% end %>
-                  <div style="font-weight: 700; margin-top: 10px"><%= link_to " #{feed_item.mission.title}", feed_item.mission if feed_item.mission.present? %></div><br />
+                  <div style="font-weight: 700; margin-top: 10px"><%= link_to "#{feed_item.mission.verb} #{feed_item.mission.title}", feed_item.mission if feed_item.mission.present? %></div><br />
                   <div style="margin-left: 57px"><%= image_tag(feed_item.mission.photo.url(:preview)) if feed_item.mission.photo.present? %></div>
                   <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words feed_item.created_at} ago" %></div>
 
@@ -115,70 +115,92 @@
       <div class="tab-pane" id="tab2">
         <div class="page-main white tab-border main" style="width: 690px">
           <div style="padding: 20px"> 
-            <% @user.missions.each do |mission| %>
-              <% @crewmanship = mission.crewmanships.where(:user_id => @user.id).first %>
-              <div class="mission-divider">                                
-                <%= image_tag(mission.photo, :size => "650x137") if mission.photo.present? %>
-                
-                <%#= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => @crewmanship), :class => "btn right" %>
-                <div>
-                  <div style="background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
-                  <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
+            <% if @user.missions.blank? %>
+              <div class="well">
+                You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
+              </div>
+            <% else %>
+              <% @user.missions.each do |mission| %>
+                <% @crewmanship = mission.crewmanships.where(:user_id => @user.id).first %>
+                <div class="mission-divider">                                
+                  <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
+
+                  <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
+                      <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
                   </div>
-                  <div style="background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
+
+                  <div style="float: left; width: 648px; background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
                     <div style="padding: 20px">
+
                       <div style="float: left; margin-right: 20px">
                         <% if @crewmanship.role == 'explorer' %>
                           <%= image_tag 'v3/badge-explorer.png' %>
+                        <% elsif @crewmanship.role == 'guide' %>
+                          <%= image_tag 'v3/badge-guide.png' %>
+                        <% elsif @crewmanship.role == 'creator' %>
+                          <%= image_tag 'v3/badge-creator.png' %>
+                        <% elsif @crewmanship.role == 'alumni' %>
+                          <%= image_tag 'v3/badge-alumni.png' %>
                         <% end %>
                       </div>
-                      <div style="float: left; width: 472px">
+
+                      <div style="float: left; width: 472px;">
+
                         <div style="float: left; margin: 0px 20px 20px 0px">
-                          <%= image_tag 'v3/stats-joined-mission.png' %>
+                          
                           <div class="heading16 futura mission-stats-16">
                             <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">joined on</div>
+                          <%= image_tag 'v3/stats-joined-mission.png', :style => "margin-top: -44px" %>
                         </div>
-                       <div style="float: left;  margin: 0px 20px 20px 0px">
-                          <%= image_tag 'v3/stats-mission-days.png' %>
+
+                        <div style="float: left; margin: 0px 20px 20px 0px">
                           <div class="heading16 futura mission-stats-16">
                             <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
+                          <%= image_tag 'v3/stats-mission-days.png', :style => "margin-top: -44px" %>
                         </div>
+                        
                         <div style="float: left;">
-                          <%= image_tag 'v3/stats-comments-made.png' %>
                           <div class="heading16 futura mission-stats-16">
                             <%= mission.comments.where(:user_id => @user).count %>
-                          </div>
+                          </div>  
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
+                          <%= image_tag 'v3/stats-comments-made.png', :style => "margin-top: -44px" %>
                         </div>
-                        <div style="float: left; margin: 0px 20px 20px 0px">
-                          <%= image_tag 'v3/stats-events-organized.png' %>
+                        
+                        <div style="float: left; margin: 0px 20px 20px 0px">  
                           <div class="heading16 futura mission-stats-16">
-                            <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %></div>
+                            <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %>
+                          </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">events hosted</div>
+                          <%= image_tag 'v3/stats-events-organized.png', :style => "margin-top: -44px" %>
                         </div>
-                        <div style="float: left; margin: 0px 20px 20px 0px">
-                          <%= image_tag 'v3/stats-events-attended.png' %>
+
+                        <div style="float: left; margin: 0px 20px 20px 0px">                    
                           <div class="heading16 futura mission-stats-16">
                             <%= @crewmanship.user.courses_attended.where(:mission_id => mission).count %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
+                          <%= image_tag 'v3/stats-events-attended.png', :style => "margin-top: -44px" %>
                         </div>
+                        
                         <div style="float: left;">
-                          <%= image_tag 'v3/stats-topics-created.png' %>
                           <div class="heading16 futura mission-stats-16">
                             <%= mission.topics.count %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
+                          <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 
                         </div>
                       </div>
+
                     </div>
                   </div>
-                </div>             
-              </div>
+                               
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
