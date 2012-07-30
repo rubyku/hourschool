@@ -27,10 +27,12 @@
 
   <div class="mission-status-box">
     <% @crewmanship = @mission.crewmanships.where(:user_id => current_user.id).first %>
-    <div class="heading11" style="margin-bottom: 20px">
-      Mission Crew Badge: <br>
-      <%= @crewmanship.role %>
-    </div>
+    <% if @crewmanship.status.blank? %>
+      <div class="heading11" style="margin-bottom: 20px">
+        Mission Crew Badge: <br>
+        <%= @crewmanship.role %>
+      </div>
+    <% end %>
 
     <% if @crewmanship.status.blank? %>
       <%= link_to 'Become a member', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "orange button short" %>
