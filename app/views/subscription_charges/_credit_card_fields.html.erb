@@ -1,7 +1,3 @@
-<% unless Rails.env.production? %>
-  <p style="color:red">not in production:<br /> use 4242424242424242 for success<br /> 4000000000000002 for declined</p>
-<% end %>
-
   <!-- to display errors returned by createToken -->
   <span class="payment-errors"></span>
   <div class="form-row">
@@ -14,9 +10,9 @@
   </div>
   <div class="form-row">
       <label>Expiration (MM/YYYY)</label>
-      <input type="text" size="2" class="card-expiry-month"/>
+      <input type="text" size="2" class="card-expiry-month span1"/>
       <span> / </span>
-      <input type="text" size="4" class="card-expiry-year"/>
+      <input type="text" size="4" class="card-expiry-year" style="width: 138px"/>
   </div>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script type="text/javascript">
