@@ -1,5 +1,5 @@
 class CrewmanshipsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update]
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy, :update]
   before_filter :find_mission
   # before_filter :eligible_for_new_crewmanship, :only => [:create]
 
@@ -74,6 +74,7 @@ class CrewmanshipsController < ApplicationController
     end
 
     if @crewmanship.save
+      @crewmanship.update_attribute(:role, 'explorer')
       if charge_now
         current_user.update_attributes(:billing_day_of_month => Date.today.day)
         current_user.charge_for_active_crewmanships 

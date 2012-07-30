@@ -1,4 +1,5 @@
 class MissionsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy, :update]
   # GET /missions
   # GET /missions.json
   def index

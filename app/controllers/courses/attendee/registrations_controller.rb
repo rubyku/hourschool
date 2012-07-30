@@ -1,4 +1,5 @@
 class Courses::Attendee::RegistrationsController < ApplicationController
+  before_filter :authenticate_user!
   
   # TODO, validate user has paid
 
@@ -9,6 +10,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
   # end
   def create
     @course = Course.find(params[:course_id])
+    @mission = @course.mission
     @user   = current_user
     @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user, :quantity => params[:role][:quantity])
     if params[:stripeToken].present?
@@ -21,7 +23,11 @@ class Courses::Attendee::RegistrationsController < ApplicationController
 
     if @role.save
       unless @course.free?
-        amount = @role.quantity * @course.price
+        if @user.crewmanships.where(:mission_id => @mission)
+          amount = @role.quantity * @course.price
+        else
+          amount = @role.quantity * (@course.price + 5)
+        end
         fee = amount * 0.029 + 0.30
         total = ((amount + fee) * 100).to_i
         charge = Stripe::Charge.create(
@@ -69,6 +75,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
   def new
     enqueue_warm_facebook_cache
     @course = Course.find(params[:course_id])
+    @mission = @course.mission
     @role = @course.roles.new
 
   end
