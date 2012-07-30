@@ -27,7 +27,7 @@
 
   <div class="mission-status-box">
     <% @crewmanship = @mission.crewmanships.where(:user_id => current_user.id).first %>
-    <% if @crewmanship.status.blank? %>
+    <% if !@crewmanship.role.blank? %>
       <div class="heading11" style="margin-bottom: 20px">
         Mission Crew Badge: <br>
         <%= @crewmanship.role %>
