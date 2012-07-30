@@ -43,8 +43,7 @@ class MissionsController < ApplicationController
   # GET /missions/1/edit
   def edit
     @mission = Mission.find(params[:id])
-
-    render :layout => 'mission_builder'
+    #render :layout => 'mission_builder'
   end
 
   # POST /missions
@@ -66,7 +65,7 @@ class MissionsController < ApplicationController
       if @mission.save
         @mission.crewmanships.create(:user => current_user, :role => 'creator', :status => "trial_active", :trial_expires_at => 30.days.from_now.to_date)
         @mission.update_attribute(:status, 'draft')
-        format.html { render action: "edit", :layout => 'mission_builder' }
+        format.html { redirect_to @mission}
       else
         format.html { render action: "new" }
         format.json { render json: @mission.errors, status: :unprocessable_entity }
@@ -81,7 +80,7 @@ class MissionsController < ApplicationController
 
     respond_to do |format|
       if @mission.update_attributes(params[:mission])
-        format.html { redirect_to @mission, notice: 'Mission is launched!' }
+        format.html { redirect_to @mission}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

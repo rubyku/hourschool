@@ -57,7 +57,7 @@
 
 <% if mission.comments.where(:parent_id => nil).blank? %>
   <div class="well">
-    Seems like no one has left a comment yet. Start building a micro-community around this mission by sharing something you've been working on, a question you have, or simply say hi and introduce yourself!</p>
+    <p>Seems like no one has left a comment yet. Start building a micro-community around this mission by sharing something you've been working on, a question you have, or simply say hi and introduce yourself!</p>
   </div>
 <% else %>
   <% mission.comments.where(:parent_id => nil).where("comment_type = 'note' or comment_type = 'question' or comment_type = 'link' or comment_type = 'photo' or comment_type = 'file'").each do |comment| %>

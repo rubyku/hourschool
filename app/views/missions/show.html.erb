@@ -43,7 +43,7 @@
               <% end %>
             <% else %>
               <div class="well">
-                When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!
+                <p>When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!</p>
               </div>
             <% end %>
           </div>
@@ -60,9 +60,13 @@
                 <div class="crewman-description">
                   <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
                   <%if user.crewmanships.where(:role => "creator").last %>
-                    <span class="label label-info">Mission Creator</span>
-                  <% else user.crewmanships.where(:role => "explorer").last %>
+                    <span class="label">Mission Creator</span>
+                  <% elsif user.crewmanships.where(:role => "explorer").last %>
                     <span class="label">Explorer</span>
+                  <% elsif user.crewmanships.where(:role => "guide").last %>
+                    <span class="label">Guide</span>
+                  <% elsif user.crewmanships.where(:role => "alumni").last %>
+                    <span class="label">Alumni</span>
                   <% end %>
                   <p><%= user.bio %></p>
                 </div>           
@@ -93,7 +97,7 @@
             <div class="mission-divider">
               <div style="font-size: 13px; font-weight: 700">Get personal:</div>
               <p>Nothing beats a personal invitation. Know a buddy who would really enjoy this? Have always wanted to learn from this one girl? Drop them a note!</p>
-              <a class="btn" data-toggle="modal" href="#tinyLetter">Write a tiny letter</a>
+              <a class="btn" data-toggle="modal">Write a tiny letter</a>
             </div>
             <!-- Modal BEGIN -->
             <div class="modal hide" id="tinyLetter">
@@ -194,8 +198,9 @@
           <h3>Topic Details</h3>
         </div>
         <div class="modal-body">              
-          <div class="heading13-class"><%= topic.title %></div>
-          <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">Added by <%= link_to topic.user.name, topic.user %></div>
+          <div class="heading13 brown"><%= topic.title %></div>
+          <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+            Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
           <br>
           <div class="heading11">Related Events:</div><br>
           <% if topic.courses.present? %>
