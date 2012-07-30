@@ -139,14 +139,19 @@
               <p>You have no credit card on file</p>
             <% end %>
 
-            <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
+            <% if current_user.subscription_charges %>
+              <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
+            <% end %>
 
-            <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+            <% if current_user.this_months_billing_date %>
+              <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+            <% end %>
 
             <a class="btn" data-toggle="modal" href="#updateCard">Update credit card</a>
 
             <!-- modal begins -->
-            <div class="modal hide" id="updateCard">              <div class="modal-header">
+            <div class="modal hide" id="updateCard">              
+              <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3>Update credit card details</h3>
               </div>
