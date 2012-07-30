@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727230903) do
+ActiveRecord::Schema.define(:version => 20120730003527) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20120727230903) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "charge",             :default => true
+    t.float    "charge_amount"
+    t.float    "discount"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
@@ -360,6 +363,7 @@ ActiveRecord::Schema.define(:version => 20120727230903) do
     t.integer  "mission_id"
     t.integer  "quantity"
     t.string   "note"
+    t.boolean  "terms_and_conditions"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"
