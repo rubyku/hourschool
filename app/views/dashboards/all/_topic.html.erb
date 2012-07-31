@@ -9,7 +9,13 @@
 <div class="dashboard-feed-body">
   <div class="heading16 adelle" style="margin-bottom: 5px"><%= topic.title %></div>
   <div class="heading9" style="margin-bottom: 30px">New topic posted to <%= link_to "#{topic.mission.verb} #{topic.mission.title}", topic.mission %></div>
-  <div class="left"><%= link_to (image_tag(topic.user.photo.url, :size => "35x35")), topic.user %></div>
+  <div class="left">
+  <% if topic.user.photo.present? %>
+    <%= link_to (image_tag topic.user.photo.url, :size => "35x35"), topic.user %>
+  <% else %>
+    <%= image_tag 'v2/Avatars_01_V1.png', :size => "35x35" %>
+  <% end %>
+  </div>
   <div style="font-size: 11px; margin: 7px 0px 0px 10px">Added by <%= link_to topic.user.name, topic.user %></div>
 </div>
 

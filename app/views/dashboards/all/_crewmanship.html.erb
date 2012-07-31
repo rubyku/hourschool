@@ -1,5 +1,9 @@
 <div class="dashboard-feed-thumbnail">
-  <%= image_tag(crewmanship.user.photo.url, :size => "75x75") %>
+  <% if crewmanship.user.photo.present? %>
+    <%= link_to (image_tag crewmanship.user.photo.url, :size => "75x75"), crewmanship.user %>
+  <% else %>
+    <%= image_tag 'v2/Avatars_01_V1.png', :size => "75x75" %>
+  <% end %>
   <div style="font-size: 9px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
   <% if crewmanship.mission.featured == true %>
     <span class="label">Staff picks</span>

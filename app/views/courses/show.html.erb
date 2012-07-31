@@ -91,7 +91,11 @@
               <div class="mission-divider">
                 <div class="sidebar-heading">Organizer</div>
                 <div class="crewman-photo">
-                  <%= image_tag(@course.teacher.photo.url(:thumb_large)) %>
+                  <% if @course.teacher.photo.present? %>
+                    <%= link_to_avatar(@course.teacher, :thumb_large) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                  <% end %>
                 </div>
                 <div class="crewman-description">
                   <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
@@ -114,7 +118,11 @@
                 <% @course.students.each do |student| %>
                   <div class="mission-divider">             
                     <div class="crewman-photo">
-                      <%= image_tag(student.photo.url(:thumb_large)) %>
+                    <% if student.photo.present? %>
+                      <%= link_to_avatar(student, :thumb_large) %>
+                    <% else %>
+                      <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                    <% end %>
                     </div>
                     <div class="crewman-description">
                       <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to student.name, student %></div>
@@ -216,7 +224,8 @@
                   </div>
                   <div class="actions">
                     <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                    <%= f.hidden_field :invitable_type, :value => "event" %>
+                    <%= f.hidden_field :invitable_type, :value => "course" %>
+                    <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
                     <%= f.submit "Send invite", :class => "btn" %>
                   </div>
                 <% end %>
@@ -237,7 +246,8 @@
                     <%= f.text_field :invitee_email, :placeholder => "example@example.com", :class => "span3" %>
                     <div class="actions">
                       <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                      <%= f.hidden_field :invitable_type, :value => "event" %>
+                      <%= f.hidden_field :invitable_type, :value => "course" %>
+                      <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
                       <%= f.submit "Send invite", :class => "btn" %>
                     </div>
                   </div> 
@@ -253,15 +263,13 @@
               </a>
             </div>
             <div id="collapseThree" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <div class="heading11">Invite friends from Facebook</div>
-                  <% if current_user && current_user.facebook? %>
-                    <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
-                    <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
-                  <% else %>
-                    <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
-                    <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
-                  <% end %>
+              <div class="accordion-inner">                
+                <% if current_user && current_user.facebook? %>
+                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
+                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+                <% else %>
+                  <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
+                <% end %>
               </div>
             </div>
           </div>

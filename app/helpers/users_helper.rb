@@ -1,9 +1,13 @@
 module UsersHelper
 
-
   # avatar_for(@user, :photo_size => :thumb_small) will generate image_tag(@user.photo.url(:thumb_small))
   def avatar_for(user, size = :small, options = {})
-    options[:class]||="avatar-big"
+    if size.is_a?(Hash) 
+      photo_size = size.delete(:size)
+      options    = size.merge(options)
+      size       = photo_size
+    end
+    options[:class]
     if user && user.photo.present?
       return image_tag(user.photo.url(size), options)
     else
@@ -23,6 +27,6 @@ module UsersHelper
 end
 
 
-
+# avatar_for(@user, :size => "75x75")
 # avatar_for(@user, :large)
 # avatar_for(@user)

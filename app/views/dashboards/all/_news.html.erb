@@ -1,31 +1,22 @@
 <style type="text/css">
   a{font-weight: 700;}
   a:hover{text-decoration: none; color: #6a4a3b;}
+
+  .news_text{width: 895px; font-size: 15px; color: #666666; margin-top: 25px;}
 </style>
 
-<div class="full-page">
-  <div style="width: 895px; font-size: 15px; color: #666666;">
-
-    <% if current_user.photo.blank? %>
-      Teachers and event organizers have told us it makes them feel more comfortable when they know who's coming to their events. 
-      <%= link_to "Finish filling out your profile!", edit_user_registration_path %>
-    <% end %>
-
-    <% if current_user.fb_token.blank? %>
-      Learning is more fun with friends. <%= link_to "Connect Facebook",  user_omniauth_authorize_path(:facebook) %> to see what missions your friends are on.
-    <% end %>  
-
-    <% if current_user.crewmanships.blank? %>
-      <%= [
-        %Q{We love our partners. They start really cool missions and support their crews with resources, events, and wisdom galore! #{link_to "Explore our partner schools", partner_schools_path}, and see if you'd like to join!}, 
-        %Q{Start checking things off your life list. #{link_to "Get started by exploring missions.", wall_of_missions_path }},
-        %Q{HourSchool was made by passionate people for passionate people. #{link_to "Check out our founding story.", about_path }},
-        %Q{Awesome is as awesome does. #{link_to "Check out and congratulate others ", wall_of_awesome_path} in your community on missions well done! }
-        ].sample.html_safe %>
-
-    <% end %>
-
-
-
-  </div>
+<div class="full-page" style="margin-top: 25px">
+  <% if current_user.photo.blank? %>
+    <div class="news_text">Teachers and event organizers have told us it makes them feel more comfortable when they know who's coming to their events. <%= link_to "Finish filling out your profile!", edit_user_registration_path %></div>
+  <% elsif current_user.fb_token.blank? %>
+    <div class="news_text">Learning is more fun with friends. <%= link_to "Connect Facebook",  user_omniauth_authorize_path(:facebook) %> to see what missions your friends are on.</div>
+  <% elsif current_user.crewmanships.blank? %>
+    <div class="news_text"><%= [
+      %Q{We love our partners. They start really cool missions and support their crews with resources, events, and wisdom galore! #{link_to "Explore our partner schools", partner_schools_path}, and see if you'd like to join!}, 
+      %Q{Start checking things off your life list. #{link_to "Get started by exploring missions.", wall_of_missions_path }},
+      %Q{HourSchool was made by passionate people for passionate people. #{link_to "Check out our founding story.", about_path }},
+      %Q{Awesome is as awesome does. #{link_to "Check out and congratulate others ", wall_of_awesome_path} in your community on missions well done! }
+      ].sample.html_safe %>
+    </div>
+  <% end %>
 </div>

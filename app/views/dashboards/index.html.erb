@@ -2,7 +2,7 @@
   a{color:#6a4a3b ;}
 </style>
 
-<div class="heading28 brown" style="margin-bottom: 25px">
+<div class="heading28 brown">
   Welcome back, <%= current_user.name.split(" ").first %>!
 </div>
 <%= render 'dashboards/all/news' %>
@@ -59,22 +59,46 @@
 
 <div class="white right page-sidebar">
   <div class="sidebar-content-white">
-  <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
-    <% current_user.missions.where(:status => "live").each do |mission| %>
-      <div class="mission-divider">
-        <div class="heading16 adelle"><%= link_to "#{mission.verb} #{mission.title}", mission, :style => "font-weight: 400"  %></div><br>
-      </div>
-    <% end %>
-
-  <% if current_user.missions.where(:status => "draft").present? %>
-    <div class="heading11" style="margin-bottom: 20px">My draft missions:</div>
-      <% current_user.missions.where(:status => "draft").each do |mission| %>
+    <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? %>
+      <div class="heading11" style="margin-bottom: 20px">Events I am organizing:</div>
+      <% current_user.courses_taught.where("starts_at > (?)", Date.today).each do |course| %>
         <div class="mission-divider">
-          <div class="heading16 adelle"><%= link_to "#{mission.verb} #{mission.title}", mission, :style => "font-weight: 400"  %></div><br>
+          <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400"  %></div><br>
         </div>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+
+    <% if current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
+      <div class="heading11" style="margin-bottom: 20px">Events I am attending:</div>
+      <% current_user.courses_attended.where("starts_at > (?)", Date.today).each do |course| %>
+        <div class="mission-divider">
+          <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400"  %></div><br>
+        </div>
+      <% end %>  
+    <% end %>
+  </div>
+</div>
+
+<div class="white right page-sidebar">
+  <div class="sidebar-content-white">
+    <% if current_user.missions.where(:status => "live").present? %>
+      <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
+      <% current_user.missions.where(:status => "live").each do |mission| %>
+        <div class="mission-divider">
+          <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div><br>
+        </div>
+      <% end %>
+    <% end %>
+
+    <% if current_user.missions.where(:status => "draft").present? %>
+      <div class="heading11" style="margin-bottom: 20px">My draft missions:</div>
+      <% current_user.missions.where(:status => "draft").each do |mission| %>
+        <div class="mission-divider">
+          <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div><br>
+        </div>
+      <% end %>  
+    <% end %>
+  </div>
 </div>
 
 
