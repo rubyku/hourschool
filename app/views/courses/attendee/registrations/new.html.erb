@@ -38,6 +38,8 @@
 
       <% if @course.free? %>
         Course is free
+      <% elsif @course.mission.blank? %>
+        Price per ticket: <%= number_to_currency @course.price %>
       <% else %>
         <table>
           <% if current_user.crewmanships.where(:mission_id => @mission) == true %>
@@ -48,7 +50,7 @@
           <% else %>
           <tr>
             <td>Non-member price per ticket: </td>
-            <td><%= number_to_currency @course.price %> (<%= link_to "Join membership today", new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship) %>)</td>
+            <td><%= number_to_currency @course.price %> (<%= link_to "Join membership today", new_mission_crewmanship_path(:mission_id => @mission.id) %>)</td>
           </tr>
         <% end %>
         <tr>

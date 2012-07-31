@@ -133,7 +133,7 @@ class ApplicationController < ActionController::Base
 
 
     def after_sign_in_path_for(resource)
-      previous_path_or(explore_path)
+      previous_path_or(dashboards_path)
     end
 
 end

@@ -24,4 +24,5 @@ end
 
 
 
-# avatar_for(@user, :small)
+# avatar_for(@user, :large)
+# avatar_for(@user)

@@ -12,7 +12,7 @@
     <% end %>
 
     <% if current_user.fb_token.blank? %>
-      Learning is more fun with friends. <%= link_to "Connect Facebook", "" %> to see what missions your friends are on.
+      Learning is more fun with friends. <%= link_to "Connect Facebook",  user_omniauth_authorize_path(:facebook) %> to see what missions your friends are on.
     <% end %>  
 
     <% if current_user.crewmanships.blank? %>
