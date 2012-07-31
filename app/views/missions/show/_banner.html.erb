@@ -36,7 +36,7 @@
     <% end %>
 
     <% if @crewmanship.blank? %>
-      <%= link_to 'I want to accomplish this too!', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "btn btn-inverse" %>
+      <%= link_to 'I want to accomplish this too!', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "btn btn-inverse", :style => "color: white" %>
     <% else %>
       <%= link_to 'Manage my crewmanship', mission_crewmanship_path(:mission_id => @mission.id, :id => @crewmanship), :class => "btn" %>
     <% end %>

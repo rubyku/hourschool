@@ -14,7 +14,7 @@
 </style>
 
 <div class="page-sidebar left" style="width: 243px; margin-right: 27px; border: 0px">
-  <%= image_tag(@user.photo.url, :size => :thumb_large) %>
+  <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") %>
 
   <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 230px">
     <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 110px;" %>

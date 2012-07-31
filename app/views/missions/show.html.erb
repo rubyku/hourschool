@@ -29,16 +29,23 @@
               <p style="float: left; width: 420px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
             </div>
             <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
-            <br><br><br><br>
+            <br><br><br><br><hr>
             <% if @courses.present? %>
               <% @courses.each do |course| %>
                 <div class="mission-divider">
-                  <%= link_to course.title, course, :class => "heading20" %><br>
-                   Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-                  <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+                  <%= link_to course.title, course, :class => "heading16 adelle" %><br>
+                  <% if course.teacher.present? %>
+                    Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+                  <% end %>
+                  <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
+                  <div style="margin-bottom: 5px; margin-right: 25px; float: left">
+                    <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
+                    <%= "#{course.city.name}, #{course.city.state}" %><br>
+                  </div>
+                      
+                  <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
                   <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
-                  <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 3px; margin-left: 30px" %>
-                  <%= course.place_name %>
+                  <br>
                 </div>
               <% end %>
             <% else %>
