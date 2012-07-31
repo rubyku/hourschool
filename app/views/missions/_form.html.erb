@@ -1,3 +1,19 @@
+<style type="text/css">
+  select {
+    width: 140px;
+    border: 1px solid #bbb;
+    float: left;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-family: futura-pt-1, futura-pt-2;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    letter-spacing: 0.2em;
+    line-height: 20px;
+  }
+</style>
+
 <%= form_for(@mission) do |f| %>
   <% if @mission.errors.any? %>
     <div id="error_explanation">
@@ -11,13 +27,11 @@
   <% end %>
 
 
-  <div style="text-transform: uppercase; font-size: 20px; font-weight: 700; font-family: futura-pt-1, futura-pt-2; letter-spacing: 0.15em;">
-    <span style="color: #333">I want to:</span>
-    <%= f.select :verb, ['Build', 'Make', 'Create', 'Grow', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'] , :style => "color: #ff7733" %>
-  </div>
-
+  <div class="heading14" style="color: #333; float: left; margin-right: 5px; margin-top: 3px">I want to</div>
+  <%= f.select :verb, ['Build', 'Make', 'Create', 'Learn', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'] %>
+  
   <div class="field">
-    <%= f.text_field :title, :class => "form" %>
+    <%= f.text_field :title, :class => "form heading14", :style => "width: 282px; margin-top: -1px; margin-bottom: 20px" %>
   </div>
 
   <div class="actions">

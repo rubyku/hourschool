@@ -175,20 +175,99 @@
 
     <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px; padding-bottom: 30px">
       <div class="sidebar-content-white">
-       <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
-          Invite and rally
-       </div>
-       <p class="confirm">Learning is more fun with friends. If you already know people that are interested, get a head start and let them know!</p>
-        <div class="heading11">Invite friends from Facebook</div>
-        <% if current_user && current_user.facebook? %>
-          <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
-          <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
-        <% else %>
-          <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
-          <%= render :partial => 'users/facebook/connect_button' %>
-        <% end %>
+       <p class="confirm">Learning is more fun with friends. If you know people that would be interested in his event, invite them!</p>
+      
+        <div class="accordion" id="accordion2">
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                <div class="heading11">Invite an HourSchool user</div>
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse in">
+              <div class="accordion-inner">
+                <%= form_for(@invite) do |f| %>
+                  <div class="field">
+                    <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "span3", :autocomplete => "off" %>
+                    <%= f.hidden_field :invitee_id %>
+                    <script type="text/javascript">
+                    $('#userSearch').typeahead({
+                      source: function(typeahead, query) {
+                        var _this = this;
+                        return $.ajax({
+                          url: "<%= search_users_path(:format => :json) %>?q=" + query,
+                          success: function(data) {
+                            return typeahead.process(data);
+                          }
+                        });
+                      },
+                      property: "name",
+                      onselect: function (obj) {
+                        if (obj.id == 0) {
+                          $('#invite_invitee_email').focus()
+                        } else {
+                          $('#invite_invitee_id').val(obj.id);
+                        }
+                      }
+                    });
+                    </script>
+                  </div>
+                  <div class="actions">
+                    <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
+                    <%= f.hidden_field :invitable_type, :value => "event" %>
+                    <%= f.submit "Send invite", :class => "btn" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                <div class="heading11">Invite by email</div>
+              </a>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= form_for(@invite) do |f| %>
+                  <div class="field" id="invite_by_email">
+                    <%= f.text_field :invitee_email, :placeholder => "example@example.com", :class => "span3" %>
+                    <div class="actions">
+                      <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
+                      <%= f.hidden_field :invitable_type, :value => "event" %>
+                      <%= f.submit "Send invite", :class => "btn" %>
+                    </div>
+                  </div> 
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                <div class="heading11">Invite by Facebook</div>
+              </a>
+            </div>
+            <div id="collapseThree" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <div class="heading11">Invite friends from Facebook</div>
+                  <% if current_user && current_user.facebook? %>
+                    <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
+                    <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+                  <% else %>
+                    <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
+                    <%= render :partial => 'users/facebook/connect_button' %>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div><!-- end sidebar container -->
 
 <% end %>

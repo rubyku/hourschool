@@ -74,14 +74,14 @@ class CrewmanshipsController < ApplicationController
     end
 
     if @crewmanship.save
-      @crewmanship.update_attribute(:role, 'explorer')
+      @crewmanship.update_attributes(:role => 'explorer')
       if charge_now
         current_user.update_attributes(:billing_day_of_month => Date.today.day)
         current_user.charge_for_active_crewmanships 
       end
       redirect_to @mission, notice: 'You have joined this mission!'
     else
-      render action: "new"
+      redirect_to @mission, notice: 'We are unable to create the membership for you. Please contact hello@hourschool.com for assistance.'
     end
   end
 

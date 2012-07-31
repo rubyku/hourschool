@@ -7,8 +7,8 @@
 </div>
 
 <div class="dashboard-feed-body">
-  <div class="heading16 adelle"><%= course.title %></div>
-  <div class="heading9">Event posted to <%= "#{course.mission.verb} #{course.mission.title}" %></div>
+  <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400" %></div>
+  <div class="heading9">Event posted to <%= link_to "#{course.mission.verb} #{course.mission.title}", course.mission %></div>
   <p><%= course.description %></p>
   <div style="margin-bottom: 5px">
   <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>

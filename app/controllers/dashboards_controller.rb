@@ -55,7 +55,7 @@ private
   end
 
   def feed_query_items_for_mission
-    mission_ids      = current_user.missions.map(&:id) + [-1]
+    mission_ids      = current_user.missions.where(:status => "live").map(&:id) + [-1]
     comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
     courses          = Course.where(:mission_id => mission_ids)
     topics           = Topic.where(:mission_id => mission_ids)

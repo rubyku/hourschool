@@ -1,9 +1,13 @@
 <div class="full-page white">
-  <div class="page-content">
+  <div class="page-content" style="margin-bottom: -30px">
     <center>
       <div class="heading32" style="margin-bottom: 15px">Put yourself on the Wall of Awesome</div>
         <div style="width: 800px"><p>Aw snap, you did it! Go ahead, crack open a beer, cheers yourself, make a toast to accomplishment. You deserve it!  We’d like to officially congratulate you ourselves. Take some time to reflect, share insights into your experience, and of course, upload a photo of yourself for our wall of awesome. Here’s to you! </p>
-        <a class="orange button long" data-toggle="modal" href="#newMission">Add my awesome photo</a>
+        <span class="badge badge-info" style="margin-right: 5px">1</span>
+        <%= link_to "Print mission certificate", 'v3/pages/mission_certificate.jpg', :class => "yello button long",  :style => "margin-right: 15px" %>
+        <a class="yellow button long" data-toggle="modal" href="v3/homepage/background-2.png" style="margin-right: 15px">Print mission certificate</a>
+        <span class="badge badge-info" style="margin-right: 5px">2</span>
+        <a class="yellow button long" data-toggle="modal" href="#newMission">Add my awesome photo</a>
       </div>
     </center>
   </div>
@@ -11,10 +15,10 @@
 
 <div style="float: left;">
   <div style="float: left;">
-    <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 10px" %>
+    <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 28px" %>
     <%= image_tag 'v3/homepage/mission-accomplished-2.png' %> 
     <%= image_tag 'v3/homepage/mission-accomplished-3.png', :style => "margin-top: 15px; margin-bottom: 15px" %> 
-    <%= image_tag 'v3/homepage/mission-accomplished-4.png', :style => "margin-right: 10px;" %> 
+    <%= image_tag 'v3/homepage/mission-accomplished-4.png', :style => "margin-right: 20px;" %> 
     <%= image_tag 'v3/homepage/mission-accomplished-5.png' %> 
     <%= image_tag 'v3/homepage/mission-accomplished-6.png', :style => "margin-top: 15px"  %>     
   </div>

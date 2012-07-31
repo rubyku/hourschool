@@ -65,6 +65,7 @@ class MissionsController < ApplicationController
       if @mission.save
         @mission.crewmanships.create(:user => current_user, :role => 'creator', :status => "trial_active", :trial_expires_at => 30.days.from_now.to_date)
         @mission.update_attribute(:status, 'draft')
+        @mission.update_attribute(:featured, false)
         format.html { redirect_to @mission}
       else
         format.html { render action: "new" }

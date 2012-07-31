@@ -58,14 +58,14 @@
                   <%= image_tag(user.photo.url(:thumb_large)) %>
                 </div>
                 <div class="crewman-description">
-                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
-                  <%if user.crewmanships.where(:role => "creator").last %>
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to user.name, user %></div>
+                  <%if user.crewmanships.where(:role => "creator", :mission_id => @mission).last %>
                     <span class="label">Mission Creator</span>
-                  <% elsif user.crewmanships.where(:role => "explorer").last %>
+                  <% elsif user.crewmanships.where(:role => "explorer", :mission_id => @mission).last %>
                     <span class="label">Explorer</span>
-                  <% elsif user.crewmanships.where(:role => "guide").last %>
+                  <% elsif user.crewmanships.where(:role => "guide", :mission_id => @mission).last  %>
                     <span class="label">Guide</span>
-                  <% elsif user.crewmanships.where(:role => "alumni").last %>
+                  <% elsif user.crewmanships.where(:role => "alumni", :mission_id => @mission).last  %>
                     <span class="label">Alumni</span>
                   <% end %>
                   <p><%= user.bio %></p>
@@ -85,7 +85,7 @@
 
             <div class="mission-divider">
               <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
-              <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of like's and share's.</p>
+              <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of likes and shares.</p>
               <a class="btn" data-toggle="modal" href="#inviteFB">Invite from Facebook</a>
             </div>
 

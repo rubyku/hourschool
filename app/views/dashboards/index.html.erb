@@ -7,7 +7,7 @@
 </div>
 <%= render 'dashboards/all/news' %>
 
-<div class="page-main white">
+<div class="page-main white" style="min-height: 800px">
   <div style="padding: 18px">
 
   <div class="mission-divider"> 
@@ -39,20 +39,44 @@
   <div class="sidebar-content-white">
     <div class="heading11" style="margin-bottom: 20px">Get started here</div>
     <div class="mission-divider">
-      <div class="heading16 adelle">Wall of Missions</div>
+      <div class="heading16 adelle"><%= link_to "Wall of Missions", wall_of_missions_path, :style => "font-weight: 400" %></div>
       <p>Discover the new passion you never knew you had.</p>
     </div>
     <div class="mission-divider">
-      <div class="heading16 adelle">Wall of Awesome</div>
-      <p>Congratulate those who had a mission accomlished.</p>
+      <div class="heading16 adelle"><%= link_to "Wall of Awesome", wall_of_awesome_path,:style => "font-weight: 400" %></div>
+      <p>Congratulate those who had a mission accomplished.</p>
     </div>
     <div class="mission-divider">      
-      <div class="heading16 adelle">Partner Schools</div>
+      <div class="heading16 adelle"><%= link_to "Partner Schools", partner_schools_path, :style => "font-weight: 400" %></div>
       <p>We collaborate with great peopele doing great things.</p>      
     </div>
     <div class="mission-divider">      
-      <div class="heading16 adelle">HourSchool Philosophy</div>
+      <div class="heading16 adelle"><%= link_to "HourSchool Philosophy", about_path, :style => "font-weight: 400" %></div>
       <p>We believe in giving people a place to give and to grow.</p>      
     </div>  
   </div>
 </div>
+
+<div class="white right page-sidebar">
+  <div class="sidebar-content-white">
+  <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
+    <% current_user.missions.where(:status => "live").each do |mission| %>
+      <div class="mission-divider">
+        <div class="heading16 adelle"><%= link_to "#{mission.verb} #{mission.title}", mission, :style => "font-weight: 400"  %></div><br>
+      </div>
+    <% end %>
+
+  <% if current_user.missions.where(:status => "draft").present? %>
+    <div class="heading11" style="margin-bottom: 20px">My draft missions:</div>
+      <% current_user.missions.where(:status => "draft").each do |mission| %>
+        <div class="mission-divider">
+          <div class="heading16 adelle"><%= link_to "#{mission.verb} #{mission.title}", mission, :style => "font-weight: 400"  %></div><br>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

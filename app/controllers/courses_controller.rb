@@ -43,6 +43,10 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @current_course = @course
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
   end
 
   def update

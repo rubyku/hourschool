@@ -77,18 +77,20 @@
     })
   </script>
 
-  <div class="full-page white">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
-      <% if current_user.stripe_customer %>
-        <p>The following will be charged to your credit card on file: </p>
-        <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
-        (<%= link_to "Updated credit card", edit_user_registration_path %>)
-      <% else %>
-        <%= render :partial => 'subscription_charges/credit_card_fields' %>
-      <% end %>
+  <% if !@course.free? %>
+    <div class="full-page white">
+      <div class="page-content">
+        <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
+        <% if current_user.stripe_customer %>
+          <p>The following will be charged to your credit card on file: </p>
+          <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
+          (<%= link_to "Updated credit card", edit_user_registration_path %>)
+        <% else %>
+          <%= render :partial => 'subscription_charges/credit_card_fields' %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="full-page white">
     <div class="page-content">

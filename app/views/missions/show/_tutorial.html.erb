@@ -1,7 +1,8 @@
 <% if @mission.creator == current_user %>
   <% if @mission.status == 'draft' %>
     <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px">
-       <h4 class="alert-heading" style="color: black; float: left">Mission status: </h4> <%= @mission.status %>
+       <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4> 
+       <span class="label label-inverse"><%= @mission.status %></span>
       <%= link_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn right", :method => :put %>
       <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
     </div>
@@ -10,10 +11,10 @@
   <div class="alert" style="background-color: white; color: black; border: 1px solid white">
     <a class="close" data-dismiss="alert" href="#">×</a>
     <% if @mission.status == 'draft' %>
-      <h4 class="alert-heading" style="color: black">SOME TIPS AND TRICKS TO HELP YOU BUILD YOUR MISSION</h4>
-      <p>Follow these steps and you'll be on your way to build a successful mission and achieve your goal!</p>
+      <h4 class="alert-heading" style="color: black; text-decoration: uppercase">OK! We've created your mission; it's in draft mode.</h4>
+      <p>Follow these steps and when you are ready, launch your mission!</p>
     <% else %>
-      <h4 class="alert-heading" style="color: black; text-decoration: uppercase">Your mission is now live!</h4>
+      <h4 class="alert-heading" style="color: black; text-decoration: uppercase">Your mission has been launched!</h4>
       <p>You can still add to your mission anytime. Remember, a mission is an on-going journey.</p>
     <% end %>
     <br>
@@ -33,7 +34,7 @@
       <% if @mission.comments.present? %>
         <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
       <% else %>
-        <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
+        <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
       <% end %>
 
       <% if @mission.courses.present? %>
@@ -71,6 +72,7 @@
 
       <div class="field">
         <%= f.label :photo, 'Upload a photo that represent your mission' %>
+        <div class="heading9">Optimal dimensions are 959px x 349px</div>
         <%= f.file_field :photo %>
         <%= image_tag(@mission.photo, :size => "384x144") if @mission.photo.present? %>
       </div>

@@ -7,7 +7,7 @@
 </div>
 
 <div class="dashboard-feed-body">
-  <% if crewmanship.user.crewmanships.where(:role => "creator").last %>
+  <% if crewmanship.user.crewmanships.where(:role => "creator", :mission_id => crewmanship.mission).last %>
     <div style="margin-bottom: 10px">
    		<%= link_to crewmanship.user.name, crewmanship.user %> created the mission <%= link_to "#{crewmanship.mission.verb} #{crewmanship.mission.title}", crewmanship.mission %>
     </div>

@@ -1,24 +1,95 @@
+<style type="text/css">
+  .mission-stats-16{
+    position: relative; 
+    z-index: 100; 
+    margin-top: 8px; 
+    margin-left: 55px; 
+    font-weight: 700;
+  }
+
+  a{color: #6a4a3b;}
+  a:visited{color: #6a4a3b;}
+  a:hover{color: #6a4a3b;}
+  a:active{color: #6a4a3b;}
+</style>
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>
-  Mission Name:
-  <%= @crewmanship.mission.title %>
+  Mission:
+  <%= "#{@crewmanship.mission.verb} #{@crewmanship.mission.title.downcase}" %>
 </h1><br>
 
 <div class="page-main white">
-  <div class="page-content">
-    <div class="well">
-      <h3>Stats</h3>
-      <p>Mission Crew Badge: <%= @crewmanship.role %></p>
-      <p>Joined mission on: <%= @crewmanship.created_at.strftime("%b %d, %Y") %></p>
-      <p>Days on mission: <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %></p>
-      <p>Comments made: <%= @crewmanship.mission.comments.count %></p>
-      <p>Events organized: <%= @crewmanship.user.courses_taught.where(:mission_id => @mission).count %></p>
-      <p>Events attended: <%= @crewmanship.user.courses_attended.where(:mission_id => @mission).count %></p>
-      <p>Topics created: <%= @crewmanship.mission.topics.count %></p>
-      <a class="btn">Reveal begin letter</a><br><br>
-    </div>
-  </div>
+  <div style="padding: 10px">
+
+
+        <div style="float: left; margin-right: 10px">
+          <% if @crewmanship.role == 'explorer' %>
+            <%= image_tag 'v3/badge-explorer.png' %>
+          <% elsif @crewmanship.role == 'guide' %>
+            <%= image_tag 'v3/badge-guide.png' %>
+          <% elsif @crewmanship.role == 'creator' %>
+            <%= image_tag 'v3/badge-creator.png' %>
+          <% elsif @crewmanship.role == 'alumni' %>
+            <%= image_tag 'v3/badge-alumni.png' %>
+          <% end %>
+        </div>
+
+        <div style="float: left; width: 472px;">
+
+          <div style="float: left; margin: 0px 20px 20px 0px">
+            
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">joined on</div>
+            <%= image_tag 'v3/stats-joined-mission.png', :style => "margin-top: -44px" %>
+          </div>
+
+          <div style="float: left; margin: 0px 20px 20px 0px">
+            <div class="heading16 futura mission-stats-16">
+              <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
+            <%= image_tag 'v3/stats-mission-days.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left;">
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.mission.comments.where(:user_id => @user).count %>
+            </div>  
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
+            <%= image_tag 'v3/stats-comments-made.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left; margin: 0px 20px 20px 0px">  
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.user.courses_taught.where(:mission_id => @crewmanship.mission).count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">events hosted</div>
+            <%= image_tag 'v3/stats-events-organized.png', :style => "margin-top: -44px" %>
+          </div>
+
+          <div style="float: left; margin: 0px 20px 20px 0px">                    
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.user.courses_attended.where(:mission_id => @crewmanship.mission).count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
+            <%= image_tag 'v3/stats-events-attended.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left;">
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.mission.topics.count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
+            <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 
+          </div>
+        </div>
+ 
+   </div>
 </div>
 
 <div class="white right page-sidebar">

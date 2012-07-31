@@ -21,13 +21,13 @@
       <%= f.hidden_field :comment_type, :value => "note" %>
       <div class="tab-content">
         <div class="tab-pane active" id="comment-note">
-          <%= f.text_area    :body,      :placeholder => "I've been working on...", :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
+          <%= f.text_area    :body,      :placeholder => "Share what you've been working on!", :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
         </div>     
         <div class="tab-pane" id="comment-question">
-          <%= f.text_area    :body,      :placeholder => "I'm stuck on...", :class => "form-med-with-margin", 'data-comment_type' => 'question' %>
+          <%= f.text_area    :body,      :placeholder => "Have you been stuck on something?", :class => "form-med-with-margin", 'data-comment_type' => 'question' %>
         </div>
         <div class="tab-pane" id="comment-link">
-          <%= f.text_area    :body,      :placeholder => "Hey check out HourSchool: www.hourschool.com", :class => "form-med-with-margin", 'data-comment_type' => 'link' %>
+          <%= f.text_area    :body,      :placeholder => "Share a link", :class => "form-med-with-margin", 'data-comment_type' => 'link' %>
         </div>
         <div class="tab-pane" id="comment-photo">
           <p>Upload a photo from your computer</p>
