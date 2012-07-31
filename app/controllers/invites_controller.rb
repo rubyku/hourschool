@@ -47,6 +47,16 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
+        if @invite.invitable_type.downcase == "mission"
+          # send email here
+        elsif @invite.invitable_type.downcase == "course"
+          if @invite.invitee_id.present?
+            UserMailer.invite_user_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
+          else 
+            UserMailer.invite_nonuser_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
+          end 
+        end
+        
         format.html { redirect_to :back, notice: 'Invite was successfully sent.' }
         format.json { render json: @invite, status: :created, location: @invite }
       else
