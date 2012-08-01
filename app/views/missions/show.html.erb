@@ -71,7 +71,11 @@
             <% @users.each do |user| %>
               <div class="mission-divider">             
                 <div class="crewman-photo">
-                  <%= image_tag(user.photo.url(:thumb_large)) %>
+                  <% if user.photo.present? %>
+                    <%= link_to_avatar(user, :thumb_large) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                  <% end %>
                 </div>
                 <div class="crewman-description">
                   <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to user.name, user %></div>
