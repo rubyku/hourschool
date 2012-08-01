@@ -85,8 +85,11 @@
         <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
         <% if current_user.stripe_customer %>
           <p>The following will be charged to your credit card on file: </p>
-          <p><%= current_user.stripe_customer.active_card.type %> ending in ****-****-****-<%= current_user.stripe_customer.active_card.last4 %></p>
-          (<%= link_to "Updated credit card", edit_user_registration_path %>)
+          <p>
+            <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
+            ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
+          </p>
+          (<%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal' %>)
         <% else %>
           <%= render :partial => 'subscription_charges/credit_card_fields' %>
         <% end %>
@@ -107,3 +110,19 @@
   </div>
   <p><%= f.submit 'Continue registration', :class => "btn" %></p>
 <% end %>
+
+<div id="updateCard" class="modal hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Update Credit Card</h3>
+  </div>
+  <%= form_for(:current_user, :url => update_card_user_path(:current), :remote => true, :method => :put) do |f| %>
+    <div class="modal-body">
+      <%= render :partial => 'subscription_charges/credit_card_fields' %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit 'Update Card', :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

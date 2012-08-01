@@ -115,4 +115,15 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def update_card
+    @user = current_user
+    if params[:stripeToken].present?
+      stripe_customer = @user.stripe_customer
+      stripe_customer.card = params[:stripeToken]
+      stripe_customer.save
+    end
+
+    render :layout => false
+  end
 end

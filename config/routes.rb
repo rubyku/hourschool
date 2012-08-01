@@ -89,6 +89,7 @@ HourschoolV2::Application.routes.draw do
     resources :followings
     member do
       put 'make_admin'
+      put 'update_card'
     end
     collection do
       get 'new_invite'
