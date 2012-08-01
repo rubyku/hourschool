@@ -103,7 +103,7 @@
               <a class="btn" data-toggle="modal" href="#inviteFB">Invite from Facebook</a>
             </div>
             <!-- Modal BEGIN -->
-            <div class="modal hide" id="tinyLetter">
+            <div class="modal hide" id="inviteFB">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3>Invite from Facebook</h3>
@@ -156,9 +156,10 @@
               <div class="modal hide" id="addRallyTool">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h3>Upload the tools you've used in the past, like flyers or promotional handouts, so your crew can leverage them. We recommend .pdf files. </h3>
+                  <h3>Share your tool</h3>
                 </div>
-                <div class="modal-body">                
+                <div class="modal-body">  
+                  <p>Upload the tools you've used in the past, like flyers or promotional handouts, so your crew can leverage them. We recommend .pdf files. </p>              
                   <% if current_user %>
                     <%= form_for @mission.comments.new do |f| %>
                       <%= f.hidden_field :mission_id, :value => @mission.id %>
