@@ -3,7 +3,7 @@ class Crewmanship < ActiveRecord::Base
   belongs_to :mission
   belongs_to :user
 
-  validates :mission_id,   :presence => true, :uniqueness => { :scope => :mission_id }
+  validates :user_id, :presence => true, :uniqueness => { :scope => :mission_id }
 
   def self.default_price
     10.00
