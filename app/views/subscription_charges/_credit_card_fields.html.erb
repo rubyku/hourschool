@@ -25,44 +25,33 @@
         if (response.error) {
           // show the errors on the form
           $(".payment-errors").text(response.error.message);
-          f.find('[type=submit]').removeAttr("disabled");
-        } else {
-          // insert the token into the form so it gets submitted to the server
-          f.append("<input type='hidden' name='stripeToken' value='" + response['id'] + "'/>");
 
-          // update display of card type and number on this page
-          $('#updatable-card-type').text(response['card']['type']);
-          $('#updatable-card-last4').text(response['card']['last4']);
+          $(".submit-button").removeAttr("disabled");
+      } else {
+          var form$ = $("form");
+          // token contains id, last4, and card type
+         var token = response['id'];
+         // insert the token into the form so it gets submitted to the server
+         form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+         // and submit
 
-          // and submit
-          f.submit();
-        }
-      }
+         form$.get(0).submit();
+     }
+  }
 
-    $(document).ready(function() {
-      var form = $('.card-number').parents('form');
+  $(document).ready(function() {
+    $("form#submitCreditCard").submit(function(event) {
+      // disable the submit button to prevent repeated clicks
+      $('form#submitCreditCard [type=submit]').attr("disabled", "disabled");
 
-      form.submit(function(event) {
-        if (form.find('[name=stripeToken]').length > 0) {
-          // looks like we already got a token
-          // proceed with normal submit flow
-          return true;
-        } else {
-          // need to call out to stripe for token
+      Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.Hcard-expiry-year').val()
+      }, stripeResponseandler);
 
-          // disable the submit button to prevent repeated clicks
-          form.find('[type=submit]').attr("disabled", "disabled");
-
-          Stripe.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-          }, stripeResponseHandler);
-
-          // prevent the form from submitting with the default action
-          return false;
-        }
-      });
+      // prevent the form from submitting with the default action
+      return false;
     });
   </script>

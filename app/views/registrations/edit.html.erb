@@ -12,80 +12,80 @@
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
             <div class="clearfix">
               <div class="grid_8" style="margin-left: 0px">
-              <p>
-               <%= f.label :name, 'Full Name', :class => "form-question" %><br />
-               <%= f.text_field :name, :class => "form-short-edit-profile" %>
-              </p>
-              <br><br>
-              <p>
-               <%= f.label :email, 'Email', :class => "form-question" %><br />
-               <%= f.text_field :email, :class => "form-short-edit-profile" %>
-              </p>
-              <br><br>
-              <p>
-                <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
-                <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
-                <%= f.hidden_field :city_id %>
-              </p>
+                <p>
+                 <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+                 <%= f.text_field :name, :class => "form-short-edit-profile" %>
+                </p>
+                <br><br>
+                <p>
+                 <%= f.label :email, 'Email', :class => "form-question" %><br />
+                 <%= f.text_field :email, :class => "form-short-edit-profile" %>
+                </p>
+                <br><br>
+                <p>
+                  <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
+                  <%= text_field_tag :citySearch, @user.city.try(:name), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
+                  <%= f.hidden_field :city_id %>
+                </p>
 
-              <script type="text/javascript">
-              $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-              $('#citySearch').typeahead({
-                source: function(typeahead, query) {
-                  var _this = this;
-                  return $.ajax({
-                    url: "<%= cities_path(:format => :json) %>?q=" + query,
-                    success: function(data) {
-                      return typeahead.process(data);
+                <script type="text/javascript">
+                  $("ul.typeahead.dropdown-menu").find('li.active').data('value')
+                  $('#citySearch').typeahead({
+                    source: function(typeahead, query) {
+                      var _this = this;
+                      return $.ajax({
+                        url: "<%= cities_path(:format => :json) %>?q=" + query,
+                        success: function(data) {
+                          return typeahead.process(data);
+                        }
+                      });
+                    },
+                    property: "name",
+                    onselect: function (obj) {
+                      $('#user_city_id').val(obj.id);
                     }
                   });
-                },
-                property: "name",
-                onselect: function (obj) {
-                  $('#user_city_id').val(obj.id);
-                }
-              });
-              </script>
+                </script>
 
-              <br><br>
+                <br><br>
 
-              <p>
-               <%= f.label :web, 'Website', :class => "form-question"  %><br />
-               <%= f.text_field :web, :class => "form-short-edit-profile"   %>
-              </p>
+                <p>
+                 <%= f.label :web, 'Website', :class => "form-question"  %><br />
+                 <%= f.text_field :web, :class => "form-short-edit-profile"   %>
+                </p>
 
-              <p>
-               <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
-               <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
-              </p>
-              <br><br>
+                <p>
+                 <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
+                 <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
+                </p>
+                <br><br>
 
-              <p>
-                <% unless current_user.facebook? || current_account %>
-                  <%= render :partial => 'users/facebook/connect_button' %>
-                <%- end -%>
-              </p>
+                <p>
+                  <% unless current_user.facebook? || current_account %>
+                    <%= render :partial => 'users/facebook/connect_button' %>
+                  <%- end -%>
+                </p>
 
-              <p>
-               <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
-               <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
-              </p>
+                <p>
+                 <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
+                 <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
+                </p>
 
+              </div>
+
+              <div class="grid_7">
+                <p>
+                <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+                <% if current_user.photo.present? %>
+                  <%= image_tag current_user.photo.url(:small) %>
+                <% end %>
+                <%= f.file_field :photo %>
+                </p>
+                <br><br>
             </div>
-
-            <div class="grid_7">
-              <p>
-              <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-              <% if current_user.photo.present? %>
-                <%= image_tag current_user.photo.url(:small) %>
-              <% end %>
-              <%= f.file_field :photo %>
-              </p>
-              <br><br>
             </div>
-          </div>
-          <br>
-          <%= f.submit "Update", :class => "btn" %>    
+            <br />
+            <%= f.submit "Update", :class => "btn" %>    
           <% end %>
         </div><!-- end page-content -->
       </div><!-- end full-page -->
@@ -129,7 +129,7 @@
 
             <% else %>             
               <p>You can use your credit card to pay to join missions or attend events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => 'submitCreditCard'}) do |f| %>
                 <%= render :partial => 'subscription_charges/credit_card_fields' %>
                 <%= f.submit "Update", :class => "btn" %>    
               <% end %>
