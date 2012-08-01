@@ -13,23 +13,10 @@
   <div class="mission-divider"> 
     <div class="heading11">News Feed</div>
   </div>
-  <% @feed.each do |feed_item| %>
-    <div class="mission-divider">
-      <% if feed_item.is_a? Course %>
-        <%= render :partial => 'dashboards/all/course', :locals => {:course => feed_item} %>
-      <% elsif feed_item.is_a? Topic %>
-        <%= render :partial => 'dashboards/all/topic', :locals => {:topic => feed_item} %>
-      <% elsif feed_item.is_a? Crewmanship %>
-        <%= render :partial => 'dashboards/all/crewmanship', :locals => {:crewmanship => feed_item} %>
-      <% elsif feed_item.is_a? Comment %>
-        <%= render :partial => 'dashboards/all/comment', :locals => {:comment => feed_item} %>
-      <% else %>
-        <%= feed_item.class %> happened at 
-        <%= feed_item.created_at %><br />
-      <% end %>
-    </div>
-  <% end %>
 
+  <div id="news-feed">
+    <%= render :partial => 'feed_item', :collection => @feed_items %>
+  </div>
   <%= render :partial => 'dashboards/paginate' %>
   
   </div>

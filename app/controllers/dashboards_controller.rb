@@ -3,20 +3,13 @@ class DashboardsController < ApplicationController
 
   def index
     feed_query_items = feed_query_items_for_mission
-    @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+    @feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
     @user = User.me_or_find(params[:id], current_user)
 
-    if @feed.blank?
+    if @feed_items.blank?
       feed_query_items = staff_picks_feed
       @staff_feed = true
-      @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
-    end
-
-    respond_to do |format|
-      format.html
-      format.js do
-        render :template => 'index'
-      end
+      @feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
     end
   end
 
@@ -30,58 +23,53 @@ class DashboardsController < ApplicationController
     # when :friends
     #   feed_query_items_for_friends
     when :me
+      @user            = User.me_or_find(params[:id], current_user)
       feed_query_items = feed_query_items_for_me
-      @user = User.me_or_find(params[:id], current_user)
-      @comment = current_user.comments.create(params[:comment])
+      @comment         = current_user.comments.create(params[:comment])
     end
-    @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
 
-    if @feed.blank?
+    @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+
+    if @compact_feed_items.blank?
       @staff_feed = true
       feed_query_items = staff_picks_feed
-      @feed, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+      @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
     end
   end
 
 private
 
   def staff_picks_feed
-    mission_ids      = Mission.where(:featured => true).map(&:id) + [-1]
-    comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
-    courses          = Course.where(:mission_id => mission_ids)
-    topics           = Topic.where(:mission_id => mission_ids)
-    crewmanships     = Crewmanship.where(:mission_id => mission_ids)
-    feed_query_items = [courses, comments, topics, crewmanships]
+    mission_ids = Mission.where(:featured => true).map(&:id) + [-1],
+    [
+      Comment.where(:mission_id => mission_ids).where(:parent_id => nil),
+      Course.where(:mission_id => mission_ids),
+      Topic.where(:mission_id => mission_ids),
+      Crewmanship.where(:mission_id => mission_ids)
+    ]
   end
 
   def feed_query_items_for_mission
-    mission_ids      = current_user.missions.where(:status => "live").map(&:id) + [-1]
-    comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
-    courses          = Course.where(:mission_id => mission_ids)
-    topics           = Topic.where(:mission_id => mission_ids)
-    crewmanships     = Crewmanship.where(:mission_id => mission_ids)
-    feed_query_items = [courses, comments, topics, crewmanships]
+    mission_ids = current_user.missions.where(:status => "live").map(&:id) + [-1]
+    [
+      Comment.where(:mission_id => mission_ids).where(:parent_id => nil),
+      Course.where(:mission_id => mission_ids),
+      Topic.where(:mission_id => mission_ids),
+      Crewmanship.where(:mission_id => mission_ids)
+    ]
   end
 
   def feed_query_items_for_me
-    created_mission  = current_user.crewmanships.where(:role => "creator")
-    joined_mission   = current_user.crewmanships.where(:role => "explorer")
-    guided_mission   = current_user.crewmanships.where(:role => "guide")
-    completed_mission= current_user.crewmanships.where(:role => "completed")
-    comments         = current_user.comments
-    courses_taught   = current_user.courses_taught
-    courses_attended = current_user.courses_attended
-    topics           = current_user.topics
-
-    feed_query_items = [created_mission,
-                        joined_mission, 
-                        guided_mission, 
-                        completed_mission, 
-                        comments, 
-                        courses_taught, 
-                        courses_attended, 
-                        topics]
-    feed_query_items
+    [
+      @user.crewmanships.where(:role => "creator"),
+      @user.crewmanships.where(:role => "explorer"),
+      @user.crewmanships.where(:role => "guide"),
+      @user.crewmanships.where(:role => "completed"),
+      @user.comments,
+      @user.courses_taught,
+      @user.courses_attended,
+      @user.topics
+    ]
   end
 
   # def feed_query_items_for_friends
@@ -94,7 +82,7 @@ private
 
     feed = feed_query_items.map do |item_query| 
       if last_item_displayed_at.present?
-        item_query = item_query.where("created_at < ?", DateTime.parse(last_item_displayed_at))
+        item_query = item_query.where("#{item_query.table.name}.created_at < ?", DateTime.parse(last_item_displayed_at))
       end
 
       item_query = item_query.order("created_at DESC")
