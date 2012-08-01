@@ -18,9 +18,9 @@
       <div class="full-page white">
         <div class="page-content">
           <div class="preview-header">Preview before this goes live!</div>
-          <%= button_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn right",  :method => :put %>
-          <%= link_to "Make changes", edit_course_path(@course.id), :method => :get %>
-          <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}),  :method => :put %>
+          <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px", :method => :put %>
+          <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
+          <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
         </div>
       </div>
     <% end %>
