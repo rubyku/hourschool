@@ -118,7 +118,11 @@
           <%= form_for mission.comments.new do |f| %>
             <%= f.hidden_field :mission_id, :value => mission.id %>
             <div class="commenter-photo">
+            <% if current_user.photo.present? %>
               <%= image_tag(current_user.photo.url(:thumb_small)) %>
+            <% else %>
+              <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+            <% end %>
             </div>
             <%= f.hidden_field :parent_id, :value => comment.id %>
             <%= f.text_area :body, :placeholder => "Leave a comment", :class => "comment-field" %>
