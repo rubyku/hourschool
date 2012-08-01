@@ -265,8 +265,8 @@
             <div id="collapseThree" class="accordion-body collapse">
               <div class="accordion-inner">                
                 <% if current_user && current_user.facebook? %>
-                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"} %>
-                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I will be at this event on Hourschool, you should come!"} %>
+                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I will be at this event on Hourschool, you should come!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
                 <% else %>
                   <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
                 <% end %>

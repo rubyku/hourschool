@@ -102,6 +102,22 @@
               <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of likes and shares.</p>
               <a class="btn" data-toggle="modal" href="#inviteFB">Invite from Facebook</a>
             </div>
+            <!-- Modal BEGIN -->
+            <div class="modal hide" id="tinyLetter">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Invite from Facebook</h3>
+              </div>
+              <div class="modal-body">              
+                <% if current_user && current_user.facebook? %>
+                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => mission_url(@mission), :name => "#{@mission.verb} #{@mission.title.downcase}",  :message => "Join me on this mission!"} %>
+                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "Join me on this mission!", :link    => mission_url(@mission), :name    => "#{@mission.verb} #{@mission.title.downcase}", :same_city => true , :limit => 5 } %>
+                <% else %>
+                  <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
+                <% end %>
+              </div>
+            </div>
+            <!-- Modal END -->
 
             <div class="mission-divider">
               <div style="font-size: 13px; font-weight: 700">Get personal:</div>
