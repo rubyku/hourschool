@@ -17,6 +17,7 @@
     <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
     <%= f.hidden_field :invitable_type, :value => "mission" %>
     <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
+    
 
       <script type="text/javascript">
       $('#userSearch').typeahead({
@@ -43,10 +44,22 @@
 
   <br><br><br>
 
+  <div class="field" id="invite_by_email">
+    <%= f.label :invitee_email, 'Or invite by email' %>
+    <%= f.text_field :invitee_email, :class => "form-short-edit-profile" %>
+  </div><br><br><br>
+
+  <div class="field">
+    <%= f.label :message, "Message" %>
+    <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",                     
+    :value => 
+                     "I am starting this mission to make my home more sustainable. I know you have always been interested so you should join me! You can try it for free for 30 days. So sign up here: [URL]" %>
+
+  </div><br><br><br><br><br>
+
   <div class="actions">
     <%= f.submit "Send invite", :class => "btn btn-primary" %>
   </div>
     
 <% end %>
-
 
