@@ -9,7 +9,7 @@
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Conversation</a></li>
       <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
       <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
-      <li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li>
+      <% if current_user %><li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li><% end %>
     </ul>
 
     <div class="tab-content">
@@ -91,6 +91,7 @@
           </div>
         </div>
       </div><!-- end tab3 -->
+      <% if current_user %>
       <div class="tab-pane" id="tab4">
         <div class="page-main white tab-border main">
           <div class="page-content"> 
@@ -178,6 +179,7 @@
           </div>
         </div>
       </div><!-- end tab4 -->
+      <% end %>
     </div><!-- end tab-content -->
   
   </div><!-- end tabable -->
