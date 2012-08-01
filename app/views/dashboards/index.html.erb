@@ -72,9 +72,16 @@
         <div class="heading11" style="margin-bottom: 20px">Events I am attending:</div>
         <% current_user.courses_attended.where("starts_at > (?)", Date.today).each do |course| %>
           <div class="mission-divider">
+            <div style="float: left; margin-right: 10px">
+              <div class="dashboard-event-day"><%= course.starts_at.strftime("%d") %></div>
+              <div class="dashboard-event-month"><%= course.starts_at.strftime("%b") %></div>
+            </div>
             <div class="heading13 adelle">
               <%= link_to course.title, course, :style => "font-weight: 400" %>
-            </div><br>
+            </div>
+            <div class="dashboard-event-time">
+              <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l%P")}" %> | <%= course.place_name %>
+            </div>
           </div>
         <% end %>
       <% end %>
