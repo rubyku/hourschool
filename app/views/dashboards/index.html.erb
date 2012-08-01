@@ -59,9 +59,10 @@
   </div>
 <% end %>
 
-<% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? && current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
+<% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? || current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
   <div class="white right page-sidebar">
     <div class="sidebar-content-white">
+      
       <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am organizing:</div>
         <% current_user.courses_taught.where("starts_at > (?)", Date.today).each do |course| %>
@@ -77,12 +78,13 @@
         <div class="heading11" style="margin-bottom: 20px">Events I am attending:</div>
         <% current_user.courses_attended.where("starts_at > (?)", Date.today).each do |course| %>
           <div class="mission-divider">
-            <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400"  %>
+            <div class="heading16 adelle">
+              <%= link_to course.title, course, :style => "font-weight: 400" %>
             </div><br>
           </div>
-        </div>
         <% end %>
-      <% end %>  
+      <% end %>
+
     </div>
   </div>
 <% end %>
@@ -90,6 +92,7 @@
 <% if current_user.missions.where(:status => "live").present? || current_user.missions.where(:status => "draft").present? %>
   <div class="white right page-sidebar">
     <div class="sidebar-content-white">
+
       <% if current_user.missions.where(:status => "live").present? %>
         <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
         <% current_user.missions.where(:status => "live").each do |mission| %>
@@ -107,6 +110,7 @@
           </div>
         <% end %>  
       <% end %>
+
     </div>
   </div>
 <% end %>
