@@ -3,7 +3,11 @@
     <center>
       <div class="heading32" style="margin-bottom: 15px">You've dreamed it, now it's time to make it happen.</div>
       <div class="intro-text">Learning isn’t consumption, it’s participation. A mission is a new way of learning where you define your own goals, set personal milestones, co-create the curriculum, and learn from your community.</div>
-      <a class="yellow button long" data-toggle="modal" href="#newMission">Build my own mission</a>
+      <% if current_user %>
+        <a class="yellow button long" data-toggle="modal" href="#newMission">Build my own mission</a>
+      <% else %>
+        <%= link_to "Build my own mission", new_mission_path, :class => "yellow long button" %>
+      <% end %>
     </center>
   </div>
 </div>
