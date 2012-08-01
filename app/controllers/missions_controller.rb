@@ -86,7 +86,7 @@ class MissionsController < ApplicationController
         format.html { redirect_to @mission}
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to @mission, :notice => @mission.errors.full_messages.join(',') }
         format.json { render json: @mission.errors, status: :unprocessable_entity }
       end
     end

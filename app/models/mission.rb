@@ -8,6 +8,8 @@ class Mission < ActiveRecord::Base
   has_many :invites, :as => :invitable
   has_many :crewmanships
   has_many :users, :through => :crewmanships
+
+  validate :live_missions_must_have_photo
   
   has_attached_file :photo, :styles => { :thumbnail => "75x75#", :preview => "570x360#", :stats => "650x137#", :banner => "959x349#" },
                     :storage => :s3,
@@ -21,6 +23,12 @@ class Mission < ActiveRecord::Base
       creators.first.user
     else
       nil
+    end
+  end
+
+  def live_missions_must_have_photo
+    if status == 'live' && photo_file_name.blank?
+      errors.add(:photo, "must be added before mission can launch")
     end
   end
 
