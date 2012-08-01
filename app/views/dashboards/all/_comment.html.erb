@@ -1,10 +1,6 @@
 <div class="dashboard-feed-thumbnail">
-  <% if comment.user.photo.present? %>
-    <%= link_to (image_tag comment.user.photo.url, :size => "75x75"), comment.user %>
-  <% else %>
-    <%= image_tag 'v2/Avatars_01_V1.png', :size => "75x75" %>
-  <% end %>
-  <div style="font-size: 9px"><%= "#{time_ago_in_words comment.created_at} ago" %></div>
+  <%= image_tag(comment.mission.photo.url(:thumbnail)) %>
+  <div style="font-size: 9px; line-height: 15px"><%= "#{time_ago_in_words comment.created_at} ago" %></div>
   <% if comment.mission.featured == true %>
     <span class="label">Staff picks</span>
   <% end %>

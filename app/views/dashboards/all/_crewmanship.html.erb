@@ -1,10 +1,6 @@
 <div class="dashboard-feed-thumbnail">
-  <% if crewmanship.user.photo.present? %>
-    <%= link_to (image_tag crewmanship.user.photo.url, :size => "75x75"), crewmanship.user %>
-  <% else %>
-    <%= image_tag 'v2/Avatars_01_V1.png', :size => "75x75" %>
-  <% end %>
-  <div style="font-size: 9px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
+  <%= image_tag(crewmanship.mission.photo.url(:thumbnail)) %>
+  <div style="font-size: 9px; line-height: 15px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
   <% if crewmanship.mission.featured == true %>
     <span class="label">Staff picks</span>
   <% end %>
@@ -20,8 +16,6 @@
     	<%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to full_mission_title(crewmanship.mission), crewmanship.mission %>
      </div>
   <% end %>
-
-  <%= image_tag(crewmanship.mission.photo.url(:preview)) if crewmanship.mission.photo.present? %>
 
 </div>
 

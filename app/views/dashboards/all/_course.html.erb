@@ -1,6 +1,6 @@
 <div class="dashboard-feed-thumbnail">
   <%= image_tag(course.mission.photo.url(:thumbnail)) %>
-  <div style="font-size: 9px"><%= "#{time_ago_in_words course.created_at} ago" %></div>
+  <div style="font-size: 9px; line-height: 15px"><%= "#{time_ago_in_words course.created_at} ago" %></div>
   <% if course.mission.featured == true %>
     <span class="label">Staff picks</span>
   <% end %>
@@ -8,7 +8,7 @@
 
 <div class="dashboard-feed-body">
   <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400" %></div>
-  <div class="heading9">Event posted to <%= link_to "#{course.mission.verb} #{course.mission.title}", course.mission %></div>
+  <div class="heading9">New event posted to <%= link_to "#{course.mission.verb} #{course.mission.title}", course.mission %></div>
   <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
   <div style="margin-bottom: 5px; margin-right: 25px; float: left">
   <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>

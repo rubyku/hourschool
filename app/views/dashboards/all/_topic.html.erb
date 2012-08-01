@@ -1,6 +1,6 @@
 <div class="dashboard-feed-thumbnail">
   <%= image_tag(topic.mission.photo.url(:thumbnail)) %>
-  <div style="font-size: 10px"><%= "#{time_ago_in_words topic.created_at} ago" %></div>
+  <div style="font-size: 9px; line-height: 15px"><%= "#{time_ago_in_words topic.created_at} ago" %></div>
   <% if topic.mission.featured == true %>
     <span class="label">Staff picks</span>
   <% end %>
