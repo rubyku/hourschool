@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'application/pdf', 'application/msword', 'text/plain']
 
   validates :user_id,   :presence => true
-  validates :body,      :presence => true
+  # validates :body,      :presence => true
 
   default_scope :order => 'created_at DESC'
 
