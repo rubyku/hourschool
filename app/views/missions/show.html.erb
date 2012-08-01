@@ -15,8 +15,11 @@
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
         <div class="page-main white tab-border main">
-          <div class="page-content"> 
-            <div style="width: 97%">
+          <div class="page-content">
+            <div class="mission-tab-intro">
+              <div class="heading14" style="margin-bottom: 20px">Chat with your crew about this mission</div>
+            </div> 
+            <div style="width: 97%; float: left">
               <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
             </div>
           </div>
@@ -25,40 +28,44 @@
       <div class="tab-pane" id="tab2">
         <div class="page-main white tab-border main">
           <div class="page-content"> 
-            <div class="mission-tab-intro">
-              <p style="float: left; width: 420px; font-size: 13px; font-weight: 700">Organize a class, a working session, or a happy hour. They can be on a specific topic, a bunch of topics, or just a meet up!</p>
-            </div>
-            <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right">Add an event</a>
-            <br><br><br><br><hr>
-            <% if @courses.present? %>
-              <% @courses.each do |course| %>
-                <div class="mission-divider">
-                  <%= link_to course.title, course, :class => "heading16 adelle" %><br>
-                  <% if course.teacher.present? %>
-                    Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
-                  <% end %>
-                  <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
-                  <div style="margin-bottom: 5px; margin-right: 25px; float: left">
-                    <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
-                    <%= "#{course.city.name}, #{course.city.state}" %><br>
+            <div class="mission-tab-intro" style="float: left; width: 565px">
+              <div class="heading14" style="width: 400px; float: left">Schedule classes, working sessions, and happy hours to explore this topic with your crew in-person.</div>
+              <a class="btn right" data-toggle="modal" href="#addAnEvent">Add an event</a>
+            </div><hr>
+            <div style="float: left; margin-top: 30px">
+              <% if @courses.present? %>
+                <% @courses.each do |course| %>
+                  <div class="mission-divider">
+                    <%= link_to course.title, course, :class => "heading16 adelle" %><br>
+                    <% if course.teacher.present? %>
+                      Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+                    <% end %>
+                    <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
+                    <div style="margin-bottom: 5px; margin-right: 25px; float: left">
+                      <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
+                      <%= "#{course.city.name}, #{course.city.state}" %><br>
+                    </div>
+                        
+                    <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
+                    <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
+                    <br>
                   </div>
-                      
-                  <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
-                  <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %>
-                  <br>
+                <% end %>
+              <% else %>
+                <div class="well">
+                  <p>When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!</p>
                 </div>
               <% end %>
-            <% else %>
-              <div class="well">
-                <p>When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!</p>
-              </div>
-            <% end %>
+            </div>
           </div>
         </div>
       </div><!-- end tab2 -->
       <div class="tab-pane" id="tab3">
         <div class="page-main white tab-border main">
           <div class="page-content"> 
+            <div class="mission-tab-intro">
+              <div class="heading14" style="width: 550px">These people have joined you in pursuing this mission.</div>
+            </div><hr> 
             <% @users.each do |user| %>
               <div class="mission-divider">             
                 <div class="crewman-photo">
@@ -86,10 +93,8 @@
         <div class="page-main white tab-border main">
           <div class="page-content"> 
             <div class="mission-tab-intro">
-              <p style="float: left; width: 470px; font-size: 13px; font-weight: 700">Rally is all about getting people excited about your mission. We learn better when we are learning with and from each other.</p>
+              <div class="heading14">Grow your support network by inviting more people to this mission; Rally your Crew!</div><hr>
             </div>
-            <br><br><br><br>
-
             <div class="mission-divider">
               <div style="font-size: 13px; font-weight: 700">The low hanging fruit:</div>
               <p>Use the social megaphone to get the word out. It's worth spending a couple seconds to think about a clever post that will get your lots of likes and shares.</p>
@@ -114,7 +119,7 @@
             <!-- Modal END -->
             <div class="mission-divider">
               <div style="font-size: 13px; font-weight: 700">Wisdom from the crowd:</div>
-              <p>These are things the community has tried and worked. Leverage their experience and give it a shot!</p>
+              <p>Share the promotional and educational tools you've used in the past (like flyers and handouts) to get your crew excited. </p>
               <a class="btn" data-toggle="modal" href="#addRallyTool" style="margin-bottom: 10px">Share yours now</a>
               <% if @mission.comments.where(:comment_type => 'rally').present? %>
                 <% @mission.comments.where(:parent_id => nil, :comment_type => 'rally').each do |comment| %>
@@ -133,7 +138,7 @@
               <div class="modal hide" id="addRallyTool">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h3>Share a rally tool</h3>
+                  <h3>Upload the tools you've used in the past, like flyers or promotional handouts, so your crew can leverage them. We recommend .pdf files. </h3>
                 </div>
                 <div class="modal-body">                
                   <% if current_user %>
@@ -188,7 +193,7 @@
           <h3>Add an event</h3>
         </div>
         <div class="modal-body">
-          <p>Which type of event best suit what you want to do?</p>
+          <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
           <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
           <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
           <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
@@ -221,7 +226,8 @@
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3>Add a new topic</h3>
       </div>
-      <div class="modal-body">              
+      <div class="modal-body">
+      <p>The topics library is built by everyone in this mission. Add a topic that you want to learn, teach, or find relevant. </p>              
         <%= render 'topics/form' %>
       </div>
     </div><!-- modal ends -->

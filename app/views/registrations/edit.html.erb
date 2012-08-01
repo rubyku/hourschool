@@ -1,9 +1,8 @@
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
     <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Profile</a></li>
-    <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-    <li><a href="#tab3" data-toggle="tab" class="heading11">Notification Center</a></li>
-    <li><a href="#tab4" data-toggle="tab" class="heading11">Billing</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Notification Settings</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Billing</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -76,9 +75,11 @@
 
             <div class="grid_7">
               <p>
-               <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-               <%= avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix") if @user.photo.present? %>
-               <%= f.file_field :photo %>
+              <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+              <% if current_user.photo.present? %>
+                <%= image_tag current_user.photo.url(:small) %>
+              <% end %>
+              <%= f.file_field :photo %>
               </p>
               <br><br>
             </div>
@@ -92,35 +93,14 @@
     <div class="tab-pane" id="tab2">
       <div class="full-page white tab-border full">
         <div class="page-content">
-          <% if current_user.missions.blank? %>
-            <div class="well">
-              You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
-            </div>
-          <% else %>
-            <% current_user.missions.each do |mission| %>
-              <div class="mission-divider">
-                Mission: <%= "#{mission.verb} #{mission.title}" %><br>
-                <% if mission.account.present? %>
-                  School: mission.account.name %>
-                <% end %>
-                <%= link_to "Manage crewmanship", mission_crewmanship_path(:mission_id => mission.id, :id => mission.crewmanships.where(:user_id => current_user.id).first), :class => "btn right" %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div><!-- end tab2 -->
-    <div class="tab-pane" id="tab3">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-          Notification Center
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <ul style="list-style: none; margin-left: 0px">
               <li>
-                <%= check_box_tag('user[preferences][mission_news]', 1, resource.wants?('mission_news') ) %> Mission News
+                <%= check_box_tag('user[preferences][mission_news]', 1, resource.wants?('mission_news') ) %> Send me emails when something is posted in my missions
               </li>
               <li>
-                <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %> Event News
+                <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %>
+                Send me emails when something is posted in my events
               </li>
               <hr />
               <%= hidden_field_tag('user[preferences][touched]', 1) %>
@@ -130,45 +110,51 @@
 
         </div>
       </div>
-    </div><!-- end tab3 -->
-    <div class="tab-pane" id="tab4">
+    </div><!-- end tab2 -->
+    <div class="tab-pane" id="tab3">
       <div class="full-page white tab-border full">
-        <div class="page-content">      
-          <div id="billing_show">
+        <div class="page-content">
+
+          <div style="width: 300px; float: left; margin-right: 60px">      
             <% if current_user.stripe_customer %>
               <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
-            <% else %>
-              <p>You have no credit card on file</p>
+
+              <% if current_user.subscription_charges.present? %>
+                <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
+              <% end %>
+
+              <% if current_user.billing_day_of_month.present? %>
+                <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+              <% end %>
+
+            <% else %>             
+              <p>You can use your credit card to pay to join missions or attend events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
+              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                <%= render :partial => 'subscription_charges/credit_card_fields' %>
+                <%= f.submit "Update", :class => "btn" %>    
+              <% end %>
+            
             <% end %>
 
-            <% if current_user.subscription_charges.present? %>
-              <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
-            <% end %>
-
-            <% if current_user.billing_day_of_month.present? %>
-              <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
-            <% end %>
-
-            <a class="btn" data-toggle="modal" href="#updateCard">Update credit card</a>
-
-            <!-- modal begins -->
-            <div class="modal hide" id="updateCard">              
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Update credit card details</h3>
-              </div>
-              <div class="modal-body">              
-                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-                  <%= render :partial => 'subscription_charges/credit_card_fields' %>
-                  <%= f.submit "Update", :class => "btn" %>    
-                <% end %>
-              </div>
-            </div><!-- modal ends -->
-               
           </div>
+
+          <div style="width: 500px; float: left;"> 
+            <div class="well">
+              <strong>Your Information is Secure</strong>
+              <p>We never store your credit card information on our servers, and we encrypt your information via SSL prior to sending it for processing. We use Stripe for credit card processing. Stripy encrypts your credit card information on their servers, and is fully PCI compliant.</p>
+
+              <strong>When Do We Bill</strong>
+              <p>30 days of membership are on us. After thirty days are up, we'll bill your credit card once a month, for each mission you take part in, at $10/month.</p>
+
+              <strong>Have a Question?</strong>
+              <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com<a>.</p>
+            </div>
+          </div>
+
+          
         </div>
       </div>
-    </div><!-- end tab4 -->
+    </div><!-- end tab3 -->
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
