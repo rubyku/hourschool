@@ -116,18 +116,6 @@
             Tools
           </a>
           <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
-            <% if current_user %>
-            <li class="dropdown-menu-wrapper"></li>
-            <div class="dropdown-menu-item">
-              <%= link_to "Invite a friend", new_invite_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
-              <p class="nav-description">Don't go solo. Rally your troops and build a micro-movement.</p>
-            </div>
-            <% end %>
-            <li class="dropdown-menu-wrapper"></li>
-            <div class="dropdown-menu-item">
-              <%= link_to "Organize an event", teach_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
-              <p class="nav-description">Teach a class, plan a happy hour, host a working session.</p>
-            </div>
             <li class="dropdown-menu-wrapper"></li>
             <div class="dropdown-menu-item">
               <%= link_to "Build a Mission", build_mission_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
