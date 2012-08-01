@@ -13,9 +13,6 @@
   a:active{color: #6a4a3b;}
 </style>
 
-
-<p id="notice"><%= notice %></p>
-
 <h1>
   Mission:
   <%= "#{@crewmanship.mission.verb} #{@crewmanship.mission.title.downcase}" %>
@@ -102,10 +99,9 @@
       <%= button_to 'Mission Accomplished', mission_crewmanship_path(@mission, @crewmanship, :crewmanship => {:status => 'completed'}), :class => "btn btn-inverse", :style => "color: white", :method => :put %>
       <a href="#">Leave mission</a>
     <% elsif @crewmanship.status == "completed" %>
-      <a class="btn">Reveal begin letter</a><br><br>
-      <a class="btn">Write finish letter</a><br><br>
-      <a class="btn">Submit photo to Wall of Awesome</a><br><br>
-      <a class="btn">Join another mission</a><br><br>
+      <p>Yo, congrats!!</p>
+      <p><%= link_to "Add photo to wall of awesome", wall_of_awesome_path, :class => "btn" %></p>
+      <p><%= link_to "Join another mission", wall_of_missions_path, :class => "btn" %></p>
     <% else %>
       <% if @crewmanship.status == "trial_active" %>
         <p>Your trial expires on:<%= @crewmanship.trial_expires_at %></p>
