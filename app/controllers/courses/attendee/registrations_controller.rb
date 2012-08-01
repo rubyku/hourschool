@@ -12,7 +12,12 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     @course = Course.find(params[:course_id])
     @mission = @course.mission
     @user   = current_user
-    @role   = @course.roles.new(:attending => true, :name => 'student', :user => current_user, :quantity => params[:role][:quantity])
+    @role   = @course.roles.new(
+      :attending => true,
+      :name => 'student',
+      :user => current_user,
+      :quantity => (params[:role][:quantity] || 1)
+    )
     if params[:stripeToken].present?
       @user.create_stripe_customer(
        :card => params[:stripeToken],
