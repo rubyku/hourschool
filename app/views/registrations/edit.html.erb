@@ -117,7 +117,11 @@
 
           <div style="width: 300px; float: left; margin-right: 60px">      
             <% if current_user.stripe_customer %>
-              <p>Credit card on file: <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></p>
+              <p>
+                <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
+                ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
+              </p>
+              (<%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal' %>)
 
               <% if current_user.subscription_charges.present? %>
                 <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
@@ -147,7 +151,7 @@
               <p>30 days of membership are on us. After thirty days are up, we'll bill your credit card once a month, for each mission you take part in, at $10/month.</p>
 
               <strong>Have a Question?</strong>
-              <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com<a>.</p>
+              <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com</a>.</p>
             </div>
           </div>
 
@@ -161,3 +165,19 @@
 
 
 <!-- status(trial_active,trial_expired,trial_canceled,active,past_due,abandoned(past_due for a month),canceled,completed) -->
+
+<div id="updateCard" class="modal hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Update Credit Card</h3>
+  </div>
+  <%= form_for(:current_user, :url => update_card_user_path(:current), :remote => true, :method => :put) do |f| %>
+    <div class="modal-body">
+      <%= render :partial => 'subscription_charges/credit_card_fields' %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit 'Update Card', :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

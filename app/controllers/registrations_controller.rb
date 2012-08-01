@@ -32,9 +32,17 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     if params[:stripeToken].present?
-      stripe_customer = resource.stripe_customer
-      stripe_customer.card = params[:stripeToken]
-      stripe_customer.save
+      if resource.stripe_customer
+        stripe_customer = resource.stripe_customer
+        stripe_customer.card = params[:stripeToken]
+        stripe_customer.save
+      else
+        resource.create_stripe_customer(
+          :card => params[:stripeToken],
+          :description => "user_#{resource.id}",
+          :email => resource.email
+        )
+      end
     end
 
     # Override Devise to use update_attributes instead of update_with_password.
