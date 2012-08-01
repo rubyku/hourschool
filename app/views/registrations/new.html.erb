@@ -16,14 +16,14 @@
         <% if current_account && current_account.private? %>
           <p>Please contact the school admin to invite you to sign up.</p>
         <% else %>
-          <%= render 'registrations/form' %>
+          <%= render 'form' %>
         <% end %>
       </div>
 
       <div style="float: left; width: 300px;">
         <div class="page-section-float-left">
           <div class="heading14" style="margin-bottom: 20px">Already have an account?</div>
-          <%= render 'form' %>
+          <%= render 'sessions/form' %>
         </div>
       </div>
 
@@ -34,14 +34,14 @@
   <div class="container_16 middle" id="middle_events">
     <div class="page-section-float-left">
       <div class="heading25 dark_grey">Sign up</div>
-      <%= render 'registrations/form' %>
+      <%= render 'form' %>
     </div>
 
     <hr><br>
 
     <div class="page-section-float-left">
       <div class="heading15 sidebar">Already have an account? Sign in here:</div>
-      <%= render 'form' %>
+      <%= render 'sessions/form' %>
     </div>
   </div>
 
