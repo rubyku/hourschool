@@ -32,13 +32,15 @@
               <div class="heading14" style="width: 400px; float: left">Schedule classes, working sessions, and happy hours to explore this topic with your crew in-person.</div>
               <a class="btn right" data-toggle="modal" href="#addAnEvent">Add an event</a>
             </div><hr>
-            <div style="float: left; margin-top: 30px">
+            <div style="float: left; margin-top: 30px; width: 565px">
               <% if @courses.present? %>
                 <% @courses.each do |course| %>
                   <div class="mission-divider">
                     <%= link_to course.title, course, :class => "heading16 adelle" %><br>
                     <% if course.teacher.present? %>
-                      Organized by <%= link_to course.teacher.name, course.teacher %><br><br>
+                      <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                        Organized by <%= link_to course.teacher.name, course.teacher %>
+                      </div><br>
                     <% end %>
                     <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
                     <div style="margin-bottom: 5px; margin-right: 25px; float: left">
@@ -226,8 +228,7 @@
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3>Add a new topic</h3>
       </div>
-      <div class="modal-body">
-      <p>The topics library is built by everyone in this mission. Add a topic that you want to learn, teach, or find relevant. </p>              
+      <div class="modal-body">       
         <%= render 'topics/form' %>
       </div>
     </div><!-- modal ends -->
