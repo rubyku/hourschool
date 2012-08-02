@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
                                         :large       => ["570x360>", :jpg],
                                         :thumb_large => ["125x125#", :jpg],
                                         :thumb_small => ["50x50#",   :jpg]
+                                        :thumb_35    => ["35x35#",   :jpg]
                                         },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",

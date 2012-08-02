@@ -98,7 +98,7 @@
         <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
         <% current_user.missions.where(:status => "live").each do |mission| %>
           <div class="mission-divider">
-            <%= link_to (image_tag mission.photo.url, :size => "258x138", :style => "margin-bottom: 10px"), mission %>
+            <%= link_to (image_tag mission.photo.url(:thumb_258), :style => "margin-bottom: 10px"), mission %>
             <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div><br>
           </div>
         <% end %>
@@ -109,7 +109,7 @@
         <% current_user.missions.where(:status => "draft").each do |mission| %>
           <div class="mission-divider">
             <% if mission.photo.present? %>
-              <%= link_to (image_tag mission.photo.url, :size => "258x138", :style => "margin-bottom: 10px"), mission %>
+              <%= link_to (image_tag mission.photo.url(:thumb_258), :style => "margin-bottom: 10px"), mission %>
             <% end %>
             <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div>
           </div>

@@ -11,7 +11,11 @@ class Mission < ActiveRecord::Base
 
   validate :live_missions_must_have_photo
   
-  has_attached_file :photo, :styles => { :thumbnail => "75x75#", :preview => "570x360#", :stats => "650x137#", :banner => "959x349#" },
+  has_attached_file :photo, :styles => { :thumbnail => "75x75#", 
+                                         :thumb_258 => "258x138#",
+                                         :preview => "570x360#", 
+                                         :stats => "650x137#", 
+                                         :banner => "959x349#" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
                     :path => "/:style/:id/:filename"

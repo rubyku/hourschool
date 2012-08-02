@@ -73,8 +73,8 @@
       <div class="field">
         <%= f.label :photo, 'Upload a photo that represent your mission' %>
         <div class="heading9">Optimal dimensions are 959px x 349px</div>
+        <%= image_tag(@mission.photo.url(:thumb_258), :style => "margin-right: 10px") if @mission.photo.present? %>
         <%= f.file_field :photo %>
-        <%= image_tag(@mission.photo, :size => "384x144") if @mission.photo.present? %>
       </div>
     </div>
     <div class="modal-footer">
