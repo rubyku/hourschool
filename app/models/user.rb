@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
                                         :thumb_large => ["125x125#", :jpg],
-                                        :thumb_small => ["50x50#",   :jpg]
+                                        :thumb_small => ["50x50#",   :jpg],
                                         :thumb_35    => ["35x35#",   :jpg]
                                         },
                             :storage => :s3,

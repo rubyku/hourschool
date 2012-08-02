@@ -17,7 +17,7 @@
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 <script type="text/javascript">
    // this identifies your website in the createToken call below
-  Stripe.setPublishableKey('pk_xomxKtkWiwGeTiNO9KLxQReStXfS8');
+  Stripe.setPublishableKey('<%= Rails.env.production? ? 'pk_VfrzNmHTwwGMI9HU7gBKVWvNe7pFJ' : 'pk_xomxKtkWiwGeTiNO9KLxQReStXfS8' %>');
 
   function stripeResponseHandler(status, response) {
     var f = $('.card-number').parents('form');
