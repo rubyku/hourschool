@@ -121,7 +121,6 @@
                 <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
                 ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
               </p>
-              (<%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal' %>)
 
               <% if current_user.subscription_charges.present? %>
                 <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
@@ -130,6 +129,8 @@
               <% if current_user.billing_day_of_month.present? %>
                 <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
               <% end %>
+
+              <%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal', :class => "btn", :style => "margin-top: 10px" %>
 
             <% else %>             
               <p>You can use your credit card to pay to join missions or attend events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
