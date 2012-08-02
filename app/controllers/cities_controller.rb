@@ -16,7 +16,11 @@ class CitiesController < ActionController::Base
       response = City.where("name ilike ?", "#{city}%").limit(10)
     end
 
-    response = response.collect {|c| {:name => "#{c.name}, #{c.state}", :id => c.id}}
+    if response.length == 0
+      response = [{:name => "Hmm, nothing found like #{params[:q]}.", :id => 0}]
+    else
+      response = response.collect {|c| {:name => "#{c.name}, #{c.state}", :id => c.id}}
+    end
     logger.info("RESPONSE:#{response.to_json}")
 
     render :json => response

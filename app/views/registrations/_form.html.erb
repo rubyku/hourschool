@@ -15,30 +15,9 @@
   <br>
 
   <p>
-    <%= label_tag :location_lookup, 'City, State', :class => "form-question" %><br />
-    <%= text_field_tag :citySearch, "", :class => "form-short-edit-profile", :autocomplete => "off" %>
-    <%= f.hidden_field :city_id %>
-  </p>  
+    <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => resource} %>
+  </p>
   <br>
-
-  <script type="text/javascript">
-    $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-    $('#citySearch').typeahead({
-      source: function(typeahead, query) {
-        var _this = this;
-        return $.ajax({
-          url: "<%= cities_path(:format => :json) %>?q=" + query,
-          success: function(data) {
-            return typeahead.process(data);
-          }
-        });
-      },
-      property: "name",
-      onselect: function (obj) {
-        $('#user_city_id').val(obj.id);
-      }
-    });
-  </script>
 
   <p>
     <%= f.label :password, :class => "form-question" %><br>

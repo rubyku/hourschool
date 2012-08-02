@@ -43,15 +43,17 @@
       var val = JSON.parse(this.$menu.find('.active').attr('data-value'))
         , text
 
-      if (!this.strings) text = val[this.options.property]
-      else text = val
+      if (val.id != 0) {
+        if (!this.strings) text = val[this.options.property]
+        else text = val
 
-      this.$element.val(text)
+        this.$element.val(text)
 
-      if (typeof this.onselect == "function")
-          this.onselect(val)
+        if (typeof this.onselect == "function")
+            this.onselect(val)
 
-      return this.hide()
+        return this.hide()
+      }
     }
 
   , show: function () {
@@ -70,6 +72,7 @@
     }
 
   , hide: function () {
+      this.$element.removeClass('loading')
       this.$menu.hide()
       this.shown = false
       return this
@@ -92,6 +95,8 @@
     }
 
   , process: function (results) {
+      this.$element.addClass('loading')
+
       var that = this
         , items
         , q
@@ -150,6 +155,8 @@
     }
 
   , render: function (items) {
+      this.$element.removeClass('loading')
+
       var that = this
 
       items = $(items).map(function (i, item) {
@@ -254,7 +261,7 @@
       var that = this
       e.stopPropagation()
       e.preventDefault()
-      setTimeout(function () { that.hide() }, 150)
+      // setTimeout(function () { that.hide() }, 1500)
     }
 
   , click: function (e) {
