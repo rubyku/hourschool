@@ -47,18 +47,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "admin_notes", :force => true do |t|
-    t.integer  "resource_id",     :null => false
-    t.string   "resource_type",   :null => false
-    t.integer  "admin_user_id"
-    t.string   "admin_user_type"
-    t.text     "body"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "admin_notes", ["admin_user_type", "admin_user_id"], :name => "index_admin_notes_on_admin_user_type_and_admin_user_id"
-
   create_table "admin_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -189,31 +177,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "ecourses", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.float    "price"
-    t.integer  "seats"
-    t.date     "date"
-    t.time     "time"
-    t.string   "place"
-    t.integer  "enterprise_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "minimum"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-  end
-
-  create_table "enterprises", :force => true do |t|
-    t.string   "area"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "name"
-    t.string   "domain"
-  end
-
   create_table "eroles", :force => true do |t|
     t.integer  "member_id"
     t.integer  "ecourse_id"
@@ -221,15 +184,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
     t.datetime "updated_at"
     t.string   "role"
     t.boolean  "attending"
-  end
-
-  create_table "esuggestions", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "enterprise_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "requested_by"
   end
 
   create_table "followings", :force => true do |t|
@@ -271,28 +225,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
   add_index "invites", ["invitable_type"], :name => "index_invites_on_invitable_type"
   add_index "invites", ["invitee_id"], :name => "index_invites_on_invitee_id"
   add_index "invites", ["inviter_id"], :name => "index_invites_on_inviter_id"
-
-  create_table "members", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "organization"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.integer  "enterprise_id"
-  end
-
-  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
-  add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
-  add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "account_id"
@@ -410,13 +342,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
-  create_table "subdomains", :force => true do |t|
-    t.string   "name"
-    t.integer  "enterprise_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "subscription_charges", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -433,14 +358,6 @@ ActiveRecord::Schema.define(:version => 20120730003527) do
   end
 
   add_index "subscription_charges", ["user_id"], :name => "index_subscription_charges_on_user_id"
-
-  create_table "subscriptions", :force => true do |t|
-    t.string   "subscribable_type"
-    t.integer  "subscribable_id"
-    t.string   "stripe_customer_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
 
   create_table "suggestions", :force => true do |t|
     t.string   "name"
