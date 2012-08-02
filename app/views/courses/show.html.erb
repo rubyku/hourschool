@@ -211,7 +211,6 @@
                   <%= form_for(@invite) do |f| %>
                     <div class="field">
                       <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "span3", :autocomplete => "off" %>
-                      <%= f.hidden_field :invitee_id %>
                       <script type="text/javascript">
                       $('#userSearch').typeahead({
                         source: function(typeahead, query) {
@@ -235,6 +234,7 @@
                       </script>
                     </div>
                     <div class="actions">
+                      <%= f.hidden_field :invitee_id %>
                       <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
                       <%= f.hidden_field :invitable_type, :value => "course" %>
                       <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>

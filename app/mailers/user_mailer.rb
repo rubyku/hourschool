@@ -18,6 +18,26 @@ class UserMailer < ActionMailer::Base
   #   mail(:to => current_user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
   # end
 
+  def invite_user_to_mission(options = {})
+    @inviter        = options[:inviter]
+    @mission        = options[:mission]
+    @invitee        = options[:invitee]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = mission_url(@mission)
+    mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
+  end
+
+
+  def invite_nonuser_to_mission(options = {})
+    @inviter        = options[:inviter]
+    @mission        = options[:mission]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = mission_url(@mission)
+    mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
+  end
 
   def invite_user_to_course(options = {})
     @inviter        = options[:inviter]

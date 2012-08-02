@@ -48,7 +48,11 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         if @invite.invitable_type.downcase == "mission"
-          # send email here
+          if @invite.invitee_id.present?
+            UserMailer.invite_user_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
+          else 
+            UserMailer.invite_nonuser_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
+          end 
         elsif @invite.invitable_type.downcase == "course"
           if @invite.invitee_id.present?
             UserMailer.invite_user_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
