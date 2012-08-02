@@ -1,100 +1,99 @@
-  <div class="page-main">
-    <div class="tabbable"> 
-      <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-        <li class="active"><a href="#tab1-1" data-toggle="tab" class="heading11">Invite an HourSchool user</a></li>
-        <li><a href="#tab2-1" data-toggle="tab" class="heading11">Invite by email</a></li>
-      </ul>
 
-      <div class="tab-content">
-        
-        <div class="tab-pane active" id="tab1-1">
-          <div class="page-main white tab-border main">
-            <div class="page-content"> 
-              <%= form_for(@invite) do |f| %>
-                <% if @invite.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+<div class="tabbable"> 
+  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+    <li class="active"><a href="#tab1-1" data-toggle="tab" class="heading11">Invite an HourSchool user</a></li>
+    <li><a href="#tab2-1" data-toggle="tab" class="heading11">Invite by email</a></li>
+  </ul>
 
-                    <ul>
-                    <% @invite.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                    <% end %>
-                    </ul>
-                  </div>
+  <div class="tab-content">
+    
+    <div class="tab-pane active" id="tab1-1">
+      <div class="page-main white tab-border main" style="width: 500px">
+        <div class="page-content"> 
+          <%= form_for(@invite) do |f| %>
+            <% if @invite.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+                <ul>
+                <% @invite.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
                 <% end %>
+                </ul>
+              </div>
+            <% end %>
 
-                <div class="field">
-                  <%= f.label :invitee, "Invite an HourSchool user" %>
-                  <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off" %>
-                  <%= f.hidden_field :invitee_id %>
-                  <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                  <%= f.hidden_field :invitable_type, :value => "mission" %>
-                  <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
-                  
-                  <script type="text/javascript">
-                  $('#userSearch').typeahead({
-                    source: function(typeahead, query) {
-                      var _this = this;
-                      return $.ajax({
-                        url: "<%= search_users_path(:format => :json) %>?q=" + query,
-                        success: function(data) {
-                          return typeahead.process(data);
-                        }
-                      });
-                    },
-                    property: "name",
-                    onselect: function (obj) {
-                      if (obj.id == 0) {
-                        $('#invite_invitee_email').focus()
-                      } else {
-                        $('#invite_invitee_id').val(obj.id);
-                      }
+            <div class="field">
+              <%= f.label :invitee, "Invite an HourSchool user" %>
+              <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off" %>
+              <%= f.hidden_field :invitee_id %>
+              <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
+              <%= f.hidden_field :invitable_type, :value => "mission" %>
+              <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
+              
+              <script type="text/javascript">
+              $('#userSearch').typeahead({
+                source: function(typeahead, query) {
+                  var _this = this;
+                  return $.ajax({
+                    url: "<%= search_users_path(:format => :json) %>?q=" + query,
+                    success: function(data) {
+                      return typeahead.process(data);
                     }
                   });
-                  </script>
-                </div>
-
-                <div class="actions">
-                  <%= f.submit "Send invite", :class => "btn btn-primary" %>
-                </div>
-
-              <% end %>
-
+                },
+                property: "name",
+                onselect: function (obj) {
+                  if (obj.id == 0) {
+                    $('#invite_invitee_email').focus()
+                  } else {
+                    $('#invite_invitee_id').val(obj.id);
+                  }
+                }
+              });
+              </script>
             </div>
-          </div>
-        </div>
 
-        <div class="tab-pane" id="tab2-1">
-          <div class="page-main white tab-border main">
-            <div class="page-content"> 
-              <%= form_for(@invite) do |f| %>
-                <% if @invite.errors.any? %>
-                  <div id="error_explanation">
-                    <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
-
-                    <ul>
-                    <% @invite.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                    <% end %>
-                    </ul>
-                  </div>
-                <% end %>
-                <div class="field" id="invite_by_email">
-                  <%= f.label :invitee_email, 'Or invite by email' %>
-                  <%= f.text_field :invitee_email, :class => "form-short-edit-profile" %>
-                  <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                  <%= f.hidden_field :invitable_type, :value => "mission" %>
-                  <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
-                </div><br><br><br>
-
-                <div class="actions">
-                  <%= f.submit "Send invite", :class => "btn btn-primary" %>
-                </div>
-              <% end %>
+            <div class="actions">
+              <%= f.submit "Send invite", :class => "btn btn-primary" %>
             </div>
-          </div>
-        </div>
 
+          <% end %>
+
+        </div>
       </div>
     </div>
+
+    <div class="tab-pane" id="tab2-1">
+      <div class="page-main white tab-border main" style="width: 500px">
+        <div class="page-content"> 
+          <%= form_for(@invite) do |f| %>
+            <% if @invite.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
+
+                <ul>
+                <% @invite.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="field" id="invite_by_email">
+              <%= f.label :invitee_email, 'Or invite by email' %>
+              <%= f.text_field :invitee_email, :class => "form-short-edit-profile" %>
+              <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
+              <%= f.hidden_field :invitable_type, :value => "mission" %>
+              <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
+            </div><br><br><br>
+
+            <div class="actions">
+              <%= f.submit "Send invite", :class => "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>

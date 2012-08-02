@@ -22,7 +22,7 @@
             <%= f.hidden_field :mission_id, :value => mission.id %>
             <%= f.hidden_field :comment_type, :value => "note" %>
             <%= f.text_area    :body,      :placeholder => "Share what you've been working on!", :class => "form-med-with-margin" %>
-            <%= f.submit 'Leave Comment', :class => "btn" %>
+            <%= f.submit 'Add comment', :class => "btn" %>
           <% end %>
         </div>     
         <div class="tab-pane" id="comment-question">
@@ -30,7 +30,7 @@
             <%= f.hidden_field :mission_id, :value => mission.id %>
             <%= f.hidden_field :comment_type, :value => "question" %>
             <%= f.text_area    :body,      :placeholder => "Have you been stuck on something?", :class => "form-med-with-margin" %>
-            <%= f.submit 'Leave Comment', :class => "btn" %>
+            <%= f.submit 'Ask question', :class => "btn" %>
           <% end %>
         </div>
         <div class="tab-pane" id="comment-link">
@@ -38,7 +38,7 @@
             <%= f.hidden_field :mission_id, :value => mission.id %>
             <%= f.hidden_field :comment_type, :value => "link" %>
             <%= f.text_area    :body,      :placeholder => "Share a link", :class => "form-med-with-margin" %>
-          <%= f.submit 'Leave Comment', :class => "btn" %>
+          <%= f.submit 'Add link', :class => "btn" %>
         <% end %>
         </div>
         <div class="tab-pane" id="comment-photo">
@@ -49,7 +49,7 @@
               <p>Upload a photo from your computer</p>
               <%= f.file_field   :photo %>
               <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin"  %>
-            <%= f.submit 'Leave Comment', :class => "btn" %>
+            <%= f.submit 'Add photo', :class => "btn" %>
           <% end %>
           </div>
         <div class="tab-pane" id="comment-file">
@@ -60,7 +60,7 @@
                 <p>Upload a file from your computer</p>
                 <%= f.file_field   :photo %>
                 <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin"%>
-            <%= f.submit 'Leave Comment', :class => "btn" %>
+            <%= f.submit 'Add file', :class => "btn" %>
           <% end %>
         </div>
       </div><!-- end tab-content -->
