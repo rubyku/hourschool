@@ -1,0 +1,27 @@
+<% if params[:q] == 'learn' %>
+  <div class="alert alert-info">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading">Hello there!</h4>
+  
+    <p>You're invited to join this mission.</p>
+    <p>
+      <%= link_to 'Yes join this mission!', new_mission_crewmanship_path(:mission_id => @mission.id), :class => "btn btn-primary", :style => "color: white" %>
+      <a class="btn" data-toggle="modal" href="#whatIsAMission">Huh? What is a mission?</a>
+
+      <div class="modal hide" id="whatIsAMission">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>What is a mission?</h3>
+        </div>
+        <div class="modal-body">
+          <p>We're glad you ask!</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn" data-dismiss="modal">Okay, got it.</a>
+        </div>
+      </div>
+    </p>
+  </div>
+<% elsif params[:q] == 'teach' %>
+  You're invited to teach
+<% end %>

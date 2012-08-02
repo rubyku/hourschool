@@ -7,11 +7,11 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <p>
     <%= f.label :email, :class => "form-question" %><br />
-    <%= f.email_field :email, :class => "form-short" %>
+    <%= f.email_field :email, :class => "form-short-edit-profile" %>
     </p>
 
     <p><%= f.label :password, :class => "form-question"%><br />
-      <%= f.password_field :password , :class => "form-short" %>
+      <%= f.password_field :password , :class => "form-short-edit-profile" %>
     </p>
 
     <div class="page-section-float-left">
@@ -24,7 +24,7 @@
     <div class="page-section-float-left">
 
       <div>
-        <%= f.submit "Sign in", :id => "user_submit", :class => "grey button" %></div>
+        <%= f.submit "Sign in", :id => "user_submit", :class => "btn" %></div>
   </div>
 <% end %>
 

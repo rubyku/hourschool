@@ -1,7 +1,5 @@
 <% content_for :head_stylesheets do -%>
   <%= stylesheet_link_tag 'application' %>
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
-
 <%- end %>
 
 
@@ -63,8 +61,6 @@
     }
   </script>
   
-  <!-- Google Analytics Social Button Tracking -->
-  <script type="text/javascript" src="https://s3.amazonaws.com/ha_js/ga_social_tracking.js"></script>
 <%- end -%>
 
 <%= content_for :first_inside_body do %>
@@ -111,7 +107,7 @@
 <%= render :layout => 'layouts/document' do %>
   
   <% if community_site? %>
-    <%= render 'layouts/application/header' %>
+    <%= render 'layouts/application/header' unless yield(:body_id) == "mission_builder" %>
   <% end %>
 
   <%# Flash %>

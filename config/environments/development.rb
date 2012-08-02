@@ -47,4 +47,3 @@ HourschoolV2::Application.configure do
 
 end
 
-

@@ -1,8 +1,21 @@
 HourschoolV2::Application.routes.draw do
 
+  resources :subscription_charges
+
+  resources :dashboards
+
+  resources :invites
+
+  resources :missions do
+    resources :topics
+    resources :crewmanships do
+    end
+  end
+
   resources :pre_mission_signups
 
   resources :tracks
+  resources :flowcharts
 
   resources :cities, :only => [:index]
 
@@ -71,15 +84,17 @@ HourschoolV2::Application.routes.draw do
   devise_scope :user do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
-  match 'user_root' => 'pages#index'
+  match 'user_root' => 'dashboards#index'
   resources :users do
     resources :followings
     member do
       put 'make_admin'
+      put 'update_card'
     end
     collection do
       get 'new_invite'
       post 'send_invite'
+      get :search
     end
   end
 
@@ -96,11 +111,12 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  match '/explore'                      => 'Courses::Browse#index'
+  match '/explore'                    => 'accounts#show'
   match '/suggest'                    => 'suggestions#suggest'
   match '/csvote'                     => 'suggestions#vote'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
+  match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
   
   match '/courses'                    => 'Courses::Admin#index'
 
@@ -133,6 +149,11 @@ HourschoolV2::Application.routes.draw do
   match '/story'                      => 'pages#show', :id => 'story'
   match '/campaign'                   => 'pages#show', :id => 'campaign'
   match '/teach'                      => 'pages#show', :id => 'teach'
+  match '/build_mission'              => 'pages#show', :id => 'build_mission'
+  match '/build_school'               => 'pages#show', :id => 'build_school'
+  match '/wall_of_awesome'            => 'pages#show', :id => 'wall_of_awesome'
+  match '/wall_of_missions'           => 'pages#show', :id => 'wall_of_missions'
+  match '/partner_schools'           => 'pages#show', :id => 'partner_schools'
 
   match '/start'                      => 'pages#index'
   match '/learn'                      => 'pages#index'
@@ -150,8 +171,12 @@ HourschoolV2::Application.routes.draw do
 
   resources :test
 
+
+
   if Rails.env.development?
-    mount StudentMailer::Preview => 'mail_view'
+    ["UserMailer", "StudentMailer"].each do |klass|
+      mount "#{klass.gsub('::', '')}::Preview".constantize => "mail_view/#{klass.underscore}/preview"
+    end
   end
 
 end

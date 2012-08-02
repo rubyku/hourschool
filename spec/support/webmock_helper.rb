@@ -69,3 +69,111 @@ def geo_name_web_mock
   austin_time = Timezone::Zone.new(:zone => "America/Chicago")
   Timezone::Zone.stub(:new).and_return( austin_time )
 end
+
+def test_card
+  {
+    :card => {
+      :number => 4242424242424242,
+      :exp_month => 01,
+      :exp_year => Time.now.year+1
+    }
+  } 
+end
+
+def mock_stripe(success=true)
+  stripe_create_customer_response = <<-eos
+    {
+      "active_card": {
+        "exp_month": 6,
+        "exp_year": #{Time.now.year+1},
+        "country": "US",
+        "last4": "4242",
+        "type": "Visa",
+        "fingerprint": "nWCOrcBtvLPsBCze",
+        "object": "card"
+      },
+      "account_balance": 0,
+      "id": "cus_Uw1IRh2oPsmeD0",
+      "livemode": false,
+      "object": "customer",
+      "created": 1340825802
+    }
+  eos
+
+  stripe_retrieve_customer_response = <<-eos
+    {
+      "active_card": {
+        "exp_month": 6,
+        "exp_year": #{Time.now.year+1},
+        "country": "US",
+        "last4": "4242",
+        "type": "Visa",
+        "fingerprint": "nWCOrcBtvLPsBCze",
+        "object": "card"
+      },
+      "account_balance": 0,
+      "id": "cus_Uw1IRh2oPsmeD0",
+      "livemode": false,
+      "object": "customer",
+      "created": 1340825802
+    }
+  eos
+
+  create_charge_code = 200
+  create_charge_response = <<-eos
+    {
+      "fee_details": [
+        {
+          "amount": 59,
+          "application": null,
+          "type": "stripe_fee",
+          "currency": "usd",
+          "description": "Stripe processing fees"
+        }
+      ],
+      "refunded": false,
+      "disputed": false,
+      "paid": true,
+      "amount": 1000,
+      "card": {
+        "exp_month": 6,
+        "exp_year": #{Time.now.year+1},
+        "country": "US",
+        "last4": "4242",
+        "type": "Visa",
+        "fingerprint": "nWCOrcBtvLPsBCze",
+        "object": "card"
+      },
+      "id": "ch_o31zAvJucofJQW",
+      "livemode": false,
+      "fee": 59,
+      "customer": "cus_Uw1IRh2oPsmeD0",
+      "currency": "usd",
+      "object": "charge",
+      "created": 1340826396,
+      "description": "yipppe!"
+    }
+  eos
+
+  create_charge_fail_code = 402
+  create_charge_fail_response = <<-eos
+    {
+      "error": {
+        "code": "card_declined",
+        "type": "card_error",
+        "message": "Your card was declined.",
+        "charge": "ch_mel2AhyC9csmp6"
+      }
+    }
+  eos
+
+  stub_request(:post, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers").
+  with(:body => {"card"=>{"number"=>"4242424242424242", "exp_month"=>"1", "exp_year"=>"#{Time.now.year+1}"}}).
+  to_return(:status => 200, :body => stripe_create_customer_response, :headers => {})
+
+  stub_request(:get, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers/cus_Uw1IRh2oPsmeD0").
+  to_return(:status => 200, :body => stripe_retrieve_customer_response, :headers => {})
+
+  stub_request(:post, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/charges").
+  to_return(:status => (success ? create_charge_code : create_charge_fail_code), :body => (success ? create_charge_response : create_charge_fail_response), :headers => {})
+end

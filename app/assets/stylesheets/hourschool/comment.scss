@@ -19,12 +19,14 @@
 
 .comments .content {
   float: left;
-  width: 90%; }
+  width: 90%; 
+  margin-left: 60px;
+  margin-top: -50px;
+}
 
 .comment {
   margin-bottom: 10px; }
 
 .comments textarea {
   padding: 5px;
-  margin-top: 5px;
-  width: 530px; }
+  margin-top: 5px;}

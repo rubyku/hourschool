@@ -60,3 +60,7 @@
 .hiddenSubmit {
   visibility: hidden;
 }
+
+input#citySearch.loading {
+  background: url(image-path('ajax-loader.gif')) no-repeat center right;
+}

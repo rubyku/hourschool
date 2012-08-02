@@ -1,0 +1,29 @@
+<%= form_for([@mission, @topic]) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>The topics library is built by everyone in this mission. Add a topic that you want to learn, teach, or find relevant. </p>       
+  <div class="field">
+    <%= f.label :title, "Topic" %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= radio_button_tag :follow_type, 'teach', true, :style => "float: left; margin-right: 10px"  %>
+    <%= label_tag :follow_type, 'I can teach this' %>
+    <%= radio_button_tag :follow_type, 'learn', false, :style => "float: left; margin-right: 10px"  %>
+    <%= label_tag :follow_type, 'I want to learn this' %>
+  </div>
+  <br><br>
+  <%= f.submit "Add Topic", :class => "btn btn-primary"%>
+  <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+
+<% end %>

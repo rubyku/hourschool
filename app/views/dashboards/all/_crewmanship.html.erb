@@ -1,0 +1,21 @@
+<div class="dashboard-feed-thumbnail">
+  <%= image_tag(crewmanship.mission.photo.url(:thumbnail)) %>
+  <div style="font-size: 9px; line-height: 15px"><%= "#{time_ago_in_words crewmanship.created_at} ago" %></div>
+  <% if crewmanship.mission.featured == true %>
+    <span class="label">Staff picks</span>
+  <% end %>
+</div>
+
+<div class="dashboard-feed-body">
+  <% if crewmanship.user.crewmanships.where(:role => "creator", :mission_id => crewmanship.mission).last %>
+    <div style="margin-bottom: 10px">
+   		<%= link_to crewmanship.user.name, crewmanship.user %> created the mission <%= link_to full_mission_title(crewmanship.mission), crewmanship.mission %>
+    </div>
+  <% else %>
+  	<div style="margin-bottom: 10px">
+    	<%= link_to crewmanship.user.name, crewmanship.user %> joined the mission <%= link_to full_mission_title(crewmanship.mission), crewmanship.mission %>
+     </div>
+  <% end %>
+
+</div>
+

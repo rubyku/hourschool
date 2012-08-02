@@ -1,6 +1,6 @@
 @import 'hourschool/variables';
 
-.button{
+a.button{
   /*reset style*/
   border: none;
   background: #00B6FF;
@@ -19,22 +19,63 @@
   font-size: 12px;
   cursor: pointer;
 
+  &:hover{text-decoration: none; color: white;}
+
 
   /*custom style*/
 
   &.grey {
   width: 84px;
-  height: 33px;
   background-color: #666;
   &:hover {
     background-color: #a9a9a9; } 
   }
 
   &.orange{
-    width: 220px;
     background-color: $hourschool-house-color;
+
+    &.long{
+      width: 220px;
+    }
+
+    &.short{
+      width: 120px;
+    }
+
     &:hover {
       background-color: #e46f28; } 
+  }
+
+  &.yellow{
+    background-color: #d89f24;
+
+    &.long{
+      width: 220px;
+    }
+
+    &.short{
+      width: 120px;
+    }
+
+    &:hover {
+      background-color: #d89f24; } 
+
+  }
+
+  &.blue{
+    background-color: #5382a4;
+
+    &.long{
+      width: 220px;
+    }
+
+    &.short{
+      width: 120px;
+    }
+
+    &:hover {
+      background-color: #5382a4; } 
+
   }
 
   &.edit-class{
@@ -56,12 +97,10 @@
   &.preview-edit{
     float: right;
     width: 120px;
-    padding-top: 12px;
-    padding-bottom: 16px;
     background-color: #a9a9a9;
     margin-right: 10px;
-    margin-top: -25px;
-    height: 38px;
+    margin-top: -23px;
+    height: 35px;
     &:hover {
       background-color: #949393; }
   }

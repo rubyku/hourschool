@@ -1,18 +1,8 @@
 @import 'hourschool/variables';
 
 .homePageBackgroundImage1 {
-  background-image: url( <%= asset_path 'v3/homepage/Background.png' %> );
-  background-repeat:no-repeat;
-}
-
-#homepage_headline_1{
-  position: relative;
-  margin-left: 570px;
-  margin-top: 11px;
-  @include hourschool-heading;
-  text-align: center;
-  color: white;
-  z-index: 100;
+  background-image: url( <%= asset_path 'v3/homepage/hero-2.jpg' %> );
+  background-repeat: no-repeat;
 }
 
 .font48{
@@ -40,25 +30,21 @@ a#homepageInfoModal{
 
 #homepage .teaser {
   position: relative;
-  height: 255px; 
+  height: 190px; 
   width: 400px;
   margin-left: 560px;
-  margin-top: -210px;
+  margin-top: 20px;
   @include hourschool-border-radius;
   background-color: black;
-  opacity: 0.2;
+  opacity: 0.4;
 }
-
 
 #homepage .featured {
   position: relative;
-  margin-top: 62px;
-  margin-bottom: 60px; }
-
-#homepage .sidebar-left{
-  float: left;
-  width: 300px;
-  margin-right: 30px;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
+  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
 }
 
 .brand_bg {
@@ -66,7 +52,6 @@ a#homepageInfoModal{
   height: 7px; }
 
 .prompt-box{
-  text-align: center;
   padding: 20px;
   opacity: 0.85;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
@@ -74,22 +59,12 @@ a#homepageInfoModal{
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
 }
 
-#homepage .content-right{
-  margin-top: 40px;
-  float :left;
-  width: 570px;
-  padding: 30px 30px 30px 30px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
-  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); 
-}
-
 p.prompt-text{
+  position: relative;
   font-family: Georgia;
   font-style: italic;
   font-size: 16px;
-  color: #333333;
-  text-align: center;
+  color: white;
   margin: 10px 0px 20px 0px;
 }
 
@@ -100,13 +75,12 @@ p.prompt-text{
     font-size: 26px;
     color: #666;
     line-height: 36pt;
-    margin-bottom: 20px;
   }
 
   &#explore{
     font-size: 20px;
     line-height: 20pt;
-    color: $hourschool-house-color;
+    color: #006699;
   }
 }
 
@@ -116,15 +90,6 @@ p.prompt-text{
   color: #333;
   line-height: 20pt;
 }
-
-.white {
-  background-color: white; }
-
-.whiteText {
-  color: white; }
-
-.right {
-  float: right; }
 
 #homeSearchForm-background {
   position: relative;

@@ -21,8 +21,18 @@
 .heading32{
   font-family: Georgia;
   font-size: 32px;
-  color: #4a8488;
-  margin-bottom: 25px;
+  line-height: 36px;
+
+  &.orange{color: #ff6600; margin: 20px 0px 10px 0px;}
+  &.green{color: #4a8488; margin-bottom: 35px;}
+}
+
+.heading28{
+  font-family: adelle-1, adelle-2;
+  font-size: 28px;
+  line-height: 32px;
+
+  &.brown{color: #6a4a3b;}
 }
 
 .heading25 {
@@ -35,11 +45,28 @@
   &.light_grey{color: $hourschool-light-grey;}
   &.dark_grey{color: $hourschool-dark-grey;} }
 
-.heading16{
+.heading20{
   font-family: Georgia;
-  font-size: 16px;
-  color: #ff7733;
+  font-size: 20px;
+  color: #ff6633;
   margin-bottom: 5px;
+}
+
+a.heading20{
+  &:visited{color: #ff6633;}
+  &:hover{color: #ff6633;}
+}
+
+.heading16{
+  font-size: 16px;
+
+  &.adelle{
+    font-family: adelle-1, adelle-2;
+    color: #6a4a3b;}
+
+  &.futura{
+    font-family: futura-pt-1, futura-pt-2;
+    color: #333;}
 }
 
 .heading15{
@@ -50,12 +77,10 @@
   &.marcomm{color: #e4652f;}
   &.campaign-greendoors{color: #5b7020;} }
 
-
 .heading14{
   @include hourschool-heading;
   font-size: 14px;
   color: #333333;
-  text-align: center;
   letter-spacing: 0.2em;
   line-height: 20px;
 }
@@ -72,12 +97,25 @@
       color: $hourschool-house-color; }
     &:hover {
       color: $hourschool-house-color; } } }
+
+.heading13{
+  font-family: adelle-1, adelle-2;
+  font-size: 13px;
+
+  &.brown{
+    color: #6a4a3b;}
+}
+
+a.heading13{color: #6a4a3b;}
+a:hover.heading13{color: #6a4a3b;}
+a:visited.heading13{color: #6a4a3b;}
       
 .sidebar-heading {
   @include hourschool-heading;
   color: $hourschool-dark-grey;
   font-size: 13px;
   letter-spacing: 0.2em;
+  margin-bottom: 10px;
   line-height: 26px; }
       
 .heading11{
@@ -97,6 +135,10 @@
   &.marcomm{
     margin-bottom: 10px;
   }
+
+  &.orange{
+    color: #ff7733;
+  }
 }
 
 .heading10 {
@@ -109,8 +151,18 @@
 
 .heading9-class {
   font-weight: 400;
-  font-size: 9px; }
-  
+  font-size: 9px; 
+}
+
+.heading9{
+  font-size: 9px; 
+
+  &.bold{
+    color: #666;
+    font-weight: 700;
+    text-transform: uppercase;
+  }  
+}
 
   
 /* NEED NESTING */

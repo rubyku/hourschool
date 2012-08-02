@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120616223040) do
+ActiveRecord::Schema.define(:version => 20120730003527) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "charge",             :default => true
+    t.float    "charge_amount"
+    t.float    "discount"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
@@ -96,6 +99,11 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.datetime "updated_at"
     t.integer  "parent_id"
     t.integer  "mission_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "comment_type"
   end
 
   add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
@@ -137,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.integer  "account_id",         :default => 0,     :null => false
     t.boolean  "seed",               :default => false, :null => false
     t.integer  "mission_id"
+    t.string   "zip"
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
@@ -150,6 +159,20 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
   end
 
   add_index "courses_topics", ["course_id", "topic_id"], :name => "index_courses_topics_on_course_id_and_topic_id"
+
+  create_table "crewmanships", :force => true do |t|
+    t.integer  "mission_id"
+    t.integer  "user_id"
+    t.string   "role"
+    t.string   "status"
+    t.date     "trial_expires_at"
+    t.datetime "canceled_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "crewmanships", ["mission_id"], :name => "index_crewmanships_on_mission_id"
+  add_index "crewmanships", ["user_id"], :name => "index_crewmanships_on_user_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -291,8 +314,11 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "status"
+    t.string   "verb"
+    t.boolean  "featured",           :default => false
   end
 
   add_index "missions", ["account_id"], :name => "index_missions_on_account_id"
@@ -335,6 +361,9 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.string   "name"
     t.boolean  "attending"
     t.integer  "mission_id"
+    t.integer  "quantity"
+    t.string   "note"
+    t.boolean  "terms_and_conditions"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"
@@ -386,6 +415,31 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.integer  "enterprise_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "subscription_charges", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "params"
+    t.decimal  "amount",                  :precision => 8, :scale => 2
+    t.boolean  "paid",                                                  :default => false, :null => false
+    t.string   "stripe_card_fingerprint"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_id"
+    t.string   "card_last_4"
+    t.string   "card_type"
+    t.text     "description"
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+  end
+
+  add_index "subscription_charges", ["user_id"], :name => "index_subscription_charges_on_user_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "subscribable_type"
+    t.integer  "subscribable_id"
+    t.string   "stripe_customer_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "suggestions", :force => true do |t|
@@ -478,6 +532,9 @@ ActiveRecord::Schema.define(:version => 20120616223040) do
     t.string   "status"
     t.integer  "city_id"
     t.string   "preferences"
+    t.datetime "last_invoiced_at"
+    t.integer  "billing_day_of_month"
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["city_id"], :name => "index_users_on_city_id"

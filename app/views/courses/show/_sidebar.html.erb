@@ -1,0 +1,106 @@
+<!-- todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css -->
+<div>
+  <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
+    Register for event
+  </div>
+
+  <div style="width: 270">
+    <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
+    <div class="class-details" style="width: 240px"><%= "$ #{@course.price} for members" %></div>
+    <div style="margin-left: 21px"><%= "$ #{@course.price + 5} for non-members" %></div>
+  </div>
+
+  <div style="width: 270">
+    <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
+    <div class="class-details" style="width: 240px">
+      <%= @course.starts_at.strftime("%a %b %d, %Y") %>
+    </div>
+    <div style="margin-left: 22px">
+      <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+    </div>
+  </div>
+
+  <div style="width: 270; margin-bottom: 20px">
+    <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
+    <div class="class-details" style="width: 240px"><%= "#{@course.place_name}" %></div>
+    <div style="margin-left: 21px">
+      <% if @course.public? %>
+        <%= @course.address %>
+        <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
+        <%= ", #{@course.zip}" if @course.zip.present? %>
+      <% else %>
+        Residential address<br>
+        Area: <%= @course.zip %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="user_status">
+    <%= content_tag(:p, "You're already registered!", :class => "heading13-class") if course.has_student?(current_user) && course.active? %>
+  </div>
+  <div class="course_status">
+    <%= content_tag(:p, "This session is full!", :class => "heading13-class")                if course.sold_out? && course.active? %>
+    <%= content_tag(:p, "This session has passed.", :class => "heading13-class")             if course.inactive? %>
+    <%= content_tag(:p, "This session has been canceled!", :class => "heading13-class")      if course.canceled? %>
+    <%#= content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user) %>
+  </div>
+  <div class="course_action">
+    <% if can? :sign_up_for_course, course %>
+      <% if course.sold_out? || course.inactive? %>
+        <%#= button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get %>
+      <% else %>
+        <% if course.donate? %>
+          <%= button_to "",    new_course_attendee_registration_path(:course_id => course), :method => :get, :style => "width: 220px", :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
+        <% else %>
+          <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if can? :edit_course, course %>
+      <% if course.inactive? %>
+        <%#= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button" %>
+      <% else %>
+        <%= button_to "Edit details",           edit_course_path, :method => :get, :class => "btn" %>
+        <%= button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "btn" %>
+      <% end %>
+    <% end %>
+  </div>   
+  <div class="class-alternatives" style="margin-bottom: 30px">
+    <%= "This class has a min. of #{course.min_seats}" %>
+  </div>
+
+</div>
+
+<% @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id) %>
+<% if @past_dates.any? %>
+  <div class="sidebar-block">
+    <div class="class-section-heading">Past Dates</div>
+    <% @past_dates.each do |course| %>
+      <%= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course %><br>
+    <% end %>
+  </div>
+<% end %>
+
+
+<!-- Modal Layout for when a User tries to sign up for a course too far away -->
+<%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'tooFarToRegisterModal'} do %>
+  <p>
+    <%= content_tag(:p, "Wait!! This class is in #{course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.") %>
+  </p>
+  <p>
+    <%= "If you're no longer in #{current_user.try(:location)} " %>
+    <%= link_to "change your location here", edit_user_registration_path(:id => current_user) %>
+    <%= ", or continue signing up for this class" %>
+  </p>
+  <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn" %>
+<% end %>
+
+<!-- Show the modal window if a person tries to register for a course too far away from them -->
+<script type="text/javascript">
+  $(document).ready( function(){
+    $('.tooFarToRegister').bind('click', function(){
+      $('.tooFarToRegisterModal').show();
+      return false;
+    })
+  });
+</script>

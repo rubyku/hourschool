@@ -1,5 +1,7 @@
 class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
+
+  layout 'layouts/email_layout'
   
 
   # def followed_created_a_course(current_user, followed, course)
@@ -16,7 +18,50 @@ class UserMailer < ActionMailer::Base
   #   mail(:to => current_user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
   # end
 
+  def invite_user_to_mission(options = {})
+    @inviter        = options[:inviter]
+    @mission        = options[:mission]
+    @invitee        = options[:invitee]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = mission_url(@mission)
+    mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
+  end
+
+
+  def invite_nonuser_to_mission(options = {})
+    @inviter        = options[:inviter]
+    @mission        = options[:mission]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = mission_url(@mission)
+    mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
+  end
+
+  def invite_user_to_course(options = {})
+    @inviter        = options[:inviter]
+    @course         = options[:course]
+    @invitee        = options[:invitee]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = course_url(@course)
+    mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to an event")
+  end
+
+
+  def invite_nonuser_to_course(options = {})
+    @inviter        = options[:inviter]
+    @course         = options[:course]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]  
+    @invitable_id   = options[:invitable_id]
+    @url            = course_url(@course)
+    mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to an event")
+  end
+
   def comment_on_course(user, comment, course, current_account)
+    return false if user.unsubscribed?("mission_news")
     @user    = user
     @course  = course
     @comment = comment
@@ -145,5 +190,26 @@ class UserMailer < ActionMailer::Base
      @body = options[:body].to_s
      mail(options)
    end
+
+
+  class Preview < MailView
+    # Pull data from existing fixtures
+    def send_course_registration_mail
+      user   = User.last
+      course = Course.first
+      current_account = nil
+      UserMailer.send_course_registration_mail(user.email, user.name, course, current_account)
+    end
+
+    def invite_nonuser_to_course
+      inviter   = User.last
+      invitee   = User.first
+      course  = Course.last
+      UserMailer.invite_nonuser_to_course(:inviter => inviter, :invitee_email => invitee.email, :course => course)
+    end
+
+
+  end
+
 
 end

@@ -1,0 +1,128 @@
+<%= form_for(@role, :url => course_attendee_registrations_path(@course)) do |f| %>
+
+  <div class="full-page white">
+    <div class="page-content">
+      <div class="heading14" style="margin-bottom: 10px">Event Details</div>
+      <div class="heading28 brown" style="margin-bottom: 10px"><%= @course.title %></div>
+
+      <div class="clearfix" style="margin-bottom: 2px">
+        <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
+        <div class="class-details" style="font-weight: 400">
+          <%= "#{@course.starts_at.strftime("%a %b %d, %Y")}, #{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+        </div>
+      </div>
+
+      <div class="clearfix" style="margin-bottom: 20px">
+        <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
+        <div class="class-details" style="font-weight: 400"><%= "#{@course.place_name}" %>
+          <% if @course.public? %>
+            <%= @course.address %>
+            <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %>
+            <%= ", #{@course.zip}" if @course.zip.present? %>
+          <% else %>
+            Residential address<br>
+            Area: <%= @course.zip %>
+          <% end %>
+        </div>
+      </div>
+
+      <p>To help the organizer plan, introduce yourself and what you want to get out of the event:</p>
+      <%= f.text_area :note, :class => "form-med", :style => "width: 600px" %>
+    </div>
+  </div>
+
+
+  <div class="full-page white">
+    <div class="page-content">
+      <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
+
+      <% if @course.free? %>
+        Course is free
+      <% elsif @course.mission.blank? %>
+        Price per ticket: <%= number_to_currency @course.price %>
+      <% else %>
+        <table>
+          <% if current_user.crewmanships.where(:mission_id => @mission) == true %>
+          <tr>
+            <td>Member price per ticket: </td>
+            <td><%= number_to_currency @course.price %></td>
+          </tr>
+          <% else %>
+          <tr>
+            <td>Non-member price per ticket: </td>
+            <td><%= number_to_currency @course.price %> (<%= link_to "Join membership today", new_mission_crewmanship_path(:mission_id => @mission.id) %>)</td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>Transaction fee: $<span id="transaction_fee"><%= fee = (@course.price * 0.029 + 0.3).round(2) %></span></td>
+        </tr>
+        <tr>
+          <td>
+            <hr />
+            <h3>
+              Total: $<span id="total_price"><%= @course.price + fee %></span>
+            </h3>
+          </td>
+        </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $('#role_quantity').change(function() {
+      new_total = $('#role_quantity').val() * <%= @course.price %>;
+      fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+      total_price = new_total + fee;
+      $('#total_price').text(total_price);
+      $('#transaction_fee').text(fee);
+    })
+  </script>
+
+  <% if !@course.free? %>
+    <div class="full-page white">
+      <div class="page-content">
+        <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
+        <% if current_user.stripe_customer %>
+          <p>The following will be charged to your credit card on file: </p>
+          <p>
+            <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
+            ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
+          </p>
+          (<%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal' %>)
+        <% else %>
+          <%= render :partial => 'subscription_charges/credit_card_fields' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="full-page white">
+    <div class="page-content">
+      <div class="heading14" style="margin-bottom: 10px">Refund and cancellation policy</div>
+      <ul>
+        <li>If class doesn’t reach minimum, you’ll get your money back.</li>
+        <li>Once class hits minimum, there will be no refunds.</li>
+        <li>The organizer will take registrations up to 48 hours before the event starts.</li>
+      </ul>
+      <%= f.check_box :terms_and_conditions %> I agree with the refund and cancellation policy
+    </div>
+  </div>
+  <p><%= f.submit 'Continue registration', :class => "btn" %></p>
+<% end %>
+
+<div id="updateCard" class="modal hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Update Credit Card</h3>
+  </div>
+  <%= form_for(:current_user, :url => update_card_user_path(:current), :remote => true, :method => :put) do |f| %>
+    <div class="modal-body">
+      <%= render :partial => 'subscription_charges/credit_card_fields' %>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+      <%= f.submit 'Update Card', :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

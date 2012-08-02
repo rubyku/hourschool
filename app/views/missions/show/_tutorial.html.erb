@@ -1,0 +1,124 @@
+<% if @mission.creator == current_user %>
+  <% if @mission.status == 'draft' %>
+    <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px">
+       <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4> 
+       <span class="label label-inverse"><%= @mission.status %></span>
+      <%= link_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn right", :method => :put %>
+      <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
+    </div>
+  <% end %>
+
+  <div class="alert" style="background-color: white; color: black; border: 1px solid white">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <% if @mission.status == 'draft' %>
+      <h4 class="alert-heading" style="color: black; text-decoration: uppercase">OK! We've created your mission; it's in draft mode.</h4>
+      <p>Follow these steps and when you are ready, launch your mission!</p>
+    <% else %>
+      <h4 class="alert-heading" style="color: black; text-decoration: uppercase">Your mission has been launched!</h4>
+      <p>You can still add to your mission anytime. Remember, a mission is an on-going journey.</p>
+    <% end %>
+    <br>
+    <p>
+      <% if @mission.photo.present? && @mission.description.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
+      <% end %>
+
+      <% if @mission.topics.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
+      <% end %>
+
+      <% if @mission.comments.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
+      <% end %>
+
+      <% if @mission.courses.present? %>
+        <a class="btn disabled" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
+      <% else %>
+        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
+      <% end %>
+
+    </p>
+  </div>
+<% end %>
+
+<div class="modal hide" id="addBasicInfo">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add Basic info</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for(@mission) do |f| %>
+      <% if @mission.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@mission.errors.count, "error") %> prohibited this mission from being saved:</h2>
+
+          <ul>
+          <% @mission.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="field">
+        <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :photo, 'Upload a photo that represent your mission' %>
+        <div class="heading9">Optimal dimensions are 959px x 349px</div>
+        <%= image_tag(@mission.photo.url(:thumb_258), :style => "margin-right: 10px") if @mission.photo.present? %>
+        <%= f.file_field :photo %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+      <%= f.submit "Save changes", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="modal hide" id="newTopic">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add a new topic</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'topics/form' %>
+  </div>
+</div>
+
+<div class="modal hide" id="askAQuestion">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Ask a question</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_for @mission.comments.new do |f| %>
+      <%= f.hidden_field :mission_id, :value => @mission.id %>
+      <%= f.hidden_field :comment_type, :value => "question" %>
+      <%= f.text_area    :body, :placeholder => "I have a question about...", :class => "form-with-margin", 'data-comment_type' => 'question' %><br>
+      <%= f.submit 'Post', :class => "btn" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal hide" id="addAnEvent">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add an event</h3>
+  </div>
+  <div class="modal-body">
+    <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+    <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+  </div>
+</div>
+

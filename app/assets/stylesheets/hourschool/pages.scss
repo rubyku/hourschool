@@ -1,14 +1,29 @@
 .page-main{
   float: left;
   width: 630px;
-  background-color: white;
   margin-bottom: 30px;
 }
 
-.page-right-sidebar{
+.page-sidebar{
   float: left;
-  width: 300px;
-  background-color: white;
+  width: 298px;
+  margin-bottom: 30px;
+  border: 1px solid #DDD;
+
+  &.right{
+    margin-left: 30px;
+  }
+
+  &.left{
+    margin-right: 30px;
+  }
+}
+
+.intro-text{
+  font-size: 20px;
+  line-height: 24px;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .big-quote{
@@ -17,4 +32,11 @@
   font-family: Georgia;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.screen-tip{
+  font-family: caflisch-script-pro-1, caflisch-script-pro-2; 
+  font-size: 32px;
+  line-height: 30px;
+  width: 160px;
 }

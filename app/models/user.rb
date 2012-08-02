@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   belongs_to :city
 
+  has_many :topics
+
   has_many :pre_missions_signups
 
   has_many :memberships
@@ -39,10 +41,16 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings, :foreign_key => 'follower_id', :dependent => :destroy
   has_many :followed,  :through => :followings, :foreign_key => 'followed_id', :dependent => :destroy
 
+  has_many :crewmanships,   :dependent => :destroy
+  has_many :missions, :through => :crewmanships
+  
+  has_many :subscription_charges
+
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
                                         :thumb_large => ["125x125#", :jpg],
-                                        :thumb_small => ["50x50#",   :jpg]
+                                        :thumb_small => ["50x50#",   :jpg],
+                                        :thumb_35    => ["35x35#",   :jpg]
                                         },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -62,9 +70,17 @@ class User < ActiveRecord::Base
   include User::Facebook
   include User::FollowingMethods
 
+  def unsubscribed?(key)
+    !wants?(key)
+  end
+
+  def wants?(key)
+    return true  if preferences.blank?
+    preferences[key].present?
+  end
+
   def wants_newsletter?
-    return true unless preferences.has_key?('wants_newsletter')
-    preferences['wants_newsletter'].present?
+    wants?('mission_news')
   end
 
   def active?
@@ -86,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def full_state
-    StateAbreviations[state.upcase]
+    StateAbreviations[city.try(:state).try(:upcase)]
   end
 
   def self.ap; where(:email => 'alex@hourschool.com').first; end
@@ -243,6 +259,112 @@ class User < ActiveRecord::Base
       current_account = nil
     end
     UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
+  end
+
+  #after user has put in payment info, a stripe customer is created 
+  def create_stripe_customer(params)
+    stripe_customer = Stripe::Customer.create(params)
+    if stripe_customer
+      update_attribute(:stripe_customer_id, stripe_customer.id)
+    else
+      false
+    end
+  end
+
+  #setting variable for stripe customer (to charge..etc)
+  def stripe_customer
+    if stripe_customer_id.present?
+      @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+    else
+      nil 
+    end
+  end
+
+  #balance based on # of crewmanships a user has
+  def balance
+    crewmanships.collect(&:price).map {|p| p[:amount] }.inject{|sum,x| sum + x }
+  end
+
+  #this creates a stripe charge 
+  def charge_for_active_crewmanships
+    begin
+      amount   = (balance * 100).to_i
+      missions = crewmanships.where('status in (?)', %w(active past_due)).collect(&:mission)
+      charge   = make_charge_with_stripe(amount, missions)
+      if charge
+        crewmanships.where(:status => %w(trial_active trial_expired past_due)).collect {|c| c.update_attribute(:status, 'active')}
+        # email a receipt
+        # mention in the receipt if their charge was $0
+        true
+      else
+        false
+      end
+    rescue => e
+      if crewmanships.where(:status => 'past_due').any?
+        crewmanships.where(:status => 'past_due').collect {|c| c.update_attribute(:status, 'abandoned')}
+        # send an email tell them their account is abandoned
+      else
+        crewmanships.where(:status => 'active').collect {|c| c.update_attribute(:status, 'past_due')}
+        # logger.info "[Crewmanship: #{crewmanships.where(:status => 'active').collect(&:id).inspect}] active => past_due"
+        # send an email tell them their payment failed
+      end
+      false
+    end
+  end
+
+  def make_charge_with_stripe(amount, missions)
+    if amount == 0
+      subscription_charges.create(
+        :amount => 0,
+        :paid => true,
+        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+      )
+      true
+    else
+      charge = Stripe::Charge.create(
+        :amount => amount,
+        :currency => "usd",
+        :customer => stripe_customer.id,
+        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+      )
+      subscription_charges.create(
+        :params => charge.inspect,
+        :amount => charge.amount,
+        :paid => charge.paid,
+        :stripe_card_fingerprint => charge.card.fingerprint,
+        :stripe_customer_id => charge.customer,
+        :stripe_id => charge.id,
+        :card_last_4 => charge.card.last4,
+        :card_type => charge.card.type,
+        :description => charge.description
+      )
+      charge.paid
+    end
+  end
+
+  #this gets run by the daily rake task which charge customers on their billing date
+  def self.monthly_charge
+    User.where(:billing_day_of_month => Time.now.date).each do |user|
+      user.charge_for_active_crewmanships
+    end
+  end
+
+  def last_months_billing_date
+    one = 1.month.ago
+    Date.parse("#{one.year}-#{one.month}-#{billing_day_of_month}")
+  end
+
+  def this_months_billing_date
+    one = Time.now
+    Date.parse("#{one.year}-#{one.month}-#{billing_day_of_month}")
+  end
+
+  def taught_class_between_last_billing_cycle?(mission)
+    courses_taught.
+    where('starts_at >= ?', last_months_billing_date.beginning_of_day).
+    where('starts_at <= ?', (this_months_billing_date - 1.day).end_of_day).
+    where(:mission_id => mission.id).
+    any?
   end
   
   # ================================

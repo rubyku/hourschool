@@ -1,0 +1,40 @@
+<style type="text/css">
+  select {
+    width: 140px;
+    border: 1px solid #bbb;
+    float: left;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-family: futura-pt-1, futura-pt-2;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    letter-spacing: 0.2em;
+    line-height: 20px;
+  }
+</style>
+
+<%= form_for(@mission) do |f| %>
+  <% if @mission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mission.errors.count, "error") %> prohibited this mission from being saved:</h2>
+      <ul>
+      <% @mission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="heading14" style="color: #333; float: left; margin-right: 5px; margin-top: 3px">I want to</div>
+  <%= f.select :verb, ['Build', 'Make', 'Create', 'Learn', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'] %>
+  
+  <div class="field clearfix">
+    <%= f.text_field :title, :class => "form heading14", :style => "width: 270px; margin-top: -1px; margin-bottom: 20px" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Let's make this happen!", :class => "btn", :style => "margin-top: 10px; margin-bottom: 10px" %>
+  </div>
+<% end %>

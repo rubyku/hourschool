@@ -1,0 +1,56 @@
+<style type="text/css">
+.nav-pills > .active > a,
+.nav-pills > .active > a:hover {
+  color: black;
+  background-color: white;
+}
+</style>
+
+<div class="well">
+  <% if current_user %>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#comment-note" data-toggle="tab" class="heading9 bold"><i class="icon-comment"></i> Note</a></li>
+      <li><a href="#comment-question" data-toggle="tab" class="heading9 bold"><i class="icon-question-sign"></i> Question</a></li>
+      <li><a href="#comment-link" data-toggle="tab" class="heading9 bold"><i class="icon-bookmark"></i> Link</a></li>
+      <li><a href="#comment-photo" data-toggle="tab" class="heading9 bold"><i class="icon-picture"></i> Photo</a></li>
+      <li><a href="#comment-file" data-toggle="tab" class="heading9 bold"><i class="icon-file"></i> File</a></li>
+    </ul>
+    <%#= form_for @comment.new do |f| %>
+    <%= form_for @comment, :html => { :multipart => true } do |f| %>
+      <%= f.hidden_field :comment_type, :value => "note" %>
+      <div class="tab-content">
+        <div class="tab-pane active" id="comment-note">
+          <%= f.text_area    :body,      :placeholder => "I've been working on...", :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
+        </div>     
+        <div class="tab-pane" id="comment-question">
+          <%= f.text_area    :body,      :placeholder => "I'm stuck on...", :class => "form-med-with-margin", 'data-comment_type' => 'question' %>
+        </div>
+        <div class="tab-pane" id="comment-link">
+          <%= f.text_area    :body,      :placeholder => "Hey check out HourSchool: www.hourschool.com", :class => "form-med-with-margin", 'data-comment_type' => 'link' %>
+        </div>
+        <div class="tab-pane" id="comment-photo">
+          <p>Upload a photo from your computer</p>
+          <%= f.file_field   :photo %>
+          <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin", 'data-comment_type' => 'photo' %>
+        </div>
+        <div class="tab-pane" id="comment-file">
+          <p>Upload a file from your computer</p>
+          <%= f.file_field   :photo %>
+          <%= f.text_area    :body,      :placeholder => "Add a caption", :class => "form-with-margin", 'data-comment_type' => 'file' %>
+        </div>
+      </div><!-- end tab-content -->
+      <%= f.hidden_field :body, :id => 'submit_body_value' %>
+      <%= f.submit 'Leave Comment', :class => "btn" %>
+    <% end %>
+  <% else %>
+    <p>Please first sign up or log in to leave a comment</p>
+  <% end %>
+</div>
+
+<script type='text/javascript' >
+  $('[data-comment_type]').bind('blur', function() {
+    $('#submit_body_value').val($(this).val());
+    $('#comment_comment_type').val($(this).attr('data-comment_type'));
+  })
+</script>
+

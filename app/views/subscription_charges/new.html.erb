@@ -1,0 +1,6 @@
+<h3>Your trial has expired. We hope you really enjoyed your past month at HourSchool. To continue, we would need your paymemt info.</h3>
+
+<%= form_for(SubscriptionCharge.new, :html => {:id => "payment-form"}) do |f| %>
+  <%= render :partial => 'credit_card_fields' %>
+  <button type="submit" class="submit-button">Submit Payment</button>
+<% end %>

@@ -1,0 +1,21 @@
+<% if @can_paginate %>
+  <div class="pagination">
+    <% path_params = {:last_item_displayed_at => @last_item_displayed_at} %>
+    <%= link_to "NEXT", (params[:action] == 'show' ? dashboard_path(params[:id], path_params) : dashboards_path(path_params)) %>
+  </div>
+<% end %>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    if ($('.pagination').length) {
+      $(window).scroll(function() {
+        url = $('.pagination a').attr('href');
+        if (url && $(window).scrollTop() > ($(document).height() - $(window).height() - 50)) {
+          $('.pagination').text('...');
+          return $.getScript(url);
+        }
+      })
+      return $(window).scroll();
+    }
+  });
+</script>

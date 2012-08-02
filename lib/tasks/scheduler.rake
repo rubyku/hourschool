@@ -1,6 +1,19 @@
 desc "Send scheduled emails"
 namespace :schedule do
 
+  task :trial_expired => :environment do
+    # email people 3 days before trial is going to expire
+    trial_expires_in_3_days = Crewmanship.where(:status => "trial", :expires_at => 3.days.from_now)
+    trial_expires_in_3_days.each do |trial|
+      UserMailer.send_expiration_3_day_reminder(trial).deliver
+    end
+    # email people the day their trial expires
+    trial_expires_today = Crewmanship.where(:status => "trial", :expires_at => Date.now)
+    trial_expires_today.each do |trial|
+      UserMailer.send_expiration_today_reminder(trial).deliver
+    end
+  end
+
   task :schedule_events => :environment do
     ScheduleEvent.where("DATE(publish_on) <= DATE(:today) and published = false", :today => Date.today).each do |event|
       event.publish!

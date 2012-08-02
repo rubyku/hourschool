@@ -61,8 +61,8 @@ body {
   font-size: $hourschool-body-font-size;
   color: $hourschool-body-color;
   line-height: $hourschool-body-line-height;
-  background-color: none;
-  background-image: url(<%= asset_path "v3/bg.png" %>);
+  background-color: #f0f0f0;
+  background-image: none;
   position: relative;
 }
 
@@ -76,18 +76,32 @@ p, ol, ul {
 
 a {
   text-decoration: none;
-  color: $hourschool-body-color;
+  color: #6a4a3b;
   &:visited {
-    color: $hourschool-body-color; }
+    color: #6a4a3b; }
   &:active, &:hover {
-    color: $hourschool-house-color; } }
+    color: #6a4a3b; } }
   
+.blue{
+  background-color: #505f6a;
+}
+
+.white {
+  background-color: white; }
+
+.whiteText {
+  color: white; }
+
+.left{
+  float: left;}
+
+.right {
+  float: right; }
 
 #header{
   width: 100%;
   padding-top: 15px;
   margin-bottom: 30px;
-  overflow: hidden; 
   background-color: white;
 }
 
@@ -96,10 +110,10 @@ a {
 }
   
 .middle_bg {
-  background-image: url("v2/BG_grey.png"); }
+  background-image: url("v2/BG_grey.png"); }w
 
 .footer_bg {
-  background-color: $hourschool-wrapper-color;
+  background-color: white;
   margin-top: 40px;
   padding-bottom: 100px; 
 }
@@ -109,11 +123,10 @@ a {
   float: left;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  background-color: $hourschool-wrapper-color;
 }
 
 .page {
-  width: 700px;
+  width: 630px;
   float: left;
   padding-bottom: 30px;
   background-color: $hourschool-wrapper-color;
@@ -164,7 +177,7 @@ a {
   padding: 0px 0px 10px 30px; }
   
 .sidebar-content-white {
-  padding: 20px 15px 10px 15px; }
+  padding: 20px 15px 10px 20px; }
   
 .sidebar-block {
   float: left;
@@ -177,4 +190,14 @@ a {
   width: 220px;
   padding: 15px 0px 20px 0px;
   border-bottom: 0px dashed #ccc; }
+
+.tab-border{
+  border-left: 1px solid #DDD; 
+  border-right: 1px solid #DDD; 
+  border-bottom: 1px solid #DDD;
+  overflow-x: hidden; 
+
+  &.full{width: 956px;}
+  &.main{width: 626px;}
+}
   

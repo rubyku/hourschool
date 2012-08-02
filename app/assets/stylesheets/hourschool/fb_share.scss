@@ -113,10 +113,17 @@ td.fb_share_table_name_column{
 
 .ui-corner-all{
   z-index: 0;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.ui-menu-item{
+  height: 60px;
+  list-style: none;
 }
 
 ul.ui-autocomplete {
-  width: 260px;
+  width: 220px;
   height: 300px;
   overflow-y: auto;
   overflow-x: hidden;

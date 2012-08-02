@@ -2,17 +2,14 @@
   <div class='facebookShare' data-id="<%= friend['id'] %>" data-limit=1>
     <table class="fb_share_table">
       <tr class="fb_share_table">
-        <td>
+        <td style="width: 50px">
           <img src="<%= friend['image_url'] %>" width="40" height="40" class ="fb_friend_picture"/>
         </td>
 
-        <td class="fb_share_table_name_column">
+        <td style="width: 60px">
           <a href="<%= friend['image_url'] %>" class="fb_friend_name">
               <%= friend['name'] %>
           </a>
-          <%- if friend['location'] -%>
-            <p class='friendLocation'><%= friend['location'] %></p>
-          <%- end -%>
         </td>
 
         <td class="fb_share_table">

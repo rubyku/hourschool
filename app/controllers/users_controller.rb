@@ -9,6 +9,17 @@ class UsersController < ApplicationController
       @users = current_account.users
     end
   end
+
+  def search
+    user = params[:q]
+    response = User.where('name ilike ?', "#{user}%").limit(10)
+    response = response.collect{|u| {:name => u.name, :id => u.id}}
+    if response.empty?
+      response = [{:name => "Looks like #{params[:q]} isn't a member. Give us their email and we'll send em an invite.", :id => 0}]
+    end
+    logger.info("RESPONSE:#{response}")
+    render :json => response
+  end
   
   def table
     if community_site?
@@ -103,5 +114,16 @@ class UsersController < ApplicationController
         render :new_invite
       end
     end
+  end
+
+  def update_card
+    @user = current_user
+    if params[:stripeToken].present?
+      stripe_customer = @user.stripe_customer
+      stripe_customer.card = params[:stripeToken]
+      stripe_customer.save
+    end
+
+    render :layout => false
   end
 end

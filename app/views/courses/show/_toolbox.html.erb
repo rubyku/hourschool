@@ -1,0 +1,30 @@
+<% if @course.teacher == current_user %>
+  <div class="btn-group" style="margin-bottom: 10px">
+    <%= link_to "Edit event", edit_course_path, :class => "btn" %>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% if @course.starts_at < Date.today %></li>
+        <li><%= link_to "Cancel this event", "" %></li>
+        <li><%= link_to "Reschedule this event", "" %>
+      <% else %>
+        <li><a class="btn" data-toggle="modal" href="#addBasicInfo">Schedule another class</a></li>
+        <li><a class="btn" data-toggle="modal" href="#addBasicInfo">Schedule a series of classes</a></li>
+      <% end %>
+    </ul>
+  </div>    
+  <div class="btn-group">
+      <%= link_to "Email attendees", new_course_attendee_contact_path(@course), :class => "btn" %>
+    <button class="btn dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Export email addresses", "" %></li>
+    </ul>
+  </div>
+<% else %><!-- if current_user is not this course's teacher -->
+  <%= link_to "Email organizer", new_course_organizer_contact_path(@course), :class => "btn" %>
+  <a class="btn" data-toggle="modal" href="#addBasicInfo">Cancel registration</a>
+<% end %>
+

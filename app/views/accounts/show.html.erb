@@ -1,0 +1,150 @@
+<% if current_account == Account.where(:id => 4).first %>
+  <%= render :partial => 'courses/womendesignbuild/index' %>
+
+<% elsif current_account == Account.where(:id => 2).first %>
+
+  <div class="page">
+    <div class="page-content">
+      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
+      <div class="page-section-float-right">
+        <table class="view-more">
+          <tr>
+            <td>
+              <%= will_paginate @courses, :previous_label => "Prev" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+  <% content_for :sidebar do %>
+    <%= link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px" %>
+  <% end %>
+
+    </div>
+  </div>
+
+<% elsif current_account == Account.where(:id => 5).first %>
+
+  <div class="full-page white">
+    <% if @account.photo.present? %>
+      <%= image_tag(@account.photo) %>
+    <% else %>
+      <div style="background-color: #333; width: 960px; height: 180px;">
+        <div class="heading11" style="text-align: center; padding-top: 60px">
+          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
+        </div>
+      </div>
+    <% end %> 
+
+    <div style="margin: 0px 20px 0px 20px;">
+      <div class="heading28 brown" style="margin-top: 10px">
+        <%= @account.name %>
+      </div>
+
+      <div class="heading10">
+        <%#= "#{@mission.city.name}, #{@mission.city.state}" %>
+      </div>
+
+      <p>
+        <%= @account.description %>
+      </p>
+    </div>
+
+  </div><!-- end full page -->
+
+  <div class="modal hide" id="addBasicInfo">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add Basic info</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@account) do |f| %>
+        <% if @account.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@account.errors.count, "error") %> prohibited this from being saved:</h2>
+
+            <ul>
+            <% @account.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="field">
+          <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :photo, 'Upload a photo that represent your mission' %>
+          <%= f.file_field :photo %>
+          <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+        <%= f.submit "Save changes", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="page-main">
+    
+    <div style="float: left; argin-bottom: 30px; height: 250px">
+      
+      <div class="heading14" style="margin-bottom: 10px">Featured Mission:</div>
+      
+      <div style="background-color: #333; width: 630px; height: 180px;">
+        <%= image_tag(@account.missions.last.photo.url(:stats)) %>
+      </div>
+      
+      <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
+        <div class="heading28 brown"><%= link_to @account.missions.last.title, @account.missions.last %></div>
+      </div>
+
+    </div>
+
+    <div style="float: left; margin-bottom: 30px; margin-top: 30px">
+
+      <div class="heading14" style="margin-bottom: 10px">Featured Events:</div>
+
+      <div style="float: left; margin-right: 30px">
+        <div style="background-color: #333; width: 300px; height: 180px;">
+        </div>
+        <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
+          <div class="heading28 brown"><%= link_to @account.courses.last.title, @account.courses.last %></div>
+        </div>
+      </div>
+
+      <div style="float: left">
+        <div style="background-color: #333; width: 300px; height: 180px;">
+        </div>
+        <div class="white" style="height: 55px; padding: 2px 0px 5px 15px">
+          <div class="heading28 brown"><%= @account.courses.last.title %></div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <div style="float: left; width: 270px; background-color: white;overflow-x: hidden; padding-top: 15px; padding: 15px; margin: 5px 0px 20px 30px">
+    <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+    </div> 
+    <div class="heading14" style="margin-bottom: 10px">Members</div>
+    <% @account.memberships.each do |membership| %>
+      <%= image_tag(membership.user.photo.url(:thumb_small)) %>
+    <% end %>
+  </div>
+
+  <div style="float: left; width: 270px; background-color: white; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px; margin-left: 30px">
+    <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+    </div> 
+    <div class="heading14" style="margin-bottom: 10px">Partners</div>    
+    <img src="http://www.center61.com/images/Member%20Logos/EntrepreneursFoundation_logo.png">
+    <img src="http://www.center61.com/images/Member%20Logos/UrbanRoots_logo.png">
+    <img src="http://begreenpackaging.files.wordpress.com/2012/02/whole-planet-foundation.jpg" width="80%"><br>
+    <img src="http://kammok.files.wordpress.com/2011/10/307882_10150266185336496_83048466495_8097797_75821_n.jpg" width="50%">
+  </div>
+
+
+<% end %>

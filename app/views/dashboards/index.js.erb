@@ -1,0 +1,7 @@
+$('#news-feed').append('<%= j render(:partial => 'feed_item', :collection => @feed_items) %>');
+
+<% if @can_paginate %>
+  $('.pagination').replaceWith('<%= j render(:partial => 'dashboards/paginate') %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>

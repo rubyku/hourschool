@@ -1,0 +1,86 @@
+.mission-divider{
+  float: left;
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.mission-description-box{
+  float: left;
+  width: 610px;
+  margin: 0px 20px 0px 20px;
+}
+
+.mission-status-box{
+  float: right;
+  margin-top: 20px;
+  margin-right: 10px
+}
+
+.mission-tab-intro{
+  width: 565px;
+}
+
+.crewman-box{
+  float: left;
+  margin-bottom: 20px;
+}
+
+.crewman-photo{
+  float: left;
+  margin-right: 20px;
+}
+
+.crewman-description{
+  float: left;
+  width: 410px;
+}
+
+.comment-box{
+  float: left;
+
+  &.thread{
+    width: 570px;
+  }
+
+  &.parent{  
+  }
+
+  &.child{ 
+    margin-left: 60px;
+    width: 490px;
+  }
+
+  &.reply{
+    margin-left: 60px;
+    background-color: whiteSmoke;
+    padding: 10px;
+    width: 490px;
+    margin-top: 10px;
+
+  }
+}
+
+.commenter-photo{
+  float: left;
+  margin-right: 10px;
+}
+
+.comment-body{
+  float: left;
+  margin-bottom: 10px;
+
+  &.parent{
+    width: 480px;
+  }
+
+  &.child{
+    width: 430px;
+  }
+}
+
+.comment-field{
+  width:  420px;
+  height: 40px;
+}

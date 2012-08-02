@@ -1,0 +1,43 @@
+<div class="full-page white">
+  <% if @mission.photo.present? %>
+    <div style="background-color: #333; width: 960px; height: 349px;">
+      <%= image_tag(@mission.photo.url(:banner)) %>
+    </div>
+  <% else %>
+    <div style="background-color: #333; width: 960px; height: 349px;">
+      <div style="text-align: center; padding-top: 60px;">
+        <a data-toggle="modal" href="#addBasicInfo" class="heading11" style="color: white">Upload a photo that represent your mission</a>
+      </div>
+    </div>
+  <% end %> 
+
+  <div class="mission-description-box">
+    <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
+      <%= full_mission_title(@mission) %>
+    </div>
+
+    <div class="heading9 bold" style="color: #999">
+      <%= "#{@mission.city.name}, #{@mission.city.state}" %>
+    </div>
+
+    <p>
+      <%= @mission.description %>
+    </p>
+  </div>
+
+  <div class="mission-status-box">
+    <% if current_user %>
+      <% @crewmanship = @mission.crewmanships.where(:user_id => current_user.id).first %>
+      <% if @crewmanship.present? %>
+        <div class="heading11" style="margin-bottom: 20px">
+          Mission Crew Badge: <br><%= @crewmanship.role %>
+        </div>
+        <%= link_to 'Manage my crewmanship', mission_crewmanship_path(:mission_id => @mission.id, :id => @crewmanship), :class => "btn right" %> 
+      <% end %>
+    <% else %>
+      <%= link_to 'Join this mission', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "btn btn-inverse right", :style => "color: white" %>
+    <% end %>
+
+  </div>
+
+</div><!-- end full page -->

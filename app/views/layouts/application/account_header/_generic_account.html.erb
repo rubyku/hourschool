@@ -1,94 +1,139 @@
 <style type="text/css">
 
-  #header_generic_account{
-    height: 50px; 
+  a:hover.dropdown-toggle.main-nav{
+    background-color: transparent;
+    color: black;
+    border-top: 3px solid black;
+    border-radius: 0px;
+  }
+
+  a.nav-heading{
+    color: white;
+  }
+
+  a.main-nav:hover{
+    color: white;
+    border-top: 3px solid white;
+  }
+
+  .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover {
     background-color: white;
-    border-bottom: 2px solid #666; 
-    padding-top: 20px;
-    margin-bottom: 30px
-  }
-  
-  #logo_generic_account{
-    float: left; 
-    margin-top: -10px;
-    margin-bottom: 40px;
-    margin-right: 40px;
-  }
-  
-  #name_generic_account{
-    float: left;
-    margin-top: 3px;
-    margin-bottom: 40px;
-    margin-right: 40px;
-    color: #666;
-    font-family: futura-pt-1, futura-pt-2;
-    font-size: 18px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    line-height: 20px;
+    color: black;
   }
 
-  ul#generic_account{
-    float: left;
-  }
-  
-  ul#generic_account_profile{
-    float: right;
+  .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover #homepage{
+      background-color: transparent;
+      color: black;
+    }
+
+  li.dropdown-menu-wrapper{
+    background-color: black;
+    padding: 10px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    height: 60px;
+    width: 200px;
   }
 
-  li#generic_account{
-    float: left;
-    margin-left: 30px;
-    padding-top: 5px;
-    color: #666;
-    font-family: futura-pt-1, futura-pt-2;
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    line-height: 20px;
+  .dropdown-menu-item{
+    padding: 0px 0px 21px 10px; 
+    position: relative; 
+    z-index: 1000; 
+    margin-top: -75px;
   }
 
-  li#generic_account_profile{
-    float: left;
-    margin-left: 10px;
-    padding-top: 5px;
-    color: #666;
-    font-size: 12px;
-    text-decoration: none;
+  .dropdown-menu.main-nav{
+    background-color: transparent;
   }
 
-  a#generic_account{color: #666;}
-  a#generic_account:visited{color: #666;}
+  p.nav-description{
+    font-size: 11px;
+    margin-bottom: 0px;
+    color: white;
+  }
+
 
 </style>
 
-<div id="header_generic_account">
+<div id="header">
   <div class="container_16">
-    
-    <% if current_account.photo.present? %>
-      <div id="logo_generic_account"><%= image_tag current_account.photo.url(:small) %></div>
-    <% else %>
-      <div id="name_generic_account"><%= current_account.name %></div>
-    <% end %>
-    
-    <ul id="generic_account">
-      <li id="generic_account"><%= link_to "Attend a class", learn_path, :id => "generic_account" %></li>
-      <li id="generic_account"><%= link_to "Teach a class", teach_path, :id => "generic_account" %></li>
-    </ul>
-    
-    <ul id="generic_account_profile">
-      <% if user_signed_in? %>
-        <li id="generic_account_profile"><%= link_to "My profile", profile_path, :id => "generic_account" %>
-        <li id="generic_account_profile"><%= link_to "Logout", destroy_user_session_path, :id => "generic_account" %>
-      <% else %>
-        <li id="generic_account_profile"><%= link_to "Sign in", new_user_session_path, :id => "generic_account" %>
-        <li id="generic_account_profile"><%= link_to "Sign up", new_user_registration_path, :id => "generic_account" %>
-      <% end %>
-    </ul>
+
+    <%= link_to "", root_path, :id => "logo" %>          
+      <ul class="nav nav-pills main-nav">    
+        <% if current_user %>
+          <li class="dropdown" id="menu1">
+            <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu1">
+              Me
+            </a>
+            <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+              <li class="dropdown-menu-wrapper"></li>  
+              <div class="dropdown-menu-item">
+                <%= link_to "My Dashboard", dashboards_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                <p class="nav-description">Everything you've missed since you were last here.</p>
+              </div>  
+              <li class="dropdown-menu-wrapper"></li>
+              <div class="dropdown-menu-item">
+                <%= link_to "My Journey", '/dashboards/me', :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                <p class="nav-description">Keep track of what your steps and milestones.</p>
+              </div>
+              <li class="dropdown-menu-wrapper"></li>
+              <div class="dropdown-menu-item">
+                <%= link_to "Settings", edit_user_registration_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                <p class="nav-description">Update profile? Less emails? Not a problem!</p>
+              </div>
+              <li class="dropdown-menu-wrapper"></li>
+              <div class="dropdown-menu-item">
+                <%= link_to "Sign out", destroy_user_session_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                <p class="nav-description">Come back and visit soon!</p>
+              </div>
+            </ul>
+          </li>
+        <% end %>
+        <li class="dropdown" id="menu2">
+          <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu2">
+            Explore
+          </a>
+        </li>
+        <li class="dropdown" id="menu3">
+          <a class="dropdown-toggle  main-nav" data-toggle="dropdown" href="#menu3">
+            Tools
+          </a>
+          <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
+            <li class="dropdown-menu-wrapper"></li>
+            <div class="dropdown-menu-item">
+              <%= link_to "Invite a friend", new_invite_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+              <p class="nav-description">Don't go solo. Rally your troops and build a micro-movement.</p>
+            </div>
+            <li class="dropdown-menu-wrapper"></li>
+            <div class="dropdown-menu-item">
+              <%= link_to "Organize an event", teach_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+              <p class="nav-description">Teach a class, plan a happy hour, host a working session.</p>
+            </div>
+            <li class="dropdown-menu-wrapper"></li>
+            <div class="dropdown-menu-item">
+              <%= link_to "Build a Mission", build_mission_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+              <p class="nav-description">You've dream it, and now it's time to make it happen.</p>
+            </div>
+          </ul>
+        </li>
+        <li class="dropdown" id="menu4">
+          <a class="dropdown-toggle main-nav" data-toggle="dropdown" href="#menu4">
+            About
+          </a>
+        </li>
+
+        <% if !current_user %>
+          <li class="dropdown-menu-item"><%= link_to "Login", new_user_session_path, :class => "main-nav" %></li>
+          <li class="dropdown-menu-item"><%= link_to "Sign up", new_user_registration_path, :class => "main-nav"%></li>
+        <% end %>
+      </ul> 
 
   </div><!-- /end .container_16 -->
 </div><!-- /end #header -->
+
+
+<script type="text/javascript">
+  $('.dropdown-toggle').dropdown()
+</script>
+
 

@@ -3,12 +3,9 @@
   
 - else
 
-  .full-page
+  .full-page.white
     .page-content
-      - if @course.has_teacher?(current_user)
-        .confirm-second-message Woohoo it's live!
-      - else 
-        .confirm-second-message You have successfully signed up!
+      .confirm-second-message You have successfully signed up!
       %hr#confirm
 
       .confirm-classblock
@@ -55,25 +52,16 @@
 
 
       .confirm-messageBlock
-        - if @course.has_teacher?(current_user)
-          .confirm-bring-friend Invite people to come
-          %p.confirm We will help you promote in any way we can. If you already know people that are interested, get a head start and let them know!
-        - else 
-          .confirm-bring-friend Bring a friend or two
-          %p.confirm It's always more fun to learn with friends. Share this with people you think might be interested.
+        .confirm-bring-friend Bring a friend or two
+        %p.confirm It's always more fun to learn with friends. Share this with people you think might be interested.
         = render :partial => "courses/add_this"
 
 
       .confirm-description-block
         - if current_user.facebook?
-          - if @course.has_teacher?(current_user)
-            %p.confirm Here's a handy way to invite people from Facebook
-            = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm teaching a class on Hourschool, you should sign up!"}
-            = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm teaching a class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
-          - else 
-            %p.confirm Here's a handy way to invite people from Facebook
-            = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
-            = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm taking this class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
+          %p.confirm Here's a handy way to invite people from Facebook
+          = render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"}
+          = render :partial => "users/facebook/grid/share", :locals => {:message => "I'm taking this class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 }
         
         - else
           %p.confirm Classes are more fun with friends! Connect Facebook to your account today!

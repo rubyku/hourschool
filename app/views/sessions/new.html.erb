@@ -1,51 +1,47 @@
 <% if community_site? %>
-  
-  <div class="page">
-  <div class="page-content">
+  <div class="full-page white">
+    <div style="padding: 20px">
 
-    <%= render 'facebook' %>
-  
-    <div class="page-section-float-left">
-      <%= render 'form' %>
+      <div style="float: left; width: 250px; margin-right: 20px">
+        <div class="heading14" style="margin-bottom: 20px">Connect with Facebook</div>
+
+        <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %>
+        <div class="class-alternatives" style="margin-top: 10px">We will not post anything without your permission.</div>
+      </div>
+
+      <div style="float: left; width: 300px; margin-right: 20px">
+        <div class="heading14" style="margin-bottom: 20px">New to HourSchool?</div>
+        <% if current_account && current_account.private? %>
+          <p>Please contact the school admin to invite you to sign up.</p>
+        <% else %>
+          <%= render 'registrations/form' %>
+        <% end %>
+      </div>
+
+      <div style="float: left; width: 300px;">
+        <div class="page-section-float-left">
+          <div class="heading14" style="margin-bottom: 20px">Already have an account?</div>
+          <%= render 'form' %>
+        </div>
+      </div>
+
     </div>
-
-    <hr>
-
-    <div class="page-section-float-left"><br>
-      <div class="heading15 marcomm">Don't have an account? <br> Sign up now!</div>
-      <%= render "registrations/form" %>
-    </div>
-
   </div>
-  </div>
-  
+
 <% else %>
-    
   <div class="container_16 middle" id="middle_events">
-    
-    <div class="heading25 dark_grey">Sign in</div>
-
-    <!-- <%= render 'sessions/facebook' %> -->
-    
     <div class="page-section-float-left">
-      <!-- <div class="heading15 sidebar">Or sign in with email:</div> -->
+      <div class="heading25 dark_grey">Sign up</div>
+      <%= render 'registrations/form' %>
+    </div>
+
+    <hr><br>
+
+    <div class="page-section-float-left">
+      <div class="heading15 sidebar">Already have an account? Sign in here:</div>
       <%= render 'form' %>
     </div>
-
-    <hr>
-
-    <div class="page-section-float-left"><br>
-      <div class="heading15 sidebar">Don't have an account? <br> Sign up now!</div>
-      <%= render "registrations/form" %>
-    </div>
-      
   </div>
-  
+
 <% end %>
-
-
-
-
-
-
 

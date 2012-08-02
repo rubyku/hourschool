@@ -13,7 +13,7 @@ module User::Facebook
 
   def in_the_same_city_fb?(friend_hash)
     return false if friend_hash['location'].blank?
-    friend_hash['location'].include?(city) && in_the_same_state_fb?(friend_hash)
+    friend_hash['location'].include?(city.try(:name)) && in_the_same_state_fb?(friend_hash)
   end
 
   def no_facebook?

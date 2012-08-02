@@ -146,3 +146,13 @@ ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 
 ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
 → rake sunspot:solr:start
+
+
+
+
+## Mail View
+
+
+http://localhost:3000/mail_view/user_mailer/preview
+
+http://localhost:3000/mail_view/student_mailer/preview

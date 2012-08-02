@@ -1,0 +1,135 @@
+<div class="full-page white">
+  <div class="page-content">
+   
+    <%= form_for([@mission, @crewmanship]) do |f| %>
+
+      <center>
+      <div class="heading28 brown" style="margin-bottom: 15px">Joining a mission? </div>
+        <div style="color: #006699; font-size: 63px; font-style: italic; font-weight: 800; text-transform: uppercase; margin-top: 45px; margin-bottom: 60px">
+          Way to go, <%= current_user.name.split(" ").first %>!
+        </div>
+      </center>
+
+      <div class="well" style="width: 456px; margin-left: 200px">
+        Tuition for the following mission will be $10/month:
+        <div class="heading14">
+          <%= "#{@mission.verb} #{@mission.title}" %>
+        </div><hr>
+        <% if current_user.crewmanships.empty? %>
+          Join now and try for free for 30 days!
+        <hr>
+        <% elsif current_user.crewmanships.collect(&:status).include?('trial_active')  %>          
+          <p>Looks like you already have a trial going. <br>
+          You can try this mission for free until your other trial expires.</p>
+        <hr>
+        <% elsif current_user.crewmanships.collect(&:status).include?('active') %>
+          <p>Looks like you already have a mission going. <br>
+            You can try this mission for free until your next billing date.
+          </p>
+        </center>
+        <hr>
+        <% else %>
+
+          <!-- Check if there are past due or abondoned balances to add to total -->
+          <% if current_user.crewmanships.collect(&:status).include?('past_due' || 'abandoned') %>
+            <% current_user.crewmanships.each do |crewmanship| %>
+              <% if !crewmanship.price[:amount] == 0 %>
+                You also have a past due balance for this mission: <%= crewmanship.mission.title %><br>
+                Amount due: <%= number_to_currency crewmanship.price[:amount] %>
+                <hr>
+              <% end %>
+            <% end %>
+          <% end %>
+          
+
+          <!-- check if current_user already has card on file -->
+          <% if current_user.stripe_customer %>
+              <div class="heading14">
+              On this card <%= current_user.stripe_customer.active_card.type %> ending in <%= current_user.stripe_customer.active_card.last4 %></div>
+          <% else %>
+            <div class="heading14" style="margin-bottom: 10px">Enter your card details</div>
+            <%= render :partial => 'subscription_charges/credit_card_fields' %>
+          <% end %>   
+
+        <hr>
+        <div class="heading14 left">
+          Total: <%= number_to_currency(current_user.balance + Crewmanship.default_price) %> 
+        </div>
+          
+        <% end %>
+      
+        <div style="margin-bottom: 60px">
+          <%= f.submit "Let's make this happen!", :class => "btn right" %>
+        </div>
+
+      </div><!-- end well -->
+
+    <% end %><!-- end crewmanship form -->
+  </div>
+</div>
+
+
+<div class="full-page white" style="font-size: 11px">
+  <div class="page-content">
+
+    <center><div class="heading14" style="color: #333; margin-bottom: 30px ">How tuition works</div></center>
+
+    <div style="float: left; width: 280px; margin-right: 30px">
+
+      <div class="heading11" style="color: #9a9591">What is a mission?</div>
+      <p style="font-size: 11px; color: #666">A mission is a new way of learning. <%= link_to "Learn about how missions work", build_mission_path %>.</p>
+      <div class="heading11" style="color: #9a9591">Do I have to join a mission to attend an event?</div>
+      <p style="font-size: 11px; color: #666">Nope. But as a member, you get member discount and access to members-only events.</p>
+      <div class="heading11" style="color: #9a9591">Why do I have to pay?</div>
+      <p style="font-size: 11px; color: #666">
+      Instead of buying textbooks, you’ll be paying for hands-on lessons from community experts. Instead of taking twice as long doing-it-yourself, you’ll receive guidance and community support. Instead of paying big bucks for a short-lived course, you’ll be meeting passionate people, gaining knowledge, and engaging with a community that can stick with you beyond your mission’s end date. The fee covers the cost of community management, either by HourSchool or Mission Organizers. 
+      </p>
+
+    </div>
+
+    <div style=" float: left; width: 280px; margin-right: 30px">
+
+      <div class="heading11" style="color: #9a9591">How many events are there going to be per month?</div>
+      <p style="font-size: 11px; color: #666">
+        Because missions are meant to be community-driven, the schedule may vary from month to month depending on how active the collective community is that month. Typically, there will at least be 1-2 events per month.  
+      </p>
+      <p style="font-size: 11px; color: #666">
+        Once in awhile, a mission might not be very active for a month when everyone is busy. We will try to encourage everyone to participate. But if there are no events in the last 30 days, we also waive your membership fee just to keep it all fair and cool.
+      </p>
+
+      <div class="heading11" style="color: #9a9591">How long can I be in a mission for?</div>
+      <p style="font-size: 11px; color: #666">
+        For however long you want! You set your own goal, your own milestone, and you are done when you decide you are done. 
+      </p>
+
+    </div>
+
+    <div style="float: left; width: 280px;">
+
+      <div class="heading11" style="color: #9a9591">I'm not a teacher, can I teach a class or organize an event?</div>
+      <p style="font-size: 11px; color: #666">
+        Absolutely! In fact, we highly encourage it. We believe everyone can teach and should teach. It's all about sharing your own experiences, stories, and passsion with your community. 
+      </p>
+      <p style="font-size: 11px; color: #666">
+        On top of that, if you teach or lead an event, your membership fee is waived for that month because the more active you are in your mission, the better the community becomes for everyone. 
+      </p>
+
+
+      <div class="heading11" style="color: #9a9591">Can I try it first?</div>
+      <p style="font-size: 11px; color: #666">
+        Yup! The first 30 days are free, and we won’t take your credit card information until after the trial period is over.
+      </p>
+
+      <div class="heading11" style="color: #9a9591">Do I need a credit card to sign up?</div>
+      <p style="font-size: 11px; color: #666">
+        No, you will not need to put in your credit card info until your trial is over. We use stripe to securely process credit cards and we don't save any sensitive personal info.
+      </p>
+
+    </div>
+
+  </div>
+</div>
+
+ 
+
+

@@ -1,0 +1,35 @@
+.dashboard-feed-thumbnail{
+  float: left;
+  width: 70px;
+  margin-right: 20px;
+}
+
+.dashboard-feed-body{
+  float: left;
+  width: 500px;
+}
+
+.dashboard-event-day{
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2; 
+  font-weight: 700;
+  color: #d89f24;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.dashboard-event-month{
+  text-transform: uppercase;
+  font-family: futura-pt-1, futura-pt-2; 
+  font-weight: 700;
+  color: #d89f24;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+}
+
+.dashboard-event-time{
+  font-size: 11px;
+  color: #666;
+  font-weight: 700;
+  margin-top: 1px;
+}

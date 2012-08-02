@@ -5,24 +5,24 @@ class Users::AfterRegisterController < Wicked::WizardController
 
   def show
     @user = current_user
-    case @step
-    when :confirm_password
-      if @user.facebook?
-        flash[:notice] = "Please fill out this information"
-      else
-        skip_step
-      end
-    # when :confirm_zip
-    #   skip_step if @user.zip.present?
-    when :confirm_avatar
-      skip_step if @user.photo?
-    when :invite_fb
-      if @user.facebook?
-        @user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.shuffle # warm cache for ajax call
-      else
-        skip_step
-      end
-    end
+    # case @step
+    # when :confirm_password
+    #   if @user.facebook?
+    #     flash[:notice] = "Please fill out this information"
+    #   else
+    #     skip_step
+    #   end
+    # # when :confirm_zip
+    # #   skip_step if @user.zip.present?
+    # when :confirm_avatar
+    #   skip_step if @user.photo?
+    # when :invite_fb
+    #   if @user.facebook?
+    #     @user.cache(:fetch, :expire => 12.hours).raw_facebook_friends.shuffle # warm cache for ajax call
+    #   else
+    #     skip_step
+    #   end
+    # end
 
     render_wizard
   end
@@ -37,7 +37,7 @@ class Users::AfterRegisterController < Wicked::WizardController
 
   protected
     def finish_wizard_path
-      previous_path_or(explore_path)
+      previous_path_or(dashboards_path)
     end
 
 end

@@ -1,0 +1,13 @@
+<%- content_for(:body_id) { "mission_builder" } -%>
+
+<div class="navbar" style="margin-top: -20px;">
+  <div class="navbar-inner" style="height: 56px; padding-top: 5px">
+    <div class="container16">
+      <div class="brand"> Build your mission</div>
+      <%= button_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn btn-inverse right", :style => "color: white", :method => :put %>
+      <%= button_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white", :method => :put %>
+    </div>
+  </div>
+</div>
+
+<%= render :template => "layouts/application" %>

@@ -31,13 +31,27 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    if params[:stripeToken].present?
+      if resource.stripe_customer
+        stripe_customer = resource.stripe_customer
+        stripe_customer.card = params[:stripeToken]
+        stripe_customer.save
+      else
+        resource.create_stripe_customer(
+          :card => params[:stripeToken],
+          :description => "user_#{resource.id}",
+          :email => resource.email
+        )
+      end
+    end
+
     # Override Devise to use update_attributes instead of update_with_password.
     # This is the only change we make.
     if resource.update_attributes(params[resource_name])
       set_flash_message :notice, :updated
       # Line below required if using Devise >= 1.2.0
       sign_in resource_name, resource, :bypass => true
-      redirect_to after_update_path_for(resource)
+      redirect_to :back
     else
       clean_up_passwords(resource)
       render_with_scope :edit
@@ -46,11 +60,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
     def after_update_path_for(resource)
-      user_path(resource)
+      dashboards_path
     end
 
     def after_sign_up_path_for(resource)
       # previous_path_or(resource)
-      after_register_path(:confirm_password)
+      #after_register_path(:confirm_password)
+      dashboards_path
     end
 end

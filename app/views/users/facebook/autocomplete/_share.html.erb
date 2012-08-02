@@ -1,6 +1,6 @@
 <% if current_user && current_user.facebook? %>
   <div class="ui-widget">
-    <input class="facebookTypeAheadShare" placeholder="Type a friend's name..."
+    <input class="span3 facebookTypeAheadShare" placeholder="Type a friend's name"
       data-source-url="<%= users_facebook_share_index_path %>"
       data-create-url="<%= users_facebook_share_index_path %>"
       data-message="<%= local_assigns[:message] %>"

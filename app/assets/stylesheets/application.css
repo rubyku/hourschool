@@ -1,19 +1,27 @@
 //= require hourschool/960_grid
 //= require hourschool/scaffold
 
+
+
 //= require hourschool/admin
 //= require hourschool/about
 //= require hourschool/buttons
 //= require hourschool/comment
 //= require hourschool/courses
+//= require hourschool/dashboard
 //= require hourschool/email
 //= require hourschool/fb_share
 //= require hourschool/footer
 //= require hourschool/header
 //= require hourschool/headings
 //= require hourschool/homepage
+//= require hourschool/mission
 //= require hourschool/pages
 //= require hourschool/peerteachingfund
 //= require hourschool/search
 //= require hourschool/suggestion
 //= require hourschool/users
+
+//= require bootstrap/bootstrap
+
+//= require hourschool/wall_of_stuff

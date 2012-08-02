@@ -2,49 +2,32 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
 
+  def new
+    @course = Course.new
+    @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
+  end
 
   def create
-    @course      = Course.new(params[:course])
+    @course         = Course.new(params[:course])
     @course.account = current_account if current_account
-  
-    #was it from a request
-    from_req = !params[:req].nil?
+
+    @topic = Topic.find(params[:topic_id]) if params[:topic_id].present?
 
     @user = current_user
     if @course.save
+      @course.update_attribute(:status, 'draft')
+      @course.topics << @topic if @topic
       @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
+        if @course.mission && @course.mission.crewmanships.where(:user_id => current_user).blank?
+          @course.mission.crewmanships.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'active', :role => 'guide')
+        end
         @user.save
       end
-
-      if from_req
-        #delele the suggestion
-        Suggestion.delete(params[:req].to_s)
-        # here email people who voted, etc etc
-      end
-
-      if admin_of_current_account?
-        @course.update_attribute(:status, 'approved')
-        redirect_to preview_path(@course)
-      else
-        @course.update_attribute(:status, 'proposal')
-        UserMailer.send_proposal_received_mail(@course.teacher.email, @course.teacher.name, @course).deliver
-        redirect_to current_user
-      end
+      redirect_to @course
     else
       render :action => 'new'
-    end
-  end
-
-  def new
-    @course = Course.new
-    @course.city = current_user.city
-    @reqid = params[:req]
-    if !@reqid.nil?
-      req = Suggestion.find(@reqid.to_i)
-      @reqtitle = req.name
-      @reqdescription = req.description
     end
   end
 
@@ -60,23 +43,43 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @current_course = @course
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
   end
 
   def update
     @course = Course.find(params[:id])
+
     sanitize_price(params[:course][:price].to_s)
+    params[:course][:topic_ids] ||= []
     cat = []
     cat << (params[:course][:categories]).to_s
     params[:course].delete(:categories)
     @course.category_list = cat.join(", ").to_s
-    if @course.update_attributes(params[:course])
-      redirect_to preview_path(@course)
-    else
-      render :action => 'edit'
-    end
+
+    respond_to do |format|
+      if @course.update_attributes(params[:course])
+        if @course.status == 'live'  
+          if @course.account.nil?
+            current_account = nil
+          else 
+            current_account = @course.account
+          end
+          UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
+          format.json { head :no_content }
+        elsif @course.status == 'draft'
+          format.html { redirect_to @course}
+        end
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end    
   end
  
-
   def destroy
     @course = Course.find(params[:id])
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
@@ -95,39 +98,6 @@ class CoursesController < ApplicationController
       redirect_to :back, :alert => "You are not authorized to do this"
     end
   end  
-
-  ## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  ## "Look over your prososal, if need changes, course#edit, else, course#confirm"
-  ## courses#show
-  def preview
-    id = params[:id]
-    @course = Course.find(id)
-    @current_course = @course
-  end
-
-
-  ## courses/confirm#show # params[:id] == :teacher || :student
-  ## courses/confirm/teacher  
-  ## teacher.html.erb student.html.erb
-  ## "Congrats! Your class is now live"
-  def confirm
-    if @course.status == "approved"
-        @course.update_attribute :status, "live"
-        if @course.account.nil?
-          current_account = nil
-        else 
-          current_account = @course.account
-        end
-        UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-        if community_site?
-          post_to_twitter(@course)
-        end
-    end
-  end
-
-##-------------------------------------------------------------------------------------------------------------
-
 
   private
 
@@ -154,9 +124,3 @@ class CoursesController < ApplicationController
   end
 
 end
-
-
-## Find links to old controller actions, move to these controller actions
-## Move views
-## Fix bugs
-## Remove old controller action routes

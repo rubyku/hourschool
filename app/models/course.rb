@@ -2,6 +2,9 @@ class Course < ActiveRecord::Base
   belongs_to :city
   belongs_to :series
   belongs_to :account
+  belongs_to :mission
+
+  has_and_belongs_to_many :topics
 
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
@@ -10,7 +13,10 @@ class Course < ActiveRecord::Base
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_many :payments
 
+  has_many :invites, :as => :invitable
+
   validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id 
+
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
 
@@ -72,6 +78,9 @@ class Course < ActiveRecord::Base
     city.try(:lng)
   end
 
+  def free?
+    self.price == 0
+  end
 
   def days_left
     (date - Time.current.to_date).to_i

@@ -22,7 +22,7 @@ gem 'sass-rails',           '~> 3.2.4'
 
 gem 'pg',                   '~> 0.12.2'
 
-
+gem 'thin'
 gem 'unicorn',              '~> 4.2.0'
 
 gem 'pg',                   '~> 0.12.2'
@@ -101,6 +101,9 @@ gem 'sitemap_generator',  '~> 3.0.0'
 gem 'carrierwave',        '~> 0.5.8'
 gem 'fog',                '~> 1.1.2'
 
+
+gem "stripe", "~> 1.6.3"
+
 group :development do
   gem 'heroku',           '~> 2.18.1'
 end
@@ -122,6 +125,7 @@ group :development, :test do
   gem "rspec-rails",        "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
   gem 'rb-fsevent',         '~> 0.4.3.1'
+  gem "selenium-webdriver", "~> 2.24.0"
 
   # Guard
   gem 'guard-livereload',   '~> 0.4.0'

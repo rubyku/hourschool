@@ -1,8 +1,8 @@
 <div class="page-section-float-left">
     <% if @course.status != "live" %>
-    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your class up and running!</div>
+    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running!</div>
     <% else %>
-    <div class="welcome-header">Edit your class</div>
+    <div class="welcome-header">Edit your event</div>
     <% end %>
 </div>
 
@@ -13,25 +13,32 @@
 </div>
 
 <%= form_for @course, :html => { :multipart => true } do |f| %>
-  <%= hidden_field_tag 'req', "#{@reqid}" %>
 
-<% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
 
 <div class="page-section-float-left">
 
+  <%= f.hidden_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
+  <%= hidden_field_tag :topic_id, params[:topic_id] %>
+
+  <%#= "Create an event in #{@course.mission.title}" if @course.mission_id.present? %>
+
    <p>
-   <%= f.label :title, 'Class title:', :class => "form-question" %>
+   <%= f.label :title, 'Event title:', :class => "form-question" %>
    <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
    </p>
-   <br><br>
-   
-   <% if community_site? %>
-     <p>
-     <%= f.label :teaser, 'Add a little teaser:', :class => "form-question" %>
-     <%= f.text_area :teaser, :class => "form-with-margin" %>
-     </p>
-     <br><br>
-   <% end %>
+   <br><br>
+
+  <% if @course.mission %>
+  Does your event cover any of the following topics? 
+    <% for topic in @course.mission.topics.find(:all) %>
+      <div>
+        <%= check_box_tag "course[topic_ids][]", topic.id %>
+        <%= topic.title %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <br><br>
 
    <div class="page-section-float-left">
    <p>
@@ -42,20 +49,21 @@
    </div>
 
    <p>
-   <%= f.label :description, 'Class description:', :class => "form-question" %>
-   <%= f.text_area :description, :class => "form-tall", :placeholder => "Who should attend this class? What are the 3 things they will get out of the class? What kind of material or equipment do they need ahead of time?" %>
+   <%= f.label :description, 'Event description:', :class => "form-question" %>
+  <p class="tip">A good event description is important! You don't have to lay out everything, but people generally like to know what to expect. If you need inspiration, we've compiled a list of good examples!</p>
+   <%= f.text_area :description, :class => "form-tall", :placeholder => "Who should attend this event? What are the 3 things they will get out of the event? What kind of material or equipment do they need ahead of time?" %>
    </p>
  
-   <div class="form-question">About the teacher</div>
+   <div class="form-question">About the event organizer</div>
    <br><br>
-    <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to teach?" %>
+    <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to share?" %>
  </div>
  
  
 <hr id="class"><br>
 
 <div class="page-section-float-left">
-   <div class="class-form-question">Class Capacity</div><br>
+   <div class="class-form-question">Event Capacity</div><br>
    <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to host this event" %>
    <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I can have for this event" %>
    <br><br>
@@ -63,12 +71,12 @@
 
 <div class="page-section-float-left">
    <div class="class-form-question">When</div><br>   
-  <p class="tip">We highly recommend scheduling your class at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
+  <p class="tip">We highly recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
    <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
    <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %>
    <br><br>
    <div id="date-warning" style="display:none;color:red;">
-     Your class is less than 2 weeks away!
+     Your event is less than 2 weeks away!
      <%= link_to_function 'ignore', "$('#date-warning').hide(); SHOW_DATE_WARNING=false;" %>
     </div>
 </div>
@@ -94,7 +102,8 @@
 <div class="page-section-float-left">
 
     <div class="class-form-question">Where</div><br>
-      <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p>
+      <p class="tip">For public space, take into consideration of your event size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 event at your own house.</p>
+      <p class="tip">We have partnerships with a number of co-working spaces, and lots of good suggestions from past event organizers. If you're looking for ideas, just email us at hello@hourschool.com for help!</p>
         <p>
         <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
         <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
@@ -106,39 +115,16 @@
           <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
           <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
 
-          <%= text_field_tag :citySearch, (@course.city ? "#{@course.city.name}, #{@course.city.state}" : ''), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form"  %>
-          <%= f.hidden_field :city_id %>
+          <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
+
+          <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
         </p>
-
-        <script type="text/javascript">
-        $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-        $('#citySearch').typeahead({
-          source: function(typeahead, query) {
-            var _this = this;
-            return $.ajax({
-              url: "<%= cities_path(:format => :json) %>?q=" + query,
-              success: function(data) {
-                return typeahead.process(data);
-              }
-            });
-          },
-          property: "name",
-          onselect: function (obj) {
-            $('#course_city_id').val(obj.id);
-          }
-        });
-        </script>
-
-        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 105px; margin-left: 0px; list-style: none">
-        </ul>
-        <br><br>
 </div>
 
 <div class="page-section-float-left">
   <div class="class-form-question">Price</div><br>
-  <p class="tip">We recommend charging even if it’s just for $5. We find that charging a little ensures people actually show up if they sign up! Don't forget the amount of supplies, venue rental fee, snacks and other resources you’ll need. Finally, don't sell yourself short - your knowledge is valuable! </p>
+  <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
   <% if community_site? %>
-  <p class="tip">Note that HourSchool charges 15% of the total price of the class. See terms and conditions below.</p>
   <% end %><br>
     <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "10" %>
     <div style="float: left; margin-top: 5px">per person</div> 
@@ -165,7 +151,7 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
   <% else %>
-   <%= f.submit "Submit", :class => "orange button", :id => 'course_submit', :value => "Submit" %>
+   <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Submit" %>
   <% end %>
 
 

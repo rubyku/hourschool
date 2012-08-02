@@ -1,0 +1,47 @@
+<label id="city-id-error" style="color:red; display:none;">Please select a City & State.</label>
+<%= f.hidden_field :city_id, :id => 'city-id' %>
+<%= label_tag :citySearch, 'City, State (required)', :class => "form-question" %><br />
+<%= text_field_tag :citySearch, parent.city.try(:name_state), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // clear out previous city_id value
+    $('#citySearch').keydown(function() {
+      $('#city-id').val('');
+    })
+
+    $('#citySearch').typeahead({
+      source: function(typeahead, query) {
+        var _this = this;
+        return $.ajax({
+          url: "<%= cities_path(:format => :json) %>?q=" + query,
+          success: function(data) {
+            return typeahead.process(data);
+          }
+        });
+      },
+      property: "name",
+      onselect: function (obj) {
+        $('#city-id').val(obj.id);
+        form.find('[type=submit]').removeAttr("disabled");
+        $('#city-id-error').hide();
+      }
+    });
+
+    var form = $('#city-id').parents('form');
+
+    form.submit(function() {
+      var value = $('#city-id').val();
+
+      if (value == '0' || value == '') {
+        form.find('[type=submit]').attr("disabled", "disabled");
+        $('#city-id-error').show();
+        return false;
+      } else {
+        return true;
+      }
+    })
+
+  })
+</script>

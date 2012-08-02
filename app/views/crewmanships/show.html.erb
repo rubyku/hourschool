@@ -1,0 +1,128 @@
+<style type="text/css">
+  .mission-stats-16{
+    position: relative; 
+    z-index: 100; 
+    margin-top: 8px; 
+    margin-left: 55px; 
+    font-weight: 700;
+  }
+
+  a{color: #6a4a3b;}
+  a:visited{color: #6a4a3b;}
+  a:hover{color: #6a4a3b;}
+  a:active{color: #6a4a3b;}
+</style>
+
+<h1>
+  Mission:
+  <%= "#{@crewmanship.mission.verb} #{@crewmanship.mission.title.downcase}" %>
+</h1><br>
+
+<div class="page-main white">
+  <div style="padding: 10px">
+
+
+        <div style="float: left; margin-right: 10px">
+          <% if @crewmanship.role == 'explorer' %>
+            <%= image_tag 'v3/badge-explorer.png' %>
+          <% elsif @crewmanship.role == 'guide' %>
+            <%= image_tag 'v3/badge-guide.png' %>
+          <% elsif @crewmanship.role == 'creator' %>
+            <%= image_tag 'v3/badge-creator.png' %>
+          <% elsif @crewmanship.role == 'alumni' %>
+            <%= image_tag 'v3/badge-alumni.png' %>
+          <% end %>
+        </div>
+
+        <div style="float: left; width: 472px;">
+
+          <div style="float: left; margin: 0px 20px 20px 0px">
+            
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">joined on</div>
+            <%= image_tag 'v3/stats-joined-mission.png', :style => "margin-top: -44px" %>
+          </div>
+
+          <div style="float: left; margin: 0px 20px 20px 0px">
+            <div class="heading16 futura mission-stats-16">
+              <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
+            <%= image_tag 'v3/stats-mission-days.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left;">
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.mission.comments.where(:user_id => @user).count %>
+            </div>  
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
+            <%= image_tag 'v3/stats-comments-made.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left; margin: 0px 20px 20px 0px">  
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.user.courses_taught.where(:mission_id => @crewmanship.mission).count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">events hosted</div>
+            <%= image_tag 'v3/stats-events-organized.png', :style => "margin-top: -44px" %>
+          </div>
+
+          <div style="float: left; margin: 0px 20px 20px 0px">                    
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.user.courses_attended.where(:mission_id => @crewmanship.mission).count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
+            <%= image_tag 'v3/stats-events-attended.png', :style => "margin-top: -44px" %>
+          </div>
+          
+          <div style="float: left;">
+            <div class="heading16 futura mission-stats-16">
+              <%= @crewmanship.mission.topics.count %>
+            </div>
+            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
+            <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 
+          </div>
+        </div>
+ 
+   </div>
+</div>
+
+<div class="white right page-sidebar">
+  <div class="page-content">
+    <h3>What's next?!</h3>
+
+    <p>Crewmanship Status: <%= @crewmanship.status %></p>
+
+    <% if @crewmanship.status == "active" %>
+      <%= button_to 'Mission Accomplished', mission_crewmanship_path(@mission, @crewmanship, :crewmanship => {:status => 'completed'}), :class => "btn btn-inverse", :style => "color: white", :method => :put %>
+      <a href="#">Leave mission</a>
+    <% elsif @crewmanship.status == "completed" %>
+      <p>Yo, congrats!!</p>
+      <p><%= link_to "Add photo to wall of awesome", wall_of_awesome_path, :class => "btn" %></p>
+      <p><%= link_to "Join another mission", wall_of_missions_path, :class => "btn" %></p>
+    <% else %>
+      <% if @crewmanship.status == "trial_active" %>
+        <p>Your trial expires on:<%= @crewmanship.trial_expires_at %></p>
+        <a class="btn">Continue your crewmanship after trial</a><br><br>
+      <% elsif @crewmanship.status == "trial_expired" || @crewmanship.status == "trial_canceled" %>
+        <p>Your trial expired on:<%= @crewmanship.trial_expires_at %></p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "past_due" %>
+        <p>You have a past due balance because your credit card information was invalid.</p>
+        <a class="btn">Continue your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "abandoned" %>
+        <p>Your crewmanship is marked as abandoned, because you have a past due balance for more than a month.</p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% elsif @crewmanship.status == "canceled" %>
+        <p>You left this mission on <%= @crewmanship.canceled_at %></p>
+        <a class="btn">Reactivate your crewmanship</a><br><br>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+<%#= link_to 'enter credit card details', add_payment_information_mission_crewmanship_path() %>
+

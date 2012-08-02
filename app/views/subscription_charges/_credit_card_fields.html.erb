@@ -1,0 +1,68 @@
+<!-- to display errors returned by createToken -->
+<span class="payment-errors"></span>
+<div class="form-row">
+  <label>Card Number</label>
+  <input type="text" size="20" autocomplete="off" class="card-number" />
+</div>
+<div class="form-row">
+  <label>CVC</label>
+  <input type="text" size="4" autocomplete="off" class="card-cvc" />
+</div>
+<div class="form-row">
+  <label>Expiration (MM/YYYY)</label>
+  <input type="text" size="2" class="card-expiry-month span1"/>
+  <span> / </span>
+  <input type="text" size="4" class="card-expiry-year" style="width: 138px"/>
+</div>
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script type="text/javascript">
+   // this identifies your website in the createToken call below
+  Stripe.setPublishableKey('<%= Rails.env.production? ? 'pk_VfrzNmHTwwGMI9HU7gBKVWvNe7pFJ' : 'pk_xomxKtkWiwGeTiNO9KLxQReStXfS8' %>');
+
+  function stripeResponseHandler(status, response) {
+    var f = $('.card-number').parents('form');
+
+    if (response.error) {
+      // show the errors on the form
+      $(".payment-errors").text(response.error.message);
+      f.find('[type=submit]').removeAttr("disabled");
+    } else {
+      // insert the token into the form so it gets submitted to the server
+      f.append("<input type='hidden' name='stripeToken' value='" + response['id'] + "'/>");
+
+      // update display of card type and number on this page
+      $('#updatable-card-type').text(response['card']['type']);
+      $('#updatable-card-last4').text(response['card']['last4']);
+
+      // and submit
+      f.submit();
+    }
+  }
+
+  $(document).ready(function() {
+    var form = $('.card-number').parents('form');
+
+    form.submit(function(event) {
+      if (form.find('[name=stripeToken]').length > 0) {
+        // looks like we already got a token
+        // proceed with normal submit flow
+        return true;
+      } else {
+        // need to call out to stripe for token
+
+        // disable the submit button to prevent repeated clicks
+        form.find('[type=submit]').attr("disabled", "disabled");
+
+        Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+
+        // prevent the form from submitting with the default action
+        return false;
+      }
+    });
+  });
+</script>

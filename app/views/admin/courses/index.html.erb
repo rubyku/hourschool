@@ -28,6 +28,7 @@
       <div id="approved" class="section" style="display:none;">
         <div class="heading15 marcomm">Approved classes:</div>    
         <% @approved.each do |course| %> 
+          <% if course.teacher.present? %>
           <div class="classBlock">                   
             <div class="class-description">
               <div class="heading13-class"><%= link_to course.title, course %></div>
@@ -37,6 +38,7 @@
               <p><%= image_tag "v2/arrow_orange_pointright.png", :class => "view-more-arrow" %> <%= link_to 'Finish profile', edit_course_path(course) %><br>
               <%= image_tag "v2/arrow_orange_pointright.png", :class => "view-more-arrow" %> <%= link_to 'Email teacher', "mailto: #{course.teacher.email}" %></p>
             </div>
+            <% end %>
           </div>
         <% end %>   
       </div>
