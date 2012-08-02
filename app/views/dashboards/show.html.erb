@@ -79,7 +79,7 @@
                   <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
 
                   <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
-                      <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to "#{mission.verb} #{mission.title}", mission %></div>
+                      <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to full_mission_title(mission).truncate(75), mission %></div>
                   </div>
 
                   <div style="float: left; width: 648px; background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
@@ -173,8 +173,6 @@
                     <% else %>
                       <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
                     <% end %>
-                    <br><br>
-                    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
                   </div>
                   <div class="crewman-description">
                     <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
@@ -189,7 +187,7 @@
       <div class="tab-pane" id="tab4">
         <div class="page-main white tab-border main" style="width: 690px">
           <div class="page-content">
-            <% if @user.followers.blank? %>
+            <% if @user.following.blank? %>
               <div class="well">
                 You are not following anyone yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people! 
               </div>
@@ -202,6 +200,8 @@
                     <% else %>
                       <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
                     <% end %>
+                    <br><br>
+                    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
                   </div>
                   <div class="crewman-description">
                     <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
