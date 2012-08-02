@@ -13,6 +13,7 @@ class Mission < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :thumbnail => "75x75#", 
                                          :thumb_258 => "258x138#",
+                                         :thumb_300 => "300x180",
                                          :preview => "570x360#", 
                                          :stats => "650x137#", 
                                          :banner => "959x349#" },
