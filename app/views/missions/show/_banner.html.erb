@@ -33,6 +33,8 @@
           Mission Crew Badge: <br><%= @crewmanship.role %>
         </div>
         <%= link_to 'Manage my crewmanship', mission_crewmanship_path(:mission_id => @mission.id, :id => @crewmanship), :class => "btn right" %> 
+      <% else %>
+        <%= link_to 'Join this mission', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "btn btn-inverse right", :style => "color: white" %>
       <% end %>
     <% else %>
       <%= link_to 'Join this mission', new_mission_crewmanship_path(:mission_id => @mission.id,  :id => @crewmanship), :class => "btn btn-inverse right", :style => "color: white" %>
