@@ -32,7 +32,7 @@
       <% end %>
 
       <% if @mission.comments.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Ask a question</a>
+        <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
       <% else %>
         <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
       <% end %>
@@ -97,7 +97,7 @@
 <div class="modal hide" id="askAQuestion">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Ask a question</h3>
+    <h3>Add a comment/question</h3>
   </div>
   <div class="modal-body">
     <%= form_for @mission.comments.new do |f| %>
