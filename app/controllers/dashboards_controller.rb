@@ -40,13 +40,12 @@ class DashboardsController < ApplicationController
 private
 
   def staff_picks_feed
-    mission_ids = Mission.where(:featured => true).map(&:id) + [-1],
-    [
-      Comment.where(:mission_id => mission_ids).where(:parent_id => nil),
-      Course.where(:mission_id => mission_ids),
-      Topic.where(:mission_id => mission_ids),
-      Crewmanship.where(:mission_id => mission_ids)
-    ]
+    mission_ids      = Mission.where(:featured => true).map(&:id) + [-1]
+    comments         = Comment.where(:mission_id => mission_ids).where(:parent_id => nil)
+    courses          = Course.where(:mission_id => mission_ids)
+    topics           = Topic.where(:mission_id => mission_ids)
+    crewmanships     = Crewmanship.where(:mission_id => mission_ids)
+    feed_query_items = [courses, comments, topics, crewmanships]
   end
 
   def feed_query_items_for_mission
