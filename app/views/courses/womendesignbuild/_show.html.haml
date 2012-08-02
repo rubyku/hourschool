@@ -128,7 +128,10 @@
     %table
       %tr
         %td
-          = avatar_for(@course.teacher, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50', :style => "float: left;")
+          - if @course.teacher.photo.present?
+            = image_tag(@course.teacher.photo.url(:thumb_small))
+          - else
+            = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
         %td
           = link_to @course.teacher.name, @course.teacher, :id => "student_link"
     .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}
