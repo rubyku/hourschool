@@ -61,6 +61,6 @@
   visibility: hidden;
 }
 
-input.loading {
+input#citySearch.loading {
   background: url(image-path('ajax-loader.gif')) no-repeat center right;
 }
