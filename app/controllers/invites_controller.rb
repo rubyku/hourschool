@@ -49,9 +49,9 @@ class InvitesController < ApplicationController
       if @invite.save
         if @invite.invitable_type.downcase == "mission"
           if @invite.invitee_id.present?
-            UserMailer.invite_user_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
+            UserMailer.invite_user_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee => @invite.invitee, :message => @invite.message).deliver
           else 
-            UserMailer.invite_nonuser_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
+            UserMailer.invite_nonuser_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
           end 
         elsif @invite.invitable_type.downcase == "course"
           if @invite.invitee_id.present?

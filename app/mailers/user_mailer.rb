@@ -24,6 +24,7 @@ class UserMailer < ActionMailer::Base
     @invitee        = options[:invitee]
     @invitable_type = options[:invitable_type]  
     @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
     @url            = mission_url(@mission)
     mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
   end
@@ -35,6 +36,7 @@ class UserMailer < ActionMailer::Base
     @invitee_email  = options[:invitee_email]
     @invitable_type = options[:invitable_type]  
     @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
     @url            = mission_url(@mission)
     mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
   end

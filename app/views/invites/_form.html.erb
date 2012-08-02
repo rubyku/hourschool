@@ -52,7 +52,15 @@
                 }
               });
               </script>
-            </div>
+            </div><br><br><br>
+
+            <div class="field">
+            <%= f.label :message, "Message" %>
+            <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",                     
+            :value => 
+                             "I am starting this mission and I think you should join me!" %>
+
+          </div><br><br><br><br><br>
 
             <div class="actions">
               <%= f.submit "Send invite", :class => "btn btn-primary" %>
@@ -86,6 +94,13 @@
               <%= f.hidden_field :invitable_type, :value => "mission" %>
               <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
             </div><br><br><br>
+            <div class="field">
+            <%= f.label :message, "Message" %>
+            <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",                     
+            :value => 
+                             "I am starting this mission and I think you should join me!" %>
+
+          </div><br><br><br><br><br>
 
             <div class="actions">
               <%= f.submit "Send invite", :class => "btn btn-primary" %>
