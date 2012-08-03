@@ -1,50 +1,39 @@
 <% if @mission.creator == current_user %>
-  <% if @mission.status == 'draft' %>
-    <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px">
-       <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4> 
-       <span class="label label-inverse"><%= @mission.status %></span>
-      <%= link_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn right", :method => :put %>
-      <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
-    </div>
-  <% end %>
-
-  <div class="alert" style="background-color: white; color: black; border: 1px solid white">
-    <a class="close" data-dismiss="alert" href="#">×</a>
+  <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px; height: 100px">
+    <div style="float: left; width: 600px">
     <% if @mission.status == 'draft' %>
       <h4 class="alert-heading" style="color: black; text-decoration: uppercase">OK! We've created your mission; it's in draft mode.</h4>
-      <p>Follow these steps and when you are ready, launch your mission!</p>
+      <div style="margin-bottom: 5px">Here are some ways you can add some content to your mission before it goes live. When you're ready, launch your mission so other people can join it!</div>
     <% else %>
       <h4 class="alert-heading" style="color: black; text-decoration: uppercase">Your mission is live!</h4>
-      <p>You can still add to your mission anytime. Remember, a mission is an on-going journey.</p>
+      <div style="margin-bottom: 5px">Congrats you've just launched a mission! If you're up for it, consider organizing an event to kick things off. It's a great way to rally your crew and get those wheels turning! </div>
     <% end %>
     <br>
     <p>
-      <% if @mission.photo.present? && @mission.description.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
-      <% else %>
+      <% if @mission.status == 'draft' %>
         <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
-      <% end %>
-
-      <% if @mission.topics.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
-      <% else %>
         <a class="btn" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
-      <% end %>
-
-      <% if @mission.comments.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
-      <% else %>
         <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
-      <% end %>
-
-      <% if @mission.courses.present? %>
-        <a class="btn disabled" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
       <% else %>
-        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add an event</a>
+        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-question-sign"></i> Add an event</a>
+        <a class="btn" data-toggle="modal" href="#invite"><i class="icon-bullhorn"></i> Invite someone to this mission</a>
+        <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Edit basic info</a>
       <% end %>
-
     </p>
+    </div>
+    <% if @mission.status == 'draft' %>
+      <div class="well" style="float: right; margin-top: 7px" %>
+        <div style="margin-bottom: 10px">
+          <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4> 
+          <span class="label label-inverse" style="margin-bottom: 20px"><%= @mission.status %></span>
+        </div>
+        
+        <%= link_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn right", :method => :put %>
+        <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
+      </div>
+    <% end %>
   </div>
+
 <% end %>
 
 <div class="modal hide" id="addBasicInfo">
@@ -119,6 +108,16 @@
     <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
     <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
     <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+  </div>
+</div>
+
+<div class="modal hide" id="invite">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Invite someone to this mission</h3>
+  </div>
+  <div class="modal-body">              
+    <%= render 'invites/form' %>
   </div>
 </div>
 
