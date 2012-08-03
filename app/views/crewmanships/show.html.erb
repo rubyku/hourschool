@@ -15,7 +15,7 @@
 
 <h1>
   Mission:
-  <%= "#{@crewmanship.mission.verb} #{@crewmanship.mission.title.downcase}" %>
+  <%= link_to full_mission_title(@crewmanship.mission) %>
 </h1><br>
 
 <div class="page-main white">
