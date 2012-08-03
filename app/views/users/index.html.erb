@@ -17,8 +17,14 @@
       </div>
       
       <% @users.each do |user| %>
-        <div style="width: 430px; margin-right: 20px; float: left">
-          <%= avatar_for(user, :photo_size => :thumb_large) %>        
+        <div style="width: 430px; margin-right: 20px; margin-bottom: 20px; float: left">
+          <div class="crewman-photo">
+            <% if user.photo.present? %>
+              <%= link_to_avatar(user, :thumb_large) %>
+            <% else %>
+              <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+            <% end %>
+          </div>
           <%= link_to user.name, user_path(user.id), :class => "profile-link" %><br>
           <%= user.email %><br>
           City: <%= user.location %><br>

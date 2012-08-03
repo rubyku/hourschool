@@ -1,7 +1,10 @@
 .sidebar
   .sidebar-content
-    = avatar_for(@user, :photo_size => :thumb_large, :class => "clearfix")
-    
+    - if @user.photo.present?
+      = avatar_for(@user, :thumb_large)
+    - else 
+      = image_tag 'v2/Avatars_01_V1.png', :size => "125x125"
+
     .sidebar-block
       %p{:style => "font-weight: bold; width: 200px"}
         = @user.name

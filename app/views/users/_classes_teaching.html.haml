@@ -52,9 +52,7 @@
           .heading13-class 
             = link_to c.title, c
           = link_to "Edit class", edit_course_path(c)
-        .class-note
-          .heading9-class 
-            = "Taught #{Course.where('title ilike ?', c.title).where(:status => 'live').count} times"
+
 
 
 
