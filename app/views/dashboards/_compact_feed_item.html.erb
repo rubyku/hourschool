@@ -29,14 +29,37 @@
     <hr style="width: 22px; float: left">
     <div style="width: 100%">
       <% if current_user == compact_feed_item.teacher %>
-        <div style="float: left; margin: 0px 5px 0px 5px">I organized an event for the mission</div>
-      <% else %>
-        <div style="float: left; margin: 0px 5px 0px 5px">I registered for the event from the mission</div>
+        <div style="margin: 10px 5px 0px 5px">I organized an event: <%= link_to compact_feed_item.title, compact_feed_item %></div>
+      <% elsif compact_feed_item.starts_at > Date.today %>
+        <div style="margin: 10px 5px 0px 5px">I registered for an event: <%= link_to compact_feed_item.title, compact_feed_item %></div>
+      <% elsif compact_feed_item.starts_at < Date.today %>
+        <div style="margin: 10px 5px 0px 5px">I attended an event: <%= link_to compact_feed_item.title, compact_feed_item %></div>
       <% end %>
-      <div style="font-weight: 700; margin-top: 10px"><%= link_to compact_feed_item.mission.title, compact_feed_item.mission if compact_feed_item.mission.present? %></div>
+      <div style="font-size: 10px; margin-left: 57px">
+        <%= "#{time_ago_in_words compact_feed_item.created_at} ago" %>
+      </div>
+      <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
+        <%= compact_feed_item.students.count %> people 
+        <% if compact_feed_item.mission.present? %>
+        from the <%= link_to compact_feed_item.full_mission_title(mission), compact_feed_item.mission %> 
+        <% end %>
+        <% if compact_feed_item.starts_at > Date.today %>
+          registered
+        <% else compact_feed_item.starts_at < Date.today %>
+          attended
+        <% end %>
+      </div>
+      <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
+        <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>          
+          <% if student.photo.present? %>
+            <%= link_to (image_tag student.photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
+          <% else %>
+            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50", :style => "margin: 0px 5px 5px 0px"), student %>
+          <% end %>
+        <% end %>
+      </div>
     </div><br />
-    <div style="font-weight: 700; margin-left: 57px; color: #6a4a3b"><%= link_to compact_feed_item.title, compact_feed_item %></div> <br />
-    <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words compact_feed_item.created_at} ago" %></div>
+    
   
   <% elsif compact_feed_item.is_a?(Topic) %>
     <%= image_tag 'v3/profile/journey-glyph-topic.png', :class => "left"  %>
