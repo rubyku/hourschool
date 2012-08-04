@@ -65,13 +65,21 @@
   
 .container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
 
+  - if @course.status == 'draft' && @course.teacher == current_user 
+    .full-page.white{:style => "padding-bottom: 0px"}
+      .page-content
+        .wdb-text-strong{:style => "padding-bottom: 10px"} Preview before this goes live!
+        = link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "wdb-register-class-button", :style => "color: white", :method => :put
+        = link_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :style => "color: white; margin-left: 10px; margin-right: 10px", :method => :get 
+        = link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "wdb-edit-class-button", :method => :put 
+
   = render :partial => "courses/womendesignbuild/sidebar_register", :locals => {:course => @course}
 
   .middle#middle_events
     .page-section-float-left
       .class-logistic-block
         - if @course.photo.present?
-          = image_tag(@course.photo.url(:small), :size => "190x120", :style => "float: left")
+          = image_tag(@course.photo.url(:small))
         - else
           = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
       .class-description-block
@@ -91,7 +99,10 @@
         - @course.comments.each do |comment|
           %div.comment{:class => 'clearfix'}
             %div.avatar
-              = avatar_for(comment.user, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
+              - if comment.user.photo.present? 
+                = link_to_avatar(comment.user, :thumb_small)
+              - else
+                = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
             %div.content{:style => "margin-left: 60px"}
               %div.name
                 = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
@@ -129,9 +140,9 @@
       %tr
         %td
           - if @course.teacher.photo.present?
-            = image_tag(@course.teacher.photo.url(:thumb_small))
+            = image_tag(@course.teacher.photo.url(:thumb_small), :style => "margin-right: 5px")
           - else
-            = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
+            = image_tag 'v2/Avatars_01_V1.png', :size => "50x50", :style => "margin-right: 5px"
         %td
           = link_to @course.teacher.name, @course.teacher, :id => "student_link"
     .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}
