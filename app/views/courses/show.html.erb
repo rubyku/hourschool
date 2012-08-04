@@ -72,7 +72,7 @@
         <ul class="nav nav-tabs" style="margin-bottom: 0px;">
           <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Description</a></li>
           <li><a href="#tab2" data-toggle="tab" class="heading11">Participants</a></li>
-          <li><a href="#tab3" data-toggle="tab" class="heading11">Related Topics</a></li>
+          <% if community_site? %><li><a href="#tab3" data-toggle="tab" class="heading11">Related Topics</a></li><% end %>
         </ul>
 
         <div class="tab-content">
@@ -187,6 +187,8 @@
       </div><!-- end tabbable -->
     </div><!-- end page-main -->
 
+    
+
     <div class="left" style="width: 290px"><!-- sidebar container -->
       <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px">
         <div class="sidebar-content-white">
@@ -194,7 +196,7 @@
         </div>
       </div>
 
-      <% if current_user %>
+      <% if current_user && community_site? %>
       <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px; padding-bottom: 30px">
         <div class="sidebar-content-white">
          <p class="confirm">Learning is more fun with friends. If you know people that would be interested in his event, invite them!</p>

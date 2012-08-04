@@ -6,8 +6,10 @@
 
   <div style="width: 270">
     <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
-    <div class="class-details" style="width: 240px"><%= "$ #{@course.price} for members" %></div>
-    <div style="margin-left: 21px"><%= "$ #{@course.price + 5} for non-members" %></div>
+    <div class="class-details" style="width: 240px"><%= "$ #{@course.price}" %></div>
+    <% if community_site? %>
+      <div style="margin-left: 21px"><%= "$ #{@course.price + 5} for non-members" %></div>
+    <% end %>
   </div>
 
   <div style="width: 270">
@@ -49,10 +51,10 @@
       <% if course.sold_out? || course.inactive? %>
         <%#= button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get %>
       <% else %>
-        <% if course.donate? %>
+        <% if community_site? %>
           <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
         <% else %>
-          <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn #{'tooFarToRegister' unless course.near_user?(current_user) }" %>
+          <%= button_to "Register for this class", payments_paypal_requests_path(:course_id => course.id), :method => :POST, :class => "btn" %>
         <% end %>
       <% end %>
     <% end %>

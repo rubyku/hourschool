@@ -1,0 +1,31 @@
+- courses.in_groups_of(3) do |group|
+  - group.each do |course|
+    - if course.present?
+      .classBlock
+        - if course.photo.present?
+          = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
+        - else
+          = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
+        - if course.donate?
+          = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon"
+
+
+        %br
+          .class-description{:style => "float: left"}
+            .heading13-class
+              = link_to course.title.truncate(50), course
+            - if course.teaser?
+              %p= course.teaser.truncate(70)
+            - else 
+              %p= course.description.truncate(70)
+
+          .class-note
+            .heading9-class
+              - if course.active?  
+                - if course.max_seats.blank?
+                  = "Unlimited seats |"
+                - elsif course.seats_left == 0 
+                  = "Full! |"
+                - elsif
+                  = "#{course.seats_left} seats left |"
+              = "#{course.city.try(:name)}, #{course.city.try(:state)}"
