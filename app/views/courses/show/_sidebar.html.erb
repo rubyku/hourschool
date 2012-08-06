@@ -18,7 +18,7 @@
       <%= @course.starts_at.strftime("%a %b %d, %Y") %>
     </div>
     <div style="margin-left: 22px">
-      <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+      <%= "#{@course.starts_at.in_time_zone(@course.city.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone).strftime("%l:%M%p")}" %>
     </div>
   </div>
 
