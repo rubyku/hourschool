@@ -16,6 +16,7 @@ class Mission < ActiveRecord::Base
                                          :thumb_300 => "300x180",
                                          :preview => "570x360#", 
                                          :stats => "650x137#", 
+                                         :thumb_630 => "630x245#",
                                          :banner => "959x349#" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",

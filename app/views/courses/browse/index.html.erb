@@ -18,6 +18,79 @@
     </div>
   </div>
 
+<% elsif current_account == Account.where(:id => 5).first %>
+
+  <div style="float: left;">
+
+    <!-- Section 1 -->
+    <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 20px">
+
+      <div class="full-page white">
+        <%= image_tag 'v3/explore/mission-soGoodNetwork.png' %>
+        <div class="mission-description-box">
+          <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
+            <%= @account.name %>
+          </div>
+          <p>Striving to be the heart of social innovation and change in Austin, Texas</p>
+        </div>
+      </div>
+
+    </div><!-- End Section 1 -->
+
+    <!-- Section 4 -->
+    <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
+      <div style="float: left; width: 630px; height: 180px;">
+        <%= image_tag(@account.missions.last.photo.url(:thumb_630)) if @account.missions.last.photo.present? %>
+      </div>
+
+      <div style="float: left; width: 615px; height: 55px; background-color: white; opacity: 0.85; padding-top: 10px; padding-left: 15px; margin-bottom: 20px">
+        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+      </div>
+
+      <div style="float: left; width: 630px; height: 180px;">
+        <%= image_tag 'v3/explore/mission-motorcycle.png' %>
+      </div>
+
+      <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+      </div>
+
+    </div><!-- End section 5 left -->
+
+    <!-- Section 6 right -->
+    <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
+
+      <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+      </div> 
+
+      <div class="heading14" style="text-align: center">Upcoming events</div>
+
+      <% @courses.each do |course| %>
+
+      <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 15px; margin-top: 10px; margin-bottom: 10px" %>
+        <div style="margin-bottom: 5px">
+          <%= link_to course.title, course, :class => "heading13 adelle" %>
+        </div>
+        
+        <div style="margin-bottom: 5px">
+          <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
+          <%= "#{course.city.name}, #{course.city.state}" %><br>
+        </div>
+        
+        <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
+      </div>
+      
+      <% end %>
+    </div><!-- End section 6 right -->
+
+  </div>
+
+
+
 <% end %>
+
 
 
