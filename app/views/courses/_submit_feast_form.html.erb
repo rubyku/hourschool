@@ -67,7 +67,6 @@
 <div class="page-section-float-left">
 
     <div class="class-form-question">Where</div><br>
-      <p class="tip">For public space, take into consideration of your class size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 classes at your own house.</p>
         <p>
         <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
         <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
@@ -109,6 +108,7 @@
 
     <div class="page-section-float-left">
       <div class="class-form-question">Price</div><br>
+      <p class="tip">Please note that Feast for Days recieves 15% of the Feast price per person. It is important to account for this in determining your Feast price.</p>
         <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 30 (no $ sign needed!)" %>
         <div style="float: left; margin-top: 5px">per person</div> 
     </div>
