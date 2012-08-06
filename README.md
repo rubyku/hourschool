@@ -156,3 +156,14 @@ ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 http://localhost:3000/mail_view/user_mailer/preview
 
 http://localhost:3000/mail_view/student_mailer/preview
+
+
+
+##Database
+
+heroku db:pull --tables users,courses
+
+or 
+
+bundle exec rake pgbackup:seed
+Check out the readme for setup requirements: https://github.com/chap/pgbackup-tasks
