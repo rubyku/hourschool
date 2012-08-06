@@ -85,19 +85,32 @@
               </div>
             <% end %>
 
-            <div class="form-question">
-              <%= f.label :name, "Organization Name" %><br />
-              <%= f.text_field :name, :class => "form-short-with-margin" %>
-            </div>
-
-            <p>Your custom url is <%= @account.subdomain %>.hourschool.com<br />
-            contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.</p>
-            
             <p>
-             <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+              <%= f.label :name, "Organization Name", :class => "form-question" %><br />
+              <%= f.text_field :name, :class => "form-short-with-margin" %><br><br>
+            </p>
+
+            <p>
+              Your custom url is <%= @account.subdomain %>.hourschool.com<br />
+              contact <%= mail_to 'hello@hourschool.com' %> if you'd like to change it.
+            </p>
+
+            <p>
+              <%= f.label :description, "Description", :class => "form-question" %><br />
+              <%= f.text_field :description, :class => "form-with-margin" %><br><br>
+            </p>
+
+            <p>
+             <%= f.label :logo, 'Logo', :class => "form-question" %><br />
+             <%= f.file_field :logo %>
+            </p>
+
+            <p>
+             <%= f.label :photo, 'Banner Photo', :class => "form-question" %><br />
              <%= f.file_field :photo %>
             </p>
 
+            <hr>
             <div class="control-group" style="margin-bottom:20px">
               <div class="controls">
                 <label class="radio">

@@ -26,28 +26,32 @@
     <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 20px">
 
       <div class="full-page white">
-        <%= image_tag 'v3/explore/mission-soGoodNetwork.png' %>
+        <%= image_tag(@account.photo.url(:banner)) %>
         <div class="mission-description-box">
           <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
             <%= @account.name %>
           </div>
-          <p>Striving to be the heart of social innovation and change in Austin, Texas</p>
+          <p><%= @account.description %></p>
         </div>
       </div>
 
     </div><!-- End Section 1 -->
 
     <!-- Section 4 -->
+
+    <div class="heading14" style="margin-bottom: 20px">Latest Mission:</div>
+
     <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
       <div style="float: left; width: 630px; height: 180px;">
-        <%= image_tag(@account.missions.last.photo.url(:thumb_630)) if @account.missions.last.photo.present? %>
+        <%= link_to image_tag(@account.missions.last.photo.url(:thumb_630)), @account.missions.last %>
       </div>
 
       <div style="float: left; width: 615px; height: 55px; background-color: white; opacity: 0.85; padding-top: 10px; padding-left: 15px; margin-bottom: 20px">
-        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+        <div class="title-text" id="explore"><%= link_to full_mission_title(@account.missions.last), @account.missions.last %></div>
         <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
       </div>
-
+      <div class="heading14" style="margin-bottom: 20px">Latest Events:</div>
+    
       <div style="float: left; width: 630px; height: 180px;">
         <%= image_tag 'v3/explore/mission-motorcycle.png' %>
       </div>
@@ -60,34 +64,104 @@
     </div><!-- End section 5 left -->
 
     <!-- Section 6 right -->
-    <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
+    <div style="float: left; width: 270px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-bottom: 20px">
 
       <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
       </div> 
 
-      <div class="heading14" style="text-align: center">Upcoming events</div>
-
-      <% @courses.each do |course| %>
-
-      <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 15px; margin-top: 10px; margin-bottom: 10px" %>
-        <div style="margin-bottom: 5px">
-          <%= link_to course.title, course, :class => "heading13 adelle" %>
-        </div>
-        
-        <div style="margin-bottom: 5px">
-          <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
-          <%= "#{course.city.name}, #{course.city.state}" %><br>
-        </div>
-        
-        <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
-      </div>
-      
+      <div class="heading14" style="text-align: center">Members</div>
+      <% @account.users.each do |user| %>
+        <%= image_tag(user.photo.url(:thumb_small)) %>
       <% end %>
+
+    </div><!-- End section 6 right -->
+
+        <!-- Section 6 right -->
+    <div style="float: left; width: 270px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px;">
+
+      <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+      </div> 
+
+      <div class="heading14" style="text-align: center; margin-bottom: 20px">Partner organizations</div>
+      <div style="padding-left: 60px">
+        <img src="http://www.center61.com/images/Partner%20Logos/PeopleFund_small.jpg" style="width: 60%; margin-bottom: 30px">
+        <img src="http://www.center61.com/images/Partner%20Logos/TANO_logo_cropped_small%20copy.jpg" style="width: 60%; margin-bottom: 15px">
+        <img src="http://www.center61.com/images/Partner%20Logos/ayc-logo.png" style="width: 60%; margin-bottom: 15px">
+      </div>
+
     </div><!-- End section 6 right -->
 
   </div>
 
+<% elsif current_account == Account.where(:id => 6).first %>
+
+  <div style="float: left;">
+
+    <!-- Section 1 -->
+    <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 20px">
+
+      <div class="full-page white">
+        <%= image_tag(@account.photo.url(:banner)) %>
+        <div class="mission-description-box">
+          <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
+            <%= @account.name %>
+          </div>
+          <p><%= @account.description %></p>
+        </div>
+      </div>
+
+    </div><!-- End Section 1 -->
+
+    <!-- Section 4 -->
+
+    <div class="heading14" style="margin-bottom: 20px">Latest Mission:</div>
+
+    <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
+
+      <% @account.missions.last(3).each do |mission| %>
+      <div class="mission-divider">
+        <div style="float: left; width: 630px; height: 180px;">
+          <%= link_to image_tag(mission.photo.url(:thumb_630)), mission %>
+        </div>
+
+        <div style="float: left; width: 615px; height: 55px; background-color: white; opacity: 0.85; padding-top: 10px; padding-left: 15px; margin-bottom: 20px">
+          <div class="title-text" id="explore"><%= link_to full_mission_title(mission), mission %></div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+        </div>
+      </div>
+      <% end %>
+
+    </div><!-- End section 5 left -->
+
+    <!-- Section 6 right -->
+    <div style="float: left; width: 270px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-bottom: 20px">
+
+      <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+      </div> 
+
+      <div class="heading14" style="text-align: center">Members</div>
+      <% @account.users.each do |user| %>
+        <%= image_tag(user.photo.url(:thumb_small)) %>
+      <% end %>
+
+    </div><!-- End section 6 right -->
+
+        <!-- Section 6 right -->
+    <div style="float: left; width: 270px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px;">
+
+      <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+      </div> 
+      
+      <img src="http://a2reskilling.files.wordpress.com/2012/05/reskill-banner-summer2012_770x200.jpg" style="margin-bottom: 15px">
+      <img src="http://www.wearecityfarm.com/images/logo.png" style="margin-bottom: 15px">
+      <img src="https://si0.twimg.com/profile_images/2160981543/MZF2012_logo-sq.jpg" style="width: 40%; margin-bottom: 15px; margin-right: 15px; margin-left: 20px">
+      <img src="http://greenhillsschool.org/sites/greenhillsschool.org/files/greenhills_logo.png" style="width: 40%; margin-bottom: 15px">
+      <img src="http://www.eatlikenoone.com/wp-content/uploads/2011/03/Downtown-Home-Garden-300x53.jpg" style="margin-bottom: 15px">
+      <img src="http://thebrinery.com/wordpress/wp-content/themes/wood-is-good/images/logo.png" style="margin-bottom: 15px">
+
+    </div><!-- End section 6 right -->
+
+  </div>
 
 
 <% end %>

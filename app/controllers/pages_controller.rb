@@ -29,6 +29,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    @account = current_account
     @mission = Mission.new
     @live_missions = Mission.where(:status => "live").where('photo_file_name is not null')
     @exception = env["action_dispatch.exception"]
