@@ -8,7 +8,7 @@
       <div class="clearfix" style="margin-bottom: 2px">
         <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
         <div class="class-details" style="font-weight: 400">
-          <%= "#{@course.starts_at.strftime("%a %b %d, %Y")}, #{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}" %>
+          <%= "#{@course.starts_at.strftime("%a %b %d, %Y")}, #{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
         </div>
       </div>
 
@@ -20,8 +20,7 @@
             <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %>
             <%= ", #{@course.zip}" if @course.zip.present? %>
           <% else %>
-            Residential address<br>
-            Area: <%= @course.zip %>
+            | Area: <%= @course.zip %>
           <% end %>
         </div>
       </div>
