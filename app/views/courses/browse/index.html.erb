@@ -26,12 +26,12 @@
     <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 20px">
 
       <div class="full-page white">
-        <%= image_tag(@account.photo.url(:banner)) %>
+        <%= image_tag(@account.photo.url(:banner)) if @account.photo.present? %>
         <div class="mission-description-box">
           <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
             <%= @account.name %>
           </div>
-          <p><%= @account.description %></p>
+          <p><%= @account.description if @account.description.present? %></p>
         </div>
       </div>
 
@@ -42,6 +42,7 @@
     <div class="heading14" style="margin-bottom: 20px">Latest Mission:</div>
 
     <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
+      <% if @account.missions.present? %>
       <div style="float: left; width: 630px; height: 180px;">
         <%= link_to image_tag(@account.missions.last.photo.url(:thumb_630)), @account.missions.last %>
       </div>
@@ -50,6 +51,7 @@
         <div class="title-text" id="explore"><%= link_to full_mission_title(@account.missions.last), @account.missions.last %></div>
         <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
       </div>
+      <% end %>
       <div class="heading14" style="margin-bottom: 20px">Latest Events:</div>
     
       <div style="float: left; width: 630px; height: 180px;">
@@ -70,8 +72,10 @@
       </div> 
 
       <div class="heading14" style="text-align: center">Members</div>
+      <% if @account.users.any? %>
       <% @account.users.each do |user| %>
         <%= image_tag(user.photo.url(:thumb_small)) %>
+      <% end %>
       <% end %>
 
     </div><!-- End section 6 right -->
@@ -101,12 +105,12 @@
     <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 20px">
 
       <div class="full-page white">
-        <%= image_tag(@account.photo.url(:banner)) %>
+        <%= image_tag(@account.photo.url(:banner)) if @account.photo.present? %>
         <div class="mission-description-box">
           <div class="heading28 brown" style="margin: 20px 0px 5px 0px">
             <%= @account.name %>
           </div>
-          <p><%= @account.description %></p>
+          <p><%= @account.description if @account.description.present? %></p>
         </div>
       </div>
 
@@ -117,6 +121,7 @@
     <div class="heading14" style="margin-bottom: 20px">Latest Mission:</div>
 
     <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
+      <% if @account.missions.any? %>
 
       <% @account.missions.last(3).each do |mission| %>
       <div class="mission-divider">
@@ -131,6 +136,8 @@
       </div>
       <% end %>
 
+      <% end %>
+
     </div><!-- End section 5 left -->
 
     <!-- Section 6 right -->
@@ -140,8 +147,10 @@
       </div> 
 
       <div class="heading14" style="text-align: center">Members</div>
+      <% if @account.users.any? %>
       <% @account.users.each do |user| %>
         <%= image_tag(user.photo.url(:thumb_small)) %>
+      <% end %>
       <% end %>
 
     </div><!-- End section 6 right -->
