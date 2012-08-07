@@ -31,7 +31,7 @@ class PagesController < ApplicationController
   def show
     @account = current_account
     @mission = Mission.new
-    @live_missions = Mission.where(:status => "live").where('photo_file_name is not null')
+    @live_missions = Mission.where(:status => "live").where('photo_file_name is not null').where(:account_id => current_account)
     @exception = env["action_dispatch.exception"]
     if params[:id] == "campaign"
       @amount_raised = Payment.joins(:course).where("courses.donate = 'true'").select('SUM(amount) as sum').first.sum.to_f
