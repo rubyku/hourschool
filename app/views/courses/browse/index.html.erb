@@ -53,14 +53,24 @@
       </div>
       <% end %>
       <div class="heading14" style="margin-bottom: 20px">Latest Events:</div>
-    
-      <div style="float: left; width: 630px; height: 180px;">
-        <%= image_tag 'v3/explore/mission-motorcycle.png' %>
+
+
+      <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
+        <%= link_to (image_tag(@account.courses.last(2).first.photo.url(:thumb_300))), @account.courses.last(2).first %>
       </div>
 
-      <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+      <div style="float: left; width: 300px; height: 180px;">
+        <%= link_to (image_tag(@account.courses.last(2).last.photo.url(:thumb_300))), @account.courses.last(2).last %>
+      </div>
+
+      <div style="float: left; width: 285px; height: 62px; background-color: white; margin-right: 20px; margin-bottom: 30px; opacity: 0.85; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore"><%= link_to @account.courses.last(2).first.title, @account.courses.last(2).first %></div>
+        <div class="heading11" id="explore" style="float: left; margin-right: 10px"><%= @account.courses.last(2).first.starts_at.strftime("%a %b %d, %Y") %></div>
+      </div>
+
+      <div style="float: left; width: 285px; height: 62px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; padding-top: 10px; padding-left: 15px">
+        <div class="title-text" id="explore"><%= link_to @account.courses.last(2).last.title, @account.courses.last(2).last %></div>
+        <div class="heading11" id="explore" style="float: left; margin-right: 10px"><%= @account.courses.last(2).last.starts_at.strftime("%a %b %d, %Y") %></div>
       </div>
 
     </div><!-- End section 5 left -->

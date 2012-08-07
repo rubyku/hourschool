@@ -135,7 +135,7 @@
         </div>
         
         <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %><br>
+        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
       </div>
       
       <% end %>

@@ -57,15 +57,15 @@
 <div id="header" style="height: 91px">
   <div class="container_16">
 
-    <div style="margin-top: 20px; margin-bottom: 25px">
-      <%= link_to current_account.name, explore_path, :class => "heading28 brown" %>   
+    <div style="margin-top: 29px; margin-bottom: 25px">
+      <%= link_to current_account.name, explore_path, :style => "text-transform: uppercase; font-family: $hourschool-house-font; font-weight: 700; font-size: 24px; color: #5382a4" %>   
     </div>       
-      <ul class="nav nav-pills main-nav" style="margin-top: -47px">    
+      <ul class="nav nav-pills main-nav" style="margin-top: -55px">    
         <li class="dropdown" id="menu">
           <%= link_to "Explore", wall_of_missions_path, :class => "main-nav dropdown-toggle" %>
         </li>            
         <li class="dropdown" id="menu4">
-          <%= link_to "About", about_path, :class => "main-nav dropdown-toggle" %>
+          <%= link_to "About", "", :class => "main-nav dropdown-toggle" %>
         </li>
 
         <% if current_user %>
