@@ -80,6 +80,11 @@
             <%= link_to "Become a member", new_user_registration_path, :class => "main-nav dropdown-toggle"%>
           </li>
         <% end %>
+        <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
+          <li class="dropdown" id="menu4">
+            <%= link_to "Admin", edit_account_path(:admin), :class => "main-nav dropdown-toggle" %>
+          </li>
+        <% end %>
       </ul> 
 
   </div><!-- /end .container_16 -->

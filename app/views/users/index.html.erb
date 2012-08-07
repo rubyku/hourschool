@@ -27,6 +27,7 @@
           </div>
           <%= link_to user.name, user_path(user.id), :class => "profile-link" %><br>
           <%= user.email %><br>
+          ID: <%= user.id %><br>
           City: <%= user.location %><br>
           Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
           <% if community_site? %>

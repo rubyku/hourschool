@@ -71,10 +71,10 @@
       <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
       </div> 
 
-      <div class="heading14" style="text-align: center">Members</div>
+      <div class="heading14" style="text-align: center; margin-bottom: 20px">Members</div>
       <% if @account.users.any? %>
       <% @account.users.each do |user| %>
-        <%= image_tag(user.photo.url(:thumb_small)) %>
+        <%= image_tag(user.photo.url(:thumb_small), :style => "margin-right: 5px; margin-bottom: 5px") %>
       <% end %>
       <% end %>
 
@@ -146,27 +146,28 @@
       <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
       </div> 
 
-      <div class="heading14" style="text-align: center">Members</div>
+      <div class="heading14" style="text-align: center; margin-bottom: 20px">Members</div>
       <% if @account.users.any? %>
       <% @account.users.each do |user| %>
-        <%= image_tag(user.photo.url(:thumb_small)) %>
+        <%= image_tag(user.photo.url(:thumb_small), :style => "margin-right: 5px; margin-bottom: 5px") %>
       <% end %>
       <% end %>
 
     </div><!-- End section 6 right -->
 
-        <!-- Section 6 right -->
+            <!-- Section 6 right -->
     <div style="float: left; width: 270px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px;">
 
       <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
       </div> 
-      
-      <img src="http://a2reskilling.files.wordpress.com/2012/05/reskill-banner-summer2012_770x200.jpg" style="margin-bottom: 15px">
-      <img src="http://www.wearecityfarm.com/images/logo.png" style="margin-bottom: 15px">
-      <img src="https://si0.twimg.com/profile_images/2160981543/MZF2012_logo-sq.jpg" style="width: 40%; margin-bottom: 15px; margin-right: 15px; margin-left: 20px">
-      <img src="http://greenhillsschool.org/sites/greenhillsschool.org/files/greenhills_logo.png" style="width: 40%; margin-bottom: 15px">
-      <img src="http://www.eatlikenoone.com/wp-content/uploads/2011/03/Downtown-Home-Garden-300x53.jpg" style="margin-bottom: 15px">
-      <img src="http://thebrinery.com/wordpress/wp-content/themes/wood-is-good/images/logo.png" style="margin-bottom: 15px">
+
+      <div class="heading14" style="text-align: center; margin-bottom: 20px">Partner organizations</div>   
+        <img src="http://a2reskilling.files.wordpress.com/2012/05/reskill-banner-summer2012_770x200.jpg" style="margin-bottom: 15px">
+        <img src="http://www.wearecityfarm.com/images/logo.png" style="margin-bottom: 15px">
+        <img src="https://si0.twimg.com/profile_images/2160981543/MZF2012_logo-sq.jpg" style="width: 40%; margin-bottom: 15px; margin-right: 15px; margin-left: 20px">
+        <img src="http://greenhillsschool.org/sites/greenhillsschool.org/files/greenhills_logo.png" style="width: 40%; margin-bottom: 15px">
+        <img src="http://www.eatlikenoone.com/wp-content/uploads/2011/03/Downtown-Home-Garden-300x53.jpg" style="margin-bottom: 15px">
+        <img src="http://thebrinery.com/wordpress/wp-content/themes/wood-is-good/images/logo.png" style="margin-bottom: 15px">
 
     </div><!-- End section 6 right -->
 
