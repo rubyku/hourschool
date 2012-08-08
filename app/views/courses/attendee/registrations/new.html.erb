@@ -8,13 +8,13 @@
       <div class="clearfix" style="margin-bottom: 2px">
         <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
         <div class="class-details" style="font-weight: 400">
-          <%= "#{@course.starts_at.strftime("%a %b %d, %Y")}, #{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
+          <%= "#{@course.starts_at.strftime("%a %b %d, %Y")} | #{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
         </div>
       </div>
 
       <div class="clearfix" style="margin-bottom: 20px">
         <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
-        <div class="class-details" style="font-weight: 400"><%= "#{@course.place_name}" %>
+        <div class="class-details" style="font-weight: 400"><%= "#{@course.place_name} | " %>
           <% if @course.public? %>
             <%= @course.address %>
             <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %>
@@ -25,60 +25,61 @@
         </div>
       </div>
 
-      <p>To help the organizer plan, introduce yourself and what you want to get out of the event:</p>
-      <%= f.text_area :note, :class => "form-med", :style => "width: 600px" %>
+<!--       <p>To help the organizer plan, introduce yourself and what you want to get out of the event:</p>
+      <%= f.text_area :note, :class => "form-med", :style => "width: 600px" %> -->
     </div>
   </div>
 
-
-  <div class="full-page white">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
-
-      <% if @course.free? %>
-        Course is free
-      <% elsif @course.mission.blank? %>
-        Price per ticket: <%= number_to_currency @course.price %>
-      <% else %>
-        <table>
-          <% if current_user.crewmanships.where(:mission_id => @mission) == true %>
-          <tr>
-            <td>Member price per ticket: </td>
-            <td><%= number_to_currency @course.price %></td>
-          </tr>
-          <% else %>
-          <tr>
-            <td>Non-member price per ticket: </td>
-            <td><%= number_to_currency @course.price %> (<%= link_to "Join membership today", new_mission_crewmanship_path(:mission_id => @mission.id) %>)</td>
-          </tr>
+    <div class="full-page white">
+      <div class="page-content">
+        <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
+        
+        <% if @course.mission.present? %>
+          <p>This event belongs to the mission: <%= full_mission_title(@course.mission) %></p>
         <% end %>
-        <tr>
-          <td>Transaction fee: $<span id="transaction_fee"><%= fee = (@course.price * 0.029 + 0.3).round(2) %></span></td>
-        </tr>
-        <tr>
-          <td>
+        
+        <% if @course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).present? %>
+          <p>You are a member of this mission so this event is free for you!<p>
+        <% elsif @course.mission.blank? %>
+          <p>Price per ticket: <%= number_to_currency @course.price %></p><hr>
+        <% else %>
+
+          <% if current_user.crewmanships.where(:mission_id => @course.mission.id).present? %>
+            <p>You are a member of this mission.</p>
             <hr />
-            <h3>
-              Total: $<span id="total_price"><%= @course.price + fee %></span>
-            </h3>
-          </td>
-        </tr>
-        </table>
-      <% end %>
+            <p>Member price per ticket: 
+              <% if @course.price == 0 %>
+                Free
+              <% else %>
+                <%= number_to_currency @course.price %>
+              <% end %>
+            </p>
+            <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+            <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
+          <% else %>
+            <p>You are not a member of this mission yet. <%= link_to "Join today!", new_mission_crewmanship_path(:mission_id => @mission.id), :style => "font-weight: 700" %></p>
+            <hr />
+            <p>Non-member price per ticket: <%= number_to_currency @course.price + 5 %> </p>
+            <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price + 5) * 0.029 + 0.3).round(2) %></span></p>
+            <h3>Total: $<span id="total_price"><%= (@course.price + 5) + fee %></span></h3>
+          <% end %>
+        <% end %>
+
+      </div>
     </div>
-  </div>
 
-  <script type="text/javascript">
-    $('#role_quantity').change(function() {
-      new_total = $('#role_quantity').val() * <%= @course.price %>;
-      fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
-      total_price = new_total + fee;
-      $('#total_price').text(total_price);
-      $('#transaction_fee').text(fee);
-    })
-  </script>
+    <script type="text/javascript">
+      $('#role_quantity').change(function() {
+        new_total = $('#role_quantity').val() * <%= @course.price %>;
+        fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+        total_price = new_total + fee;
+        $('#total_price').text(total_price);
+        $('#transaction_fee').text(fee);
+      })
+    </script>
 
-  <% if !@course.free? %>
+
+  <% if (@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?) || (!@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).present?) || (!@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?) %>
     <div class="full-page white">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
@@ -96,17 +97,20 @@
     </div>
   <% end %>
 
-  <div class="full-page white">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 10px">Refund and cancellation policy</div>
-      <ul>
-        <li>If class doesn’t reach minimum, you’ll get your money back.</li>
-        <li>Once class hits minimum, there will be no refunds.</li>
-        <li>The organizer will take registrations up to 48 hours before the event starts.</li>
-      </ul>
-      <%= f.check_box :terms_and_conditions %> I agree with the refund and cancellation policy
+  <% if !@course.free? %>
+    <div class="full-page white">
+      <div class="page-content">
+        <div class="heading14" style="margin-bottom: 10px">Refund and cancellation policy</div>
+        <ul>
+          <li>If class doesn’t reach minimum, you’ll get your money back.</li>
+          <li>Once class hits minimum, there will be no refunds.</li>
+        </ul>
+        <%= f.check_box :terms_and_conditions %> I agree with the refund and cancellation policy
+      </div>
     </div>
-  </div>
+  <% end %>
+
+
   <p><%= f.submit 'Continue registration', :class => "btn" %></p>
 <% end %>
 
