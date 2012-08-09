@@ -271,6 +271,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def member_of_mission_for_course?(course)
+    self.crewmanships.where(:mission_id => course.mission.id).present?
+  end
+
+  def not_member_of_mission_for_course?(course)
+    !member_of_mission_for_course?(course)
+  end
+
+
   #setting variable for stripe customer (to charge..etc)
   def stripe_customer
     if stripe_customer_id.present?

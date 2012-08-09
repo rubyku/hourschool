@@ -16,7 +16,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
       :attending => true,
       :name => 'student',
       :user => current_user,
-      :quantity => (params[:role][:quantity] || 1)
+      :quantity => 1
     )
     if params[:stripeToken].present?
       @user.create_stripe_customer(
@@ -27,19 +27,30 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     end
 
     if @role.save
-      unless @course.free?
-        if @user.crewmanships.where(:mission_id => @mission)
-          amount = @role.quantity * @course.price
+
+      if @course.free?
+        if current_user.not_member_of_mission_for_course?(@course)
+          amount = @role.quantity * (@course.price + 5)
         else
+          amount = 0
+        end
+      else
+        if current_user.member_of_mission_for_course?(@course)
+          amount = @role.quantity * @course.price
+        else 
           amount = @role.quantity * (@course.price + 5)
         end
+      end
+
+      if amount > 0
         fee = amount * 0.029 + 0.30
         total = ((amount + fee) * 100).to_i
+        description = "#{@role.quantity} tickets to #{@course.name}."
         charge = Stripe::Charge.create(
           :amount => total,
           :currency => "usd",
           :customer => @user.stripe_customer_id,
-          :description => "#{@role.quantity} tickets to #{@course.name}."
+          :description => description
         )
         @role.destroy unless charge.paid
       end
@@ -56,7 +67,9 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
         UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
       end
+
     else
+    
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
       else
