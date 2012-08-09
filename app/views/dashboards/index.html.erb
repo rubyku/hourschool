@@ -52,9 +52,9 @@
       
       <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am organizing:</div>
-        <% current_user.courses_taught.where("starts_at > (?)", Date.today).each do |course| %>
+        <% current_user.courses_taught.where("starts_at > (?)", Date.today).where(:status => "live").order('starts_at asc').each do |course| %>
           <div class="mission-divider">
-            <div style="float: left; margin-right: 10px">
+            <div style="float: left; margin-right: 10px; height: 60px">
               <div class="dashboard-event-day"><%= course.starts_at.strftime("%d") %></div>
               <div class="dashboard-event-month"><%= course.starts_at.strftime("%b") %></div>
             </div>
@@ -70,9 +70,9 @@
       
       <% if current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am attending:</div>
-        <% current_user.courses_attended.where("starts_at > (?)", Date.today).each do |course| %>
+        <% current_user.courses_attended.where("starts_at > (?)", Date.today).where(:status => "live").order('starts_at asc').each do |course| %>
           <div class="mission-divider">
-            <div style="float: left; margin-right: 10px">
+            <div style="float: left; margin-right: 10px; height: 60px">
               <div class="dashboard-event-day"><%= course.starts_at.strftime("%d") %></div>
               <div class="dashboard-event-month"><%= course.starts_at.strftime("%b") %></div>
             </div>

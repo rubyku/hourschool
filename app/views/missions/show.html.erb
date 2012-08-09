@@ -229,7 +229,7 @@
     <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events</div>
     <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right; margin-top: -5px">Add</a>
       <% if @courses.present? %>
-        <% @courses.each do |course| %>
+        <% @courses.where(:status => "live").order('starts_at asc').each do |course| %>
           <div class="mission-divider">
             <%= link_to (image_tag(course.photo.url(:small), :size => "258x138", :style => "margin-bottom: 15px")),course if course.photo.present? %>
             <%= link_to course.title, course, :class => "heading16 adelle" %><br>
