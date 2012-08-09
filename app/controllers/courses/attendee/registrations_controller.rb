@@ -55,8 +55,10 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         @role.destroy unless charge.paid
       end
 
-      if @course.free? || charge.paid
-        if !community_site?
+      if (@course.free? && current_user.member_of_mission_for_course?(@course)) || charge.paid
+        if community_site?
+          Crewmanship.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'trial_active', :role => 'explorer')
+        else
           Membership.create(:user => @user, :account => @course.account, :admin => false) 
         end
         if @course.account.nil? 

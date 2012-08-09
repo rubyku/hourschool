@@ -21,7 +21,9 @@ class CoursesController < ApplicationController
       if @role.nil?
         @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
         if @course.mission && @course.mission.crewmanships.where(:user_id => current_user).blank?
-          @course.mission.crewmanships.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'active', :role => 'guide')
+          if community_site?
+            Crewmanship.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'trial_active', :role => 'guide')
+          end 
         end
         @user.save
       end
