@@ -25,6 +25,7 @@ class Course < ActiveRecord::Base
   self.per_page = DEFAULT_PER_PAGE = 9
 
   has_attached_file :photo, :styles => { :small => "190x120#", 
+                                         :thumb_258 => "258x138#",
                                          :thumb_300 => "300x252#",
                                          :large => "570x360>" },
                     :storage => :s3,

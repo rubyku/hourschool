@@ -7,7 +7,7 @@
   <div class="tabbable"> 
     <ul class="nav nav-tabs" style="margin-bottom: 0px;">
       <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Conversation</a></li>
-      <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
+      <li><a href="#tab2" data-toggle="tab" class="heading11">Topics</a></li>
       <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
       <% if current_user %><li><a href="#tab4" data-toggle="tab" class="heading11">Rally</a></li><% end %>
     </ul>
@@ -29,35 +29,69 @@
         <div class="page-main white tab-border main">
           <div class="page-content"> 
             <div class="mission-tab-intro" style="float: left; width: 565px">
-              <div class="heading14" style="width: 400px; float: left">Schedule classes, working sessions, and happy hours to explore this topic with your crew in-person.</div>
-              <a class="btn right" data-toggle="modal" href="#addAnEvent">Add an event</a>
+              <div class="heading14" style="width: 400px; float: left">Topics are contributed by everyone in this mission, based on what they want to learn or teach. Add your own!</div>
+              <a class="btn right" data-toggle="modal" href="#newTopic">Add a topic</a>
             </div><hr>
             <div style="float: left; margin-top: 30px; width: 565px">
-              <% if @courses.present? %>
-                <% @courses.each do |course| %>
-                  <div class="mission-divider">
-                    <%= link_to course.title, course, :class => "heading16 adelle" %><br>
-                    <% if course.teacher.present? %>
-                      <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
-                        Organized by <%= link_to course.teacher.name, course.teacher %>
-                      </div><br>
-                    <% end %>
-                    <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
-                    <div style="margin-bottom: 5px; margin-right: 25px; float: left">
-                      <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
-                      <%= "#{course.city.name}, #{course.city.state}" %><br>
-                    </div>
-                        
-                    <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
-                    <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %>
-                    <br>
+              <% @mission.topics.each do |topic| %>
+                <div class="mission-divider">
+                  <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
+                  <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                    Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
                   </div>
-                <% end %>
-              <% else %>
-                <div class="well">
-                  <p>When your mission has more than 10 people, HourSchool will try to help make a “Getting Started” workshop happen. But feel free to start your own event today like a happy hour get together!</p>
+                  <% if topic.courses.count <= 1 %>
+                    <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
+                  <% else %>
+                    <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
+                  <% end %>
+                  <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize something for this topic</a>
+                </div> 
+
+                <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Add an event</h3>
+                  </div>
+                  <div class="modal-body">
+                    <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+                    <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                    <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                    <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                  </div>
+                </div>  <!-- Modal END -->
+                <div class="modal hide" id="viewTopic<%= topic.id %>"><!-- Modal BEGIN -->
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>Topic Details</h3>
+                  </div>
+                  <div class="modal-body">              
+                    <div class="heading13 brown"><%= topic.title %></div>
+                    <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                      Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
+                    <br>
+                    <div class="heading11">Related Events:</div><br>
+                    <% if topic.courses.present? %>
+                      <% topic.courses.each do |course| %>
+                        <%= link_to course.title, course %>
+                        <br>
+                      <% end %>
+                    <% else %>
+                      No related event yet.
+                    <% end %>
+                  </div>
                 </div>
-              <% end %>
+              <% end %><!-- end mission.topic each block -->
+
+              <div class="modal hide" id="newTopic"><!-- modal begins -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Add a new topic</h3>
+                </div>
+                <div class="modal-body">       
+                  <%= render 'topics/form' %>
+                </div>
+              </div><!-- modal ends -->
+            
             </div>
           </div>
         </div>
@@ -189,74 +223,38 @@
   </div><!-- end tabable -->
 </div>
 
-<div class="white right page-sidebar" style="max-height: 550px; overflow: auto">
-  <div class="sidebar-content-white">
-    <div class="heading11" style="float: left; margin-bottom: 20px">Topic Library:</div>
-    <a class="btn" data-toggle="modal" href="#newTopic" style="float: right; margin-top: -5px" rel="tooltip" id="topicLibraryTip" title="The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant.">Add</a>
-    <% if @mission.topics.blank? %>
-      <div class="well" style="margin: 35px 0px 20px 0px">
-        <p>The topics library is built by everyone in this mission. Start by adding a few topics that you want to learn, teach, or find relevant. For example, if your mission is "Learn how to fix my own car", a topic might be "change oil".</p>
-      </div>
-    <% end %>
-    <% @mission.topics.each do |topic| %>
-      <div class="mission-divider">
-        <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
-        <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
-          Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
-        </div>
-        <% if topic.courses.count <= 1 %>
-          <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
-        <% else %>
-          <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
-        <% end %>
-        <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize something for this topic</a>
-      </div> 
 
-      <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Add an event</h3>
-        </div>
-        <div class="modal-body">
-          <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
-          <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-          <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-          <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-        </div>
-      </div>  <!-- Modal END -->
-      <div class="modal hide" id="viewTopic<%= topic.id %>"><!-- Modal BEGIN -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Topic Details</h3>
-        </div>
-        <div class="modal-body">              
-          <div class="heading13 brown"><%= topic.title %></div>
-          <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
-            Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
-          <br>
-          <div class="heading11">Related Events:</div><br>
-          <% if topic.courses.present? %>
-            <% topic.courses.each do |course| %>
-              <%= link_to course.title, course %>
-              <br>
+<div class="white right page-sidebar">
+  <div class="sidebar-content-white">
+    <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events</div>
+    <a class="btn" data-toggle="modal" href="#addAnEvent" style="float: right; margin-top: -5px">Add</a>
+      <% if @courses.present? %>
+        <% @courses.each do |course| %>
+          <div class="mission-divider">
+            <%= link_to (image_tag(course.photo.url(:small), :size => "258x138", :style => "margin-bottom: 15px")),course if course.photo.present? %>
+            <%= link_to course.title, course, :class => "heading16 adelle" %><br>
+            <% if course.teacher.present? %>
+              <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                Organized by <%= link_to course.teacher.name, course.teacher %>
+              </div><br>
             <% end %>
-          <% else %>
-            No related event yet.
-          <% end %>
+            <div style="width: 258px; margin-bottom: 5px; margin-right: 25px; float: left">
+              <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
+              <%= course.place_name %><br>
+              <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
+              <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%>
+            </div>
+                
+            <%= link_to "RSVP", course, :class => "btn btn-primary", :style => "color: white; margin-top: 15px" %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="well">
+          <p>Host the first event to kick-start this mission! It can be a class, a working session, or even a happy hour. Use this opportunity to get to know others who are also interested in the same mission.</p>
         </div>
-      </div>
-    <% end %><!-- end mission.topic each block -->
-    <div class="modal hide" id="newTopic"><!-- modal begins -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Add a new topic</h3>
-      </div>
-      <div class="modal-body">       
-        <%= render 'topics/form' %>
-      </div>
-    </div><!-- modal ends -->
+      <% end %>
   </div>
-</div><!-- end sidebar-white -->
+</div><!-- end sidebar white -->
 
 
 <script type="text/javascript">
