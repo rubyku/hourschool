@@ -11,17 +11,10 @@
     </div>
   <% end %>
 
-  <% if !current_user %>
-    <div class="field clearfix">
-      <%= f.label :inviter_email, "Your email" %>
-      <%= f.text_field :inviter_email, :class => "form-short-edit-profile", :autocomplete => "off" %>
-    </div><br>
-  <% else %>
-    <div class="field clearfix">
-      From: <%= current_user.name %>
-      <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-    </div><br>
-  <% end %>
+ 
+      <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
+ 
+
 
   <div class="field clearfix">
     <%= f.label :invitee, "Invite an HourSchool user" %>
