@@ -1,3 +1,20 @@
+<style type="text/css">
+  select {
+    width: 140px;
+    border: 1px solid #bbb;
+    float: left;
+    margin-right: 5px;
+    text-transform: uppercase;
+    font-family: futura-pt-1, futura-pt-2;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333333;
+    letter-spacing: 0.2em;
+    line-height: 20px;
+  }
+</style>
+
+
 <% if @mission.creator == current_user %>
   <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px; height: 100px">
     <div style="float: left; width: 600px">
@@ -54,8 +71,17 @@
           </ul>
         </div>
       <% end %>
+
+
+      <%= f.label :title, 'Title of the mission' %>
+      <%= f.select :verb, ['Build', 'Make', 'Create', 'Learn', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'], :class => "span2" %>
+      
+      <div class="field clearfix">
+        <%= f.text_field :title, :class => "form heading14", :style => "width: 375px; margin-top: 0px; margin-bottom: 20px" %>
+      </div>
       
       <div class="field">
+        <%= f.label :title, 'Description of the mission' %>
         <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
       </div>
 

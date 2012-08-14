@@ -9,8 +9,8 @@ a.button{
   /*common style*/
   @include hourschool-heading;
   @include hourschool-border-radius;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   margin-top: 10px;
   margin-bottom: 10px;
   display: inline-block;
@@ -54,7 +54,7 @@ a.button{
     }
 
     &.short{
-      width: 120px;
+      width: 140px;
     }
 
     &:hover {

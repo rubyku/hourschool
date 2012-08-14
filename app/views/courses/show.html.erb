@@ -29,17 +29,13 @@
     <% end %>
     <!-- end preview box -->
 
-
-    <% if @course.mission %>
-      <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px">
-         <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission: </h4> 
-         <%= link_to full_mission_title(@course.mission), @course.mission %>
-      </div>
-    <% end %>
-
     <div class="page-main">
       <div class="heading28 brown" style="width: 600px; margin-bottom: 5px"><%= "#{@course.title}" %></div>
-      <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em"><%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %></div>
+      <% if @course.mission %>
+        <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
+          This event is part of <%= link_to full_mission_title(@course.mission), @course.mission %>
+        </div>
+      <% end %>
     </div>
     
     <div style="float: right">

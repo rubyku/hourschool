@@ -1,4 +1,11 @@
-<div class="heading28 brown" style="margin-bottom: 30px">Wall of Missions</div>
+<div class="full-page white">
+  <div class="page-content" style="margin-bottom: -30px">
+    <center>
+      <div class="heading28" style="margin-bottom: 15px">Wall of Missions</div>
+      <div class="intro-text">Each mission is a micro-community that connects passionate people working towards their goals through in-person classes, workshops, and happy hours. <%= link_to "Learn more!", "", :style => "color: #505f6a; font-weight: 700" %></div>
+    </center>
+  </div>
+</div>
 
 <% @live_missions.each do |mission| %>
   <div style="float: left"%>
@@ -8,7 +15,7 @@
       <% end %>
     </div>
     <div style="background-color: white; width: 280px; height: 76px; padding: 10px; margin-bottom: 20px">
-      <div class="title-text" id="explore"><%= link_to full_mission_title(mission).truncate(57), mission %></div>
+      <div class="title-text" id="explore" style="height: 58px"><%= link_to full_mission_title(mission).truncate(57), mission %></div>
       <div class="heading11" id="explore"><%= mission.city.name %>, <%= mission.city.state %></div>
     </div>
   </div>

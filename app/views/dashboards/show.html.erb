@@ -23,7 +23,7 @@
   <div style="float: left; padding-bottom: 30px; margin-top: 20px; width: 230px">
     <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
     <p style="float: left">
-      <% if @user.bio.blank? %>
+      <% if current_user.bio.blank? %>
         No bio yet.
         <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
       <% else %>
@@ -68,18 +68,22 @@
       <div class="tab-pane" id="tab2">
         <div class="page-main white tab-border main" style="width: 688px">
           <div style="padding: 20px"> 
-            <% if @user.missions.blank? %>
+            <% if current_user.missions.blank? %>
               <div class="well">
                 You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
               </div>
             <% else %>
-              <% @user.missions.each do |mission| %>
-                <% @crewmanship = mission.crewmanships.where(:user_id => @user.id).first %>
+              <% current_user.missions.each do |mission| %>
+                <% @crewmanship = mission.crewmanships.where(:user_id => current_user).first %>
                 <div class="mission-divider">                                
                   <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
 
                   <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
-                      <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to full_mission_title(mission).truncate(75), mission %></div>
+                    <div style="padding: 12px 0px 12px 12px; float: left">
+                      <%= link_to full_mission_title(mission).truncate(75), mission, :class => "heading16 adelle" %>
+                    </div>
+                    
+                    <%= link_to 'Manage Membership', mission_crewmanship_path(:mission_id => mission, :id => @crewmanship), :class => "btn right", :style => "margin: 6px 6px 0px 12px;" %> 
                   </div>
 
                   <div style="float: left; width: 648px; background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
@@ -142,7 +146,7 @@
                         
                         <div style="float: left;">
                           <div class="heading16 futura mission-stats-16">
-                            <%= mission.topics.count %>
+                            <%= mission.topics.where(:user_id => current_user).count %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
                           <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 

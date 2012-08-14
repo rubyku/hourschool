@@ -1,7 +1,7 @@
 module MissionsHelper
 
   def full_mission_title(mission)
-    "#{mission.verb} #{mission.title.downcase}"
+    "#{mission.verb} #{mission.title}"
   end
 
 end

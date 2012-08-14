@@ -8,14 +8,16 @@
 
 .mission-description-box{
   float: left;
-  width: 610px;
-  margin: 0px 20px 0px 20px;
+  width: 600px;
+  padding: 0px 30px 30px 30px;
 }
 
 .mission-status-box{
-  float: right;
-  margin-top: 20px;
-  margin-right: 10px
+  float: left;
+  width: 240px;
+  margin-bottom: 7px;
+  margin-top: 45px;
+  margin-left: 30px;
 }
 
 .mission-tab-intro{
@@ -34,7 +36,7 @@
 
 .crewman-description{
   float: left;
-  width: 410px;
+  width: 370px;
 }
 
 .comment-box{
@@ -83,4 +85,22 @@
 .comment-field{
   width:  420px;
   height: 40px;
+}
+
+.info-callout{
+  background-color: #5382a4; 
+  border: 1px solid white; 
+  margin-bottom: 18px; 
+  border-radius: 4px; 
+  float: left;
+  padding: 10px 0px 10px 0px; 
+  width: 960px;
+}
+
+.mission-section-header{
+  padding: 30px; 
+  border-bottom: 1px solid #eeebeb; 
+  height: 16px; 
+  background-color: #f9f9f9;
+  padding: 30px;
 }

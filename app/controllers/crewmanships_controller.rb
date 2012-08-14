@@ -46,39 +46,39 @@ class CrewmanshipsController < ApplicationController
     @crewmanship = @mission.crewmanships.new(params[:crewmanship])
     @crewmanship.user = current_user
 
-    # credit card details entered?
-    # create a stripe customer with this card
-    if params[:stripeToken].present?
-      current_user.create_stripe_customer(
-        :card => params[:stripeToken],
-        :description => "user_#{current_user.id}",
-        :email => current_user.email
-      )
-    end
+    # # credit card details entered?
+    # # create a stripe customer with this card
+    # if params[:stripeToken].present?
+    #   current_user.create_stripe_customer(
+    #     :card => params[:stripeToken],
+    #     :description => "user_#{current_user.id}",
+    #     :email => current_user.email
+    #   )
+    # end
 
-    #look at user's existing crewmanships and decide what to do with the new one
-    if current_user.crewmanships.empty?
-      @crewmanship.status = 'trial_active'
-      charge_now = false
-      @crewmanship.trial_expires_at = 30.days.from_now
-    elsif current_user.crewmanships.collect(&:status).include?('trial_active')
-      @crewmanship.status = 'active'
-      charge_now = false
-      @crewmanship.trial_expires_at = current_user.crewmanships.first.trial_expires_at
-    elsif current_user.crewmanships.collect(&:status).include?('active')
-      @crewmanship.status = 'active'
-      charge_now = false
-    else
-      @crewmanship.status = 'active'
-      charge_now = true
-    end
+    # #look at user's existing crewmanships and decide what to do with the new one
+    # if current_user.crewmanships.empty?
+    #   @crewmanship.status = 'trial_active'
+    #   charge_now = false
+    #   @crewmanship.trial_expires_at = 30.days.from_now
+    # elsif current_user.crewmanships.collect(&:status).include?('trial_active')
+    #   @crewmanship.status = 'active'
+    #   charge_now = false
+    #   @crewmanship.trial_expires_at = current_user.crewmanships.first.trial_expires_at
+    # elsif current_user.crewmanships.collect(&:status).include?('active')
+    #   @crewmanship.status = 'active'
+    #   charge_now = false
+    # else
+    #   @crewmanship.status = 'active'
+    #   charge_now = true
+    # end
 
     if @crewmanship.save
       @crewmanship.update_attributes(:role => 'explorer')
-      if charge_now
-        current_user.update_attributes(:billing_day_of_month => Date.today.day)
-        current_user.charge_for_active_crewmanships 
-      end
+      # if charge_now
+      #   current_user.update_attributes(:billing_day_of_month => Date.today.day)
+      #   current_user.charge_for_active_crewmanships 
+      # end
       redirect_to @mission, notice: 'You have joined this mission!'
     else
       redirect_to @mission, notice: 'We are unable to create the membership for you. Please contact hello@hourschool.com for assistance.'
