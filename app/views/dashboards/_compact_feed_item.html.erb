@@ -41,7 +41,7 @@
       <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
         <%= compact_feed_item.students.count %> people 
         <% if compact_feed_item.mission.present? %>
-        from the <%= link_to compact_feed_item.full_mission_title(mission), compact_feed_item.mission %> 
+        from the <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission %> 
         <% end %>
         <% if compact_feed_item.starts_at > Date.today %>
           registered
@@ -52,7 +52,7 @@
       <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
         <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>          
           <% if student.photo.present? %>
-            <%= link_to (image_tag student.photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
+            <%= link_to (image_tag student.photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px"), student %>
           <% else %>
             <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50", :style => "margin: 0px 5px 5px 0px"), student %>
           <% end %>

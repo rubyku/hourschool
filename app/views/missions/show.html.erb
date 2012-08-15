@@ -66,9 +66,9 @@
       <div style="float: left; margin-top: 10px; margin-bottom: 5px; float: right">
         <div style="float: left; margin-right: 5px; float: right">
           <% if user.photo.present? %>
-            <%= link_to image_tag(user.photo.url(:thumb_small)) %>
+            <%= link_to image_tag(user.photo.url(:thumb_small)), user %>
           <% else %>
-            <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
           <% end %>
         </div>         
       </div>
@@ -88,7 +88,7 @@
               <% if user.photo.present? %>
                 <%= link_to_avatar(user, :thumb_large) %>
               <% else %>
-                <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "125x125"), user %>
               <% end %>
             </div>
             <div class="crewman-description">

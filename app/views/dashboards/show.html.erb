@@ -14,8 +14,8 @@
 </style>
 
 <div class="page-sidebar left" style="width: 243px; margin-right: 27px; border: 0px">
-  <% if current_user.photo.present? %>
-    <%= image_tag current_user.photo.url(:small) %>
+  <% if @user.photo.present? %>
+    <%= image_tag @user.photo.url(:small) %>
   <% else %>
     <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
   <% end %>
@@ -23,8 +23,8 @@
   <div style="float: left; padding-bottom: 30px; margin-top: 20px; width: 230px">
     <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
     <p style="float: left">
-      <% if current_user.bio.blank? %>
-        No bio yet.
+      <% if @user.bio.blank? %>
+        
         <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
       <% else %>
         <%= @user.bio %><br>
@@ -34,7 +34,7 @@
 </div>
 
 <div class="heading28 brown" style="float: left; margin-bottom: 20px">
-  <%= current_user.name %>
+  <%= @user.name %>
 </div>
 
 <% if current_user == @user %>
@@ -68,13 +68,17 @@
       <div class="tab-pane" id="tab2">
         <div class="page-main white tab-border main" style="width: 688px">
           <div style="padding: 20px"> 
-            <% if current_user.missions.blank? %>
+            <% if @user.missions.blank? %>
               <div class="well">
-                You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
+                <% if current_user == @user %>
+                  You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
+                <% else %>
+                  No missions yet.
+                <% end %>
               </div>
             <% else %>
-              <% current_user.missions.each do |mission| %>
-                <% @crewmanship = mission.crewmanships.where(:user_id => current_user).first %>
+              <% @user.missions.each do |mission| %>
+                <% @crewmanship = mission.crewmanships.where(:user_id => @user).first %>
                 <div class="mission-divider">                                
                   <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
 
@@ -82,8 +86,9 @@
                     <div style="padding: 12px 0px 12px 12px; float: left">
                       <%= link_to full_mission_title(mission).truncate(75), mission, :class => "heading16 adelle" %>
                     </div>
-                    
-                    <%= link_to 'Manage Membership', mission_crewmanship_path(:mission_id => mission, :id => @crewmanship), :class => "btn right", :style => "margin: 6px 6px 0px 12px;" %> 
+                    <% if current_user == @user %>
+                      <%= link_to 'Manage Membership', mission_crewmanship_path(:mission_id => mission, :id => @crewmanship), :class => "btn right", :style => "margin: 6px 6px 0px 12px;" %> 
+                    <% end %>
                   </div>
 
                   <div style="float: left; width: 648px; background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
@@ -146,7 +151,7 @@
                         
                         <div style="float: left;">
                           <div class="heading16 futura mission-stats-16">
-                            <%= mission.topics.where(:user_id => current_user).count %>
+                            <%= mission.topics.where(:user_id => @user).count %>
                           </div>
                           <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
                           <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 
@@ -166,7 +171,11 @@
           <div class="page-content">
             <% if @user.followers.blank? %>
               <div class="well">
-                You don't have any followers yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people! 
+                <% if current_user == @user %>
+                  You don't have any followers yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people! 
+                <% else %>
+                  No followers yet
+                <% end %>
               </div>
             <% else %>
               <% @user.followers.each do |user| %>
@@ -193,7 +202,11 @@
           <div class="page-content">
             <% if @user.following.blank? %>
               <div class="well">
-                You are not following anyone yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people! 
+                <% if current_user == @user %>
+                  You are not following anyone yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people!
+                <% else %>
+                  <%= @user.name %> is not following anyone yet.
+                <% end %> 
               </div>
             <% else %>
               <% @user.following.each do |user| %>
@@ -205,7 +218,9 @@
                       <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
                     <% end %>
                     <br><br>
-                    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
+                    <% if current_user == @user %>
+                      <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
+                    <% end %>
                   </div>
                   <div class="crewman-description">
                     <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>

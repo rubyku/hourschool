@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < DashboardsController
   before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
   
@@ -30,13 +30,27 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.me_or_find(params[:id], current_user)
-    @approved_courses = @user.courses.where(:status => "approved")
-    @pending_courses  = @user.courses.where(:status => "proposal")
-    if current_account
-      @approved_courses = @approved_courses.where(:account_id => current_account.id)
-      @pending_courses = @pending_courses.where(:account_id => current_account.id)
+    # @user = User.me_or_find(params[:id], current_user)
+    # @approved_courses = @user.courses.where(:status => "approved")
+    # @pending_courses  = @user.courses.where(:status => "proposal")
+    # if current_account
+    #   @approved_courses = @approved_courses.where(:account_id => current_account.id)
+    #   @pending_courses = @pending_courses.where(:account_id => current_account.id)
+    # end
+
+    @user            = User.me_or_find(params[:id], current_user)
+    feed_query_items = feed_query_items_for_me
+    @comment         = current_user.comments.new(params[:comment])
+
+    @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
+
+    if @compact_feed_items.blank?
+      @staff_feed = true
+      feed_query_items = staff_picks_feed
+      @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
     end
+
+    render :template => 'dashboards/show'
   end
 
   def profile_teaching
