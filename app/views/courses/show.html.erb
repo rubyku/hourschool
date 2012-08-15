@@ -14,280 +14,278 @@
   
 <% else %>
 
-  <div class="full-page">
+  <!-- preview box -->
+  <% if @course.status == 'draft' && @course.teacher == current_user %> 
+    <div class="full-page white">
+      <div class="page-content">
+        <div class="preview-header">Preview before this goes live!</div>
+        <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px", :method => :put %>
+        <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
+        <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
+      </div>
+    </div>
+  <% end %>
+  <!-- end preview box -->
 
-    <!-- preview box -->
-    <% if @course.status == 'draft' && @course.teacher == current_user %> 
-      <div class="full-page white">
-        <div class="page-content">
-          <div class="preview-header">Preview before this goes live!</div>
-          <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px", :method => :put %>
-          <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
-          <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
-        </div>
+  <div class="page-main">
+    <div class="heading28 brown" style="width: 600px; margin-bottom: 5px"><%= "#{@course.title}" %></div>
+    <% if @course.mission %>
+      <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
+        This event is part of <%= link_to full_mission_title(@course.mission), @course.mission %>
       </div>
     <% end %>
-    <!-- end preview box -->
-
-    <div class="page-main">
-      <div class="heading28 brown" style="width: 600px; margin-bottom: 5px"><%= "#{@course.title}" %></div>
-      <% if @course.mission %>
-        <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
-          This event is part of <%= link_to full_mission_title(@course.mission), @course.mission %>
-        </div>
-      <% end %>
-    </div>
-    
-    <div style="float: right">
-      <div class="btn-group" style="float: right">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= image_tag 'v3/icon-tools.png' %>
-        </a>
-        <ul class="dropdown-menu pull-right">
-          <% if @course.teacher == current_user %>
-            <%= link_to "Edit event", edit_course_path %>
-            <%= link_to "Email attendees", new_course_attendee_contact_path(@course) %>
-            <% if @course.starts_at < Date.today %></li>
-              <li><%= link_to "Cancel this event", "" %></li>
-              <li><%= link_to "Reschedule this event", "" %>
-            <% else %>
-              <li><a>Schedule another class</a></li>
-              <li><a>Schedule a series of classes</a></li>
-            <% end %>
-          <% else %><!-- if current_user is not this course's teacher -->
-            <%= link_to "Email organizer", new_course_organizer_contact_path(@course) %>
-            <!-- <a>Cancel registration</a> -->
+  </div>
+  
+  <div style="float: right">
+    <div class="btn-group" style="float: right">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <%= image_tag 'v3/icon-tools.png' %>
+      </a>
+      <ul class="dropdown-menu pull-right">
+        <% if @course.teacher == current_user %>
+          <%= link_to "Edit event", edit_course_path %>
+          <%= link_to "Email attendees", new_course_attendee_contact_path(@course) %>
+          <% if @course.starts_at < Date.today %></li>
+            <li><%= link_to "Cancel this event", "" %></li>
+            <li><%= link_to "Reschedule this event", "" %>
+          <% else %>
+            <li><a>Schedule another class</a></li>
+            <li><a>Schedule a series of classes</a></li>
           <% end %>
-        </ul>
-      </div>
+        <% else %><!-- if current_user is not this course's teacher -->
+          <%= link_to "Email organizer", new_course_organizer_contact_path(@course) %>
+          <!-- <a>Cancel registration</a> -->
+        <% end %>
+      </ul>
     </div>
+  </div>
 
 
-    <div class="page-main">
-      <div class="tabbable"> 
-        <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-          <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Description</a></li>
-          <li><a href="#tab2" data-toggle="tab" class="heading11">Participants</a></li>
-          <% if community_site? %><li><a href="#tab3" data-toggle="tab" class="heading11">Related Topics</a></li><% end %>
-        </ul>
+  <div class="page-main">
+    <div class="tabbable"> 
+      <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+        <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Description</a></li>
+        <li><a href="#tab2" data-toggle="tab" class="heading11">Participants</a></li>
+        <% if community_site? %><li><a href="#tab3" data-toggle="tab" class="heading11">Related Topics</a></li><% end %>
+      </ul>
 
-        <div class="tab-content">
-          
-          <div class="tab-pane active" id="tab1">
-            <div class="page-main white tab-border main">
-              <div class="page-content"> 
-                <div style="width: 97%">
-                  <%= image_tag(@course.photo.url(:large), :style => "float: none") if @course.photo.present? %>
-                  <div class="class-section-heading" style="margin-top: 10px">Description</div>
-                  <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p>
-                </div>
+      <div class="tab-content">
+        
+        <div class="tab-pane active" id="tab1">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div style="width: 97%">
+                <%= image_tag(@course.photo.url(:large), :style => "float: none") if @course.photo.present? %>
+                <div class="class-section-heading" style="margin-top: 10px">Description</div>
+                <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p>
               </div>
             </div>
-            <div class="page-main white tab-border main">
-              <div class="page-content"> 
-                <div style="width: 97%">
-                  <div class="class-section-heading" style="margin-top: 10px">Comments</div>
-                  <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
-                </div>
+          </div>
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div style="width: 97%">
+                <div class="class-section-heading" style="margin-top: 10px">Comments</div>
+                <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
               </div>
             </div>
+          </div>
 
-          </div><!-- end tab1 -->   
-          
-          <div class="tab-pane" id="tab2">
-            <div class="page-main white tab-border main">
-              <div class="page-content"> 
-                <div class="mission-divider">
-                  <div class="sidebar-heading">Organizer</div>
-                  <div class="crewman-photo">
-                    <% if @course.teacher.photo.present? %>
-                      <%= link_to_avatar(@course.teacher, :thumb_large) %>
+        </div><!-- end tab1 -->   
+        
+        <div class="tab-pane" id="tab2">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div class="mission-divider">
+                <div class="sidebar-heading">Organizer</div>
+                <div class="crewman-photo">
+                  <% if @course.teacher.photo.present? %>
+                    <%= link_to_avatar(@course.teacher, :thumb_large) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                  <% end %>
+                </div>
+                <div class="crewman-description">
+                  <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
+                  <p>                
+                    <% if @course.experience.blank? %>
+                     <%= @course.teacher.bio %>
+                    <% else %>
+                      <%= @course.experience %>
+                    <% end %>
+                  </p>
+                </div> 
+              </div>    
+
+              <% if @course.students.any? %>                  
+                <% if @course.max_seats.present? %>
+                  <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}/#{@course.max_seats}" %>)</div>
+                <% else %>
+                  <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
+                <% end %>
+                <% @course.students.each do |student| %>
+                  <div class="mission-divider">             
+                    <div class="crewman-photo">
+                    <% if student.photo.present? %>
+                      <%= link_to_avatar(student, :thumb_large) %>
                     <% else %>
                       <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
                     <% end %>
-                  </div>
-                  <div class="crewman-description">
-                    <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
-                    <p>                
-                      <% if @course.experience.blank? %>
-                       <%= @course.teacher.bio %>
-                      <% else %>
-                        <%= @course.experience %>
-                      <% end %>
-                    </p>
-                  </div> 
-                </div>    
-
-                <% if @course.students.any? %>                  
-                  <% if @course.max_seats.present? %>
-                    <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}/#{@course.max_seats}" %>)</div>
-                  <% else %>
-                    <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
-                  <% end %>
-                  <% @course.students.each do |student| %>
-                    <div class="mission-divider">             
-                      <div class="crewman-photo">
-                      <% if student.photo.present? %>
-                        <%= link_to_avatar(student, :thumb_large) %>
-                      <% else %>
-                        <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
-                      <% end %>
-                      </div>
-                      <div class="crewman-description">
-                        <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to student.name, student %></div>
-                        <p>
-                          <% if Role.where(:user_id => student).first.note.present? %>
-                            <%= Role.where(:user_id => student).first.note %>
-                          <% else %>
-                            <%= student.bio %>
-                          <% end %>
-                        </p>
-                        <% if student == current_user %>
-                          <%= link_to "edit your bio", edit_user_registration_path, :class => "btn" %>
+                    </div>
+                    <div class="crewman-description">
+                      <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to student.name, student %></div>
+                      <p>
+                        <% if Role.where(:user_id => student).first.note.present? %>
+                          <%= Role.where(:user_id => student).first.note %>
+                        <% else %>
+                          <%= student.bio %>
                         <% end %>
-                      </div>           
-                    </div>
-                  <% end %>
-                <% end %>
-              
-              </div>
-            </div>
-          </div><!-- end tab2 -->
-
-          <div class="tab-pane" id="tab3">
-            <div class="page-main white tab-border main">
-              <div class="page-content"> 
-                <div class="class-section-heading">Related Topics</div><br>
-                <% if @course.topics.present? %>
-                  <% @course.topics.each do |topic| %>
-                    <%= link_to topic.title, mission_topic_path(@course.mission, topic) %><br>
-                  <% end %>
-                <% else %>
-                  <div class="well">
-                    There are no related topics to this mission.
+                      </p>
+                      <% if student == current_user %>
+                        <%= link_to "edit your bio", edit_user_registration_path, :class => "btn" %>
+                      <% end %>
+                    </div>           
                   </div>
                 <% end %>
-                <div class="class-section-heading">Part of Mission</div><br>
-                <% if @course.mission.present? %>
-                  <%= link_to "#{@course.mission.verb} #{@course.mission.title}", @course.mission if @course.mission.present? %>
-                <% else %>
-                  <div class="well">
-                    This event is not associated with a mission.
-                  </div>
-                <% end %>  
-              </div>
-            </div>
-          </div><!-- end tab 4 -->
-
-        </div><!-- end tab-content -->
-      </div><!-- end tabbable -->
-    </div><!-- end page-main -->
-
-    
-
-    <div class="left" style="width: 290px"><!-- sidebar container -->
-      <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px">
-        <div class="sidebar-content-white">
-          <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
-        </div>
-      </div>
-
-      <% if current_user && community_site? %>
-      <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px; padding-bottom: 30px">
-        <div class="sidebar-content-white">
-         <p class="confirm">Learning is more fun with friends. If you know people that would be interested in his event, invite them!</p>
-        
-          <div class="accordion" id="accordion2">
+              <% end %>
             
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                  <div class="heading11">Invite an HourSchool user</div>
-                </a>
-              </div>
-              <div id="collapseOne" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                  <%= form_for(@invite) do |f| %>
-                    <div class="field">
-                      <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "span3", :autocomplete => "off" %>
-                      <script type="text/javascript">
-                      $('#userSearch').typeahead({
-                        source: function(typeahead, query) {
-                          var _this = this;
-                          return $.ajax({
-                            url: "<%= search_users_path(:format => :json) %>?q=" + query,
-                            success: function(data) {
-                              return typeahead.process(data);
-                            }
-                          });
-                        },
-                        property: "name",
-                        onselect: function (obj) {
-                          if (obj.id == 0) {
-                            $('#invite_invitee_email').focus()
-                          } else {
-                            $('#invite_invitee_id').val(obj.id);
+            </div>
+          </div>
+        </div><!-- end tab2 -->
+
+        <div class="tab-pane" id="tab3">
+          <div class="page-main white tab-border main">
+            <div class="page-content"> 
+              <div class="class-section-heading">Related Topics</div>
+              <% if @course.topics.present? %>
+                <% @course.topics.each do |topic| %>
+                  <%= link_to topic.title, mission_topic_path(@course.mission, topic) %><br>
+                <% end %>
+              <% else %>
+                <div class="well">
+                  There are no topics related to this mission.
+                </div>
+              <% end %>
+              <br><br>
+              <div class="class-section-heading">Part of Mission</div>
+              <% if @course.mission.present? %>
+                <%= link_to "#{@course.mission.verb} #{@course.mission.title}", @course.mission if @course.mission.present? %>
+              <% else %>
+                <div class="well">
+                  This event is not associated with a mission.
+                </div>
+              <% end %>  
+            </div>
+          </div>
+        </div><!-- end tab 4 -->
+
+      </div><!-- end tab-content -->
+    </div><!-- end tabbable -->
+  </div><!-- end page-main -->
+
+  
+
+  <div class="left" style="width: 290px"><!-- sidebar container -->
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px">
+      <div class="sidebar-content-white">
+        <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
+      </div>
+    </div>
+
+    <% if current_user && community_site? %>
+    <div class="white right page-sidebar" style="border: 1px solid #DDD; width: 300px; padding-bottom: 30px">
+      <div class="sidebar-content-white">
+       <p class="confirm">Learning is more fun with friends. If you know people that would be interested in his event, invite them!</p>
+      
+        <div class="accordion" id="accordion2">
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                <div class="heading11">Invite an HourSchool user</div>
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse in">
+              <div class="accordion-inner">
+                <%= form_for(@invite) do |f| %>
+                  <div class="field">
+                    <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "span3", :autocomplete => "off" %>
+                    <script type="text/javascript">
+                    $('#userSearch').typeahead({
+                      source: function(typeahead, query) {
+                        var _this = this;
+                        return $.ajax({
+                          url: "<%= search_users_path(:format => :json) %>?q=" + query,
+                          success: function(data) {
+                            return typeahead.process(data);
                           }
+                        });
+                      },
+                      property: "name",
+                      onselect: function (obj) {
+                        if (obj.id == 0) {
+                          $('#invite_invitee_email').focus()
+                        } else {
+                          $('#invite_invitee_id').val(obj.id);
                         }
-                      });
-                      </script>
-                    </div>
+                      }
+                    });
+                    </script>
+                  </div>
+                  <div class="actions">
+                    <%= f.hidden_field :invitee_id %>
+                    <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
+                    <%= f.hidden_field :invitable_type, :value => "course" %>
+                    <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
+                    <%= f.submit "Send invite", :class => "btn" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                <div class="heading11">Invite by email</div>
+              </a>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%= form_for(@invite) do |f| %>
+                  <div class="field" id="invite_by_email">
+                    <%= f.text_field :invitee_email, :placeholder => "example@example.com", :class => "span3" %>
                     <div class="actions">
-                      <%= f.hidden_field :invitee_id %>
                       <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
                       <%= f.hidden_field :invitable_type, :value => "course" %>
                       <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
                       <%= f.submit "Send invite", :class => "btn" %>
                     </div>
-                  <% end %>
-                </div>
+                  </div> 
+                <% end %>
               </div>
             </div>
-            
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                  <div class="heading11">Invite by email</div>
-                </a>
-              </div>
-              <div id="collapseTwo" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <%= form_for(@invite) do |f| %>
-                    <div class="field" id="invite_by_email">
-                      <%= f.text_field :invitee_email, :placeholder => "example@example.com", :class => "span3" %>
-                      <div class="actions">
-                        <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                        <%= f.hidden_field :invitable_type, :value => "course" %>
-                        <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
-                        <%= f.submit "Send invite", :class => "btn" %>
-                      </div>
-                    </div> 
-                  <% end %>
-                </div>
-              </div>
+          </div>
+          
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                <div class="heading11">Invite by Facebook</div>
+              </a>
             </div>
-            
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                  <div class="heading11">Invite by Facebook</div>
-                </a>
-              </div>
-              <div id="collapseThree" class="accordion-body collapse">
-                <div class="accordion-inner">                
-                  <% if current_user && current_user.facebook? %>
-                    <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I will be at this event on Hourschool, you should come!"} %>
-                    <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I will be at this event on Hourschool, you should come!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
-                  <% else %>
-                    <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
-                  <% end %>
-                </div>
+            <div id="collapseThree" class="accordion-body collapse">
+              <div class="accordion-inner">                
+                <% if current_user && current_user.facebook? %>
+                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I will be at this event on Hourschool, you should come!"} %>
+                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I will be at this event on Hourschool, you should come!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+                <% else %>
+                  <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
+                <% end %>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <% end %>
-  </div><!-- end sidebar container -->
+    </div>
+  <% end %>
 
 <% end %>
