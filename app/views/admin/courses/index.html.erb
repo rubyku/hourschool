@@ -17,6 +17,7 @@
             <%= link_to image_tag("v2-courses/DefaultClassPics_Pending_Orange.png"), admin_course_path(:id => course.id) %>              
             <div class="class-description">
               <div class="heading13-class"><%= link_to course.title, admin_course_path(:id => course.id) %></div>
+              <p>Course id: <%= course.id %></p>
               <p><%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
               <p>Submitted on:<br>
               <%= course.created_at.strftime("%b %d, %Y") %></p>
@@ -32,6 +33,7 @@
           <div class="classBlock">                   
             <div class="class-description">
               <div class="heading13-class"><%= link_to course.title, course %></div>
+              <p>Course id: <%= course.id %></p>
               <p><%= link_to course.teacher.name, user_path(course.teacher.id) %></p>
               <p>Approval on:<br>
               <%= course.updated_at.strftime("%b %d, %Y") %></p>
@@ -56,6 +58,7 @@
                      
             <div class="class-description">
               <div class="heading13-class"><%= link_to course.title, course %></div>
+              <p>Course id: <%= course.id %></p>
               <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
               Date: <%= course.starts_at.strftime("%a %b %d, %Y") %><br>
               Attendance: <%= course.students.count %> out of <%= course.max_seats %><br>

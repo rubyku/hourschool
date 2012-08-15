@@ -1,0 +1,112 @@
+<div class="page-main">
+
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+      <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Missions</a></li>
+      <li><a href="#tab2" data-toggle="tab" class="heading11">Courses</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">Users</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
+            <% @missions.each do |mission| %>
+              <%= link_to full_mission_title(mission), mission %><br>
+              Status: <%= mission.status %><br>
+              <%= mission.crewmanships.count %> people have joined<br>
+              <%= mission.courses.count %> events<br>
+              <%= mission.topics.count %> topics<br>
+              <%= mission.comments.count %> comments<br><br>
+            <% end %>
+          </div><!-- end page-content -->
+        </div><!-- end full-page -->
+      </div><!-- end tab1 -->
+      <div class="tab-pane" id="tab2">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
+
+
+          </div><!-- end page-content -->
+        </div><!-- end full-page -->
+      </div><!-- end tab2 -->
+      <div class="tab-pane" id="tab3">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
+
+          
+            
+          </div><!-- end page-content -->
+        </div><!-- end full-page -->
+      </div><!-- end tab3 -->
+
+    </div><!-- end tab-content -->
+  </div><!-- end tabbable -->
+
+</div>
+
+<div class="sidebar">
+  <div class="sidebar-content">
+    <div class="heading14">Month over month</div>
+    <% @users_by_month.each do |month, count| %>
+      <%= "#{Date::MONTHNAMES[month.last.to_i]}:" %>
+      <%= "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }" %><br>
+    <% end %>
+    <br><br>
+      
+    <div class="heading14">Total to date</div>
+    <table>
+      <tr>
+        <td>Total Users:</td> 
+        <td><%= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)" %></td>
+      </tr>
+      <tr>
+        <td>Active Users:</td>
+        <td><%="#{@total_active_users} (#{number_to_percentage(@total_active_users/@total_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Active Students:</td>
+        <td><%= "#{@total_active_students} (#{number_to_percentage(@total_active_students/@total_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Active Teachers</td>
+        <td><%= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Repeat Users:</td>
+        <td><%= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Repeat Students:</td>
+        <td><%= "#{@total_repeat_students} (#{number_to_percentage(@total_repeat_students/@total_active_students.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr class="metrics_underline">
+        <td>Repeat Teachers:</td>
+        <td><%= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_active_teachers.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Total Courses:</td>
+        <td><%= "#{@total_courses}" %></td>
+      </tr>
+      <tr>
+        <td>Paying Courses:</td>
+        <td><%= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Free Courses:</td>
+        <td><%= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr class="metrics_underline">
+        <td>Happened Courses:</td> 
+        <td><%= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Total Transactions:</td>
+        <td><%= "#{ number_to_currency @total_transaction}" %></td>
+      </tr>
+      <tr>
+        <td>Revenue:</td> 
+        <td><%= "#{ number_to_currency @total_transaction - @amazon_fees - @teachers_share}" %></td>
+      </tr>
+    </table>
+  </div>
+</div>

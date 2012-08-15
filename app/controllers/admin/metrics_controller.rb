@@ -1,7 +1,13 @@
 class Admin::MetricsController < Admin::AdminController
 
   def index
-    
+
+    #missions
+    @missions                   = Mission.all
+    @crewmanships               = Crewmanship.all
+    @topics                     = Topic.all
+
+
     # Goals of the month
     @users_this_month           = User.where("extract( month from DATE(created_at)) = 4").count
     @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 4").count
