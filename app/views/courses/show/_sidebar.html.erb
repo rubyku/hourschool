@@ -7,9 +7,6 @@
   <div style="width: 270">
     <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
     <div class="class-details" style="width: 240px"><%= "$ #{@course.price}" %></div>
-    <% if community_site? %>
-      <div style="margin-left: 21px"><%= "$ #{@course.price + 5} for non-members" %></div>
-    <% end %>
   </div>
 
   <div style="width: 270">

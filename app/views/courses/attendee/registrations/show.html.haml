@@ -14,8 +14,6 @@
             = link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course
           - else
             = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course
-          - if @course.donate?
-            = image_tag "v2-campaign/widget-ribbon.png", :class => "widget-ribbon" 
           = image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow'
         
         .confirm-class-description
@@ -23,12 +21,7 @@
             = link_to @course.title, @course
 
           %table
-            %tr
-              %td.icon
-                = image_tag "v2/icon_pricetag.png", :class => "class-details-icon-cost"
-              %td
-                .class-details
-                  = "$ #{@course.price}"
+
             %tr
               %td.icon
                 = image_tag "v2/icon_calendar.png", :class => "class-details-icon-when"

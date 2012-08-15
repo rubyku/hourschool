@@ -25,6 +25,8 @@ class MissionsController < ApplicationController
     @invite.invitable_id = params[:invitable_id]
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
+    session["user_return_to"] = mission_path
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mission }

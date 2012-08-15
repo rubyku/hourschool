@@ -27,20 +27,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     end
 
     if @role.save
-
-      if @course.free?
-        if current_user.not_member_of_mission_for_course?(@course)
-          amount = @role.quantity * (@course.price + 5)
-        else
-          amount = 0
-        end
-      else
-        if current_user.member_of_mission_for_course?(@course)
-          amount = @role.quantity * @course.price
-        else 
-          amount = @role.quantity * (@course.price + 5)
-        end
-      end
+      amount = @role.quantity * @course.price
 
       if amount > 0
         fee = amount * 0.029 + 0.30
@@ -55,9 +42,9 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         @role.destroy unless charge.paid
       end
 
-      if (@course.free? && current_user.member_of_mission_for_course?(@course)) || charge.paid
-        if community_site?
-          Crewmanship.create!(:mission_id => @course.mission, :user_id => current_user, :status => 'trial_active', :role => 'explorer')
+      if @course.free? || charge.paid
+        if community_site? && current_user && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
+          Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'explorer')
         else
           Membership.create(:user => @user, :account => @course.account, :admin => false) 
         end

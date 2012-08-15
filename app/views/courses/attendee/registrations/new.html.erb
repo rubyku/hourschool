@@ -6,14 +6,14 @@
       <div class="heading28 brown" style="margin-bottom: 10px"><%= @course.title %></div>
 
       <div class="clearfix" style="margin-bottom: 2px">
-        <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
+        <%= image_tag "v3/icon-event-calendar.png", :style => "margin-top: 8px; margin-right: 3px" %>
         <div class="class-details" style="font-weight: 400">
           <%= "#{@course.starts_at.strftime("%a %b %d, %Y")} | #{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
         </div>
       </div>
 
       <div class="clearfix" style="margin-bottom: 20px">
-        <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>    
+        <%= image_tag "v3/icon-event-location.png", :style => "margin-top: 8px; margin-left: 2px; margin-right: 4px" %>    
         <div class="class-details" style="font-weight: 400"><%= "#{@course.place_name} | " %>
           <% if @course.public? %>
             <%= @course.address %>
@@ -24,47 +24,17 @@
           <% end %>
         </div>
       </div>
-
-<!--       <p>To help the organizer plan, introduce yourself and what you want to get out of the event:</p>
-      <%= f.text_area :note, :class => "form-med", :style => "width: 600px" %> -->
     </div>
   </div>
 
+  <% if !@course.free? %>
     <div class="full-page white">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
         
-        <% if @course.mission.present? %>
-          <p>This event belongs to the mission: <%= full_mission_title(@course.mission) %></p>
-        <% end %>
-        
-        <% if @course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).present? %>
-          <p>You are a member of this mission so this event is free for you!<p>
-        <% elsif @course.mission.blank? %>
-          <p>Price per ticket: <%= number_to_currency @course.price %></p><hr>
-        <% else %>
-
-          <% if current_user.crewmanships.where(:mission_id => @course.mission.id).present? %>
-            <p>You are a member of this mission.</p>
-            <hr />
-            <p>Member price per ticket: 
-              <% if @course.price == 0 %>
-                Free
-              <% else %>
-                <%= number_to_currency @course.price %>
-              <% end %>
-            </p>
-            <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
-            <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
-          <% else %>
-            <p>You are not a member of this mission yet. <%= link_to "Join today!", new_mission_crewmanship_path(:mission_id => @mission.id), :style => "font-weight: 700" %></p>
-            <hr />
-            <p>Non-member price per ticket: <%= number_to_currency @course.price + 5 %> </p>
-            <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price + 5) * 0.029 + 0.3).round(2) %></span></p>
-            <h3>Total: $<span id="total_price"><%= (@course.price + 5) + fee %></span></h3>
-          <% end %>
-        <% end %>
-
+          Ticket price: <%= number_to_currency @course.price %>          
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+          <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
       </div>
     </div>
 
@@ -79,7 +49,6 @@
     </script>
 
 
-  <% if (@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?) || (!@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).present?) || (!@course.free? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?) %>
     <div class="full-page white">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
@@ -95,9 +64,7 @@
         <% end %>
       </div>
     </div>
-  <% end %>
 
-  <% if !@course.free? %>
     <div class="full-page white">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px">Refund and cancellation policy</div>
