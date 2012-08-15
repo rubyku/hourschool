@@ -18,7 +18,7 @@ class MissionsController < ApplicationController
   def show
     @mission = Mission.find(params[:id])
     @users = @mission.users
-    @courses = @mission.courses
+    @courses = @mission.courses.where(:status => "live")
     @course = Course.new
     @topic = Topic.new
     @invite = Invite.new
