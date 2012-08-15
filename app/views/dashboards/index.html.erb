@@ -7,12 +7,12 @@
 </div>
 <%= render 'dashboards/all/news' %>
 
-<div class="page-main white" style="min-height: 800px">
-  <div style="padding: 18px">
-
-  <div class="mission-divider"> 
-    <div class="heading11">Mission News</div>
+<div class="page-main white" style="min-height: 800px; border: 1px solid #eeebeb">
+  <div class="dashboard-sidebar-header" style="margin-bottom: 5px">
+      <div class="heading11" style="color: white">Mission News</div>
   </div>
+
+  <div style="padding: 18px">
 
   <div id="news-feed">
     <%= render :partial => 'feed_item', :collection => @feed_items %>
@@ -48,8 +48,10 @@
 
 <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? || current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
   <div class="white right page-sidebar">
-    <div class="sidebar-content-white">
-      
+    <div class="dashboard-sidebar-header">
+      <div class="heading11" style="color: white">Coming up for you</div>
+    </div>
+    <div class="sidebar-content-white">      
       <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am organizing:</div>
         <% current_user.courses_taught.where("starts_at > (?)", Date.today).where(:status => "live").order('starts_at asc').each do |course| %>
@@ -90,20 +92,12 @@
   </div>
 <% end %>
 
-<% if current_user.missions.where(:status => "live").present? || current_user.missions.where(:status => "draft").present? %>
+<% if current_user.courses.where(:status => "draft").present? || current_user.missions.where(:status => "draft").present? %>
   <div class="white right page-sidebar">
+    <div class="dashboard-sidebar-header">
+        <div class="heading11" style="color: white">Things in draft</div>
+    </div>
     <div class="sidebar-content-white">
-
-      <% if current_user.missions.where(:status => "live").present? %>
-        <div class="heading11" style="margin-bottom: 20px">My launched missions:</div>
-        <% current_user.missions.where(:status => "live").each do |mission| %>
-          <div class="mission-divider">
-            <%= link_to (image_tag mission.photo.url(:thumb_258), :style => "margin-bottom: 10px"), mission %>
-            <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div><br>
-          </div>
-        <% end %>
-      <% end %>
-    
       <% if current_user.missions.where(:status => "draft").present? %>
         <div class="heading11" style="margin-bottom: 20px">My draft missions:</div>
         <% current_user.missions.where(:status => "draft").each do |mission| %>
@@ -116,6 +110,17 @@
         <% end %>  
       <% end %>
 
+      <% if current_user.courses.where(:status => "draft").present? %>
+        <div class="heading11" style="margin-bottom: 20px">My draft events:</div>
+        <% current_user.courses.where(:status => "draft").each do |course| %>
+          <div class="mission-divider">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag course.photo.url(:thumb_258), :style => "margin-bottom: 10px"), course %>
+            <% end %>
+            <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400"  %></div>
+          </div>
+        <% end %>  
+      <% end %>
     </div>
   </div>
 <% end %>
