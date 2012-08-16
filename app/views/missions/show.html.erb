@@ -202,8 +202,6 @@
                   <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
                   <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%>
                 </div>
-
-                <%= link_to "Pre-register for next one", course, :class => "yellow long button", :style => "color: white; margin-top: 15px; text-decoration: none" %>
               </div>
             </div>
           <% end %>
