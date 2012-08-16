@@ -1,7 +1,7 @@
 class UsersController < DashboardsController
   before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
-  
+
   def index
     if community_site?
       @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
@@ -20,7 +20,7 @@ class UsersController < DashboardsController
     logger.info("RESPONSE:#{response}")
     render :json => response
   end
-  
+
   def table
     if community_site?
       @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
@@ -107,7 +107,7 @@ class UsersController < DashboardsController
     @existing_user = User.find_by_email(params[:user][:email])
     if @existing_user
       Membership.create!(:user => @existing_user, :account => current_account, :admin => false) unless Membership.find_by_user_id_and_account_id(@existing_user.id, current_account.id)
-      UserMailer.invitation(@existing_user, current_account, current_user, true).deliver
+      UserMailer.membership_invitation(@existing_user, current_account, current_user, true).deliver
       redirect_to(users_url, :notice => "User invited.")
     else
       @user = User.new(params[:user])
@@ -122,7 +122,7 @@ class UsersController < DashboardsController
         # cant use .send_reset_password_instructions because it will send mail
         @user.send(:generate_reset_password_token!)
         Membership.create!(:user => @user, :account => current_account, :admin => false)
-        UserMailer.invitation(@user, current_account, current_user, false).deliver
+        UserMailer.membership_invitation(@user, current_account, current_user, false).deliver
         redirect_to(users_url, :notice => "User invited.")
       else
         render :new_invite

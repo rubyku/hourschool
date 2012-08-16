@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 
   has_many :crewmanships,   :dependent => :destroy
   has_many :missions, :through => :crewmanships
-  
+
   has_many :subscription_charges
 
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
@@ -260,10 +260,10 @@ class User < ActiveRecord::Base
     else
       current_account = nil
     end
-    UserMailer.send_registration_mail(self.email, self.name, current_account).deliver
+    UserMailer.user_registration(self.email, self.name, current_account).deliver
   end
 
-  #after user has put in payment info, a stripe customer is created 
+  #after user has put in payment info, a stripe customer is created
   def create_stripe_customer(params)
     stripe_customer = Stripe::Customer.create(params)
     if stripe_customer
@@ -287,7 +287,7 @@ class User < ActiveRecord::Base
     if stripe_customer_id.present?
       @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
     else
-      nil 
+      nil
     end
   end
 
@@ -296,7 +296,7 @@ class User < ActiveRecord::Base
     crewmanships.collect(&:price).map {|p| p[:amount] }.inject{|sum,x| sum + x }
   end
 
-  #this creates a stripe charge 
+  #this creates a stripe charge
   def charge_for_active_crewmanships
     begin
       amount   = (balance * 100).to_i
@@ -377,7 +377,7 @@ class User < ActiveRecord::Base
     where(:mission_id => mission.id).
     any?
   end
-  
+
   # ================================
   # End user conversion Code
   # ================================
