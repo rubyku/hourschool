@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
         if @course.mission.present? && @course.mission.crewmanships.where(:user_id => current_user).blank?
           if community_site? && current_user && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
             Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'guide')
-          end 
+          end
         end
         @user.save
       end
@@ -63,13 +63,15 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        if @course.status == 'live'  
+        if @course.status == 'live'
           if @course.account.nil?
             current_account = nil
-          else 
+          else
             current_account = @course.account
           end
-          UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          if @course.previous_changes["status"]
+            UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
           format.json { head :no_content }
         elsif @course.status == 'draft'
@@ -79,9 +81,9 @@ class CoursesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end    
+    end
   end
- 
+
   def destroy
     @course = Course.find(params[:id])
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
@@ -99,7 +101,7 @@ class CoursesController < ApplicationController
     else
       redirect_to :back, :alert => "You are not authorized to do this"
     end
-  end  
+  end
 
   private
 
