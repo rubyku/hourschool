@@ -18,14 +18,16 @@
     <%= render :partial => 'feed_item', :collection => @feed_items %>
   </div>
   <%= render :partial => 'dashboards/paginate' %>
-  
+
   </div>
 </div>
 
-<% if current_user.crewmanships.blank? %>
+<% if current_user.crewmanships.blank? || current_user.courses_taught.where("starts_at > (?)", Date.today).blank? || current_user.courses_attended.where("starts_at > (?)", Date.today).blank? || current_user.courses.where(:status => "draft").blank? || current_user.missions.where(:status => "draft").blank? %>
   <div class="white right page-sidebar">
+    <div class="dashboard-sidebar-header">
+      <div class="heading11" style="color: white">Get started here</div>
+    </div>
     <div class="sidebar-content-white">
-      <div class="heading11" style="margin-bottom: 20px">Get started here</div>
       <div class="mission-divider">
         <div class="heading16 adelle"><%= link_to "Wall of Missions", wall_of_missions_path, :style => "font-weight: 400" %></div>
         <p>Discover the new passion you never knew you had.</p>
@@ -34,14 +36,14 @@
         <div class="heading16 adelle"><%= link_to "Wall of Awesome", wall_of_awesome_path,:style => "font-weight: 400" %></div>
         <p>Congratulate those who had a mission accomplished.</p>
       </div>
-      <div class="mission-divider">      
+      <div class="mission-divider">
         <div class="heading16 adelle"><%= link_to "Partner Schools", partner_schools_path, :style => "font-weight: 400" %></div>
-        <p>We collaborate with great peopele doing great things.</p>      
+        <p>We collaborate with great peopele doing great things.</p>
       </div>
-      <div class="mission-divider">      
+      <div class="mission-divider">
         <div class="heading16 adelle"><%= link_to "HourSchool Philosophy", about_path, :style => "font-weight: 400" %></div>
-        <p>We believe in giving people a place to give and to grow.</p>      
-      </div>  
+        <p>We believe in giving people a place to give and to grow.</p>
+      </div>
     </div>
   </div>
 <% end %>
@@ -51,11 +53,11 @@
     <div class="dashboard-sidebar-header">
       <div class="heading11" style="color: white">Coming up for you</div>
     </div>
-    <div class="sidebar-content-white">      
+    <div class="sidebar-content-white">
       <% if current_user.courses_taught.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am organizing:</div>
         <% current_user.courses_taught.where("starts_at > (?)", Date.today).where(:status => "live").order('starts_at asc').each do |course| %>
-          <div class="mission-divider">
+          <div class="mission-divider" style="padding: 0px">
             <div style="float: left; margin-right: 10px; height: 60px">
               <div class="dashboard-event-day"><%= course.starts_at.strftime("%d") %></div>
               <div class="dashboard-event-month"><%= course.starts_at.strftime("%b") %></div>
@@ -69,11 +71,11 @@
           </div>
         <% end %>
       <% end %>
-      
+
       <% if current_user.courses_attended.where("starts_at > (?)", Date.today).present? %>
         <div class="heading11" style="margin-bottom: 20px">Events I am attending:</div>
         <% current_user.courses_attended.where("starts_at > (?)", Date.today).where(:status => "live").order('starts_at asc').each do |course| %>
-          <div class="mission-divider">
+          <div class="mission-divider" style="padding: 0px">
             <div style="float: left; margin-right: 10px; height: 60px">
               <div class="dashboard-event-day"><%= course.starts_at.strftime("%d") %></div>
               <div class="dashboard-event-month"><%= course.starts_at.strftime("%b") %></div>
@@ -107,7 +109,7 @@
             <% end %>
             <div class="heading16 adelle"><%= link_to full_mission_title(mission), mission, :style => "font-weight: 400"  %></div>
           </div>
-        <% end %>  
+        <% end %>
       <% end %>
 
       <% if current_user.courses.where(:status => "draft").present? %>
@@ -119,7 +121,7 @@
             <% end %>
             <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400"  %></div>
           </div>
-        <% end %>  
+        <% end %>
       <% end %>
     </div>
   </div>
