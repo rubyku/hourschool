@@ -58,16 +58,28 @@ private
     ]
   end
 
+  # show only items that stem from a live mission
   def feed_query_items_for_me
-    [
-      @user.crewmanships.where(:role => "creator"),
-      @user.crewmanships.where(:role => "explorer"),
-      @user.crewmanships.where(:role => "guide"),
-      @user.crewmanships.where(:role => "completed"),
-      @user.comments,
-      @user.courses_taught,
-      @user.courses_attended,
-      @user.topics
+    feed_items =[
+      @user.crewmanships.where(:role => "creator").joins(:mission).where(:missions => {:status => 'live'}),
+      @user.crewmanships.where(:role => "explorer").joins(:mission).where(:missions => {:status => 'live'}),
+      @user.crewmanships.where(:role => "guide").joins(:mission).where(:missions => {:status => 'live'}),
+      @user.crewmanships.where(:role => "completed").joins(:mission).where(:missions => {:status => 'live'}),
+      
+      # comments can belong to course or a mission, make sure they are live before fetching them
+      @user.comments.where(:course_id => nil).joins(:mission).where(:missions => {:status => 'live'}),
+      @user.comments.where("course_id is not null").joins(:course).where(:courses => {:status => 'live'}),
+      
+      # courses can be live or be part of a mission that is live
+      @user.courses_taught.joins(:mission).where(:missions => {:status => 'live'}).where(:status => 'live'),
+      @user.courses_taught.where(:mission_id => nil).where(:status => 'live'),
+
+
+      # courses can be live or be part of a mission that is live
+      @user.courses_attended.joins(:mission).where(:missions => {:status => 'live'}).where(:status => 'live'),
+      @user.courses_attended.where(:mission_id => nil).where(:status => 'live'),
+
+      @user.topics.joins(:mission).where(:missions => {:status => 'live'})
     ]
   end
 
