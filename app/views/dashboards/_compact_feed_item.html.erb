@@ -1,4 +1,4 @@
-<div class="mission-divider"> 
+<div class="mission-divider">
   <% if compact_feed_item.is_a?(Crewmanship) %>
     <% if compact_feed_item.mission.present? %>
       <%= image_tag 'v3/profile/journey-glyph-mission.png', :class => "left" %>
@@ -18,11 +18,16 @@
     <%= image_tag 'v3/profile/journey-glyph-comment.png', :class => "left"  %>
     <hr style="width: 22px; float: left">
     <div style="width: 100%">
-      <div style="float: left; margin: 0px 5px 0px 5px">I commented on the mission </div>
-      <div style="font-weight: 700; margin-top: 10px"><%= link_to compact_feed_item.mission.title, compact_feed_item.mission if compact_feed_item.mission.present? %></div>
+      <div style="float: left; width: 550px; margin: 10px 5px 0px 5px">
+        <% if compact_feed_item.mission_id.present? %>
+          I commented on the mission  <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission, :style => "font-weight: 700" %>
+        <% else %>
+          I commented on the event <%= link_to compact_feed_item.course.title, compact_feed_item.course, :style => "font-weight: 700" %>
+        <% end %>
+      </div>
     </div><br />
-    <div style="margin-left: 57px; color: #6a4a3b">"<%= compact_feed_item.body %>" </div><br />
-    <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words compact_feed_item.created_at} ago" %></div>
+    <div style="margin-left: 57px; color: #6a4a3b"><p>"<%= compact_feed_item.body %>"</p></div><br />
+    <div style="float: left; font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words compact_feed_item.created_at} ago" %></div>
 
   <% elsif compact_feed_item.is_a?(Course) %>
     <%= image_tag 'v3/profile/journey-glyph-event.png', :class => "left"  %>
@@ -37,11 +42,24 @@
       <% end %>
       <div style="font-size: 10px; margin-left: 57px">
         <%= "#{time_ago_in_words compact_feed_item.created_at} ago" %>
+      </div><br>
+
+      <div style="float: left; margin-right: 20px; margin-left: 57px">
+        <%= link_to (image_tag(compact_feed_item.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),compact_feed_item if compact_feed_item.photo.present? %>
       </div>
+      <div style="float: left; width: 325px">
+        <div style="width: 258px; margin-bottom: 5px; margin-right: 25px;">
+          <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
+          <%= compact_feed_item.place_name %><br>
+          <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
+          <%= compact_feed_item.starts_at.strftime("%a %b %d") %>, <%= "#{compact_feed_item.starts_at.strftime("%l:%M%p")}"%>
+        </div>
+      </div><br>
+
       <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
-        <%= compact_feed_item.students.count %> people 
+        <%= compact_feed_item.students.count %>
         <% if compact_feed_item.mission.present? %>
-        from the <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission %> 
+        from the <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission %>
         <% end %>
         <% if compact_feed_item.starts_at > Date.today %>
           registered
@@ -49,30 +67,30 @@
           attended
         <% end %>
       </div>
-      <div style="font-size: 11px; margin-left: 57px; margin-top: 10px">
-        <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>          
+      <div style="float: left; width: 325px; font-size: 11px; margin-top: 10px">
+        <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>
           <% if student.photo.present? %>
-            <%= link_to (image_tag student.photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px"), student %>
+            <%= link_to (image_tag student.photo.url(:thumb_small), :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
           <% else %>
-            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50", :style => "margin: 0px 5px 5px 0px"), student %>
+            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
           <% end %>
         <% end %>
       </div>
     </div><br />
-    
-  
+
+
   <% elsif compact_feed_item.is_a?(Topic) %>
     <%= image_tag 'v3/profile/journey-glyph-topic.png', :class => "left"  %>
     <hr style="width: 22px; float: left">
     <div style="width: 100%">
       <div style="float: left; margin: 0px 5px 0px 5px">I added a topic to the mission</div>
-      <div style="font-weight: 700; margin-top: 10px"><%= link_to compact_feed_item.mission.title, compact_feed_item.mission if compact_feed_item.mission.present? %></div>
+      <div style="font-weight: 700; margin-top: 10px"><%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission if compact_feed_item.mission.present? %></div>
     </div><br />
-    <div style="margin-left: 57px; color: #6a4a3b"><%= compact_feed_item.title %></div> <br /> 
+    <div style="margin-left: 57px; color: #6a4a3b"><%= compact_feed_item.title %></div> <br />
     <div style="font-size: 10px; margin-left: 57px"><%= "#{time_ago_in_words compact_feed_item.created_at} ago" %></div>
-  
+
   <% else %>
-    <%= compact_feed_item.class %> happened at 
+    <%= compact_feed_item.class %> happened at
     <%= compact_feed_item.created_at %><br />
   <% end %>
 </div>
