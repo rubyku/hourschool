@@ -12,7 +12,7 @@
         <a data-toggle="modal" href="#addBasicInfo" class="heading11" style="color: white">Upload a photo that represent your mission</a>
       </div>
     </div>
-  <% end %> 
+  <% end %>
 
   <div class="mission-description-box">
     <div class="heading14" style="margin: 20px 0px 5px 0px">
@@ -37,7 +37,7 @@
 
   <div class="mission-status-box">
     <div style="width: 240px; float: right">
-      <!-- <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a> -->
+      <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
       <% if !current_user || (current_user && current_user.crewmanships.where(:mission_id => @mission).blank?) %>
         <%= link_to "Join Mission", mission_crewmanships_path(@mission), :method => :post, :class => "btn btn-warning right", :style => "color: white" %>
       <% elsif current_user && current_user.crewmanships.where(:mission_id => @mission).present? %>
@@ -51,7 +51,7 @@
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3>Invite someone to this mission</h3>
       </div>
-      <div class="modal-body">              
+      <div class="modal-body">
         <%= render 'invites/form' %>
       </div>
     </div>
@@ -70,20 +70,20 @@
           <% else %>
             <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
           <% end %>
-        </div>         
+        </div>
       </div>
       <% end %>
     </div>
-    
+
     <!-- modal begins -->
     <div class="modal hide" id="wholeCrew">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3>The crew in the mission <%= full_mission_title(@mission) %></h3>
       </div>
-      <div class="modal-body">       
+      <div class="modal-body">
         <% @users.each do |user| %>
-          <div class="mission-divider">             
+          <div class="mission-divider">
             <div class="crewman-photo">
               <% if user.photo.present? %>
                 <%= link_to_avatar(user, :thumb_large) %>
@@ -104,7 +104,7 @@
                 <span class="label">Alumni</span>
               <% end %>
               <p><%= user.bio %></p>
-            </div>           
+            </div>
           </div>
         <% end %>
       </div>
@@ -117,7 +117,7 @@
   <div class="mission-section-header">
     <div class="heading11" style="color: white">Begin this mission by going to a class, working session, or happy hour!</div>
   </div>
-   
+
   <div class="page-main" style="border-right: 1px dashed #eeebeb">
     <div class="page-content">
       <% if @courses.where("starts_at > (?)", Time.now).present? %>
@@ -140,7 +140,7 @@
                 <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
                 <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%>
               </div>
-                  
+
               <%= link_to "Sign me up!", course, :class => "btn btn-warning btn-large", :style => "color: white; margin-top: 15px" %>
             </div>
           </div>
@@ -157,7 +157,7 @@
           <button type="button" class="close" data-dismiss="modal">×</button>
           <h3>All events in the mission <%= full_mission_title(@mission) %></h3>
         </div>
-        <div class="modal-body">       
+        <div class="modal-body">
           <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.now).count %>)</div>
           <% @courses.where(:status => "live").where("starts_at > (?)", Time.now).order('starts_at asc').each do |course| %>
             <div class="mission-divider">
@@ -177,7 +177,7 @@
                   <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
                   <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%>
                 </div>
-                    
+
                 <%= link_to "Sign me up!", course, :class => "yellow short button", :style => "color: white; margin-top: 15px; text-decoration: none" %>
               </div>
             </div>
@@ -202,7 +202,7 @@
                   <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
                   <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%>
                 </div>
-                    
+
                 <%= link_to "Pre-register for next one", course, :class => "yellow long button", :style => "color: white; margin-top: 15px; text-decoration: none" %>
               </div>
             </div>
@@ -246,9 +246,9 @@
 
   <div class="page-main" style="border-right: 1px dashed #eeebeb">
     <div class="page-content">
-     
+
         <div class="heading11" style="margin-bottom: 20px">Ask a question, share a tip, keep the conversation going.</div>
-      
+
       <div style="float: left; width: 100%">
         <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
       </div>
@@ -256,7 +256,7 @@
   </div>
 
   <div style="float: left; width: 329px">
-    <div class="page-content">             
+    <div class="page-content">
       <div class="heading11" style="margin-bottom: 20px">Request a topic you want to learn or suggest one you can teach.</div>
       <a class="btn" data-toggle="modal" href="#newTopic">Add a topic</a>
       <div style="float: left; margin-top: 30px;">
@@ -272,7 +272,7 @@
               <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
             <% end %>
             <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize something for this topic</a>
-          </div> 
+          </div>
 
           <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
             <div class="modal-header">
@@ -291,7 +291,7 @@
               <button type="button" class="close" data-dismiss="modal">×</button>
               <h3>Topic Details</h3>
             </div>
-            <div class="modal-body">              
+            <div class="modal-body">
               <div class="heading13 brown"><%= topic.title %></div>
               <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
                 Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
@@ -314,14 +314,14 @@
             <button type="button" class="close" data-dismiss="modal">×</button>
             <h3>Add a new topic</h3>
           </div>
-          <div class="modal-body">       
+          <div class="modal-body">
             <%= render 'topics/form' %>
           </div>
         </div><!-- modal ends -->
-      
+
       </div>
     </div>
-  </div>   
+  </div>
 </div>
 
 <script type="text/javascript">

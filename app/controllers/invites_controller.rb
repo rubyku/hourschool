@@ -48,19 +48,19 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         if @invite.invitable_type.downcase == "mission"
-          if @invite.invitee_id.present?
-            UserMailer.invite_user_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee => @invite.invitee, :message => @invite.message).deliver
-          else 
-            UserMailer.invite_nonuser_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
-          end 
+          if @invite.inviter_id.present?
+            UserMailer.user_invite_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          else
+            UserMailer.nonuser_invite_to_mission(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          end
         elsif @invite.invitable_type.downcase == "course"
-          if @invite.invitee_id.present?
-            UserMailer.invite_user_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
-          else 
-            UserMailer.invite_nonuser_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
-          end 
+          if @invite.inviter_id.present?
+            UserMailer.user_invite_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
+          else
+            UserMailer.nonuser_invite_to_course(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
+          end
         end
-        
+
         format.html { redirect_to :back, notice: 'Invite was successfully sent.' }
         format.json { render json: @invite, status: :created, location: @invite }
       else

@@ -11,18 +11,28 @@
     </div>
   <% end %>
 
- 
-      <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
- 
+  <% if current_user %>
+    <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
+    From: <%= current_user.name %><br>
+  <% else %>
+    <div class="field clearfix" style="float: left; margin-right: 10px">
+      <%= f.label :inviter_name, "Your name" %>
+      <%= f.text_field :inviter_name, :placeholder => "Bruce Wayne" %>
+    </div>
+    <div class="field clearfix">
+      <%= f.label :inviter_email, "Your email" %>
+      <%= f.text_field :inviter_email, :placeholder => "bruce@wayne.com" %>
+    </div>
+  <% end %>
+  <br>
 
-
-  <div class="field clearfix">
-    <%= f.label :invitee, "Invite an HourSchool user" %>
-    <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "form-short-edit-profile", :autocomplete => "off" %>
+<!--   <div class="field clearfix" style="float: left; margin-right: 10px">
+    <%= f.label :invitee, "Invite an HourSchool user by name" %>
+    <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "userSearchTypeahead", :autocomplete => "off" %>
     <%= f.hidden_field :invitee_id %>
-    
+
     <script type="text/javascript">
-    $('#userSearch').typeahead({
+    $('.userSearchTypeahead').typeahead({
       source: function(typeahead, query) {
         var _this = this;
         return $.ajax({
@@ -42,35 +52,32 @@
       }
     });
     </script>
-  </div><br>
-
+  </div>
+ -->
   <div class="field clearfix" id="invite_by_email">
-    <%= f.label :invitee_email, 'Or invite by email' %>
-    <%= f.text_field :invitee_email, :class => "form-short-edit-profile" %>
-
+    To email: <%= f.text_field :invitee_email, :placeholder => "robin@boywonder.com"  %>
   </div><br>
 
-  <div class="field clearfix">
+<!--   <div class="field clearfix">
     <% if @mission.courses.any? %>
     <div style="margin-bottom: 5px">Do you want to invite them to any of the following events?</div>
       <% for course in @mission.courses.find(:all) %>
         <div style="float: left;">
           <%= check_box_tag "mission[course_ids][]", course.id %>
-        </div>  
-        <div class="heading13" style="margin: 2px 0px 5px 20px"><%= course.title %></div>    
+        </div>
+        <div class="heading13" style="margin: 2px 0px 5px 20px"><%= course.title %></div>
       <% end %>
     <% end %>
-  </div><br>
+  </div><br> -->
 
   <div class="field clearfix">
   <%= f.label :message, "Personal message" %>
-  <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",                     
-  :value => 
+  <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",
+  :value =>
                    "I am starting this mission and I think you should join me!" %>
 
   </div><br>
 
-  <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
   <%= f.hidden_field :invitable_type, :value => "mission" %>
   <%= f.hidden_field :invitable_id, :value => "#{@mission.id}" %>
 

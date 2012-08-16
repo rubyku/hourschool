@@ -2,7 +2,7 @@ class UserMailer < ActionMailer::Base
   default :from => "HourSchool <hello@hourschool.com>"
 
   layout 'layouts/email_layout'
-  
+
 
   # def followed_created_a_course(current_user, followed, course)
   #   @user     = current_user
@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   #   @course   = course
   #   mail(:to => current_user.email, :subject => "#{@followed.name} just created a new course on Hourschool")
   # end
-  # 
+  #
   # def followed_signed_up_for_a_course(current_user, followed, course)
   #   @user     = current_user
   #   @followed = followed
@@ -18,48 +18,48 @@ class UserMailer < ActionMailer::Base
   #   mail(:to => current_user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
   # end
 
-  def invite_user_to_mission(options = {})
-    @inviter        = options[:inviter]
-    @mission        = options[:mission]
-    @invitee        = options[:invitee]
-    @invitable_type = options[:invitable_type]  
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    @url            = mission_url(@mission)
-    mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
-  end
-
-
-  def invite_nonuser_to_mission(options = {})
+  def user_invite_to_mission(options = {})
     @inviter        = options[:inviter]
     @mission        = options[:mission]
     @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]  
+    @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     @url            = mission_url(@mission)
     mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to a mission!")
   end
 
-  def invite_user_to_course(options = {})
-    @inviter        = options[:inviter]
-    @course         = options[:course]
-    @invitee        = options[:invitee]
-    @invitable_type = options[:invitable_type]  
+  def nonuser_invite_to_mission(options = {})
+    @inviter_name   = options[:inviter_name]
+    @inviter_email   = options[:inviter_email]
+    @mission        = options[:mission]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
-    @url            = course_url(@course)
-    mail(:to => @invitee.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to an event")
+    @message        = options[:message]
+    @url            = mission_url(@mission)
+    mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter_name} invited you to a mission!")
   end
 
-
-  def invite_nonuser_to_course(options = {})
+  def user_invite_to_course(options = {})
     @inviter        = options[:inviter]
     @course         = options[:course]
     @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]  
+    @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
     @url            = course_url(@course)
     mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter.name} invited you to an event")
+  end
+
+  def nonuser_invite_to_course(options = {})
+    @inviter_name   = options[:inviter_name]
+    @inviter_email   = options[:inviter_email]
+    @course         = options[:course]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @url            = course_url(@course)
+    mail(:to => @invitee_email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "#{@inviter_name} invited you to an event")
   end
 
   def comment_on_course(user, comment, course, current_account)
