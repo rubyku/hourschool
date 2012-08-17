@@ -29,7 +29,6 @@ class UserMailer < ActionMailer::Base
   #----------------------------------------------------------------------------------------------------------------------------
 
   def course_comments(user, comment, course, current_account)
-    return false if user.unsubscribed?("mission_news")
     @user    = user
     @course  = course
     @comment = comment

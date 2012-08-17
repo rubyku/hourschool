@@ -69,7 +69,11 @@
         <% end %>
         </div>
         <%= f.hidden_field :parent_id, :value => @comment.parent_comment.id %>
-        <%= f.hidden_field :mission_id, :value => @comment.parent_comment.mission.id %>
+        <% if @comment.parent_comment.mission.present? %>
+          <%= f.hidden_field :mission_id, :value => @comment.parent_comment.mission.id %>
+        <% elsif @comment.parent_comment.course.present? %>
+          <%= f.hidden_field :course_id, :value => @comment.parent_comment.course.id %>
+        <% end %>
         <%= f.text_area :body, :placeholder => "Leave a comment", :class => "comment-field", :style => "margin: 3px 0px 10px 0px; padding: 5px 0px 0px 5px" %>
         <br>
         <%= f.submit 'Reply', :class => "btn btn-small", :style => "float: right" %>
@@ -143,7 +147,11 @@
         <% end %>
         </div>
         <%= f.hidden_field :parent_id, :value => @comment.id %>
-        <%= f.hidden_field :mission_id, :value => @comment.mission.id %>
+        <% if @comment.mission.present? %>
+          <%= f.hidden_field :mission_id, :value => @comment.mission.id %>
+        <% elsif @comment.course.present? %>
+          <%= f.hidden_field :course_id, :value => @comment.course.id %>
+        <% end %>
         <%= f.text_area :body, :placeholder => "Leave a comment", :class => "comment-field", :style => "margin: 3px 0px 10px 0px; padding: 5px 0px 0px 5px" %>
         <br>
         <%= f.submit 'Reply', :class => "btn btn-small", :style => "float: right" %>

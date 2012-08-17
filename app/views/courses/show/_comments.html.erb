@@ -9,9 +9,9 @@
 <div class="well">
   <% if current_user %>
     <%= form_for course.comments.new do |f| %>
-      <%= f.hidden_field :course, :value => course.id %>
+      <%= f.hidden_field :course_id, :value => course.id %>
       <%= f.hidden_field :comment_type, :value => "note" %>
-      <%= f.text_area    :body, :class => "form-med-with-margin", 'data-comment_type' => 'note' %> 
+      <%= f.text_area    :body, :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
       <%= f.hidden_field :body, :id => 'submit_body_value' %>
       <%= f.submit 'Leave Comment', :class => "btn" %>
     <% end %>
@@ -29,7 +29,7 @@
 
 <% if course.comments.where(:parent_id => nil).present? %>
   <% course.comments.where(:parent_id => nil).where("comment_type = 'note' or comment_type = 'question' or comment_type = 'link' or comment_type = 'photo' or comment_type = 'file'").each do |comment| %>
-    
+
     <div class="mission-divider">
 
       <div class="comment-box parent">
@@ -52,14 +52,14 @@
             <%= link_to comment.photo_file_name, comment.photo.url %>
           <% elsif comment.comment_type == 'photo' %>
             <%= image_tag(comment.photo.url(:normal)) %>
-          <% end %>  
+          <% end %>
         </div><!-- end comment-body parent -->
       </div><!-- end comment-box parent -->
 
       <% if comment.child_comments.present? %>
         <div class="comment-box child">
           <% comment.child_comments.each do |child_comment| %>
-            <div style="float: left; width: 490px; margin-bottom: 5px; padding: 10px; background-color: whiteSmoke;"> 
+            <div style="float: left; width: 490px; margin-bottom: 5px; padding: 10px; background-color: whiteSmoke;">
               <div class="commenter-photo">
                 <% if child_comment.user.photo.present? %>
                   <%= link_to_avatar(child_comment.user, :thumb_small) %>
@@ -68,7 +68,7 @@
                 <% end %>
               </div>
               <div class="comment-body child">
-                <div class="heading13-class" style="float: left; margin-right: 10px">
+                 <div style="float: left; margin-right: 10px; font-size: 13px; font-weight: 700">
                   <%= child_comment.user.name %>
                 </div>
                 <div style="font-size: 10px">
@@ -76,7 +76,7 @@
                 </div>
                 <%= simple_format Rinku.auto_link(child_comment.body) %>
               </div>
-              </div> 
+              </div>
           <% end %><!-- end child-comment each block -->
         </div><!-- end child-comment-box -->
       <% end %><!-- end if child_comments.present? -->
