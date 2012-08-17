@@ -122,7 +122,7 @@
     <div class="page-content">
       <% if @courses.where("starts_at > (?)", Time.now).present? %>
         <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.now).count %>)</div>
-        <% @courses.where(:status => "live").where("starts_at > (?)", Time.now).order('starts_at asc').last(3).each do |course| %>
+        <% @courses.where("starts_at > (?)", Time.now).order('starts_at asc').first(3).each do |course| %>
           <div class="mission-divider">
             <div style="float: left; margin-right: 20px">
               <%= link_to (image_tag(course.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),course if course.photo.present? %>
@@ -215,9 +215,9 @@
 
   <div style="float: left; width: 329px">
     <div class="page-content">
-      <% if @courses.where(:status => "live").where("starts_at < (?)", Time.now).order('starts_at asc').last(3).present? %>
+      <% if @courses.where("starts_at < (?)", Time.now).present? %>
         <div class="heading11" style="margin-bottom: 20px">Past events (<%= @courses.where("starts_at < (?)", Time.now).count %>)</div>
-        <% @courses.where(:status => "live").where("starts_at < (?)", Time.now).order('starts_at asc').each do |course| %>
+        <% @courses.where("starts_at < (?)", Time.now).order('starts_at asc').first(4).each do |course| %>
           <div class="mission-divider">
             <div style="float: left">
               <%= link_to course.title, course, :class => "heading16 adelle" %><br>
