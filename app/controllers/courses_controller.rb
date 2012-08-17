@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
+  before_filter :restrict_draft_access!, :only => [:show]
 
   def new
     @course = Course.new
@@ -71,6 +72,9 @@ class CoursesController < ApplicationController
           end
           if @course.previous_changes["status"]
             UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+            @course.mission.users.each do |user|
+              UserMailer.mission_new_course(user, @course.mission, @course).deliver if user.wants_newsletter? && user != current_user
+            end
           end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
           format.json { head :no_content }
@@ -104,6 +108,13 @@ class CoursesController < ApplicationController
   end
 
   private
+
+  def restrict_draft_access!
+    @course = Course.find(params[:id])
+    if @course.status != "live"
+      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to." if current_user.blank? || current_user != @course.teacher
+    end
+  end
 
   def post_to_twitter(course)
     begin
