@@ -54,6 +54,10 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def parent_comment
+    Comment.where(:id => self.parent_id).first if self.parent_id
+  end
+
   def child_comments
     Comment.where(:parent_id => self.id).reverse_order
   end

@@ -29,7 +29,7 @@ class CrewmanshipsController < ApplicationController
   # GET /crewmanships/new.json
   def new
     @crewmanship = @mission.crewmanships.new
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @crewmanship }
@@ -77,8 +77,12 @@ class CrewmanshipsController < ApplicationController
       @crewmanship.update_attributes(:role => 'explorer')
       # if charge_now
       #   current_user.update_attributes(:billing_day_of_month => Date.today.day)
-      #   current_user.charge_for_active_crewmanships 
+      #   current_user.charge_for_active_crewmanships
       # end
+
+      @crewmanship.mission.users.each do |user|
+        UserMailer.mission_new_member(user, @mission, current_user).deliver if user.wants_newsletter? && user != current_user
+      end
       redirect_to @mission, notice: 'You have joined this mission!'
     else
       redirect_to @mission, notice: 'We are unable to create the membership for you. Please contact hello@hourschool.com for assistance.'

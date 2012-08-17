@@ -1,0 +1,7 @@
+Hello <%= @user.name.split(" ").first %>,
+
+A new topic was posted in your mission <%= link_to "#{@mission.verb} #{@mission.title}", mission_url(@mission) %>.
+
+"<%= @new_topic.title %>"
+
+<%= link_to "#{@new_course.title}", course_url(@new_course) %>
