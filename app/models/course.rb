@@ -15,7 +15,7 @@ class Course < ActiveRecord::Base
 
   has_many :invites, :as => :invitable
 
-  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id 
+  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
 
   validate :default_validations, :message => "The fields cannot be empty"
   validate :not_past_date, :unless => :proposal?, :on => :create
@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
 
   self.per_page = DEFAULT_PER_PAGE = 9
 
-  has_attached_file :photo, :styles => { :small => "190x120#", 
+  has_attached_file :photo, :styles => { :small => "190x120#",
                                          :thumb_258 => "258x138#",
                                          :thumb_300 => "300x252#",
                                          :large => "570x360>" },
@@ -83,6 +83,10 @@ class Course < ActiveRecord::Base
 
   def free?
     self.price == 0
+  end
+
+  def draft?
+    !self.status == "live"
   end
 
   def days_left
