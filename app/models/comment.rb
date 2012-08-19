@@ -23,7 +23,7 @@ class Comment < ActiveRecord::Base
   rescue => ex
     return body
   end
-  
+
   def participants
     (course.comments.map(&:user) << course.teacher).uniq
   end
@@ -33,27 +33,31 @@ class Comment < ActiveRecord::Base
   end
 
   def notify_participants
-    if self.course.account.nil? 
+    if self.course.account.nil?
       current_account = nil
-    else 
+    else
       current_account = self.course.account
     end
     participants.each do |user|
-      UserMailer.comment_on_course(user, self, self.course, current_account).deliver unless self.user == user
+      UserMailer.course_comments(user, self, self.course, current_account).deliver unless self.user == user
     end
   end
 
   def notify_participants_and_students
-    if self.course.account.nil? 
+    if self.course.account.nil?
       current_account = nil
-    else 
+    else
       current_account = self.course.account
     end
     participants_and_students.each do |user|
-      UserMailer.comment_on_course(user, self, self.course, current_account).deliver unless self.user == user
+      UserMailer.course_comments(user, self, self.course, current_account).deliver unless self.user == user
     end
   end
-  
+
+  def parent_comment
+    Comment.where(:id => self.parent_id).first if self.parent_id
+  end
+
   def child_comments
     Comment.where(:parent_id => self.id).reverse_order
   end

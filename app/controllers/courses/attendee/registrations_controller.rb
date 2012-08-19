@@ -3,7 +3,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
 
   # TODO, validate user has paid
 
-  # if free 
+  # if free
   #   register!
   # else
   #   redirect_to :paypal
@@ -46,19 +46,19 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         if community_site? && current_user && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
           Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'explorer')
         else
-          Membership.create(:user => @user, :account => @course.account, :admin => false) 
+          Membership.create(:user => @user, :account => @course.account, :admin => false)
         end
-        if @course.account.nil? 
+        if @course.account.nil?
           current_account = nil
-        else 
+        else
           current_account = @course.account
         end
-        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
-        UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.course_registration(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.course_registration_to_teacher(current_user.email, current_user.name, @course, current_account).deliver
       end
 
     else
-    
+
       if @course.is_a_student? @user
         flash[:error] = "You are already registered for this course"
       else
@@ -96,23 +96,10 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     if current_user.blank? || (@course.not_teacher?(current_user) && !current_user.admin?)
       redirect_to @course
     end
-
-
-
   end
 
-  def update    
+  def update
     @course = Course.find(params[:course_id])
-    if @course.status == "approved"
-      @course.update_attribute :status, "live"
-      if @course.account.nil?
-        current_account = nil
-      else 
-        current_account = @course.account
-      end
-      UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-    end
-    render :action => 'show'
   end
 
   def destroy

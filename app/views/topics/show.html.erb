@@ -1,25 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em; margin-bottom: 30px">
+  Topic from Mission "<%= link_to full_mission_title(@topic.mission), @topic.mission %>"
+</div>
 
-<p>
-  <b>Mission:</b>
-  <%= link_to @topic.mission.title, @topic.mission %>
-</p>
 
-<p>
-  <b>Title:</b>
-  <%= @topic.title %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= link_to @topic.user.name, @topic.user %>
-</p>
-
-<p>
-  <b>Events:</b>
-  <% @topic.courses.each do |course| %>
-    <%= link_to course.title, course %>
-    <br>
+<div class="page-main">
+  <div class="heading16 adelle"><%= @topic.title %></div>
+  <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+    Added by <%= link_to @topic.user.name, @topic.user, :style => "color: #999; text-decoration: none" %></div>
+  <br>
+  <div class="heading11">Related Events:</div>
+  <% if @topic.courses.present? %>
+    <% @topic.courses.each do |course| %>
+      <%= link_to course.title, course %>
+      <br>
+    <% end %>
+  <% else %>
+    No related event yet.
   <% end %>
-</p>
- 
+</div>
+
+<div class="sidebar right">
+  <div class="well" style="float: left">
+    <div class="heading11" style="margin-bottom: 20px">Everyone in the mission is encouraged to organize events. Add yours today!</div>
+    <a data-toggle="modal" href="#addAnEventWithTopic" class="btn">Organize an event for this topic</a>
+  </div>
+</div>
+
+<!-- Modal BEGIN -->
+<div class="modal hide" id="addAnEventWithTopic">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Add an event</h3>
+  </div>
+  <div class="modal-body">
+    <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+    <%= link_to "A working session", new_course_path(:mission_id => @topic.mission.id, :topic_id => @topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A class or workshop", new_course_path(:mission_id => @topic.mission.id, :topic_id => @topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+    <%= link_to "A happy hour social", new_course_path(:mission_id => @topic.mission.id, :topic_id => @topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+  </div>
+</div>
+<!-- Modal END -->

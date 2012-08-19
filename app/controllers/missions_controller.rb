@@ -1,7 +1,8 @@
 class MissionsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy, :update]
   before_filter :authenticate_admin!, :only => [:index]
-  
+  before_filter :restrict_draft_access!, :only => [:show]
+
   # GET /missions
   # GET /missions.json
   def index
@@ -105,4 +106,14 @@ class MissionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def restrict_draft_access!
+    @mission = Mission.find(params[:id])
+    if @mission.status != "live"
+      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to." if current_user.blank? || current_user != @mission.creator
+    end
+  end
+
 end

@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
   before_filter :authenticate_admin!, :only => [:index, :approve]
+  before_filter :restrict_draft_access!, :only => [:show]
 
   def new
     @course = Course.new
@@ -23,7 +24,7 @@ class CoursesController < ApplicationController
         if @course.mission.present? && @course.mission.crewmanships.where(:user_id => current_user).blank?
           if community_site? && current_user && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
             Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'guide')
-          end 
+          end
         end
         @user.save
       end
@@ -63,13 +64,18 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        if @course.status == 'live'  
+        if @course.status == 'live'
           if @course.account.nil?
             current_account = nil
-          else 
+          else
             current_account = @course.account
           end
-          UserMailer.send_class_live_mail(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          if @course.previous_changes["status"]
+            UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+            @course.mission.users.each do |user|
+              UserMailer.mission_new_course(user, @course.mission, @course).deliver if user.wants_newsletter? && user != current_user
+            end
+          end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
           format.json { head :no_content }
         elsif @course.status == 'draft'
@@ -79,9 +85,9 @@ class CoursesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
-    end    
+    end
   end
- 
+
   def destroy
     @course = Course.find(params[:id])
     @slug = Slug.where(:sluggable_type => 'Course', :sluggable_id => @course.id).first
@@ -99,9 +105,16 @@ class CoursesController < ApplicationController
     else
       redirect_to :back, :alert => "You are not authorized to do this"
     end
-  end  
+  end
 
   private
+
+  def restrict_draft_access!
+    @course = Course.find(params[:id])
+    if @course.status != "live"
+      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to." if current_user.blank? || current_user != @course.teacher
+    end
+  end
 
   def post_to_twitter(course)
     begin
