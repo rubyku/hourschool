@@ -128,8 +128,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def mission_new_comment(user, mission, new_comment)
-    @mission    = mission
-    @user       = user
+    @mission     = mission
+    @user        = user
     @new_comment = new_comment
     mail :to => @user.email,
          :bcc => "hello@hourschool.com",
@@ -139,7 +139,7 @@ class UserMailer < ActionMailer::Base
   def mission_new_topic(user, mission, new_topic)
     @mission    = mission
     @user       = user
-    @new_topic = new_topic
+    @new_topic  = new_topic
     mail :to => @user.email,
          :bcc => "hello@hourschool.com",
          :subject => "New topic: #{@mission.verb} #{@mission.title}"

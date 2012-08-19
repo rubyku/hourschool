@@ -4,7 +4,6 @@
   <% elsif @comment.course.present? %>
     Comment from Event "<%= link_to @comment.course.title, @comment.course %>"
   <% end %>
-
 </div>
 
 <% if @comment.parent_id.present? %><!-- then it is a child comment -->

@@ -285,8 +285,10 @@
               <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
               <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
             </div>
-          </div>  <!-- Modal END -->
-          <div class="modal hide" id="viewTopic<%= topic.id %>"><!-- Modal BEGIN -->
+          </div><!-- Modal END -->
+
+          <!-- Modal BEGIN -->
+          <div class="modal hide" id="viewTopic<%= topic.id %>">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
               <h3>Topic Details</h3>
@@ -296,7 +298,7 @@
               <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
                 Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
               <br>
-              <div class="heading11">Related Events:</div><br>
+              <div class="heading11">Related Events:</div>
               <% if topic.courses.present? %>
                 <% topic.courses.each do |course| %>
                   <%= link_to course.title, course %>
@@ -307,7 +309,9 @@
               <% end %>
             </div>
           </div>
-        <% end %><!-- end mission.topic each block -->
+          <!-- Modal END -->
+        <% end %>
+        <!-- end mission.topic each block -->
 
         <div class="modal hide" id="newTopic"><!-- modal begins -->
           <div class="modal-header">
