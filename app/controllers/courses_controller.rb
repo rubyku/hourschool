@@ -46,6 +46,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @current_course = @course
+    @mission = @course.mission
     @invite = Invite.new
     @invite.invitable_id = params[:invitable_id]
     @invite.invitable_type = params[:invitable_type]

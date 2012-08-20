@@ -154,7 +154,6 @@ class UserMailer < ActionMailer::Base
     @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
-    @url            = mission_url(@mission)
     mail :to => @invitee_email,
          :bcc => "hello@hourschool.com",
          :subject => "#{@inviter.name} invited you to a mission!"
@@ -168,7 +167,6 @@ class UserMailer < ActionMailer::Base
     @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
-    @url            = mission_url(@mission)
     mail :to => @invitee_email,
          :bcc => "hello@hourschool.com",
          :subject => "#{@inviter_name} invited you to a mission!"
@@ -180,7 +178,7 @@ class UserMailer < ActionMailer::Base
     @invitee_email  = options[:invitee_email]
     @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
-    @url            = course_url(@course)
+    @message        = options[:message]
     mail :to => @invitee_email,
          :bcc => "hello@hourschool.com",
          :subject => "#{@inviter.name} invited you to an event"
@@ -193,10 +191,60 @@ class UserMailer < ActionMailer::Base
     @invitee_email  = options[:invitee_email]
     @invitable_type = options[:invitable_type]
     @invitable_id   = options[:invitable_id]
-    @url            = course_url(@course)
+    @message        = options[:message]
     mail :to => @invitee_email,
          :bcc => "hello@hourschool.com",
          :subject => "#{@inviter_name} invited you to an event"
+  end
+
+  def user_invite_to_topic(options = {})
+    @inviter        = options[:inviter]
+    @topic          = options[:topic]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
+    mail :to => @invitee_email,
+         :bcc => "hello@hourschool.com",
+         :subject => "#{@inviter.name} invited you to organize an event"
+  end
+
+  def nonuser_invite_to_topic(options = {})
+    @inviter_name   = options[:inviter_name]
+    @inviter_email  = options[:inviter_email]
+    @topic          = options[:topic]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
+    mail :to => @invitee_email,
+         :bcc => "hello@hourschool.com",
+         :subject => "#{@inviter_name} invited you to organize an event"
+  end
+
+  def user_invite_to_comment(options = {})
+    @inviter        = options[:inviter]
+    @comment        = options[:comment]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
+    mail :to => @invitee_email,
+         :bcc => "hello@hourschool.com",
+         :subject => "#{@inviter.name} invited you to answer a question"
+  end
+
+  def nonuser_invite_to_comment(options = {})
+    @inviter_name   = options[:inviter_name]
+    @inviter_email  = options[:inviter_email]
+    @comment        = options[:comment]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
+    mail :to => @invitee_email,
+         :bcc => "hello@hourschool.com",
+         :subject => "#{@inviter_name} invited you to answer a question"
   end
 
   #----------------------------------------------------------------------------------------------------------------------------

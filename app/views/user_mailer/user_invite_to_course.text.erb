@@ -2,4 +2,4 @@ Hello,
 
 <%= @inviter.name %> invited you to an event: <%= @course.title %>
 
-Visit <%= @url %> to sign up!
+Visit <%= course_url(@course, :q => 'course') %> to sign up!

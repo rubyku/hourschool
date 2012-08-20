@@ -42,12 +42,16 @@ class InvitesController < ApplicationController
 
   # POST /invites
   # POST /invites.json
+
   def create
+    if params[:invite_selection]
+      params[:invite][:invitable_type], params[:invite][:invitable_id] = params.delete(:invite_selection).split(":")
+    end
     @invite = Invite.new(params[:invite])
 
     respond_to do |format|
       if @invite.save
-        if @invite.invitable_type.downcase == "mission"
+        if @invite.invitable_type.downcase == 'mission'
           if @invite.inviter_id.present?
             UserMailer.user_invite_to_mission(:inviter => @invite.inviter, :mission => Mission.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
           else
@@ -55,9 +59,21 @@ class InvitesController < ApplicationController
           end
         elsif @invite.invitable_type.downcase == "course"
           if @invite.inviter_id.present?
-            UserMailer.user_invite_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee => @invite.invitee).deliver
+            UserMailer.user_invite_to_course(:inviter => @invite.inviter, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
           else
-            UserMailer.nonuser_invite_to_course(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email).deliver
+            UserMailer.nonuser_invite_to_course(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :course => Course.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          end
+        elsif @invite.invitable_type.downcase == "comment"
+          if @invite.inviter_id.present?
+            UserMailer.user_invite_to_comment(:inviter => @invite.inviter, :comment => Comment.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          else
+            UserMailer.nonuser_invite_to_comment(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :comment => Comment.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          end
+        elsif @invite.invitable_type.downcase == "topic"
+          if @invite.inviter_id.present?
+            UserMailer.user_invite_to_topic(:inviter => @invite.inviter, :topic => Topic.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
+          else
+            UserMailer.nonuser_invite_to_topic(:inviter_name => @invite.inviter_name, :inviter_email => @invite.inviter_email, :topic => Topic.find(@invite.invitable_id), :invitee_email => @invite.invitee_email, :message => @invite.message).deliver
           end
         end
 

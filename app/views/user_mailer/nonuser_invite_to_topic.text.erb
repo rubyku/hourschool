@@ -1,0 +1,7 @@
+Hello,
+
+<%= @inviter_name %> invited you to organize an event for this topic: <%= @topic.title %>
+
+"<%= @message %>"
+
+Visit <%= mission_topic_url(@topic.mission, @topic, :q => 'topic') %> to create an event!

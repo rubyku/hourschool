@@ -20,19 +20,17 @@
     <div style="float: left; width: 600px">
     <% if @mission.status == 'draft' %>
       <h4 class="alert-heading" style="color: black; text-decoration: uppercase">OK! We've created your mission; it's in draft mode.</h4>
-      <div style="margin-bottom: 5px">Here are some ways you can add some content to your mission before it goes live. When you're ready, launch your mission so other people can join it!</div>
+      <div>A successful mission starts with a compelling photo, an inspiring description of why you started the mission, and a kick-off event. Once you're done, your mission would be ready for launch.</div>
     <% else %>
       <h4 class="alert-heading" style="color: black; text-decoration: uppercase">Your mission is live!</h4>
-      <div style="margin-bottom: 5px">Congrats you've just launched a mission! If you're up for it, consider organizing an event to kick things off. It's a great way to rally your crew and get those wheels turning! </div>
+      <div>Congrats you've just launched a mission! If you're up for it, consider organizing an event to kick things off. It's a great way to rally your crew and get those wheels turning! </div>
     <% end %>
     <br>
     <p>
       <% if @mission.status == 'draft' %>
-        <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add basic info</a>
-        <a class="btn" data-toggle="modal" href="#newTopic"><i class="icon-tasks"></i> Add a topic</a>
-        <a class="btn" data-toggle="modal" href="#askAQuestion"><i class="icon-question-sign"></i> Add a comment/question</a>
+        <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Add photo and description</a>
+        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-calendar"></i> Add kick-off event</a>
       <% else %>
-        <a class="btn" data-toggle="modal" href="#addAnEvent"><i class="icon-question-sign"></i> Add an event</a>
         <a class="btn" data-toggle="modal" href="#invite"><i class="icon-bullhorn"></i> Invite someone to this mission</a>
         <a class="btn" data-toggle="modal" href="#addBasicInfo"><i class="icon-info-sign"></i> Edit basic info</a>
       <% end %>
@@ -41,12 +39,17 @@
     <% if @mission.status == 'draft' %>
       <div class="well" style="float: right; margin-top: 7px" %>
         <div style="margin-bottom: 10px">
-          <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4> 
+          <h4 class="alert-heading" style="color: black; float: left; margin-right: 10px;">Mission status: </h4>
           <span class="label label-inverse" style="margin-bottom: 20px"><%= @mission.status %></span>
         </div>
-        
         <%= link_to "Save draft", mission_path(@mission.id, :mission => {:status => 'draft'}), :class => "btn right", :method => :put %>
-        <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
+
+        <% if @mission.photo.blank? || @mission.description.blank? || @mission.courses.blank? %>
+          <div class="btn btn-inverse disabled right" style="color: white; margin-right: 10px">Launch Mission</div>
+        <% else %>
+          <%= link_to 'Launch Mission', mission_path(@mission, :mission => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-right: 10px", :method => :put %>
+        <% end %>
+
       </div>
     <% end %>
   </div>
@@ -75,11 +78,11 @@
 
       <%= f.label :title, 'Title of the mission' %>
       <%= f.select :verb, ['Build', 'Make', 'Create', 'Learn', 'Fix', 'Write', 'Design', 'Go', 'Find', 'Encourage', 'Challenge', 'Kick-start', 'Explore', 'Start', 'Travel'], :class => "span2" %>
-      
+
       <div class="field clearfix">
         <%= f.text_field :title, :class => "form heading14", :style => "width: 375px; margin-top: 0px; margin-bottom: 20px" %>
       </div>
-      
+
       <div class="field">
         <%= f.label :title, 'Description of the mission' %>
         <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
@@ -104,7 +107,7 @@
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Add a new topic</h3>
   </div>
-  <div class="modal-body">              
+  <div class="modal-body">
     <%= render 'topics/form' %>
   </div>
 </div>
@@ -142,7 +145,7 @@
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Invite someone to this mission</h3>
   </div>
-  <div class="modal-body">              
+  <div class="modal-body">
     <%= render 'invites/form' %>
   </div>
 </div>
