@@ -66,7 +66,7 @@
 
   <div class="field clearfix">
     <% if @mission.courses.any? %>
-      <div style="margin-bottom: 5px">Do you want to invite them to any of the following events?</div>
+      <div style="margin-bottom: 5px">Do you want to invite them to attend any of the following events? (optional) </div>
       <% for course in @mission.courses.find(:all) %>
         <div style="float: left;">
           <%= radio_button_tag("invite_selection", "course:#{course.id}", checked = false, options = {}) %>
@@ -78,7 +78,7 @@
 
   <div class="field clearfix">
     <% if @mission.topics.any? %>
-      <div style="margin-bottom: 5px">Do you want to invite them to organize an event for any of the following topics?</div>
+      <div style="margin-bottom: 5px">Do you want to invite them to organize an event for any of the following topics? (optional) </div>
       <% for topic in @mission.topics.find(:all) %>
         <div style="float: left;">
           <%= radio_button_tag("invite_selection", "topic:#{topic.id}", checked = false, options = {}) %>
@@ -91,7 +91,7 @@
 
   <div class="field clearfix">
     <% if @mission.comments.where(:comment_type => "question").any? %>
-      <div style="margin-bottom: 5px">Do you want to invite them to answer any of the following questions?</div>
+      <div style="margin-bottom: 5px">Do you want to invite them to answer any of the following questions? (optional) </div>
       <% for comment in @mission.comments.where(:comment_type => "question").find(:all) %>
         <div style="float: left;">
           <%= radio_button_tag("invite_selection", "comment:#{comment.id}", checked = false, options = {}) %>
