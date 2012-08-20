@@ -148,7 +148,8 @@
         <a data-toggle="modal" href="#viewAllEvents" style="float: left; text-decoration: underline">View all events</a>
       <% else %>
         <div class="well" style="float: left">
-          <p>Host the first event to kick-start this mission! It can be a class, a working session, or even a happy hour. Use this opportunity to get to know others who are also interested in the same mission.</p>
+          <p>There's no upcoming event in this mission -  but you can host one! Everyone in the mission is encouraged to organize events. It can be a class, a working session, or even a happy hour. Use this opportunity to get to know others who are also interested in the same mission. Add yours today!</p>
+          <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>
         </div>
       <% end %>
 
@@ -228,10 +229,12 @@
           </div>
         <% end %>
       <% end %>
-      <div class="well" style="float: left">
-        <div class="heading11" style="margin-bottom: 20px">Everyone in the mission is encouraged to organize events. Add yours today!</div>
-        <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>
-      </div>
+      <% if @mission.status == 'live' && @courses.where("starts_at > (?)", Time.now).present? %>
+        <div class="well" style="float: left">
+          <div class="heading11" style="margin-bottom: 20px">Everyone in the mission is encouraged to organize events. Add yours today!</div>
+          <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>
+        </div>
+      <% end %>
     </div>
   </div>
 </div><!-- end full-page -->

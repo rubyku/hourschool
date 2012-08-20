@@ -16,7 +16,7 @@
       <li><a href="#comment-photo" data-toggle="tab" class="heading9 bold"><i class="icon-picture"></i> Photo</a></li>
       <li><a href="#comment-file" data-toggle="tab" class="heading9 bold"><i class="icon-file"></i> File</a></li>
     </ul>
-    
+
     <div class="tab-content">
       <div class="tab-pane active" id="comment-note">
         <%= form_for mission.comments.new do |f| %>
@@ -25,7 +25,7 @@
           <%= f.text_area    :body,      :placeholder => "Share what you've been working on!", :class => "form-med-with-margin" %>
           <%= f.submit 'Add comment', :class => "btn" %>
         <% end %>
-      </div>     
+      </div>
       <div class="tab-pane" id="comment-question">
         <%= form_for mission.comments.new do |f| %>
           <%= f.hidden_field :mission_id, :value => mission.id %>
@@ -71,7 +71,7 @@
 </div>
 
 <% mission.comments.where(:parent_id => nil).where("comment_type = 'note' or comment_type = 'question' or comment_type = 'link' or comment_type = 'photo' or comment_type = 'file'").each do |comment| %>
-  
+
   <div class="mission-divider">
 
     <div class="comment-box parent">
@@ -94,14 +94,14 @@
           <%= link_to comment.photo_file_name, comment.photo.url %>
         <% elsif comment.comment_type == 'photo' %>
           <%= image_tag(comment.photo.url(:normal)) %>
-        <% end %>  
+        <% end %>
       </div><!-- end comment-body parent -->
     </div><!-- end comment-box parent -->
 
     <% if comment.child_comments.present? %>
       <div class="comment-box child">
         <% comment.child_comments.each do |child_comment| %>
-          <div style="float: left; width: 490px; margin-bottom: 5px; padding: 10px; background-color: whiteSmoke;"> 
+          <div style="float: left; width: 490px; margin-bottom: 5px; padding: 10px; background-color: whiteSmoke;">
             <div class="commenter-photo">
               <% if child_comment.user.photo.present? %>
                 <%= link_to_avatar(child_comment.user, :thumb_small) %>
@@ -118,7 +118,7 @@
               </div>
               <%= simple_format Rinku.auto_link(child_comment.body) %>
             </div>
-            </div> 
+            </div>
         <% end %><!-- end child-comment each block -->
       </div><!-- end child-comment-box -->
     <% end %><!-- end if child_comments.present? -->
