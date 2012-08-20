@@ -16,6 +16,7 @@ class TopicsController < ApplicationController
   # GET /topics/1.json
   def show
     @topic = @mission.topics.find(params[:id])
+    @mission = @topic.mission
 
     respond_to do |format|
       format.html # show.html.erb

@@ -12,6 +12,8 @@
   <%= render :partial => 'courses/womendesignbuild/show' %>
 <% else %>
 
+  <%= render 'missions/show/invitee_landing_page' %>
+
   <!-- send back to mission box -->
   <% if @course.status == 'live' && @course.mission.present? && @course.mission.status == "draft" %>
     <div class="alert alert-success">
