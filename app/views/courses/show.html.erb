@@ -9,20 +9,25 @@
 
 
 <% if current_account == Account.where(:id => 4).first %>
-
   <%= render :partial => 'courses/womendesignbuild/show' %>
-
 <% else %>
+
+  <!-- send back to mission box -->
+  <% if @course.status == 'live' && @course.mission.present? && @course.mission.status == "draft" %>
+    <div class="alert alert-success">
+      <strong>Your event is now live.</strong> As people sign up for the event, they will also be joining your mission. But before all of that happens, you need to first launch your mission.
+      <%= link_to 'Go back to mission', mission_path(@course.mission), :style => "text-decoration: underline" %>
+    </div>
+  <% end %>
+  <!-- end preview box -->
 
   <!-- preview box -->
   <% if @course.status == 'draft' && @course.teacher == current_user %>
-    <div class="full-page white">
-      <div class="page-content">
-        <div class="preview-header">Preview before this goes live!</div>
-        <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px", :method => :put %>
-        <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
-        <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
-      </div>
+    <div class="alert alert-info full-page">
+      <div style="float: left; margin-top: 5px; padding-bottom: 5px"><strong>Preview before this goes live!</strong></div>
+      <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px;", :method => :put %>
+      <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
+      <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
     </div>
   <% end %>
   <!-- end preview box -->
