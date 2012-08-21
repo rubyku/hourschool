@@ -1,0 +1,18 @@
+<div class="modal hide" id="emailAttendees">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Email event attendees</h3>
+  </div>
+  <%= form_tag course_attendee_contacts_path(@course), :method => 'post' do %>
+  <%= hidden_field_tag 'id', @course.id %>
+  <div class="modal-body">
+    <div class="form-question">
+      <%= "Message or question for all the students of the #{@course.title} class:" %>
+      <%= text_area_tag 'message', '', :class => 'form-tall', :style => "width: 97%" %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <%= submit_tag "Send message", :class => "btn" %>
+  </div>
+  <% end %>
+</div>
