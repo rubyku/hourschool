@@ -1,13 +1,14 @@
 .page-main{
   float: left;
-  width: 630px;
-  margin-bottom: 30px;
+  width: 626px;
+  margin-bottom: 20px;
+  border: 1px solid #eeebeb;
 }
 
 .page-sidebar{
   float: left;
   width: 296px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: 1px solid #eeebeb;
 
   &.right{
@@ -27,15 +28,15 @@
 }
 
 .big-quote{
-  font-size: 30px; 
-  line-height: 36px; 
+  font-size: 30px;
+  line-height: 36px;
   font-family: Georgia;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .screen-tip{
-  font-family: caflisch-script-pro-1, caflisch-script-pro-2; 
+  font-family: caflisch-script-pro-1, caflisch-script-pro-2;
   font-size: 32px;
   line-height: 30px;
   width: 160px;
