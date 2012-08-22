@@ -29,7 +29,7 @@
    <br><br>
 
   <% if @course.mission %>
-  Does your event cover any of the following topics? 
+  Does your event cover any of the following topics?
     <% for topic in @course.mission.topics.find(:all) %>
       <div>
         <%= check_box_tag "course[topic_ids][]", topic.id %>
@@ -43,6 +43,7 @@
    <div class="page-section-float-left">
    <p>
    <%= f.label :photo, 'Upload a photo', :class => "form-question" %>
+   <p class="tip">Events with good photos are always more popular - seriously! Take a couple minutes to find one you like.</p>
    <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
    <%= f.file_field :photo %>
    </p>
@@ -53,13 +54,13 @@
   <p class="tip">A good event description is important! You don't have to lay out everything, but people generally like to know what to expect. If you need inspiration, we've compiled a list of good examples!</p>
    <%= f.text_area :description, :class => "form-tall", :placeholder => "Who should attend this event? What are the 3 things they will get out of the event? What kind of material or equipment do they need ahead of time?" %>
    </p>
- 
+
    <div class="form-question">About the event organizer</div>
    <br><br>
     <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to share?" %>
  </div>
- 
- 
+
+
 <hr id="class"><br>
 
 <div class="page-section-float-left">
@@ -70,8 +71,8 @@
 </div>
 
 <div class="page-section-float-left">
-   <div class="class-form-question">When</div><br>   
-  <p class="tip">We highly recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</p><br>       
+   <div class="class-form-question">When</div><br>
+  <p class="tip">We highly recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</p><br>
    <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
    <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %>
    <br><br>
@@ -88,7 +89,7 @@
       var now = new Date();
       var twoWeeksFromNow = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000));
       var selectedDate = new Date($('#course_starts_at_1i').val(), ($('#course_starts_at_2i').val() - 1), $('#course_starts_at_3i').val());
-    
+
       if (selectedDate < twoWeeksFromNow && SHOW_DATE_WARNING) {
         $('#date-warning').show();
       } else {
@@ -110,7 +111,7 @@
         <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
         <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
         </p>
-        
+
         <p>
           <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
           <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
@@ -126,7 +127,7 @@
   <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
   <br>
     <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "10" %>
-    <div style="float: left; margin-top: 5px">per person</div> 
+    <div style="float: left; margin-top: 5px">per person</div>
 </div>
 
 

@@ -26,7 +26,7 @@ module Series::EventSchedule
   end
 
   def schedule
-    Schedule.from_hash(schedule_hash)
+    Schedule.from_hash(schedule_hash||{})
   end
 
 

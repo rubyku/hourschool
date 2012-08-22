@@ -36,11 +36,6 @@ HourschoolV2::Application.routes.draw do
 
   resources :comments
 
-  resources :suggestions do
-    resources :nominations, :module => "suggestions"
-  end
-
-
   namespace :courses do
     resources :browse
     resources :search
@@ -55,8 +50,8 @@ HourschoolV2::Application.routes.draw do
 
     resource  :duplicate
     resources :feedback
-    resources :series,   :only => :create 
-    
+    resources :series,   :only => :create
+
     namespace :attendee do
       resources :contacts
       resources :registrations
@@ -112,12 +107,10 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
   match '/explore'                    => 'Courses::Browse#index'
-  match '/suggest'                    => 'suggestions#suggest'
-  match '/csvote'                     => 'suggestions#vote'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
   match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
-  
+
   match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
@@ -135,13 +128,6 @@ HourschoolV2::Application.routes.draw do
   match '/my_classes'                 => 'users#my_classes'
   match '/classes_taken'              => 'users#classes_taken'
   match '/classes_taught'             => 'users#classes_taught'
-
-  match '/nominate'                   => 'home#nominate'
-  match '/nominate_send'              => 'home#nominate_send'
-  match '/nominate_confirm'           => 'home#nominate_confirm'
-  match '/nominate_reject'            => 'home#nominate_reject'
-  match '/nominate_reject_send'       => 'home#nominate_reject_send'
-  
 
   match '/business'                   => 'pages#show', :id => 'business'
   match '/about'                      => 'pages#show', :id => 'about'

@@ -17,6 +17,17 @@ class UserMailer < ActionMailer::Base
          :subject => "#{@user.name} left you a message about your event"
   end
 
+  def contact_teacher_from_nonuser(messenger_email, course, message)
+    @email = course.teacher.email
+    @messenger_email = messenger_email
+    @course = course
+    @message = message
+    mail :to => course.teacher.email,
+         :bcc => "hello@hourschool.com",
+         :reply_to => messenger_email,
+         :subject => "#{messenger_email} left you a message about your event"
+  end
+
   def contact_all_students(current_user,course,message)
     @course = course
     @message = message

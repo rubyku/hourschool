@@ -1,88 +1,50 @@
-        <div class="accordion" id="accordion2">
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                <div class="heading11">Invite an HourSchool user</div>
-              </a>
-            </div>
-            <div id="collapseOne" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                <%= form_for(@invite) do |f| %>
-                  <div class="field">
-                    <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "span3", :autocomplete => "off" %>
-                    <script type="text/javascript">
-                    $('#userSearch').typeahead({
-                      source: function(typeahead, query) {
-                        var _this = this;
-                        return $.ajax({
-                          url: "<%= search_users_path(:format => :json) %>?q=" + query,
-                          success: function(data) {
-                            return typeahead.process(data);
-                          }
-                        });
-                      },
-                      property: "name",
-                      onselect: function (obj) {
-                        if (obj.id == 0) {
-                          $('#invite_invitee_email').focus()
-                        } else {
-                          $('#invite_invitee_id').val(obj.id);
-                        }
-                      }
-                    });
-                    </script>
-                  </div>
-                  <div class="actions">
-                    <%= f.hidden_field :invitee_id %>
-                    <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                    <%= f.hidden_field :invitable_type, :value => "course" %>
-                    <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
-                    <%= f.submit "Send invite", :class => "btn" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
+      <ul>
+      <% @invite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                <div class="heading11">Invite by email</div>
-              </a>
-            </div>
-            <div id="collapseTwo" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <%= form_for(@invite) do |f| %>
-                  <div class="field" id="invite_by_email">
-                    <%= f.text_field :invitee_email, :placeholder => "example@example.com", :class => "span3" %>
-                    <div class="actions">
-                      <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" %>
-                      <%= f.hidden_field :invitable_type, :value => "course" %>
-                      <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
-                      <%= f.submit "Send invite", :class => "btn" %>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
+  <% if current_user %>
+    <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
+    From: <%= current_user.name %><br>
+  <% else %>
+    <div class="field clearfix" style="float: left; margin-right: 10px">
+      <%= f.label :inviter_name, "Your name" %>
+      <%= f.text_field :inviter_name, :placeholder => "Name" %>
+    </div>
+    <div class="field clearfix">
+      <%= f.label :inviter_email, "Your email" %>
+      <%= f.text_field :inviter_email, :placeholder => "email@email.com" %>
+    </div>
+  <% end %>
+  <br>
 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                <div class="heading11">Invite by Facebook</div>
-              </a>
-            </div>
-            <div id="collapseThree" class="accordion-body collapse">
-              <div class="accordion-inner">
-                <% if current_user && current_user.facebook? %>
-                  <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I will be at this event on Hourschool, you should come!"} %>
-                  <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I will be at this event on Hourschool, you should come!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
-                <% else %>
-                  <%= link_to (image_tag 'fb-signup-small.png', :style => "margin-bottom: 20px"), user_omniauth_authorize_path(:facebook) %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="field clearfix" id="invite_by_email">
+    To email: <%= f.text_field :invitee_email, :placeholder => "email@email.com"  %>
+  </div><br>
+
+  <div class="field clearfix">
+    <%= f.label :message, "Personal message" %>
+    <%= f.text_area :message, :class => "form-med-with-margin", :style => "width: 450px",
+    :value => "I am going to this event and I think you should join me!" %>
+  </div><br>
+
+  <br>
+  <%= f.hidden_field :invitable_type, :value => "course" %>
+  <%= f.hidden_field :invitable_id, :value => "#{@course.id}" %>
+
+  <div class="actions">
+    <%= f.submit "Send invite", :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+

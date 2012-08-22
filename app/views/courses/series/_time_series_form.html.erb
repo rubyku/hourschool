@@ -9,8 +9,8 @@
   </div>
 <% end %>
 
-<div>
-  <h3>Repeat Every: </h3>
+<div style="margin-bottom: 20px">
+  <div class="heading11">Repeat Every: </div>
   <%= check_box_tag 'schedule[weekdays][]', :sunday,    checked_for_series_if(@series, :sunday) %> S
   <%= check_box_tag 'schedule[weekdays][]', :monday,    checked_for_series_if(@series, :monday) %> M
   <%= check_box_tag 'schedule[weekdays][]', :tuesday,   checked_for_series_if(@series, :tuesday) %> T
@@ -20,14 +20,13 @@
   <%= check_box_tag 'schedule[weekdays][]', :saturday,  checked_for_series_if(@series, :saturday)  %> S
 </div>
 
-<div>
-  <h3>Start On: </h3>
-  <%= date_select nil, 'schedule[start_time]', :default => first_day_or_weeks_since_last_course(@series)  %><br><br>
-
+<div style="margin-bottom: 20px">
+  <div class="heading11">Start On: </div>
+  <%= date_select nil, 'schedule[start_time]', :default => first_day_or_weeks_since_last_course(@series) %>
 </div>
 
 <div>
-  <h3>Ends After: </h3>
+  <div class="heading11">Ends After: </div>
   <%= select nil,  'schedule[count]', 1.upto(52).collect(&:to_i), :selected => number_of_occurrences_in_series_or(@series, 4) %>
    classes
 </div>
