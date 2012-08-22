@@ -16,9 +16,9 @@
     </div>
 
     <%= form_for @course, :html => { :multipart => true } do |f| %>
-    
+
     <%= hidden_field_tag 'req', "#{@reqid}" %>
-    
+
     <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %><% end %>
 
     <div class="page-section-float-left">
@@ -41,13 +41,13 @@
        <%= f.label :description, 'Feast description:', :class => "form-question" %>
        <%= f.text_area :description, :class => "form-tall" %>
        </p>
-     
+
        <div class="form-question">About the host</div>
        <br><br>
        <%= f.text_area :experience, :class => "form-med-with-margin" %>
      </div>
-     
-     
+
+
     <hr id="class"><br>
 
     <div class="page-section-float-left">
@@ -58,7 +58,7 @@
     </div>
 
     <div class="page-section-float-left">
-       <div class="class-form-question">When</div><br>          
+       <div class="class-form-question">When</div><br>
          <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
          <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %>
     </div>
@@ -73,7 +73,7 @@
         <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
         <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
         </p>
-        
+
         <p>
           <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
           <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
@@ -108,14 +108,14 @@
 
     <div class="page-section-float-left">
       <div class="class-form-question">Price</div><br>
-      <p class="tip">Please note that Feast for Days recieves 15% of the Feast price per person. It is important to account for this in determining your Feast price.</p>
+      <p class="tip">Please note that Feast for Days receives 15% of the Feast price per person. It is important to account for this in determining your Feast price.</p>
         <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "ex. 30 (no $ sign needed!)" %>
-        <div style="float: left; margin-top: 5px">per person</div> 
+        <div style="float: left; margin-top: 5px">per person</div>
     </div>
 
     <div class="page-section-float-left">
       <div class="form-question">Phone number (optional)</div><br>
-      
+
       <%= f.text_field :phone_number, :class => "form-short", :placeholder => "ex. 321-111-1234" %>
     </div>
 
