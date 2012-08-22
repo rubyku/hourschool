@@ -17,7 +17,11 @@ module SeriesHelper
   end
 
   def first_day_or_weeks_since_last_course(series, end_date = 52.weeks.from_now)
-    fallback_day = series.last_course.day_in_weeks_from_now(2.weeks)||2.weeks.from_now
+    if course = series.last_course
+      fallback_day = course.day_in_weeks_from_now(2.weeks)
+    else
+      fallback_day = 2.weeks.from_now
+    end
     first_day_for_series(series, end_date) {fallback_day}
   end
 

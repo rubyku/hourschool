@@ -1,0 +1,18 @@
+<div class="full-page white">
+  <div class="page-content">
+    <div class="heading16 adelle" style="margin-bottom: 20px">Schedule this event again</div>
+    <%= link_to "Duplicate: #{@course.name}", course_duplicate_path(:course_id => @course), :method => :post, :class => "btn" %>
+  </div>
+</div>
+
+<div class="full-page white">
+  <div class="page-content">
+    <div class="heading16 adelle" style="margin-bottom: 20px">Make this a recurring event</div>
+    <%= form_for(@series, :url => course_series_index_path(:course_id => @course.id), :method => :post ) do |f| %>
+      <%= render :partial => "courses/series/time_series_form", :locals => {:f => f} %>
+      <div class="actions">
+        <%= f.submit 'Schedule Recurring Classes', :class => "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>

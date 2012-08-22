@@ -15,10 +15,10 @@ class Course < ActiveRecord::Base
 
   has_many :invites, :as => :invitable
 
-  validates_presence_of :title, :description, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
+  validates_presence_of :title, :description, :photo, :starts_at, :ends_at, :price, :place_name, :min_seats, :city_id
 
   validate :default_validations, :message => "The fields cannot be empty"
-  validate :not_past_date, :unless => :proposal?, :on => :create
+  validate :not_past_date, :on => :create
 
   acts_as_taggable_on :categories
 
@@ -183,7 +183,7 @@ class Course < ActiveRecord::Base
   end
 
   def day_of_the_week_sym
-    date.strftime('%A').downcase.to_sym
+    self.starts_at.strftime('%A').downcase.to_sym
   end
 
   def day_of_the_week_next_week
@@ -196,14 +196,14 @@ class Course < ActiveRecord::Base
   end
 
 
-
   def self.duplicate(course, options = {})
     duplicate = Course.new(course.attributes)
     duplicate.category_list = course.category_list
-    duplicate.status        = "approved"
-    duplicate.date          = options[:date] || course.day_in_weeks_from_now(2.weeks)
+    duplicate.status        = "live"
+    duplicate.starts_at     = options[:starts_at] || course.day_in_weeks_from_now(4.weeks)
+    duplicate.ends_at       = duplicate.starts_at + 1.hour
     duplicate.photo         = course.photo if course.photo_file_name.present?
-    duplicate.save
+    duplicate.save!
     duplicate.roles.create(:user => course.teacher, :name => 'teacher')
     duplicate
   end

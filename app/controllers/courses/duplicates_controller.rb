@@ -1,4 +1,4 @@
-class Courses::DuplicateController < ApplicationController
+class Courses::DuplicatesController < ApplicationController
 
   def new
     @course = Course.find(params[:course_id])
@@ -12,7 +12,13 @@ class Courses::DuplicateController < ApplicationController
       @course.roles.create(:attending => true,
                            :name      => 'teacher',
                            :user      => current_user)
-      @series = @course.series || Series.create!(:courses => [@course], :name => @course.name, :schedule => params[:schedule])
+      @series = @course.series
+
+      if @series.blank?
+        puts "==============================="
+        puts({:courses => [@course], :name => @course.name, :schedule => params[:schedule]||{} }.inspect)
+        @series = Series.create!(:courses => [@course], :name => @course.name, :schedule => params[:schedule]||{})
+      end
       flash[:notice] = "successfully duplicated #{@course.name}"
       redirect_to edit_course_path(@course)
     else
