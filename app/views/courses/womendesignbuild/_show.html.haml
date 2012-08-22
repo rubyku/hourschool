@@ -17,7 +17,7 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;
   }
-  
+
   .wdb-edit-class-button{
   border: none;
   background: #00B6FF;
@@ -36,7 +36,7 @@
     box-shadow: 0 2px 4px #999;
     cursor: pointer;
   }
-  
+
   .wdb-section-heading{
     color: #BA5F8F;
     font-family: BebasNeue;
@@ -44,34 +44,34 @@
     line-height: 24px;
     margin-top: 20px
   }
-  
+
   #student_link{color: #BA5F8F;}
-  
+
   .wdb-text-strong{
-    font-family: Georgia; 
+    font-family: Georgia;
     font-weight: bold;
     font-size: 13px;
     margin-bottom: 10px;
   }
-  
+
   .wdb-text{
     font-family: Georgia;
   }
-  
+
   .wdb-class-title{
     font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px; line-height: 40px;
   }
 
-  
+
 .container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
 
-  - if @course.status == 'draft' && @course.teacher == current_user 
+  - if @course.status == 'draft' && @course.teacher == current_user
     .full-page.white{:style => "padding-bottom: 0px"}
       .page-content
         .wdb-text-strong{:style => "padding-bottom: 10px"} Preview before this goes live!
         = link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "wdb-register-class-button", :style => "color: white", :method => :put
-        = link_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :style => "color: white; margin-left: 10px; margin-right: 10px", :method => :get 
-        = link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "wdb-edit-class-button", :method => :put 
+        = link_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :style => "color: white; margin-left: 10px; margin-right: 10px", :method => :get
+        = link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "wdb-edit-class-button", :method => :put
 
   = render :partial => "courses/womendesignbuild/sidebar_register", :locals => {:course => @course}
 
@@ -99,7 +99,7 @@
         - @course.comments.each do |comment|
           %div.comment{:class => 'clearfix'}
             %div.avatar
-              - if comment.user.photo.present? 
+              - if comment.user.photo.present?
                 = link_to_avatar(comment.user, :thumb_small)
               - else
                 = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
@@ -133,7 +133,7 @@
               %div
                 = f.submit 'Leave Comment'
 
-      
+
   .wdb-right{:style => "margin-left: 20px"}
     .wdb-section-heading= "About teacher"
     %table
@@ -146,14 +146,15 @@
         %td
           = link_to @course.teacher.name, @course.teacher, :id => "student_link"
     .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}
-      - if @course.experience.blank? 
+      - if @course.experience.blank?
         = @course.teacher.bio
-      - else 
+      - else
         = @course.experience
     .class-attendance-block
       - if @course.teacher != current_user
         = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        = link_to "Email teacher", new_course_organizer_contact_path(@course), :class => "contact-link"
+        %a{:'data-toggle' => "modal", :href => "#emailOrganizer"} Email teacher
 
+    = render 'courses/organizer/contacts/new'
 
 

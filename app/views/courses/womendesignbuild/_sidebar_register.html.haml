@@ -1,5 +1,5 @@
 %div{:style => "margin-left: -75px; width: 150px"}
-  .left#left_events 
+  .left#left_events
     .wdb-section-heading Details
     %table
       %tr
@@ -44,7 +44,7 @@
       - if can? :sign_up_for_course, course
         - if course.sold_out? || course.inactive?
           /= button_to "Pre-register for next class",  new_suggestion_path,  :class => "wdb-register-class-button", :method => :get
-        - else 
+        - else
           - if @course.price == 0
             = button_to "Register for this class", register_path(:id => course), :class => "wdb-register-class-button"
           - else
@@ -55,21 +55,22 @@
         - else
           = button_to "Edit class details",           edit_course_path, :method => :get, :class => "wdb-edit-class-button"
           = button_to "Cancel this Class",            course_organizer_path(course, :cancel), :method => :get, :class => "wdb-edit-class-button"
-      
+
     .class-alternatives
       = "This class has a min. of #{course.min_seats}"
-        
 
-    .left#left_events 
+
+    .left#left_events
       - if course.students.any?
         %div
-          - if course.max_seats.present? 
+          - if course.max_seats.present?
             .wdb-section-heading Students (#{course.students.count}/#{course.max_seats})
-          - else 
+          - else
             .wdb-section-heading Students (#{course.students.count})
           - if course.has_teacher?(current_user)
             = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-            = link_to "Email students", new_course_attendee_contact_path(course), :class => "contact-link"
+            %a{:'data-toggle' => "modal", :href => "#emailAttendees"} Email teacher
+            = render 'courses/attendee/contacts/new'
           .class-attendance-block
             - course.students.each do |student|
               %table
