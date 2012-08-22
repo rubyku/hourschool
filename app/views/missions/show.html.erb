@@ -118,7 +118,7 @@
     <div class="heading11" style="color: white">Begin this mission by going to a class, working session, or happy hour!</div>
   </div>
 
-  <div class="page-main" style="border-right: 1px dashed #eeebeb">
+  <div class="page-main" style="border: 0px solid black; border-right: 1px dashed #eeebeb">
     <div class="page-content">
       <% if @courses.where("starts_at > (?)", Time.now).present? %>
         <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.now).count %>)</div>
