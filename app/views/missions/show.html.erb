@@ -86,9 +86,9 @@
           <div class="mission-divider">
             <div class="crewman-photo">
               <% if user.photo.present? %>
-                <%= link_to_avatar(user, :thumb_large) %>
+                <%= link_to_avatar(user, :thumb_small) %>
               <% else %>
-                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "125x125"), user %>
+                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
               <% end %>
             </div>
             <div class="crewman-description">
