@@ -20,149 +20,162 @@
   </div>
 <% else community_site? %>
 
-  <div class="featured" style="margin-top: -20px">
-    <center>
-      <div style="font-family: futura-pt-1, futura-pt-2; font-size: 75px; font-weight: 700; font-style: italic; color: #f7b62a; line-height: 90px; letter-spacing: 0.02em; margin-bottom: 85px">
-        What have you always wanted to accomplish?
-      </div>
-      <div class="heading14" style="color: white; margin-bottom: 30px">Let the HourSchool community help you get there</div>
-      <%= image_tag 'v3/homepage/arrow.png', :style => "margin-left: 425px" %>
-    </center>
-  </div><!-- end .featured -->
-
-  <div style="float: left; margin-top: 80px">
-
-    <div class="clearfix">
-      <div style="width: 361px; height: 3px; background-color: white; float: left; margin-right: 18px; margin-top: 9px"></div>
-      <div class="heading14" style="color: #9a9591; float: left; margin-bottom: 40px">Discover a mission</div>
-      <div style="width: 361px; height: 3px; background-color: white; float: left; margin-left: 18px; margin-top: 9px"></div>
+  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 500px;">
+    <div class="featured" style="margin-top: -20px">
+      <center>
+        <div style="font-family: futura-pt-1, futura-pt-2; font-size: 75px; font-weight: 700; font-style: italic; color: #b4c9d9; line-height: 90px; letter-spacing: 0.02em; margin-bottom: 40px">
+          What have you always wanted to accomplish?
+        </div>
+      </center>
+    </div><!-- end .featured -->
+    <div style="background-image: url(<%= asset_path 'homepage-banner-1.png' %>); background-position: center; background-repeat: no-repeat; height: 200px; margin-bottom: 30px">
     </div>
-
-    <!-- Section 2 -->
-    <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
-      <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
-        <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
-        <br>
-        <%= link_to "Go build one!", build_mission_path, :class => "blue long button" %>
+    <div class="container_16">
+      <div class="heading14" style="color: white; margin-bottom: 30px; text-align: center">
+        Let the HourSchool community help you get there
       </div>
-      <div>
-        <%= image_tag "v3/homepage/start-here.png" %>
-      </div>
-
-    </div><!-- End Section 2 -->
-
-    <!-- Section 3 -->
-    <div style="float: left; width: 630px; margin-bottom: 20px">
-
-      <div style="float: left; width: 630px; height: 180px;">
-        <%= image_tag "v3/explore/mission-greenHouse.png" %>
-      </div>
-
-      <div style="float: left; width: 610px; height: 60px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 0px; padding-top: 10px; padding-left: 10px">
-
-        <div class="title-text" id="explore">Make my home more sustainable</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-      </div>
-
-    </div><!-- End Section 3 -->
-
-    <!-- Section 1 -->
-    <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
-
-      <div style="float: left; width: 960px; height: 180px;">
-        <%= image_tag 'v3/explore/mission-soGoodNetwork.png' %>
-      </div>
-
-      <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
-
-        <div class="title-text" id="explore">Launch the So Good Network, striving to be the heart of social innovation and change</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-
-      </div>
-
-    </div><!-- End Section 1 -->
-
-    <!-- Section 4 -->
-    <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
-
-      <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-        <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
-      </div>
-
-      <div style="float: left; width: 300px; height: 180px;">
-        <%= image_tag 'v3/explore/mission-foodTruck.png' %>
-      </div>
-
-      <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-        <div class="title-text" id="explore">Design thinking and making</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-      </div>
-
-      <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
-        <div class="title-text" id="explore">Open a food truck</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-      </div>
-
-      <div style="float: left; width: 630px; height: 180px;">
-        <%= image_tag 'v3/explore/mission-motorcycle.png' %>
-      </div>
-
-      <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-        <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
-        <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-      </div>
-
-    </div><!-- End section 5 left -->
-
-    <!-- Section 6 right -->
-    <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
-
-      <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
-      </div>
-
-      <div class="heading14" style="text-align: center">Upcoming events</div>
-
-      <% @courses.where(:account_id => 0).each do |course| %>
-
-      <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 15px; margin-top: 10px; margin-bottom: 10px" %>
-        <div style="margin-bottom: 5px">
-          <%= link_to course.title, course, :class => "heading13 adelle" %>
-        </div>
-
-        <div style="margin-bottom: 5px">
-          <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
-          <%= "#{course.city.name}, #{course.city.state}" %><br>
-        </div>
-
-        <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
-        <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
-      </div>
-
-      <% end %>
-    </div><!-- End section 6 right -->
-
-  </div>
-
-  <div style="float: left; margin-top: 60px">
-    <div style="width: 290px; height: 3px; background-color: white; float: left; margin-right: 18px; margin-top: 9px"></div>
-    <div class="heading14" style="color: #9a9591; float: left; margin-bottom: 40px">Celebrate a mission accomplished</div>
-    <div style="width: 290px; height: 3px; background-color: white; float: left; margin-left: 18px; margin-top: 9px"></div>
-    <div style="float: left;">
-      <%= image_tag 'v3/homepage/mission-accomplished-3.png', :style => "margin-bottom: 15px" %>
-      <%= image_tag 'v3/homepage/sticky-tab-1.png', :style => "position: relative; z-index: 100; margin-top: -500px; margin-left: -20px" %>
-      <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 29px" %>
-      <%= image_tag 'v3/homepage/mission-accomplished-2.png' %>
-      <%= image_tag 'v3/homepage/sticky-tab-2.png', :style => "position: relative; z-index: 100; margin-top: 20px; margin-left: -500px" %>
-      <%= image_tag 'v3/homepage/sticky-tab-3.png', :style => "position: relative; z-index: 100; margin-top: -80px; margin-left: 720px" %>
     </div>
   </div>
 
-  <div style="float: left; margin-top: 60px">
-    <div style="width: 168px; height: 3px; background-color: white; float: left; margin-right: 18px; margin-top: 9px"></div>
-    <div class="heading14" style="color: #9a9591; margin-bottom: 40px; float: left">Join us in building communities that never stop learning</div>
-    <div style="width: 168px; height: 3px; background-color: white; float: left; margin-left: 18px; margin-top: 9px"></div>
-    <div style="float: left;">
-      <iframe src="http://player.vimeo.com/video/42154383?color=ffffff" width="956" height="538" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+  <div style="background-color: #f0f0f0; height: 1240px;">
+    <div class="container_16">
+
+      <div class="clearfix">
+        <div class="heading14" style="margin: 40px 0px">
+          <center>Discover a mission</center>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
+        <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
+          <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
+          <br>
+          <%= link_to "Go build one!", build_mission_path, :class => "blue long button" %>
+        </div>
+        <div>
+          <%= image_tag "v3/homepage/start-here.png" %>
+        </div>
+
+      </div><!-- End Section 2 -->
+
+      <!-- Section 3 -->
+      <div style="float: left; width: 630px; margin-bottom: 20px">
+
+        <div style="float: left; width: 630px; height: 180px;">
+          <%= image_tag "v3/explore/mission-greenHouse.png" %>
+        </div>
+
+        <div style="float: left; width: 610px; height: 60px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 0px; padding-top: 10px; padding-left: 10px">
+
+          <div class="title-text" id="explore">Make my home more sustainable</div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+        </div>
+
+      </div><!-- End Section 3 -->
+
+      <!-- Section 1 -->
+      <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
+
+        <div style="float: left; width: 960px; height: 180px;">
+          <%= image_tag 'v3/explore/mission-soGoodNetwork.png' %>
+        </div>
+
+        <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
+
+          <div class="title-text" id="explore">Launch the So Good Network, striving to be the heart of social innovation and change</div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+
+        </div>
+
+      </div><!-- End Section 1 -->
+
+      <!-- Section 4 -->
+      <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
+
+        <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
+          <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
+        </div>
+
+        <div style="float: left; width: 300px; height: 180px;">
+          <%= image_tag 'v3/explore/mission-foodTruck.png' %>
+        </div>
+
+        <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+          <div class="title-text" id="explore">Design thinking and making</div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+        </div>
+
+        <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
+          <div class="title-text" id="explore">Open a food truck</div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+        </div>
+
+        <div style="float: left; width: 630px; height: 180px;">
+          <%= image_tag 'v3/explore/mission-motorcycle.png' %>
+        </div>
+
+        <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
+          <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+        </div>
+
+      </div><!-- End section 5 left -->
+
+      <!-- Section 6 right -->
+      <div style="float: left; width: 270px; height: 492px; background-color: white; overflow-y:scroll; overflow-x: hidden; padding-top: 15px; padding: 15px; margin-top: 5px">
+
+        <div style="background-color: #5382a4; height: 7px; margin-left: -15px; margin-top: -15px; margin-right: -15px; margin-bottom: 20px">
+        </div>
+
+        <div class="heading14" style="text-align: center">Upcoming events</div>
+
+        <% @courses.where(:account_id => 0).each do |course| %>
+
+        <div style="box-shadow: 1px 1px 1px #F0F0F0, 1px 1px 1px 1px #F0F0F0; padding: 15px; margin-top: 10px; margin-bottom: 10px" %>
+          <div style="margin-bottom: 5px">
+            <%= link_to course.title, course, :class => "heading13 adelle" %>
+          </div>
+
+          <div style="margin-bottom: 5px">
+            <%= image_tag "v2/icon_location.png", :style => "margin-top: -3px; margin-right: 8px; margin-left: 2px" %>
+            <%= "#{course.city.name}, #{course.city.state}" %><br>
+          </div>
+
+          <%= image_tag "v2/icon_calendar.png", :style => "margin-top: -3px; margin-right: 5px" %>
+          <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
+        </div>
+
+        <% end %>
+      </div><!-- End section 6 right -->
+    </div>
+  </div>
+
+  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 930px;">
+    <div class="container_16">
+      <div class="heading14" style="color: white; margin: 40px 0px">
+        <center>Celebrate a mission accomplished</center>
+      </div>
+      <div style="float: left;">
+        <%= image_tag 'v3/homepage/mission-accomplished-3.png', :style => "margin-bottom: 15px" %>
+        <%= image_tag 'v3/homepage/sticky-tab-1.png', :style => "position: relative; z-index: 100; margin-top: -500px; margin-left: -20px" %>
+        <%= image_tag 'v3/homepage/mission-accomplished-1.png', :style => "margin-right: 29px" %>
+        <%= image_tag 'v3/homepage/mission-accomplished-2.png' %>
+        <%= image_tag 'v3/homepage/sticky-tab-2.png', :style => "position: relative; z-index: 100; margin-top: 20px; margin-left: -500px" %>
+        <%= image_tag 'v3/homepage/sticky-tab-3.png', :style => "position: relative; z-index: 100; margin-top: -80px; margin-left: 720px" %>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: #b4c9d9; height: 700px;">
+    <div class="container_16">
+      <div class="heading14" style="margin: 40px 0px;"><center>Join us in building communities that never stop learning</center>
+      </div>
+      <div style="float: left;">
+        <iframe src="http://player.vimeo.com/video/42154383?color=ffffff" width="956" height="538" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+      </div>
     </div>
   </div>
 

@@ -66,59 +66,61 @@
 <%= content_for :first_inside_body do %>
 
   <%# Notice Bar if not logged in %>
-  <% if !current_user || (current_user && current_user.crewmanships.blank?) %>
-    <div class='userConfirm'>
-      <div class='container_16'>
-        <p>
-          <span style="color: #b4c9d9">
-            Hi there!
-          </span>
-          <span class='whiteText'>
-            HourSchool is a place to achieve your goals by joining a mission.
-          </span>
-          <span style="text-decoration: underline; color: #f7b62a">
-            <a data-toggle="modal" href="#explainMission" style="color: #f7b62a">Learn more!</a>
-          </span>
-        </p>
+  <% if community_site? %>
+    <% if !current_user || (current_user && current_user.crewmanships.blank?) %>
+      <div class='userConfirm'>
+        <div class='container_16'>
+          <p>
+            <span style="color: #b4c9d9">
+              Hi there!
+            </span>
+            <span class='whiteText'>
+              HourSchool is a place to achieve your goals by joining a mission.
+            </span>
+            <span style="text-decoration: underline; color: #f7b62a">
+              <a data-toggle="modal" href="#explainMission" style="color: #f7b62a">Learn more!</a>
+            </span>
+          </p>
+        </div>
       </div>
-    </div>
+    <% end %>
+
+    <div class="modal hide" id="explainMission"><!-- modal begins -->
+      <div class="modal-body">
+
+        <div class="heading28" style="float: left; width: 485px; margin-bottom: 25px">
+          We believe the best way to achieve a goal is with a Mission.
+        </div>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <div style="margin-bottom: 30px">
+          <div class="title-text" id="explore">What is a mission?</div>
+          <p>Each mission is a micro-community that connects passionate people working towards their indiviudally-defined goals through in-person classes, workshops, and happy hours.</p>
+        </div>
+
+        <div style="margin: 0px 30px 20px 0px">
+          <div class="title-text" id="explore">How does a mission work?</div>
+          <p>Here are the building blocks of a mission:</p>
+        </div>
+
+        <div class="heading14">Mission</div>
+        <p>A mission is something you want to accomplish.</p>
+
+        <div class="heading14">Topics:</div>
+        <p>Topics are knowledge or skills you need in your toolbox to achieve your mission. They are collectively, and continously built by everyone in the mission.</p>
+
+        <div class="heading14">Events:</div>
+        <p>Events are organized based on the topics, where people get together in person to learn with and from each other - whether through a class or a happy hour.</p>
+
+        <div class="heading11" style="margin-top: 20px">For example:</div>
+
+        <%= image_tag 'v3/mission-framework.png', :style => "margin-top: 5px; padding-bottom: 20px" %>
+
+        <button type="button" class="close" data-dismiss="modal" style="text-decoration: underline; margin: 30px 0px; color: #333">Okay, got it.</button>
+
+        </div>
+      </div>
+    </div><!-- modal ends -->
   <% end %>
-
-  <div class="modal hide" id="explainMission"><!-- modal begins -->
-    <div class="modal-body">
-
-      <div class="heading28" style="float: left; width: 485px; margin-bottom: 25px">
-        We believe the best way to achieve a goal is with a Mission.
-      </div>
-      <button type="button" class="close" data-dismiss="modal">×</button>
-      <div style="margin-bottom: 30px">
-        <div class="title-text" id="explore">What is a mission?</div>
-        <p>Each mission is a micro-community that connects passionate people working towards their indiviudally-defined goals through in-person classes, workshops, and happy hours.</p>
-      </div>
-
-      <div style="margin: 0px 30px 20px 0px">
-        <div class="title-text" id="explore">How does a mission work?</div>
-        <p>Here are the building blocks of a mission:</p>
-      </div>
-
-      <div class="heading14">Mission</div>
-      <p>A mission is something you want to accomplish.</p>
-
-      <div class="heading14">Topics:</div>
-      <p>Topics are knowledge or skills you need in your toolbox to achieve your mission. They are collectively, and continously built by everyone in the mission.</p>
-
-      <div class="heading14">Events:</div>
-      <p>Events are organized based on the topics, where people get together in person to learn with and from each other - whether through a class or a happy hour.</p>
-
-      <div class="heading11" style="margin-top: 20px">For example:</div>
-
-      <%= image_tag 'v3/mission-framework.png', :style => "margin-top: 5px; padding-bottom: 20px" %>
-
-      <button type="button" class="close" data-dismiss="modal" style="text-decoration: underline; margin: 30px 0px; color: #333">Okay, got it.</button>
-
-      </div>
-    </div>
-  </div><!-- modal ends -->
 
   <%# Notice Bar if user is unconfirmed %>
   <% if current_user && !current_user.confirmed? %>
@@ -185,19 +187,13 @@
   </div>
 
   <%# Page Content %>
-  <div class='container_16'>
-
+  <% unless yield(:body_id) == "homepage" %>
+    <div class='container_16'>
     <%= yield %>
-
-    <%# Sidebar %>
-    <% if content_for?(:sidebar) %>
-      <div class='sidebar'>
-        <div class='sidebar-content'>
-          <%= yield :sidebar %>
-        </div>
-      </div>
-    <%- end -%>
-  </div>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
 
 <%- end -%>
 
