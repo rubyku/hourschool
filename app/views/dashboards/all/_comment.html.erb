@@ -16,8 +16,32 @@
     <%= link_to comment.photo_file_name, comment.photo.url %>
   <% elsif comment.comment_type == 'photo' %>
     <%= image_tag(comment.photo.url(:normal)) %>
-  <% end %>  
+  <% end %>
 </div>
 
+    <% if comment.child_comments.present? %>
+      <div class="comment-box child">
+        <% comment.child_comments.each do |child_comment| %>
+          <div style="float: left; width: 490px; padding: 10px; background-color: whiteSmoke; margin-left: 27px">
+            <div class="commenter-photo">
+              <% if child_comment.user.photo.present? %>
+                <%= link_to_avatar(child_comment.user, :thumb_small) %>
+              <% else %>
+                <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+              <% end %>
+            </div>
+            <div class="comment-body child">
+              <div style="float: left; margin-right: 10px; font-size: 13px; font-weight: 700">
+                <%= child_comment.user.name %>
+              </div>
+              <div style="font-size: 10px">
+                <%= "#{time_ago_in_words child_comment.created_at} ago" %>
+              </div>
+              <%= simple_format Rinku.auto_link(child_comment.body) %>
+            </div>
+            </div>
+        <% end %><!-- end child-comment each block -->
+      </div><!-- end child-comment-box -->
+    <% end %><!-- end if child_comments.present? -->
 
 
