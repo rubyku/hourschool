@@ -1,11 +1,8 @@
 <p>Hello <%= @user.name.split(" ").first %>,</p>
-<br>
 
-<p>A new comment was posted in your mission <%= link_to "#{@mission.verb} #{@mission.title}", mission_url(@mission) %>.
+<p><%= link_to @new_comment.user.name, user_url(@new_comment.user) %> left a comment in your mission <%= link_to "#{@mission.verb} #{@mission.title}", mission_url(@mission) %>.
 </p>
-<br>
 
 <p>"<%= @new_comment.body %>"</p>
-<br>
 
-<p><%= link_to "Respond", comment_url(@new_comment) %> to comment</p>
+<p><%= link_to "Reply", comment_url(@new_comment) %> to <%= @new_comment.user.name.split(" ").first %></p>
