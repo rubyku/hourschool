@@ -18,7 +18,7 @@
     <%= image_tag 'v3/profile/journey-glyph-comment.png', :class => "left"  %>
     <hr style="width: 22px; float: left">
     <div style="width: 100%">
-      <div style="float: left; width: 550px; margin: 10px 5px 0px 5px">
+      <div style="float: left; width: 560px; margin: 10px 5px 0px 5px">
         <% if compact_feed_item.mission_id.present? %>
           I commented on the mission  <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission, :style => "font-weight: 700" %>
         <% else %>
@@ -60,7 +60,13 @@
           </div>
 
           <% if compact_feed_item.students.count > 0 %>
-            <p style="font-size: 11px; margin-top: 10px"><%= compact_feed_item.students.count %>
+            <% if compact_feed_item.photo.present? %>
+              <p style="font-size: 11px; margin-top: 10px">
+            <% else %>
+              <p style="font-size: 11px; margin-top: 10px; margin-left: 57px">
+            <% end %>
+
+            <%= compact_feed_item.students.count %>
             <% if compact_feed_item.mission.present? %>
             from the <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission %>
             <% end %>
@@ -69,7 +75,6 @@
             <% else compact_feed_item.starts_at < Date.today %>
               attended
             <% end %>
-            </p>
 
             <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>
               <% if student.photo.present? %>
@@ -78,7 +83,7 @@
                 <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
               <% end %>
             <% end %>
-
+            </p>
           <% end %>
       </div>
     </div>
