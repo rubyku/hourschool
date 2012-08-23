@@ -24,7 +24,6 @@
     <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
     <p style="float: left">
       <% if @user.bio.blank? %>
-
         <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
       <% else %>
         <%= @user.bio %><br>
@@ -40,10 +39,14 @@
 <% if current_user == @user %>
   <a href="/users/edit" class="btn" style="float: right">Edit my profile</a>
 <% else %>
-  <a class="btn" style="float: right">Follow</a>
+  <% if Following.where(:follower_id => current_user, :followed_id => @user).blank? %>
+    <%= link_to "Follow", user_followings_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :post %>
+  <% else %>
+    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :delete %>
+  <% end %>
 <% end %>
 
-<div class="page-main" style="width: 688px">
+<div class="page-main" style="width: 686px">
   <%#= render :partial => "users/show/comments" %>
 
   <div class="tabbable">
@@ -54,9 +57,9 @@
       <li><a href="#tab4" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content" style="overflow-x: hidden">
       <div class="tab-pane active" id="tab1">
-        <div class="page-main white tab-border main" style="width: 685px">
+        <div class="page-main white tab-border main" style="width: 686px">
           <div class="page-content">
             <div id="news-feed">
               <%= render :partial => 'compact_feed_item', :collection => @compact_feed_items %>
@@ -66,7 +69,7 @@
         </div>
       </div><!-- end tab1 -->
       <div class="tab-pane" id="tab2">
-        <div class="page-main white tab-border main" style="width: 688px">
+        <div class="page-main white tab-border main" style="width: 686px">
           <div style="padding: 20px">
             <% if @user.missions.blank? %>
               <div class="well">
@@ -167,7 +170,7 @@
         </div>
       </div><!-- end tab2 -->
       <div class="tab-pane" id="tab3">
-        <div class="page-main white tab-border main" style="width: 688px">
+        <div class="page-main white tab-border main" style="width: 686px">
           <div class="page-content">
             <% if @user.followers.blank? %>
               <div class="well">
@@ -198,7 +201,7 @@
         </div>
       </div><!-- end tab3 -->
       <div class="tab-pane" id="tab4">
-        <div class="page-main white tab-border main" style="width: 688px">
+        <div class="page-main white tab-border main" style="width: 686px">
           <div class="page-content">
             <% if @user.following.blank? %>
               <div class="well">
