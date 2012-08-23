@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816034853) do
+ActiveRecord::Schema.define(:version => 20120823052019) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -458,6 +458,8 @@ ActiveRecord::Schema.define(:version => 20120816034853) do
     t.datetime "last_invoiced_at"
     t.integer  "billing_day_of_month"
     t.string   "stripe_customer_id"
+    t.string   "quote"
+    t.string   "quote_author"
   end
 
   add_index "users", ["city_id"], :name => "index_users_on_city_id"

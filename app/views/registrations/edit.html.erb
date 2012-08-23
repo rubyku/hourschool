@@ -47,8 +47,18 @@
                 </p>
 
                 <p>
-                 <%= f.label :bio, 'Short Bio', :class => "form-question" %><br />
+                 <%= f.label :bio, 'Short bio', :class => "form-question" %><br />
                  <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
+                </p>
+
+                <p>
+                 <%= f.label :quote, 'Your favorite quote', :class => "form-question" %><br />
+                 <%= f.text_area :quote, :class => "form-med-with-margin", :style => "width: 250px" %>
+                </p>
+
+                <p>
+                 <%= f.label :quote_author, 'Who wrote that quote?', :class => "form-question" %><br />
+                 <%= f.text_area :quote_author, :class => "form-med-with-margin", :style => "width: 250px" %>
                 </p>
 
               </div>
@@ -65,7 +75,7 @@
             </div>
             </div>
             <br />
-            <%= f.submit "Update", :class => "btn" %>    
+            <%= f.submit "Update", :class => "btn" %>
           <% end %>
         </div><!-- end page-content -->
       </div><!-- end full-page -->
@@ -85,7 +95,7 @@
               <hr />
               <%= hidden_field_tag('user[preferences][touched]', 1) %>
             </ul>
-            <%= f.submit "Update", :class => "btn" %>    
+            <%= f.submit "Update", :class => "btn" %>
           <% end %>
 
         </div>
@@ -95,7 +105,7 @@
       <div class="full-page white tab-border full">
         <div class="page-content">
 
-          <div style="width: 300px; float: left; margin-right: 60px">      
+          <div style="width: 300px; float: left; margin-right: 60px">
             <% if current_user.stripe_customer %>
               <p>
                 <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
@@ -112,31 +122,28 @@
 
               <%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal', :class => "btn", :style => "margin-top: 10px" %>
 
-            <% else %>             
-              <p>You can use your credit card to pay to join missions or attend events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
+            <% else %>
+              <p>You can use your credit card to pay for events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
               <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => 'submitCreditCard'}) do |f| %>
                 <%= render :partial => 'subscription_charges/credit_card_fields' %>
-                <%= f.submit "Update", :class => "btn" %>    
+                <%= f.submit "Update", :class => "btn" %>
               <% end %>
-            
+
             <% end %>
 
           </div>
 
-          <div style="width: 500px; float: left;"> 
+          <div style="width: 500px; float: left;">
             <div class="well">
               <strong>Your Information is Secure</strong>
               <p>We never store your credit card information on our servers, and we encrypt your information via SSL prior to sending it for processing. We use Stripe for credit card processing. Stripy encrypts your credit card information on their servers, and is fully PCI compliant.</p>
-
-              <strong>When Do We Bill</strong>
-              <p>30 days of membership are on us. After thirty days are up, we'll bill your credit card once a month, for each mission you take part in, at $10/month.</p>
 
               <strong>Have a Question?</strong>
               <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com</a>.</p>
             </div>
           </div>
 
-          
+
         </div>
       </div>
     </div><!-- end tab3 -->

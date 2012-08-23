@@ -30,6 +30,15 @@
       <% end %>
     </p>
   </div>
+
+  <% if @user.quote.present? %>
+    <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 220px">
+      <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 100px" %>
+      <div class="heading11" style="text-align: center; color: #5382a4"><%= @user.quote if @user.quote.present? %></div>
+      <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em"><%= @user.quote_author if @user.quote_author.present? %></div>
+    </div>
+  <% end %>
+
 </div>
 
 <div class="heading28 brown" style="float: left; margin-bottom: 20px">
