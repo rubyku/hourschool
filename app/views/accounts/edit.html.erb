@@ -14,7 +14,7 @@
             <%= link_to "Add a mission", new_mission_path, :class => "btn" %>
           </div>
           <% @account.missions.each do |mission| %>
-            <div class="mission-divider">                    
+            <div class="mission-divider">
               <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
               <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
                 <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to full_mission_title(mission).truncate(75), mission %></div>
@@ -41,9 +41,9 @@
         <div class="page-content">
           <div class="mission-tab-intro">
             <div class="heading14" style="width: 550px">These people have joined you in pursuing this mission.</div>
-          </div><hr> 
+          </div><hr>
           <% @account.users.each do |user| %>
-            <div class="mission-divider">             
+            <div class="mission-divider">
               <div class="crewman-photo">
                 <% if user.photo.present? %>
                   <%= link_to_avatar(user, :thumb_large) %>
@@ -63,7 +63,7 @@
                   <span class="label">Alumni</span>
                 <% end %>
                 <p><%= user.bio %></p>
-              </div>           
+              </div>
             </div>
           <% end %>
         </div>
@@ -110,7 +110,7 @@
              <%= f.file_field :photo %>
             </p>
 
-            <hr>
+<!--             <hr>
             <div class="control-group" style="margin-bottom:20px">
               <div class="controls">
                 <label class="radio">
@@ -154,7 +154,7 @@
               </div>
             </div>
 
-            <%= f.text_field :discount, :class => "form-short-with-margin", :placeholder => "Discount for member" %>
+            <%= f.text_field :discount, :class => "form-short-with-margin", :placeholder => "Discount for member" %> -->
 
             <br><br><br>
 

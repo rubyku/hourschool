@@ -56,10 +56,11 @@
 
 <div id="header">
   <div class="container_16">
-    <% if current_user %>
-      <%= link_to "", dashboards_path, :id => "logo" %>
-    <% else %>
-      <%= link_to "", root_path, :id => "logo" %>
+      <% if current_user %>
+        <%= link_to "", dashboards_path, :id => "logo" %>
+      <% else %>
+        <%= link_to "", root_path, :id => "logo" %>
+      <% end %>
     <% end %>
       <ul class="nav nav-pills main-nav">
         <li class="dropdown" id="menu">

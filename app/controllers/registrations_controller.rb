@@ -60,12 +60,20 @@ class RegistrationsController < Devise::RegistrationsController
 
   protected
     def after_update_path_for(resource)
-      dashboards_path
+      if community_site?
+        dashboards_path
+      else
+        explore_path
+      end
     end
 
     def after_sign_up_path_for(resource)
       # previous_path_or(resource)
       #after_register_path(:confirm_password)
-      dashboards_path
+      if community_site?
+        dashboards_path
+      else
+        explore_path
+      end
     end
 end
