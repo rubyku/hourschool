@@ -1,5 +1,5 @@
 <p>Hello <%= @user.name.split(" ").first %>,</p>
 
-<p><%= link_to @new_course.user.name, user_url(@new_course.user) %> posted a new event in your mission <%= link_to "#{@mission.verb} #{@mission.title}", mission_url(@mission) %>.</p>
+<p><%= link_to @new_course.teacher.name, user_url(@new_course.teacher) %> posted a new event in your mission <%= link_to "#{@mission.verb} #{@mission.title}", mission_url(@mission) %>.</p>
 
 <p>Sign up today: <%= link_to "#{@new_course.title}", course_url(@new_course) %></p>
