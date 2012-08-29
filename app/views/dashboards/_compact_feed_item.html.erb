@@ -75,7 +75,7 @@
             <% else compact_feed_item.starts_at < Date.today %>
               attended
             <% end %>
-
+            <br>
             <% compact_feed_item.students.select {|student| student != current_user}.each do |student| %>
               <% if student.photo.present? %>
                 <%= link_to (image_tag student.photo.url(:thumb_small), :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>

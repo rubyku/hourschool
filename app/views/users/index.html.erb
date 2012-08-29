@@ -28,7 +28,9 @@
           <%= link_to user.name, user_path(user.id), :class => "profile-link" %><br>
           <%= user.email %><br>
           ID: <%= user.id %><br>
-          City: <%= user.location %><br>
+          City:
+          <%= user.location if user.location.present? %>
+          <%= "#{user.city.name}, #{user.city.state}" if user.city.present?%><br>
           Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
 
           </p>
