@@ -30,11 +30,6 @@ class DashboardsController < ApplicationController
 
     @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
 
-    if @compact_feed_items.blank?
-      @staff_feed = true
-      feed_query_items = staff_picks_feed
-      @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
-    end
   end
 
 private
@@ -65,11 +60,11 @@ private
       @user.crewmanships.where(:role => "explorer").joins(:mission).where(:missions => {:status => 'live'}),
       @user.crewmanships.where(:role => "guide").joins(:mission).where(:missions => {:status => 'live'}),
       @user.crewmanships.where(:role => "completed").joins(:mission).where(:missions => {:status => 'live'}),
-      
+
       # comments can belong to course or a mission, make sure they are live before fetching them
       @user.comments.where(:course_id => nil).joins(:mission).where(:missions => {:status => 'live'}),
       @user.comments.where("course_id is not null").joins(:course).where(:courses => {:status => 'live'}),
-      
+
       # courses can be live or be part of a mission that is live
       @user.courses_taught.joins(:mission).where(:missions => {:status => 'live'}).where(:status => 'live'),
       @user.courses_taught.where(:mission_id => nil).where(:status => 'live'),
@@ -91,7 +86,7 @@ private
     per_page               = options[:per_page]||20
     per_page               = per_page.to_i
 
-    feed = feed_query_items.map do |item_query| 
+    feed = feed_query_items.map do |item_query|
       if last_item_displayed_at.present?
         item_query = item_query.where("#{item_query.table.name}.created_at < ?", DateTime.parse(last_item_displayed_at))
       end

@@ -44,12 +44,6 @@ class UsersController < DashboardsController
 
     @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
 
-    if @compact_feed_items.blank?
-      @staff_feed = true
-      feed_query_items = staff_picks_feed
-      @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
-    end
-
     render :template => 'dashboards/show'
   end
 

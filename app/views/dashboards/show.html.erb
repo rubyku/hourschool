@@ -70,10 +70,20 @@
       <div class="tab-pane active" id="tab1">
         <div class="page-main white tab-border main" style="width: 686px">
           <div class="page-content">
-            <div id="news-feed">
-              <%= render :partial => 'compact_feed_item', :collection => @compact_feed_items %>
-            </div>
-            <%= render :partial => 'dashboards/paginate' %>
+            <% if @compact_feed_items.blank? %>
+              <div class="well">
+                <% if current_user == @user %>
+                  You don't have any activity yet. Get started by <%= link_to "exploring some missions", wall_of_missions_path %>!
+                <% else %>
+                  <%= @user.name %> doesn't have any activity yet.
+                <% end %>
+              </div>
+            <% else %>
+              <div id="news-feed">
+                  <%= render :partial => 'compact_feed_item', :collection => @compact_feed_items %>
+              </div>
+              <%= render :partial => 'dashboards/paginate' %>
+            <% end %>
           </div>
         </div>
       </div><!-- end tab1 -->
