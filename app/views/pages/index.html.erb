@@ -58,7 +58,7 @@
           <%= link_to "Go build one!", build_mission_path, :class => "blue long button" %>
         </div>
         <div>
-          <%= image_tag "v3/homepage/start-here.png" %>
+          <%= link_to (image_tag "v3/homepage/start-here.png"), "mailto: hello@hourschool.com" %>
         </div>
 
       </div><!-- End Section 2 -->
@@ -67,13 +67,13 @@
       <div style="float: left; width: 630px; margin-bottom: 20px">
 
         <div style="float: left; width: 630px; height: 180px;">
-          <%= image_tag "v3/explore/mission-greenHouse.png" %>
+          <%= link_to (image_tag "v3/explore/mission-greenHouse.png"), '/missions/2' %>
         </div>
 
         <div style="float: left; width: 610px; height: 60px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 0px; padding-top: 10px; padding-left: 10px">
 
-          <div class="title-text" id="explore">Make my home more sustainable</div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+          <div class="title-text" id="explore"><%= link_to "Encourage sustainability", '/missions/2', :class => "title-text", :id => "explore" %></div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
         </div>
 
       </div><!-- End Section 3 -->
@@ -98,7 +98,7 @@
       <div style="float: left; width: 630px; height: 530px; margin-right: 25px">
 
         <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-          <%= image_tag 'v3/explore/mission-interactionDesign.png' %>
+          <%= link_to (image_tag 'v3/explore/mission-interactionDesign.png'), '/missions/12' %>
         </div>
 
         <div style="float: left; width: 300px; height: 180px;">
@@ -106,8 +106,8 @@
         </div>
 
         <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-          <div class="title-text" id="explore">Design thinking and making</div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+          <div class="title-text" id="explore"><%= link_to "Design Thinking and Making", '/missions/12', :class => "title-text", :id => "explore" %></div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
         </div>
 
         <div style="float: left; width: 275px; height: 52px; background-color: white; margin-bottom: 30px; opacity: 0.85; margin-top: 5px; margin-left: 10px; padding-top: 10px; padding-left: 15px">
@@ -116,12 +116,12 @@
         </div>
 
         <div style="float: left; width: 630px; height: 180px;">
-          <%= image_tag 'v3/explore/mission-motorcycle.png' %>
+          <%= link_to (image_tag 'v3/explore/mission-motorcycle.png'), '/missions/1' %>
         </div>
 
         <div style="float: left; width: 605px; height: 55px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-          <div class="title-text" id="explore">Practice the art and philosophy of vintage motorcycle maintenance</div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
+          <div class="title-text" id="explore"><%= link_to "Learn how to repair and maintain motorcycles", '/missions/1', :class => "title-text", :id => "explore" %></div>
+          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
         </div>
 
       </div><!-- End section 5 left -->
