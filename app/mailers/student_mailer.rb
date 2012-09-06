@@ -7,7 +7,7 @@ class StudentMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is 3 days away and needs more students!")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is 3 days away and needs more students!")
   end
 
   def send_positive_confirmation(student, course, current_account)
@@ -16,7 +16,7 @@ class StudentMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for is today!")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is today!")
   end
 
   def send_negative_confirmation(student, course, current_account)
@@ -25,7 +25,7 @@ class StudentMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "The class you signed up for has been canceled")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for has been canceled")
   end
 
   def send_post_class_feedback(student, course, current_account)
@@ -35,7 +35,7 @@ class StudentMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Let us know how class went!")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "Let us know how class went!")
   end
 
   def course_is_canceled(student, course, msg = '')
@@ -44,7 +44,7 @@ class StudentMailer < ActionMailer::Base
     @teacher         = course.teacher
     @teacher_message = msg
     Time.zone = @student.time_zone
-    mail(:to => @student.email, :bcc => "ruby@hourschool.com, alex@hourschool.com", :subject => "Your course was canceled")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "Your course was canceled")
   end
 
   class Preview < MailView
@@ -52,7 +52,7 @@ class StudentMailer < ActionMailer::Base
     def course_is_canceled
       course   = Course.live.last
       student  = User.last
-      msg      = 'sorry i got the flu'
+      msg      = ''
       StudentMailer.course_is_canceled(student, course, msg)
     end
   end

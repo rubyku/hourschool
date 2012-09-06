@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @course = course
     @message = message
     mail :to => course.teacher.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :reply_to => current_user.email,
          :subject => "#{@user.name} left you a message about your event"
   end
@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     @course = course
     @message = message
     mail :to => course.teacher.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :reply_to => messenger_email,
          :subject => "#{messenger_email} left you a message about your event"
   end
@@ -32,7 +32,7 @@ class UserMailer < ActionMailer::Base
     @course = course
     @message = message
     mail :to => course.students.map(&:email),
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :reply_to => course.teacher.email,
          :subject => "Your teacher sent a message about your event"
   end
@@ -46,7 +46,7 @@ class UserMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :to => user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{comment.user.name} left you a comment about your event"
   end
 
@@ -56,7 +56,7 @@ class UserMailer < ActionMailer::Base
     @course = course
     @students = students
     @general_feedback = general_feedback
-    mail :to => "hello@hourschool.com",
+    mail :to => "admin@hourschool.com",
          :subject => "#{@user.name} submitted a feedback form!"
   end
 
@@ -67,7 +67,7 @@ class UserMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :to => user_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@course.title} is live!"
   end
 
@@ -78,7 +78,7 @@ class UserMailer < ActionMailer::Base
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :to => user_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "You've signed up for #{@course.title}!"
   end
 
@@ -114,7 +114,7 @@ class UserMailer < ActionMailer::Base
     @account = account
     @existing_user = existing_user
     mail :to => user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{inviter.name} wants you to join #{account.name}"
   end
 
@@ -125,7 +125,7 @@ class UserMailer < ActionMailer::Base
     @user       = user
     @new_member = new_member
     mail :to => @user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@new_member.name} joined #{@mission.verb} #{@mission.title}"
   end
 
@@ -134,7 +134,7 @@ class UserMailer < ActionMailer::Base
     @user       = user
     @new_course = new_course
     mail :to => @user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "New event: #{@mission.verb} #{@mission.title}"
   end
 
@@ -143,7 +143,7 @@ class UserMailer < ActionMailer::Base
     @user        = user
     @new_comment = new_comment
     mail :to => @user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "New comment: #{@mission.verb} #{@mission.title}"
   end
 
@@ -152,7 +152,7 @@ class UserMailer < ActionMailer::Base
     @user       = user
     @new_topic  = new_topic
     mail :to => @user.email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "New topic: #{@mission.verb} #{@mission.title}"
   end
 
@@ -166,7 +166,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter.name} invited you to a mission!"
   end
 
@@ -179,7 +179,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter_name} invited you to a mission!"
   end
 
@@ -191,7 +191,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter.name} invited you to an event"
   end
 
@@ -204,7 +204,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter_name} invited you to an event"
   end
 
@@ -216,7 +216,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter.name} invited you to organize an event"
   end
 
@@ -229,7 +229,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter_name} invited you to organize an event"
   end
 
@@ -241,7 +241,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter.name} invited you to answer a question"
   end
 
@@ -254,7 +254,7 @@ class UserMailer < ActionMailer::Base
     @invitable_id   = options[:invitable_id]
     @message        = options[:message]
     mail :to => @invitee_email,
-         :bcc => "hello@hourschool.com",
+         :bcc => "admin@hourschool.com",
          :subject => "#{@inviter_name} invited you to answer a question"
   end
 
