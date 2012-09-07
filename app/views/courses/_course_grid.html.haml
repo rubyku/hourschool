@@ -21,11 +21,8 @@
 
           .class-note
             .heading9-class
-              - if course.active?
-                - if course.max_seats.blank?
-                  = "Unlimited seats |"
-                - elsif course.seats_left == 0
-                  = "Full! |"
-                - elsif
-                  = "#{course.seats_left} seats left |"
-              = "#{course.city.try(:name)}, #{course.city.try(:state)}"
+              - if course.teacher == User.find(1898)
+                Need a host
+              - else
+                Host:
+                = course.teacher.name
