@@ -73,8 +73,10 @@ class CoursesController < ApplicationController
           end
           if @course.previous_changes["status"]
             UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-            @course.mission.users.each do |user|
-              UserMailer.mission_new_course(user, @course.mission, @course).deliver if user.wants_newsletter? && user != current_user
+            if community_site?
+              @course.mission.users.each do |user|
+                UserMailer.mission_new_course(user, @course.mission, @course).deliver if user.wants_newsletter? && user != current_user
+              end
             end
           end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }

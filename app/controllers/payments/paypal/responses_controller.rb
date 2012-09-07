@@ -25,8 +25,8 @@ class Payments::Paypal::ResponsesController < Payments::PaypalController
      if @payment.save
         @user = current_user
         @role = @course.roles.create!(:attending => true, :name => 'student', :user => current_user)
-        UserMailer.send_course_registration_mail(current_user.email, current_user.name, @course, current_account).deliver
-        UserMailer.send_course_registration_to_teacher_mail(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.course_registration(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.course_registration_to_teacher(current_user.email, current_user.name, @course, current_account).deliver
         redirect_to course_attendee_registration_path(:course_id => @course, :id => 'confirm')
     else
       redirect_to @course, :notice => "Sorry you couldn't make it this time. Next time?"

@@ -1,4 +1,4 @@
-- courses.in_groups_of(3) do |group|
+- courses.in_groups_of(4) do |group|
   - group.each do |course|
     - if course.present?
       .classBlock
@@ -11,20 +11,20 @@
 
 
         %br
-          .class-description{:style => "float: left"}
+          .class-description{:style => "float: left; width: 170px"}
             .heading13-class
               = link_to course.title.truncate(50), course
             - if course.teaser?
               %p= course.teaser.truncate(70)
-            - else 
+            - else
               %p= course.description.truncate(70)
 
           .class-note
             .heading9-class
-              - if course.active?  
+              - if course.active?
                 - if course.max_seats.blank?
                   = "Unlimited seats |"
-                - elsif course.seats_left == 0 
+                - elsif course.seats_left == 0
                   = "Full! |"
                 - elsif
                   = "#{course.seats_left} seats left |"

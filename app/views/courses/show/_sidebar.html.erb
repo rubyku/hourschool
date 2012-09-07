@@ -32,12 +32,12 @@
         <%#= button_to "Schedule this again",             course_duplicate_path(:course_id => course), :method => :post, :style => "width: 220px", :class => "register-class-button" %>
       <% else %>
         <%= button_to "Edit details",           edit_course_path, :method => :get, :class => "btn" %>
-        <%= button_to "Cancel this session",    course_organizer_path(course, :cancel), :method => :get, :class => "btn" %>
+        <%= button_to "Cancel this event",    course_organizer_path(course, :cancel), :method => :get, :class => "btn" %>
       <% end %>
     <% end %>
   </div>
   <div class="class-alternatives" style="margin-bottom: 30px; width: 270px">
-    <%= "This class has a min. of #{course.min_seats}" %>
+    <%= "This event needs a min. of #{course.min_seats}" %>
   </div>
 
 
