@@ -21,7 +21,7 @@
   <% end %>
 
   <div style="float: left; padding-bottom: 30px; margin-top: 20px; width: 230px">
-    <div class="heading11" style="float: left; margin-top: 30px">Bio</div><br>
+    <div class="heading11" style="margin-top: 30px">Bio</div><br>
     <p style="float: left">
       <% if @user.bio.blank? %>
         <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>

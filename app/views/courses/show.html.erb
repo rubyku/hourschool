@@ -148,9 +148,9 @@
             <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
             <% if @course.starts_at > Time.now %>
               <%= link_to "Cancel this event", "" %><br>
-              <%= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+              <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% else %>
-              <%= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
+              <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
               <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% end %>
           <% else %><!-- if current_user is not this course's teacher -->
