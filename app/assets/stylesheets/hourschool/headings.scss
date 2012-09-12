@@ -1,5 +1,5 @@
 @import 'hourschool/variables';
-  
+
 .greyheader {
   position: relative;
   float: left;
@@ -7,12 +7,12 @@
   z-index: 99;
   padding-top: 30px;
   padding-bottom: 40px;
-  
+
   &.full{
     margin-top: -90px;
     margin-left: -60px;
     width: 1020px; }
-    
+
   &.half {
     margin-top: -85px;
     margin-left: -45px;
@@ -41,7 +41,7 @@
   margin-top: 30px;
   margin-bottom: 25px;
   letter-spacing: 0.1em;
-  
+
   &.light_grey{color: $hourschool-light-grey;}
   &.dark_grey{color: $hourschool-dark-grey;} }
 
@@ -72,7 +72,7 @@ a.heading20{
 .heading15{
   @include hourschool-heading;
   font-size: 15px;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
 
   &.marcomm{color: #e4652f;}
   &.campaign-greendoors{color: #5b7020;} }
@@ -86,11 +86,11 @@ a.heading20{
 }
 
 .heading13-class {
-  color: #ff7733;
+  color: #6a4a3b;
   font-family: futura-pt-1, futura-pt-2;
   font-weight: 700;
   font-size: 14px;
-  
+
   a {
     color: $hourschool-house-color;
     &:visited {
@@ -109,7 +109,7 @@ a.heading20{
 a.heading13{color: #6a4a3b;}
 a:hover.heading13{color: #6a4a3b;}
 a:visited.heading13{color: #6a4a3b;}
-      
+
 .sidebar-heading {
   @include hourschool-heading;
   color: $hourschool-dark-grey;
@@ -117,7 +117,7 @@ a:visited.heading13{color: #6a4a3b;}
   letter-spacing: 0.2em;
   margin-bottom: 10px;
   line-height: 26px; }
-      
+
 .heading11{
   @include hourschool-heading;
   font-size: 11px;
@@ -151,20 +151,20 @@ a:visited.heading13{color: #6a4a3b;}
 
 .heading9-class {
   font-weight: 400;
-  font-size: 9px; 
+  font-size: 9px;
 }
 
 .heading9{
-  font-size: 9px; 
+  font-size: 9px;
 
   &.bold{
     color: #666;
     font-weight: 700;
     text-transform: uppercase;
-  }  
+  }
 }
 
-  
+
 /* NEED NESTING */
 
 .welcome-header {
