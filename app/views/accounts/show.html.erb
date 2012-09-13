@@ -1,30 +1,44 @@
 <% if current_account == Account.where(:id => 4).first %>
   <%= render :partial => 'courses/womendesignbuild/index' %>
 
+<% elsif current_account == Account.where(:id => 1).first %>
+
+  <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
 <% elsif current_account == Account.where(:id => 2).first %>
-
-  <div class="page">
-    <div class="page-content">
-      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
-      <div class="page-section-float-right">
-        <table class="view-more">
-          <tr>
-            <td>
-              <%= will_paginate @courses, :previous_label => "Prev" %>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-  <% content_for :sidebar do %>
-    <%= link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px" %>
-  <% end %>
-
-    </div>
+  <div style="width: 770px; margin-left: 80px">
+    <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
   </div>
 
 <% elsif current_account == Account.where(:id => 5).first %>
+  <div class="full-page white">
+    <% if @account.photo.present? %>
+      <%= image_tag(@account.photo) %>
+    <% else %>
+      <div style="background-color: #333; width: 960px; height: 180px;">
+        <div class="heading11" style="text-align: center; padding-top: 60px">
+          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
+        </div>
+      </div>
+    <% end %>
 
+    <div style="margin: 0px 20px 0px 20px;">
+      <div class="heading28 brown" style="margin-top: 10px">
+        <%= @account.name %>
+      </div>
+
+      <div class="heading10">
+        <%#= "#{@mission.city.name}, #{@mission.city.state}" %>
+      </div>
+
+      <p>
+        <%= @account.description %>
+      </p>
+    </div>
+
+  </div><!-- end full page -->
+  <%= Mission.first.title %>
+
+<% else %>
   <div class="full-page white">
     <% if @account.photo.present? %>
       <%= image_tag(@account.photo) %>
@@ -88,6 +102,7 @@
     <% end %>
   </div>
 
+  <% if @account.missions.present? %>
   <div class="page-main">
 
     <div style="float: left; argin-bottom: 30px; height: 250px">
@@ -146,5 +161,6 @@
     <img src="http://kammok.files.wordpress.com/2011/10/307882_10150266185336496_83048466495_8097797_75821_n.jpg" width="50%">
   </div>
 
+  <% end %>
 
 <% end %>

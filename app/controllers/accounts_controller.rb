@@ -39,8 +39,29 @@ class AccountsController < ApplicationController
   end
 
   def show
-    # admins only
     @account = current_account
+    if current_account == Account.where(:id => 2).first
+      @courses = Course.order(:starts_at, :created_at)
+    elsif current_account == Account.where(:id => 5).first
+      @mission = Mission.where(:id => 7).first
+      @users = @mission.users
+      @courses = @mission.courses.where(:status => "live")
+      @course = Course.new
+      @topic = Topic.new
+      @invite = Invite.new
+      @invite.invitable_id = params[:invitable_id]
+      @invite.invitable_type = params[:invitable_type]
+      @invite.inviter = current_user
+      session["user_return_to"] = 'missions/show'
+      render "missions/show"
+    else
+      @courses = Course.active.order(:starts_at, :created_at)
+    end
+    unless community_site?
+      @courses = @courses.where(:account_id => current_account.id)
+    end
+    @courses = @courses.paginate(:page => params[:page], :per_page => 99)
+
   end
 
   def update
