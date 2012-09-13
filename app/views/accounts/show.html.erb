@@ -10,33 +10,7 @@
   </div>
 
 <% elsif current_account == Account.where(:id => 5).first %>
-  <div class="full-page white">
-    <% if @account.photo.present? %>
-      <%= image_tag(@account.photo) %>
-    <% else %>
-      <div style="background-color: #333; width: 960px; height: 180px;">
-        <div class="heading11" style="text-align: center; padding-top: 60px">
-          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
-        </div>
-      </div>
-    <% end %>
-
-    <div style="margin: 0px 20px 0px 20px;">
-      <div class="heading28 brown" style="margin-top: 10px">
-        <%= @account.name %>
-      </div>
-
-      <div class="heading10">
-        <%#= "#{@mission.city.name}, #{@mission.city.state}" %>
-      </div>
-
-      <p>
-        <%= @account.description %>
-      </p>
-    </div>
-
-  </div><!-- end full page -->
-  <%= Mission.first.title %>
+  <%=
 
 <% else %>
   <div class="full-page white">
