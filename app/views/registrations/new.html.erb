@@ -1,4 +1,4 @@
-<% if community_site? %>
+
   <div class="full-page white">
     <div style="padding: 20px">
 
@@ -27,21 +27,3 @@
 
     </div>
   </div>
-
-<% else %>
-  <div class="container_16 middle" id="middle_events">
-    <div class="page-section-float-left">
-      <div class="heading25 dark_grey">Sign up</div>
-      <%= render 'form' %>
-    </div>
-
-    <hr><br>
-
-    <div class="page-section-float-left">
-      <div class="heading15 sidebar">Already have an account? Sign in here:</div>
-      <%= render 'sessions/form' %>
-    </div>
-  </div>
-
-<% end %>
-
