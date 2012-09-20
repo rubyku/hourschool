@@ -48,8 +48,6 @@ class AccountsController < ApplicationController
     unless community_site?
       @courses = @courses.where(:account_id => current_account.id)
     end
-    @courses = @courses.paginate(:page => params[:page], :per_page => 99)
-
   end
 
   def update
