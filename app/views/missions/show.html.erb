@@ -117,7 +117,7 @@
 
 <div class="white full-page">
   <div class="mission-section-header">
-    <div class="heading11" style="color: white">Begin this mission by going to a class, working session, or happy hour!</div>
+    <div class="heading11" style="color: white">Attend a class, working session, or happy hour.</div>
   </div>
 
   <div class="page-main" style="border: 0px solid black; border-right: 1px dashed #eeebeb">
@@ -153,6 +153,19 @@
           <p>There's no upcoming event in this mission -  but you can host one! Everyone in the mission is encouraged to organize events. It can be a class, a working session, or even a happy hour. Use this opportunity to get to know others who are also interested in the same mission. Add yours today!</p>
           <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>
         </div>
+
+        <div class="modal hide" id="addAnEvent"><!-- Modal BEGIN -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Add an event</h3>
+          </div>
+          <div class="modal-body">
+            <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+            <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+            <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+            <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+          </div>
+        </div><!-- Modal END -->
 
       <% end %>
 
@@ -235,9 +248,9 @@
       <% if @mission.status == 'live' && @courses.where("starts_at > (?)", Time.now).present? %>
         <div class="well" style="float: left">
           <div class="heading11" style="margin-bottom: 20px">Everyone in the mission is encouraged to organize events. Add yours today!</div>
-          <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>
+          <a class="btn" data-toggle="modal" href="#addAnEvent2">Add an event</a>
 
-          <div class="modal hide" id="addAnEvent"><!-- Modal BEGIN -->
+          <div class="modal hide" id="addAnEvent2"><!-- Modal BEGIN -->
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
               <h3>Add an event</h3>
@@ -261,13 +274,11 @@
 
 <div class="white full-page">
   <div class="mission-section-header">
-    <div class="heading11" style="color: white">These are the resources. Participate and get involved.</div>
+    <div class="heading11" style="color: white">Ask a question, share a tip, keep the conversation going.</div>
   </div>
 
   <div class="page-main"  style="border: 0px solid black; border-right: 1px dashed #eeebeb">
     <div class="page-content">
-
-        <div class="heading11" style="margin-bottom: 20px">Ask a question, share a tip, keep the conversation going.</div>
 
       <div style="float: left; width: 100%">
         <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
