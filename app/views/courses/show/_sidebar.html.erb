@@ -20,11 +20,7 @@
       <% if course.sold_out? || course.inactive? %>
         <%#= button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get %>
       <% else %>
-        <% if community_site? %>
-          <%= button_to "Sign me up!",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn btn-warning #{'tooFarToRegister' unless course.near_user?(current_user) }", :style => "color: white" %>
-        <% else %>
-          <%= button_to "Register", payments_paypal_requests_path(:course_id => course.id), :method => :POST, :class => "btn" %>
-        <% end %>
+        <%= button_to "Sign me up!",    new_course_attendee_registration_path(:course_id => course), :method => :get, :class => "btn btn-warning #{'tooFarToRegister' unless course.near_user?(current_user) }", :style => "color: white" %>
       <% end %>
     <% end %>
     <% if can? :edit_course, course %>
