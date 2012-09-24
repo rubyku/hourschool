@@ -59,5 +59,14 @@ module HourschoolV2
     # config.assets.precompile += ['screen.css']
 
     config.autoload_paths += Dir["#{config.root}/lib/concerns/models/*"]
+
+    #https://github.com/plataformatec/devise/wiki/How-To%3a-Send-emails-from-subdomains
+    config.to_prepare do
+      Devise::Mailer.class_eval do
+        helper :subdomain
+      end
+    end
+
+
   end
 end
