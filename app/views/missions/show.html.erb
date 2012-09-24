@@ -1,4 +1,21 @@
-<% if @mission.id != 7 %>
+<style type="text/css">
+  a.c61-nav-heading{color: white;}
+  a.c61-nav-heading:visited{color: white;}
+  a.c61-nav-heading:hover{color: black; background-color: #ccc;}
+</style>
+
+<% if @mission.id == 7 %>
+
+    <ul class="nav">
+      <li class="dropdown" id="menu5" style="float: left; margin-right: 30px; margin-bottom: 30px">
+        <%= link_to "My Events", '/dashboards/me', :class => "c61-nav-heading" %>
+      </li>
+      <li class="dropdown" id="menu6" style="float: left; margin-right: 30px; margin-bottom: 30px">
+        <%= link_to "Edit My Profile", edit_user_registration_path, :class => "c61-nav-heading" %>
+      </li>
+    </ul>
+
+<% else %>
   <%= render 'missions/show/tutorial' %>
   <%= render 'missions/show/invitee_landing_page' %>
   <div class="full-page white">
