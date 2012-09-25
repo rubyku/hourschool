@@ -126,24 +126,7 @@
     </div><!-- modal ends -->
   <% end %>
 
-  <%# Notice Bar if user is unconfirmed %>
-  <% if current_user && !current_user.confirmed? %>
-    <div class='userConfirm'>
-      <div class='container_16'>
-        <p>
-          <span class='reminder'>
-            A friendly Reminder
-          </span>
-          <span class='whiteText'>
-            Please confirm your account with the verification email we sent.
-          </span>
-          <span class='whiteText_link', style="text-decoration: underline; margin-left: 30px">
-            <%=  link_to 'Send Email Again', user_confirmation_path(:user => { :email => current_user.email }), :method => :post %>
-          </span>
-        </p>
-      </div>
-    </div>
-  <% end %>
+
 
   <%# Header %>
   <% if community_site? %>

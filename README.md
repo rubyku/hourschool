@@ -122,29 +122,29 @@ Here is the process Richard was able to take to make solr start working again. B
 
 
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → rm -rf solr/
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → ps aux |grep solr
 rubyku         11998   0.0  0.7  2820704  60836   ??  Ss    7:59pm   0:56.51 /usr/bin/java -Djetty.port=8982 -Dsolr.data.dir=/Users/rubyku/Desktop/hourschool_v2/solr/data/development -Dsolr.solr.home=/Users/rubyku/Desktop/hourschool_v2/solr -Djava.util.logging.config.file=/var/folders/r6/nv2w5w9s1cz_lrpfp596gvnh0000gn/T/logging.properties20120209-11998-124njea -jar start.jar
 rubyku          4415   0.0  0.9  2828832  76236   ??  Ss    4:49pm   1:09.12 /usr/bin/java -Djetty.port=8982 -Dsolr.data.dir=/Users/rubyku/Desktop/hourschool_v2/solr/data/development -Dsolr.solr.home=/Users/rubyku/Desktop/hourschool_v2/solr -Djava.util.logging.config.file=/var/folders/r6/nv2w5w9s1cz_lrpfp596gvnh0000gn/T/logging.properties20120209-4415-12vcbm6 -jar start.jar
 rubyku         40704   0.0  0.0  2434892    536 s000  S+   10:17am   0:00.00 grep solr
 
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → kill -9 11998
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → ps aux |grep solr
 rubyku          4415   0.0  0.9  2828832  76236   ??  Ss    4:49pm   1:09.13 /usr/bin/java -Djetty.port=8982 -Dsolr.data.dir=/Users/rubyku/Desktop/hourschool_v2/solr/data/development -Dsolr.solr.home=/Users/rubyku/Desktop/hourschool_v2/solr -Djava.util.logging.config.file=/var/folders/r6/nv2w5w9s1cz_lrpfp596gvnh0000gn/T/logging.properties20120209-4415-12vcbm6 -jar start.jar
 rubyku         40750   0.0  0.0  2425480     24 s000  R+   10:17am   0:00.00 grep solr
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → kill -9 4415
 
 
-ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)   
+ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 → rake sunspot:solr:start
 
 
@@ -163,7 +163,13 @@ http://localhost:3000/mail_view/student_mailer/preview
 
 heroku db:pull --tables users,courses
 
-or 
+or
 
 bundle exec rake pgbackup:seed
 Check out the readme for setup requirements: https://github.com/chap/pgbackup-tasks
+
+##Logs
+
+When using pow and want to view logs, go back to project directory
+
+tail -f log/development.log

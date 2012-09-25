@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
   devise :omniauthable
 
   attr_accessor :dont_send_reg_email
@@ -68,12 +68,22 @@ class User < ActiveRecord::Base
   after_save   :update_location_database
   after_create :send_reg_email, :unless => Proc.new {|u| u.dont_send_reg_email}
 
+
+  accepts_nested_attributes_for :memberships
+
+
+
   include User::Omniauth
   include User::Facebook
   include User::FollowingMethods
 
   def unsubscribed?(key)
     !wants?(key)
+  end
+
+  def subdomain
+    return "" if memberships.blank?
+    self.memberships.last.account.subdomain
   end
 
   def wants?(key)
