@@ -329,5 +329,138 @@
 
   </div>
 
+<% elsif current_account == Account.where(:id => 4).first %>
+
+  <div class="page-main" style="width: 686px; border: 0px solid black">
+
+    <div style="margin-bottom: 30px; width: 686px; float: left">
+      <div class="heading11">Classes attended:</div>
+      <% @user.courses_attended.where(:account_id => 4).each do |course| %>
+        <div class="classBlock">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+          <br>
+          <div class="class-description" style="float: left; width: 170px">
+            <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+            <p><%= course.description.truncate(70) %></p>
+          </div>
+          <div class="class-note">
+            <div class="heading9-class">
+              <% if course.active? %>
+                <% if course.max_seats.blank? %>
+                  <%= "Unlimited seats" %>
+                <% elsif course.seats_left == 0 %>
+                  <%= "Full! |" %>
+                <% else %>
+                  <%= "#{course.seats_left} seats left" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div><!-- end classBlock -->
+      <% end %>
+    </div>
+
+    <div class="heading11">Classes taught:</div>
+    <% @user.courses_taught.where(:account_id => 4).each do |course| %>
+      <div class="classBlock">
+        <% if course.photo.present? %>
+          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+        <% else %>
+          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+        <% end %>
+        <br>
+        <div class="class-description" style="float: left; width: 170px">
+          <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+          <p><%= course.description.truncate(70) %></p>
+        </div>
+        <div class="class-note">
+          <div class="heading9-class">
+            <% if course.active? %>
+              <% if course.max_seats.blank? %>
+                <%= "Unlimited seats" %>
+              <% elsif course.seats_left == 0 %>
+                <%= "Full! |" %>
+              <% else %>
+                <%= "#{course.seats_left} seats left" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end classBlock -->
+    <% end %>
+
+  </div>
+
+<% elsif current_account == Account.where(:id => 5).first %>
+
+  <div class="page-main" style="width: 686px; border: 0px solid black">
+
+    <div style="margin-bottom: 30px; width: 686px; float: left">
+      <div class="heading11">Events attended:</div>
+      <% @user.courses_attended.where(:account_id => 5).each do |course| %>
+        <div class="classBlock">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+          <br>
+          <div class="class-description" style="float: left; width: 170px">
+            <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+            <p><%= course.description.truncate(70) %></p>
+          </div>
+          <div class="class-note">
+            <div class="heading9-class">
+              <% if course.active? %>
+                <% if course.max_seats.blank? %>
+                  <%= "Unlimited seats" %>
+                <% elsif course.seats_left == 0 %>
+                  <%= "Full! |" %>
+                <% else %>
+                  <%= "#{course.seats_left} seats left" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div><!-- end classBlock -->
+      <% end %>
+    </div>
+
+    <div class="heading11">Events organized:</div>
+    <% @user.courses_taught.where(:account_id => 5).each do |course| %>
+      <div class="classBlock">
+        <% if course.photo.present? %>
+          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+        <% else %>
+          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+        <% end %>
+        <br>
+        <div class="class-description" style="float: left; width: 170px">
+          <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+          <p><%= course.description.truncate(70) %></p>
+        </div>
+        <div class="class-note">
+          <div class="heading9-class">
+            <% if course.active? %>
+              <% if course.max_seats.blank? %>
+                <%= "Unlimited seats" %>
+              <% elsif course.seats_left == 0 %>
+                <%= "Full! |" %>
+              <% else %>
+                <%= "#{course.seats_left} seats left" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end classBlock -->
+    <% end %>
+
+  </div>
+
+
 <% end %>
 
