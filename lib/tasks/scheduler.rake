@@ -40,9 +40,9 @@ namespace :schedule do
     puts "Sending class proposal reminder emails..."
     pending_courses = Course.where("status = ? AND updated_at < ? AND updated_at > ?", "approved", 7.days.ago, 8.days.ago)
     pending_courses.each do |course|
-      if course.account.nil? 
+      if course.account.nil?
         current_account = nil
-      else 
+      else
         current_account = course.account
       end
         TeacherMailer.send_course_proposal_reminder(course, current_account).deliver
@@ -55,9 +55,9 @@ namespace :schedule do
     courses_in_3_days = Course.where("date = :todays_date AND status = :live", {:todays_date => 3.days.from_now, :live => "live"})
     courses_in_3_days.each do |course|
       students = course.students
-      if course.account.nil? 
+      if course.account.nil?
         current_account = nil
-      else 
+      else
         current_account = course.account
       end
       if students.size < course.min_seats
@@ -72,12 +72,12 @@ namespace :schedule do
 
   task :send_day_of_reminder_emails => :environment do
     puts "Sending day of reminder emails..."
-    courses_today = Course.where("date = :todays_date AND status = :live", {:todays_date => Date.today, :live => "live"})
+    courses_today = Course.where("starts_at = :todays_date AND status = :live", {:todays_date => Date.today, :live => "live"})
     courses_today.each do |course|
       students = course.students
-      if course.account.nil? 
+      if course.account.nil?
         current_account = nil
-      else 
+      else
         current_account = course.account
       end
       if students.size >= course.min_seats
@@ -114,9 +114,9 @@ namespace :schedule do
     courses_yesterday = Course.where("(:yesterdays_date = date) AND status = :live", {:yesterdays_date => Date.yesterday, :live => "live"})
     courses_yesterday.each do |course|
       students = course.students
-      if course.account.nil? 
+      if course.account.nil?
         current_account = nil
-      else 
+      else
         current_account = course.account
       end
       if students.size >= course.min_seats
