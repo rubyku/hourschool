@@ -49,6 +49,26 @@
 
       <div class="heading9 bold" style="color: #999;">
         - <%= link_to @mission.creator.name, @mission.creator %>, mission creator
+
+  <div class="mission-status-box">
+    <div style="width: 240px; float: right">
+      <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
+      <% if !current_user || (current_user && current_user.crewmanships.where(:mission_id => @mission).blank?) %>
+        <%= link_to "Follow Mission", mission_crewmanships_path(@mission), :method => :post, :class => "btn btn-warning right", :style => "color: white" %>
+      <% elsif current_user && current_user.crewmanships.where(:mission_id => @mission).present? %>
+        <div class="btn btn-warning right disabled" style="color: white">Following Mission</div>
+      <% end %>
+    </div>
+
+    <!-- Modal BEGIN -->
+    <div class="modal hide" id="tinyLetter">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Invite someone to this mission</h3>
+      </div>
+      <div class="modal-body">
+        <%= render 'invites/form' %>
+
       </div>
     </div>
 
