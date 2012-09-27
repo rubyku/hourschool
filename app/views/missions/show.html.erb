@@ -155,11 +155,14 @@
 <div class="white full-page">
   <div class="mission-section-header">
     <div class="heading11" style="color: white">Attend a class, a workshop, or happy hour.</div>
+    <div class="heading11" style="color: white; text-align: right; margin-top: -17px">
+      <%= link_to "View all events", mission_courses_path(@mission), :style => "color: white; text-decoration: underline" %>
+    </div>
   </div>
   <div class="page-content">
 
-    <% if @mission.courses.where("starts_at > (?)", Time.now).count >= 4 %>
-      <% @mission.courses.limit(4).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.now).count >= 4 %>
+      <% @courses.limit(4).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -169,6 +172,9 @@
           <div class="class-description" style="float: left; width: 170px">
             <div class="heading13 brown">
               <%= link_to course.title.truncate(50), course %>
+            </div>
+            <div class="heading10" style="font-weight: 400">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
             </div>
             <p><%= course.description.truncate(70) %></p>
           </div>
@@ -190,8 +196,8 @@
       <% end %>
     <% end %>
 
-    <% if @mission.courses.where("starts_at > (?)", Time.now).count == 3 %>
-      <% @mission.courses.where("starts_at > (?)", Time.now).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.now).count == 3 %>
+      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -202,46 +208,15 @@
             <div class="heading13 brown">
               <%= link_to course.title.truncate(50), course %>
             </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
-        </div>
-      <% end %>
-
-      <% @mission.courses.where("starts_at < (?)", Time.now).limit(1).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @mission.courses.where("starts_at > (?)", Time.now).count == 2 %>
-      <% @mission.courses.where("starts_at > (?)", Time.now).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
+            <div class="heading10" style="font-weight: 400">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
             </div>
             <p><%= course.description.truncate(70) %></p>
           </div>
         </div>
       <% end %>
 
-      <% @mission.courses.where("starts_at < (?)", Time.now).limit(2).each do |course| %>
+      <% @courses.where("starts_at < (?)", Time.now).limit(1).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -258,8 +233,27 @@
       <% end %>
     <% end %>
 
-    <% if @mission.courses.where("starts_at > (?)", Time.now).count == 1 %>
-      <% @mission.courses.where("starts_at > (?)", Time.now).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.now).count == 2 %>
+      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
+        <div class="classBlock">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+          <div class="class-description" style="float: left; width: 170px">
+            <div class="heading13 brown">
+              <%= link_to course.title.truncate(50), course %>
+            </div>
+            <div class="heading10" style="font-weight: 400">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+            </div>
+            <p><%= course.description.truncate(70) %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <% @courses.where("starts_at < (?)", Time.now).limit(2).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -274,8 +268,29 @@
           </div>
         </div>
       <% end %>
+    <% end %>
 
-      <% @mission.courses.where("starts_at < (?)", Time.now).limit(3).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.now).count == 1 %>
+      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
+        <div class="classBlock">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+          <div class="class-description" style="float: left; width: 170px">
+            <div class="heading13 brown">
+              <%= link_to course.title.truncate(50), course %>
+            </div>
+            <div class="heading10" style="font-weight: 400">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+            </div>
+            <p><%= course.description.truncate(70) %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <% @courses.where("starts_at < (?)", Time.now).limit(3).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -309,8 +324,8 @@
           </div><!-- Modal END -->
     <% end %>
 
-    <% if @mission.courses.where("starts_at > (?)", Time.now).count == 0 %>
-      <% @mission.courses.where("starts_at < (?)", Time.now).limit(4).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.now).count == 0 %>
+      <% @courses.where("starts_at < (?)", Time.now).limit(4).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -322,10 +337,6 @@
               <%= link_to course.title.truncate(50), course %>
               <p><%= course.description.truncate(45) %></p>
             </div>
-          </div>
-          <div class="class-note">
-            <div class="heading11" style="font-weight: 700; text-transform: none; margin-bottom: 2px"><%= course.starts_at.strftime("%a %b %d, %l:%M%p") %></div>
-            <p><%= link_to "Sign up", course, :class => "btn btn-mini btn-warning", :style => "color: white" %></p>
           </div>
         </div>
       <% end %>

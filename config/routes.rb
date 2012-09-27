@@ -8,6 +8,7 @@ HourschoolV2::Application.routes.draw do
 
   resources :missions do
     resources :topics
+    resources :courses
     resources :crewmanships do
     end
   end
@@ -101,7 +102,6 @@ HourschoolV2::Application.routes.draw do
   resources :accounts
 
   match 'confirm_payment'             => 'payments#confirm'
-
 
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'

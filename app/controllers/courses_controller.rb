@@ -3,6 +3,22 @@ class CoursesController < ApplicationController
   before_filter :authenticate_admin!, :only => [:index, :approve]
   before_filter :restrict_draft_access!, :only => [:show]
 
+
+  # missions/:mission_id/courses
+  def index
+    @mission  = Mission.find(params[:mission_id])
+    @users    = @mission.users
+    @courses  = @mission.courses.where(:status => "live").order("starts_at DESC")
+    @course   = Course.new
+    @topic = Topic.new
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
+    session["user_return_to"] = mission_courses_path(@mission)
+  end
+
+
   def new
     @course = Course.new
     @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
