@@ -89,7 +89,9 @@
         <div style="font-size: 10px">
           <%= "#{time_ago_in_words comment.created_at} ago" %>
         </div>
-        <%= simple_format Rinku.auto_link(comment.body) %>
+        <div style="font-weight: 400; overflow: hidden">
+          <%= simple_format Rinku.auto_link(comment.body) %>
+        </div>
         <% if comment.comment_type == 'file' %>
           <%= link_to comment.photo_file_name, comment.photo.url %>
         <% elsif comment.comment_type == 'photo' %>
@@ -116,7 +118,9 @@
               <div style="font-size: 10px">
                 <%= "#{time_ago_in_words child_comment.created_at} ago" %>
               </div>
-              <%= simple_format Rinku.auto_link(child_comment.body) %>
+              <div style="font-weight: 400; overflow: hidden">
+                <%= simple_format Rinku.auto_link(child_comment.body) %>
+              </div>
             </div>
             </div>
         <% end %><!-- end child-comment each block -->

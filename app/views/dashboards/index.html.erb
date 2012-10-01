@@ -41,7 +41,7 @@
               <%= link_to course.title, course, :style => "font-weight: 400" %>
             </div>
             <div class="dashboard-event-time">
-              <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l%P")}" %> | <%= course.place_name %>
+              <%= "#{course.starts_at.strftime("%l:%M%P")}" %> | <%= course.place_name %>
             </div>
           </div>
         <% end %>
@@ -59,7 +59,7 @@
               <%= link_to course.title, course, :style => "font-weight: 400" %>
             </div>
             <div class="dashboard-event-time">
-              <%= "#{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l%P")}" %> | <%= course.place_name %>
+              <%= "#{course.starts_at.strftime("%l:%M%P")}" %> | <%= course.place_name %>
             </div>
           </div>
         <% end %>

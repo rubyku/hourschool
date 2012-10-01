@@ -11,7 +11,9 @@
   <div style="margin-bottom: 10px">
   	<%= link_to comment.user.name, comment.user %> left a comment in <%= link_to full_mission_title(comment.mission), comment.mission %>
   </div>
-  <%= simple_format Rinku.auto_link(comment.body) %>
+  <div style="font-weight: 400; overflow: hidden">
+    <%= simple_format Rinku.auto_link(comment.body) %>
+  </div>
   <% if comment.comment_type == 'file' %>
     <%= link_to comment.photo_file_name, comment.photo.url %>
   <% elsif comment.comment_type == 'photo' %>
