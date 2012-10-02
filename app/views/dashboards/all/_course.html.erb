@@ -10,12 +10,6 @@
   <div class="heading16 adelle"><%= link_to course.title, course, :style => "font-weight: 400" %></div>
   <div class="heading9">New event posted to <%= link_to "#{course.mission.verb} #{course.mission.title}", course.mission %></div>
   <p style="margin: 10px 0px 20px 0px"><%= course.description %></p>
-  <div style="margin-bottom: 5px; margin-right: 25px; float: left">
-  <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
-    <%= "#{course.city.name}, #{course.city.state}" %><br>
-  </div>
 
-  <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
-  <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
 </div>
 
