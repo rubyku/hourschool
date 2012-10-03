@@ -305,7 +305,7 @@
       <% end %>
     <% end %>
 
-    <% if @mission.status == 'live' && @courses.where("starts_at > (?)", Time.now).present? %>
+    <% if @mission.status == 'live' %>
       <div class="well" style="float: left">
         <div class="heading11" style="float: left">Everyone in the mission is encouraged to organize events. Add yours today!</div>
         <a class="btn" data-toggle="modal" href="#addAnEvent2" style="float: left; margin-left: 30px; margin-top: -5px">Add an event</a>
