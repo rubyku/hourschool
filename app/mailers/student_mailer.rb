@@ -6,16 +6,15 @@ class StudentMailer < ActionMailer::Base
     @course = course
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is 3 days away and needs more students!")
   end
+
 
   def send_positive_confirmation(student, course, current_account)
     @student = student
     @course = course
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is today!")
   end
 
@@ -24,7 +23,6 @@ class StudentMailer < ActionMailer::Base
     @course = course
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for has been canceled")
   end
 
@@ -34,7 +32,6 @@ class StudentMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "Let us know how class went!")
   end
 
@@ -43,7 +40,6 @@ class StudentMailer < ActionMailer::Base
     @course          = course
     @teacher         = course.teacher
     @teacher_message = msg
-    Time.zone = @student.time_zone
     mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "Your course was canceled")
   end
 

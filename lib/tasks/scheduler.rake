@@ -71,8 +71,11 @@ namespace :schedule do
   end
 
   task :send_day_of_reminder_emails => :environment do
+
     puts "Sending day of reminder emails..."
-    courses_today = Course.where("date = :todays_date AND status = :live", {:todays_date => Date.today, :live => "live"})
+
+    courses = Course.where("DATE(starts_at) = DATE(?)", Time.zone.now.to_date).where(:status => 'live')
+
     courses_today.each do |course|
       students = course.students
       if course.account.nil?

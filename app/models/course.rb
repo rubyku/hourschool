@@ -281,6 +281,11 @@ class Course < ActiveRecord::Base
     return true
   end
 
+  # to find the current day you could call Course.on(Time.now) or Course.on(DateTime.parse("2012-10-14"))
+  def self.on(date)
+    where("starts_at > :beginning and starts_at < :ends", :beginning => date.beginning_of_day, :ends => date.end_of_day)
+  end
+
   def reprocess_photo
     photo.reprocess!
   end

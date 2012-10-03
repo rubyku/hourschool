@@ -6,7 +6,6 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/preview/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/preview/#{@course.id}"
-    Time.zone = @teacher.time_zone
     mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Your class, #{@course.title}, has been approved, but you have not made it live yet!")
   end
 
@@ -15,7 +14,6 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @teacher.time_zone
     mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Your class needs more students!")
   end
 
@@ -24,7 +22,6 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @teacher.time_zone
     mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Reminder: You're teaching #{@course.title} today!")
   end
 
@@ -33,7 +30,6 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @teacher.time_zone
     mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "#{@course.title} didn't get enough students")
   end
 
@@ -42,7 +38,6 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    Time.zone = @teacher.time_zone
     mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Let us know how class went!")
   end
 

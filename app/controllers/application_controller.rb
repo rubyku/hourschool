@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :set_timezone, :eventual_warm_facebook_cache, :hide_private_accounts
+  before_filter :debug, :ensure_domain, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
@@ -102,14 +102,6 @@ class ApplicationController < ActionController::Base
 
     def skip_if_logged_in
       redirect_to explore_path if current_user.present?
-    end
-
-
-    # 'America/New_York'
-    def set_timezone
-      Time.zone = TZInfo::Timezone.get(current_user.time_zone) if current_user.present? && current_user.time_zone.present?
-    rescue => ex
-      send_error_to_new_relic(ex)
     end
 
     def previous_path_or(url)
