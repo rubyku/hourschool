@@ -47,7 +47,7 @@
 
       <div id="live" class="section" style="display:none;">
         <div class="heading15 marcomm">Live classes:</div>
-        <% @courses.each do |course| %>
+        <% @courses.order('DATE(starts_at) DESC').each do |course| %>
           <div class="classBlock">
             <% if course.photo.present? %>
               <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
