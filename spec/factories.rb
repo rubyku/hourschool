@@ -1,6 +1,6 @@
 FactoryGirl.define do
   sequence :email do |n|
-    "person_#{ Time.now.to_i }_#{n}@example.com"
+    "person_#{ Time.zone.now.to_i }_#{n}@example.com"
   end
 
   sequence :course_name do
@@ -55,8 +55,8 @@ FactoryGirl.define do
     time_zone     "America/Chicago"
     password      { Forgery(:basic).password }
     bio           { Forgery(:lorem_ipsum).words(rand(10)) }
-    confirmed_at  { Time.now }
-    billing_day_of_month { Time.now.day }
+    confirmed_at  { Time.zone.now }
+    billing_day_of_month { Time.zone.now.day }
   end
 
 

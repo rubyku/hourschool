@@ -187,7 +187,7 @@ class Course < ActiveRecord::Base
   end
 
   def day_of_the_week_next_week
-    Time.now.next_week(day_of_the_week_sym)
+    Time.zone.now.next_week(day_of_the_week_sym)
   end
 
 
@@ -281,7 +281,7 @@ class Course < ActiveRecord::Base
     return true
   end
 
-  # to find the current day you could call Course.on(Time.now) or Course.on(DateTime.parse("2012-10-14"))
+  # to find the current day you could call Course.on(Time.zone.now) or Course.on(DateTime.parse("2012-10-14"))
   def self.on(date)
     where("starts_at > :beginning and starts_at < :ends", :beginning => date.beginning_of_day, :ends => date.end_of_day)
   end

@@ -6,7 +6,7 @@ Why its so great.
 ~40 some veg 1/8th
 
 
-6pm 1616 Guadalupe Rm: 1.208 
+6pm 1616 Guadalupe Rm: 1.208
 
 
 
@@ -74,7 +74,7 @@ repeats_for.times do
   SeriesSchedule.new(date: date, go_live: go_live, time: params[:time], series_id: params[:series_id] )
 end
 
-schedules = SeriesSchedule.where('DATE(go_live) = DATE(?)', Time.now )
+schedules = SeriesSchedule.where('DATE(go_live) = DATE(?)', Time.zone.now )
 schedules.each do |schedule|
   last_course = schedule.series.course.last
   Course

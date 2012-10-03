@@ -1,9 +1,9 @@
 <style type="text/css">
   .mission-stats-16{
-    position: relative; 
-    z-index: 100; 
-    margin-top: 8px; 
-    margin-left: 55px; 
+    position: relative;
+    z-index: 100;
+    margin-top: 8px;
+    margin-left: 55px;
     font-weight: 700;
   }
 
@@ -37,7 +37,7 @@
         <div style="float: left; width: 472px;">
 
           <div style="float: left; margin: 0px 20px 20px 0px">
-            
+
             <div class="heading16 futura mission-stats-16">
               <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
             </div>
@@ -47,21 +47,21 @@
 
           <div style="float: left; margin: 0px 20px 20px 0px">
             <div class="heading16 futura mission-stats-16">
-              <%= (Time.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
+              <%= (Time.zone.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
             </div>
             <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
             <%= image_tag 'v3/stats-mission-days.png', :style => "margin-top: -44px" %>
           </div>
-          
+
           <div style="float: left;">
             <div class="heading16 futura mission-stats-16">
               <%= @crewmanship.mission.comments.where(:user_id => @user).count %>
-            </div>  
+            </div>
             <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
             <%= image_tag 'v3/stats-comments-made.png', :style => "margin-top: -44px" %>
           </div>
-          
-          <div style="float: left; margin: 0px 20px 20px 0px">  
+
+          <div style="float: left; margin: 0px 20px 20px 0px">
             <div class="heading16 futura mission-stats-16">
               <%= @crewmanship.user.courses_taught.where(:mission_id => @crewmanship.mission).count %>
             </div>
@@ -69,23 +69,23 @@
             <%= image_tag 'v3/stats-events-organized.png', :style => "margin-top: -44px" %>
           </div>
 
-          <div style="float: left; margin: 0px 20px 20px 0px">                    
+          <div style="float: left; margin: 0px 20px 20px 0px">
             <div class="heading16 futura mission-stats-16">
               <%= @crewmanship.user.courses_attended.where(:mission_id => @crewmanship.mission).count %>
             </div>
             <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
             <%= image_tag 'v3/stats-events-attended.png', :style => "margin-top: -44px" %>
           </div>
-          
+
           <div style="float: left;">
             <div class="heading16 futura mission-stats-16">
               <%= @crewmanship.mission.topics.count %>
             </div>
             <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
-            <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %> 
+            <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %>
           </div>
         </div>
- 
+
    </div>
 </div>
 

@@ -146,7 +146,7 @@
           <% if @course.teacher == current_user %>
             <%= link_to "Edit event", edit_course_path %><br>
             <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
-            <% if @course.starts_at > Time.now %>
+            <% if @course.starts_at > Time.zone.now %>
               <%= link_to "Cancel this event", "" %><br>
               <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% else %>
@@ -155,7 +155,7 @@
             <% end %>
           <% else %><!-- if current_user is not this course's teacher -->
             <a data-toggle="modal" href="#emailOrganizer">Email organizer</a><br>
-            <% if current_user && @course.starts_at > Time.now %>
+            <% if current_user && @course.starts_at > Time.zone.now %>
               <a href="mailto: hello@hourschool.com" target="_blank">Cancel registration</a>
             <% end %>
           <% end %>

@@ -137,7 +137,7 @@
       Don't sweat it. Start with a class, workshop, or happy hour.
     </div>
 
-    <% @courses.where(:account_id => 0).where("starts_at > (?)", Time.now).limit(8).each do |course| %>
+    <% @courses.where(:account_id => 0).where("starts_at > (?)", Time.zone.now).limit(8).each do |course| %>
 
       <div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
         <% if course.photo.present? %>

@@ -7,9 +7,9 @@
 
     <div class="page-main" style="border: 0px solid black; border-right: 1px dashed #eeebeb">
       <div class="page-content">
-        <% if @courses.where("starts_at > (?)", Time.now).present? %>
-          <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.now).count %>)</div>
-          <% @courses.where("starts_at > (?)", Time.now).order('starts_at asc').first(3).each do |course| %>
+        <% if @courses.where("starts_at > (?)", Time.zone.now).present? %>
+          <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.zone.now).count %>)</div>
+          <% @courses.where("starts_at > (?)", Time.zone.now).order('starts_at asc').first(3).each do |course| %>
             <div class="mission-divider">
               <div style="float: left; margin-right: 20px">
                 <%= link_to (image_tag(course.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),course if course.photo.present? %>
@@ -46,8 +46,8 @@
             <h3>All events at Center61 %></h3>
           </div>
           <div class="modal-body">
-            <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.now).count %>)</div>
-            <% @courses.where(:status => "live").where("starts_at > (?)", Time.now).order('starts_at asc').each do |course| %>
+            <div class="heading11" style="float: left; margin-bottom: 20px">Upcoming events (<%= @courses.where("starts_at > (?)", Time.zone.now).count %>)</div>
+            <% @courses.where(:status => "live").where("starts_at > (?)", Time.zone.now).order('starts_at asc').each do |course| %>
               <div class="mission-divider">
                 <div style="float: left; margin-right: 20px">
                   <%= link_to (image_tag(course.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),course if course.photo.present? %>
@@ -71,8 +71,8 @@
               </div>
             <% end %>
 
-            <div class="heading11" style="float: left; margin-bottom: 20px">Past events (<%= @courses.where("starts_at < (?)", Time.now).count %>)</div>
-            <% @courses.where(:status => "live").where("starts_at < (?)", Time.now).order('starts_at asc').each do |course| %>
+            <div class="heading11" style="float: left; margin-bottom: 20px">Past events (<%= @courses.where("starts_at < (?)", Time.zone.now).count %>)</div>
+            <% @courses.where(:status => "live").where("starts_at < (?)", Time.zone.now).order('starts_at asc').each do |course| %>
               <div class="mission-divider">
                 <div style="float: left; margin-right: 20px">
                   <%= link_to (image_tag(course.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),course if course.photo.present? %>
@@ -101,9 +101,9 @@
 
     <div style="float: left; width: 329px">
       <div class="page-content">
-        <% if @courses.where("starts_at < (?)", Time.now).present? %>
-          <div class="heading11" style="margin-bottom: 20px">Past events (<%= @courses.where("starts_at < (?)", Time.now).count %>)</div>
-          <% @courses.where("starts_at < (?)", Time.now).order('starts_at asc').first(4).each do |course| %>
+        <% if @courses.where("starts_at < (?)", Time.zone.now).present? %>
+          <div class="heading11" style="margin-bottom: 20px">Past events (<%= @courses.where("starts_at < (?)", Time.zone.now).count %>)</div>
+          <% @courses.where("starts_at < (?)", Time.zone.now).order('starts_at asc').first(4).each do |course| %>
             <div class="mission-divider">
               <div style="float: left">
                 <%= link_to course.title, course, :class => "heading16 adelle" %><br>
@@ -116,7 +116,7 @@
             </div>
           <% end %>
         <% end %>
-        <% if @courses.where("starts_at > (?)", Time.now).present? %>
+        <% if @courses.where("starts_at > (?)", Time.zone.now).present? %>
           <div class="well" style="float: left">
             <div class="heading11" style="margin-bottom: 20px">Everyone in the mission is encouraged to organize events. Add yours today!</div>
             <a class="btn" data-toggle="modal" href="#addAnEvent">Add an event</a>

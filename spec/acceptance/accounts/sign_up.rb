@@ -26,7 +26,7 @@ feature "Acceptance Accounts Sign Up" do
       visit new_user_registration_url(:subdomain => account.subdomain)
       fill_in  'user_name',     :with => user_attributes[:name]
       fill_in  'user_zipcode',  :with => user_attributes[:zip]
-      fill_in  'user_email',    :with => "foo_#{Time.now.to_i}@#{account.subdomain}.com"
+      fill_in  'user_email',    :with => "foo_#{Time.zone.now.to_i}@#{account.subdomain}.com"
       fill_in  'user_password', :with => user_attributes[:password]
       fill_in  'user_password_confirmation', :with => user_attributes[:password]
       click_on 'user_submit'

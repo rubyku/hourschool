@@ -90,14 +90,14 @@ describe Crewmanship do
       course.update_attribute(:starts_at, 1.day.ago)
       user = Factory.create(:user)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
-      crewmanship = user.crewmanships.create!(:status => 'canceled', :mission => mission, :canceled_at => Time.now)
+      crewmanship = user.crewmanships.create!(:status => 'canceled', :mission => mission, :canceled_at => Time.zone.now)
       user.balance.should == 10.00
     end
 
     it "a user's first crewmanship (without payment info) should expire" do
       user = Factory.create(:user)
       crewmanship = user.crewmanships.create!(:status => 'active')
-      
+
       crewmanship.make_active_or_expire
 
       crewmanship.status.should == 'trial_expired'
@@ -111,12 +111,12 @@ describe Crewmanship do
       course.update_attribute(:starts_at, 1.day.ago)
       crewmanship = user.crewmanships.create!(:status => 'active', :mission => mission)
       user.create_stripe_customer(test_card)
-      
+
       crewmanship.make_active_or_expire
       user.reload
-      
+
       crewmanship.status.should == 'active'
-      user.billing_day_of_month.should == Time.now.day
+      user.billing_day_of_month.should == Time.zone.now.day
       user.subscription_charges.count == 1
     end
 
@@ -133,7 +133,7 @@ describe Crewmanship do
       user.reload
 
       crewmanship.status.should == 'past_due'
-      user.billing_day_of_month.should == Time.now.day
+      user.billing_day_of_month.should == Time.zone.now.day
       user.subscription_charges.count == 1
     end
 

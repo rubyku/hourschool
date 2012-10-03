@@ -62,7 +62,7 @@ feature "User can join mission" do
       :card => {
         :number => 4242424242424242,
         :exp_month => 01,
-        :exp_year => Time.now.year+1
+        :exp_year => Time.zone.now.year+1
       }
     })
     first_crewmanship = user.crewmanships.create!(:status => 'canceled')
@@ -86,7 +86,7 @@ feature "User can join mission" do
       :card => {
         :number => 4242424242424242,
         :exp_month => 01,
-        :exp_year => Time.now.year+1
+        :exp_year => Time.zone.now.year+1
       }
     })
     first_crewmanship = user.crewmanships.create!(:status => 'past_due')

@@ -109,7 +109,7 @@ class CrewmanshipsController < ApplicationController
   # DELETE /crewmanships/1.json
   def destroy
     @crewmanship = @mission.crewmanships.find(params[:id])
-    @crewmanship.update_attributes(:status => 'canceled', :canceled_at => Time.now)
+    @crewmanship.update_attributes(:status => 'canceled', :canceled_at => Time.zone.now)
 
     respond_to do |format|
       format.html { redirect_to crewmanships_url }

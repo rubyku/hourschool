@@ -11,11 +11,11 @@ describe Series::EventSchedule do
     let(:pst) { TZInfo::Timezone.get('America/Los_Angeles') }
     let(:stub_time) { Time.zone.local(2010, 6, 1, 17, 0, 0)       }
 
-    let(:start_time)  { Time.now.in_time_zone }
+    let(:start_time)  { Time.zone.now.in_time_zone }
 
     let(:end_time)    { 1.year.from_now.in_time_zone }
 
-    let(:schedule_hash) { 
+    let(:schedule_hash) {
       {:start_date  => {:time => start_time.in_time_zone, :zone => "Central Time (US & Canada)"},
        :end_time    => end_time.in_time_zone,
        :rrules      => [{:validations => {:day=>[1]}, :rule_type=>"IceCube::WeeklyRule", :interval=>1}],
@@ -23,7 +23,7 @@ describe Series::EventSchedule do
        :rtimes      => [],
        :extimes     => []}
       }
-      
+
     let(:next_monday) { 1.week.from_now.monday.in_time_zone }
 
     it 'start_end_from_hash' do

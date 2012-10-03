@@ -65,9 +65,9 @@
   </div><br>
 
   <div class="field clearfix">
-    <% if @mission.courses.where("starts_at > (?)", Time.now).any? %>
+    <% if @mission.courses.where("starts_at > (?)", Time.zone.now).any? %>
       <div style="margin-bottom: 5px">Do you want to invite them to attend any of the following events? (optional) </div>
-      <% for course in @mission.courses.where("starts_at > (?)", Time.now).where(:status => "live").find(:all) %>
+      <% for course in @mission.courses.where("starts_at > (?)", Time.zone.now).where(:status => "live").find(:all) %>
         <div style="float: left;">
           <%= radio_button_tag("invite_selection", "course:#{course.id}", checked = false, options = {}) %>
         </div>

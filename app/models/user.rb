@@ -189,14 +189,14 @@ class User < ActiveRecord::Base
 
   def student_for
     all_student_roles = self.roles.where(:name => "student").map(&:course)
-    all_past_classes = self.courses.where(['date < ?', DateTime.now])
+    all_past_classes = self.courses.where(['date < ?', DateTime.zone.now])
     (all_past_classes & all_student_roles).count
 
   end
 
   def teacher_for
       all_teacher_roles = self.roles.where(:name => "teacher").map(&:course)
-      all_past_classes = self.courses.where(['date < ?', DateTime.now])
+      all_past_classes = self.courses.where(['date < ?', DateTime.zone.now])
       (all_past_classes & all_teacher_roles).count
   end
 
@@ -338,7 +338,7 @@ class User < ActiveRecord::Base
       subscription_charges.create(
         :amount => 0,
         :paid => true,
-        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+        :description => "Charge for #{Time.zone.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
       )
       true
     else
@@ -346,7 +346,7 @@ class User < ActiveRecord::Base
         :amount => amount,
         :currency => "usd",
         :customer => stripe_customer.id,
-        :description => "Charge for #{Time.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
+        :description => "Charge for #{Time.zone.now.strftime('%B %D')}. Missions: #{missions.collect(&:title).to_sentence}"
       )
       subscription_charges.create(
         :params => charge.inspect,
@@ -365,7 +365,7 @@ class User < ActiveRecord::Base
 
   #this gets run by the daily rake task which charge customers on their billing date
   def self.monthly_charge
-    User.where(:billing_day_of_month => Time.now.date).each do |user|
+    User.where(:billing_day_of_month => Time.zone.now.date).each do |user|
       user.charge_for_active_crewmanships
     end
   end
@@ -376,7 +376,7 @@ class User < ActiveRecord::Base
   end
 
   def this_months_billing_date
-    one = Time.now
+    one = Time.zone.now
     Date.parse("#{one.year}-#{one.month}-#{billing_day_of_month}")
   end
 

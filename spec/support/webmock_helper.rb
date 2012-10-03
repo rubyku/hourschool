@@ -3,7 +3,7 @@
 # def geo_stub
 #   Geokit::Geocoders::GoogleGeocoder.stub(:geocode => geo_hash)
 # end
-# 
+#
 # def geo_hash(options = {})
 #   {:lat   => 39.999,
 #    :lng   => 39.999,
@@ -75,9 +75,9 @@ def test_card
     :card => {
       :number => 4242424242424242,
       :exp_month => 01,
-      :exp_year => Time.now.year+1
+      :exp_year => Time.zone.now.year+1
     }
-  } 
+  }
 end
 
 def mock_stripe(success=true)
@@ -85,7 +85,7 @@ def mock_stripe(success=true)
     {
       "active_card": {
         "exp_month": 6,
-        "exp_year": #{Time.now.year+1},
+        "exp_year": #{Time.zone.now.year+1},
         "country": "US",
         "last4": "4242",
         "type": "Visa",
@@ -104,7 +104,7 @@ def mock_stripe(success=true)
     {
       "active_card": {
         "exp_month": 6,
-        "exp_year": #{Time.now.year+1},
+        "exp_year": #{Time.zone.now.year+1},
         "country": "US",
         "last4": "4242",
         "type": "Visa",
@@ -137,7 +137,7 @@ def mock_stripe(success=true)
       "amount": 1000,
       "card": {
         "exp_month": 6,
-        "exp_year": #{Time.now.year+1},
+        "exp_year": #{Time.zone.now.year+1},
         "country": "US",
         "last4": "4242",
         "type": "Visa",
@@ -168,7 +168,7 @@ def mock_stripe(success=true)
   eos
 
   stub_request(:post, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers").
-  with(:body => {"card"=>{"number"=>"4242424242424242", "exp_month"=>"1", "exp_year"=>"#{Time.now.year+1}"}}).
+  with(:body => {"card"=>{"number"=>"4242424242424242", "exp_month"=>"1", "exp_year"=>"#{Time.zone.now.year+1}"}}).
   to_return(:status => 200, :body => stripe_create_customer_response, :headers => {})
 
   stub_request(:get, "https://08YRJcknyvtlMDhneFawvZ8a3JWveCaW:@api.stripe.com/v1/customers/cus_Uw1IRh2oPsmeD0").

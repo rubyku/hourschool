@@ -11,8 +11,8 @@ class Crewmanship < ActiveRecord::Base
 
   def make_active_or_expire
     if user.stripe_customer #do we have their credit card details?
-      user.update_attributes!(:billing_day_of_month => Time.now.day)
-      if user.charge_for_active_crewmanships #if charge is successful 
+      user.update_attributes!(:billing_day_of_month => Time.zone.now.day)
+      if user.charge_for_active_crewmanships #if charge is successful
         update_attributes(:status => 'active')
         true
       else

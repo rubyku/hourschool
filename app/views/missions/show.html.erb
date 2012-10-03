@@ -196,7 +196,7 @@
         </div>
       <% end %>
 
-      <% @courses.where("starts_at < (?)", Time.now).limit(1).each do |course| %>
+      <% @courses.where("starts_at < (?)", Time.zone.now).limit(1).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -233,7 +233,7 @@
         </div>
       <% end %>
 
-      <% @courses.where("starts_at < (?)", Time.now).limit(2).each do |course| %>
+      <% @courses.where("starts_at < (?)", Time.zone.now).limit(2).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -270,7 +270,7 @@
         </div>
       <% end %>
 
-      <% @courses.where("starts_at < (?)", Time.now).limit(3).each do |course| %>
+      <% @courses.where("starts_at < (?)", Time.zone.now).limit(3).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -287,8 +287,8 @@
       <% end %>
     <% end %>
 
-    <% if @courses.where("starts_at > (?)", Time.now).count == 0 %>
-      <% @courses.where("starts_at < (?)", Time.now).limit(4).each do |course| %>
+    <% if @courses.where("starts_at > (?)", Time.zone.now).count == 0 %>
+      <% @courses.where("starts_at < (?)", Time.zone.now).limit(4).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>

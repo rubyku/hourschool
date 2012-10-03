@@ -73,8 +73,8 @@
 <div class="page-section-float-left">
    <div class="class-form-question">When</div><br>
   <p class="tip">We highly recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</p><br>
-   <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
-   <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.now.year, :end_year => Time.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %>
+   <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
+   <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+1, :minute_step => 30, :default => 2.weeks.from_now}, :style => "width: 100px" %>
    <br><br>
    <div id="date-warning" style="display:none;color:red;">
      Your event is less than 2 weeks away!
