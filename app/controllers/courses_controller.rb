@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
-  before_filter :authenticate_admin!, :only => [:index, :approve]
+  before_filter :authenticate_admin!, :only => [:approve]
   before_filter :restrict_draft_access!, :only => [:show]
 
 

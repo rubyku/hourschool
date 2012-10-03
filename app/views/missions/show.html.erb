@@ -142,7 +142,7 @@
   <div class="page-content">
 
     <% if @courses.where("starts_at > (?)", Time.now).count >= 4 %>
-      <% @courses.limit(4).each do |course| %>
+      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').limit(4).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -177,7 +177,7 @@
     <% end %>
 
     <% if @courses.where("starts_at > (?)", Time.now).count == 3 %>
-      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
+      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -214,7 +214,7 @@
     <% end %>
 
     <% if @courses.where("starts_at > (?)", Time.now).count == 2 %>
-      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
+      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -251,7 +251,7 @@
     <% end %>
 
     <% if @courses.where("starts_at > (?)", Time.now).count == 1 %>
-      <% @courses.where("starts_at > (?)", Time.now).each do |course| %>
+      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
