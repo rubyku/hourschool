@@ -4,7 +4,7 @@
   .left_sidebar{font-family: Georgia; font-size: 11px; padding-bottom: 10px; padding-right: 2px; }
   a#schedule_class_link{font-family: 'BebasNeue'; font-size: 24px; line-height: 49px; color: #333; padding-left: 20px; }
   a#schedule_class_link:hover{color: #B91D7B; }
-  
+
 </style>
 
 <div class="container_16" style="margin-left: auto; margin-right: auto; width: 1110px;">
@@ -20,22 +20,22 @@
           <%- else %>
             <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
           <% end %>
-      
+
         	<div id="event_data-8" class="event_data event-data-display event-list-display event-display-boxes">
-            
+
             <div style="margin-left: 220px">
             <h2 class="event_title" style="font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"><%= link_to course.title, course, :class => "a_event_title" %></h2>
-          
+
             <div class="event-meta">
-              <p class="event_details"><span class="section-title">Date:</span>  <%= "#{course.starts_at.strftime("%a %b %d")}"  ", #{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}" %></p><br>
+              <p class="event_details"><span class="section-title">Date:</span>  <%= "#{course.starts_at.strftime("%a %b %d")}"  ", #{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %></p><br>
               <p class="event_details"><span class="section-title">Location:</span> <%= course.place_name %></p><br>
              </div>
-           
+
            </div>
-           
+
           </div>
         </div>
-      
+
       <% end %>
     <% end %>
 
@@ -47,6 +47,6 @@
         <p id="sidebar">A conversational workshop series directly providing participants design and build instruction from practitioners in the field. Shop Talks are held about once a month and can focus on anything from paper to power tools.</p>
     </div>
   </div>
-  
-  
+
+
 </div>

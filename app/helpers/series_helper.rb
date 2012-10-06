@@ -1,7 +1,7 @@
 module SeriesHelper
   def checked_for_series_if(series, day, end_date = 52.weeks.from_now)
     if series.schedule_hash.present?
-      days_of_the_week = series.entries(end_date).map {|s| s.in_time_zone.strftime('%A').downcase.to_sym }
+      days_of_the_week = series.entries(end_date).map {|s| s.strftime('%A').downcase.to_sym }
       days_of_the_week.include? day
     else
       false

@@ -1,16 +1,16 @@
 :css
   a{color: #BA5F8F;}
-  
+
   .wdb-class-title{
     font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px; line-height: 40px;
   }
-  
+
   .wdb-text-strong{
-    font-family: Georgia; 
+    font-family: Georgia;
     font-weight: bold;
     font-size: 13px
   }
-  
+
   p.wdb-text{
     font-family: Georgia;
   }
@@ -20,14 +20,14 @@
     height: 100px;
     padding: 20px;
   }
-  
+
   #wdb-preview-header{
     font-family: Georgia;
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 20px;
   }
-    
+
   .wdb-preview-button{
   border: none;
   background: #00B6FF;
@@ -70,7 +70,7 @@
 .container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
 
   %div{:style => "margin-left: -75px; width: 150px"}
-    .left#left_events 
+    .left#left_events
       .wdb-text-strong Details
       %table
         %tr
@@ -88,7 +88,7 @@
             .class-details
               = @course.starts_at.strftime("%a %b %d, %Y")
             .class-sidebar-details
-              = "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}"
+              = "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}"
 
         %tr
           %td.icon
@@ -101,7 +101,7 @@
                 = @course.address
             - else
               = "Private Address"
-              
+
   .middle#middle_events
     .page-section-float-left
       .class-logistic-block
@@ -126,6 +126,5 @@
       #wdb-preview-header Preview your class
       = button_to "Publish now!", course_attendee_registration_path(@course), :class => "wdb-preview-button", :method => :put
       = button_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :method => :get
-          
-          
- 
+
+

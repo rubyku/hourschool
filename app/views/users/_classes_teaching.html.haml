@@ -3,7 +3,7 @@
   - @classes_teaching.each do |course|
     .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}
       - if course.present?
-        - if course.photo.present? 
+        - if course.photo.present?
           = link_to (image_tag(course.photo.url(:small), :size => "190x120", :style => "float: left; margin-right: 20px")), course
         - else
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
@@ -17,12 +17,12 @@
           .event-meta
             %p.event_details
               %span.section-title Date:
-              = "#{course.starts_at.strftime("%a %b %d, %Y")}"  ", #{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}"
+              = "#{course.starts_at.strftime("%a %b %d, %Y")}"  ", #{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}"
             %p.event_details{:style => "margin-bottom: 40px"}
-              %span.section-title Location: 
+              %span.section-title Location:
               = course.place_name
 
-- else 
+- else
 
   - count = 0
   - if @classes_teaching.blank?
@@ -31,7 +31,7 @@
       = link_to "Teach your first class!", new_course_path, :class => "pagenote-link"
     - else
       = "#{@user.name} has not taught any classes yet!"
-    
+
   - @classes_teaching.order('starts_at desc').uniq_by {|c| c.name.downcase.strip }.each do |c|
     - count = count + 1
     - if count%3 == 0
@@ -49,7 +49,7 @@
 
       %br
         .class-description
-          .heading13-class 
+          .heading13-class
             = link_to c.title, c
           = link_to "Edit class", edit_course_path(c)
 

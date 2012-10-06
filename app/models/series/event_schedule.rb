@@ -39,7 +39,7 @@ module Series::EventSchedule
 
 
   def schedule_out_to
-    SCHEDULE_OUT_TO.months.from_now.in_time_zone
+    SCHEDULE_OUT_TO.months.from_now
   end
 
   def entries(end_time = 52.weeks.from_now)
@@ -78,12 +78,12 @@ module Series::EventSchedule
     def start_end_from_hash(options)
       if options[:start_time].present?
         start_time = options[:start_time] if options[:start_time].is_a? DateTime
-        start_time = DateTime.parse(options[:start_time]).in_time_zone if options[:start_time].is_a? String
-        start_time = DateTime.new(options[:start_time]['(1i)'].to_i, options[:start_time]['(2i)'].to_i, options[:start_time]['(3i)'].to_i).in_time_zone if options[:start_time].is_a? Hash
+        start_time = DateTime.parse(options[:start_time]) if options[:start_time].is_a? String
+        start_time = DateTime.new(options[:start_time]['(1i)'].to_i, options[:start_time]['(2i)'].to_i, options[:start_time]['(3i)'].to_i) if options[:start_time].is_a? Hash
       end
-      end_time   = DateTime.parse(options[:end_time]  ).in_time_zone   if options[:end_time].present?
-      start_time ||= 2.weeks.from_now.in_time_zone
-      end_time   ||= (start_time + 1.year).in_time_zone
+      end_time   = DateTime.parse(options[:end_time]  )   if options[:end_time].present?
+      start_time ||= 2.weeks.from_now
+      end_time   ||= (start_time + 1.year)
       return start_time, end_time
     end
 

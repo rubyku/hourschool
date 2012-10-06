@@ -93,7 +93,7 @@ class SuggestionsController < ApplicationController
      if current_user
         cuser_suggestions = Suggestion.where(:requested_by => "#{current_user.id}").first(:order => 'created_at DESC')
         if !cuser_suggestions.nil?
-          wait_time = ((Time.current - cuser_suggestions.created_at.in_time_zone)/60).ceil
+          wait_time = ((Time.current - cuser_suggestions.created_at)/60).ceil
           if wait_time < 1
             flash[:error] = "Please wait for another #{5 - wait_time} minute before requesting another class"
             redirect_to "/suggest"

@@ -3,7 +3,7 @@
   - @classes_taking.each do |course|
     .entry{:style => "float: left; width: 550px; margin-bottom: -50px"}
       - if course.present?
-        - if course.photo.present? 
+        - if course.photo.present?
           = link_to (image_tag(course.photo.url(:small), :size => "190x120", :style => "float: left; margin-right: 20px")), course
         - else
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
@@ -17,9 +17,9 @@
           .event-meta
             %p.event_details
               %span.section-title Date:
-              = "#{course.starts_at.strftime("%a %b %d, %Y")}"  ", #{course.starts_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")} - #{course.ends_at.in_time_zone(course.city.time_zone || course.teacher.time_zone).strftime("%l:%M%p")}"
+              = "#{course.starts_at.strftime("%a %b %d, %Y")}"  ", #{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}"
             %p.event_details
-              %span.section-title Location: 
+              %span.section-title Location:
               = course.place_name
 
 - else
@@ -47,5 +47,5 @@
           = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), c
       %br
         .class-description
-          .heading13-class 
+          .heading13-class
             = link_to c.title, c

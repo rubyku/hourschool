@@ -1,6 +1,6 @@
 :css
   a{color: #ff7733;}
-  
+
   .wdb-section-heading{
     color: #BA5F8F;
     font-family: BebasNeue;
@@ -8,14 +8,14 @@
     line-height: 24px;
     margin-top: 20px
   }
-  
+
   .wdb-text-strong{
-    font-family: Georgia; 
+    font-family: Georgia;
     font-weight: bold;
     font-size: 13px;
     margin-bottom: 10px;
   }
-  
+
   p.wdb-text{
     font-family: Georgia;
   }
@@ -25,14 +25,14 @@
     width: 240px;
     padding: 20px;
   }
-  
+
   #wdb-preview-header{
     font-family: Georgia;
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 20px;
   }
-    
+
   .wdb-preview-button{
   border: none;
   background: #00B6FF;
@@ -71,16 +71,16 @@
     box-shadow: 0 2px 4px #999;
     cursor: pointer;
   }
-  
+
   .wdb-class-title{
     font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px; line-height: 40px;
   }
-  
+
 
 .container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
 
   %div{:style => "margin-left: -75px; width: 150px"}
-    .left#left_events 
+    .left#left_events
       .wdb-section-heading Details
       %table
         %tr
@@ -98,7 +98,7 @@
             .class-details
               = @course.starts_at.strftime("%a %b %d, %Y")
             .class-sidebar-details
-              = "#{@course.starts_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")} - #{@course.ends_at.in_time_zone(@course.city.time_zone || @course.teacher.time_zone).strftime("%l:%M%p")}"
+              = "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}"
 
         %tr
           %td.icon
@@ -112,12 +112,12 @@
             - else
               = "Private Address"
 
-      .left#left_events 
+      .left#left_events
         - if @course.students.any?
           %div
-            - if @course.max_seats.present? 
+            - if @course.max_seats.present?
               .wdb-section-heading Students (#{@course.students.count}/#{@course.max_seats})
-            - else 
+            - else
               .wdb-section-heading Students (#{@course.students.count})
             - if @course.has_teacher?(current_user)
               = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
@@ -130,7 +130,7 @@
                       = avatar_for(student, :photo_size => :thumb_small, :class => 'notBig', :size => '50x50')
                     %td
                       = link_to student.name, student, :id => "student_link"
-              
+
   .middle#middle_events
     .page-section-float-left
       .class-logistic-block
@@ -193,13 +193,13 @@
       - if @course.has_teacher?(current_user)
         #wdb-preview-header Your class is live!
         %p.confirm HourSchool will help promote your classes as best as we can. If you already know people that are interested, get a head start and let them know about your class!
-      - else 
-        #wdb-preview-header You've signed up! 
+      - else
+        #wdb-preview-header You've signed up!
         %p.confirm Don't forget to bring a friend or two. It's always more fun to learn with friends. Share this with people you think might be interested.
       = render :partial => "add_this"
 
 
-        
+
 
 
 
