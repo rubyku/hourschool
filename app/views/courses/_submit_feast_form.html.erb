@@ -39,7 +39,7 @@
 
        <p>
        <%= f.label :description, 'Feast description:', :class => "form-question" %>
-       <%= f.text_area :description, :class => "form-tall" %>
+       <%= f.text_area :description, :class => "form-tall", :value => params[:description]  %>
        </p>
 
        <div class="form-question">About the host</div>

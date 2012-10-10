@@ -102,7 +102,10 @@
         <%= link_to (image_tag 'feastfordays/icon-email.png', :style => "margin-right: 25px"), "mailto:jonathan@feastfordays.com", :target => "_blank" %>
       </div>
       <div style="color: #f2f2f1; float: right">
-        FAQ   |   About   |   Terms & Conditions   |   Contact
+        <%= link_to "FAQ", f4d_faq_path, :style => "color: #f2f2f1" %> |
+        <%= link_to "About", f4d_about_path, :style => "color: #f2f2f1"  %> |
+        <%= link_to "Terms and Conditions", f4d_terms_and_conditions_path, :style => "color: #f2f2f1"  %> |
+        <%= link_to "Contact", "mailto:jonathan@feastfordays.com", :style => "color: #f2f2f1"  %>
       </div>
       <table id="powered-by" style="margin-top: 60px">
         <tr>

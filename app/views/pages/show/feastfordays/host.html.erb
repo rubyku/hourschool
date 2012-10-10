@@ -1,67 +1,3 @@
-<style type="text/css">
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    color: #402b15;
-  }
-
-  .page-title{
-    color: #402b15;
-    font-size: 56px;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .section-title{
-    color: #402b15;
-    font-size: 36px;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .banner-title{
-    position: relative;
-    z-index: 1;
-    color: #7c891e;
-    font-size: 30px;
-    text-align: center;
-    font-style: italic;
-  }
-
-  .steps-title{
-    position: relative;
-    z-index: 1;
-    color: #515a0e;
-    font-size: 30px;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .steps-paragraph{
-    color: #282828;
-    font-size: 13px;
-    line-height: 22px;
-  }
-
-  .box{
-    width: 240px;
-    height: 280px;
-    float: left;
-    text-align: center;
-  }
-
-  .row{
-    float: left;
-    margin-top: 30px;
-    position: relative;
-    z-index: 1;
-  }
-
-</style>
-
 <div class="full-page white" style="box-shadow: 2px 2px 2px #ccc;">
   <div class="page-content">
     <div class="page-title">Host a Feast</div>
@@ -95,11 +31,48 @@
     <div style="color: #797978; font-style: italic; font-size: 18px; text-align: center; margin-bottom: 30px">Is this your first rodeo?</div>
     <div class="section-title">Choose one of our favorite Feasts</div>
 
-    <%= link_to image_tag('feastfordays/feast1.png', :style => "margin-left: 15px; margin-bottom: 30px"), new_course_path(:title => "Feast1") %>
+    <%= link_to image_tag('feastfordays/feast1.png', :style => "margin-left: 15px; margin-bottom: 30px"), new_course_path(:title => "Superman Lasagna",
+      :description => "The man of steel’s go to meal after a night of fighting bad guys. This recipe is definitely a crowd pleaser and super fun to prepare in a group. We recommend also preparing a salad to eat while the lasagna is cooking (and to have veggies to take home to eat during the week).
 
-    <%= link_to image_tag('feastfordays/feast2.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "Feast2") %>
+Total servings: 8 (but can be scaled)
 
-    <%= link_to image_tag('feastfordays/feast3.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "Feast3") %>
+Ingredients:
+Spaghetti sauce, vegetable oil, Pork sausage, Zucchini, Ricotta cheese, Egg whites,
+mozzarella, parmesan, Noodles.
+
+Recommended cost: $16
+
+Full Recipe at: http://allrecipes.com/recipe/sausage-and-zucchini-lasagna/detail.aspx"
+)
+ %>
+
+    <%= link_to image_tag('feastfordays/feast2.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "Vegetable Moussaka",
+      :description => "Moussaka is greek for good enough to slap yo mamma. This Feast is great also cooked with rice.
+
+Total servings:  8 (but can be scaled)
+
+Ingredients:
+Eggplant, olive oil, carrots, celery, garlic, mushrooms, oregano, cinnamon, tomatoes, parsley, parmesan, eggs, milk, flour, butter, rice
+
+Recommended cost: $15
+
+Full recipe at: http://www.epicurious.com/recipes/food/views/Vegetable-Moussaka-102153"
+) %>
+
+    <%= link_to image_tag('feastfordays/feast3.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "A feast from the east",
+      :description => "Taken straight from the recipe books of Thai Fresh in Austin, this Feast featuring spring rolls and tom kha kai is AMAZING.
+
+Total servings: 4 (but can be scaled).
+
+Ingredients (for everything):
+
+Rice, vermicelli noodles, bell peppers, carrots, arugula, vegetable oil, panang curry paste, coconut milk. coarsely ground peanuts, sugar, lime juice, salt, chicken stock, lemongrass, cut, shallots, thai chill, chicken, artichoke hearts, fish sauce, lime, cilantro
+
+Recommended cost: $17
+
+Full Recipes: http://www.thaicookingwithjam.blogspot.com/2008/12/where-have-i-been.html
+ http://www.thaicookingwithjam.blogspot.com/2011/04/spring-wrap-to-wrap-up-spring.html"
+) %>
 
   </div>
 </div>
