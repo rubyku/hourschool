@@ -42,4 +42,21 @@
               - else
                 %p= course.description.truncate(70)
 
+- elsif current_account == Account.where(:id => 7).first
+  - courses.in_groups_of(4) do |group|
+    - group.each do |course|
+      - if course.present?
+        .classBlock
+          - if course.photo.present?
+            = link_to (image_tag(course.photo.url(:small), :size => "190x120")), course
+          - else
+            = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
+          %br
+            .class-description{:style => "float: left; width: 170px"}
+              .heading13-class
+                = link_to course.title.truncate(50), course
+              - if course.teaser?
+                %p= course.teaser.truncate(70)
+              - else
+                %p= course.description.truncate(70)
 

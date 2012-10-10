@@ -141,6 +141,8 @@
     <%= render 'layouts/application/account_header/womendesignbuild' %>
   <% elsif current_account == Account.where(:id => 5).first %>
     <%= render 'layouts/application/account_header/center61' %>
+  <% elsif current_account == Account.where(:id => 7).first %>
+    <%= render 'layouts/application/account_header/hubla' %>
   <% else %>
     <%= render 'layouts/application/account_header/generic_account' %>
   <%- end -%>

@@ -1,0 +1,140 @@
+<style type="text/css">
+
+  #hub-logo {
+    float: left;
+    width: 200px;
+    height: 275px;
+    padding-top: 25px;
+    margin-left: 25px;
+    margin-top: -350px;
+  }
+  #hub-logo a {
+    display: block;
+    width: 200px;
+    height: 225px;
+    background: url(http://www.thehubla.com/wp-content/themes/hubla-theme/images/hub-logo.png) 0 0 no-repeat;
+  }
+  .hub-opening {
+    width: 200px;
+    height: 40px;
+    background: url(http://www.thehubla.com/wp-content/themes/hubla-theme/images/hub-opening.png) 25px 0 no-repeat;
+  }
+    #section-home .hub-opening {
+      display: none;
+    }
+  #hub-menu {
+    float: right;
+    margin-top: 50px;
+    margin-right: 50px;
+    font-family: 'Signika Negative', DinPro, sans-serif;, sans-serif;
+    font-weight: medium;
+    text-transform: uppercase;
+  }
+  #hub-menu a {
+    color: #fff;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    margin-left: 25px;
+    padding: 3px 3px 3px 4px;
+    text-shadow: 0px 1px 3px #333;
+  }
+  #hub-menu a:hover {
+    border-bottom: 3px solid #fff;
+    color: #fff;
+  }
+  #hub-menu a.s-experience:hover {
+    border-bottom: 1px solid #fff;
+    cursor:default;
+  }
+
+  /*------------------------------------*\
+    NAV
+  \*------------------------------------*/
+  .navigation {
+    list-style:none;
+    font-weight:bold;
+    margin-bottom:10px;
+    /* Clear floats */
+    float:left;
+    width:100%;
+    margin-top: -350px;
+  }
+  .navigation li{
+    float:left;
+    margin-right:10px;
+    position:relative;
+  }
+  .navigation a{
+    display:block;
+  }
+
+  /*--- DROPDOWN ---*/
+  .navigation ul{
+    background:#000; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+    background:rgba(0,0,0,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+    list-style:none;
+    position:absolute;
+    left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+  }
+  .navigation ul li{
+    padding-top: 7px; /* Introducing a padding between the li and the a give the illusion spaced items */
+    float:none;
+  }
+  .navigation ul a{
+    white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+  }
+  .navigation li:hover ul{ /* Display the dropdown on hover */
+    left: -40px; /* Bring back on-screen when needed */
+    top: 8px;
+  }
+  .navigation li:hover a{ /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
+    border-bottom: 1px solid #fff;
+  }
+  .navigation li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+    text-decoration:none;
+    border-bottom: 0;
+  }
+  .navigation li:hover ul li a:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+    margin-bottom: -3px;
+  }
+
+
+</style>
+
+<div class="container_16" style="width: 1000px">
+  <%= image_tag 'http://www.thehubla.com/wp-content/themes/hubla-theme/images/bg-header05.jpg' %>
+
+  <div id="hub-logo">
+    <a href="http://www.thehubla.com"></a>
+    <div class="hub-opening"></div>
+  </div>
+  <div id="hub-menu">
+    <ul class="navigation">
+      <li>
+        <a class="s-about" href="http://www.thehubla.com/about/">About</a>
+      </li>
+      <li>
+        <a class="s-experience" href="#">Experience</a>
+        <ul>
+          <li><a href="http://www.thehubla.com/experience-space/">Space</a></li>
+          <li><a href="http://www.thehubla.com/experience-community/">Community</a></li>
+          <li><a href="http://www.thehubla.com/experience-programs/">Programs</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="s-events" href="http://www.thehubla.com/events/">Events</a>
+      </li>
+      <li>
+        <a class="s-contact" href="http://www.thehubla.com/contact/">Contact</a>
+      </li>
+      <li>
+        <a class="s-blog" href="http://www.thehubla.com/blog/">Blog</a>
+      </li>
+      <li>
+      <a class="s-membership" href="https://www.thehubla.com/membership/">Apply</a>
+      </li>
+    </ul>
+  </div>
+</div>
+

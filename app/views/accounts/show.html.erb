@@ -2,7 +2,6 @@
   <%= render :partial => 'courses/womendesignbuild/index' %>
 
 <% elsif current_account == Account.where(:id => 1).first %>
-
   <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
 <% elsif current_account == Account.where(:id => 2).first %>
   <div style="width: 770px; margin-left: 80px">
@@ -11,6 +10,9 @@
 
 <% elsif current_account == Account.where(:id => 5).first %>
 
+<% elsif current_account == Account.where(:id => 7).first %>
+
+  <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
 
 <% else %>
   <div class="full-page white">

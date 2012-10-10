@@ -1,0 +1,66 @@
+<style type="text/css">
+
+  div[role="main"] {
+    width: 1000px;
+    margin: 0 auto;
+    min-height: 350px;
+    z-index: 9999;
+  }
+
+  .one-column {
+    background: url(http://www.thehubla.com/wp-content/themes/hubla-theme/images/column1-shadow.png) 0 0 no-repeat;
+  }
+
+  .one-column .column {
+    width: 950px;
+    clear: both;
+    margin: 0 25px 0px 25px;
+    background-color: white;
+    margin-top: -85px;
+    z-index: 99;
+    position: relative;
+  }
+
+  .full1 {
+    width: 900px;
+    margin: 0 25px 25px 25px;
+    padding-top: 15px;
+  }
+
+  #tec-content.upcoming {
+    margin-bottom:60px;
+  }
+
+  h2.tec-cal-title {
+    float:left;
+    padding-right:15px;
+    margin-bottom: 33px;
+    font-size:21px;
+    font-weight:bold;
+    color:#000;
+    position:relative;
+    z-index:5;
+  }
+
+</style>
+
+<div role="main" style="margin-left: -20px;">
+  <div class="one-column">
+    <div class="column">
+      <div class="full1">
+
+        <div id="tec-content" class="upcoming">
+          <div id='tec-events-calendar-header' class="clearfix">
+            <h2 class="tec-cal-title">Calendar of Events</h2>
+            <%= link_to "Post an event", new_course_path, :class => "btn" %>
+            <div class="full-page" style="border: 0px solid black">
+              <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
