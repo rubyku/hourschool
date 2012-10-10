@@ -1,20 +1,21 @@
-<% if current_account == Account.where(:id => 4).first %>
+<% if current_account == Account.where(:id => 4).first %><!-- Women Design Build -->
   <%= render :partial => 'courses/womendesignbuild/index' %>
 
-<% elsif current_account == Account.where(:id => 1).first %>
-  <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
-<% elsif current_account == Account.where(:id => 2).first %>
+<% elsif current_account == Account.where(:id => 1).first %><!-- Feast for Days -->
+  <%= render :partial => 'accounts/show/feastfordays', :locals => {:courses => @courses} %>
+
+<% elsif current_account == Account.where(:id => 2).first %><!-- A2Reskilling -->
   <div style="width: 770px; margin-left: 80px">
     <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
   </div>
 
-<% elsif current_account == Account.where(:id => 5).first %>
+<% elsif current_account == Account.where(:id => 5).first %><!-- Center61 -->
+  <!-- only has one mission, no homepage yet -->
 
-<% elsif current_account == Account.where(:id => 7).first %>
-
+<% elsif current_account == Account.where(:id => 7).first %><!-- Hub LA -->
   <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
 
-<% else %>
+<% else %><!-- New Generic School -->
   <div class="full-page white">
     <% if @account.photo.present? %>
       <%= image_tag(@account.photo) %>

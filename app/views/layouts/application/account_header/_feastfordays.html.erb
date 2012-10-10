@@ -1,10 +1,14 @@
 <style type="text/css">
 
+  body {
+    background-image: url(<%= asset_path "feastfordays/bg.png" %>) ;
+  }
+
   #header_feastfordays{
-    height: 60px;
-    background-color: #134554;
+    height: 38px;
+    background-color: #412308;
     padding-top: 20px;
-    margin-bottom: 30px
+    margin-bottom: 30px;
   }
 
   #logo_feastfordays{
@@ -23,40 +27,53 @@
 
   li#feastfordays{
     float: left;
-    color: #F5F5F5;
+    color: #efe6e2;
     font-size: 12px;
     text-decoration: none;
     margin-left: 20px;
-    margin-top: 10px;
     padding-top: 5px;
+    font-family: 'Open Sans', sans-serif;
   }
 
-  a#feastfordays{color: white;}
-  a#feastfordays:visited{color:white}
+  a#feastfordays{color: #efe6e2;}
+  a#feastfordays:visited{color: #efe6e2}
+
+  li#feastfordays2{
+    float: left;
+    color: #8f9936;
+    font-size: 12px;
+    text-decoration: none;
+    margin-left: 20px;
+    padding-top: 5px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  a#feastfordays2{color: #8f9936;}
+  a#feastfordays2:visited{color: #8f9936}
 
 </style>
 
-
+<body>
 <div id="header_feastfordays">
   <div class="container_16">
-    <%= link_to (image_tag 'v2-account/logo-feastfordays.png', :id => "logo_feastfordays"), "http://www.feastfordays.com" %>
+    <%= link_to (image_tag 'feastfordays/logo.png', :id => "logo_feastfordays"), "http://www.feastfordays.com" %>
     <ul id="feastfordays">
-      <li id="feastfordays"><a href="http://feastfordays.hourschool.com/learn" id="feastfordays">Join a Feast</a></li>
-      <li id="feastfordays"><a href="http://feastfordays.hourschool.com/courses/new" id="feastfordays">Host a Feast</a></li>
-      <li id="feastfordays"><a href="http://www.feastfordays.com/recipes.html" id="feastfordays">Recipes</a></li>
-      <li id="feastfordays"><a href="http://feastfordays.hourschool.com/community.html" id="feastfordays">Food & Community</a></li>
-      <li id="feastfordays"><a href="http://www.feastfordays.com/about.html" id="feastfordays">About</a></li>
-      <li id="feastfordays"><a href="http://www.feastfordays.com/contact.html" id="feastfordays">Contact</a></li>
+      <li id="feastfordays"><%= link_to "Join a feast", explore_path, :id => "feastfordays" %></li>
+      <li id="feastfordays"><%= link_to "Host a feast", host_path, :id => "feastfordays" %></li>
+      <li id="feastfordays"><a href="http://www.feastfordays.com/recipes.html" id="feastfordays">How it works</a></li>
+      <li id="feastfordays"><%= link_to "Food & Community", community_path, :id => "feastfordays" %></li>
+      <li id="feastfordays"><a href="http://www.feastfordays.com/about.html" id="feastfordays">About us</a></li>
     </ul>
 
     <ul id="feastfordays_profile">
       <% if user_signed_in? %>
-        <li id="feastfordays"><%= link_to "My profile", profile_path, :id => "feastfordays" %>
-        <li id="feastfordays"><%= link_to "Logout", destroy_user_session_path, :id => "feastfordays" %>
+        <li id="feastfordays2"><%= link_to "My profile", profile_path, :id => "feastfordays2" %></li>
+        <li id="feastfordays2"><%= link_to "Logout", destroy_user_session_path, :id => "feastfordays2" %></li>
       <% else %>
-        <li id="feastfordays"><%= link_to "Sign in", new_user_session_path, :id => "feastfordays" %>
-        <li id="feastfordays"><%= link_to "Sign up", new_user_registration_path, :id => "feastfordays" %>
+        <li id="feastfordays2"><%= link_to "Sign in", new_user_session_path, :id => "feastfordays2" %></li>
+        <li id="feastfordays2"><%= link_to "Sign up", new_user_registration_path, :id => "feastfordays2" %></li>
       <% end %>
     </ul>
   </div>
 </div>
+</body>

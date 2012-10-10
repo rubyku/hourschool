@@ -140,7 +140,9 @@ HourschoolV2::Application.routes.draw do
   match '/wall_of_awesome'            => 'pages#show', :id => 'wall_of_awesome'
   match '/wall_of_missions'           => 'pages#show', :id => 'wall_of_missions'
   match '/partner_schools'            => 'pages#show', :id => 'partner_schools'
-  match '/community'                  => 'pages#show', :id => 'community'
+
+  match '/community'                  => 'pages#show', :id => 'feastfordays/community'
+  match '/host'                       => 'pages#show', :id => 'feastfordays/host'
 
   match '/start'                      => 'pages#index'
   match '/learn'                      => 'pages#index'

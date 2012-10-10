@@ -1,0 +1,154 @@
+<style type="text/css">
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #402b15;
+}
+
+.banner_box{
+  background-color: #fefefd;
+  width: 970px;
+  height: 590px;
+  margin-top: -30px;
+  margin-bottom: 40px;
+}
+
+.banner_image{
+  position: relative;
+  z-index: 10;
+  float: left;
+  margin-top: -630px;
+  margin-left: 15px;
+}
+
+.hp_heading1{
+  font-family: 'Lobster', cursive;
+  position: relative;
+  z-index: 10;
+  float: left;
+  margin-top: -355px;
+  margin-left: 35px;
+  font-weight: 700;
+  color: white;
+  font-size: 38px;
+  line-height: 50px;
+  width: 580px;
+}
+
+.hp_heading2{
+  position: relative;
+  z-index: 10;
+  float: left;
+  margin-top: -80px;
+  margin-left: 35px;
+  font-weight: 600;
+  color: #402b15;
+  font-size: 18px;
+}
+
+#join_button{
+  position: relative;
+  z-index: 10;
+  float: left;
+  margin-top: -220px;
+  margin-left: 35px;
+}
+
+span.emphasis_heading{
+  font-weight: 700;
+  color: #738c21;
+  font-family: 'Lobster', cursive;
+}
+
+.three_column{
+  width: 270px;
+  height: 400px;
+  background-color: white;
+  float: left;
+  padding: 15px;
+}
+
+.column_heading{
+  font-family: 'Lobster', cursive;
+  font-size: 26px;
+  color: #402b15;
+  margin-left: 10px;
+}
+
+.feast_title{
+  font-weight: 600;
+  font-size: 18px;
+  color: #738c21;
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+a.feast_title:visited{color: #738c21;}
+
+.see_more_link{
+  color: #c54e28;
+  font-weight: 400;
+  font-style: italic;
+  text-decoration: underline;
+}
+a.see_more_link{color: #c54e28;}
+
+
+</style>
+
+<div class="banner_box"></div>
+<%= image_tag 'feastfordays/homepage_banner.png', :class => "banner_image" %>
+<div class="hp_heading1">When people cook together, <br>good things happen.</div>
+<div class="btn btn-success" id="join_button">Join a feast</div>
+<div class="hp_heading2"><span style="font-weight: 700">Feast for Days</span> is a <span class="emphasis_heading">collaborative</span> cooking platform that makes it easy for people to <span class="emphasis_heading">cook</span> and <span class="emphasis_heading">share</span> food.</div>
+
+<div style="float: left">
+<div class="column_heading">Upcoming Feasts</div>
+<div class="three_column" style="margin-right: 30px;">
+  <% @courses.where("starts_at > (?)", Time.zone.now).order('starts_at asc').first(1).each do |course| %>
+  <%= link_to (image_tag(course.photo.url(:small), :size => "263x167")), course if course.photo.present? %>
+  <%= link_to course.title, course, :class => "feast_title" %><br>
+  <div style="margin-top: 10px; margin-bottom: 10px">hosted by <%= link_to course.teacher.name, course.teacher %></div>
+  <%= course.description.truncate(110) %><br>
+  <div style="font-family: 'Lobster', cursive; font-size: 25px; margin-top: 10px; margin-bottom: 10px">$<%= course.price %></div>
+  <%= "#{course.starts_at.strftime("%a, %b %d, ")}" %><%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
+  <%= "#{course.city.name}, #{course.city.state}" %><br>
+  <div style="float: right;"><%= link_to "See more feasts...", explore_path, :class => "see_more_link"  %></div>
+  <% end %>
+</div>
+</div>
+
+<div style="float: left">
+<div class="column_heading">How to Host a Feast</div>
+<div class="three_column" style="margin-right: 30px">
+
+  <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 10px">
+    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Post</div>
+    <div style="color: #b3aea7">Choose one of our favorite Feasts or build your own and post it!</div>
+  </div>
+  <div style="position: relative; width: 138px; height: 100px; margin-top: 35px; margin-left: 10px">
+    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Prep</div>
+    <div style="color: #b3aea7">Invite your friends and prep materials for your Feast.</div>
+  </div>
+  <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 30px">
+    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Share</div>
+    <div style="color: #b3aea7">Guests cook with the host and leave with a feast for days.</div>
+  </div>
+  <%= image_tag 'feastfordays/hp_how_it_works.png', :style => "position: relative; margin-top: -370px; margin-left: 10px" %>
+  <div style="float: right; margin-top: 3px"><%= link_to "Find out more...", "", :class => "see_more_link" %></div>
+</div>
+</div>
+
+<div style="float: left">
+<div class="column_heading">Food & Community</div>
+<div class="three_column">
+  <%= image_tag 'feastfordays/hp_mosaic.png', :style => "margin-bottom: 20px" %>
+  <div style="color: #402b15; font-weight: 600; font-size: 14px">See the  <span class="emphasis_heading">eats</span> and meet the <span class="emphasis_heading">peeps</span> that make Feast for Days the best thing since play dough.</div>
+  <div style="float: right; margin-top: 40px"><%= link_to "Meet the community...", "", :class => "see_more_link" %></div>
+</div>
+</div>
+
+
+
+

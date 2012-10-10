@@ -1,0 +1,106 @@
+<style type="text/css">
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: #402b15;
+  }
+
+  .page-title{
+    color: #402b15;
+    font-size: 56px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-title{
+    color: #402b15;
+    font-size: 36px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .banner-title{
+    position: relative;
+    z-index: 1;
+    color: #7c891e;
+    font-size: 30px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .steps-title{
+    position: relative;
+    z-index: 1;
+    color: #515a0e;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .steps-paragraph{
+    color: #282828;
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .box{
+    width: 240px;
+    height: 280px;
+    float: left;
+    text-align: center;
+  }
+
+  .row{
+    float: left;
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+</style>
+
+<div class="full-page white">
+  <div class="page-content">
+    <div class="page-title">Host a Feast</div>
+    <div class="banner-title">So here's how it works...</div>
+      <%= image_tag 'feastfordays/ribbon.png', :style => "position: relative; margin-top: -30px; margin-left: 10px; margin-bottom: 20px" %>
+
+    <div class="row">
+      <div class="box" style="margin-left: 68px;">
+        <div class="steps-title">Post</div>
+        <div class="steps-paragraph">So you’ve got an empty fridge, and it’s looking like it’s going to be a long week.  Post a Feast to stock that fridge, and save some time.  Don’t worry, you don’t have to know what you’re doing, you just have to be hungry.</div>
+      </div>
+
+      <div class="box" style="margin-left: 50px;">
+        <div class="steps-title">Prep</div>
+        <div class="steps-paragraph">You’re not in this alone, invite your friends to share the work and save some cash.  Two bowls of food are always better than one.</div>
+      </div>
+
+      <div class="box" style="margin-left: 48px;">
+        <div class="steps-title">Share</div>
+        <div class="steps-paragraph">When people cook together, good things happen.  Yeah, that means a fridge full of leftovers, and a bunch of satisfied cooks.  Everyone cooks, everyone takes home food.</div>
+      </div>
+    </div>
+
+    <%= image_tag 'feastfordays/box.png', :style => "margin-left: 30px; margin-top: -305px; margin-bottom: 30px" %>
+
+  </div>
+</div>
+
+<div class="full-page white">
+  <div class="page-content">
+    <div style="color: #797978; font-style: italic; font-size: 18px; text-align: center; margin-bottom: 30px">Is this your first rodeo?</div>
+    <div class="section-title">Choose one of our favorite Feasts</div>
+
+    <%= link_to image_tag('feastfordays/feast1.png', :style => "margin-left: 30px; margin-bottom: 30px"), new_course_path(:course_title => "aa") %>
+
+    <%= image_tag 'feastfordays/feast2.png' %>
+    <%= image_tag 'feastfordays/feast3.png' %>
+
+  </div>
+</div>
+
+

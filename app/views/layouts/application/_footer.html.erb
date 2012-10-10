@@ -90,6 +90,36 @@
       </div>
   </div>
 
+<% elsif current_account == Account.where(:id => 1).last %>
+  <div class="enterprise_footer" style="padding-top: 60px; background-color: #4d6708; opacity: 0.65">
+    <div class="container_16">
+      <div style="color: #f2f2f1; float: left">
+        Copyright © 2012 Feast for Days
+      </div>
+      <div style="float: left; margin-left: 210px">
+        <%= image_tag 'feastfordays/icon-tw.png', :style => "margin-right: 25px" %>
+        <%= image_tag 'feastfordays/icon-fb.png', :style => "margin-right: 25px" %>
+        <%= image_tag 'feastfordays/icon-email.png', :style => "margin-right: 25px" %>
+      </div>
+      <div style="color: #f2f2f1; float: right">
+        FAQ   |   About   |   Terms & Conditions   |   Contact
+      </div>
+      <table id="powered-by" style="margin-top: 60px">
+        <tr>
+          <td>
+            <div class="footer-powered-by">Powered by</div>
+          </td>
+          <td>
+            <a href="http://www.hourschool.com" target="_blank">
+              <%= image_tag('v2/Logo_Grey.png', :id => "powered-by-logo") %>
+            </a>
+          </td>
+        </td>
+      </table>
+    </div>
+  </div>
+
+
 <% else %>
   <div class="container_16 enterprise_footer" style="padding-top: 60px">
     <table id="powered-by">
