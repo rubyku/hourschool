@@ -17,7 +17,7 @@
 
 <div class="page-section-float-left">
 
-  <%= f.text_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
+  <%= f.hidden_field :mission_id, :value => (@course.mission_id || params[:mission_id]) %>
   <%= hidden_field_tag :topic_id, params[:topic_id] %>
 
   <%#= "Create an event in #{@course.mission.title}" if @course.mission_id.present? %>
