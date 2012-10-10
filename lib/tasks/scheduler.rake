@@ -74,7 +74,7 @@ namespace :schedule do
 
     puts "Sending day of reminder emails..."
 
-    courses = Course.where("DATE(starts_at) = DATE(?)", Time.zone.now.to_date).where(:status => 'live')
+    courses_today = Course.where("DATE(starts_at) = DATE(?)", Time.zone.now.to_date).where(:status => 'live')
 
     courses_today.each do |course|
       students = course.students
