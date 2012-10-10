@@ -1,4 +1,4 @@
-<div class="full-page white">
+<div class="full-page white" style="width: 940px">
   <div class="page-content" style="margin-bottom: -30px">
     <center>
       <div class="heading28" style="margin-bottom: 15px">Wall of Missions</div>
@@ -14,8 +14,8 @@
         <%= link_to (image_tag(mission.photo, :size => "300x180")), mission %>
       <% end %>
     </div>
-    <div style="background-color: white; width: 280px; height: 76px; padding: 10px; margin-bottom: 20px">
-      <div class="title-text" id="explore" style="height: 58px"><%= link_to full_mission_title(mission).truncate(57), mission %></div>
+    <div style="background-color: white; width: 280px; height: 106px; padding: 10px; margin-bottom: 20px">
+      <div class="title-text" id="explore" style="height: 88px"><%= link_to full_mission_title(mission).truncate(70), mission %></div>
       <div class="heading11" id="explore"><%= mission.city.name %>, <%= mission.city.state %></div>
     </div>
   </div>
