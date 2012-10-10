@@ -6,7 +6,7 @@
   </div>
 
   <div class="user_status">
-    <%= content_tag(:p, "You're already registered!", :class => "heading13-class") if course.has_student?(current_user) && course.active? %>
+    <%= content_tag(:p, "You have now registered!", :class => "heading13-class") if course.has_student?(current_user) && course.active? %>
   </div>
   <div class="course_status">
     <%= content_tag(:p, "This session is full!", :class => "heading13-class")                if course.sold_out? && course.active? %>

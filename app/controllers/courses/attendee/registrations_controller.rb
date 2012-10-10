@@ -60,7 +60,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     else
 
       if @course.is_a_student? @user
-        flash[:error] = "You are already registered for this course"
+        flash[:error] = "You are registered for this event."
       else
         flash[:error] = "We couldn't register you for this course, please contact hello@hourschool.com for help"
       end
