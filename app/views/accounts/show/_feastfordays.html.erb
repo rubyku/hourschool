@@ -3,6 +3,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #402b15;
+  background-image: url(<%= asset_path "feastfordays/bg.png" %>);
 }
 
 .banner_box{
@@ -11,6 +12,7 @@ body {
   height: 590px;
   margin-top: -30px;
   margin-bottom: 40px;
+  box-shadow: 2px 2px 2px #ccc;
 }
 
 .banner_image{
@@ -33,6 +35,7 @@ body {
   font-size: 38px;
   line-height: 50px;
   width: 580px;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .hp_heading2{
@@ -47,11 +50,33 @@ body {
 }
 
 #join_button{
+  /*reset style*/
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+
+  /*common style*/
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding-top: 18px;
+  display: inline-block;
+  letter-spacing: 0.1em;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+
   position: relative;
   z-index: 10;
   float: left;
-  margin-top: -220px;
+  margin-top: -230px;
   margin-left: 35px;
+  width: 171px;
+  height: 35px;
+  background-color: #6f8e04;
+  opacity: 0.85;
+  border: 1px solid #606d03;
 }
 
 span.emphasis_heading{
@@ -66,6 +91,7 @@ span.emphasis_heading{
   background-color: white;
   float: left;
   padding: 15px;
+  box-shadow: 2px 2px 2px #ccc;
 }
 
 .column_heading{
@@ -100,7 +126,9 @@ a.see_more_link{color: #c54e28;}
 <div class="banner_box"></div>
 <%= image_tag 'feastfordays/homepage_banner.png', :class => "banner_image" %>
 <div class="hp_heading1">When people cook together, <br>good things happen.</div>
-<div class="btn btn-success" id="join_button">Join a feast</div>
+<div class="btn btn-success" id="join_button">
+  <%= link_to "Join a Feast", courses_browse_index_path, :style => "color: white; text-decoration: none" %>
+</div>
 <div class="hp_heading2"><span style="font-weight: 700">Feast for Days</span> is a <span class="emphasis_heading">collaborative</span> cooking platform that makes it easy for people to <span class="emphasis_heading">cook</span> and <span class="emphasis_heading">share</span> food.</div>
 
 <div style="float: left">
@@ -114,7 +142,7 @@ a.see_more_link{color: #c54e28;}
   <div style="font-family: 'Lobster', cursive; font-size: 25px; margin-top: 10px; margin-bottom: 10px">$<%= course.price %></div>
   <%= "#{course.starts_at.strftime("%a, %b %d, ")}" %><%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
   <%= "#{course.city.name}, #{course.city.state}" %><br>
-  <div style="float: right;"><%= link_to "See more feasts...", explore_path, :class => "see_more_link"  %></div>
+  <div style="float: right;"><%= link_to "See more feasts...", courses_browse_index_path, :class => "see_more_link"  %></div>
   <% end %>
 </div>
 </div>
@@ -136,7 +164,8 @@ a.see_more_link{color: #c54e28;}
     <div style="color: #b3aea7">Guests cook with the host and leave with a feast for days.</div>
   </div>
   <%= image_tag 'feastfordays/hp_how_it_works.png', :style => "position: relative; margin-top: -370px; margin-left: 10px" %>
-  <div style="float: right; margin-top: 3px"><%= link_to "Find out more...", "", :class => "see_more_link" %></div>
+  <div style="float: right; margin-top: 3px">
+    <%= link_to "Find out more...", host_path, :class => "see_more_link" %></div>
 </div>
 </div>
 
@@ -145,7 +174,8 @@ a.see_more_link{color: #c54e28;}
 <div class="three_column">
   <%= image_tag 'feastfordays/hp_mosaic.png', :style => "margin-bottom: 20px" %>
   <div style="color: #402b15; font-weight: 600; font-size: 14px">See the  <span class="emphasis_heading">eats</span> and meet the <span class="emphasis_heading">peeps</span> that make Feast for Days the best thing since play dough.</div>
-  <div style="float: right; margin-top: 40px"><%= link_to "Meet the community...", "", :class => "see_more_link" %></div>
+  <div style="float: right; margin-top: 40px">
+    <%= link_to "Meet the community...", community_path, :class => "see_more_link" %></div>
 </div>
 </div>
 

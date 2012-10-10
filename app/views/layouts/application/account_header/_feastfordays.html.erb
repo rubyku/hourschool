@@ -9,36 +9,46 @@
     background-color: #412308;
     padding-top: 20px;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
   }
 
   #logo_feastfordays{
     float: left;
+    position: relative;
+    z-index: 3;
   }
 
   ul#feastfordays{
     float: left;
     list-style: none;
+    position: relative;
+    z-index: 3;
+    margin-top: -3px;
   }
 
   ul#feastfordays_profile{
     float: right;
     list-style: none;
+    position: relative;
+    z-index: 3;
+    margin-right: 8px;
+    margin-top: -3px;
   }
 
-  li#feastfordays{
+  li.feastfordays{
     float: left;
     color: #efe6e2;
     font-size: 12px;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 42px;
     padding-top: 5px;
     font-family: 'Open Sans', sans-serif;
+    color: #efe6e2
   }
 
-  a#feastfordays{color: #efe6e2;}
-  a#feastfordays:visited{color: #efe6e2}
 
-  li#feastfordays2{
+  li.feastfordays2{
     float: left;
     color: #8f9936;
     font-size: 12px;
@@ -46,34 +56,36 @@
     margin-left: 20px;
     padding-top: 5px;
     font-family: 'Open Sans', sans-serif;
+    color: #8f9936;
   }
-
-  a#feastfordays2{color: #8f9936;}
-  a#feastfordays2:visited{color: #8f9936}
 
 </style>
 
 <body>
 <div id="header_feastfordays">
   <div class="container_16">
-    <%= link_to (image_tag 'feastfordays/logo.png', :id => "logo_feastfordays"), "http://www.feastfordays.com" %>
+    <%= link_to (image_tag 'feastfordays/logo.png', :id => "logo_feastfordays"), explore_path %>
+
     <ul id="feastfordays">
-      <li id="feastfordays"><%= link_to "Join a feast", explore_path, :id => "feastfordays" %></li>
-      <li id="feastfordays"><%= link_to "Host a feast", host_path, :id => "feastfordays" %></li>
-      <li id="feastfordays"><a href="http://www.feastfordays.com/recipes.html" id="feastfordays">How it works</a></li>
-      <li id="feastfordays"><%= link_to "Food & Community", community_path, :id => "feastfordays" %></li>
-      <li id="feastfordays"><a href="http://www.feastfordays.com/about.html" id="feastfordays">About us</a></li>
+      <li class="feastfordays" style="margin-left: 26px"><%= link_to "Join a feast", courses_browse_index_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays"><%= link_to "Host a feast", host_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays"><%= link_to "How it works", how_it_works_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays"><%= link_to "Food & Community", community_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays"><a href="http://www.feastfordays.com/about.html", style="color: #efe6e2">About us</a></li>
     </ul>
 
     <ul id="feastfordays_profile">
       <% if user_signed_in? %>
-        <li id="feastfordays2"><%= link_to "My profile", profile_path, :id => "feastfordays2" %></li>
-        <li id="feastfordays2"><%= link_to "Logout", destroy_user_session_path, :id => "feastfordays2" %></li>
+        <li class="feastfordays2"><%= link_to "My profile", profile_path, :style => "color: #8f9936" %></li>
+        <li class="feastfordays2"><%= link_to "Logout", destroy_user_session_path, :style => "color: #8f9936" %></li>
       <% else %>
-        <li id="feastfordays2"><%= link_to "Sign in", new_user_session_path, :id => "feastfordays2" %></li>
-        <li id="feastfordays2"><%= link_to "Sign up", new_user_registration_path, :id => "feastfordays2" %></li>
+        <li class="feastfordays2"><%= link_to "Sign in", new_user_session_path, :style => "color: #8f9936" %></li>
+        <li class="feastfordays2"><%= link_to "Sign up", new_user_registration_path, :style => "color: #8f9936" %></li>
       <% end %>
     </ul>
+
+    <%= image_tag 'feastfordays/nav_divider_lines.png', :style => "position: relative; z-index: 2; margin-top: -47px; margin-left: 200px" %>
+
   </div>
 </div>
 </body>

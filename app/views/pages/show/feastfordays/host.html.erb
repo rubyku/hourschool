@@ -62,7 +62,7 @@
 
 </style>
 
-<div class="full-page white">
+<div class="full-page white" style="box-shadow: 2px 2px 2px #ccc;">
   <div class="page-content">
     <div class="page-title">Host a Feast</div>
     <div class="banner-title">So here's how it works...</div>
@@ -90,15 +90,16 @@
   </div>
 </div>
 
-<div class="full-page white">
+<div class="full-page white" style="box-shadow: 2px 2px 2px #ccc;">
   <div class="page-content">
     <div style="color: #797978; font-style: italic; font-size: 18px; text-align: center; margin-bottom: 30px">Is this your first rodeo?</div>
     <div class="section-title">Choose one of our favorite Feasts</div>
 
-    <%= link_to image_tag('feastfordays/feast1.png', :style => "margin-left: 30px; margin-bottom: 30px"), new_course_path(:course_title => "aa") %>
+    <%= link_to image_tag('feastfordays/feast1.png', :style => "margin-left: 15px; margin-bottom: 30px"), new_course_path(:title => "Feast1") %>
 
-    <%= image_tag 'feastfordays/feast2.png' %>
-    <%= image_tag 'feastfordays/feast3.png' %>
+    <%= link_to image_tag('feastfordays/feast2.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "Feast2") %>
+
+    <%= link_to image_tag('feastfordays/feast3.png', :style => "margin-left: 10px; margin-bottom: 30px"), new_course_path(:title => "Feast3") %>
 
   </div>
 </div>

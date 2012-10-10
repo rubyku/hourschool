@@ -9,7 +9,7 @@
             = link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course
           %br
             .class-description{:style => "float: left; width: 170px"}
-              .heading13-class
+              .heading13.brown
                 = link_to course.title.truncate(50), course
               - if course.teaser?
                 %p= course.teaser.truncate(70)

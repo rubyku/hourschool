@@ -1,0 +1,7 @@
+<% if current_account == Account.where(:id => 1).first %>
+  <div class="full-page">
+    <div class="page-contenet">
+      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
+    </div>
+  </div>
+<% end %>
