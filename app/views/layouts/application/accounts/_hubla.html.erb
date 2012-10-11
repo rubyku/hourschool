@@ -1,5 +1,14 @@
 <style type="text/css">
 
+  #hub-header{
+    float: left;
+    width: 1000px;
+    height: 350px;
+    background: url(http://www.thehubla.com/wp-content/themes/hubla-theme/images/bg-header05.jpg) 0 0 no-repeat;
+    position: relative;
+    z-index: -2;
+  }
+
   #hub-logo {
     float: left;
     width: 200px;
@@ -103,8 +112,7 @@
 </style>
 
 <div class="container_16" style="width: 1000px">
-  <%= image_tag 'http://www.thehubla.com/wp-content/themes/hubla-theme/images/bg-header05.jpg' %>
-
+  <div id="hub-header"></div>
   <div id="hub-logo">
     <a href="http://www.thehubla.com"></a>
     <div class="hub-opening"></div>
@@ -136,5 +144,6 @@
       </li>
     </ul>
   </div>
+
 </div>
 
