@@ -27,7 +27,7 @@
       </div>
       <%= simple_format Rinku.auto_link(@comment.parent_comment.body) %>
       <% if @comment.parent_comment.comment_type == 'file' %>
-        <%= link_to @comment.parent_comment.photo_file_name, comment.parent_comment.photo.url %>
+        <%= link_to @comment.parent_comment.photo_file_name, @comment.parent_comment.photo.url %>
       <% elsif @comment.parent_comment.comment_type == 'photo' %>
         <%= image_tag(@comment.parent_comment.photo.url(:normal)) %>
       <% end %>
