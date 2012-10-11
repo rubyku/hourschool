@@ -4,407 +4,407 @@
   a.c61-nav-heading:hover{color: black; background-color: #ccc;}
 </style>
 
-<% if @mission.id == 7 %>
+<% if @mission.id == 54 %><!-- Hub LA -->
 
-    <ul class="nav">
-      <li class="dropdown" id="menu5" style="float: left; margin-right: 30px; margin-bottom: 30px">
-        <%= link_to "My Events", '/dashboards/me', :class => "c61-nav-heading" %>
-      </li>
-      <li class="dropdown" id="menu6" style="float: left; margin-right: 30px; margin-bottom: 30px">
-        <%= link_to "Edit My Profile", edit_user_registration_path, :class => "c61-nav-heading" %>
-      </li>
-    </ul>
+  <%= render :partial => "missions/show/accounts/hubla" %>
+
 <% else %>
-  <%= render 'missions/show/tutorial' %>
-  <%= render 'missions/show/invitee_landing_page' %>
-  <div class="full-page white">
-    <% if @mission.photo.present? %>
-      <div style="background-color: #333; width: 960px; height: 349px;">
-        <%= image_tag(@mission.photo.url(:banner)) %>
-      </div>
-    <% else %>
-      <div style="background-color: #333; width: 960px; height: 349px;">
-        <div style="text-align: center; padding-top: 60px;">
-          <a data-toggle="modal" href="#addBasicInfo" class="heading11" style="color: white">Upload a photo that represent your mission</a>
+
+  <% if @mission.id == 7 %><!-- Center 61 -->
+      <ul class="nav">
+        <li class="dropdown" id="menu5" style="float: left; margin-right: 30px; margin-bottom: 30px">
+          <%= link_to "My Events", '/dashboards/me', :class => "c61-nav-heading" %>
+        </li>
+        <li class="dropdown" id="menu6" style="float: left; margin-right: 30px; margin-bottom: 30px">
+          <%= link_to "Edit My Profile", edit_user_registration_path, :class => "c61-nav-heading" %>
+        </li>
+      </ul>
+  <% else %>
+    <%= render 'missions/show/tutorial' %>
+    <%= render 'missions/show/invitee_landing_page' %>
+    <div class="full-page white">
+      <% if @mission.photo.present? %>
+        <div style="background-color: #333; width: 960px; height: 349px;">
+          <%= image_tag(@mission.photo.url(:banner)) %>
         </div>
-      </div>
-    <% end %>
-
-    <div class="mission-description-box">
-      <div class="heading14" style="margin: 20px 0px 5px 0px">
-        The mission:
-      </div>
-
-      <div class="heading28 brown" style="margin-bottom: 5px;">
-        <%= full_mission_title(@mission) %>
-      </div>
-      <div class="heading9 bold" style="color: #999;">
-        <%= "#{@mission.city.name}, #{@mission.city.state}" %>
-      </div>
-
-      <p>
-        "<%= @mission.description %>"
-      </p>
-
-      <div class="heading9 bold" style="color: #999;">
-        - <%= link_to @mission.creator.name, @mission.creator %>, mission creator
-      </div>
-    </div>
-
-    <div class="mission-status-box">
-      <div style="width: 240px; float: right">
-        <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
-        <% if !current_user || (current_user && current_user.crewmanships.where(:mission_id => @mission).blank?) %>
-          <%= link_to "Follow Mission", mission_crewmanships_path(@mission), :method => :post, :class => "btn btn-warning right", :style => "color: white" %>
-        <% elsif current_user && current_user.crewmanships.where(:mission_id => @mission).present? %>
-          <div class="btn btn-warning right disabled" style="color: white">Following Mission</div>
-        <% end %>
-      </div>
-
-      <!-- Modal BEGIN -->
-      <div class="modal hide" id="tinyLetter">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h3>Invite someone to this mission</h3>
-        </div>
-        <div class="modal-body">
-          <%= render 'invites/form' %>
-
-        </div>
-      </div>
-
-    <div class="heading11" style="margin-top: 10px; float: right">
-      <a data-toggle="modal" href="#wholeCrew"><%= "The mission crew (#{@users.count})" %></a>
-    </div>
-
-    <div style="width: 240px; float: right">
-      <% @users.sample(4).each do |user| %>
-      <div style="float: left; margin-top: 10px; margin-bottom: 5px; float: right">
-        <div style="float: left; margin-right: 5px; float: right">
-          <% if user.photo.present? %>
-            <%= link_to image_tag(user.photo.url(:thumb_small)), user %>
-          <% else %>
-            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-
-    <!-- modal begins -->
-    <div class="modal hide" id="wholeCrew">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>The crew in the mission <%= full_mission_title(@mission) %></h3>
-      </div>
-      <div class="modal-body">
-        <% @users.each do |user| %>
-          <div class="mission-divider">
-            <div class="crewman-photo">
-              <% if user.photo.present? %>
-                <%= link_to_avatar(user, :thumb_small) %>
-              <% else %>
-                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
-              <% end %>
-            </div>
-            <div class="crewman-description">
-              <%= link_to user.name, user, :style => "text-decoration: none; font-weight: 700; float: left; margin-right: 10px " %>
-
-              <%if user.crewmanships.where(:role => "creator", :mission_id => @mission).last %>
-                <span class="label">Mission Creator</span>
-              <% elsif user.crewmanships.where(:role => "explorer", :mission_id => @mission).last %>
-                <span class="label">Explorer</span>
-              <% elsif user.crewmanships.where(:role => "guide", :mission_id => @mission).last  %>
-                <span class="label">Guide</span>
-              <% elsif user.crewmanships.where(:role => "alumni", :mission_id => @mission).last  %>
-                <span class="label">Alumni</span>
-              <% end %>
-              <p><%= user.bio %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <!-- modal ends -->
-    </div>
-  </div><!-- end full page -->
-<% end %>
-
-
-<div class="white full-page">
-  <div class="mission-section-header">
-    <div class="heading11" style="color: white">Attend a class, a workshop, or happy hour.</div>
-    <div class="heading11" style="color: white; text-align: right; margin-top: -17px">
-      <%= link_to "View all events", mission_courses_path(@mission), :style => "color: white; text-decoration: underline" %>
-    </div>
-  </div>
-
-  <div class="page-content">
-
-    <% if @courses.where("starts_at > (?)", Time.now).count >= 4 %>
-      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').limit(4).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @courses.where("starts_at > (?)", Time.now).count == 3 %>
-      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
+      <% else %>
+        <div style="background-color: #333; width: 960px; height: 349px;">
+          <div style="text-align: center; padding-top: 60px;">
+            <a data-toggle="modal" href="#addBasicInfo" class="heading11" style="color: white">Upload a photo that represent your mission</a>
           </div>
         </div>
       <% end %>
 
-      <% @courses.where("starts_at < (?)", Time.zone.now).limit(1).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
+      <div class="mission-description-box">
+        <div class="heading14" style="margin: 20px 0px 5px 0px">
+          The mission:
         </div>
-      <% end %>
-    <% end %>
 
-    <% if @courses.where("starts_at > (?)", Time.now).count == 2 %>
-      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
+        <div class="heading28 brown" style="margin-bottom: 5px;">
+          <%= full_mission_title(@mission) %>
         </div>
-      <% end %>
-
-      <% @courses.where("starts_at < (?)", Time.zone.now).limit(2).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
+        <div class="heading9 bold" style="color: #999;">
+          <%= "#{@mission.city.name}, #{@mission.city.state}" %>
         </div>
-      <% end %>
-    <% end %>
 
-    <% if @courses.where("starts_at > (?)", Time.now).count == 1 %>
-      <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
+        <p>
+          "<%= @mission.description %>"
+        </p>
+
+        <div class="heading9 bold" style="color: #999;">
+          - <%= link_to @mission.creator.name, @mission.creator %>, mission creator
         </div>
-      <% end %>
+      </div>
 
-      <% @courses.where("starts_at < (?)", Time.zone.now).limit(3).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+      <div class="mission-status-box">
+        <div style="width: 240px; float: right">
+          <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
+          <% if !current_user || (current_user && current_user.crewmanships.where(:mission_id => @mission).blank?) %>
+            <%= link_to "Follow Mission", mission_crewmanships_path(@mission), :method => :post, :class => "btn btn-warning right", :style => "color: white" %>
+          <% elsif current_user && current_user.crewmanships.where(:mission_id => @mission).present? %>
+            <div class="btn btn-warning right disabled" style="color: white">Following Mission</div>
           <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <p><%= course.description.truncate(70) %></p>
-          </div>
         </div>
-      <% end %>
-    <% end %>
 
-    <% if @courses.where("starts_at > (?)", Time.zone.now).count == 0 %>
-      <% @courses.where("starts_at < (?)", Time.zone.now).limit(4).each do |course| %>
-        <div class="classBlock">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px; height: 85px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-              <p><%= course.description.truncate(45) %></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-    <% if @mission.status == 'live' %>
-      <div class="well" style="float: left">
-        <div class="heading11" style="float: left">Everyone in the mission is encouraged to organize events. Add yours today!</div>
-        <a class="btn" data-toggle="modal" href="#addAnEvent2" style="float: left; margin-left: 30px; margin-top: -5px">Add an event</a>
-
-        <div class="modal hide" id="addAnEvent2"><!-- Modal BEGIN -->
+        <!-- Modal BEGIN -->
+        <div class="modal hide" id="tinyLetter">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Add an event</h3>
+            <h3>Invite someone to this mission</h3>
           </div>
           <div class="modal-body">
-            <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
-            <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
-            <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
-            <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+            <%= render 'invites/form' %>
+
           </div>
-        </div><!-- Modal END -->
+        </div>
+
+      <div class="heading11" style="margin-top: 10px; float: right">
+        <a data-toggle="modal" href="#wholeCrew"><%= "The mission crew (#{@users.count})" %></a>
       </div>
-    <% end %>
 
-  </div><!-- end page-content -->
-</div><!-- end full-page -->
+      <div style="width: 240px; float: right">
+        <% @users.sample(4).each do |user| %>
+        <div style="float: left; margin-top: 10px; margin-bottom: 5px; float: right">
+          <div style="float: left; margin-right: 5px; float: right">
+            <% if user.photo.present? %>
+              <%= link_to image_tag(user.photo.url(:thumb_small)), user %>
+            <% else %>
+              <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
 
+      <!-- modal begins -->
+      <div class="modal hide" id="wholeCrew">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>The crew in the mission <%= full_mission_title(@mission) %></h3>
+        </div>
+        <div class="modal-body">
+          <% @users.each do |user| %>
+            <div class="mission-divider">
+              <div class="crewman-photo">
+                <% if user.photo.present? %>
+                  <%= link_to_avatar(user, :thumb_small) %>
+                <% else %>
+                  <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
+                <% end %>
+              </div>
+              <div class="crewman-description">
+                <%= link_to user.name, user, :style => "text-decoration: none; font-weight: 700; float: left; margin-right: 10px " %>
 
+                <%if user.crewmanships.where(:role => "creator", :mission_id => @mission).last %>
+                  <span class="label">Mission Creator</span>
+                <% elsif user.crewmanships.where(:role => "explorer", :mission_id => @mission).last %>
+                  <span class="label">Explorer</span>
+                <% elsif user.crewmanships.where(:role => "guide", :mission_id => @mission).last  %>
+                  <span class="label">Guide</span>
+                <% elsif user.crewmanships.where(:role => "alumni", :mission_id => @mission).last  %>
+                  <span class="label">Alumni</span>
+                <% end %>
+                <p><%= user.bio %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- modal ends -->
+      </div>
+    </div><!-- end full page -->
+  <% end %>
 
-
-<div class="white full-page">
-  <div class="mission-section-header">
-    <div class="heading11" style="color: white">Ask a question, share a tip, keep the conversation going.</div>
-  </div>
-
-  <div class="page-main"  style="border: 0px solid black; border-right: 1px dashed #eeebeb">
-    <div class="page-content">
-
-      <div style="float: left; width: 100%">
-        <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+  <div class="white full-page">
+    <div class="mission-section-header">
+      <div class="heading11" style="color: white">Attend a class, a workshop, or happy hour.</div>
+      <div class="heading11" style="color: white; text-align: right; margin-top: -17px">
+        <%= link_to "View all events", mission_courses_path(@mission), :style => "color: white; text-decoration: underline" %>
       </div>
     </div>
-  </div>
 
-  <div style="float: left; width: 329px">
     <div class="page-content">
-      <div class="heading11" style="margin-bottom: 20px">Projects people are working on:</div>
-      <a class="btn" data-toggle="modal" href="#newTopic">Add your project</a>
-      <div style="float: left; margin-top: 30px;">
-        <% @mission.topics.each do |topic| %>
-          <div class="mission-divider">
-            <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
-            <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
-              Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
-            </div>
-            <% if topic.courses.count <= 1 %>
-              <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
-            <% else %>
-              <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
-            <% end %>
-            <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize an event for this project</a>
-          </div>
 
-          <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
+      <% if @courses.where("starts_at > (?)", Time.now).count >= 4 %>
+        <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').limit(4).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <div class="heading10" style="font-weight: 400">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @courses.where("starts_at > (?)", Time.now).count == 3 %>
+        <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <div class="heading10" style="font-weight: 400">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+
+        <% @courses.where("starts_at < (?)", Time.zone.now).limit(1).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @courses.where("starts_at > (?)", Time.now).count == 2 %>
+        <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <div class="heading10" style="font-weight: 400">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+
+        <% @courses.where("starts_at < (?)", Time.zone.now).limit(2).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @courses.where("starts_at > (?)", Time.now).count == 1 %>
+        <% @courses.where("starts_at > (?)", Time.now).order('DATE(starts_at) ASC').each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <div class="heading10" style="font-weight: 400">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+
+        <% @courses.where("starts_at < (?)", Time.zone.now).limit(3).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @courses.where("starts_at > (?)", Time.zone.now).count == 0 %>
+        <% @courses.where("starts_at < (?)", Time.zone.now).limit(4).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px; height: 85px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+                <p><%= course.description.truncate(45) %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @mission.status == 'live' %>
+        <div class="well" style="float: left">
+          <div class="heading11" style="float: left">Everyone in the mission is encouraged to organize events. Add yours today!</div>
+          <a class="btn" data-toggle="modal" href="#addAnEvent2" style="float: left; margin-left: 30px; margin-top: -5px">Add an event</a>
+
+          <div class="modal hide" id="addAnEvent2"><!-- Modal BEGIN -->
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
               <h3>Add an event</h3>
             </div>
             <div class="modal-body">
               <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
-              <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-              <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
-              <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+              <%= link_to "A working session", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+              <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
+              <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id), :class => "btn btn-large", :style => "text-decoration: none" %>
             </div>
           </div><!-- Modal END -->
+        </div>
+      <% end %>
+    </div><!-- end page-content -->
+  </div><!-- end full-page -->
 
-          <!-- Modal BEGIN -->
-          <div class="modal hide" id="viewTopic<%= topic.id %>">
+  <div class="white full-page">
+    <div class="mission-section-header">
+      <div class="heading11" style="color: white">Ask a question, share a tip, keep the conversation going.</div>
+    </div>
+
+    <div class="page-main"  style="border: 0px solid black; border-right: 1px dashed #eeebeb">
+      <div class="page-content">
+        <div style="float: left; width: 100%">
+          <%= render :partial => "missions/show/comments", :locals => {:mission => @mission} %>
+        </div>
+      </div>
+    </div>
+
+    <div style="float: left; width: 329px">
+      <div class="page-content">
+        <div class="heading11" style="margin-bottom: 20px">Projects people are working on:</div>
+        <a class="btn" data-toggle="modal" href="#newTopic">Add your project</a>
+        <div style="float: left; margin-top: 30px;">
+          <% @mission.topics.each do |topic| %>
+            <div class="mission-divider">
+              <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
+              <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
+              </div>
+              <% if topic.courses.count <= 1 %>
+                <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
+              <% else %>
+                <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
+              <% end %>
+              <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize an event for this project</a>
+            </div>
+
+            <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Add an event</h3>
+              </div>
+              <div class="modal-body">
+                <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+                <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+              </div>
+            </div><!-- Modal END -->
+
+            <!-- Modal BEGIN -->
+            <div class="modal hide" id="viewTopic<%= topic.id %>">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Topic Details</h3>
+              </div>
+              <div class="modal-body">
+                <div class="heading13 brown"><%= topic.title %></div>
+                <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                  Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
+                <br>
+                <div class="heading11">Related Events:</div>
+                <% if topic.courses.present? %>
+                  <% topic.courses.each do |course| %>
+                    <%= link_to course.title, course %>
+                    <br>
+                  <% end %>
+                <% else %>
+                  No related event yet.
+                <% end %>
+              </div>
+            </div>
+            <!-- Modal END -->
+          <% end %>
+          <!-- end mission.topic each block -->
+
+          <div class="modal hide" id="newTopic"><!-- modal begins -->
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">×</button>
-              <h3>Topic Details</h3>
+              <h3>Add a new topic</h3>
             </div>
             <div class="modal-body">
-              <div class="heading13 brown"><%= topic.title %></div>
-              <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
-                Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
-              <br>
-              <div class="heading11">Related Events:</div>
-              <% if topic.courses.present? %>
-                <% topic.courses.each do |course| %>
-                  <%= link_to course.title, course %>
-                  <br>
-                <% end %>
-              <% else %>
-                No related event yet.
-              <% end %>
+              <%= render 'topics/form' %>
             </div>
-          </div>
-          <!-- Modal END -->
-        <% end %>
-        <!-- end mission.topic each block -->
+          </div><!-- modal ends -->
 
-        <div class="modal hide" id="newTopic"><!-- modal begins -->
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h3>Add a new topic</h3>
-          </div>
-          <div class="modal-body">
-            <%= render 'topics/form' %>
-          </div>
-        </div><!-- modal ends -->
-
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script type="text/javascript">
-  $('#topicLibraryTip').tooltip({})
-</script>
+  <script type="text/javascript">
+    $('#topicLibraryTip').tooltip({})
+  </script>
 
+<% end %>

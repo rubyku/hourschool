@@ -1,0 +1,94 @@
+<style type="text/css">
+
+  .one-column {
+    background: url(http://www.thehubla.com/wp-content/themes/hubla-theme/images/column1-shadow.png) 0 0 no-repeat;
+  }
+
+  .one-column .column {
+    width: 950px;
+    clear: both;
+    margin: 0 25px 0px 25px;
+    background-color: white;
+    margin-top: -85px;
+    z-index: 99;
+    position: relative;
+  }
+
+  .full1 {
+    width: 900px;
+    margin: 0 25px 25px 25px;
+    padding-top: 15px;
+  }
+
+  #tec-content.upcoming {
+    margin-bottom:60px;
+  }
+
+  h2.tec-cal-title {
+    float:left;
+    padding-right:15px;
+    margin-bottom: 33px;
+    font-size:21px;
+    font-weight:bold;
+    color:#000;
+    position:relative;
+    z-index:5;
+  }
+
+</style>
+
+
+  <div class="one-column" style="margin-left: -20px;">
+    <div class="column">
+      <div class="full1">
+
+        <div id="tec-content" class="upcoming">
+          <div id='tec-events-calendar-header' class="clearfix">
+
+            <div class="page-main"  style="border: 0px solid black; border-right: 1px dashed #eeebeb">
+              <div class="page-content">
+
+                <h2 class="tec-cal-title">Calendar of Events</h2>
+                <%= link_to "Post an event", new_course_path(:mission_id => @mission), :class => "btn right", :style => "color: #832927" %>
+
+                <% if @courses.where("starts_at > (?)", Time.now).present? %>
+                  <% @courses.where("starts_at > (?)", Time.now).order('starts_at asc').each do |course| %>
+                    <div class="mission-divider">
+                      <div style="float: left; margin-right: 20px">
+                        <%= link_to (image_tag(course.photo.url(:small), :size => "220x150", :style => "margin: 0px 15px 15px 0px,")),course if course.photo.present? %>
+                      </div>
+                      <div style="float: left; width: 290px">
+                        <%= link_to course.title, course, :class => "heading16 adelle", :style => "color: #832927; text-transform: uppercase" %><br>
+                        <div style="width: 258px; margin-bottom: 5px; margin-right: 25px; margin-top: 10px">
+                          <%= image_tag "v2/icon_calendar.png", :style => "margin-right: 5px" %>
+                          <%= course.starts_at.strftime("%a %b %d") %>, <%= "#{course.starts_at.strftime("%l:%M%p")}"%><br>
+                          <%= image_tag "v2/icon_location.png", :style => "margin-right: 8px; margin-left: 2px" %>
+                          <%= course.place_name %>
+                        </div>
+                        <p><%= simple_format Rinku.auto_link(course.description.truncate(240)) %></p>
+
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+
+              </div><!-- end page-content -->
+            </div><!-- end page-main -->
+
+            <div style="float: left; width: 220px">
+              <div class="page-content">
+                <div class="heading11" style="margin-bottom: 20px">Filter by category:</div>
+                <a class="btn" data-toggle="modal" href="#newTopic">Request an event</a>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
