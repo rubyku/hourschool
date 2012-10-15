@@ -32,7 +32,15 @@
           <%= user.location if user.location.present? %>
           <%= "#{user.city.name}, #{user.city.state}" if user.city.present?%><br>
           Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
-
+          <% if community_site? %>
+            <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
+          <% else %>
+              <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                Admin
+              <% else %>
+                <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+              <% end %>
+          <% end %>
           </p>
         </div>
       <% end %>

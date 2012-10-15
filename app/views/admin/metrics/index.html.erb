@@ -33,8 +33,8 @@
         <div class="full-page white tab-border full">
           <div class="page-content">
 
-          
-            
+
+
           </div><!-- end page-content -->
         </div><!-- end full-page -->
       </div><!-- end tab3 -->
@@ -52,11 +52,11 @@
       <%= "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }" %><br>
     <% end %>
     <br><br>
-      
+
     <div class="heading14">Total to date</div>
     <table>
       <tr>
-        <td>Total Users:</td> 
+        <td>Total Users:</td>
         <td><%= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)" %></td>
       </tr>
       <tr>
@@ -94,18 +94,6 @@
       <tr>
         <td>Free Courses:</td>
         <td><%= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr class="metrics_underline">
-        <td>Happened Courses:</td> 
-        <td><%= "#{@happened_courses} (#{number_to_percentage(@happened_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Total Transactions:</td>
-        <td><%= "#{ number_to_currency @total_transaction}" %></td>
-      </tr>
-      <tr>
-        <td>Revenue:</td> 
-        <td><%= "#{ number_to_currency @total_transaction - @amazon_fees - @teachers_share}" %></td>
       </tr>
     </table>
   </div>
