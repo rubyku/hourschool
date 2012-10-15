@@ -132,6 +132,7 @@
           <% if user_signed_in? %>
               <% if current_account && admin_of_current_account? %>
                 <div class="login_menu"><%= link_to "Post event", new_course_path(:mission_id => @mission), :class => "btn", :style => "margin-right: 10px" %></div>
+                <div class="login_menu"><%= link_to "Logout", destroy_user_session_path, :class => "btn", :style => "margin-right: 10px" %></div>
               <% end %>
           <% else %>
             <div class="login_menu"><%= link_to "Admin Login", new_user_session_path, :class => "btn", :style => "margin-right: 10px" %></div>
