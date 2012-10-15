@@ -45,8 +45,8 @@ class Courses::Attendee::RegistrationsController < ApplicationController
       if @course.free? || charge.paid
         if community_site? && current_user && @course.mission.present? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
           Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'explorer')
-        else
-          Membership.create(:user => @user, :account => @course.account, :admin => false)
+        elsif
+          Membership.create(:user => @user, :account => @course.account, :admin => false) unless Membership.find_by_user_id_and_account_id(@existing_user.id, current_account.id)
         end
         if @course.account.nil?
           current_account = nil
