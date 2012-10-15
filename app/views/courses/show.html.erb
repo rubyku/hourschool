@@ -41,7 +41,9 @@
         <div class="heading28 brown" style="margin-bottom: 5px"><%= "#{@course.title}" %></div>
         <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
           <% if @course.mission.present? %>
-            This event is part of the mission <%= link_to full_mission_title(@course.mission), @course.mission %>
+            <% if @mission.id != 54 %><!-- Hub LA -->
+              This event is part of the mission <%= link_to full_mission_title(@course.mission), @course.mission %>
+            <% end %>
           <% end %><br>
           <% if @course.topics.present? %>
             Related topics:
