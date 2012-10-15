@@ -46,7 +46,9 @@
               <div class="page-content">
 
                 <h2 class="tec-cal-title">Calendar of Events</h2>
-                <%= link_to "Post an event", new_course_path(:mission_id => @mission), :class => "btn right", :style => "color: #832927" %>
+                <% if current_account && admin_of_current_account? %>
+                  <%= link_to "Post an event", new_course_path(:mission_id => @mission), :class => "btn right", :style => "color: #832927" %>
+                <% end %>
 
                 <% if @courses.where("starts_at > (?)", Time.now).present? %>
                   <% @courses.where("starts_at > (?)", Time.now).order('starts_at asc').each do |course| %>
