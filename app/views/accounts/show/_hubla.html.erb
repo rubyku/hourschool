@@ -52,7 +52,6 @@
         <div id="tec-content" class="upcoming">
           <div id='tec-events-calendar-header' class="clearfix">
             <h2 class="tec-cal-title">Calendar of Events</h2>
-            <%= link_to "Post an event", new_course_path, :class => "btn" %>
             <div class="full-page" style="border: 0px solid black">
               <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
             </div>
