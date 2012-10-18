@@ -1,15 +1,26 @@
-<div class="full-page">
+<div class="full-page white">
   <div class="page-content">
 
-    <% @courses.order('DATE(starts_at) DESC').each do |course| %>
-      <div style="margin-bottom: 20px">
-        <div class="heading13 brown"><%= link_to course.title.truncate(45), course %></div>
-        Course id: <%= course.id %><br>
-        <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
-        <%= course.starts_at.strftime("%a %b %d, %l:%M") %> - <%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %><br>
-        Attendance: <%= course.students.count %> out of <%= course.max_seats %>
-        <br>
-        <%= link_to 'Edit', edit_course_path(course) %>
+    <%= render :partial => 'layouts/application/admin_bar' %>
+
+    <% @courses.each do |course| %>
+      <div class="classBlock">
+        <% if course.photo.present? %>
+          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+        <% else %>
+          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+        <% end %>
+        <div class="class-description">
+          <div class="heading13 brown" style="padding-top: 10px">
+            <%= link_to course.title.truncate(50), course %>
+          </div>
+          Course id: <%= course.id %><br>
+          <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
+          <%= course.starts_at.strftime("%a %b %d, %l:%M") %> - <%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %><br>
+          Attendance: <%= course.students.count %> out of <%= course.max_seats %>
+          <br>
+          <%= link_to 'Edit', edit_course_path(course) %>
+        </div>
       </div>
     <% end %>
 

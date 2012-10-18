@@ -1,16 +1,12 @@
 .page-section-float-left.clearfix
-	.welcome-header Admin Panel
-	= image_tag "v2/greyheader_half.png", :class => "greyheader half"
-
-.page-section-float-left.clearfix
 	%ul.sub-nav.clearfix
-		- if current_account
-			%li{:class => "sub-nav-#{'in' unless controller_name == 'accounts' && action_name == 'edit'}active"}
-				= link_to 'Account', edit_account_path(:admin)
-		- else
-			%li{:class => "sub-nav-#{'in' unless controller_name == 'charts'}active"}
-				= link_to 'Metrics', admin_metrics_path
+		/ - if current_account
+		/ 	%li{:class => "sub-nav-#{'in' unless controller_name == 'accounts' && action_name == 'edit'}active"}
+		/ 		= link_to 'Account', edit_account_path(:admin)
+		/ - else
+		/ 	%li{:class => "sub-nav-#{'in' unless controller_name == 'charts'}active"}
+		/ 		= link_to 'Metrics', admin_metrics_path
 		%li{:class => "sub-nav-#{'in' unless controller_name == 'courses' && action_name == 'index'}active"}
-			= link_to 'Courses', admin_courses_path
+			= link_to 'Events', admin_courses_path
 		%li{:class => "sub-nav-#{'in' unless controller_name == 'users'}active"}
 			= link_to 'Users', users_path

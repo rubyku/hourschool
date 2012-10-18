@@ -1,47 +1,15 @@
 <div class="page-main">
-
-  <div class="tabbable"> <!-- Only required for left/right tabs -->
-    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-      <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Missions</a></li>
-      <li><a href="#tab2" data-toggle="tab" class="heading11">Courses</a></li>
-      <li><a href="#tab3" data-toggle="tab" class="heading11">Users</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab1">
-        <div class="full-page white tab-border full">
-          <div class="page-content">
-            <% @missions.each do |mission| %>
-              <%= link_to full_mission_title(mission), mission %><br>
-              Status: <%= mission.status %><br>
-              <%= mission.crewmanships.count %> people have joined<br>
-              <%= mission.courses.count %> events<br>
-              <%= mission.topics.count %> topics<br>
-              <%= mission.comments.count %> comments<br><br>
-            <% end %>
-          </div><!-- end page-content -->
-        </div><!-- end full-page -->
-      </div><!-- end tab1 -->
-      <div class="tab-pane" id="tab2">
-        <div class="full-page white tab-border full">
-          <div class="page-content">
-
-
-          </div><!-- end page-content -->
-        </div><!-- end full-page -->
-      </div><!-- end tab2 -->
-      <div class="tab-pane" id="tab3">
-        <div class="full-page white tab-border full">
-          <div class="page-content">
-
-
-
-          </div><!-- end page-content -->
-        </div><!-- end full-page -->
-      </div><!-- end tab3 -->
-
-    </div><!-- end tab-content -->
-  </div><!-- end tabbable -->
-
+  <div class="page-content">
+    <div class="heading14">Missions</div>
+    <% @missions.each do |mission| %>
+      <%= link_to full_mission_title(mission), mission %><br>
+      Status: <%= mission.status %><br>
+      <%= mission.crewmanships.count %> people have joined<br>
+      <%= mission.courses.count %> events<br>
+      <%= mission.topics.count %> topics<br>
+      <%= mission.comments.count %> comments<br><br>
+    <% end %>
+  </div><!-- end page-content -->
 </div>
 
 <div class="sidebar">

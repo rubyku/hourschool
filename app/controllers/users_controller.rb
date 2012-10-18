@@ -6,7 +6,7 @@ class UsersController < DashboardsController
     if community_site?
       @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
     else
-      @users = current_account.users
+      @users = current_account.users.uniq
     end
   end
 

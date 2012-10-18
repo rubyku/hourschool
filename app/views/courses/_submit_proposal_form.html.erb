@@ -28,8 +28,8 @@
    </p>
    <br><br>
 
-  <% if @course.mission %>
-  Does your event cover any of the following topics?
+  <% if @course.mission && @course.mission.topics.present? %>
+  <div class="form-question">Does your event cover any of the following topics?</div>
     <% for topic in @course.mission.topics.find(:all) %>
       <div>
         <%= check_box_tag "course[topic_ids][]", topic.id %>
@@ -151,7 +151,8 @@
       box-shadow: 0 2px 4px #999;
       cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
   <% else %>
-   <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Submit" %>
+   <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
+    <p style="font-size: 9px; margin-top: 10px">You'll be able to preview before submitting on the next page!</p>
   <% end %>
 
 

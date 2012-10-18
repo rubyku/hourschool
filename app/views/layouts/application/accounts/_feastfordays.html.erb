@@ -4,14 +4,19 @@
     background-image: url(<%= asset_path "feastfordays/bg.png" %>) ;
   }
 
-  #header_feastfordays{
-    height: 38px;
+  #header_feastfordays {
     background-color: #412308;
-    padding-top: 20px;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#412308), to(#38220D));
+    background-image: -webkit-linear-gradient(top, #412308, #38220D);
+    background-image: -moz-linear-gradient(center top, #412308, #38220D);
+    background-image: -ms-linear-gradient(top, #412308, #38220D);
+    background-image: -o-linear-gradient(top, #412308, #38220D);
+    height: 38px;
     margin-bottom: 30px;
+    padding-top: 13px;
     position: relative;
     z-index: 1;
-  }
+}
 
   #logo_feastfordays{
     float: left;
