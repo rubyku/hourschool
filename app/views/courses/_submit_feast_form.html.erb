@@ -82,29 +82,6 @@
 
           <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
         </p>
-
-        <script type="text/javascript">
-        $("ul.typeahead.dropdown-menu").find('li.active').data('value')
-        $('#citySearch').typeahead({
-          source: function(typeahead, query) {
-            var _this = this;
-            return $.ajax({
-              url: "<%= cities_path(:format => :json) %>?q=" + query,
-              success: function(data) {
-                return typeahead.process(data);
-              }
-            });
-          },
-          property: "name",
-          onselect: function (obj) {
-            $('#course_city_id').val(obj.id);
-          }
-        });
-        </script>
-
-        <ul id="city_select" style="display: block; border: 1px solid #D2D9DC; background-color: #fff; border-radius: 5px; width: 250px; padding-left: 10px; padding-bottom: 10px; margin-top: 105px; margin-left: 0px; list-style: none">
-        </ul>
-        <br><br>
 </div>
 
     <div class="page-section-float-left">
