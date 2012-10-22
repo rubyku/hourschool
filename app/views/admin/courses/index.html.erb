@@ -1,7 +1,7 @@
-<div class="full-page white">
+<div class="page-main white">
   <div class="page-content">
 
-    <%= render :partial => 'layouts/application/admin_bar' %>
+    <%= link_to "Post event", new_course_path, :class => "btn right" %>
 
     <% @courses.each do |course| %>
       <div class="classBlock">
@@ -26,3 +26,5 @@
 
   </div>
 </div>
+
+<%= render :partial => '/admin/admin_sidebar' %>

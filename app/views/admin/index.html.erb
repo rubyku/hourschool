@@ -1,0 +1,191 @@
+<div class="page-main white">
+  <div class="page-content">
+
+  <div class="heading28" style="margin-bottom: 30px">Admin Dashboard</div>
+
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+      <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Events</a></li>
+      <li><a href="#tab2" data-toggle="tab" class="heading11">People</a></li>
+      <% if current_account == Account.where(:id => 7).last %>
+        <li><a href="#tab3" data-toggle="tab" class="heading11">Categories</a></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <div class="white tab-border">
+          <div class="page-content">
+            <%= link_to "Post event", new_course_path(:mission_id => @mission), :class => "btn right" %>
+            <% @courses.each do |course| %>
+              <div class="mission-divider">
+                <div class="heading16 brown" style="padding-top: 10px">
+                  <%= link_to course.title, course %>
+                </div>
+                <%= course.starts_at.strftime("%a %b %d, %l:%M") %> - <%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %><br>
+                Posted by: <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
+                <%= course.students.count %> out of <%= course.max_seats %> attending
+                <br>
+                <%= link_to 'Edit', edit_course_path(course), :class => "btn" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end tab1 -->
+
+      <div class="tab-pane" id="tab2">
+        <div class="white tab-border">
+          <div class="page-content">
+            <div class="heading11" style="margin-bottom: 30px">Total users:
+            <% if community_site? %>
+              <%= User.uniq.count %>
+            <% else %>
+              <%= current_account.users.uniq.count %>
+            <% end %>
+            </div>
+
+            <% @users.each do |user| %>
+              <div class="mission-divider">
+                <div class="crewman-photo">
+                  <% if user.photo.present? %>
+                    <%= link_to_avatar(user, :thumb_large) %>
+                  <% else %>
+                    <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                  <% end %>
+                </div>
+                <%= link_to user.name, user_path(user.id), :class => "heading13 brown" %><br>
+                <%= user.email %><br>
+                ID: <%= user.id %><br>
+                City:
+                <%= user.location if user.location.present? %>
+                <%= "#{user.city.name}, #{user.city.state}" if user.city.present?%><br>
+                Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
+                <% if community_site? %>
+                  <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
+                <% else %>
+                    <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                      Admin
+                    <% else %>
+                      <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put, :class => "btn" %>
+                    <% end %>
+                <% end %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- end tab2 -->
+
+      <% if current_account == Account.where(:id => 7).last %>
+      <div class="tab-pane" id="tab3">
+        <div class="white tab-border">
+          <div class="page-content">
+
+            <% @mission = Mission.find(54) %>
+            <% @mission.topics.each do |topic| %>
+              <div class="mission-divider">
+                <%= link_to topic.title, mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :class => "heading13 brown" %>
+                <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                  Added by <%= link_to topic.user.name, topic.user, :style => "color: #999" %>
+                </div>
+                <% if topic.courses.count <= 1 %>
+                  <%= link_to "#{topic.courses.count} event", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px" %>
+                <% else %>
+                  <%= link_to "#{topic.courses.count} events", mission_topic_path(@mission, topic), :href => "#viewTopic#{topic.id}", 'data-toggle' => 'modal', :style => "float: left; font-size: 10px; color: #333; margin-right: 20px"  %>
+                <% end %>
+                <a data-toggle="modal" href="#addAnEventWithTopic" style="float: left; font-size: 10px; color: #333">Organize an event for this project</a>
+              </div>
+
+              <div class="modal hide" id="addAnEventWithTopic"><!-- Modal BEGIN -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Add an event</h3>
+                </div>
+                <div class="modal-body">
+                  <p>An event is a chance to get together with your crew to work, learn, and play. Which type of event best suit what you want to do?</p>
+                  <%= link_to "A working session", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                  <%= link_to "A class or workshop", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                  <%= link_to "A happy hour social", new_course_path(:mission_id => @mission.id, :topic_id => topic), :class => "btn btn-large", :style => "text-decoration: none" %>
+                </div>
+              </div><!-- Modal END -->
+
+              <!-- Modal BEGIN -->
+              <div class="modal hide" id="viewTopic<%= topic.id %>">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Topic Details</h3>
+                </div>
+                <div class="modal-body">
+                  <div class="heading13 brown"><%= topic.title %></div>
+                  <div style="color: #999; font-weight: 700; font-size: 9px; text-transform: uppercase">
+                    Added by <%= link_to topic.user.name, topic.user, :style => "color: #999; text-decoration: none" %></div>
+                  <br>
+                  <div class="heading11">Related Events:</div>
+                  <% if topic.courses.present? %>
+                    <% topic.courses.each do |course| %>
+                      <%= link_to course.title, course %>
+                      <br>
+                    <% end %>
+                  <% else %>
+                    No related event yet.
+                  <% end %>
+                </div>
+              </div>
+              <!-- Modal END -->
+            <% end %>
+            <!-- end mission.topic each block -->
+
+          </div>
+        </div>
+      </div><!-- end tab3 -->
+      <% end %>
+
+    </div><!-- end tab-content -->
+  </div><!-- end tabbable -->
+</div>
+</div><!-- end page-main -->
+
+
+<div class="left" style="width: 290px"><!-- sidebar container -->
+  <div class="white right page-sidebar">
+    <div class="sidebar-content-white">
+        <div class="heading14" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
+          Some handy tools
+        </div>
+
+        <div class="mission-divider">
+          <%= link_to "Post a new event", new_course_path %><br>
+          <% if current_account == Account.where(:id => 7).last %>
+            <a data-toggle="modal" href="#newTopic">Add new event category</a><br>
+            <a data-toggle="modal" href="#tinyLetter">Invite people</a><br>
+          <% end %>
+          <%#= link_to "Account Settings", edit_account_path(:admin) %>
+        </div>
+
+        <div class="modal hide" id="newTopic"><!-- modal begins -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Add a new topic</h3>
+          </div>
+          <div class="modal-body">
+            <%= render 'topics/form' %>
+          </div>
+        </div><!-- modal ends -->
+
+        <!-- Modal BEGIN -->
+        <div class="modal hide" id="tinyLetter">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Invite someone to this mission</h3>
+          </div>
+          <div class="modal-body">
+            <%= render 'invites/form' %>
+          </div>
+        </div>
+
+        <p style="font-size: 10px">If you have any feedback or questions, please contact us at <a href="mailto:hello@hourschool.com">hello@hourschool.com</a>.<p>
+
+    </div>
+  </div>
+</div>
+
+

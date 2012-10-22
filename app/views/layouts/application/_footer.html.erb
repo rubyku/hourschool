@@ -126,18 +126,19 @@
 <% elsif current_account == Account.where(:id => 7).last %>
 
   <div class="container_16 enterprise_footer" style="padding-top: 60px">
+    <% if user_signed_in? %>
+      <% if current_account && admin_of_current_account? %>
+        <div style="float: left">
+          <%= link_to "My Dashboard", admin_index_path, :style => "margin-right: 10px" %> |
+          <%= link_to "Post new event", new_course_path(:mission_id => 54),:style => "margin-right: 10px" %> |
+          <%= link_to "Logout", destroy_user_session_path, :style => "margin-right: 10px" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="login_menu"><%= link_to "Admin Login", new_user_session_path, :class => "btn", :style => "margin-right: 10px" %></div>
+    <% end %>
     <table id="powered-by">
       <tr>
-        <td>
-          <% if user_signed_in? %>
-              <% if current_account && admin_of_current_account? %>
-                <div class="login_menu"><%= link_to "Post event", new_course_path(:mission_id => @mission), :class => "btn", :style => "margin-right: 10px" %></div>
-                <div class="login_menu"><%= link_to "Logout", destroy_user_session_path, :class => "btn", :style => "margin-right: 10px" %></div>
-              <% end %>
-          <% else %>
-            <div class="login_menu"><%= link_to "Admin Login", new_user_session_path, :class => "btn", :style => "margin-right: 10px" %></div>
-          <% end %>
-        </td>
         <td>
           <div class="footer-powered-by">Powered by</div>
         </td>
