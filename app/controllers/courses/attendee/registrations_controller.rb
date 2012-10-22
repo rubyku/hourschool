@@ -16,7 +16,8 @@ class Courses::Attendee::RegistrationsController < ApplicationController
       :attending => true,
       :name => 'student',
       :user => current_user,
-      :quantity => 1
+      :quantity => 1,
+      :member => params[:role][:member]
     )
     if params[:stripeToken].present?
       @user.create_stripe_customer(
@@ -27,11 +28,14 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     end
 
     if @role.save
-      amount = @role.quantity * @course.price
+      if @course.member_price.present? && @role.member == true
+        amount = @course.member_price
+      else
+        amount = @course.price
+      end
 
       if amount > 0
-        fee = amount * 0.029 + 0.30
-        total = ((amount + fee) * 100).to_i
+        total = (amount * 100).to_i
         description = "#{@role.quantity} tickets to #{@course.name}."
         charge = Stripe::Charge.create(
           :amount => total,
@@ -42,7 +46,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         @role.destroy unless charge.paid
       end
 
-      if @course.free? || charge.paid
+      if @course.free? || @course.member_price == 0 || charge.paid
         if community_site? && current_user && @course.mission.present? && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
           Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'explorer')
         elsif !community_site?
@@ -53,7 +57,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
         else
           current_account = @course.account
         end
-        UserMailer.course_registration(current_user.email, current_user.name, @course, current_account).deliver
+        UserMailer.course_registration(current_user.email, current_user.name, @course, @role, current_account).deliver
         UserMailer.course_registration_to_teacher(current_user.email, current_user.name, @course, current_account).deliver
       end
 
@@ -68,7 +72,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @course.free? || charge.paid
+        if @course.free? || @course.member_price == 0 || charge.paid
           redirect_to course_attendee_registration_url(:course_id => @course, :id => 'confirm')
         else
           flash[:error] = "Your charge didn't go through, try again or contact hello@hourschool.com for help"

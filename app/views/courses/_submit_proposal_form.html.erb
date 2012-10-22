@@ -24,7 +24,7 @@
 
    <p>
    <%= f.label :title, 'Event title:', :class => "form-question" %>
-   <%= f.text_area :title, :class => "form-with-margin", :value => @reqtitle %>
+   <%= f.text_area :title, :class => "form-with-margin" %>
    </p>
    <br><br>
 
@@ -101,33 +101,42 @@
 
 
 <div class="page-section-float-left">
+  <div class="class-form-question">Where</div><br>
+    <p class="tip">For public space, take into consideration of your event size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 event at your own house.</p>
+    <p class="tip">We have partnerships with a number of co-working spaces, and lots of good suggestions from past event organizers. If you're looking for ideas, just email us at hello@hourschool.com for help!</p>
+      <p>
+      <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
+      <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
+      <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
+      <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
+      </p>
 
-    <div class="class-form-question">Where</div><br>
-      <p class="tip">For public space, take into consideration of your event size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 event at your own house.</p>
-      <p class="tip">We have partnerships with a number of co-working spaces, and lots of good suggestions from past event organizers. If you're looking for ideas, just email us at hello@hourschool.com for help!</p>
-        <p>
-        <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
-        <%= f.label :public, 'Public location (ex. cafes, offices, etc)' %>
-        <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
-        <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
-        </p>
+      <p>
+        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
+        <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
 
-        <p>
-          <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
-          <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
+        <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
 
-          <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
-
-          <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
-        </p>
+        <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
+      </p>
 </div>
 
 <div class="page-section-float-left">
   <div class="class-form-question">Price</div><br>
-  <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
-  <br>
+  <% if current_account == Account.find(7) %>
+    <p><div style="float: left; margin-top: 5px; margin-right: 5px">Member price: $</div>
+    <%= f.text_field :member_price, :class => "form-short", :stype => "float: left" %>
+    <div style="float: left; margin-top: 5px">per person</div></p><br><br>
+
+    <p><div style="float: left; margin-top: 5px; margin-right: 5px">Non-member price: $</div>
+    <%= f.text_field :price, :class => "form-short", :stype => "float: left" %>
+    <div style="float: left; margin-top: 5px">per person</div></p>
+  <% else %>
+    <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
+    <br>
     <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "10" %>
     <div style="float: left; margin-top: 5px">per person</div>
+  <% end %>
 </div>
 
 
@@ -154,7 +163,6 @@
    <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
     <p style="font-size: 9px; margin-top: 10px">You'll be able to preview before submitting on the next page!</p>
   <% end %>
-
 
 <% end %>
 

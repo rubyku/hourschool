@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823052019) do
+ActiveRecord::Schema.define(:version => 20121022031949) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20120823052019) do
     t.boolean  "seed",               :default => false, :null => false
     t.integer  "mission_id"
     t.string   "zip"
+    t.integer  "member_price"
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
@@ -302,6 +303,7 @@ ActiveRecord::Schema.define(:version => 20120823052019) do
     t.integer  "quantity"
     t.string   "note"
     t.boolean  "terms_and_conditions"
+    t.boolean  "member"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"

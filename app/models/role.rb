@@ -9,8 +9,13 @@ class Role < ActiveRecord::Base
 
   after_create :notify_followers
 
+  def member?
+    self.member == true
+  end
+
 
   private
+
   def notify_followers
     if name == 'student'
       user.fetch_followers.each do |follower|

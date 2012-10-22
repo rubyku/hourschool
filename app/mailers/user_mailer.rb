@@ -71,11 +71,12 @@ class UserMailer < ActionMailer::Base
          :subject => "#{@course.title} is live!"
   end
 
-  def course_registration(user_email, user_name, course, current_account)
+  def course_registration(user_email, user_name, course, role, current_account)
     @email = user_email
     @name = user_name
     @course = course
     @account = current_account
+    @price = role.member? ? @course.member_price : @course.price
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :to => user_email,
          :bcc => "admin@hourschool.com",

@@ -2,11 +2,11 @@ Hello <%= @name.split(" ").first %>,
 
 Thank you for signing up for <%= @course.title %>! Check out some handy details:
 
-Class: <%= @course.title %>
-Cover Charge: $ <%= @course.price %>
+Event: <%= @course.title %>
+Price: $ <%= (@price + (@price * 0.029 + 0.3)).round(2) %>
 When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= @course.starts_at.strftime("%l:%M%p") %> - <%= @course.ends_at.strftime("%l:%M%p") %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
-Got questions? You can message your teacher at <%= @url %>
+Got questions? You can message the event organizer at <%= @url %>
 
-Remember, classes are always more fun with friends. Share this class with people who you think might be interested.
+Remember, it's always more fun with friends. Share this event with people who you think might be interested.
