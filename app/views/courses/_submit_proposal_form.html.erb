@@ -125,16 +125,16 @@
   <div class="class-form-question">Price</div><br>
   <% if current_account == Account.find(7) %>
     <p><div style="float: left; margin-top: 5px; margin-right: 5px">Member price: $</div>
-    <%= f.text_field :member_price, :class => "form-short", :stype => "float: left" %>
+    <%= f.text_field :member_price, :class => "form-short" %>
     <div style="float: left; margin-top: 5px">per person</div></p><br><br>
 
     <p><div style="float: left; margin-top: 5px; margin-right: 5px">Non-member price: $</div>
-    <%= f.text_field :price, :class => "form-short", :stype => "float: left" %>
+    <%= f.text_field :price, :class => "form-short" %>
     <div style="float: left; margin-top: 5px">per person</div></p>
   <% else %>
     <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
     <br>
-    <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :stype => "float: left", :placeholder => "10" %>
+    <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :placeholder => "10" %>
     <div style="float: left; margin-top: 5px">per person</div>
   <% end %>
 </div>
