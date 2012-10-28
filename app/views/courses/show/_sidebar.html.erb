@@ -71,7 +71,8 @@
       <% else %>
         Residential address<br>
         Area: <%= @course.zip %>
-    <% end %>
+      <% end %>
+      <%= @course.directions if @course.directions.present? %>
     </div>
   </div>
 

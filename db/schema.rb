@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121022031949) do
+ActiveRecord::Schema.define(:version => 20121028170151) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20121022031949) do
     t.integer  "mission_id"
     t.string   "zip"
     t.integer  "member_price"
+    t.text     "directions"
   end
 
   add_index "courses", ["account_id"], :name => "index_courses_on_account_id"
@@ -182,6 +183,31 @@ ActiveRecord::Schema.define(:version => 20121022031949) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "ecourses", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "seats"
+    t.date     "date"
+    t.time     "time"
+    t.string   "place"
+    t.integer  "enterprise_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "minimum"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
+  create_table "enterprises", :force => true do |t|
+    t.string   "area"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "domain"
+  end
+
   create_table "eroles", :force => true do |t|
     t.integer  "member_id"
     t.integer  "ecourse_id"
@@ -189,6 +215,15 @@ ActiveRecord::Schema.define(:version => 20121022031949) do
     t.datetime "updated_at"
     t.string   "role"
     t.boolean  "attending"
+  end
+
+  create_table "esuggestions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "enterprise_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "requested_by"
   end
 
   create_table "followings", :force => true do |t|
@@ -232,6 +267,28 @@ ActiveRecord::Schema.define(:version => 20121022031949) do
   add_index "invites", ["invitable_type"], :name => "index_invites_on_invitable_type"
   add_index "invites", ["invitee_id"], :name => "index_invites_on_invitee_id"
   add_index "invites", ["inviter_id"], :name => "index_invites_on_inviter_id"
+
+  create_table "members", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "organization"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.integer  "enterprise_id"
+  end
+
+  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+  add_index "members", ["enterprise_id"], :name => "index_members_on_enterprise_id"
+  add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "memberships", :force => true do |t|
     t.integer  "account_id"
@@ -349,6 +406,13 @@ ActiveRecord::Schema.define(:version => 20121022031949) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "subdomains", :force => true do |t|
+    t.string   "name"
+    t.integer  "enterprise_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "subscription_charges", :force => true do |t|
     t.integer  "user_id"
