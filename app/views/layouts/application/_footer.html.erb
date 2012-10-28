@@ -129,7 +129,7 @@
     <% if user_signed_in? %>
       <% if current_account && admin_of_current_account? %>
         <div style="float: left">
-          <%= link_to "My Dashboard", admin_index_path, :style => "margin-right: 10px" %> |
+          <%= link_to "Admin Dashboard", admin_index_path, :style => "margin-right: 10px" %> |
           <%= link_to "Post new event", new_course_path(:mission_id => 54),:style => "margin-right: 10px" %> |
           <%= link_to "Logout", destroy_user_session_path, :style => "margin-right: 10px" %>
         </div>

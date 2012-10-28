@@ -154,10 +154,7 @@
 
         <div class="mission-divider">
           <%= link_to "Post a new event", new_course_path %><br>
-          <% if current_account == Account.where(:id => 7).last %>
-            <a data-toggle="modal" href="#newTopic">Add new event category</a><br>
-            <a data-toggle="modal" href="#tinyLetter">Invite people</a><br>
-          <% end %>
+          <%= link_to "Edit my profile", edit_user_registration_path %>
           <%#= link_to "Account Settings", edit_account_path(:admin) %>
         </div>
 
