@@ -40,7 +40,7 @@
 
 
 
-  <div style="width: 270px">
+  <div style="width: 260px">
     <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
     <% if @course.member_price.present? %>
       <div class="class-details" style="width: 240px"><%= "Member price: $ #{@course.member_price}" %></div>
@@ -50,7 +50,7 @@
     <% end %>
   </div>
 
-  <div style="width: 270px">
+  <div style="width: 260px">
     <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
     <div class="class-details" style="width: 240px">
       <%= @course.starts_at.strftime("%a %b %d, %Y") %>
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <div style="width: 270px; margin-bottom: 20px">
+  <div style="width: 260px; margin-bottom: 20px">
     <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>
     <div class="class-details" style="width: 240px"><%= "#{@course.place_name}" %></div>
     <div style="margin-left: 21px">
@@ -72,7 +72,8 @@
         Residential address<br>
         Area: <%= @course.zip %>
       <% end %>
-      <%= @course.directions if @course.directions.present? %>
+      <div class="class-details" style="width: 240px">Directions</div>
+      <%= simple_format Rinku.auto_link(@course.directions) if @course.directions.present? %>
     </div>
   </div>
 

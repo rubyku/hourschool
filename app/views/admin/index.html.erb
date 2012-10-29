@@ -15,7 +15,18 @@
       <div class="tab-pane active" id="tab1">
         <div class="white tab-border">
           <div class="page-content">
-            <%= link_to "Post event", new_course_path(:mission_id => @mission), :class => "btn right" %>
+            <%= link_to "Post event", new_course_path(:place_name => "The Hub LA",
+      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614, :directions => "Located in the Arts District of Downtown Los Angeles.
+Cross Street :: Alameda between 2nd & 3rd St.
+
+To reach us, please take the exterior set of purple stairs up to the third floor. These stairs are located in the building’s adjacent parking lot ($5 all day parking) across the street from Novel Cafe at 811 Traction.
+
+PARKING LOTS:
+1. 830 Traction’s lot offers $5 parking for the evening.
+2. Lot on Hewitt St. between Traction and 3rd: $5
+
+STREET PARKING:
+Free parking after 6pm. Metered parking available on certain blocks."), :class => "btn right" %>
             <% @courses.each do |course| %>
               <div class="mission-divider">
                 <div class="heading16 brown" style="padding-top: 10px">
@@ -153,7 +164,18 @@
         </div>
 
         <div class="mission-divider">
-          <%= link_to "Post a new event", new_course_path %><br>
+          <%= link_to "Post a new event", new_course_path(:place_name => "The Hub LA",
+      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614, :directions => "Located in the Arts District of Downtown Los Angeles.
+Cross Street :: Alameda between 2nd & 3rd St.
+
+To reach us, please take the exterior set of purple stairs up to the third floor. These stairs are located in the building’s adjacent parking lot ($5 all day parking) across the street from Novel Cafe at 811 Traction.
+
+PARKING LOTS:
+1. 830 Traction’s lot offers $5 parking for the evening.
+2. Lot on Hewitt St. between Traction and 3rd: $5
+
+STREET PARKING:
+Free parking after 6pm. Metered parking available on certain blocks.") %><br>
           <%= link_to "Edit my profile", edit_user_registration_path %>
           <%#= link_to "Account Settings", edit_account_path(:admin) %>
         </div>

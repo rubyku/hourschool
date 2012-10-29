@@ -112,17 +112,17 @@
       </p>
 
       <p>
-        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
-        <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
+        <%= f.text_field :place_name, :value => params[:place_name], :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
+        <%= f.text_field :address, :value => params[:address], :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
 
         <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
 
-        <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
+        <%= f.text_field :zip, :value => params[:zip] , :class => "form-short", :placeholder => "Zip / Postal Code" %>
       </p>
-   <p>
-   <%= f.label :directions, 'Parking/driving directions:', :class => "form-question" %>
-   <%= f.text_area :directions, :class => "form-tall" %>
-   </p>
+      <p>
+        <%= f.label :directions, 'Parking/driving directions:', :class => "form-question" %>
+        <%= f.text_area :directions, :value => params[:directions] , :class => "form-tall" %>
+      </p>
 </div>
 
 <div class="page-section-float-left">
