@@ -3,6 +3,7 @@
     <div class="heading14">Missions</div>
     <% @missions.each do |mission| %>
       <%= link_to full_mission_title(mission), mission %><br>
+      Mission creater: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
       Status: <%= mission.status %><br>
       <%= mission.crewmanships.count %> people have joined<br>
       <%= mission.courses.count %> events<br>
