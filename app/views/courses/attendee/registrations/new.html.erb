@@ -39,13 +39,21 @@
         <%= f.label :member, 'No' %></p>
 
         <p>Ticket price: $<span id="new_total"><%= @course.price %></span></p>
-        <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price * 0.029) + 0.3).round(2) %></span></p>
+        <% if @course.price != 0 %>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+        <% else %>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = 0 %></span></p>
+        <% end %>
         <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
 
       <% else %>
         <p><%= f.hidden_field :member, :value => false %>
         <p>Ticket price: $<span id="new_total"><%= @course.price.round(2) %></span></p>
-        <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+        <% if @course.price != 0 %>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+        <% else %>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = 0 %></span></p>
+        <% end %>
         <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
       <% end %>
 
