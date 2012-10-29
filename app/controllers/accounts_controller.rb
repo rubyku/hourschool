@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
     @account = current_account
 
     if current_account == Account.where(:id => 7).first
-      redirect_to mission_path(:id => 54)
+      redirect_to admin_index_path
     end
 
     if current_account == Account.where(:id => 5).first
