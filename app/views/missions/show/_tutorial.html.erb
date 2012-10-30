@@ -15,7 +15,7 @@
 </style>
 
 
-<% if @mission.creator == current_user || current_user.admin == true %>
+<% if current_user && (@mission.creator == current_user || current_user.admin == true) %>
   <div class="alert" style="background-color: white; color: black; border: 1px solid white; padding-bottom: 18px; height: 100px">
     <div style="float: left; width: 600px">
     <% if @mission.status == 'draft' %>
