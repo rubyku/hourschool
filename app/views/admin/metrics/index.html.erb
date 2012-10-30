@@ -1,27 +1,85 @@
-<div class="page-main">
-  <div class="page-content">
-    <div class="heading28" style="margin-bottom: 20px">Partner Schools</div>
-    <% Account.where(:private => false).each do |account| %>
-      <div class="heading16 brown"><%= account.name %></div>
-      <%= account.courses.uniq.count %> events, <%= account.memberships.uniq.count %> people in this school<br><br>
-    <% end %>
-    <hr>
-    <div class="heading28" style="margin-bottom: 20px">Live Missions</div>
-    <% Mission.where(:account_id => nil).where(:status => "live").each do |mission| %>
-      <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
-      Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
-      <%= mission.crewmanships.count %> people following this mission<br>
-      <%= mission.courses.count %> events, <%= mission.topics.count %> topics, <%= mission.comments.count %> comments<br><br>
-    <% end %>
-    <hr>
-    <div class="heading28" style="margin-bottom: 20px">Draft Missions</div>
-    <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
-      <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
-      Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
-      <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
-    <% end %>
-  </div><!-- end page-content -->
-</div>
+<div class="tabbable" style="float: left; width: 600px">
+  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Rally</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Mission Health</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Last month</a></li>
+  </ul>
+  <div class="tab-content" style="overflow: hidden">
+    <div class="tab-pane active" id="tab1">
+      <div class="page-main white">
+        <div class="page-content">
+          <div class="heading28" style="margin-bottom: 20px">Upcoming events in the next 7 days</div>
+          <% @courses_next7days.each do |course| %>
+            <div class="heading16 brown"><%= link_to course.title, course %> by <%= link_to course.teacher.name, course.teacher %></div>
+            <% if course.account == nil %>
+              Mission: <%= "#{course.mission.verb} #{course.mission.title}" %>
+            <% else %>
+              Partner school: <%= course.account.name %>
+            <% end %>
+            <br>
+            <%= course.min_seats %> needed, <%= course.students.count %> signed up, <%= course.max_seats %> is max.<br>
+            <%= course.starts_at.strftime("%a %b %d, %Y") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %>
+            <br><br>
+          <% end %>
+          <hr>
+          <div class="heading28" style="margin-bottom: 20px">Events in draft</div>
+          <% Course.where(:account_id => nil).where(:status => "draft").each do |mission| %>
+            <div class="heading16 brown"><%= link_to course.title %></div>
+            Created by: <%= link_to course.teacher.name, course.teacher %> (<%= course.teacher.email %>)<br>
+            <%= course.created_at.strftime("%a %b %d, %Y") %><br><br>
+          <% end %>
+          <hr>
+          <div class="heading28" style="margin-bottom: 20px">Missions in draft</div>
+          <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
+            <div class="heading16 brown"><%= full_mission_title(mission) %></div>
+            Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
+            <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
+          <% end %>
+        </div>
+      </div><!-- end page main -->
+    </div><!-- end tab1 -->
+
+    <div class="tab-pane" id="tab2">
+      <div class="page-main white">
+        <div class="page-content">
+          <div class="heading28" style="margin-bottom: 20px">Partner Schools</div>
+          <% Account.where(:private => false).each do |account| %>
+            <div class="heading16 brown"><%= account.name %></div>
+            <%= account.courses.uniq.count %> events, <%= account.memberships.uniq.count %> people in this school<br><br>
+          <% end %>
+          <hr>
+          <div class="heading28" style="margin-bottom: 20px">Live Missions</div>
+          <% Mission.where(:account_id => nil).where(:status => "live").each do |mission| %>
+            <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
+            Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
+            <%= mission.crewmanships.count %> people following this mission<br>
+            <%= mission.courses.count %> events, <%= mission.topics.count %> topics, <%= mission.comments.count %> comments<br><br>
+          <% end %>
+
+        </div>
+      </div><!-- end page main -->
+    </div><!-- end tab2 -->
+
+    <div class="tab-pane" id="tab3">
+      <div class="page-main white">
+        <div class="page-content">
+          <div class="heading28" style="margin-bottom: 20px">Need to pay</div>
+          <% @courses_last_month.each do |course| %>
+            <div class="heading13 brown"><%= link_to course.title, course %> - <%= number_to_currency course.price * course.students.count %></div>
+            <% if course.account == nil %>
+              Pay to: <%= course.teacher.name %> (<%= course.teacher.email %>)
+            <% else %>
+              Pay to: <%= course.account.name %>
+            <% end %>
+            <br><br>
+          <% end %>
+        </div>
+      </div><!-- end page main -->
+    </div><!-- end tab3 -->
+
+  </div><!-- end tab-content -->
+</div><!-- end tabbable -->
+
 
 <div class="sidebar">
   <div class="sidebar-content">

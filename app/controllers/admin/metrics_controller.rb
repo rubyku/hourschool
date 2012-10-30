@@ -14,12 +14,12 @@ class Admin::MetricsController < ApplicationController
     @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 4").count
     @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 4").sum('amount')
 
-    @users_last_month           = User.where("extract( month from DATE(created_at)) = 3").count
-    @courses_last_month         = Course.where("extract( month from DATE(created_at)) = 3").count
-    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 3").sum('amount')
+    @users_last_month           = User.where("extract( month from DATE(created_at)) = 10")
+    @courses_last_month         = Course.where("extract( month from DATE(starts_at)) = 10").where("extract( year from DATE(starts_at)) = 2012").where('price != 0').where(:status => "live")
+    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 10").sum('amount')
 
     # For the next 7 days
-    @courses_next7days          = Course.active.where("date < ?", 7.days.from_now).order('DATE(date) ASC')
+    @courses_next7days          = Course.active.where("starts_at < ?", 7.days.from_now).order('DATE(starts_at) ASC').where(:status => "live")
     @courses_yesterday          = Course.where("date = ?", 1.day.ago)
 
     @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
