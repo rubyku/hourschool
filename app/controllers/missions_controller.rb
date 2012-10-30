@@ -112,8 +112,10 @@ class MissionsController < ApplicationController
 
   def restrict_draft_access!
     @mission = Mission.find(params[:id])
-    if @mission.status != "live"
-      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to." if current_user.blank? || current_user != @mission.creator || current_user.admin == false
+    if @mission.status == "draft"
+      unless current_user.present? && (current_user.admin == true || current_user == @mission.creator)
+        redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to."
+      end
     end
   end
 
