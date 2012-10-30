@@ -3,6 +3,7 @@ class Admin::MetricsController < ApplicationController
   def index
 
     #missions
+    @accounts                   = Account.all
     @missions                   = Mission.all
     @crewmanships               = Crewmanship.all
     @topics                     = Topic.all
