@@ -1,15 +1,20 @@
 <div class="page-main">
   <div class="page-content">
-    <div class="heading14">Missions</div>
-    <% @missions.each do |mission| %>
-      <%= link_to full_mission_title(mission), mission %><br>
-      Mission creater: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
-      Status: <%= mission.status %><br>
-      <%= mission.crewmanships.count %> people have joined<br>
-      <%= mission.courses.count %> events<br>
-      <%= mission.topics.count %> topics<br>
-      <%= mission.comments.count %> comments<br><br>
+    <div class="heading14" style="margin-bottom: 20px">Live Missions</div>
+    <% Mission.where(:account_id => nil).where(:status => "live").each do |mission| %>
+      <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
+      Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
+      <%= mission.crewmanships.count %> people following this mission<br>
+      <%= mission.courses.count %> events, <%= mission.topics.count %> topics, <%= mission.comments.count %> comments<br><br>
     <% end %>
+    <hr>
+    <div class="heading14" style="margin-bottom: 20px">Draft Missions</div>
+    <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
+      <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
+      Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
+      <%= mission.created_at %><br><br>
+    <% end %>
+    <hr>
   </div><!-- end page-content -->
 </div>
 

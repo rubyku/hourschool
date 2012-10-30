@@ -1,7 +1,7 @@
 class MissionsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy, :update]
   before_filter :authenticate_admin!, :only => [:index]
-  before_filter :restrict_draft_access!, :only => [:show]
+  #before_filter :restrict_draft_access!, :only => [:show]
 
   # GET /missions
   # GET /missions.json
