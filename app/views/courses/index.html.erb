@@ -90,26 +90,56 @@
   </div>
 </div>
 
-<div class="full-page" style="margin-left: 25px">
+<div class="full-page white">
+  <div class="page-content">
+    <div class="heading14" style="margin-bottom: 20px">Upcoming Events (<%= @upcoming_courses.count %>)</div>
+    <% if @upcoming_courses.present? %>
+      <% @upcoming_courses.each do |course| %>
+        <div class="classBlock" style="margin-right: 30px;">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
 
-  <% @courses.each do |course| %>
-    <div class="classBlock" style="margin-right: 50px;">
-      <% if course.photo.present? %>
-        <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-      <% else %>
-        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-      <% end %>
-
-        <div class="class-description" style="float: left; width: 170px">
-          <div class="heading13 brown">
-            <%= link_to course.title.truncate(50), course %>
-          </div>
-          <div class="heading10" style="font-weight: 400">
-            <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-          </div>
-          <p><%= course.description.truncate(70) %></p>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13 brown">
+                <%= link_to course.title.truncate(50), course %>
+              </div>
+              <div class="heading10" style="font-weight: 700">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <p><%= course.description.truncate(60) %></p>
+            </div>
         </div>
-    </div>
-  <% end %>
+      <% end %>
+    <% else %>
+      There are no upcoming events at the moment. <%= link_to "You can create one!", new_course_path(:mission_id => @mission), :class => "btn" %>
+    <% end %>
+  </div>
+</div>
 
+<div class="full-page white">
+  <div class="page-content">
+    <div class="heading14" style="margin-bottom: 20px">Past Events (<%= @past_courses.count %>)</div>
+    <% @past_courses.each do |course| %>
+      <div class="classBlock" style="margin-right: 30px;">
+        <% if course.photo.present? %>
+          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+        <% else %>
+          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+        <% end %>
+
+          <div class="class-description" style="float: left; width: 170px">
+            <div class="heading13 brown">
+              <%= link_to course.title.truncate(50), course %>
+            </div>
+            <div class="heading10" style="font-weight: 400">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+            </div>
+            <p><%= course.description.truncate(60) %></p>
+          </div>
+      </div>
+    <% end %>
+  </div>
 </div>

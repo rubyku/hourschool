@@ -86,7 +86,7 @@
     <div class="heading14">Month over month</div>
     <% @users_by_month.each do |month, count| %>
       <%= "#{Date::MONTHNAMES[month.last.to_i]}:" %>
-      <%= "#{ @users_by_month[month] || 0 } U & #{@courses_by_month[month] ||0} C & #{number_to_currency @transaction_by_month[month] || 0, :precision => 0 }" %><br>
+      <%= "#{ @users_by_month[month] || 0 } users & #{@courses_by_month[month] ||0} events" %><br>
     <% end %>
     <br><br>
 

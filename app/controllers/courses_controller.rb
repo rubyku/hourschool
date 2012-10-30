@@ -8,7 +8,10 @@ class CoursesController < ApplicationController
   def index
     @mission  = Mission.find(params[:mission_id])
     @users    = @mission.users
-    @courses  = @mission.courses.where(:status => "live").order("starts_at DESC")
+
+    @upcoming_courses  = @mission.courses.where("starts_at > ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
+    @past_courses      = @mission.courses.where("starts_at < ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
+
     @course   = Course.new
     @topic = Topic.new
     @invite = Invite.new
