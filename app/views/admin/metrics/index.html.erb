@@ -31,7 +31,7 @@
           <hr>
           <div class="heading28" style="margin-bottom: 20px">Missions in draft</div>
           <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
-            <div class="heading16 brown"><%= full_mission_title(mission) %></div>
+            <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
             Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
             <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
           <% end %>
@@ -44,7 +44,7 @@
         <div class="page-content">
           <div class="heading28" style="margin-bottom: 20px">Partner Schools</div>
           <% Account.where(:private => false).each do |account| %>
-            <div class="heading16 brown"><%= account.name %></div>
+            <div class="heading16 brown"><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></div>
             <%= account.courses.uniq.count %> events, <%= account.memberships.uniq.count %> people in this school<br><br>
           <% end %>
           <hr>
