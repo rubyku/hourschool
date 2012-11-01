@@ -24,6 +24,8 @@ class Admin::MetricsController < ApplicationController
 
     @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
 
+    @users_sincelastnewsletter  = User.where("created_at > ?", '2012-05-31')
+
     # Sidebar
 
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count

@@ -1,8 +1,9 @@
 <div class="tabbable" style="float: left; width: 600px">
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Rally</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Need Rally</a></li>
     <li><a href="#tab2" data-toggle="tab" class="heading11">Mission Health</a></li>
     <li><a href="#tab3" data-toggle="tab" class="heading11">Last month</a></li>
+    <li><a href="#tab4" data-toggle="tab" class="heading11">Since last newsletter</a></li>
   </ul>
   <div class="tab-content" style="overflow: hidden">
     <div class="tab-pane active" id="tab1">
@@ -76,6 +77,24 @@
         </div>
       </div><!-- end page main -->
     </div><!-- end tab3 -->
+
+    <div class="tab-pane" id="tab4">
+      <div class="page-main white">
+        <div class="page-content">
+          <div class="heading28" style="margin-bottom: 20px">Since last newsletter (<%= @users_sincelastnewsletter.count %>)</div>
+          <table>
+            <% @users_sincelastnewsletter.each do |user| %>
+              <tr>
+                <td><%= user.email %></td>
+                <td><%= user.name.split(" ").first %></td>
+                <td><%= user.name.split(" ").last %></td>
+                <td><%= user.zip %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div><!-- end page main -->
+    </div><!-- end tab4 -->
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
