@@ -17,4 +17,11 @@ class AdminController < ApplicationController
   end
 
 
+  def show
+    @users_sincelastnewsletter  = User.where("created_at > ?", '2012-05-31')
+    @courses_last_month         = Course.where("extract( month from DATE(starts_at)) = 10").where("extract( year from DATE(starts_at)) = 2012").where('price != 0').where(:status => "live")
+
+    render "admin/show/#{params[:id]}"
+  end
+
 end

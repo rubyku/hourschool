@@ -1,156 +1,218 @@
-<div class="tabbable" style="float: left; width: 600px">
+<div class="sidebar white" style="width: 300px; margin-right: 30px">
+  <div style="padding: 30px">
+    <div class="heading28" style="margin-bottom: 20px">Overview</div>
+    <table class="table table-bordered">
+      <tr>
+        <td>Live Missions:</td>
+        <td><%= Mission.where(:status => "live").count %></td>
+      </tr>
+      <tr>
+        <td>Draft Missions:</td>
+        <td><%= Mission.where(:status => "draft").count %></td>
+      </tr>
+    </table>
+    <table class="table table-bordered">
+      <tr>
+        <td>Total Users:</td>
+        <td><%= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)" %></td>
+      </tr>
+      <tr>
+        <td>Activated Users:</td>
+        <td><%="#{@total_active_users} (#{number_to_percentage(@total_active_users/@total_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Engaged Users:</td>
+        <td>work in progress</td>
+      </tr>
+      <tr>
+        <td>Students vs. Teachers ratio</td>
+        <td><%= "#{@total_active_students} (#{number_to_percentage(@total_active_students/@total_users.to_f * 100, :precision => 0)})" %> vs. <%= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Student turned Teacher</td>
+        <td>work in progress</td>
+      </tr>
+    </table>
+    <table class="table table-bordered">
+      <tr>
+        <td>Total Courses:</td>
+        <td><%= @total_courses %></td>
+      </tr>
+      <tr>
+        <td>Paying vs. Free ratio</td>
+        <td><%= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})" %> vs. <%= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Courses in draft:</td>
+        <td><%= @draft_courses %></td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+
+<div class="tabbable" style="float: left; width: 626px">
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Need Rally</a></li>
-    <li><a href="#tab2" data-toggle="tab" class="heading11">Mission Health</a></li>
-    <li><a href="#tab3" data-toggle="tab" class="heading11">Last month</a></li>
-    <li><a href="#tab4" data-toggle="tab" class="heading11">Since last newsletter</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Need Rallying</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Trends</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Impact</a></li>
   </ul>
   <div class="tab-content" style="overflow: hidden">
     <div class="tab-pane active" id="tab1">
-      <div class="page-main white">
+      <div class="page-main-tab white">
         <div class="page-content">
           <div class="heading28" style="margin-bottom: 20px">Upcoming events in the next 7 days</div>
-          <% @courses_next7days.each do |course| %>
-            <div class="heading16 brown"><%= link_to course.title, course %> by <%= link_to course.teacher.name, course.teacher %></div>
-            <% if course.account == nil %>
-              Mission: <%= "#{course.mission.verb} #{course.mission.title}" %>
-            <% else %>
-              Partner school: <%= course.account.name %>
-            <% end %>
-            <br>
-            <%= course.min_seats %> needed, <%= course.students.count %> signed up, <%= course.max_seats %> is max.<br>
-            <%= course.starts_at.strftime("%a %b %d, %Y") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %>
-            <br><br>
-          <% end %>
+          <table class="table table-bordered">
+            <thead>
+              <th>Days from today</th>
+              <th>Event</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <% @courses_next7days.each do |course| %>
+              <tr>
+                <td>
+                  <% if ((course.starts_at - Time.zone.now) / 60 / 60 / 24).round(0) == 0 %>
+                    Today!
+                  <% else %>
+                    <%= ((course.starts_at - Time.zone.now) / 60 / 60 / 24).round(0) %> day(s)
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to course.title, course %> by <%= link_to course.teacher.name, course.teacher %><br>
+                  <div style="font-size: 11px">
+                  <% if course.account == nil %>
+                    <%= "#{course.mission.verb} #{course.mission.title}" %>
+                  <% else %>
+                    Partner school: <%= course.account.name %>
+                  <% end %><br>
+                  <%= course.starts_at.strftime("%a %b %d, %Y") %>, <%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %>
+                  </div>
+                </td>
+                <% if course.students.count < course.min_seats %>
+                  <td style="background-color: #F5F25D">
+                <% else %>
+                  <td>
+                <% end %>
+                  <%= course.students.count %> of <%= course.min_seats %><br>
+                  (max. <%= course.max_seats %>)<br>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
           <hr>
           <div class="heading28" style="margin-bottom: 20px">Events in draft</div>
           <% Course.where(:account_id => nil).where(:status => "draft").each do |mission| %>
             <div class="heading16 brown"><%= link_to course.title %></div>
             Created by: <%= link_to course.teacher.name, course.teacher %> (<%= course.teacher.email %>)<br>
-            <%= course.created_at.strftime("%a %b %d, %Y") %><br><br>
+            Created on: <%= course.created_at.strftime("%a %b %d, %Y") %><br><br>
           <% end %>
           <hr>
           <div class="heading28" style="margin-bottom: 20px">Missions in draft</div>
           <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
             <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
             Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
-            <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
+            Created on: <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
           <% end %>
         </div>
       </div><!-- end page main -->
     </div><!-- end tab1 -->
 
     <div class="tab-pane" id="tab2">
-      <div class="page-main white">
+      <div class="page-main-tab white">
         <div class="page-content">
-          <div class="heading28" style="margin-bottom: 20px">Partner Schools</div>
-          <% Account.where(:private => false).each do |account| %>
-            <div class="heading16 brown"><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></div>
-            <%= account.courses.uniq.count %> events, <%= account.memberships.uniq.count %> people in this school<br><br>
-          <% end %>
-          <hr>
-          <div class="heading28" style="margin-bottom: 20px">Live Missions</div>
-          <% Mission.where(:account_id => nil).where(:status => "live").each do |mission| %>
-            <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
-            Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
-            <%= mission.crewmanships.count %> people following this mission<br>
-            <%= mission.courses.count %> events, <%= mission.topics.count %> topics, <%= mission.comments.count %> comments<br><br>
-          <% end %>
+          <div class="heading28" style="margin-bottom: 20px">By month</div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Month</th>
+              <th>Members</th>
+              <th>Events</th>
+            </thead>
+            <tbody>
+              <% @users_by_month.each do |month, count| %>
+                <tr>
+                  <td><%= "#{Date::MONTHNAMES[month.last.to_i]}:" %></td>
+                  <td><a data-toggle="modal" href="#monthDetail"><%= "#{@users_by_month[month] || 0 } members" %></a></td>
+                  <td><%= "#{@courses_by_month[month] ||0} events" %></td>
+                </tr>
+                <!-- modal begins -->
+                <div class="modal hide" id="monthDetail">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3><%= "#{Date::MONTHNAMES[month.last.to_i]}:" %></h3>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+                </div><!-- modal ends -->
+              <% end %>
+            </tbody>
+          </table>
 
+
+
+          <hr>
+          <div class="heading28" style="margin-bottom: 20px">By Mission</div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Partner</th>
+              <th>Members</th>
+              <th>Events</th>
+            </thead>
+            <tbody>
+              <% Account.where(:private => false).each do |account| %>
+                <tr>
+                  <td><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></td>
+                  <td><%= account.memberships.uniq.count %> members</td>
+                  <td><%= account.courses.uniq.count %> events</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <table class="table table-bordered">
+            <thead>
+              <th>Community</th>
+              <th>Members</th>
+              <th>Events</th>
+            </thead>
+            <tbody>
+              <% Mission.where(:status => "live").each do |mission| %>
+                <tr>
+                  <td><%= link_to full_mission_title(mission), mission %></td>
+                  <td><%= mission.crewmanships.count %> members</td>
+                  <td><%= mission.courses.count %> events</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <hr>
+          <div class="heading28" style="margin-bottom: 20px">By Member</div>
+          <table class="table table-bordered">
+          </table>
         </div>
       </div><!-- end page main -->
     </div><!-- end tab2 -->
 
     <div class="tab-pane" id="tab3">
-      <div class="page-main white">
+      <div class="page-main-tab white">
         <div class="page-content">
-          <div class="heading28" style="margin-bottom: 20px">Need to pay</div>
-          <% @courses_last_month.each do |course| %>
-            <div class="heading13 brown"><%= link_to course.title, course %> - <%= number_to_currency course.price * course.students.count %></div>
-            <% if course.account == nil %>
-              Pay to: <%= course.teacher.name %> (<%= course.teacher.email %>)
-            <% else %>
-              Pay to: <%= course.account.name %>
-            <% end %>
-            <br><br>
-          <% end %>
+          <div class="heading28" style="margin-bottom: 20px">Impact</div>
+            How many people taught immediately? (what class and how did that class do?)<br><br>
+            How many people went from students to teachers? (from what class, what was the journey from joined to activated to engaged to teach,  and how long did that take?)
         </div>
       </div><!-- end page main -->
-    </div><!-- end tab3 -->
-
-    <div class="tab-pane" id="tab4">
-      <div class="page-main white">
-        <div class="page-content">
-          <div class="heading28" style="margin-bottom: 20px">Since last newsletter (<%= @users_sincelastnewsletter.count %>)</div>
-          <table>
-            <% @users_sincelastnewsletter.each do |user| %>
-              <tr>
-                <td><%= user.email %></td>
-                <td><%= user.name.split(" ").first %></td>
-                <td><%= user.name.split(" ").last %></td>
-                <td><%= user.zip %></td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-      </div><!-- end page main -->
-    </div><!-- end tab4 -->
+    </div><!-- end tab2 -->
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
 
 
-<div class="sidebar">
-  <div class="sidebar-content">
-    <div class="heading14">Month over month</div>
-    <% @users_by_month.each do |month, count| %>
-      <%= "#{Date::MONTHNAMES[month.last.to_i]}:" %>
-      <%= "#{ @users_by_month[month] || 0 } users & #{@courses_by_month[month] ||0} events" %><br>
-    <% end %>
-    <br><br>
 
-    <div class="heading14">Total to date</div>
-    <table>
-      <tr>
-        <td>Total Users:</td>
-        <td><%= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)" %></td>
-      </tr>
-      <tr>
-        <td>Active Users:</td>
-        <td><%="#{@total_active_users} (#{number_to_percentage(@total_active_users/@total_users.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Active Students:</td>
-        <td><%= "#{@total_active_students} (#{number_to_percentage(@total_active_students/@total_users.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Active Teachers</td>
-        <td><%= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Repeat Users:</td>
-        <td><%= "#{@total_repeat_users} (#{number_to_percentage(@total_repeat_users/@total_active_users.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Repeat Students:</td>
-        <td><%= "#{@total_repeat_students} (#{number_to_percentage(@total_repeat_students/@total_active_students.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr class="metrics_underline">
-        <td>Repeat Teachers:</td>
-        <td><%= "#{@total_repeat_teachers} (#{number_to_percentage(@total_repeat_teachers/@total_active_teachers.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Total Courses:</td>
-        <td><%= "#{@total_courses}" %></td>
-      </tr>
-      <tr>
-        <td>Paying Courses:</td>
-        <td><%= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-      <tr>
-        <td>Free Courses:</td>
-        <td><%= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
-      </tr>
-    </table>
-  </div>
-</div>
+
+
+
+
+
+
+
+

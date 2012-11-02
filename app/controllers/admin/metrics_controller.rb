@@ -1,5 +1,7 @@
 class Admin::MetricsController < ApplicationController
 
+  before_filter :authenticate_admin!
+
   def index
 
     #missions
@@ -15,7 +17,6 @@ class Admin::MetricsController < ApplicationController
     @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 4").sum('amount')
 
     @users_last_month           = User.where("extract( month from DATE(created_at)) = 10")
-    @courses_last_month         = Course.where("extract( month from DATE(starts_at)) = 10").where("extract( year from DATE(starts_at)) = 2012").where('price != 0').where(:status => "live")
     @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 10").sum('amount')
 
     # For the next 7 days
@@ -24,7 +25,7 @@ class Admin::MetricsController < ApplicationController
 
     @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
 
-    @users_sincelastnewsletter  = User.where("created_at > ?", '2012-05-31')
+
 
     # Sidebar
 
@@ -47,6 +48,7 @@ class Admin::MetricsController < ApplicationController
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count
     @free_courses               = Course.where('price = 0').count
+    @draft_courses              = Course.where(:status => "draft").count
     @happened_courses           = Course.where(:happening => true).count
 
     @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f

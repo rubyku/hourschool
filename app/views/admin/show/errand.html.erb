@@ -1,0 +1,30 @@
+<div class="page-main white">
+  <div class="page-content">
+    <div class="heading28" style="margin-bottom: 20px">Need to pay</div>
+    <% @courses_last_month.each do |course| %>
+      <div class="heading13 brown"><%= link_to course.title, course %> - <%= number_to_currency course.price * course.students.count %></div>
+      <% if course.account == nil %>
+        Pay to: <%= course.teacher.name %> (<%= course.teacher.email %>)
+      <% else %>
+        Pay to: <%= course.account.name %>
+      <% end %>
+      <br><br>
+    <% end %>
+  </div>
+</div><!-- end page main -->
+
+<div class="page-main white">
+  <div class="page-content">
+    <div class="heading28" style="margin-bottom: 20px">Since last newsletter (<%= @users_sincelastnewsletter.count %>)</div>
+    <table>
+      <% @users_sincelastnewsletter.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.name.split(" ").first %></td>
+          <td><%= user.name.split(" ").last %></td>
+          <td><%= user.zip %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div><!-- end page main -->

@@ -108,6 +108,8 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
+  match '/errand'               => 'admin#show',        :id => 'errand'
+
   match '/explore'                    => 'accounts#show'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
