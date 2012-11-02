@@ -4,11 +4,13 @@ class Admin::MetricsController < ApplicationController
 
   def index
 
-    #missions
-    @accounts                   = Account.all
-    @missions                   = Mission.all
+
     @crewmanships               = Crewmanship.all
     @topics                     = Topic.all
+
+    @accounts  = Account.where(:private => "false").find(:all, :include => :memberships).sort_by { |u| u.memberships.size }.reverse
+    @missions  = Mission.where(:status => "live").find(:all, :include => :crewmanships).sort_by { |u| u.crewmanships.size }.reverse
+    @top_users = User.where(:admin => false).find(:all, :include => :roles).sort_by { |u| u.roles.size }.reverse.first(20)
 
 
     # Goals of the month
@@ -32,7 +34,9 @@ class Admin::MetricsController < ApplicationController
     @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
     @students = Role.where(:name => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @teachers = User.joins(:roles).where("roles.name = 'teacher'").order('DATE(roles.created_at) DESC')
+    @teachers = User.joins(:roles).where("roles.name = 'teacher'").uniq
+
+    @student_to_teacher = User.joins(:roles).select("user_id").where("roles.name = 'teacher'").group("user_id").select("DISTINCT(role_id)")
 
     @total_users                = User.count
     @total_fb_users             = User.where("fb_token is not null").count
@@ -42,8 +46,6 @@ class Admin::MetricsController < ApplicationController
     @total_repeat_users         = Role.group(:user_id).count.select {|user_id, count| count > 1}.count
     @total_repeat_students      = Role.group(:user_id).where(:name => 'student').count.select {|user_id, count| count > 1}.count
     @total_repeat_teachers      = Role.group(:user_id).where(:name => 'teacher').count.select {|user_id, count| count > 1}.count
-    @total_students             = Role.where(:name => 'student').count
-    @total_teachers             = Role.where(:name => 'teacher').count
 
     @total_courses              = Course.count
     @paying_courses             = Course.where('price != 0').count

@@ -156,7 +156,6 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% @accounts = Account.where(:private => "false").find(:all, :include => :memberships).sort_by { |u| u.memberships.size }.reverse %>
               <% @accounts.each do |account| %>
                 <tr>
                   <td><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></td>
@@ -173,7 +172,6 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% @missions = Mission.where(:status => "live").find(:all, :include => :crewmanships).sort_by { |u| u.crewmanships.size }.reverse %>
               <% @missions.each do |mission| %>
                 <tr>
                   <td><%= link_to full_mission_title(mission), mission %></td>
@@ -192,7 +190,6 @@
               <th>Date joined</th>
             </thead>
             <tbody>
-              <% @top_users = User.where(:admin => false).find(:all, :include => :roles).sort_by { |u| u.roles.size }.reverse.first(20) %>
               <% @top_users.each do |user| %>
                 <tr>
                   <td><%= user.name %></td>
@@ -217,7 +214,50 @@
             When did they join?<br>
             When did they take first action?<br>
             When did they teach their first class?<br>
-
+          <hr>
+          Below is a list of people who have both been a student and a teacher. People that have only been student or teacher are excluded.
+          <div class="heading14" style="margin: 20px 0px">Student first</div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Name</th>
+              <th>Journey</th>
+            </thead>
+            <tbody>
+              <% @teachers.each do |teacher| %>
+              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.collect(&:name).first == "student"  %>
+                <tr>
+                  <td><%= teacher.name %></td>
+                  <td>
+                    <% teacher.roles.each do |role| %>
+                      <%= role.name %>,
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="heading14" style="margin-bottom: 20px">Teacher first</div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Name</th>
+              <th>Journey</th>
+            </thead>
+            <tbody>
+              <% @teachers.each do |teacher| %>
+              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.collect(&:name).first == "teacher" %>
+                <tr>
+                  <td><%= teacher.name %></td>
+                  <td>
+                    <% teacher.roles.each do |role| %>
+                      <%= role.name %>,
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
 
         </div>
       </div><!-- end page main -->
