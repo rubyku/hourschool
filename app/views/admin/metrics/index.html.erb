@@ -47,7 +47,6 @@
         <td><%= @draft_courses %></td>
       </tr>
     </table>
-
   </div>
 </div>
 
@@ -148,9 +147,6 @@
               <% end %>
             </tbody>
           </table>
-
-
-
           <hr>
           <div class="heading28" style="margin-bottom: 20px">By Mission</div>
           <table class="table table-bordered">
@@ -160,7 +156,8 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% Account.where(:private => false).each do |account| %>
+              <% @accounts = Account.where(:private => "false").find(:all, :include => :memberships).sort_by { |u| u.memberships.size }.reverse %>
+              <% @accounts.each do |account| %>
                 <tr>
                   <td><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></td>
                   <td><%= account.memberships.uniq.count %> members</td>
@@ -176,7 +173,8 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% Mission.where(:status => "live").each do |mission| %>
+              <% @missions = Mission.where(:status => "live").find(:all, :include => :crewmanships).sort_by { |u| u.crewmanships.size }.reverse %>
+              <% @missions.each do |mission| %>
                 <tr>
                   <td><%= link_to full_mission_title(mission), mission %></td>
                   <td><%= mission.crewmanships.count %> members</td>
@@ -188,6 +186,21 @@
           <hr>
           <div class="heading28" style="margin-bottom: 20px">By Member</div>
           <table class="table table-bordered">
+            <thead>
+              <th>Name</th>
+              <th># of events</th>
+              <th>Date joined</th>
+            </thead>
+            <tbody>
+              <% @top_users = User.where(:admin => false).find(:all, :include => :roles).sort_by { |u| u.roles.size }.reverse.first(20) %>
+              <% @top_users.each do |user| %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.roles.count %></td>
+                  <td><%= user.created_at.strftime("%b %d, %Y") %></td>
+                </tr>
+              <% end %>
+            </tbody>
           </table>
         </div>
       </div><!-- end page main -->
@@ -199,6 +212,13 @@
           <div class="heading28" style="margin-bottom: 20px">Impact</div>
             How many people taught immediately? (what class and how did that class do?)<br><br>
             How many people went from students to teachers? (from what class, what was the journey from joined to activated to engaged to teach,  and how long did that take?)
+
+            Hero funnel (the rest are just bells and whistles to help people get there):<br>
+            When did they join?<br>
+            When did they take first action?<br>
+            When did they teach their first class?<br>
+
+
         </div>
       </div><!-- end page main -->
     </div><!-- end tab2 -->
