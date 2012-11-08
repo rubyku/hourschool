@@ -1,76 +1,66 @@
 class Admin::MetricsController < ApplicationController
-
   before_filter :authenticate_admin!
 
   def index
 
+    # Overview
+    @live_missions              = Mission.where(:account_id => nil).where(:status => "live")
+    @draft_missions             = Mission.where(:account_id => nil).where(:status => "draft")
 
-    @crewmanships               = Crewmanship.all
-    @topics                     = Topic.all
+    @total_users                = User.all
+    @total_fb_users             = User.where("fb_token is not null")
 
-    @accounts  = Account.where(:private => "false").find(:all, :include => :memberships).sort_by { |u| u.memberships.size }.reverse
-    @missions  = Mission.where(:status => "live").find(:all, :include => :crewmanships).sort_by { |u| u.crewmanships.size }.reverse
-    @top_users = User.where(:admin => false).find(:all, :include => :roles).sort_by { |u| u.roles.size }.reverse.first(20)
+    @total_activated_users      = Role.select("DISTINCT(user_id)")
 
+    @total_activated_students   = Role.where(:name => "student").select("DISTINCT(user_id)")
+    @total_activated_teachers   = Role.where(:name => "teacher").select("DISTINCT(user_id)")
+
+    # @total_repeat_users         = Role.group(:user_id).count.select {|user_id, count| count > 1}
+    # @total_repeat_students      = Role.group(:user_id).where(:name => 'student').count.select {|user_id, count| count > 1}
+    # @total_repeat_teachers      = Role.group(:user_id).where(:name => 'teacher').count.select {|user_id, count| count > 1}
+
+    @total_courses              = Course.all
+    @paying_courses             = Course.where('price != 0')
+    @free_courses               = Course.where('price = 0')
+    @draft_courses              = Course.where(:status => "draft")
+    @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
+    @happened_courses           = Course.where(:happening => true)
+
+    # @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
+
+    #---------------------------------------------------------------------------------------------------------------
 
     # Goals of the month
     @users_this_month           = User.where("extract( month from DATE(created_at)) = 4").count
     @courses_this_month         = Course.where("extract( month from DATE(created_at)) = 4").count
     @transactions_this_month    = Payment.where("extract( month from DATE(created_at)) = 4").sum('amount')
 
-    @users_last_month           = User.where("extract( month from DATE(created_at)) = 10")
-    @transactions_last_month    = Payment.where("extract( month from DATE(created_at)) = 10").sum('amount')
+    #---------------------------------------------------------------------------------------------------------------
 
-    # For the next 7 days
+    #Need Rally
     @courses_next7days          = Course.active.where("starts_at < ?", 7.days.from_now).order('DATE(starts_at) ASC').where(:status => "live")
-    @courses_yesterday          = Course.where("date = ?", 1.day.ago)
 
-    @courses_not_live           = Course.where("status = ? ", "approved").order('DATE(created_at) DESC')
-
-
-
-    # Sidebar
-
-    @users    = User.order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @courses  = Course.unscoped.order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @students = Role.where(:name => 'student').order('DATE(created_at) DESC').group("DATE(created_at)").count
-    @teachers = User.joins(:roles).where("roles.name = 'teacher'").uniq
-
-    @student_to_teacher = User.joins(:roles).select("user_id").where("roles.name = 'teacher'").group("user_id").select("DISTINCT(role_id)")
-
-    @total_users                = User.count
-    @total_fb_users             = User.where("fb_token is not null").count
-    @total_active_users         = Role.select("DISTINCT(user_id)").count
-    @total_active_students      = Role.where(:name => 'student').select("DISTINCT(user_id)").count
-    @total_active_teachers      = Role.where(:name => 'teacher').select("DISTINCT(user_id)").count
-    @total_repeat_users         = Role.group(:user_id).count.select {|user_id, count| count > 1}.count
-    @total_repeat_students      = Role.group(:user_id).where(:name => 'student').count.select {|user_id, count| count > 1}.count
-    @total_repeat_teachers      = Role.group(:user_id).where(:name => 'teacher').count.select {|user_id, count| count > 1}.count
-
-    @total_courses              = Course.count
-    @paying_courses             = Course.where('price != 0').count
-    @free_courses               = Course.where('price = 0').count
-    @draft_courses              = Course.where(:status => "draft").count
-    @happened_courses           = Course.where(:happening => true).count
-
-    @total_transaction          = Payment.select('SUM(amount) as sum').first.sum.to_f
-    @total_transaction_count    = Payment.count
-    @amazon_fees                = @total_transaction * 0.029 + @total_transaction_count * 0.3
-    @teachers_share             = @total_transaction * 0.85
-
+    #Trends
     @users_by_month             = User.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
     @courses_by_month           = Course.unscoped.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    # @courses_by_month_austin    = Course.unscoped.joins(:city).where("cities.name = 'Austin'").group("extract( month from DATE(courses.created_at)) ").count
-    # students and teachers who attended a class this month
+
     @students_by_month          = Role.where(:name => 'student').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
     @teachers_by_month          = Role.where(:name => 'teacher').group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
     @transaction_by_month       = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").sum('amount')
-    @transaction_count_by_month = Payment.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    # @amazon_fees_by_month       = @transaction_by_month * 0.029 + @transaction_count_by_month * 0.3
-    # @teachers_share_by_month    = @transaction_by_month * 0.85
-    # @revenue_by_month           = @transaction_by_month - @amazon_fees_by_month - @teachers_share_by_month
+
+    @top_accounts               = Account.where(:private => "false").find(:all, :include => :memberships).sort_by { |u| u.memberships.size }.reverse
+    @top_missions               = Mission.where(:status => "live").find(:all, :include => :crewmanships).sort_by { |u| u.crewmanships.size }.reverse
+    @top_users                  = User.where(:admin => false).find(:all, :include => :roles).sort_by { |u| u.roles.size }.reverse.first(20)
+
+    #---------------------------------------------------------------------------------------------------------------
+
+    #Impact
+    @teachers                   = User.joins(:roles).where("roles.name = 'teacher'").uniq
+    @students_and_teachers      = @teachers.where("role.names = 'student'").uniq
+    @student_first
+    @teacher_first
+    @student_to_teacher         = User.joins(:roles).select("user_id").where("roles.name = 'teacher'").group("user_id").select("DISTINCT(role_id)")
 
   end
-
 
 end

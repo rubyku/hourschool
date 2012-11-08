@@ -1,33 +1,34 @@
-<div class="sidebar white" style="width: 300px; margin-right: 30px">
+<div class="sidebar white" style="width: 300px; margin-right: 30px; border: 1px solid #ddd">
   <div style="padding: 30px">
     <div class="heading28" style="margin-bottom: 20px">Overview</div>
     <table class="table table-bordered">
       <tr>
         <td>Live Missions:</td>
-        <td><%= Mission.where(:status => "live").count %></td>
+        <td><%= @live_missions.count %></td>
       </tr>
       <tr>
         <td>Draft Missions:</td>
-        <td><%= Mission.where(:status => "draft").count %></td>
+        <td><%= @draft_missions.count %></td>
       </tr>
     </table>
     <table class="table table-bordered">
       <tr>
         <td>Total Users:</td>
-        <td><%= "#{@total_users} (#{number_to_percentage(@total_fb_users/@total_users.to_f * 100, :precision => 0)} FB)" %></td>
+        <td><%= "#{@total_users.count} (#{number_to_percentage(@total_fb_users.count/@total_users.count.to_f * 100, :precision => 0)} FB)" %></td>
       </tr>
       <tr>
         <td>Activated Users:</td>
-        <td><%="#{@total_active_users} (#{number_to_percentage(@total_active_users/@total_users.to_f * 100, :precision => 0)})" %></td>
+        <td><%="#{@total_activated_users.count} (#{number_to_percentage(@total_activated_users.count/@total_users.count.to_f * 100, :precision => 0)})" %></td>
+      </tr>
+      <tr>
+        <td>Students vs. Teachers ratio</td>
+        <td><%= "#{@total_activated_students.count} (#{number_to_percentage(@total_activated_students.count/@total_users.count.to_f * 100, :precision => 0)})" %> vs. <%= "#{@total_activated_teachers.count} (#{number_to_percentage(@total_activated_teachers.count/@total_users.count.to_f * 100, :precision => 0)})" %></td>
       </tr>
       <tr>
         <td>Engaged Users:</td>
         <td>work in progress</td>
       </tr>
-      <tr>
-        <td>Students vs. Teachers ratio</td>
-        <td><%= "#{@total_active_students} (#{number_to_percentage(@total_active_students/@total_users.to_f * 100, :precision => 0)})" %> vs. <%= "#{@total_active_teachers} (#{number_to_percentage(@total_active_teachers/@total_users.to_f * 100, :precision => 0)})" %></td>
-      </tr>
+
       <tr>
         <td>Student turned Teacher</td>
         <td>work in progress</td>
@@ -35,16 +36,16 @@
     </table>
     <table class="table table-bordered">
       <tr>
-        <td>Total Courses:</td>
-        <td><%= @total_courses %></td>
+        <td>Total Events:</td>
+        <td><%= @total_courses.count %></td>
       </tr>
       <tr>
         <td>Paying vs. Free ratio</td>
-        <td><%= "#{@paying_courses} (#{number_to_percentage(@paying_courses/@total_courses.to_f * 100, :precision => 0)})" %> vs. <%= "#{@free_courses} (#{number_to_percentage(@free_courses/@total_courses.to_f * 100, :precision => 0)})" %></td>
+        <td><%= "#{@paying_courses.count} (#{number_to_percentage(@paying_courses.count/@total_courses.count.to_f * 100, :precision => 0)})" %> vs. <%= "#{@free_courses.count} (#{number_to_percentage(@free_courses.count/@total_courses.count.to_f * 100, :precision => 0)})" %></td>
       </tr>
       <tr>
-        <td>Courses in draft:</td>
-        <td><%= @draft_courses %></td>
+        <td>Events in draft:</td>
+        <td><%= @draft_courses.count + @courses_not_live.count %></td>
       </tr>
     </table>
   </div>
@@ -102,14 +103,14 @@
           </table>
           <hr>
           <div class="heading28" style="margin-bottom: 20px">Events in draft</div>
-          <% Course.where(:account_id => nil).where(:status => "draft").each do |mission| %>
+          <% @draft_courses.each do |course| %>
             <div class="heading16 brown"><%= link_to course.title %></div>
             Created by: <%= link_to course.teacher.name, course.teacher %> (<%= course.teacher.email %>)<br>
             Created on: <%= course.created_at.strftime("%a %b %d, %Y") %><br><br>
           <% end %>
           <hr>
           <div class="heading28" style="margin-bottom: 20px">Missions in draft</div>
-          <% Mission.where(:account_id => nil).where(:status => "draft").each do |mission| %>
+          <% @draft_missions.each do |mission| %>
             <div class="heading16 brown"><%= link_to full_mission_title(mission), mission %></div>
             Created by: <%= link_to mission.crewmanships.first.user.name, mission.crewmanships.first.user %> (<%= mission.crewmanships.first.user.email %>)<br>
             Created on: <%= mission.created_at.strftime("%a %b %d, %Y") %><br><br>
@@ -156,7 +157,7 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% @accounts.each do |account| %>
+              <% @top_accounts.each do |account| %>
                 <tr>
                   <td><%= link_to account.name, "http://#{account.subdomain}.hourschool.com" %></td>
                   <td><%= account.memberships.uniq.count %> members</td>
@@ -172,7 +173,7 @@
               <th>Events</th>
             </thead>
             <tbody>
-              <% @missions.each do |mission| %>
+              <% @top_missions.each do |mission| %>
                 <tr>
                   <td><%= link_to full_mission_title(mission), mission %></td>
                   <td><%= mission.crewmanships.count %> members</td>
@@ -206,53 +207,54 @@
     <div class="tab-pane" id="tab3">
       <div class="page-main-tab white">
         <div class="page-content">
-          <div class="heading28" style="margin-bottom: 20px">Impact</div>
-            How many people taught immediately? (what class and how did that class do?)<br><br>
-            How many people went from students to teachers? (from what class, what was the journey from joined to activated to engaged to teach,  and how long did that take?)
-
-            Hero funnel (the rest are just bells and whistles to help people get there):<br>
-            When did they join?<br>
-            When did they take first action?<br>
-            When did they teach their first class?<br>
-          <hr>
           Below is a list of people who have both been a student and a teacher. People that have only been student or teacher are excluded.
           <div class="heading14" style="margin: 20px 0px">Student first</div>
           <table class="table table-bordered">
             <thead>
               <th>Name</th>
               <th>Journey</th>
+              <th>Joined on</th>
+              <th>Activated on</th>
+              <th>Became teacher on</th>
             </thead>
             <tbody>
               <% @teachers.each do |teacher| %>
-              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.collect(&:name).first == "student"  %>
+              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.order("created_at ASC").collect(&:name).first == "student" %>
                 <tr>
-                  <td><%= teacher.name %></td>
+                  <td><%= link_to teacher.name, teacher %></td>
                   <td>
-                    <% teacher.roles.each do |role| %>
-                      <%= role.name %>,
+                    <% teacher.roles.order("created_at ASC").each do |role| %>
+                      <%= link_to role.name, role.course %>,
                     <% end %>
                   </td>
+                  <td><%= teacher.created_at.strftime("%b %d, %Y") %></td>
+                  <td><%= link_to teacher.roles.order("created_at ASC").first.created_at.strftime("%b %d, %Y"), teacher.roles.order("created_at ASC").first.course %></td>
+                  <td><%= link_to teacher.roles.order("created_at ASC").where(:name => "teacher").first.created_at.strftime("%b %d, %Y"), teacher.roles.order("created_at ASC").where(:name => "teacher").first.course %> </td>
                 </tr>
                 <% end %>
               <% end %>
             </tbody>
           </table>
-          <div class="heading14" style="margin-bottom: 20px">Teacher first</div>
+          <div class="heading14" style="margin: 20px 0px">Teacher first</div>
           <table class="table table-bordered">
             <thead>
               <th>Name</th>
               <th>Journey</th>
+              <th>Joined on</th>
+              <th>Activated on</th>
             </thead>
             <tbody>
               <% @teachers.each do |teacher| %>
-              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.collect(&:name).first == "teacher" %>
+              <% if teacher.roles.collect(&:name).include?('student') && teacher.roles.order("created_at ASC").collect(&:name).first == "teacher" %>
                 <tr>
                   <td><%= teacher.name %></td>
                   <td>
-                    <% teacher.roles.each do |role| %>
+                    <% teacher.roles.order("created_at ASC").each do |role| %>
                       <%= role.name %>,
                     <% end %>
                   </td>
+                  <td><%= teacher.created_at.strftime("%b %d, %Y") %></td>
+                  <td><%= teacher.roles.order("created_at ASC").first.created_at.strftime("%b %d, %Y")  %></td>
                 </tr>
                 <% end %>
               <% end %>
@@ -265,6 +267,9 @@
 
   </div><!-- end tab-content -->
 </div><!-- end tabbable -->
+
+
+
 
 
 
