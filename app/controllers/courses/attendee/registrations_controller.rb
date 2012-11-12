@@ -27,13 +27,13 @@ class Courses::Attendee::RegistrationsController < ApplicationController
       )
     end
 
-    if @role.save
-      if @course.member_price.present? && @role.member == true
-        amount = @course.member_price
-      else
-        amount = @course.price
-      end
+    if @course.member_price.present? && @role.member == true
+      amount = @course.member_price
+    else
+      amount = @course.price
+    end
 
+    if @role.save
       if amount > 0
         total = (amount * 100).to_i
         description = "#{@role.quantity} tickets to #{@course.name}."

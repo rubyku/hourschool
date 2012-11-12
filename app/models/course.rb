@@ -85,6 +85,10 @@ class Course < ActiveRecord::Base
     self.price == 0
   end
 
+  def member_free?
+    self.member_price == 0
+  end
+
   def draft?
     !self.status == "live"
   end

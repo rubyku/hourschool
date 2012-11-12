@@ -79,7 +79,7 @@
     })
   </script>
 
-  <% if !@course.free? %>
+  <% if !@course.free? || !@course.member_free? %>
     <div class="full-page white" id="billing_info">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px;">Billing information</div>

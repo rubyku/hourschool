@@ -43,7 +43,7 @@
     var form = $('.card-number').parents('form');
 
     form.submit(function(event) {
-      if (form.find('[name=stripeToken]').length > 0) {
+      if (form.find('[name=stripeToken]').length > 0 || ($('#role_member_true:checked').length == 1)) {
         // looks like we already got a token
         // proceed with normal submit flow
         return true;
