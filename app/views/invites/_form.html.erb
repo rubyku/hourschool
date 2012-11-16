@@ -14,15 +14,6 @@
   <% if current_user %>
     <%= f.hidden_field :inviter_id, :value => "#{current_user.id}" if current_user %>
     From: <%= current_user.name %><br>
-  <% else %>
-    <div class="field clearfix" style="float: left; margin-right: 10px">
-      <%= f.label :inviter_name, "Your name" %>
-      <%= f.text_field :inviter_name, :placeholder => "Bruce Wayne" %>
-    </div>
-    <div class="field clearfix">
-      <%= f.label :inviter_email, "Your email" %>
-      <%= f.text_field :inviter_email, :placeholder => "bruce@wayne.com" %>
-    </div>
   <% end %>
   <br>
 

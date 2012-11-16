@@ -58,7 +58,9 @@
 
       <div class="mission-status-box">
         <div style="width: 240px; float: right">
-          <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
+          <% if current_user %>
+            <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite</a>
+          <% end %>
           <% if !current_user || (current_user && current_user.crewmanships.where(:mission_id => @mission).blank?) %>
             <%= link_to "Follow Mission", mission_crewmanships_path(@mission), :method => :post, :class => "btn btn-warning right", :style => "color: white" %>
           <% elsif current_user && current_user.crewmanships.where(:mission_id => @mission).present? %>

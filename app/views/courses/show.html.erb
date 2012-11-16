@@ -144,6 +144,7 @@
           Some handy tools
         </div>
 
+        <% if current_user %>
         <div class="mission-divider">
           <% if @course.teacher == current_user %>
             <%= link_to "Edit event", edit_course_path %><br>
@@ -162,6 +163,7 @@
             <% end %>
           <% end %>
         </div>
+        <% end %>
 
         <div style="float: left; margin-bottom: 30px">
           <% if @course.status == 'live' %>
