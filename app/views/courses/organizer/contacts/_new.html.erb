@@ -7,13 +7,6 @@
   <%= hidden_field_tag 'id', @course.id %>
   <div class="modal-body">
 
-    <% if !current_user %>
-    <div class="field clearfix">
-      Your email:
-      <%= text_field_tag :messenger_email %>
-    </div>
-    <% end %>
-
     <div class="form-question">
       <%= "Message to #{@course.teacher.name} for the #{@course.title} class:" %>
       <%= text_area_tag 'message', '', :class => 'form-tall', :style => "width: 97%" %>

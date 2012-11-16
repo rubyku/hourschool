@@ -167,8 +167,9 @@
 
         <div style="float: left; margin-bottom: 30px">
           <% if @course.status == 'live' %>
-            <a data-toggle="modal" href="#rally" class="btn btn-mini left" href="" style="color: black; font-weight: 700; margin-right: 10px"><i class="icon-bullhorn"></i> Rally</a>
-
+            <% if current_user %>
+              <a data-toggle="modal" href="#rally" class="btn btn-mini left" href="" style="color: black; font-weight: 700; margin-right: 10px"><i class="icon-bullhorn"></i> Rally</a>
+            <% end %>
             <div style="float: left; margin-right: 10px">
               <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
             </div>
@@ -177,17 +178,20 @@
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
             </div>
 
-            <!-- modal begins -->
-            <div class="modal hide" id="rally">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Rally your troops</h3>
+            <% if current_user %>
+              <!-- modal begins -->
+              <div class="modal hide" id="rally">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h3>Rally your troops</h3>
+                </div>
+                <div class="modal-body">
+                  <%= render 'invites/accordian' %>
+                </div>
               </div>
-              <div class="modal-body">
-                <%= render 'invites/accordian' %>
-              </div>
-            </div>
-            <!-- modal ends -->
+              <!-- modal ends -->
+            <% end %>
+
           <% end %>
         </div>
       </div>

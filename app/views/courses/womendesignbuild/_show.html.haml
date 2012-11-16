@@ -150,10 +150,11 @@
         = @course.teacher.bio
       - else
         = @course.experience
-    .class-attendance-block
-      - if @course.teacher != current_user
-        = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-        %a{:'data-toggle' => "modal", :href => "#emailOrganizer"} Email teacher
+    - if current_user
+      .class-attendance-block
+        - if @course.teacher != current_user
+          = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+          %a{:'data-toggle' => "modal", :href => "#emailOrganizer"} Email teacher
 
     = render 'courses/organizer/contacts/new'
 
