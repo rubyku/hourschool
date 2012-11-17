@@ -1,4 +1,6 @@
 class InvitesController < ApplicationController
+  before_filter :authenticate_user!, :only => :create
+
   # GET /invites
   # GET /invites.json
   def index
@@ -47,7 +49,10 @@ class InvitesController < ApplicationController
     if params[:invite_selection]
       params[:invite][:invitable_type], params[:invite][:invitable_id] = params.delete(:invite_selection).split(":")
     end
-    @invite = Invite.new(params[:invite])
+
+    # params = {:invite => {:inviter_id => 4, :invitee_id => 4}}
+
+    @invite = current_user.sent_invites.new(params[:invite])
 
     respond_to do |format|
       if @invite.save

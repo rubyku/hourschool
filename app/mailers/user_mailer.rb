@@ -6,14 +6,14 @@ class UserMailer < ActionMailer::Base
 
   # course = Course.find(params[:id])
   # UserMailer.contact_teacher(user, course, "hello there").deliver
-  def contact_teacher(current_user, course, message)
+  def contact_teacher(user, course, message)
     @email = course.teacher.email
-    @user = current_user
+    @user = user
     @course = course
     @message = message
     mail :to => course.teacher.email,
          :bcc => "admin@hourschool.com",
-         :reply_to => current_user.email,
+         :reply_to => user.email,
          :subject => "#{@user.name} left you a message about your event"
   end
 
@@ -28,7 +28,8 @@ class UserMailer < ActionMailer::Base
          :subject => "#{messenger_email} left you a message about your event"
   end
 
-  def contact_all_students(current_user,course,message)
+  def contact_all_students(user,course,message)
+    raise "Must be sent by teacher" unless user == course.teacher
     @course = course
     @message = message
     mail :to => course.students.map(&:email),
@@ -50,9 +51,9 @@ class UserMailer < ActionMailer::Base
          :subject => "#{comment.user.name} left you a comment about your event"
   end
 
-  def course_feedback(current_user, course, students, general_feedback)
+  def course_feedback(user, course, students, general_feedback)
     @email = course.teacher.email
-    @user = current_user
+    @user = user
     @course = course
     @students = students
     @general_feedback = general_feedback
@@ -94,18 +95,18 @@ class UserMailer < ActionMailer::Base
 
   #----------------------------------------------------------------------------------------------------------------------------
 
-  # def followed_created_a_course(current_user, followed, course)
-  #   @user     = current_user
+  # def followed_created_a_course(user, followed, course)
+  #   @user     = user
   #   @followed = followed
   #   @course   = course
-  #   mail(:to => current_user.email, :subject => "#{@followed.name} just created a new course on Hourschool")
+  #   mail(:to => user.email, :subject => "#{@followed.name} just created a new course on Hourschool")
   # end
   #
-  # def followed_signed_up_for_a_course(current_user, followed, course)
-  #   @user     = current_user
+  # def followed_signed_up_for_a_course(user, followed, course)
+  #   @user     = user
   #   @followed = followed
   #   @course   = course
-  #   mail(:to => current_user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
+  #   mail(:to => user.email, :subject => "#{@followed.name} just signed up for a course on Hourschool")
   # end
 
   #----------------------------------------------------------------------------------------------------------------------------
