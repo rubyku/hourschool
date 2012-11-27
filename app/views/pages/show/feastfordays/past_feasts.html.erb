@@ -1,0 +1,29 @@
+<% @courses = Course.where(:account_id => 1).where("starts_at < ?", Time.zone.now) %>
+<% @courses.each do |course| %>
+
+    <div class="classBlock">
+      <% if course.photo.present? %>
+        <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+      <% else %>
+        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+      <% end %>
+      <br>
+      <div class="class-description" style="float: left; width: 170px">
+        <div class="heading13 brown">
+          <% link_to course.title.truncate(50), course %>
+        </div>
+        <p><%= course.description.truncate(70) %>
+      </div>
+      <div class="class-note">
+        <div class="heading9-class">
+          <% if course.teacher == User.find(1898) %>
+            Need a host
+          <% else %>
+            Host:
+            <%= course.teacher.name %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+<% end %>

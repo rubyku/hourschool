@@ -22,7 +22,15 @@
 
   <meta property="og:image"
         content="<%= asset_path "v2/Logo_Orange.png" %>" />
+
+  <% if current_account == Account.where(:id => 1).first %>
+    <meta name="description" content="Feast for Days is an Austin startup that makes it easy for people to cook and share food." />
+    <meta name="keywords" content="feast for days, feastfordays, feast4days, collaborative cooking, austin, feast, food, cook, cooking" />
+  <% end %>
+
 <%- end -%>
+
+
 
 <% content_for :head_scripts do -%>
 

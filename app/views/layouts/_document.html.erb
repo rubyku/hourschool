@@ -11,6 +11,8 @@
     <title>
       <% if community_site? %>
         <%= content_for?(:document_title) ? yield(:document_title) : "HourSchool" %>
+      <% elsif current_account == Account.where(:id => 1).first %>
+        Feast for Days | Cooking, Sharing, Savoring
       <% else %>
         <%= content_for?(:document_title) ? yield(:document_title) : "#{current_account.name}" %>
       <%- end -%>

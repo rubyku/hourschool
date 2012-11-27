@@ -58,7 +58,6 @@
     color: #8f9936;
     font-size: 12px;
     text-decoration: none;
-    margin-left: 20px;
     padding-top: 5px;
     font-family: 'Open Sans', sans-serif;
     color: #8f9936;
@@ -73,23 +72,23 @@
 
     <ul id="feastfordays">
       <li class="feastfordays" style="margin-left: 26px"><%= link_to "Join a feast", courses_browse_index_path, :style => "color: #efe6e2" %></li>
-      <li class="feastfordays"><%= link_to "Host a feast", f4d_host_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays" style="margin-left: 50px"><%= link_to "Host a feast", f4d_host_path, :style => "color: #efe6e2" %></li>
       <li class="feastfordays"><%= link_to "How it works", f4d_how_it_works_path, :style => "color: #efe6e2" %></li>
-      <li class="feastfordays"><%= link_to "Food & Community", f4d_community_path, :style => "color: #efe6e2" %></li>
-      <li class="feastfordays"><%= link_to "About us", f4d_about_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays" style="margin-left: 45px"><%= link_to "Past Feasts", f4d_past_feasts_path, :style => "color: #efe6e2" %></li>
+      <li class="feastfordays" style="margin-left: 50px"><%= link_to "About us", f4d_about_path, :style => "color: #efe6e2" %></li>
     </ul>
 
     <ul id="feastfordays_profile">
       <% if user_signed_in? %>
         <li class="feastfordays2"><%= link_to "My profile", profile_path, :style => "color: #8f9936" %></li>
-        <li class="feastfordays2"><%= link_to "Logout", destroy_user_session_path, :style => "color: #8f9936" %></li>
+        <li class="feastfordays2" style="margin-left: 20px; margin-right: 20px"><%= link_to "Logout", destroy_user_session_path, :style => "color: #8f9936" %></li>
       <% else %>
         <li class="feastfordays2"><%= link_to "Sign in", new_user_session_path, :style => "color: #8f9936" %></li>
-        <li class="feastfordays2"><%= link_to "Sign up", new_user_registration_path, :style => "color: #8f9936" %></li>
+        <li class="feastfordays2" style="margin-left: 20px; margin-right: 20px"><%= link_to "Sign up", new_user_registration_path, :style => "color: #8f9936" %></li>
       <% end %>
     </ul>
 
-    <%= image_tag 'feastfordays/nav_divider_lines.png', :style => "position: relative; z-index: 2; margin-top: -47px; margin-left: 200px" %>
+    <%= image_tag 'feastfordays/nav_divider_new.png', :style => "position: relative; z-index: 2; margin-top: -47px; margin-left: 200px" %>
 
   </div>
 </div>
