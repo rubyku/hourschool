@@ -5,9 +5,8 @@
   <%= render :partial => 'accounts/show/feastfordays', :locals => {:courses => @courses} %>
 
 <% elsif current_account == Account.where(:id => 2).first %><!-- A2Reskilling -->
-  <div style="width: 770px; margin-left: 80px">
-    <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
-  </div>
+    <%= render :partial => 'accounts/show/a2reskilling', :locals => {:courses => @courses} %>
+
 
 <% elsif current_account == Account.where(:id => 5).first %><!-- Center61 -->
   <!-- only has one mission, no homepage yet -->
