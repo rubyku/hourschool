@@ -39,7 +39,7 @@ class Comment < ActiveRecord::Base
       current_account = self.course.account
     end
     participants.each do |user|
-      UserMailer.course_comments(user, self, self.course, current_account).deliver unless self.user == user
+      UserMailer.delay.course_comments(user, self, self.course, current_account) unless self.user == user
     end
   end
 
@@ -50,7 +50,7 @@ class Comment < ActiveRecord::Base
       current_account = self.course.account
     end
     participants_and_students.each do |user|
-      UserMailer.course_comments(user, self, self.course, current_account).deliver unless self.user == user
+      UserMailer.delay.course_comments(user, self, self.course, current_account) unless self.user == user
     end
   end
 

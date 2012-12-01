@@ -94,7 +94,7 @@ class CoursesController < ApplicationController
             UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
             if community_site? && @course.mission.present?
               @course.mission.users.each do |user|
-                UserMailer.mission_new_course(user, @course.mission, @course).deliver if user.wants_newsletter? && user != current_user
+                UserMailer.delay.mission_new_course(user, @course.mission, @course) if user.wants_newsletter? && user != current_user
               end
             end
           end

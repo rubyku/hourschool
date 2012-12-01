@@ -81,7 +81,7 @@ class CrewmanshipsController < ApplicationController
       # end
 
       @crewmanship.mission.users.each do |user|
-        UserMailer.mission_new_member(user, @mission, current_user).deliver if user.wants_newsletter? && user != current_user
+        UserMailer.delay.mission_new_member(user, @mission, current_user) if user.wants_newsletter? && user != current_user
       end
       redirect_to @mission, notice: 'You have joined this mission!'
     else

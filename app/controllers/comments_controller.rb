@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
         end
       elsif @comment.mission.present?
         @comment.mission.users.each do |user|
-          UserMailer.mission_new_comment(user, @comment.mission, @comment).deliver if user.wants_newsletter? && user != current_user
+          UserMailer.delay.mission_new_comment(user, @comment.mission, @comment) if user.wants_newsletter? && user != current_user
         end
       end
     end
