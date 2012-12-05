@@ -8,7 +8,7 @@
 
 <div style="float: left">
 <div class="column_heading">Upcoming Feasts</div>
-<div class="three_column" style="margin-right: 30px;">
+<div class="three_column" style="margin-right: 30px; height: 430px">
   <% @courses.where("starts_at > (?)", Time.zone.now).order('starts_at asc').first(1).each do |course| %>
   <%= link_to (image_tag(course.photo.url(:small), :size => "263x167")), course if course.photo.present? %>
   <%= link_to course.title, course, :class => "feast_title" %><br>
@@ -24,7 +24,7 @@
 
 <div style="float: left">
 <div class="column_heading">How to Host a Feast</div>
-<div class="three_column" style="margin-right: 30px">
+<div class="three_column" style="margin-right: 30px; height: 430px">
 
   <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 10px">
     <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Post</div>
@@ -45,15 +45,14 @@
 </div>
 
 <div style="float: left">
-<div class="column_heading">Food & Community</div>
-<div class="three_column">
-  <%= image_tag 'feastfordays/hp_mosaic.png', :style => "margin-bottom: 20px" %>
-  <div style="color: #402b15; font-weight: 600; font-size: 14px">See the  <span class="emphasis_heading">eats</span> and meet the <span class="emphasis_heading">peeps</span> that make Feast for Days the best thing since play dough.</div>
+<div class="column_heading">Past Feasts</div>
+<div class="three_column" style="height: 430px">
+  <%= image_tag 'feastfordays/past_feasts_thumbnail.png', :style => "margin-bottom: 20px" %>
+  <div style="color: #402b15; font-weight: 600; font-size: 14px">Take a gander and be inspired by the Feasts (cooking sessinos) that have made Feast for Days the greatest thing since play dough. </div>
   <div style="float: right; margin-top: 40px">
-    <%= link_to "Meet the community...", f4d_community_path, :class => "see_more_link" %></div>
+    <%= link_to "View past feasts...", f4d_past_feasts_path, :class => "see_more_link" %></div>
 </div>
 </div>
-
 
 
 
