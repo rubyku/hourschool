@@ -1,6 +1,6 @@
 <label id="city-id-error" style="color:red; display:none;">Please select a City & State.</label>
 <%= f.hidden_field :city_id, :id => 'city-id' %>
-<%= label_tag :citySearch, 'City, State (required)', :class => "form-question" %><br />
+<%= label_tag :citySearch, 'City, State', :class => "form-question" %><br />
 <%= text_field_tag :citySearch, parent.city.try(:name_state), :placeholder => "City & State (ex. Austin, TX)", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
 
 <script type="text/javascript">
