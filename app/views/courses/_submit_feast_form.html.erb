@@ -99,8 +99,11 @@
 
     <br><br><br>
 
-
-   <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
+  <% if @course.status == 'draft' %>
+    <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
+  <% else %>
+    <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Save" %><br>
+  <% end %>
     <p style="font-size: 9px; margin-top: 10px">You'll be able to preview before submitting on the next page!</p>
 
    <% end %>
