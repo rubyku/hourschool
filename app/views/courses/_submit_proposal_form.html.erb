@@ -147,24 +147,7 @@
 <br><br><br>
 
   <% if current_account == Account.find(4) %>
-    <% if @course.status == 'draft' %>
-      <%= f.submit "Submit", :style => "border: none;
-      background: #00B6FF;
-      color: #fff;
-      padding-top: 10px;
-      padding-bottom: 10px;
-        font-family: BebasNeue;
-        font-size: 18px;
-        height: 28px;
-        padding: 6px;
-        margin-bottom: 6px;
-        color: white;
-        background-color: #BA5F8F;
-        -moz-box-shadow: 0 2px 4px #999;
-        -webkit-box-shadow: 0 2px 4px #999;
-        box-shadow: 0 2px 4px #999;
-        cursor: pointer;", :id => 'course_submit', :value => "Preview my class" %>
-    <% else %>
+    <% if @course.status == 'live' %>
       <%= f.submit "Submit", :style => "border: none;
       background: #00B6FF;
       color: #fff;
@@ -181,12 +164,29 @@
         -webkit-box-shadow: 0 2px 4px #999;
         box-shadow: 0 2px 4px #999;
         cursor: pointer;", :id => 'course_submit', :value => "Save" %>
+    <% else %>
+      <%= f.submit "Submit", :style => "border: none;
+      background: #00B6FF;
+      color: #fff;
+      padding-top: 10px;
+      padding-bottom: 10px;
+        font-family: BebasNeue;
+        font-size: 18px;
+        height: 28px;
+        padding: 6px;
+        margin-bottom: 6px;
+        color: white;
+        background-color: #BA5F8F;
+        -moz-box-shadow: 0 2px 4px #999;
+        -webkit-box-shadow: 0 2px 4px #999;
+        box-shadow: 0 2px 4px #999;
+        cursor: pointer;", :id => 'course_submit', :value => "Preview" %>
     <% end %>
   <% else %>
-    <% if @course.status == 'draft' %>
-      <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
-    <% else %>
+    <% if @course.status == 'live' %>
       <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Save" %><br>
+    <% else %>
+      <%= f.submit "Submit", :class => "btn", :id => 'course_submit', :value => "Preview" %><br>
     <% end %>
     <p style="font-size: 9px; margin-top: 10px">You'll be able to preview before submitting on the next page!</p>
   <% end %>
