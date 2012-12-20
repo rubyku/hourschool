@@ -173,7 +173,9 @@ Check out the readme for setup requirements: https://github.com/chap/pgbackup-ta
 ##Using pow for sub-domains
 
 $ cd ~/.pow
+
 $ ln -s ~/Desktop/hourschool hourschool
+
 $ open http://subdomain.hourschool.dev/
 
 When using pow and want to view logs, go back to project directory
