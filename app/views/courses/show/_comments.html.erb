@@ -47,6 +47,11 @@
           <div style="font-size: 10px">
             <%= "#{time_ago_in_words comment.created_at} ago" %>
           </div>
+          <% if current_user && current_user == comment.user %>
+            <div style="font-size: 10px; margin-left: 390px; margin-bottom: 10px; margin-top: -20px">
+              <%= link_to "Delete", comment, confirm: 'Are you sure?', method: :delete, :style => "color: #999; text-transform: uppercase; font-size: 10px; font-weight: 700" %>
+            </div>
+          <% end %>
           <%= simple_format Rinku.auto_link(comment.body) %>
           <% if comment.comment_type == 'file' %>
             <%= link_to comment.photo_file_name, comment.photo.url %>
@@ -74,6 +79,11 @@
                 <div style="font-size: 10px">
                   <%= "#{time_ago_in_words child_comment.created_at} ago" %>
                 </div>
+                <% if current_user && current_user == child_comment.user %>
+                <div style="font-size: 10px; margin-left: 390px; margin-bottom: 10px; margin-top: -20px">
+                  <%= link_to "Delete", child_comment, confirm: 'Are you sure?', method: :delete, :style => "color: #999; text-transform: uppercase; font-size: 10px; font-weight: 700" %>
+                </div>
+              <% end %>
                 <%= simple_format Rinku.auto_link(child_comment.body) %>
               </div>
               </div>

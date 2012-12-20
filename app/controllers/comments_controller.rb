@@ -28,5 +28,19 @@ class CommentsController < ApplicationController
     @mission = @comment.mission
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      if @comment.mission.present?
+        format.html { redirect_to mission_url(@comment.mission) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to course_url(@comment.course) }
+        format.json { head :no_content }
+      end
+    end
+  end
 
 end
