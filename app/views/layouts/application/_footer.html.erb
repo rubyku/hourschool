@@ -1,93 +1,70 @@
 <% if community_site? %>
 
   <div class="footer_bg" style="background-color: white; margin-top: 60px; padding-bottom: 100px;">
+
     <div class="container_16 clearfix">
 
-      <div class="grid_6">
-        <% begin %>
-          <% if defined?(TUMUSER) && !get_tumblr_first_regular_post.nil? %>
-              <% tum = get_tumblr_first_regular_post %>
-              <div class="footer-heading">Recent Blog Post</div>
-              <div class="footer-blog-title"><%= link_to  tum["regular_title"], tum["url"], :class => "sub-nav-inactive" %></div><br>
-
-              <p class="footer-message-description"><%= strip_tags(truncate(tum["regular_body"], :length => 600, :omission => "..."))%></p><br>
-
-          <%- else -%>
-              <div class="footer-heading">Our mission</div>
-              <div class="footer-blog-title">HourSchool started because...</div><br>
-          <% end %>
-        <% rescue => ex %>
-          <% Rails.logger.error "Tumblr Failed: #{ex}" %>
-          <div class="footer-heading">What is HourSchool?</div>
-          <p class="footer-message-description">HourSchool is a social school built from your community. Our mission is to empower more people to become teachers, and to enjoy the emotional and financial rewards that teaching provides. <a href="http://www.hourschool.com/about">Learn more...</a></p><br>
-        <% end %>
-
+      <div class="grid_5" style="margin-right: 60px">
+        <div class="footer-heading">Newsletter sign up</div>
+        <div id="mc_embed_signup">
+          <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <p class="footer-message-description">Sign up for our newsletter to get updates on latest classes in your city!</p>
+            <input type="email" value="" name="EMAIL" class="newsletterForm" placeholder="email address" required><br>
+            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
+          </form>
+        </div>
       </div>
 
       <div class="grid_5">
-        <div class="footer-heading">Newsletter sign up</div>
-          <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-            <div id="mc_embed_signup">
-            <form action="http://hourschool.us2.list-manage1.com/subscribe/post?u=2a4ed99f8f06d1af4cea52869&amp;id=369f31a771" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-              <p class="footer-message-description">Sign up for our newsletter to get updates on latest classes in your city!</p>
-              <input type="email" value="" name="EMAIL" class="newsletterForm" placeholder="email address" required><br>
-              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
-            </form>
-          </div>
-      </div>
-
-      <div class="grid_4 footer-right">
-
-       <div class="footer-heading">Connect with us</div>
-
-         <table id="footer">
-
-           <tr id="footer">
-             <td id="footer">
-               <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
-             </td>
-             <td id="footer">
-                <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
-             </td>
-           </tr>
-
-           <tr id="footer">
-             <td id="footer">
-               <%= image_tag 'v2/icon_phone.png', :class => 'footer_contact' %>
-             </td>
-             <td id="footer">
-               (877) 246-4689
-             </td>
-           </tr>
-
+        <div class="footer-heading">Follow us</div>
+        <table id="footer">
            <tr id="footer">
              <div style="margin-bottom: 5px">
                <a href="https://twitter.com/HourSchool" class="twitter-follow-button" data-show-count="false">Follow @HourSchool</a>
                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
              </div>
            </tr>
-
           <tr id="footer">
-             <div style="margin-bottom: 20px">
+            <div style="margin-bottom: 20px">
                <a href="https://twitter.com/HourSchoolBus" class="twitter-follow-button" data-show-count="false">Follow @HourSchoolBus</a>
                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-           </div>
+            </div>
           </tr>
-
           <tr id="footer">
-              <div class="fb-like" data-href="http://www.facebook.com/hourschool" data-send="false" data-width="250" data-show-faces="true" style="margin-bottom: 20px"></div>
-              <script type="text/javascript">_ga.trackFacebook();</script>
+            <div class="fb-like" data-href="http://www.facebook.com/hourschool" data-send="false" data-width="250" data-show-faces="true" style="margin-bottom: 20px"></div>
+            <script type="text/javascript">_ga.trackFacebook();</script>
           </tr>
-
-      </table>
-
-         </div><!-- .end /threeCol_right -->
-
-      </div><!-- /end .container_16 -->
-
-      <div class="container_16 clearfix">
-          <div class="heading11"><i class="icon-fire"></i> HourSchool 2012, aspire to inspire from the heart of Austin, Texas</div>
+        </table>
       </div>
+
+      <div class="grid_4 footer-right">
+        <div class="footer-heading">Say hi!</div>
+        <table id="footer">
+          <tr id="footer">
+           <td id="footer">
+             <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
+           </td>
+           <td id="footer">
+              <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
+           </td>
+         </tr>
+         <tr id="footer">
+           <td id="footer">
+             <%= image_tag 'v2/icon_phone.png', :class => 'footer_contact' %>
+           </td>
+           <td id="footer">
+             (877) 246-4689
+           </td>
+         </tr>
+        </table>
+      </div><!-- .end /threeCol_right -->
+
+    </div><!-- /end .container_16 -->
+
+    <div class="container_16 clearfix" style="margin-top: 20px">
+        <div class="heading11"><i class="icon-fire"></i> HourSchool 2012, aspire to inspire from the heart of Austin, Texas</div>
+    </div>
+
   </div>
 
 <% elsif current_account == Account.where(:id => 1).last %>
