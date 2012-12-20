@@ -15,7 +15,7 @@ class StudentMailer < ActionMailer::Base
     @course = course
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is today!")
+    mail(:to => @student.email, :bcc => "admin@hourschool.com", :subject => "The class you signed up for is tomorrow!")
   end
 
   def send_negative_confirmation(student, course, current_account)

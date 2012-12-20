@@ -1,6 +1,6 @@
 Hello <%= @student.name.split(" ").first %>,
 
-This is a friendly reminder that the class you registered for, <%= @course.title %>, is happening today. We hope you're all ready and excited. Here are some handy details for you:
+This is a friendly reminder that the class you registered for, <%= @course.title %>, is happening tomorrow. We hope you're all ready and excited. Here are some handy details for you:
 
 When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
 Where: <%= @course.place_name %> - <%= @course.address %>

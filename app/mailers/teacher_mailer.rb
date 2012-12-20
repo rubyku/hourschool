@@ -22,7 +22,7 @@ class TeacherMailer < ActionMailer::Base
     @teacher = course.teacher
     @account = current_account
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Reminder: You're teaching #{@course.title} today!")
+    mail(:to => @teacher.email, :bcc => "admin@hourschool.com", :subject => "Reminder: You're teaching #{@course.title} tomorrow!")
   end
 
   def send_negative_confirmation(course, current_account)
