@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   has_many :subscription_charges
 
   # User.last.sent_invites
-  has_many :sent_invites, :foreign_key => :inviter_id
+  has_many :sent_invites, :foreign_key => :inviter_id, :class_name => :Invite
 
   has_attached_file :photo, :styles => {:small       => ["190x120",  :jpg],
                                         :large       => ["570x360>", :jpg],
