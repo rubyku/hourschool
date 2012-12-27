@@ -48,25 +48,33 @@
    <%= f.file_field :photo %>
    </p>
    </div>
-
+<div class="page-section-float-left">
    <p>
    <%= f.label :description, 'Event description:', :class => "form-question" %>
-  <p class="tip">A good event description is important! You don't have to lay out everything, but people generally like to know what to expect. If you need inspiration, we've compiled a list of good examples!</p>
-   <%= f.text_area :description, :class => "form-tall", :placeholder => "Who should attend this event? What are the 3 things they will get out of the event? What kind of material or equipment do they need ahead of time?" %>
+  <p class="tip">A good event description is important! You don't have to lay out everything, but people generally like to know what to expect. Consider the following: Who should attend this event? What are the 3 things they will get out of the event? What kind of material or equipment do they need ahead of time?</p>
+   <%= f.text_area :description, :class => "form-tall" %>
    </p>
-
-   <div class="form-question">About the event organizer</div>
+ </div>
+   <p><%= f.label :experience, 'About the event organizer:', :class => "form-question" %>
+     <p class="tip">This is more than just your qualifications! Why are you passionate about this subject? Why do you want to share?</p>
+   </p>
    <br><br>
-    <%= f.text_area :experience, :class => "form-med-with-margin", :placeholder => "Why are you passionate about this subject? Why do you want to share?" %>
+    <%= f.text_area :experience, :class => "form-med-with-margin" %>
  </div>
 
 
 <hr id="class"><br>
 
 <div class="page-section-float-left">
-   <div class="class-form-question">Event Capacity</div><br>
-   <%= f.text_field :min_seats, :class => "form-short", :placeholder => "Min. # for me to host this event" %>
-   <%= f.text_field :max_seats, :class => "form-short", :placeholder => "Max. # I can have for this event" %>
+  <div class="class-form-question">Event Capacity</div><br>
+  <div style="width: 100%; float: left">
+    <p>Min. # for me to host this event</p>
+    <p><%= f.text_field :min_seats, :class => "form-short" %></p>
+  </div>
+  <div>
+   <p>Max. # I can have for this event</p>
+   <%= f.text_field :max_seats, :class => "form-short" %>
+  </div>
    <br><br>
 </div>
 
@@ -111,16 +119,18 @@
       <%= f.label :public, 'Residential location (only students who have signed up will see the address)' %>
       </p>
 
-      <p>
-        <%= f.text_field :place_name, :class => "form", :placeholder => "Name of location (ex. Jo's coffee)", :autocomplete => "off" %>
-        <%= f.text_field :address, :class => "form", :placeholder => "Street address (ex. 1201 Hackberry St.)", :autocomplete => "off" %>
+      <%= label_tag :place_name, 'Name of location', :class => "form-question" %><br />
+        <%= f.text_field :place_name, :class => "form", :autocomplete => "off", :placeholder => "ex. Center 61" %>
+    <%= label_tag :address, 'Street Address', :class => "form-question" %><br />
+        <%= f.text_field :address, :class => "form", :placeholder => "ex. 1201 Hackberry St.", :autocomplete => "off" %>
 
         <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
 
-        <%= f.text_field :zip, :class => "form-short", :placeholder => "Zip / Postal Code" %>
+    <%= label_tag :zip, 'Zip / Postal Code', :class => "form-question" %><br />
+        <%= f.text_field :zip, :class => "form-short" %>
       </p>
-      <p>
-        <%= f.label :directions, 'Parking/driving directions:', :class => "form-question" %>
+
+    <%= label_tag :directions, 'Parking/driving directions', :class => "form-question" %><br />
         <%= f.text_area :directions, :class => "form-tall" %>
       </p>
 </div>
@@ -138,7 +148,7 @@
   <% else %>
     <p class="tip">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</p>
     <br>
-    <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :placeholder => "10" %>
+    <div style="float: left; margin-top: 5px; margin-right: 5px">$</div> <%= f.text_field :price, :class => "form-short", :placeholder => "ex. 10" %>
     <div style="float: left; margin-top: 5px">per person</div>
   <% end %>
 </div>
