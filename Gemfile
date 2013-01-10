@@ -55,7 +55,7 @@ gem 'haml',                 '~> 3.1.4'
 gem 'rake',                 '~> 0.9.2'
 gem 'jquery-rails',         '>= 1.0.19'
 
-gem 'friendly_id',          '4.0.4'
+gem 'friendly_id',          '4.0.9'
 
 # gem 'mysql2',               '~> 0.2.6'
 
