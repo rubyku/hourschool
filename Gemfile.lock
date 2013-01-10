@@ -128,7 +128,7 @@ GEM
       thor (>= 0.13.6)
     forgery (0.5.0)
     formatador (0.2.1)
-    friendly_id (4.0.4)
+    friendly_id (4.0.9)
     geokit (1.6.5)
       multi_json
     git (1.2.5)
@@ -448,7 +448,7 @@ DEPENDENCIES
   fog (~> 1.1.2)
   foreman
   forgery (~> 0.5.0)
-  friendly_id (= 4.0.4)
+  friendly_id (= 4.0.9)
   geokit-rails3!
   git_test
   guard-bundler (~> 0.1.3)
