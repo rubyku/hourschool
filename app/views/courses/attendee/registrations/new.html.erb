@@ -31,6 +31,9 @@
     <div class="page-content">
       <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
 
+      <%= f.select :quantity, options_for_select(1..20), :class => 'span1' %>
+      # of tickets
+
       <% if current_account == Account.where(:id => 7).first && @course.member_price.present? %>
         Are you a Hub LA member?<br>
         <p><%= f.radio_button :member, true, :style => "float: left; margin-right: 10px" %>
@@ -47,6 +50,7 @@
         <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
 
       <% else %>
+
         <p><%= f.hidden_field :member, :value => false %>
         <p>Ticket price: $<span id="new_total"><%= @course.price.round(2) %></span></p>
         <% if @course.price != 0 %>
@@ -59,6 +63,18 @@
 
     </div>
   </div>
+
+   <script type="text/javascript">
+    $('#role_quantity').change(function() {
+      new_total = $('#role_quantity').val() * <%= @course.price %>;
+      fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+      total_price = new_total + fee;
+      $('#new_total').text(new_total);
+      $('#total_price').text(total_price);
+      $('#transaction_fee').text(fee);
+    })
+  </script>
+
 
   <script type="text/javascript">
     $('#role_member_true, #role_member_false').change(function() {
@@ -78,6 +94,7 @@
       $('#transaction_fee').text(fee);
     })
   </script>
+
 
   <% if !@course.free? || (current_account == Account.where(:id => 7).first && !@course.member_free?) %>
     <div class="full-page white" id="billing_info">
@@ -117,3 +134,5 @@
     </div>
   <% end %>
 </div>
+
+

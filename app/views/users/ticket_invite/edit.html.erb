@@ -1,0 +1,30 @@
+
+Hi mr. or mrs. whats your face
+
+This guy #{} bought you a ticket for #{}
+
+
+
+
+## Log In
+
+
+
+
+<% if current_user %>
+  Your're logged in as <%= current_user.name %>
+  <%= link_to "Claim this ticket !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" %>
+<% else %>
+
+    To claim this ticket you need to complete your user account, or log in to an existing account:
+
+    ## Claim your Ticket
+
+    <%= form_for @user, :url => users_ticket_invite_path(@user.invite_token), :method => :put do |f| %>
+
+    <% end %>
+
+  <%= link_to "login button" %>
+<% end %>
+
+
