@@ -21,6 +21,7 @@ class Users::TicketInviteController < ApplicationController
       @user.update_attributes(params[:user])
       @user.status = "claimed"
       @user.save
+      sign_in(:user, @user)
     end
     redirect_to @role.course, :notice => "Ticket claimed successfully!"
   end
