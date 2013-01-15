@@ -1,30 +1,59 @@
+<div class="full-page white">
+  <div class="page-content">
 
-Hi mr. or mrs. whats your face
+    <% if current_user %>
+      <p>Hi <%= current_user.name %>,</p>
+      <p><%= @inviter.name %> bought you a ticket to <%= @course.title %></p>
+      <p><%= link_to "Claim this ticket!", users_ticket_invite_path, :class => "btn", :method => :put %></p>
 
-This guy #{} bought you a ticket for #{}
+    <% else %>
 
+      <p>Hi <%= @user.name %>,</p>
+      <p><%= @inviter.name %> bought you a ticket to <%= @course.title %></p>
+      <p>To claim this ticket you need to first log in or sign up:</p>
 
+      <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 20px 20px 0; float: left">
+        <%= form_for @user, :url => users_ticket_invite_path(@user.invite_token), :method => :put do |f| %>
+          <p>
+           <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+           <%= f.text_field :name, :class => "form-short-edit-profile" %>
+          </p>
+          <br>
 
+          <p>
+           <%= f.label :email, 'Email', :class => "form-question" %><br />
+           <%= f.text_field :email, :class => "form-short-edit-profile" %>
+          </p>
+          <br>
 
-## Log In
+          <p>
+            <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => resource} %>
+          </p>
+          <br>
 
+          <p>
+            <%= f.label :password, :class => "form-question" %><br>
+            <%= f.password_field :password, :class => "form-short-edit-profile" %>
+          </p>
+          <br>
 
+          <p>
+            <%= f.label :password_confirmation, :class => "form-question" %><br>
+            <%= f.password_field :password_confirmation, :class => "form-short-edit-profile" %>
+          </p>
 
+          <div class="page-section-float-left">
+            <%= f.submit "Sign up", :class => "btn", :id => 'user_submit'%>
+          </div>
+        <% end %>
+      </div>
 
-<% if current_user %>
-  Your're logged in as <%= current_user.name %>
-  <%= link_to "Claim this ticket !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" %>
-<% else %>
-
-    To claim this ticket you need to complete your user account, or log in to an existing account:
-
-    ## Claim your Ticket
-
-    <%= form_for @user, :url => users_ticket_invite_path(@user.invite_token), :method => :put do |f| %>
+      <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 0; float: left">
+        <p>Already have an acccount?</p>
+        <%= link_to "Login here", user_session_path, :class => "btn" %>
+      </div>
 
     <% end %>
 
-  <%= link_to "login button" %>
-<% end %>
-
-
+  </div>
+</div>

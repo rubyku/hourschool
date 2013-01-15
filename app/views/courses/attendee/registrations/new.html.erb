@@ -67,7 +67,12 @@
    <script type="text/javascript">
     $('#role_quantity').change(function() {
       new_total = $('#role_quantity').val() * <%= @course.price %>;
-      fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+      if (new_total == 0) {
+        fee = 0;
+        $('#billing_info').hide();}
+      else  {
+        fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+        $('#billing_info').show();}
       total_price = new_total + fee;
       $('#new_total').text(new_total);
       $('#total_price').text(total_price);
