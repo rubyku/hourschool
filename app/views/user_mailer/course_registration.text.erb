@@ -6,6 +6,8 @@ Event: <%= @course.title %>
 When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= @course.starts_at.strftime("%l:%M%p") %> - <%= @course.ends_at.strftime("%l:%M%p") %>
 Where: <%= @course.place_name %> - <%= @course.address %>
 
+Direction: <%= @course.directions %>
+
 Got questions? You can message the event organizer at <%= @url %>
 
 Remember, it's always more fun with friends. Share this event with people who you think might be interested.
