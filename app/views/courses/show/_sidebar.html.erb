@@ -68,12 +68,12 @@
         <%= @course.address %>
         <%= "#{course.city.try(:name)}, #{course.city.try(:state)}" %>
         <%= ", #{@course.zip}" if @course.zip.present? %>
+        <div class="class-details" style="width: 240px">Directions</div>
+        <%= simple_format Rinku.auto_link(@course.directions) if @course.directions.present? %>
       <% else %>
         Residential address<br>
         Area: <%= @course.zip %>
       <% end %>
-      <div class="class-details" style="width: 240px">Directions</div>
-      <%= simple_format Rinku.auto_link(@course.directions) if @course.directions.present? %>
     </div>
   </div>
 
