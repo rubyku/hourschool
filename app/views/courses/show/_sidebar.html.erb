@@ -34,8 +34,6 @@
   </div>
   <% if @course.min_seats != 0 %>
     <div class="class-alternatives" style="margin-bottom: 30px; width: 270px">
-      <%= "This event needs a min. of #{course.min_seats}" %><br>
-      <%= "This event has a max. of #{course.max_seats}" %><br>
       <%= "This event has #{course.seats_left} seats left" %>
     </div>
   <% end %>
