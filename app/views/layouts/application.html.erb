@@ -174,18 +174,18 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
   <%# Flash %>
   <div class='container_16'>
     <%- if flash[:error].present? -%>
-      <div class="page-section-float-left" style="margin-left: 30px">
-          <div class="error-block"><div class="form-error">*<%= flash[:error] %></div></div>
+      <div class="alert alert-error">
+        <%= flash[:error] %>
       </div>
     <%- end -%>
     <%- if flash[:notice].present? -%>
-      <div class="page-section-float-left" style="margin-left: 30px">
-          <div class="flash-notice"><%= flash[:notice] %></div>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
       </div>
     <%- end -%>
     <%- if flash[:alert].present? -%>
-      <div class="page-section-float-left" style="margin-left: 30px">
-          <div class="flash-notice"><%= flash[:alert] %></div>
+     <div class="alert alert-error">
+        <%= flash[:alert] %>
       </div>
     <%- end -%>
   </div>

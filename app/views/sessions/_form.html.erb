@@ -1,9 +1,3 @@
-<%- if resource.present? && resource.email.present? -%>
-  <div class="page-section-float-left">
-      <div class="error-block"><div class="form-error">* Email or Password is Incorrect</div></div>
-  </div>
-<%- end -%>
-
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
     <p>
     <%= f.label :email, :class => "form-question" %><br />
