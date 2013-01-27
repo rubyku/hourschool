@@ -3,27 +3,24 @@ class Users::TicketInviteController < ApplicationController
 
   ## Person accepting the invit hits this
   def edit
-    @user = User.where(:invite_token => params[:id], :status => "invitee").first
-    @role = @user.roles.first
-    @inviter = User.where(:id => @role.invite_user_id).first
-    @course = @role.course
+    @invite_user = User.where(:invite_token => params[:id], :status => "invitee").first
+    @role        = @invite_user.roles.first
+    @inviter     = User.where(:id => @role.invite_user_id).first
+    @course      = @role.course
+    @user        = User.new(params[:user])
+    store_location
   end
 
-  ## Person accepting the invit hits this
+  ## Person accepting the invite hits this
   def update
-    @user = User.where(:invite_token => params[:id], :status => "invitee").first
-    @role = @user.roles.first
+    user = User.where(:invite_token => params[:id], :status => "invitee").first
+    role = user.roles.first
     if current_user
-      @role.user_id = current_user.id
-      @role.save
-      @user.delete
-    else
-      @user.update_attributes(params[:user])
-      @user.status = "claimed"
-      @user.save
-      sign_in(:user, @user)
+      role.user_id = current_user.id
+      role.save
+      user.delete
     end
-    redirect_to @role.course, :notice => "Ticket claimed successfully!"
+    redirect_to role.course, :notice => "Ticket claimed successfully!"
   end
 
   ## Person creating the invites hits this

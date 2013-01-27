@@ -115,8 +115,8 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def store_location
-      session[:return_to] = request.url
+    def store_location(url = nil)
+      session[:return_to] = url||request.url
     end
 
     def store_referrer

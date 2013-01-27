@@ -8,49 +8,22 @@
 
     <% else %>
 
-      <p>Hi <%= @user.name %>,</p>
+      <p>Hi <%= @invite_user.name %>,</p>
       <p><%= @inviter.name %> bought you a ticket to <%= @course.title %></p>
-      <p>To claim this ticket you need to first log in or sign up:</p>
+      <p>To claim this ticket you need to first login or sign up:</p>
 
       <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 20px 20px 0; float: left">
-        <%= form_for @user, :url => users_ticket_invite_path(@user.invite_token), :method => :put do |f| %>
-          <p>
-           <%= f.label :name, 'Full Name', :class => "form-question" %><br />
-           <%= f.text_field :name, :class => "form-short-edit-profile" %>
-          </p>
-          <br>
-
-          <p>
-           <%= f.label :email, 'Email', :class => "form-question" %><br />
-           <%= f.text_field :email, :class => "form-short-edit-profile" %>
-          </p>
-          <br>
-
-          <p>
-            <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => resource} %>
-          </p>
-          <br>
-
-          <p>
-            <%= f.label :password, :class => "form-question" %><br>
-            <%= f.password_field :password, :class => "form-short-edit-profile" %>
-          </p>
-          <br>
-
-          <p>
-            <%= f.label :password_confirmation, :class => "form-question" %><br>
-            <%= f.password_field :password_confirmation, :class => "form-short-edit-profile" %>
-          </p>
-
-          <div class="page-section-float-left">
-            <%= f.submit "Sign up", :class => "btn", :id => 'user_submit'%>
-          </div>
-        <% end %>
+        <div class="heading14" style="margin-bottom: 20px">First time here?</div>
+        <%= render :partial => "registrations/form", :locals => {:resource => @user, :resource_name => :user } %>
       </div>
 
       <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 0; float: left">
-        <p>Already have an acccount?</p>
+        <div class="heading14" style="margin-bottom: 10px">Already have an acccount?</div>
         <%= link_to "Login here", user_session_path, :class => "btn" %>
+
+        <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">or connect with Facebook</div>
+        <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %><br>
+        <div class="class-alternatives" style="margin-top: 10px">We will not post anything without your permission.</div>
       </div>
 
     <% end %>
