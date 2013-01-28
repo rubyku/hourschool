@@ -4,8 +4,8 @@ Thank you for signing up for <%= @course.title %>! Check out some handy details:
 
 Event: <%= @course.title %>
 When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= @course.starts_at.strftime("%l:%M%p") %> - <%= @course.ends_at.strftime("%l:%M%p") %>
-Where: <%= @course.place_name %> - <%= @course.address %>
-Direction: <%= @course.directions %>
+Where: <%= @course.place_name %> - <%= @course.address %>, <%= @course.city.name %>, <%= @course.city.state %>, <%= @course.zip %>
+<%= "Direction: #{@course.directions}" if @course.directions.present? %>
 
 Tickets bought: <%= @role.quantity %>
 
