@@ -27,6 +27,11 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :accounts, :through => :memberships
 
+
+  has_many :extra_tickets, :class_name => "Role", :foreign_key => :invite_user_id
+  has_many :extra_ticket_users, :through => :extra_tickets, :source => "user"
+
+
   has_many :roles,   :dependent => :destroy
   has_many :courses, :through => :roles
   # has_many :courses_taught,   :through => :roles, :conditions => ["roles.name = (?) and course.status = 'live'", "teacher"], :source => :course
@@ -44,6 +49,7 @@ class User < ActiveRecord::Base
 
   has_many :crewmanships,   :dependent => :destroy
   has_many :missions, :through => :crewmanships
+
 
   has_many :subscription_charges
 
@@ -79,6 +85,13 @@ class User < ActiveRecord::Base
   include User::Omniauth
   include User::Facebook
   include User::FollowingMethods
+
+  def self.create_invite_user
+    user = User.new(:status => "invitee", :email => "tmp#{Time.now.to_f}@example.com", :invite_token => SecureRandom.hex(16))
+    user.dont_send_reg_email = true
+    user.save(:validate => false)
+    user
+  end
 
   def unsubscribed?(key)
     !wants?(key)

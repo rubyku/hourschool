@@ -247,7 +247,11 @@ class Course < ActiveRecord::Base
   end
 
   def seats_left
-    self.max_seats - self.students.count
+    if self.max_seats.present?
+      self.max_seats - self.students.count
+    else
+      return
+    end
   end
 
    def future?

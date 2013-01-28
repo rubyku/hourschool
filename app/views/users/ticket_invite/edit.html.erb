@@ -1,0 +1,32 @@
+<div class="full-page white">
+  <div class="page-content">
+
+    <% if current_user %>
+      <p>Hi <%= current_user.name %>,</p>
+      <p><%= @inviter.name %> bought you a ticket to <%= @course.title %></p>
+      <p><%= link_to "Claim this ticket!", users_ticket_invite_path, :class => "btn", :method => :put %></p>
+
+    <% else %>
+
+      <p>Hi <%= @invite_user.name %>,</p>
+      <p><%= @inviter.name %> bought you a ticket to <%= @course.title %></p>
+      <p>To claim this ticket you need to first login or sign up:</p>
+
+      <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 20px 20px 0; float: left">
+        <div class="heading14" style="margin-bottom: 20px">First time here?</div>
+        <%= render :partial => "registrations/form", :locals => {:resource => @user, :resource_name => :user } %>
+      </div>
+
+      <div style="background-color: #f9f8f8; padding: 20px; margin: 20px 0; float: left">
+        <div class="heading14" style="margin-bottom: 10px">Already have an acccount?</div>
+        <%= link_to "Login here", user_session_path, :class => "btn" %>
+
+        <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">or connect with Facebook</div>
+        <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %><br>
+        <div class="class-alternatives" style="margin-top: 10px">We will not post anything without your permission.</div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

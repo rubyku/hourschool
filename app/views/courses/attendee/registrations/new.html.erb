@@ -31,6 +31,46 @@
     <div class="page-content">
       <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
 
+      <div id="ticket-warning" style="display:none;color:red;">
+       You're trying to buy more tickets than there are available!
+      </div>
+
+      <div class="class-alternatives" style="margin-bottom: 10px; width: 950px">
+        <% if @course.min_seats != 0 && @course.max_seats.present? %>
+          This event has <span id="seats_left"><%= "#{@course.seats_left}" %></span> seats left
+        <% end %>
+      </div>
+
+      <p>
+        Number of tickets you want to purchase:
+        <%= f.select :quantity, options_for_select(1..20), :class => 'span1' %>
+      </p>
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('#role_quantity').change(function() {
+            var roleQuantity     = $('#role_quantity').val(),
+                seatsLeft        = <%= @course.seats_left %>,
+                ticketWarning    = $('#ticket-warning'),
+                continueDisabled = $('#continue_disabled'),
+                continueEnabled  = $('#continue_enabled');
+
+            if (roleQuantity > seatsLeft) {
+              ticketWarning.show();
+              continueDisabled.show();
+              continueEnabled.hide();
+            } else {
+              ticketWarning.hide();
+              continueDisabled.hide();
+              continueEnabled.show();
+            }
+          })
+        })
+      </script>
+
+
+      <hr>
+
       <% if current_account == Account.where(:id => 7).first && @course.member_price.present? %>
         Are you a Hub LA member?<br>
         <p><%= f.radio_button :member, true, :style => "float: left; margin-right: 10px" %>
@@ -47,6 +87,7 @@
         <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
 
       <% else %>
+
         <p><%= f.hidden_field :member, :value => false %>
         <p>Ticket price: $<span id="new_total"><%= @course.price.round(2) %></span></p>
         <% if @course.price != 0 %>
@@ -60,24 +101,22 @@
     </div>
   </div>
 
-  <script type="text/javascript">
-    $('#role_member_true, #role_member_false').change(function() {
-      if ($('#role_member_true:checked').length == 1) {
-        new_total = <%= @course.member_price %>;}
-      else {
-        new_total = <%= @course.price %>;}
+   <script type="text/javascript">
+    $('#role_quantity').change(function() {
+      new_total = $('#role_quantity').val() * <%= @course.price %>;
       if (new_total == 0) {
         fee = 0;
         $('#billing_info').hide();}
       else  {
         fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
         $('#billing_info').show();}
-      total_price = (new_total + fee).toFixed(2);
+      total_price = new_total + fee;
       $('#new_total').text(new_total);
       $('#total_price').text(total_price);
       $('#transaction_fee').text(fee);
     })
   </script>
+
 
   <% if !@course.free? || (current_account == Account.where(:id => 7).first && !@course.member_free?) %>
     <div class="full-page white" id="billing_info">
@@ -98,7 +137,8 @@
     </div>
   <% end %>
 
-  <p><%= f.submit 'Continue registration', :class => "btn" %></p>
+  <p><%= f.submit 'Continue registration', :class => "btn disabled", :style => "display:none", :id => "continue_disabled" %></p>
+  <p><%= f.submit 'Continue registration', :class => "btn", :id => "continue_enabled" %></p>
 
 <% end %>
 
@@ -117,3 +157,5 @@
     </div>
   <% end %>
 </div>
+
+

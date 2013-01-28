@@ -5,17 +5,19 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    var cityIdField     = $('#city-id'),
+        citySearchField = $('#citySearch'),
+        form            = cityIdField.parents('form');
 
-    // clear out previous city_id value
-    $('#citySearch').keydown(function() {
-      $('#city-id').val('');
-    })
-
-    $('#citySearch').typeahead({
+    citySearchField.typeahead({
       source: function(typeahead, query) {
         var _this = this;
         return $.ajax({
           url: "<%= cities_path(:format => :json) %>?q=" + query,
+          beforeSend: function() {
+            // clear out previous city_id value
+            cityIdField.val('');
+          },
           success: function(data) {
             return typeahead.process(data);
           }
@@ -23,18 +25,15 @@
       },
       property: "name",
       onselect: function (obj) {
-        $('#city-id').val(obj.id);
+        cityIdField.val(obj.id);
         form.find('[type=submit]').removeAttr("disabled");
         $('#city-id-error').hide();
       }
     });
 
-    var form = $('#city-id').parents('form');
-
     form.submit(function() {
-      var value = $('#city-id').val();
-
-      if (value == '0' || value == '') {
+      var cityId = cityIdField.val();
+      if (cityId === '0' || cityId === '') {
         form.find('[type=submit]').attr("disabled", "disabled");
         $('#city-id-error').show();
         return false;
@@ -42,6 +41,5 @@
         return true;
       }
     })
-
   })
 </script>
