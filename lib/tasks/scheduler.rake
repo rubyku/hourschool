@@ -36,19 +36,6 @@ namespace :schedule do
     SitemapGenerator::Sitemap.ping_search_engines # called for you when you use the rake task
   end
 
-  task :send_class_proposal_reminder_emails => :environment do
-    puts "Sending class proposal reminder emails..."
-    pending_courses = Course.where("status = ? AND updated_at < ? AND updated_at > ?", "approved", 7.days.ago, 8.days.ago)
-    pending_courses.each do |course|
-      if course.account.nil?
-        current_account = nil
-      else
-        current_account = course.account
-      end
-        TeacherMailer.send_course_proposal_reminder(course, current_account).deliver
-    end
-    puts "done"
-  end
 
   task :send_72hr_invite_friends_emails => :environment do
     puts "Sending 72 hr reminder emails..."
@@ -70,13 +57,13 @@ namespace :schedule do
     puts "done"
   end
 
-  task :send_day_of_reminder_emails => :environment do
+  task :send_day_before_reminder_emails => :environment do
 
-    puts "Sending day of reminder emails..."
+    puts "Sending day before reminder emails..."
 
-    courses_today = Course.where("DATE(starts_at) = DATE(?)", Time.zone.now.to_date-1.day).where(:status => 'live')
+    courses_tomorrow = Course.where("DATE(starts_at) = DATE(?)", Time.zone.now.to_date+1.day).where(:status => 'live')
 
-    courses_today.each do |course|
+    courses_tomorrow.each do |course|
       students = course.students
       if course.account.nil?
         current_account = nil
@@ -132,10 +119,5 @@ namespace :schedule do
     puts "done"
   end
 
-  task :send_nominee_reminder_emails => :environment do
-    puts "Sending nominated teacher reminders..."
-    # TODO: Use Roles - Need course/suggestion integration
 
-    puts "not implemented"
-  end
 end
