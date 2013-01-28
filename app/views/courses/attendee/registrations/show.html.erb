@@ -46,14 +46,13 @@
       </div><!-- end confirm-class-description -->
     </div><!-- end confirm-classblock -->
 
-    <% if current_user.extra_tickets.present? %>
+    <% if @role.extra_tickets.present? %>
       <div class="confirm-description-block">
-        <div class="confirm-bring-friend">You bought <%= current_user.extra_tickets.where(:course_id => @course.id).count %> extra ticket(s)</div>
+        <div class="confirm-bring-friend">You bought <%= @role.extra_tickets.count %> extra ticket(s)</div>
         <p class="confirm">If you already know who you want to bring, let them know so they can claim their ticket and get updates to the event!</p>
         <!-- Find the guests that were just created by the current user -->
         <!-- For each one of the guests, inlude a form. But only have 1 send button -->
         <% @role.extra_tickets.each_with_index do |role, index| %>
-          <% next if role.user.name.present? %>
           <div style="background-color: #f9f8f8; padding: 20px; margin-bottom: 20px">
             <p>Guest Ticket #<%= index + 1 %>:</p>
             <%= form_for role.user, :url    => users_ticket_invite_index_path(:id => role.user.invite_token),

@@ -32,13 +32,12 @@
       <% end %>
     <% end %>
   </div>
-  <% if @course.min_seats != 0 %>
-    <div class="class-alternatives" style="margin-bottom: 30px; width: 270px">
-      <%= "This event has #{course.seats_left} seats left" %>
-    </div>
-  <% end %>
 
-
+  <div class="class-alternatives" style="margin-bottom: 30px; width: 270px">
+    <% if @course.min_seats != 0 && @course.max_seats.present? %>
+      <%= "This event has #{@course.seats_left} seats left" %>
+    <% end %>
+  </div>
 
   <div style="width: 260px">
     <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
