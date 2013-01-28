@@ -11,6 +11,9 @@ else
   FacebookConfig::Secret = 'a7f47f266872b6ce3847c9b7720bcdf4'
 end
 
+FacebookConfig::ID       = ENV['FACEBOOK_ID']
+FacebookConfig::Secret   = ENV['FACEBOOK_SECRET']
+
 
 StateAbreviations = {
   'AL' => 'Alabama',

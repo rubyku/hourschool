@@ -1,0 +1,106 @@
+<div class="full-page white">
+  <div class="page-content">
+    <div class="confirm-second-message">You have successfully signed up!</div>
+    <hr id="confirm">
+
+    <div class="confirm-classblock">
+      <% if @course.photo.present? %>
+        <%= link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course %>
+      <% else %>
+        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course %>
+      <% end %>
+      <%= image_tag 'v2/arrow_white_pointup.png', :class => 'class-arrow' %>
+
+      <div class="confirm-class-description">
+        <div class="heading13-class"><%= link_to @course.title, @course %></div>
+        <table>
+          <tr>
+            <td class="icon">
+              <%= image_tag "v2/icon_calendar.png", :class => "class-details-icon-when", :style => "margin-top: 7px" %>
+            </td>
+            <td style="width: 150px">
+              <div class="class-details">
+                <%= @course.starts_at.strftime("%a %b %d, %Y") %>
+              </div>
+              <div class="class-sidebar-details">
+                <%= "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="icon">
+              <%= image_tag "v2/icon_location.png", :class => "class-details-icon-where", :style => "margin-top: 7px" %>
+            </td>
+            <td style="width: 150px">
+              <div class="class-details">
+                <%= "#{@course.place_name}" %>
+              </div>
+              <% if @course.public? %>
+                <div class="class-sidebar-details"><%= "#{@course.address}" %></div>
+              <% else %>
+                <p>Private Address</p>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </div><!-- end confirm-class-description -->
+    </div><!-- end confirm-classblock -->
+
+    <% if @role.extra_tickets.present? %>
+      <div class="confirm-description-block">
+        <div class="confirm-bring-friend">You bought <%= @role.extra_tickets.count %> extra ticket(s)</div>
+        <p class="confirm">If you already know who you want to bring, let them know so they can claim their ticket and get updates to the event!</p>
+        <!-- Find the guests that were just created by the current user -->
+        <!-- For each one of the guests, inlude a form. But only have 1 send button -->
+        <% @role.extra_tickets.each_with_index do |role, index| %>
+          <div style="background-color: #f9f8f8; padding: 20px; margin-bottom: 20px">
+            <p>Guest Ticket #<%= index + 1 %>:</p>
+            <%= form_for role.user, :url    => users_ticket_invite_index_path(:id => role.user.invite_token),
+                                    :method => :post,
+                                    :remote => true,
+                                    :html   => {:class => "extra_ticket"} do |f| %>
+              <%= f.text_field :name , :placeholder => "Name" %><br>
+              <%= f.text_field :email, :value => "", :placeholder => "Email" %><br>
+              <%= text_area_tag :body, "", :placeholder => "Message" %><br>
+              <%= f.submit "Send invite", :class => "btn" %>
+              <%# f.submit "Send invite", :class => "btn", :style => "visibility: hidden" %>
+            <% end %>
+            <div style='display:none' class='extra_ticket_success'>
+              Invite sent!
+            </div>
+          </div>
+        <% end %>
+        <%# submit_tag "Send Invites", :id => "send_all_extra_ticket_invites" %>
+      </div>
+    <% else %>
+      <div class="confirm-messageBlock">
+        <div class="confirm-bring-friend">Bring a friend or two</div>
+        <p class="confirm">It's always more fun to learn with friends. Share this with people you think might be interested.</p>
+        <%= render :partial => "courses/add_this" %>
+      </div><!-- end confirm-messageBlock -->
+
+      <div class="confirm-description-block">
+        <% if current_user.facebook? %>
+          <p class="confirm">Here's a handy way to invite people from Facebook</p>
+          <%= render :partial => "users/facebook/autocomplete/share", :locals => { :link => course_url(@course), :name => "#{@course.title}",  :message => "I'm taking this class on Hourschool, you should sign up!"} %>
+          <%= render :partial => "users/facebook/grid/share", :locals => {:message => "I'm taking this class on Hourschool, you should sign up!", :link    => course_url(@course), :name    => "#{@course.title}", :same_city => true , :limit => 5 } %>
+        <% else %>
+          <p class="confirm">Classes are more fun with friends! Connect Facebook to your account today!</p>
+          <%= render :partial => 'users/facebook/connect_button' %>
+        <% end %>
+      </div><!-- end confirm-description-block -->
+    <% end %>
+  </div>
+</div>
+
+<script type='text/javascript'>
+   $('.extra_ticket').on('ajax:beforeSend', function(event, xhr, status, error){
+      // hide form, show loading indicator
+    }).on('ajax:success', function(event, xhr, status, error){
+      var $this = $(this);
+      $this.next('.extra_ticket_success').show();
+      $this.hide();
+    });
+</script>
+
+

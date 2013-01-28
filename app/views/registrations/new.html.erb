@@ -1,3 +1,9 @@
+<%- if resource.present? && resource.email.present? -%>
+  <div class="alert alert-error">
+    Email is already taken.
+  </div>
+<%- end -%>
+
 <div class="full-page white">
   <div style="padding: 20px">
 

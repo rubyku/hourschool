@@ -4,6 +4,18 @@ class UserMailer < ActionMailer::Base
   layout 'layouts/email_layout'
 
 
+  def ticket_invite(options = {})
+    @user     = options[:user]
+    @role     = options[:role]
+    @inviter  = options[:inviter]
+    @course   = @role.course
+    mail :to        => @user.email,
+         :bcc       => "admin@hourschool.com",
+         :from      => "#{@inviter.name} <hello@hourschool.com>",
+         :reply_to  => @inviter.email,
+         :subject   => "#{@inviter.name} bought you a ticket to #{@course.name}"
+  end
+
   # course = Course.find(params[:id])
   # UserMailer.contact_teacher(user, course, "hello there").deliver
   def contact_teacher(user, course, message)
@@ -77,7 +89,8 @@ class UserMailer < ActionMailer::Base
     @name = user_name
     @course = course
     @account = current_account
-    @price = role.member? ? @course.member_price : @course.price
+    @role    = role
+    @price = @role.member? ? @course.member_price : @course.price
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :to => user_email,
          :bcc => "admin@hourschool.com",

@@ -8,6 +8,7 @@ group :assets do
   gem 'sass-rails',         '~> 3.2.4'
 end
 
+gem 'dotenv', :groups => [:development, :test]
 
 gem 'sextant', :group => :development
 gem 'quiet_assets', :group => :development
@@ -104,11 +105,6 @@ gem 'fog',                '~> 1.1.2'
 
 gem "stripe", "~> 1.6.3"
 
-group :development do
-  gem 'heroku',           '~> 2.18.1'
-end
-
-
 gem 'mail_view',          '~> 1.0.2'
 
 
@@ -120,7 +116,6 @@ group :development, :test do
 
 
   gem 'sunspot_solr',       '~> 1.3.0'       # pre-packaged Solr distribution for use in development
-  gem 'pgbackup-tasks',     '~> 0.2.3'
   gem 'capybara',           '~> 1.1.2'
   gem "rspec-rails",        "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
