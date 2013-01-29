@@ -9,6 +9,7 @@ HourschoolV2::Application.routes.draw do
   resources :missions do
     resources :topics
     resources :courses
+    resources :users
     resources :crewmanships do
     end
   end

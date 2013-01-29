@@ -1,14 +1,48 @@
-<div class="page-main white">
-  <div class="page-content">
+<% if user_signed_in? && (current_user.admin? || Crewmanship.find_by_mission_id_and_user_id_and_role(@mission.id, current_user.id, "creator")) %>
 
-    <% if current_user && admin_of_current_account? %>
+  <div class="full-page white">
+    <div class="mission-description-box">
+      <div class="heading14" style="margin: 20px 0px 5px 0px;">
+        The mission
+      </div>
 
+      <div class="heading28 brown" style="margin-bottom: 5px;">
+        <%= link_to full_mission_title(@mission), mission_path(@mission) %>
+      </div>
+      <div class="heading9 bold" style="color: #999;">
+        <%= "#{@mission.city.name}, #{@mission.city.state}" %>
+      </div>
+    </div>
+
+    <div class="mission-status-box" style="margin-top: 25px">
+      <div style="width: 240px; float: right;">
+        <a class="btn right" data-toggle="modal" href="#tinyLetter" style="margin-left: 5px">Invite someone to join mission</a>
+      </div>
+
+      <!-- Modal BEGIN -->
+      <div class="modal hide" id="tinyLetter">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>Invite someone to this mission</h3>
+        </div>
+        <div class="modal-body">
+          <%= render 'invites/form' %>
+        </div>
+      </div>
+      <!-- Modal END -->
+
+    </div>
+  </div>
+
+
+  <div class="full-page white">
+    <div class="page-content">
       <p><%#= link_to '+ Invite a User', new_invite_users_path if current_account %></p>
 
-      <div class="heading15 marcomm">Total users:
+      <div class="heading14" style="margin-bottom: 30px">Mission Crew:
 
       <% if community_site? %>
-        <%= User.uniq.count %>
+        <%= @users.count %>
       <% else %>
         <%= current_account.users.uniq.count %>
       <% end %>
@@ -19,38 +53,23 @@
         <div style="width: 430px; margin-right: 20px; margin-bottom: 20px; float: left">
           <div class="crewman-photo">
             <% if user.photo.present? %>
-              <%= link_to_avatar(user, :thumb_large) %>
+              <%= link_to_avatar(user, :thumb_small) %>
             <% else %>
-              <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+              <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
             <% end %>
           </div>
           <%= link_to user.name, user_path(user.id), :class => "profile-link" %><br>
-          <%= user.email %><br>
-          ID: <%= user.id %><br>
-          City:
-          <%= user.location if user.location.present? %>
-          <%= "#{user.city.name}, #{user.city.state}" if user.city.present?%><br>
+          <%= link_to user.email, "mailto:#{user.email}" %><br>
           Joined: <%= user.created_at.strftime("%b %d, %Y") %><br>
-          <% if community_site? %>
-            <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
-          <% else %>
-              <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
-                Admin
-              <% else %>
-                <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
-              <% end %>
-          <% end %>
           </p>
         </div>
       <% end %>
 
-
-    <% else %>
-
-      Sorry, you don't have admin access to this page. <br>
-      Have a question? Please email us at hello at hourschool dot com.
-
-    <% end %>
-
+    </div>
   </div>
-</div>
+
+<% else %>
+
+  Sorry you don't have access to this page
+
+<% end %>
