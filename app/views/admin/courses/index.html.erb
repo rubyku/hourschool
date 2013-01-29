@@ -1,30 +1,37 @@
-<div class="page-main white">
-  <div class="page-content">
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
 
-    <%= link_to "Post event", new_course_path, :class => "btn right" %>
-
-    <% @courses.each do |course| %>
-      <div class="classBlock">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-        <div class="class-description">
-          <div class="heading13 brown" style="padding-top: 10px">
-            <%= link_to course.title.truncate(50), course %>
+  <div class="span9">
+    <div class="white">
+      <div class="page-content">
+        <div class="well">
+          <div class="heading14 pull-left">
+            Total events:
+            <% if community_site? %>
+              <%= Course.uniq.count %>
+            <% else %>
+              <%= current_account.courses.uniq.count %>
+            <% end %>
           </div>
-          Course id: <%= course.id %><br>
-          <%= link_to course.teacher.name, user_path(course.teacher.id) %><br>
-          <%= course.starts_at.strftime("%a %b %d, %l:%M") %> - <%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %><br>
-          Attendance: <%= course.students.count %> out of <%= course.max_seats %>
-          <br>
-          <%= link_to 'Edit', edit_course_path(course) %>
+          <%= link_to "Post event", new_course_path, :class => "btn pull-right" %>
         </div>
+        <table class="table">
+          <% @courses.each do |course| %>
+            <tr>
+              <td class="span4">
+                <div class="heading13 brown">
+                  <%= link_to course.title, course %>
+                </div>
+              <td><%= course.starts_at.strftime("%y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+              </td>
+              <td>
+                <%= link_to 'Edit', edit_course_path(course) %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
       </div>
-    <% end %>
-
+    </div>
   </div>
-</div>
 
-<%#= render :partial => '/admin/admin_sidebar' %>
+</div>

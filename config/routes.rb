@@ -34,7 +34,9 @@ HourschoolV2::Application.routes.draw do
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :courses
+    resources :users
     resources :metrics
+    resources :trends
   end
 
   resources :admin
@@ -110,14 +112,12 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  match '/errand'               => 'admin#show',        :id => 'errand'
+  match '/errand'                     => 'admin#show',        :id => 'errand'
 
   match '/explore'                    => 'accounts#show'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
   match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
-
-  match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
   match '/approve'                    => 'courses#approve'

@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_filter :restrict_draft_access!, :only => [:show]
 
 
-  # missions/:mission_id/courses
+  #url --> /missions/:id/courses
   def index
     @mission  = Mission.find(params[:mission_id])
     @users    = @mission.users

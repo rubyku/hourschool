@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
       user_signed_in? && (current_user.admin? || (current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true)))
     end
 
+
     helper_method :community_site?
     def community_site?
       current_account.nil?
@@ -66,7 +67,7 @@ class ApplicationController < ActionController::Base
 
     def authenticate_admin!
       authenticate_user!
-      unless current_user.admin? || admin_of_current_account?
+      unless admin_of_current_account? || current_user.admin?
         redirect_to root_path
       end
     end
