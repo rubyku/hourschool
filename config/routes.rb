@@ -35,8 +35,10 @@ HourschoolV2::Application.routes.draw do
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :courses
     resources :users
+    resources :payments
     resources :metrics
     resources :trends
+    resources :settings
   end
 
   resources :admin

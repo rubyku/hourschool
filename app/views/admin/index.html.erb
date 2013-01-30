@@ -2,14 +2,123 @@
   <%= render :partial => 'admin/sidebar' %>
 
   <div class="span9">
-    <div class="white">
-      <div class="page-content">
-        Upcoming classes
+
+    <div class="white" style="margin-bottom: 20px">
+      <div style="padding: 10px; background-color: #f7f7f7">
+        <div class="heading14">Event Registrations</div>
+      </div>
+      <div style="padding: 19px">
+        <table class="table">
+          <thead>
+            <th>Date</th>
+            <th>Tickets sold</th>
+          </thead>
+          <tbody>
+              <tr>
+
+              </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
+    <div class="white" style="margin-bottom: 20px">
+      <div style="padding: 10px; background-color: #f7f7f7">
+        <div class="heading14">Upcoming events</div>
+      </div>
+      <div style="padding: 19px">
+        <table class="table">
+          <thead>
+            <th>Event name</th>
+            <th>Event time</th>
+            <th>Attendance</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% @courses.first(3).each do |course| %>
+              <tr>
+                <td class="span3">
+                  <div class="heading13 brown">
+                    <%= link_to course.title, course %>
+                  </div>
+                <td>
+                  <%= course.starts_at.strftime("%y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+                </td>
+                <td>
+                  <div class="progress">
+                    <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;"><%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                      Action
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Promote event', "" %></li>
+                      <li><%= link_to 'Edit event', edit_course_path(course) %></li>
+                      <li><%= link_to "Contact teacher", "" %></li>
+                      <li><%= link_to "Contact students", "" %></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="white" style="margin-bottom: 20px">
+      <div style="padding: 10px; background-color: #f7f7f7">
+        <div class="heading14">Newest Members</div>
+      </div>
+      <div style="padding: 19px">
+        <table class="table">
+          <thead>
+            <th>Name</th>
+            <th>Joined on</th>
+            <th>Referral</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% current_account.memberships.last(5).each do |member| %>
+              <tr>
+                <td class="span3">
+                  <div class="heading13 brown">
+                    <%= link_to member.user.name, member.user %>
+                  </div>
+                </td>
+                <td>
+                  <%= member.created_at %>
+                </td>
+                <td>
+                  <%= User.where(:id => member.user.roles.first.invite_user_id).first if member.user.roles.present? %>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                      Action
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Email', "" %></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
   </div><!-- end span9 -->
 
-
-</div>
+</div><!-- /row -->
 
 
