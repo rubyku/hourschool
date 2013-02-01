@@ -12,8 +12,9 @@
         </div>
         <table class="table">
           <% @courses.each do |course| %>
-            <% course.roles.where(:name => 'student').each do |role| %>
+            <% course.roles.where(:name => 'student').order("created_at DESC").each do |role| %>
               <tr>
+                <td><%= role.stripe_amount %></td>
                 <td><%= role.course.name %></td>
                 <td><%= role.created_at %></td>
                 <td><%= number_to_currency role.course.price %></td>

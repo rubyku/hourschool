@@ -8,8 +8,8 @@ class AdminController < ApplicationController
     @course  = Course.new
     @invite  = Invite.new
 
-    @users_by_month = User.uniq.includes(:memberships, [:memberships => :account]).group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
-    #@registrations_by_day = @courses.joins(:roles).where("roles.name = 'student'").uniq.group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").group("extract( DAY from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").order("extract( DAY from DATE(created_at)) DESC").count
+    @users_by_month       = User.uniq.includes(:memberships, [:memberships => :account]).group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    @registrations_by_day =  Role.where(:name => "student").group("extract( DAY from DATE(created_at))").where("created_at > (?)", 5.days.ago.beginning_of_day).count
   end
 
 

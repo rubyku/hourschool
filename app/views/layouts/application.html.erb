@@ -73,20 +73,12 @@
 
 <%= content_for :first_inside_body do %>
 
-  <% if current_user && (admin_of_current_account? || current_user.admin?) %>
+  <% if current_user && (admin_of_current_account? || current_user.admin?) && !community_site? %>
     <div class='userConfirm'>
       <div class='container_16'>
         <p>
-          <span style="color: #b4c9d9">
-            HourSchool
-          </span>
-          <span style="text-decoration: underline; color: #f7b62a">
-            <% if params[:controller].include?("admin") && !community_site? %>
-              <%= link_to "Go to my site", "http://#{current_account.subdomain}.hourschool.com", :class => "pull-right", :style => "text-decoration: underline" %>
-            <% else %>
-              <%= link_to "Go to Admin Dashboard", admin_index_path, :class => "pull-right", :style => "text-decoration: underline" %>
-            <% end %>
-          </span>
+          <span style="color: #b4c9d9">HourSchool</span>
+          <%= link_to "Site", "http://#{current_account.subdomain}.hourschool.com", :class => "pull-right" %><%= link_to "Admin | ", admin_index_path, :class => "pull-right" %>
         </p>
       </div>
     </div>

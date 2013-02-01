@@ -5,7 +5,10 @@
 
     <div class="white" style="margin-bottom: 20px">
       <div style="padding: 10px; background-color: #f7f7f7">
-        <div class="heading14">Event Registrations</div>
+        <ul class="nav">
+          <li class="pull-left"><strong>Event Registrations</strong></li>
+          <li class="pull-right"><%= link_to "view all >", admin_payments_path, :style => "text-decoration: underline" %></li>
+        </ul>
       </div>
       <div style="padding: 19px">
         <table class="table">
@@ -14,9 +17,13 @@
             <th>Tickets sold</th>
           </thead>
           <tbody>
+            <% 5.times do |n| %>
               <tr>
-
+                <% day = n.days.ago %>
+                <td><%= day %></td>
+                <td><%= @registrations_by_day[day.day.to_s] || 0 %></td>
               </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -24,7 +31,10 @@
 
     <div class="white" style="margin-bottom: 20px">
       <div style="padding: 10px; background-color: #f7f7f7">
-        <div class="heading14">Upcoming events</div>
+        <ul class="nav">
+          <li class="pull-left"><strong>Upcoming events</strong></li>
+          <li class="pull-right"><%= link_to "view all >", admin_courses_path, :style => "text-decoration: underline" %></li>
+        </ul>
       </div>
       <div style="padding: 19px">
         <table class="table">
@@ -73,7 +83,10 @@
 
     <div class="white" style="margin-bottom: 20px">
       <div style="padding: 10px; background-color: #f7f7f7">
-        <div class="heading14">Newest Members</div>
+        <ul class="nav">
+          <li class="pull-left"><strong>Newest Members</strong></li>
+          <li class="pull-right"><%= link_to "view all >", admin_users_path, :style => "text-decoration: underline" %></li>
+        </ul>
       </div>
       <div style="padding: 19px">
         <table class="table">
