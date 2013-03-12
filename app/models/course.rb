@@ -47,7 +47,7 @@ class Course < ActiveRecord::Base
   friendly_id :pretty_slug, :use => :history
   acts_as_voteable
 
-  include Course::Searchable
+  # include Course::Searchable
 
   def self.in_account(account)
     where('account_id in (?)', account ? [account.id] : [0,nil])
