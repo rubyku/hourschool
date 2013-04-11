@@ -8,7 +8,7 @@ class Courses::Attendee::RegistrationsController < ApplicationController
     @course  = Course.find(params[:course_id])
     @mission = @course.mission
     @user    = current_user
-    @role    = @course.roles.create(:attending => true, :name => 'student', :user => current_user, :quantity => params[:role][:quantity])
+    @role    = @course.roles.create(:attending => true, :name => 'student', :user => current_user, :quantity => params[:role][:quantity], :donation => params[:role][:donation])
 
     @role.create_extra_tickets!
 

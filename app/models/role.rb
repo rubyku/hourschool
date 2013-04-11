@@ -30,7 +30,7 @@ class Role < ActiveRecord::Base
   end
 
   def stripe_amount
-    (total_amount * 100).to_i
+    ((total_amount + self.donation) * 100).to_i
   end
 
   def total_amount
@@ -75,7 +75,7 @@ class Role < ActiveRecord::Base
         :amount       => self.stripe_amount,
         :currency     => "usd",
         :customer     => self.user.stripe_customer_id,
-        :description  => "#{self.quantity} ticket(s) to #{self.course.name}."
+        :description  => "#{self.quantity} ticket(s) to #{self.course.name} and $#{self.donation} in donation."
       )
       extra_tickets.destroy_all and self.destroy unless charge.paid
       return charge

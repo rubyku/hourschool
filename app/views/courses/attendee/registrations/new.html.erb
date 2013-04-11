@@ -46,6 +46,15 @@
         <%= f.select :quantity, options_for_select(1..20), :class => 'span1' %>
       </p>
 
+      <% if current_account == Account.where(:id => 4).last %>
+        <p>
+        Add a donation to our Saint Louise House's program?
+        $ <%= f.select :donation, options_for_select([0, 5, 10, 15, 20, 25]), :class => 'span1' %>
+        </p>
+      <% else %>
+        <%= f.hidden_field :donation, :value => "0" %>
+      <% end %>
+
       <script type="text/javascript">
         $(document).ready(function() {
           $('#role_quantity').change(function() {
@@ -102,8 +111,11 @@
   </div>
 
    <script type="text/javascript">
-    $('#role_quantity').change(function() {
-      new_total = $('#role_quantity').val() * <%= @course.price %>;
+
+
+    $('#role_quantity, #role_donation').change(function() {
+      var new_total = parseFloat($('#role_quantity').val()) * <%= @course.price %>;
+      new_total     = new_total + parseFloat($('#role_donation').val());
       if (new_total == 0) {
         fee = 0;
         $('#billing_info').hide();}
@@ -115,6 +127,7 @@
       $('#total_price').text(total_price);
       $('#transaction_fee').text(fee);
     })
+
   </script>
 
 

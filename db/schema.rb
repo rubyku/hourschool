@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114030101) do
+ActiveRecord::Schema.define(:version => 20130312204238) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(:version => 20130114030101) do
     t.boolean  "terms_and_conditions"
     t.boolean  "member"
     t.integer  "invite_user_id"
+    t.integer  "donation"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"
