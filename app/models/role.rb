@@ -35,7 +35,7 @@ class Role < ActiveRecord::Base
 
   def total_amount
     if quantity > 1
-      extra_tickets.map(&:amount).inject(&:+)
+      extra_tickets.map(&:amount).inject(&:+) + self.amount
     else
       amount
     end
