@@ -13,6 +13,8 @@ WebMock.disable_net_connect!(:allow_localhost => true)
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+require 'database_cleaner'
+DatabaseCleaner.strategy = :truncation
 
 RSpec.configure do |config|
   # == Mock Framework
@@ -34,10 +36,23 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+  config.before(:each) { DatabaseCleaner.start }
+  config.after(:each) { DatabaseCleaner.clean }
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+STRIPE_CARD_SUCCESS = "4242424242424242"
+
+require 'vcr'
+
+# VCR.configure do |c|
+#   c.cassette_library_dir = 'fixtures/vcr_cassettes'
+#   c.hook_into :webmock # or :fakeweb
+# end
+
+

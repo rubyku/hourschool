@@ -2,17 +2,17 @@
 <span class="payment-errors"></span>
 <div class="form-row">
   <label>Card Number</label>
-  <input type="text" size="20" autocomplete="off" class="card-number" />
+  <input type="text" size="20" autocomplete="off" class="card-number" id='card_number' />
 </div>
 <div class="form-row">
   <label>CVC</label>
-  <input type="text" size="4" autocomplete="off" class="card-cvc" />
+  <input type="text" size="4" autocomplete="off" class="card-cvc" id='card_cvc' />
 </div>
 <div class="form-row">
   <label>Expiration (MM/YYYY)</label>
-  <input type="text" size="2" class="card-expiry-month span1"/>
+  <input type="text" size="2" class="card-expiry-month span1" id='card_expiry_month' />
   <span> / </span>
-  <input type="text" size="4" class="card-expiry-year" style="width: 138px"/>
+  <input type="text" size="4" class="card-expiry-year" style="width: 138px" id='card_expiry_year' />
 </div>
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 <script type="text/javascript">

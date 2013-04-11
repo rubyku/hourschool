@@ -8,7 +8,7 @@ Warden.test_mode!
 # Will run the given code as the user passed in
 def as_user(user=nil, &block)
   current_user = user || Factory.stub(:user)
-  if request.present?
+  if respond_to?(:request)
     sign_in(current_user)
   else
     login_as(current_user, :scope => :user)
