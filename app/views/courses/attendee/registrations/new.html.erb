@@ -87,9 +87,9 @@
         <p><%= f.radio_button :member, false, :checked => true, :style => "float: left; margin-right: 10px;" %>
         <%= f.label :member, 'No' %></p>
 
-        <p>Ticket price: $<span id="new_total"><%= @course.price %></span></p>
+        <p>Ticket price: $<span id="new_total"><%= @course.price.round(2) %></span></p>
         <% if @course.price != 0 %>
-          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.03 + 0.3).round(2) %></span></p>
         <% else %>
           <p>Transaction fee: $<span id="transaction_fee"><%= fee = 0 %></span></p>
         <% end %>
@@ -100,11 +100,11 @@
         <p><%= f.hidden_field :member, :value => false %>
         <p>Ticket price: $<span id="new_total"><%= @course.price.round(2) %></span></p>
         <% if @course.price != 0 %>
-          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.029 + 0.3).round(2) %></span></p>
+          <p>Transaction fee: $<span id="transaction_fee"><%= fee = ((@course.price) * 0.03 + 0.3).round(2) %></span></p>
         <% else %>
           <p>Transaction fee: $<span id="transaction_fee"><%= fee = 0 %></span></p>
         <% end %>
-        <h3>Total: $<span id="total_price"><%= (@course.price) + fee %></span></h3>
+        <h3>Total: $<span id="total_price"><%= (@course.price + fee).round(2) %></span></h3>
       <% end %>
 
     </div>
@@ -120,7 +120,7 @@
         fee = 0;
         $('#billing_info').hide();}
       else  {
-        fee = parseFloat((new_total * 0.029 + 0.3).toFixed(2));
+        fee = parseFloat((new_total * 0.03 + 0.3).toFixed(2));
         $('#billing_info').show();}
       total_price = new_total + fee;
       $('#new_total').text(new_total);

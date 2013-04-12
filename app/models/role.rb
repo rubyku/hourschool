@@ -30,7 +30,7 @@ class Role < ActiveRecord::Base
   end
 
   def stripe_amount
-    ((total_amount + self.donation) * 100).to_i
+    (((total_amount + self.donation) + (total_amount + self.donation) * 0.03 + 0.3) * 100).to_i
   end
 
   def total_amount
