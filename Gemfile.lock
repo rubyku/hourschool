@@ -366,7 +366,6 @@ GEM
     sextant (0.2.3)
       activesupport (>= 3.2)
       rails (>= 3.2)
-    simple_oauth (0.2.0)
     sinatra (1.0)
       rack (>= 1.0)
     sitemap_generator (3.0.0)
@@ -409,11 +408,6 @@ GEM
     tumblr-api (0.1.4)
       activesupport
       httparty
-    twitter (2.0.2)
-      activesupport (>= 2.3.9, < 4)
-      faraday (~> 0.7)
-      multi_json (~> 1.0)
-      simple_oauth (~> 0.1)
     tzinfo (0.3.37)
     uglifier (2.0.1)
       execjs (>= 0.3.0)
@@ -509,7 +503,6 @@ DEPENDENCIES
   timecop (~> 0.3.5)
   timezone (~> 0.1.4)
   tumblr-api (~> 0.1.4)
-  twitter (~> 2.0.2)
   uglifier (>= 1.0.3)
   unicorn (~> 4.2.0)
   vcr
