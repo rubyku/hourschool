@@ -41,7 +41,7 @@ gem 'meta_search',          '>= 1.1.0.pre'
 gem "omniauth",             '~> 0.3.2'
 
 # Social
-gem 'twitter',              '~> 2.0.2'
+#gem 'twitter',              '~> 2.0.2'
 gem "koala",                '~> 1.2.1' # For Facebook
 gem 'tumblr-api',           '~> 0.1.4'
 
