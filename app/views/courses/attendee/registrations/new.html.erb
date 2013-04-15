@@ -47,10 +47,13 @@
       </p>
 
       <% if current_account == Account.where(:id => 4).last %>
-        <p>
-        Would you like to donate to our <%= link_to "Saint Louise House Handy.Women program", "http://womendesignbuild.org/2013/03/handy-women-saint-louise-house/", :target => "_blank", :style => "color: #ba5f8f" %>?
+        <div class="well">
+          <p>
+        Would you like to donate to our <%= link_to "Saint Louise House Handy.Women program", "http://womendesignbuild.org/2013/03/handy-women-saint-louise-house/", :target => "_blank", :style => "color: #ba5f8f" %>? Handy.Women teaches formerly homeless single mothers how to use tools and tackle design and construction projects, empowering them to lead confident and independent lives.</p>
         $ <%= f.select :donation, options_for_select([0, 5, 10, 15, 20, 25]), :class => 'span1' %>
-        </p>
+
+
+        </div>
       <% else %>
         <%= f.hidden_field :donation, :value => "0" %>
       <% end %>
