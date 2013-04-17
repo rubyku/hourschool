@@ -70,10 +70,7 @@ GEM
       activesupport (~> 3.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.1)
-      climate_control (>= 0.0.3, < 1.0)
+    cocaine (0.3.2)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -263,10 +260,10 @@ GEM
     options (2.3.0)
       fattr
     orm_adapter (0.0.7)
-    paperclip (2.5.2)
+    paperclip (2.7.5)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
-      cocaine (>= 0.0.2)
+      cocaine (~> 0.3.0)
       mime-types
     paypal-express (0.5.3)
       activesupport (>= 2.3)
@@ -476,7 +473,7 @@ DEPENDENCIES
   method_cacheable (= 0.0.4)
   newrelic_rpm (~> 3.3.1)
   omniauth (~> 0.3.2)
-  paperclip (~> 2.5.0)
+  paperclip (~> 2.7.4)
   paypal-express
   paypal-recurring
   pg (~> 0.12.2)

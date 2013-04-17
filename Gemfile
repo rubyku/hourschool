@@ -78,7 +78,7 @@ gem 'delayed_job',          '~> 2.1.4'
 # gem 'use_tinymce'
 
 #uploads, parsing, etc
-gem 'paperclip',            '~> 2.5.0'
+gem 'paperclip',            '~> 2.7.4'
 gem 'aws-sdk',              '~> 1.2.6'
 
 #storage
