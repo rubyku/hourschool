@@ -6,6 +6,4 @@ When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= @course.starts_at
 Where: <%= @course.place_name %> - <%= @course.address %>, <%= @course.city.name %>, <%= @course.city.state %>, <%= @course.zip %>
 <%= "Direction: #{@course.directions}" if @course.directions.present? %>
 
-Tickets bought: <%= @role.quantity %>
-
 Got questions? You can message your teacher at <%= @url %>
