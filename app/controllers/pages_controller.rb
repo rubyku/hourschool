@@ -4,9 +4,10 @@ class PagesController < ApplicationController
   # homepage
   def index
     @pre_mission_signup = PreMissionSignup.new
-    @courses = Course.active.order(:starts_at, :created_at)
+    @upcoming_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now)
+    @past_courses = Course.order('DATE(starts_at) DESC').where(:status => "live").where("starts_at < (?)", Time.zone.now)
     if community_site?
-      @courses = @courses.community
+      #@courses = @courses.community
       if current_user
         @no_courses_in_user_city = current_user.city.try(:name).nil? || current_user.city.courses.empty?
       else
@@ -15,7 +16,7 @@ class PagesController < ApplicationController
     else
       @courses = @courses.where(:account_id => current_account.id)
     end
-    
+
     if community_site?
       # @featured_courses = Course.where(:featured => true).order("created_at desc").first(4)
       @fav2 = Course.where(:id => 392).first || Course.live.random.first

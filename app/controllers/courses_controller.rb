@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
     @mission  = Mission.find(params[:mission_id])
     @users    = @mission.users
 
+    @courses = Course.active.order(:starts_at, :created_at)
     @upcoming_courses  = @mission.courses.where("starts_at > ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
     @past_courses      = @mission.courses.where("starts_at < ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
 

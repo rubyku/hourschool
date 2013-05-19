@@ -135,11 +135,15 @@ HourschoolV2::Application.routes.draw do
   match '/classes_taken'              => 'users#classes_taken'
   match '/classes_taught'             => 'users#classes_taught'
 
+  match '/about-subnav'               => 'pages#show', :id => 'about-subnav'
+
   match '/business'                   => 'pages#show', :id => 'business'
+  match '/store'                      => 'pages#show', :id => 'store'
   match '/about'                      => 'pages#show', :id => 'about'
   match '/team'                       => 'pages#show', :id => 'team'
   match '/story'                      => 'pages#show', :id => 'story'
   match '/campaign'                   => 'pages#show', :id => 'campaign'
+  match '/communities'                   => 'pages#show', :id => 'communities'
   match '/teach'                      => 'pages#show', :id => 'teach'
   match '/build_mission'              => 'pages#show', :id => 'build_mission'
   match '/build_school'               => 'pages#show', :id => 'build_school'

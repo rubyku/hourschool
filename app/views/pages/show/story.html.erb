@@ -1,22 +1,7 @@
 <div class="full-page white">
   <div class="page-content">
 
-    <div class="page-section-float-left">
-      <ul class="sub-nav">
-        <li class="sub-nav-inactive">
-          <a href="/about" class="sub-nav-inactive">About</a>
-        </li>
-        <li class="sub-nav-active">
-          <a href="/story" class="sub-nav-active">Story</a>
-        </li>       
-        <li class="sub-nav-inactive">
-            <a href="/team" class="sub-nav-inactive">Team</a>
-        </li>   
-        <li class="sub-nav-inactive">
-            <a href="/campaign" class="sub-nav-inactive">Peer Teaching Fund</a>
-        </li>
-      </ul>
-    </div>
+    <%= render :partial => '/pages/show/subnav/about-subnav' %>
 
     <center>
       <div class="marcomm-header">
@@ -24,23 +9,23 @@
         <%= image_tag "v2/greyheader_full.png", :class => "greyheader full" %>
       </div>
     </center>
-    
+
     <div class="page-section-float-left">
-      
+
       <div class="clearfix">
         <div class="grid_6">
           <div class="heading15 marcomm">The biggest problem is perception</div>
-          <p>HourSchool began as a research project about homelessness when co-founders Ruby Ku and Alex Pappas were at the <a href="http://www.ac4d.com" style="font-weight: 700; font-size: 12px; color: #ff7733">Austin Center for Design</a>. 
-            
+          <p>HourSchool began as a research project about homelessness when co-founders Ruby Ku and Alex Pappas were at the <a href="http://www.ac4d.com" style="font-weight: 700; font-size: 12px; color: #ff7733">Austin Center for Design</a>.
+
             <p>"We met with homeless people, listened to their stories, and learned about their good and bad days. Contrary to common belief, homelessness is not just the guy you see at the corner of the street or on the side of a freeway. 40% of the homeless population in Austin is made up of women and children with an average age of 7. They often have little or no safety nets, and when they're hit with even rougher times, they end up homeless. The biggest problem is perception - both in how society perceives people experiencing homelessness, and how that perception affects the way they perceive themselves.</p>
         </div>
         <div class="grid_6">
           <%= image_tag "v2-about/church_under_the_bridge.jpg", :style => "width: 525px; margin-top: 35px" %>
-        </div>      
+        </div>
       </div>
-      
+
       <%= image_tag "v2-campaign/divider-long.png" %>
-      
+
       <div class="clearfix" style="margin-top: 30px">
         <div class="grid_6" style="margin-right: 20px">
           <%= image_tag "v2-about/art-from-the-street.jpg", :style => "width: 320px; margin-bottom: 20px" %>
@@ -53,9 +38,9 @@
         <p>If you consider Maslow’s hierarchy from a bird’s eye point of view, self-actualization is at the core of what makes us human. It is an innate human need for us to not just be able to live, but also to have the desire to live. That desire is often what separates between the chronically homeless and the ones that are trying to change their situations. For homeless people to feel empowerment to change their situations, we began to look at how they could help others; thereby, how the homeless could achieve self-actualization. </p>
         </div>
       </div>
-    
+
       <%= image_tag "v2-campaign/divider-long.png" %>
-    
+
       <div class="clearfix" style="margin-top: 30px">
         <div class="grid_6">
           <div class="heading15 marcomm">We are all hungry for knowledge</div>
