@@ -14,7 +14,7 @@ class PagesController < ApplicationController
         @no_courses_in_user_city = false
       end
     else
-      @courses = @courses.where(:account_id => current_account.id)
+      @courses = Course.where(:account_id => current_account.id)
     end
 
     if community_site?
