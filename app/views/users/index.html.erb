@@ -11,7 +11,7 @@
 
 <div class="grid_16">
   <% @memberships.each do |membership| %>
-    <div style="width: 430px; margin-right: 20px; margin-bottom: 20px; float: left">
+    <div class="grid_7" style="margin-bottom: 20px">
       <div class="crewman-photo">
         <% if membership.user.photo.present? %>
           <%= link_to_avatar(membership.user, :thumb_large) %>

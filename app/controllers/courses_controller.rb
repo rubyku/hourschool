@@ -26,6 +26,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
+    @account = current_account
   end
 
   def create
@@ -57,6 +58,7 @@ class CoursesController < ApplicationController
   def edit
     enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
+    @account = current_account
     if @course.teacher == current_user || current_user.admin?
     else
        redirect_to @course
