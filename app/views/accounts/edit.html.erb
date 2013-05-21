@@ -20,6 +20,7 @@
                 <th>Class teacher</th>
                 <th>Class date</th>
                 <th># of students</th>
+                <th>Action</th>
               </tr>
             </thead>
             <% @account.courses.order('DATE(starts_at) DESC').each do |course| %>
@@ -28,6 +29,7 @@
                 <td><%= course.teacher.name %></td>
                 <td><%= "#{course.starts_at.strftime("%a %b %d %Y")}, #{course.starts_at.strftime("%l:%M%p")}" %></td>
                 <td><%= "#{course.students.count} out of #{course.max_seats} filled" %></td>
+                <td><%= link_to "Edit", edit_course_path(course) %></td>
               </tr>
             <% end %>
           </table>
@@ -57,7 +59,7 @@
                 <p><%= user.bio %></p>
                 <p>User ID: <%= user.id %></p>
                 <p>Email: <%= link_to "#{user.email}", "mailto: #{user.email}" %></p>
-                <p>Joined: <%= user.created_at %></p>
+                <p>Joined: <%= user.memberships.where(:account_id => current_account.id).last.created_at %></p>
               </div>
             </div>
           <% end %>

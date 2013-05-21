@@ -20,34 +20,22 @@
   </div>
 <% else community_site? %>
 
-  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 540px;">
+  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 730px;">
 
-    <div style="background-image: url(<%= asset_path 'homepage-banner-2.gif' %>); background-position: center; background-repeat: no-repeat; height: 430px; margin-bottom: 30px">
+  <div class="container_16" style="padding-top: 10px;">
+    <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="960px" height="540px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    <div class="heading28 whiteText" style="margin-top: 30px; margin-bottom: 30px">
+      What is HourSchool?
     </div>
+    <p style="font-size: 14px; color: white">We think life is better when you’re learning. We think it’s deceptively easy to slip into the routine and to stick with what you know. We think sometimes the best way to keep growing is to get together with other people and learn. We believe that everyone can and should teach. You are the expert of your own stories, share them!</p>
+  </div>
 
-    <div class="featured" style="background-color: black; margin-top: -385px; padding-top: 30px; padding-bottom: 5px; margin-bottom: 100px">
-      <center>
-        <div class="heading14" style="color: #f7b62a; margin-bottom: 10px">
-          Welcome to the school of doing stuff
-        </div>
-        <div style="font-family: futura-pt-1, futura-pt-2; font-size: 75px; font-weight: 700; font-style: italic; color: #b4c9d9; line-height: 90px; letter-spacing: 0.02em; margin-bottom: 40px">
-          So, what have you<br> always wanted to do?
-        </div>
-      </center>
-    </div><!-- end .featured -->
-
-    <div class="container_16">
-      <div class="heading14" style="color: white; text-align: center;">
-        Don’t just dream about it.<br>
-        Get tools. Share knowledge. Meet people who can help.
-      </div>
-    </div>
   </div>
 
 
-  <div style="background-image: url(<%= asset_path 'bg-white-pattern.png' %>); background-repeat: repeat; height: 760px;">
-    <div class="container_16" style="padding-top: 30px; margin-top: -1px">
-      <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; background-color: #505f6a; width: 920px; padding: 10px; color: white">
+  <div style="background-image: url(<%= asset_path 'bg-white-pattern.png' %>); background-repeat: repeat; height: 700px;">
+    <div class="container_16" style="padding-top: 30px;">
+      <div class="heading28 brown" style="margin-bottom: 30px">
         Join a class today
       </div>
 
@@ -60,23 +48,23 @@
           <% end %>
 
           <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
+            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
               <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
             </div>
-            <p><%= course.description.truncate(70) %></p>
+            <div class="heading16">
+              <%= link_to course.title, course %>
+            </div>
           </div>
+
         </div>
       <% end %>
     </div>
   </div>
 
 
-  <div style="background-color: white; background-repeat: repeat; height: 760px;">
-    <div class="container_16" style="padding-top: 30px; margin-top: -1px">
-      <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; background-color: #505f6a; width: 920px; padding: 10px; color: white">
+  <div style="background-color: white; background-repeat: repeat; height: 700px;">
+    <div class="container_16" style="padding-top: 30px;">
+      <div class="heading28 brown" style="margin-bottom: 30px">
         Past classes
       </div>
 
@@ -88,15 +76,15 @@
             <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
           <% end %>
 
-            <div class="class-description" style="float: left; width: 170px">
-              <div class="heading13 brown">
-                <%= link_to course.title.truncate(50), course %>
-              </div>
-              <div class="heading10" style="font-weight: 400">
-                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-              </div>
-              <p><%= course.description.truncate(70) %></p>
+          <div class="class-description" style="float: left; width: 170px">
+            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
             </div>
+            <div class="heading16">
+              <%= link_to course.title, course %>
+            </div>
+          </div>
+
         </div>
       <% end %>
     </div>
