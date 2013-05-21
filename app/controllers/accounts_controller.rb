@@ -40,23 +40,17 @@ class AccountsController < ApplicationController
 
   def show
     @account = current_account
+    @memberships = @account.memberships.order("created_at DESC").uniq
 
     if current_account == Account.where(:id => 7).first
       redirect_to admin_index_path
-    end
-
-    if current_account == Account.where(:id => 5).first
+    elsif current_account == Account.where(:id => 5).first
       redirect_to mission_path(:id => 7)
-    end
-
-    if current_account == Account.where(:id => 2).first
+    elsif current_account == Account.where(:id => 2).first
       @courses = Course.order(:starts_at, :created_at)
     else
-      @courses = Course.active.order(:starts_at, :created_at)
-    end
-
-    unless community_site?
-      @courses = @courses.where(:account_id => current_account.id)
+      @upcoming_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:account_id => current_account.id)
+      @past_courses = Course.order('DATE(starts_at) DESC').where(:status => "live").where("starts_at < (?)", Time.zone.now).where(:account_id => current_account.id)
     end
 
   end

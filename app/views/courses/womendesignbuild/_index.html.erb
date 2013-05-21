@@ -12,7 +12,7 @@
   <%= render :partial => "courses/womendesignbuild/sidebar_left", :locals => {:course => @course} %>
 
   <div class="middle" id="middle_events">
-    <%- @courses.each do |course| %>
+    <%- @upcoming_courses.each do |course| %>
       <div class="entry" style="float: left; width: 550px; margin-bottom: -50px ">
         <%- if course.present? %>
           <%- if course.photo.present? %>

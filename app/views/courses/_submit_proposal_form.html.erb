@@ -1,10 +1,8 @@
-<div class="page-section-float-left">
-    <% if @course.status != "live" %>
-    <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running!</div>
-    <% else %>
-    <div class="welcome-header">Edit your event</div>
-    <% end %>
-</div>
+<% if @course.status != "live" %>
+  <div class="welcome-header">Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running!</div>
+<% else %>
+  <div class="welcome-header">Edit your event</div>
+<% end %>
 
 <div class="page-section-float-left">
   <% @course.errors.full_messages.each do |message| %>
@@ -27,18 +25,6 @@
    <%= f.text_area :title, :class => "form-with-margin" %>
    </p>
    <br><br>
-
-  <% if @course.mission && @course.mission.topics.present? %>
-  <div class="form-question">Does your event cover any of the following topics?</div>
-    <% for topic in @course.mission.topics.find(:all) %>
-      <div>
-        <%= check_box_tag "course[topic_ids][]", topic.id %>
-        <%= topic.title %>
-      </div>
-    <% end %>
-  <% end %>
-
-  <br><br>
 
    <div class="page-section-float-left">
    <p>

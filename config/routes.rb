@@ -9,7 +9,6 @@ HourschoolV2::Application.routes.draw do
   resources :missions do
     resources :topics
     resources :courses
-    resources :users
     resources :crewmanships do
     end
   end
@@ -40,6 +39,12 @@ HourschoolV2::Application.routes.draw do
   resources :admin
 
   resources :comments
+
+  resources :accounts do
+    resources :users
+    resources :memberships do
+    end
+  end
 
   namespace :courses do
     resources :browse
@@ -110,9 +115,12 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  match '/errand'               => 'admin#show',        :id => 'errand'
+  match '/errand'                     => 'admin#show',        :id => 'errand'
 
   match '/explore'                    => 'accounts#show'
+  match '/members'                    => 'users#index'
+  match '/classes'                    => 'Courses::Browse#index'
+  match '/blog'                       => 'comments#index'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
   match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'

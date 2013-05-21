@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312204238) do
+ActiveRecord::Schema.define(:version => 20130521012955) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130312204238) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "comment_type"
+    t.integer  "account_id"
   end
 
   add_index "comments", ["course_id"], :name => "index_comments_on_course_id"

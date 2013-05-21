@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def index
+    @account = current_account
+    @comments = Comment.where(:account_id => current_account.id)
+  end
+
   def create
     @comment = current_user.comments.create(params[:comment])
     if @comment.save

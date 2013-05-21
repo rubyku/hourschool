@@ -34,7 +34,7 @@ li a.main-nav{
     border-top: 3px solid black;
     padding-left: 0px 10px; }
   &.main-nav-inactive {
-    padding: 0px 10px; } 
+    padding: 0px 10px; }
 }
 
 #homepage a.main-nav{
@@ -59,7 +59,11 @@ a:visited.nav-heading{color: white; text-decoration: none;}
 
 ul.sub-nav {
   @include hourschool-heading;
-  float: left;
+  background-color: #f0f0f0;
+  padding: 10px;
+  padding-right: 0px;
+  padding-left: 20px;
+  float: right;
   list-style: none;
   font-size: 12px;
   letter-spacing: 0.1em;
@@ -71,12 +75,11 @@ li {
     margin-right: 10px;
     padding-bottom: 3px; }
   &.sub-nav-active {
-    border-bottom: 3px solid $hourschool-house-color;
     padding-left: 0px 10px; }
   &.sub-nav-inactive {
-    padding: 0px 10px; } 
+    padding: 0px 10px; }
   }
-    
+
 
 a {
   &.sub-nav-active {

@@ -1,6 +1,10 @@
-<div class="full-page">
-  <% @courses.each do |course| %>
-    <div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
+<div class="grid_16" style="margin-bottom: 30px">
+  <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+    Upcoming classes
+  </div>
+
+  <% @upcoming_courses.each do |course| %>
+    <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
       <% if course.photo.present? %>
         <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
       <% else %>
@@ -8,14 +12,38 @@
       <% end %>
 
       <div class="class-description" style="float: left; width: 170px">
-        <div class="heading13 brown">
-          <%= link_to course.title.truncate(50), course %>
-        </div>
-        <div class="heading10" style="font-weight: 400">
+        <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
           <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
         </div>
-        <p><%= course.description.truncate(70) %></p>
+        <div class="heading16">
+          <%= link_to course.title, course %>
+        </div>
       </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="grid_16">
+  <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+    Past classes
+  </div>
+
+  <% @past_courses.each do |course| %>
+    <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+      <% if course.photo.present? %>
+        <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+      <% else %>
+        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+      <% end %>
+
+        <div class="class-description" style="float: left; width: 170px">
+          <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+            <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+          </div>
+          <div class="heading16">
+            <%= link_to course.title, course %>
+          </div>
+        </div>
     </div>
   <% end %>
 </div>

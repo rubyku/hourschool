@@ -3,14 +3,13 @@ class UsersController < DashboardsController
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
 
   def index
-    @mission  = Mission.find(params[:mission_id])
-    @users    = @mission.users.order("created_at DESC").uniq
+    @account     = current_account
+    @memberships = @account.memberships.order("created_at DESC").uniq
 
     @invite = Invite.new
     @invite.invitable_id = params[:invitable_id]
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
-    session["user_return_to"] = mission_courses_path(@mission)
   end
 
   def search

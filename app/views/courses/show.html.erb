@@ -40,17 +40,6 @@
       <div class="page-content">
         <div class="heading28 brown" style="margin-bottom: 5px"><%= "#{@course.title}" %></div>
         <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
-          <% if @course.mission.present? %>
-            <% if @mission.id != 54 %><!-- Hub LA -->
-              This event is part of the mission <%= link_to full_mission_title(@course.mission), @course.mission %>
-            <% end %>
-          <% end %><br>
-          <% if @course.topics.present? %>
-            Related topics:
-            <% @course.topics.each do |topic| %>
-              <%= link_to topic.title, mission_topic_path(@course.mission, topic) %>,
-            <% end %>
-          <% end %>
         </div>
 
         <div style="width: 97%; margin-top: 10px">
@@ -152,16 +141,16 @@
             <%= link_to "Edit event", edit_course_path %><br>
             <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
             <% if @course.starts_at > Time.zone.now %>
-              <%= link_to "Cancel this event", "" %><br>
-              <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+              <%= link_to "Cancel this event", course_organizer_path(course, :cancel), :method => :get %>
+              <%= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% else %>
-              <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
-              <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+              <%= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
+              <%= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% end %>
           <% else %><!-- if current_user is not this course's teacher -->
             <a data-toggle="modal" href="#emailOrganizer">Email organizer</a><br>
             <% if current_user && @course.starts_at > Time.zone.now %>
-              <a href="mailto: hello@hourschool.com" target="_blank">Cancel registration</a>
+              <a href="mailto:hello@hourschool.com" target="_blank">Cancel registration</a>
             <% end %>
           <% end %>
         </div>
