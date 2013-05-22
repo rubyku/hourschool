@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_admin!, :only => [:new, :create]
+  before_filter :authenticate_admin!, :only => [:create]
 
   def new
     @account = Account.new

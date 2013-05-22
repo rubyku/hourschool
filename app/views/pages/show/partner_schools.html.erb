@@ -1,39 +1,202 @@
-<div class="full-page white">
-  <div class="page-content">
-    <center>
-      <div class="heading28" style="margin-bottom: 15px">Partner Schools</div>
-      <div class="intro-text">Our partner schools are organizations that embody the same spirit as we do around education, empowerment, and community building. Interested in collaborating? <a href="mailto:hello@hourschool.com" style="font-weight: 700">Email us!</a></div>
-    </center>
-  </div>
+<style type="text/css">
+  .nav{
+    text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 1px;
+    a{color: #999;}
+    a:hover{color: #232323;}
+  }
+
+  .navbar-inner{
+    height: 40px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  .white{
+    background-color: white;
+  }
+
+  .section{
+    width: 820px;
+  }
+
+  .section-header{
+    font-size: 40px;
+  }
+
+  .quote-box{
+    border: 1px solid #e6e6e6;
+    padding: 30px 30px 0 30px;
+    margin-bottom: 30px;
+    border-radius: 2px;
+  }
+
+  .hero-unit{
+    background: url(<%= asset_path 'v4-homepage/Banner_01.png' %>);
+    background-position: 50% 0%;
+    padding-top: 150px;
+    margin-bottom: 80px;
+    height: 324px;
+    border-radius: 0px
+  }
+
+  .white-text{
+    color: #fff !important;
+    text-shadow: 0 1px 1px #000;
+  }
+</style>
+
+<div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
+  <center><p class="lead section-header">
+    Introducing HourSchool Pro
+  </p></center>
 </div>
 
-<div style="float: left; width: 960px">
-  <%= link_to (image_tag 'v3/partner_schools/hubla.jpg'), "http://thehubla.com" %>
-  <div style="background-color: white; padding: 15px; margin-bottom: 30px">
-    <div class="title-text" id="explore" style="margin-top: 10px; float: left; width: 960px">
-      <%= link_to "Hub LA", "http://thehubla.com" %>
-    </div>
-    <div class="heading11" id="explore">Los Angeles, CA</div>
-    <p>Hub LA is about the power of people taking action for a better world. They are a new kind of membership club dedicated to the individuals and teams building the local, sustainable economy in Los Angeles and beyond. Anchored by a physical place in the heart of the Arts District in Downtown LA, the Hub offers members access to 4,000 square feet of creative industrial space to work, meet, learn, collaborate, and play; a curated community of values-aligned individuals and companies; and custom programming and events focused on personal and professional development.</p>
-  </div>
+<div class="container_16" style="width: 800px">
+  <p style="font-size: 15px; line-height: 2em">HourSchool Pro is for organizations or communities that embody the same spirit as we do around education, empowerment, and community building. We think school doesn’t have to be about classrooms and curriculums.  It can be about garages and get-togethers. We can help take your education programs one step further.</p>
+</div>
 
-  <%= link_to (image_tag 'v3/partner_schools/center61.jpg'), "http://www.center61.com" %>
-  <div style="background-color: white; padding: 15px; margin-bottom: 30px">
-    <div class="title-text" id="explore" style="margin-top: 10px; float: left; width: 960px">
-      <%= link_to "Center61", "http://www.center61.com" %>
-    </div>
-    <div class="heading11" id="explore">Austin, TX</div>
-    <p>In one word, the purpose of Center61 is service. They aspire to bring together a community of like-minded organizations and individuals with the hope that they are able to accomplish more together. They believe that there are opportunities to increase fundraising, sales, and ideas through collaboration and healthy, supportive competition. They also recognized the need that many startup organizations and entrepreneurs have—a place that they could call home away from home or the coffee shops, that embodies their dreams, and can be a catalyst to help them achieve their goals, even if they aren’t quite there yet. Center61 exists to be an early stage supporter of small-scale organizations and individuals that are dedicated to changing the world.</p>
-  </div>
+<div class="container_16" style="margin-top: 20px; margin-bottom: 40px; width: 960px">
+  <center>
+    <%= link_to "Try it free for 30 days", new_account_path, :class => "btn btn-large btn-primary", :style => "color: white" %>
+    <p style="margin-top: 10px">$50/month after trial</p>
+  </center>
+</div>
+<hr>
 
-  <%= link_to (image_tag 'v3/partner_schools/feastfordays.png'), "http://www.feastfordays.com" %>
-  <div style="background-color: white; padding: 15px; margin-bottom: 30px">
-    <div class="title-text" id="explore" style="margin-top: 10px; float: left; width: 960px">
-      <%= link_to "Feast for Days", "http://www.feastfordays.com" %>
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header" style="margin-bottom: 40px">
+      Built with HourSchool Pro
+    </p>
+    <div class="row-fluid" style="width: 960px; margin-top: 30px">
+      <div class="span4">
+        <p><%= image_tag 'v4/hs-pro/womendesignbuild.png', :style => "width: 100%" %></p>
+        <p style="text-align: left; padding: 20px">
+          Women.Design.Build fosters a community where the women and girls of Austin can build skills, friendships, and confidence through design & construction activities.
+        </p>
+      </div>
+      <div class="span4">
+        <p><%= image_tag 'v4/hs-pro/feastfordays.png', :style => "width: 100%" %></p>
+        <p style="text-align: left; padding: 20px">
+          Feast for Days is a collaborative cooking platform that makes it easy for people to cook and share food.
+        </p>
+      </div>
+      <div class="span4">
+        <p><%= image_tag 'v4/hs-pro/annarborfrenchschool.png', :style => "width: 100%" %></p>
+        <p style="text-align: left; padding: 20px">
+          Ann Arbor French School brings together a passionate group of people to learn about all things French, from Baguetes to Baudelaire.
+        </p>
+      </div>
     </div>
-    <div class="heading11" id="explore">Austin, TX</div>
-    <p>Feast for Days makes it easy for people to cook and share food. It incorporates cooking’s experiential qualities to facilitate personal connection through the many benefits of collaborative cooking that include: it’s fun, it builds cooking literacy and has the power to change the way people interact with food.</p>
-  </div>
+  </center>
+</div>
 
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 700px">
+  <div class="quote-box">
+    <p class="lead" style="text-align: left">"HourSchool helped give our workshops more personality by increasing visibility into our community which led to increased member attendance and involvement.”</p>
+  </div>
+  <%= image_tag 'v4-homepage/mirando.png', :size => "75x75", :style => "float: left; margin-right: 20px" %>
+  <p class="lead" style="text-align: left; color: #56abe9; margin-bottom: 10px">
+    Christina Mirando
+  </p>
+  <p style="text-align: left;">
+    Executive Director and Founder, <a href="http://womendesignbuild.org" target="_blank" style="font-weight: 700; color: black">Women.Design.Build</a>
+  </p>
+</div>
+
+<hr>
+
+<div class="container_16" style="margin-top: 60px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header">
+      HourSchool Pro for your organization
+    </p>
+    <p style="width: 700px">
+      Every feature is optimized to build community.
+    </p>
+
+    <div class="row-fluid" style="width: 960px; margin-top: 30px">
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          Events Management
+        </p>
+        <p style="text-align: left">
+          Get a bird's eye view across events, track attendance, customize fees structure, spend less time on logistics and more time on the people.
+        </p>
+      </div>
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          Your data, delievered.
+        </p>
+        <p style="text-align: left">
+          Identify and reward your super users. Learn what works and double down. Weekly reports deliver to your inbox so you can showcase your success.
+        </p>
+      </div>
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          More visibility
+        </p>
+        <p style="text-align: left">
+          Your events get cross-posted to our marketplace so you can reach new people and grow your community with every new event.
+        </p>
+      </div>
+    </div>
+
+    <div class="row-fluid" style="width: 960px; margin-top: 30px">
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          Share Ownership
+        </p>
+        <p style="text-align: left">
+          Community is a two-way street. You put in the structure, then empower members to teach and learn from each other.
+        </p>
+      </div>
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          Offer Membership
+        </p>
+        <p style="text-align: left">
+          Recurring billing, members-only events, exportable contact list to your other community management tools.
+        </p>
+      </div>
+      <div class="span4" style="padding: 19px">
+        <p class="lead" style="color: #56abe9; text-align: left">
+          Vote on topics
+        </p>
+        <p style="text-align: left">
+          Find out what your communites want to learn by taking a bottom-up, student-driven approach.
+        </p>
+      </div>
+    </div>
+  </center>
+</div>
+
+<hr>
+
+<div class="container_16" style="margin-top: 60px; margin-bottom: 20px; width: 700px">
+  <center>
+    <p class="lead section-header">Try for free</p>
+    <p style="width: 700px">Then pick a plan that best fits your needs.</p>
+    <%= image_tag 'v4-homepage/pricing.png', :style => "width: 700px; margin-top: 30px;" %>
+  </center>
+</div>
+
+<div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header" style="margin-top: 30px">
+      Talk to a human
+    </p>
+    <p style="width: 700px">
+      Still have questions? Call us.
+    </p>
+    <p class="lead" style="color: #56abe9;">
+      1.877.246.4689
+    </p>
+
+    <%= link_to "Try it free for 30 days", new_account_path, :class => "btn btn-large btn-primary", :style => "color: white" %>
+    <p style="margin-top: 10px">$50/month after trial</p>
+
+    </center>
+</div>
 </div>
 

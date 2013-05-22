@@ -1,9 +1,7 @@
-<div class="page">
+<div class="page-main">
   <div class="page-content">
-    <div class="marcomm-header">
-      <div class="heading25 dark_grey">Create a School</div>
-      <%= image_tag "v2/greyheader_half.png", :class => "greyheader half" %>
-    </div>
+    <div class="heading28 brown" style="margin-bottom: 20px">Create a School</div>
+
 
     <%= form_for @account do |f| %>
       <% if @errors.any? %>
@@ -27,60 +25,42 @@
         <%= f.text_field :subdomain, :class => "form-short-with-margin" %>.hourschool.com<br />
         <span class="help-block" style="font-weight:normal">(numbers and letters only)</span>
       </div>
-      
-      <div class="form-question" style="margin-bottom:20px">
-        <%= f.label :photo, 'Logo', :class => "form-question" %><br />
-        <%= f.file_field :photo %>
-      </div>
-      
-      
-      <div class="control-group" style="margin-bottom:20px">
-        <div class="controls">
-          <label class="radio">
-            <%= f.radio_button :private, false %>
-            Promote my classes on the main hourschool.com site where anyone can view and attend.
-          </label><br />
-          <label class="radio">
-            <%= f.radio_button :private, true %>
-            Please keep my classes private, only the people I invite can view or attend classes.
-          </label>
-        </div>
-      </div>
-      
+
       <% if current_user %>
         <p>You're currently logged in as <%= current_user.email %></p>
       <% else %>
-        <%= fields_for :user do |user| %>
-          <div class="form-question">
-            <%= user.label :name, "Your Name" %><br />
-            <%= user.text_field :name, :class => "form-short-with-margin" %>
-          </div>
+        <div class="well">
+          <%= fields_for :user do |user| %>
+            <div class="form-question">
+              <%= user.label :name, "Your Name" %><br />
+              <%= user.text_field :name, :class => "form-short-with-margin" %>
+            </div>
 
-          <div class="form-question">
-            <%= user.label :email, "Your Email" %><br />
-            <%= user.text_field :email, :class => "form-short-with-margin" %>
-          </div>
+            <div class="form-question">
+              <%= user.label :email, "Your Email" %><br />
+              <%= user.text_field :email, :class => "form-short-with-margin" %>
+            </div>
 
-          <div class="form-question">
-            <%= user.label :zipcode, "Your Zipcode" %><br />
-            <%= user.text_field :zipcode, :class => "form-short-with-margin" %>
-          </div>
+            <div class="form-question">
+              <%= user.label :zipcode, "Your Zipcode" %><br />
+              <%= user.text_field :zipcode, :class => "form-short-with-margin" %>
+            </div>
 
-          <div class="form-question">
-            <%= user.label :password, "Create a Password" %><br />
-            <%= user.password_field :password, :class => "form-short-with-margin" %>
-          </div>
+            <div class="form-question">
+              <%= user.label :password, "Create a Password" %><br />
+              <%= user.password_field :password, :class => "form-short-with-margin" %>
+            </div>
 
-          <div class="form-question">
-            <%= user.label :password_confirmation, "Confirm Password" %><br />
-            <%= user.password_field :password_confirmation, :class => "form-short-with-margin" %>
-          </div>
-        <% end %>
+            <div class="form-question">
+              <%= user.label :password_confirmation, "Confirm Password" %><br />
+              <%= user.password_field :password_confirmation, :class => "form-short-with-margin" %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
-      
 
       <div class="actions">
-        <%= f.submit 'Go!', :class => "grey button" %>
+        <%= f.submit 'Create my school', :class => "btn" %>
       </div>
     <% end %>
   </div>
