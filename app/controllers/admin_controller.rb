@@ -3,17 +3,13 @@ class AdminController < ApplicationController
 
   def index
     @courses = current_account ? current_account.courses.order('DATE(starts_at) DESC').where(:status => "live") : Course.order('DATE(starts_at) DESC').where(:status => "live")
+    @users   = current_account ? current_account.users.uniq : User.uniq.includes(:memberships, [:memberships => :account])
 
-    if community_site?
-      @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
-    else
-      @users = current_account.users.uniq
-    end
+    @course  = Course.new
+    @invite  = Invite.new
 
-    @course = Course.new
-    @topic = Topic.new
-    @invite = Invite.new
-
+    @users_by_month       = User.uniq.includes(:memberships, [:memberships => :account]).group("extract( YEAR from DATE(created_at))").group("extract( MONTH from DATE(created_at))").order("extract( YEAR from DATE(created_at)) DESC").order("extract( MONTH from DATE(created_at)) DESC").count
+    @registrations_by_day =  Role.where(:name => "student").group("extract( DAY from DATE(created_at))").where("created_at > (?)", 5.days.ago.beginning_of_day).count
   end
 
 

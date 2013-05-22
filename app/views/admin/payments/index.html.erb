@@ -1,0 +1,29 @@
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
+
+  <div class="span9">
+    <div class="white">
+      <div class="page-content">
+        <div class="well">
+          <div class="heading14 pull-left">
+            Total payments:
+            <%#= @courses.roles.courses.select('SUM(price) as sum').first.sum.to_f %>
+          </div>
+        </div>
+        <table class="table">
+          <% @courses.each do |course| %>
+            <% course.roles.where(:name => 'student').order("created_at DESC").each do |role| %>
+              <tr>
+                <td><%= role.stripe_amount %></td>
+                <td><%= role.course.name %></td>
+                <td><%= role.created_at %></td>
+                <td><%= number_to_currency role.course.price %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

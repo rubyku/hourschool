@@ -1,0 +1,30 @@
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
+
+  <div class="span9">
+    <div class="white">
+      <div class="page-content">
+        <div class="heading14 pull-left" style="margin-bottom: 20px">
+          Attended Most Events
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <th>Name</th>
+            <th># of events</th>
+            <th>Date joined</th>
+          </thead>
+          <tbody>
+            <% @top_users.each do |user| %>
+              <tr>
+                <td><%= link_to user.name, user %></td>
+                <td><%= user.roles.count %></td>
+                <td><%= user.created_at.strftime("%b %d, %Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

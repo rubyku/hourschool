@@ -2,25 +2,19 @@ class Admin::CoursesController < ApplicationController
   layout 'application'
 
   def index
+    @courses = current_account ? current_account.courses.order('DATE(starts_at) DESC').where(:status => "live") : Course.order('DATE(starts_at) DESC').where(:status => "live")
+    @course = Course.new
 
-    @courses = current_account ? current_account.courses.order('DATE(date) DESC').where(:status => "live") : Course.order('DATE(date) DESC').where(:status => "live")
-
-    @proposals = current_account ? current_account.courses.order('DATE(created_at) DESC').where(:status => "proposal") : Course.order('DATE(created_at) DESC').where(:status => "proposal")
-
-    @approved = current_account ? current_account.courses.order('DATE(created_at) DESC').where(:status => "approved") : Course.order('DATE(created_at) DESC').where(:status => "approved")
-
-    @user = current_user
-
-  end
-
-  def test
-    @courses = current_account ? current_account.courses.order('DATE(date) DESC').where(:status => "live") : Course.order('DATE(date) DESC').where(:status => "live")
+    #@courses = current_account ? current_account.courses.order('DATE(date) DESC').where(:status => "live") : Course.order('DATE(date) DESC').where(:status => "live")
+    #@proposals = current_account ? current_account.courses.order('DATE(created_at) DESC').where(:status => "proposal") : Course.order('DATE(created_at) DESC').where(:status => "proposal")
+    #@approved = current_account ? current_account.courses.order('DATE(created_at) DESC').where(:status => "approved") : Course.order('DATE(created_at) DESC').where(:status => "approved")
   end
 
 
   def show
     @course = Course.find(params[:id])
   end
+
 
   def update
     @course = Course.find(params[:id])

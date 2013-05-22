@@ -1,0 +1,53 @@
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
+
+  <div class="span9">
+    <div class="white">
+      <div class="page-content">
+        <div class="well">
+          <div class="heading14 pull-left">
+            Total users:
+            <% if community_site? %>
+              <%= User.uniq.count %>
+            <% else %>
+              <%= current_account.users.uniq.count %>
+            <% end %>
+          </div>
+        </div>
+        <table class="table">
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <% if user.photo.present? %>
+                  <%= link_to_avatar(user, :thumb_small) %>
+                <% else %>
+                  <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
+                <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                  <span class="label label-info">Member</span>
+                <% end %>
+              </td>
+              <td>
+                <%= user.created_at.strftime("%b %d, %Y") %>
+              </td>
+              <td>
+            <% if community_site? %>
+              <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
+            <% else %>
+              <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                Admin
+              <% else %>
+                <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+              <% end %>
+            <% end %>
+            | <%= link_to "Email", "mailto:#{user.email}" %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

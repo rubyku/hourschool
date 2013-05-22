@@ -2,6 +2,7 @@ class UsersController < DashboardsController
   before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
 
+  #url --> /missions/:id/users
   def index
     @account     = current_account
     @memberships = @account.memberships.order("created_at DESC").uniq
