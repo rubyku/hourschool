@@ -73,6 +73,15 @@ class CoursesController < ApplicationController
     @invite.invitable_id = params[:invitable_id]
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
+
+    ## show differnt layouts and jazz for different accounts
+    if @course.account_id && current_account.blank?
+      redirect_to(course_url(@course, subdomain: @course.account.subdomain)) and return true
+    else
+      if @course.account_id && @course.account_id == 4
+        render template: "courses/#{current_account.subdomain}/show"
+      end
+    end
   end
 
   def update

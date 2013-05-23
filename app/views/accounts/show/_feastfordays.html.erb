@@ -9,7 +9,7 @@
 <div style="float: left">
 <div class="column_heading">Upcoming Feasts</div>
 <div class="three_column" style="margin-right: 30px; height: 430px">
-  <% @courses.where("starts_at > (?)", Time.zone.now).order('starts_at asc').first(1).each do |course| %>
+  <% @upcoming_courses.each do |course| %>
   <%= link_to (image_tag(course.photo.url(:small), :size => "263x167")), course if course.photo.present? %>
   <%= link_to course.title, course, :class => "feast_title" %><br>
   <div style="margin-top: 10px; margin-bottom: 10px">hosted by <%= link_to course.teacher.name, course.teacher %></div>

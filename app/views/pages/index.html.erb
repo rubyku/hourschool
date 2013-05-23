@@ -26,7 +26,7 @@
   </div>
 <% else community_site? %>
 
-  <div style="background-image: none; background-repeat: repeat; height: 520px;">
+  <div style="background-image: none; background-repeat: repeat; height: 570px;">
 
   <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
     <center>
@@ -42,68 +42,47 @@
 
   </div>
 
-  <div style="background-color: white; background-repeat: repeat; height: 700px;">
-    <div class="container_16" style="padding-top: 30px;">
-
-    <center>
-    <p class="lead section-header" style="margin-bottom: 50px">
-      Join a class today
-    </p>
-    </center>
-      <% @upcoming_courses.limit(8).each do |course| %>
-        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-
-          <div class="class-description" style="float: left; width: 170px">
-            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <div class="heading16">
-              <%= link_to course.title, course %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div style="background-color: white; background-repeat: repeat; height: 700px;">
+  <div style="background-color: white; background-repeat: repeat; height: 790px;">
     <div class="container_16" style="padding-top: 30px;">
       <center>
-      <p class="lead section-header" style="margin-bottom: 50px">
-        Past Classes
-      </p>
+        <p class="lead section-header">
+          We run classes
+        </p>
+        <p>Here are a few upcoming ones, taught by people in your community</p>
       </center>
 
-      <% @past_courses.limit(8).each do |course| %>
-        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
-
-          <div class="class-description" style="float: left; width: 170px">
-            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <div class="heading16">
-              <%= link_to course.title, course %>
+      <div class="container_16" style="padding-top: 30px;">
+        <% @upcoming_courses.limit(8).each do |course| %>
+          <% target = course.account_id ? '_blank' : '' %>
+          <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
+            <% end %>
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course, :target => target %>
+              </div>
             </div>
           </div>
+        <% end %>
+      </div>
 
-        </div>
-      <% end %>
+      <div class="container_16" style="padding-top: 30px;">
+        <center>
+          <p style="margin-bottom: 50px">
+            <%= link_to "See more classes", courses_browse_index_path, :style => "text-decoration: underline" %>
+          </p>
+        </center>
+      </div>
     </div>
   </div>
 
 
-  </div>
 
 <% end %>
 

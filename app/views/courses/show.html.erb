@@ -8,9 +8,6 @@
 <% end %>
 
 
-<% if current_account == Account.where(:id => 4).first %>
-  <%= render :partial => 'courses/womendesignbuild/show' %>
-<% else %>
 
   <!-- send back to mission box -->
   <% if @course.status == 'live' && @course.mission.present? && @course.mission.status == "draft" && @course.teacher == current_user %>
@@ -193,4 +190,4 @@
 
 
   </div><!-- end sidebar container -->
-<% end %>
+
