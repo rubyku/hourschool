@@ -1,3 +1,9 @@
+<style type="text/css">
+  .section-header{
+    font-size: 40px;
+  }
+</style>
+
 <% if current_account == Account.where(:id => 4).first %>
   <%= render :partial => 'courses/womendesignbuild/index' %>
 <% elsif current_account == Account.where(:id => 2).first %>
@@ -20,27 +26,32 @@
   </div>
 <% else community_site? %>
 
-  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 730px;">
+  <div style="background-image: none; background-repeat: repeat; height: 520px;">
 
-  <div class="container_16" style="padding-top: 10px;">
-    <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="960px" height="540px" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    <div class="heading28 whiteText" style="margin-top: 30px; margin-bottom: 30px">
-      What is HourSchool?
-    </div>
-    <p style="font-size: 14px; color: white">We think life is better when you’re learning. We think it’s deceptively easy to slip into the routine and to stick with what you know. We think sometimes the best way to keep growing is to get together with other people and learn. We believe that everyone can and should teach. You are the expert of your own stories, share them!</p>
+  <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+    <center>
+    <p class="lead section-header">
+      Never Stop Learning
+    </p>
+    </center>
+  </div>
+
+  <div class="container_16" style="width: 700px; margin-bottom: 20px">
+    <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
   </div>
 
   </div>
 
-
-  <div style="background-image: url(<%= asset_path 'bg-white-pattern.png' %>); background-repeat: repeat; height: 700px;">
+  <div style="background-color: white; background-repeat: repeat; height: 700px;">
     <div class="container_16" style="padding-top: 30px;">
-      <div class="heading28 brown" style="margin-bottom: 30px">
-        Join a class today
-      </div>
 
+    <center>
+    <p class="lead section-header" style="margin-bottom: 50px">
+      Join a class today
+    </p>
+    </center>
       <% @upcoming_courses.limit(8).each do |course| %>
-        <div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
+        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
           <% else %>
@@ -55,7 +66,6 @@
               <%= link_to course.title, course %>
             </div>
           </div>
-
         </div>
       <% end %>
     </div>
@@ -64,12 +74,14 @@
 
   <div style="background-color: white; background-repeat: repeat; height: 700px;">
     <div class="container_16" style="padding-top: 30px;">
-      <div class="heading28 brown" style="margin-bottom: 30px">
-        Past classes
-      </div>
+      <center>
+      <p class="lead section-header" style="margin-bottom: 50px">
+        Past Classes
+      </p>
+      </center>
 
       <% @past_courses.limit(8).each do |course| %>
-        <div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
+        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
           <% else %>

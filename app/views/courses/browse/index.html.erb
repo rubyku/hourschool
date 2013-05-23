@@ -1,7 +1,8 @@
 <div class="grid_16" style="margin-bottom: 30px">
-  <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
-    Upcoming classes
-  </div>
+    <center><p class="lead section-header" style="margin-top: 20px">
+      Upcoming Classes
+    </p></center>
+    <hr>
 
   <% @upcoming_courses.each do |course| %>
     <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
@@ -24,9 +25,10 @@
 </div>
 
 <div class="grid_16">
-  <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
-    Past classes
-  </div>
+    <center><p class="lead section-header">
+      Past Classes
+    </p></center>
+    <hr>
 
   <% @past_courses.each do |course| %>
     <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">

@@ -161,7 +161,7 @@ HourschoolV2::Application.routes.draw do
   match '/build_school'               => 'pages#show', :id => 'build_school'
   match '/wall_of_awesome'            => 'pages#show', :id => 'wall_of_awesome'
   match '/wall_of_missions'           => 'pages#show', :id => 'wall_of_missions'
-  match '/partner_schools'            => 'pages#show', :id => 'partner_schools'
+  match '/pro'                        => 'pages#show', :id => 'pro'
 
   match '/f4d_community'              => 'pages#show', :id => 'feastfordays/community'
   match '/f4d_host'                   => 'pages#show', :id => 'feastfordays/host'

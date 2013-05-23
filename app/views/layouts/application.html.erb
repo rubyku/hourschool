@@ -73,7 +73,7 @@
 
 <%= content_for :first_inside_body do %>
 
-  <% if current_user && (admin_of_current_account? || current_user.admin?) && !community_site? %>
+<!--   <% if current_user && (admin_of_current_account? || current_user.admin?) && !community_site? %>
     <div class='userConfirm'>
       <div class='container_16'>
         <p>
@@ -82,7 +82,7 @@
         </p>
       </div>
     </div>
-  <% end %>
+  <% end %> -->
 
   <%# Header %>
   <% if community_site? || params[:controller].include?("admin") %>

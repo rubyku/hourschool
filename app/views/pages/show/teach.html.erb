@@ -1,127 +1,162 @@
-<div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
-  <div class="heading28 brown">Teaching at HourSchool</div>
-</div>
+<style type="text/css">
+  .nav{
+    text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 1px;
+    a{color: #999;}
+    a:hover{color: #232323;}
+  }
 
-<div class="full-page">
-  <div class="container_16">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 20px">How does HourSchool work?</div>
-      <div style="float: left">
-        <%= image_tag "v2-teach/step1.jpg", :class => "teach_how_it_works" %>
-        <div style="padding-right: 10px; font-size: 11px; width: 180px; text-align: center">
-            Students register and pay for your class online.
-        </div>
+  .navbar-inner{
+    height: 40px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  .white{
+    background-color: white;
+  }
+
+  .section{
+    width: 820px;
+  }
+
+  .section-header{
+    font-size: 40px;
+  }
+
+  .quote-box{
+    border: 1px solid #e6e6e6;
+    padding: 30px 30px 0 30px;
+    margin-bottom: 30px;
+    border-radius: 2px;
+  }
+
+  .hero-unit{
+    background: url(<%= asset_path 'v4-homepage/Banner_01.png' %>);
+    background-position: 50% 0%;
+    padding-top: 150px;
+    margin-bottom: 80px;
+    height: 324px;
+    border-radius: 0px
+  }
+
+  .white-text{
+    color: #fff !important;
+    text-shadow: 0 1px 1px #000;
+  }
+</style>
+
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header">
+      Teaching at HourSchool
+    </p>
+    <p style="width: 550px">
+      How does it work?
+    </p>
+    <div class="row-fluid" style="width: 960px;">
+      <div class="span4">
+        <p><%= image_tag "v2-teach/step1.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; padding-left: 35px">
+          Students register and pay for your class online.
+        </p>
       </div>
-
-      <div style="float: left">
-        <%= image_tag "v2-teach/step2.jpg",  :class => "teach_how_it_works" %>
-        <div style="padding-right: 10px; font-size: 11px; width: 200px; text-align: center">
+      <div class="span4">
+        <p><%= image_tag "v2-teach/step2.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; padding-left: 35px">
           Class is held in person and everyone learns something new.
-        </div>
+        </p>
       </div>
-
-      <div style="float: left">
-        <%= image_tag "v2-teach/step3.jpg", :class => "teach_how_it_works" %>
-        <div style="padding-right: 10px; font-size: 11px; width: 180px; text-align: center">
-            Be a part of the peer learning network in your city.
-        </div>
-      </div>
-
-      <div style="float: left; margin-left: 30px">
-        <div class="teach-start-block">
-          <div class="class-section-heading">Ready to post a class?</div>
-          <div id="new-create-class-button">
-            <%= link_to image_tag("v2/White Star_create a class.png", :id => 'create-class-star'), new_course_path, :id => 'createCourse'%>
-            <div class="create-class-heading">Create a class</div>
-          </div>
-        </div>
+      <div class="span4">
+        <p><%= image_tag "v2-teach/step3.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; padding-left: 35px">
+          Be a part of the peer teaching community!
+        </p>
       </div>
     </div>
-  </div>
+  </center>
+</div>
 
-  <div class="container_16">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 20px">What you can teach</div>
-      <div style="float: left; margin-right: 15px">
-        <%= image_tag "v2-teach/class-social.jpg", :style => "margin-bottom: 5px" %>
-        <div class="heading13-class">
-            The Social
-        </div>
-        <div class="happening-message-description">
-            People hanging out, eating, drinking.<br>
+<div class="container_16" style="margin-top: 20px; margin-bottom: 40px; width: 960px">
+  <center>
+    <%= link_to "Post a class now", new_course_path, :class => "btn btn-large btn-primary", :style => "color: white" %>
+  </center>
+</div>
+<hr>
+
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header">
+      What you can teach
+    </p>
+    <p style="width: 500px">
+      We think school doesn’t have to be about classrooms and curriculums. <br>It can be about garages and get-togethers.
+    </p>
+    <div class="row-fluid" style="width: 960px; margin-top: 30px">
+      <div class="span4">
+        <p><%= image_tag "v2-teach/class-social.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; float: left; width: 90%; padding-top: 10px">
+          Something that can have a social setting, like a cooking class.<br>
             <a href="http://hourschool.com/courses/make-your-own-pasta-in-san-francisco-ca" style="text-decoration: underline">See example</a>
-        </div>
+        </p>
       </div>
-      <div style="float: left; margin-right: 15px">
-        <%= image_tag "v2-teach/class-demo.jpg", :style => "margin-bottom: 5px"  %>
-        <div class="heading13-class">
-            The Demo
-        </div>
-        <div class="happening-message-description">
-            Show someone how to do something.<br>
+      <div class="span4">
+        <p><%= image_tag "v2-teach/class-demo.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; float: left; width: 90%; padding-top: 10px">
+            Something that is hands-on, perhaps working through a problem together.<br>
             <a href="http://hourschool.com/courses/wrenching-weekend-motorcycle-maintenance-in-austin-tx" style="text-decoration: underline">See example</a>
-        </div>
+        </p>
       </div>
-      <div style="float: left">
-        <%= image_tag "v2-teach/class-lesson.jpg", :style => "margin-bottom: 5px"  %>
-        <div class="heading13-class">
-            The Lesson
-        </div>
-        <div class="happening-message-description">
-            Engaging a room full of students.<br>
-            <a href="http://hourschool.com/courses/design-thinking-making-workshop-in-toronto-on" style="text-decoration: underline">See example</a>
-        </div>
+      <div class="span4">
+        <p><%= image_tag "v2-teach/class-lesson.jpg", :class => "width: 100%" %></p>
+        <p style="text-align: left; float: left; width: 90%; padding-top: 10px">
+          Something that is more traditional and might involves a presentation.<br>
+          <a href="http://hourschool.com/courses/design-thinking-making-workshop-in-toronto-on" style="text-decoration: underline">See example</a>
+        </p>
       </div>
     </div>
-  </div>
-
-  <div class="container_16">
-    <div class="page-content">
-      <div class="grid_7" style="margin: 0">
-      <div class="heading14" style="margin-bottom: 20px">What other teachers say</div>
-        <iframe src="http://player.vimeo.com/video/33087846?title=0&amp;byline=0&amp;portrait=0" width="400" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-        <div style="float: left; padding-right: 10px; font-size: 11px; width: 380px; margin: 5px 0 20px 0">
-            Listen to what other teachers have to say about their experience teaching at HourSchool!
-        </div>
-      </div>
-
-      <div class="grid_8" style="margin-left: 15px">
-        <div class="heading14" style="margin-bottom: 20px">We help you get started</div>
-        <a href="../../../pdf/TeachersHandbook-030812-rk.pdf">
-        <%= image_tag "v2/screenshot_teacherHandbook.png" %></a>
-        <div style="float: left">
-          <%= link_to (image_tag "v4/teach/teacher_postcard.png", :style => "height: 258px; width: 218px; margin-left: 10px"), 'assets/v4/teach/teacher_postcard.png' %>
-        </div>
-        <div style="float: left; padding-right: 10px; font-size: 11px; width: 380px; margin: 8px 0 20px 0">
-          <%= link_to image_tag("v2-teach/icon-pdf.png", :size => "25x25"), "../../../pdf/TeachersHandbook-030812-rk.pdf" %>
-          Tips & resources on how to start.
-        </div>
-      </div>
-    </div>
-  </div>
-
+  </center>
 </div>
+<hr>
 
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header">
+      What other teachers say
+    </p>
+    <p style="width: 500px">
+      Listen to what other teachers have to say about their experiences teaching at HourSchool!
+    </p>
+    <div class="row-fluid" style="width: 960px; margin-top: 30px; margin-bottom: 30px">
+      <iframe src="http://player.vimeo.com/video/33087846?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+  </center>
+</div>
+<hr>
 
-<div class="full-page">
-  <div class="container_16">
-    <div class="page-content">
-      <div class="heading14" style="margin-bottom: 20px">Peer teaching fund</div>
-      <p>HourSchool collaborates and co-designs with organizations to build peer teaching programs, with a goal to educate and empower. You can learn more about our theory of change from our <%= link_to "founding story", story_path %>.</p>
-      <p>As a teacher at HourSchool, you can choose to donate your class proceeds towards our peer teaching fund The fund will be used to plan events, cover cost of materials, and compensate time for trainers in these programs. You can’t donate directly without teaching, so start teaching today and empower someone else to do the same. </p>
-
-      <p style="margin: 20px 0 20px 0">Organizations that have benefitted from the Peer Teaching Fund:</p>
+<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+  <center>
+    <p class="lead section-header">
+      Peer Teaching Fund
+    </p>
+    <p style="width: 500px">
+      Donate via teaching
+    </p>
+    <div class="row-fluid" style="width: 700px; margin-top: 30px">
+      <p style="text-align: left">HourSchool collaborates and co-designs with organizations to help their own peer teaching programs. You can learn more about our theory of change from our <%= link_to "founding story", story_path, :style => "color: #ff7733" %>.</p>
+      <p style="text-align: left">As a teacher at HourSchool, you can choose to donate your class proceeds towards our peer teaching fund. The fund will be used to plan events, cover cost of materials, and compensate time for trainers in these programs. You can’t donate directly without teaching, so start teaching today and empower someone else to do the same. </p>
+      <p style="text-align: left; margin: 20px 0 20px 0">Organizations that have benefitted from the Peer Teaching Fund:</p>
       <a href="http://www.greendoors.org"><img src="http://www.workmancommercial.com/images/community/greendoor.jpg" width="100" style="float: left; margin-right: 15px"></a>
-      <%= link_to image_tag("v2-campaign/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
-
-      <div class="well left">
-        <p style="font-weight: 700">If you are an organization looking to adopt the peer teaching model, we would love to work with you. Please email us at <a href="mailto:hello@hourschool.com">hello@hourschool.com</a> and we will chat more.</p>
-      </div>
-
+        <%= link_to image_tag("v2-campaign/frontsteps-logo.png", :style => "float: left; margin-right: 15px"), "http://www.frontsteps.org" %>
     </div>
-  </div>
+  </center>
 </div>
+<hr>
 
+<div class="container_16" style="margin-top: 20px; margin-bottom: 40px; width: 960px">
+  <center>
+    <%= link_to "Post a class now", new_course_path, :class => "btn btn-large btn-primary", :style => "color: white" %>
+  </center>
+</div>
 
 
 <%= content_for :head do %>
