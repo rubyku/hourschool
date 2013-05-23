@@ -1,5 +1,4 @@
 class UsersController < DashboardsController
-  before_filter :authenticate_user!
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
 
   #url --> /missions/:id/users
@@ -43,7 +42,7 @@ class UsersController < DashboardsController
 
     @user            = User.me_or_find(params[:id], current_user)
     feed_query_items = feed_query_items_for_me
-    @comment         = current_user.comments.new(params[:comment])
+    @comment         = current_user.comments.new(params[:comment]) if current_user
 
     @compact_feed_items, @can_paginate, @last_item_displayed_at = genericized_feed(feed_query_items, params)
 
