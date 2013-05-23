@@ -61,8 +61,9 @@
       <%= link_to image_tag(current_account.logo.url(:small)), explore_path %>
       <ul class="nav nav-pills main-nav">
     <% else %>
-      <div style="margin-top: 29px; margin-bottom: 25px">
-        <%= link_to current_account.name, explore_path, :class => "heading28", :style => "color: black" %>
+      <div style="margin-top: 15px; margin-bottom: 25px">
+        <p><%= link_to current_account.name, explore_path, :class => "heading28", :style => "color: black" %></p>
+        <p><%= current_account.description %></p>
       </div>
 
       <ul class="nav nav-pills main-nav" style="margin-top: -55px">
@@ -72,9 +73,6 @@
         </li>
         <li class="dropdown">
           <%= link_to "Members", "/members", :class => "main-nav dropdown-toggle" %>
-        </li>
-        <li class="dropdown">
-          <%= link_to "Blog", "/blog", :class => "main-nav dropdown-toggle" %>
         </li>
         <% if current_user %>
           <li class="dropdown" id="menu1">

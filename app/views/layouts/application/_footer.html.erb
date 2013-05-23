@@ -102,17 +102,7 @@
         <div style="float: left">
           <%= link_to "Admin Dashboard", admin_index_path, :style => "margin-right: 10px" %> |
           <%= link_to "Post new event", new_course_path(:place_name => "The Hub LA",
-      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614, :directions => "Located in the Arts District of Downtown Los Angeles.
-Cross Street :: Alameda between 2nd & 3rd St.
-
-To reach us, please take the exterior set of purple stairs up to the third floor. These stairs are located in the building’s adjacent parking lot ($5 all day parking) across the street from Novel Cafe at 811 Traction.
-
-PARKING LOTS:
-1. 830 Traction’s lot offers $5 parking for the evening.
-2. Lot on Hewitt St. between Traction and 3rd: $5
-
-STREET PARKING:
-Free parking after 6pm. Metered parking available on certain blocks."), :style => "margin-right: 10px" %> |
+      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614), :style => "margin-right: 10px" %> |
           <%= link_to "Logout", destroy_user_session_path, :style => "margin-right: 10px" %>
         </div>
       <% end %>
@@ -135,10 +125,19 @@ Free parking after 6pm. Metered parking available on certain blocks."), :style =
 
 <% else %>
 
-  <div style="margin-top: 60px; padding-bottom: 100px;">
-    <div class="container_16 clearfix">
-    </div>
+  <div class="container_16 enterprise_footer" style="padding-top: 60px">
+    <table id="powered-by">
+      <tr>
+        <td>
+          <div class="footer-powered-by">Powered by</div>
+        </td>
+        <td>
+          <a href="http://www.hourschool.com" target="_blank">
+            <%= image_tag('v2/Logo_Grey.png', :id => "powered-by-logo") %>
+          </a>
+        </td>
+      </td>
+    </table>
   </div>
-
 
 <% end %>

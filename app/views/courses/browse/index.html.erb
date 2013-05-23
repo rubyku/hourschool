@@ -1,3 +1,10 @@
+<% if current_account == Account.find(9) %>
+  <div class="well">
+    Add your own class now!
+    <%= link_to "Add a class", new_course_path, :class => "btn" %>
+  </div>
+<% end %>
+
 <div class="grid_16" style="margin-bottom: 30px">
     <center><p class="lead section-header" style="margin-top: 20px">
       Upcoming Classes
@@ -49,3 +56,4 @@
     </div>
   <% end %>
 </div>
+

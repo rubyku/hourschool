@@ -20,23 +20,12 @@
     <% if @account.photo.present? %>
       <%= image_tag(@account.photo) %>
     <% else %>
-      <div style="background-color: #333; width: 960px; height: 180px;">
+      <div style="background-color: #333; width: 960px; height: 250px;">
         <div class="heading11" style="text-align: center; padding-top: 60px">
           <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
         </div>
       </div>
     <% end %>
-    <div class="grid_16">
-      <div class="heading14" style="margin-top: 10px">
-        About
-      </div>
-      <div class="heading10">
-        <%#= "#{@mission.city.name}, #{@mission.city.state}" %>
-      </div>
-      <p>
-        <%= @account.description %>
-      </p>
-    </div>
   </div><!-- end full page -->
 
 
@@ -61,10 +50,6 @@
         <% end %>
 
         <div class="field">
-          <%= f.text_area :description, :class => "form-med-with-margin", :placeholder => "What inspired you to begin this mission? What does it matter and why is it important to do it now? Why do you want other people to join you?" %>
-        </div>
-
-        <div class="field">
           <%= f.label :photo, 'Upload a photo that represent your mission' %>
           <%= f.file_field :photo %>
           <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
@@ -78,43 +63,19 @@
   </div>
 
 
-  <div class="grid_16" style="margin-bottom: 30px; padding-left: 10px">
+  <div class="grid_16" style="margin-bottom: 30px;">
     <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
-      Join a class today
+      Upcoming classes
     </div>
 
-    <% @upcoming_courses.limit(8).each do |course| %>
-      <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-
-        <div class="class-description" style="float: left; width: 170px">
-          <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-            <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-          </div>
-          <div class="heading16">
-            <%= link_to course.title, course %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="grid_16" style="padding-left: 10px">
-    <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
-      Past classes
-    </div>
-
-    <% @past_courses.limit(8).each do |course| %>
-      <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
+    <% if @upcoming_courses.present? %>
+      <% @upcoming_courses.limit(8).each do |course| %>
+        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
 
           <div class="class-description" style="float: left; width: 170px">
             <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
@@ -124,7 +85,47 @@
               <%= link_to course.title, course %>
             </div>
           </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="row-fluid">
+        <div class="span4" style="background-color: #ccc; height: 250px">
+          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px" %>
+        </div>
+        <div class="span4" style="background-color: #ccc; height: 250px">
+          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
+        </div>
+        <div class="span4" style="background-color: #ccc; height: 250px">
+          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
+        </div>
       </div>
+    <% end %>
+  </div>
+
+
+  <div class="grid_16">
+    <% if @past_courses.present? %>
+      <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+        Past classes
+      </div>
+      <% @past_courses.limit(8).each do |course| %>
+        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
+            </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 
