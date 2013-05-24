@@ -48,8 +48,6 @@ class AccountsController < ApplicationController
 
     if current_account == Account.where(:id => 7).first
       redirect_to admin_index_path
-    elsif current_account == Account.where(:id => 5).first
-      redirect_to mission_path(:id => 7)
     elsif current_account == Account.where(:id => 2).first
       @courses = Course.order(:starts_at, :created_at)
     else

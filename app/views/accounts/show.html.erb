@@ -7,10 +7,6 @@
 <% elsif current_account == Account.where(:id => 2).first %><!-- A2Reskilling -->
     <%= render :partial => 'accounts/show/a2reskilling', :locals => {:courses => @courses} %>
 
-
-<% elsif current_account == Account.where(:id => 5).first %><!-- Center61 -->
-  <!-- only has one mission, no homepage yet -->
-
 <% elsif current_account == Account.where(:id => 7).first %><!-- Hub LA -->
   <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
 
@@ -18,7 +14,7 @@
 
   <div class="full-page" style="background-color: #f0f0f0">
     <% if @account.photo.present? %>
-      <%= image_tag(@account.photo) %>
+      <%= image_tag(@account.photo(:banner) )%>
     <% else %>
       <div style="background-color: #333; width: 960px; height: 250px;">
         <div class="heading11" style="text-align: center; padding-top: 60px">
@@ -63,47 +59,55 @@
   </div>
 
 
-  <div class="grid_16" style="margin-bottom: 30px; padding-left: 10px">
+  <div class="grid_16" style="margin-bottom: 30px;">
     <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
       Upcoming classes
     </div>
 
-    <% if @upcoming_courses.present? %>
-      <% @upcoming_courses.limit(8).each do |course| %>
-        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
 
-          <div class="class-description" style="float: left; width: 170px">
-            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <div class="heading16">
-              <%= link_to course.title, course %>
+    <% if @upcoming_courses.present? %>
+      <div class="row-fluid" style="padding-left: 10px">
+        <% @upcoming_courses.limit(8).each do |course| %>
+          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="row-fluid">
-        <div class="span4" style="background-color: #ccc; height: 250px">
-          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px" %>
-        </div>
-        <div class="span4" style="background-color: #ccc; height: 250px">
-          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
-        </div>
-        <div class="span4" style="background-color: #ccc; height: 250px">
-          <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
-        </div>
+        <% end %>
       </div>
+    <% else %>
+      <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
+        <div class="row-fluid" style="margin-left: 0">
+          <div class="span4" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px" %>
+          </div>
+          <div class="span4" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
+          </div>
+          <div class="span4" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 105px"  %>
+          </div>
+        </div>
+      <% else %>
+        <center><p>No upcoming class at the moment.</p></center>
+      <% end %>
+
     <% end %>
   </div>
 
 
-  <div class="grid_16">
+  <div class="grid_16" style="padding-left: 10px">
     <% if @past_courses.present? %>
       <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
         Past classes
