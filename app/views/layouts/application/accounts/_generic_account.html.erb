@@ -90,13 +90,13 @@
                   <%= link_to "Settings", edit_user_registration_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                   <p class="nav-description">Update profile? Less emails? Not a problem!</p>
                 </div>
-              <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
+<!--               <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
               <li class="dropdown-menu-wrapper"></li>
                 <div class="dropdown-menu-item">
                   <%= link_to "Admin Settings", edit_account_path(:admin), :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
                   <p class="nav-description">Everything you need to keep growing your community!</p>
                 </div>
-              <% end %>
+              <% end %> -->
               <li class="dropdown-menu-wrapper"></li>
                 <div class="dropdown-menu-item">
                   <%= link_to "Sign out", destroy_user_session_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
