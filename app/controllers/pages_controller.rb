@@ -25,7 +25,7 @@ class PagesController < ApplicationController
       @fav4 = Course.where(:id => 384).first || Course.live.random.first
       render :layout => 'home'
     else
-      redirect_to explore_url
+      redirect_to home_url
     end
   end
 

@@ -64,7 +64,7 @@ class RegistrationsController < Devise::RegistrationsController
       if community_site?
         previous_path_or dashboards_path
       else
-        previous_path_or explore_path
+        previous_path_or home_path
       end
     end
 
@@ -74,7 +74,7 @@ class RegistrationsController < Devise::RegistrationsController
       if community_site?
         previous_path_or dashboards_path
       else
-        previous_path_or explore_path
+        previous_path_or home_path
       end
     end
 end
