@@ -4,34 +4,15 @@
   }
 </style>
 
-<% if current_account == Account.where(:id => 4).first %>
-  <%= render :partial => 'courses/womendesignbuild/index' %>
-<% elsif current_account == Account.where(:id => 2).first %>
-  <div class="page">
-    <div class="page-content">
-      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
-      <div class="page-section-float-right">
-        <table class="view-more">
-          <tr>
-            <td>
-              <%= will_paginate @courses, :previous_label => "Prev" %>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <% content_for :sidebar do %>
-        <%= link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px" %>
-      <% end %>
-    </div>
-  </div>
-<% else community_site? %>
+
+<% if community_site? %>
 
   <div style="background-image: none; background-repeat: repeat; height: 560px;">
 
   <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 530px">
     <center>
       <p class="lead section-header">
-        What is HourSchool?
+        Welcome to HourSchool
       </p>
       <p style="font-size: 14px; line-height: 1.5em; text-align: center">HourSchool is a social school built from your community. We offer peer-led, bite-sized classes, taught by people in your community.</p>
     </center>
@@ -84,6 +65,154 @@
 
   </div>
 
+<% elsif current_account == Account.where(:id => 4).first %><!-- Women Design Build -->
+  <%= render :partial => 'courses/womendesignbuild/index' %>
+
+<% elsif current_account == Account.where(:id => 1).first %><!-- Feast for Days -->
+  <%= render :partial => 'accounts/show/feastfordays', :locals => {:courses => @courses} %>
+
+<% elsif current_account == Account.where(:id => 2).first %><!-- A2Reskilling -->
+    <%= render :partial => 'accounts/show/a2reskilling', :locals => {:courses => @courses} %>
+
+<% elsif current_account == Account.where(:id => 7).first %><!-- Hub LA -->
+  <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
+
+<% else %><!-- New Generic School -->
+
+  <div class="full-page" style="background-color: #f0f0f0">
+    <% if @account.photo.present? %>
+      <%= image_tag(@account.photo(:banner) )%>
+    <% else %>
+      <div style="background-color: #333; width: 960px; height: 250px;">
+        <div class="heading11" style="text-align: center; padding-top: 60px">
+          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
+        </div>
+      </div>
+    <% end %>
+  </div><!-- end full page -->
+
+
+  <!-- edit account info modal -->
+  <div class="modal hide" id="addBasicInfo">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add Basic info</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@account) do |f| %>
+        <% if @account.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@account.errors.count, "error") %> prohibited this from being saved:</h2>
+
+            <ul>
+            <% @account.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :photo, 'Upload a photo that represent your mission' %>
+          <%= f.file_field :photo %>
+          <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+        <%= f.submit "Save changes", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid_16">
+    <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+      Upcoming classes
+    </div>
+
+    <% if @upcoming_courses.present? %>
+      <div class="row-fluid" style="padding-left: 10px">
+        <% @upcoming_courses.limit(12).each do |course| %>
+          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <center><p>No upcoming class at the moment.</p></center>
+      <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
+        <div class="row-fluid" style="margin-left: 0; margin-bottom: 30px">
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px" %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="grid_16" style="margin-bottom: 30px; width: 920px">
+      <div class="well">
+        <p class="bold left">Everyone is welcome to contribute and add their own class. Share what you know and join our community!</p>
+        <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid_16" style="padding-left: 10px">
+    <% if @past_courses.present? %>
+      <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+        Past classes
+      </div>
+      <% @past_courses.limit(4).each do |course| %>
+        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="container_16" style="padding-top: 30px;">
+    <center>
+      <p style="margin-bottom: 50px">
+        <%= link_to "See more classes", courses_browse_index_path, :style => "text-decoration: underline" %>
+      </p>
+    </center>
+  </div>
 
 
 <% end %>

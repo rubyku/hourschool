@@ -121,7 +121,6 @@ HourschoolV2::Application.routes.draw do
 
   match '/errand'                     => 'admin#show',        :id => 'errand'
 
-  match '/home'                       => 'accounts#show'
   match '/members'                    => 'users#index'
   match '/classes'                    => 'Courses::Browse#index'
   match '/conversations'              => 'comments#index'

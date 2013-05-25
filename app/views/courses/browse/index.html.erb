@@ -13,7 +13,7 @@
 
   <% @upcoming_courses.each do |course| %>
     <% target = course.account_id ? '_blank' : '' %>
-    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
+    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
       <% if course.photo.present? %>
         <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
       <% else %>
@@ -39,7 +39,7 @@
 
   <% @past_courses.each do |course| %>
     <% target = course.account_id ? '_blank' : '' %>
-    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
+    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
       <% if course.photo.present? %>
         <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
       <% else %>

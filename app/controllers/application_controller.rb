@@ -102,7 +102,7 @@ class ApplicationController < ActionController::Base
 
 
     def skip_if_logged_in
-      redirect_to home_path if current_user.present?
+      redirect_to root_path if current_user.present?
     end
 
     def previous_path_or(url)
@@ -126,12 +126,7 @@ class ApplicationController < ActionController::Base
 
 
     def after_sign_in_path_for(resource)
-      if community_site?
-        previous_path_or(dashboards_path)
-      else
-        previous_path_or(home_path)
-      end
-
+      previous_path_or(root_path)
     end
 
 end
