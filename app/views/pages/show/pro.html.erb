@@ -43,6 +43,51 @@
     color: #fff !important;
     text-shadow: 0 1px 1px #000;
   }
+
+/* Pricing Tables */
+.pricing-table {
+  border: solid 1px #dddddd;
+  margin-left: 0;
+  margin-bottom: 1.25em; }
+  .pricing-table * {
+    list-style: none;
+    line-height: 1; }
+  .pricing-table .title {
+    background-color: #dddddd;
+    padding: 0.9375em 1.25em;
+    text-align: center;
+    color: #333333;
+    font-weight: bold;
+    font-size: 1em; }
+  .pricing-table .price {
+    background-color: #eeeeee;
+    padding: 0.9375em 1.25em;
+    text-align: center;
+    color: #333333;
+    font-weight: normal;
+    font-size: 1.5em; }
+  .pricing-table .description {
+    background-color: white;
+    padding: 0.9375em;
+    text-align: center;
+    color: #777777;
+    font-size: 0.875em;
+    font-weight: normal;
+    line-height: 1.4;
+    border-bottom: dotted 1px #dddddd; }
+  .pricing-table .bullet-item {
+    background-color: white;
+    padding: 0.9375em;
+    text-align: center;
+    color: #333333;
+    font-size: 1em;
+    font-weight: normal;
+    border-bottom: dotted 1px #dddddd; }
+  .pricing-table .cta-button {
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 1.25em 1.25em 0;
+    height: 50px; }
 </style>
 
 <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
@@ -176,11 +221,36 @@
 
 <hr>
 
-<div class="container_16" style="margin-top: 60px; margin-bottom: 20px; width: 700px">
+<div class="container_16" style="margin-top: 60px; margin-bottom: 20px; width: 960px">
   <center>
     <p class="lead section-header">How much does it cost?</p>
     <p style="width: 700px">Try for free, then pick a plan that best fits your needs.</p>
-    <%= image_tag 'v4-homepage/pricing.png', :style => "width: 700px; margin-top: 30px;" %>
+    <div class="row-fluid" style="margin-top: 30px">
+      <div class="span6">
+        <ul class="pricing-table">
+          <li class="title">Standard</li>
+          <li class="price">$50/month</li>
+          <li class="description">Simple monthly fee. No hidden fees. Cancel anytime.</li>
+          <li class="bullet-item">Unlimited classes</li>
+          <li class="bullet-item">Unlimited users</li>
+          <li class="bullet-item">Choose from our pre-built templates</li>
+          <li class="bullet-item">Standard metrics</li>
+          <li class="cta-button"><%= link_to "Try HourSchool Pro free for 30 days", new_account_path, :class => "btn btn-primary btn-large white-text" %></li>
+        </ul>
+      </div>
+      <div class="span6">
+        <ul class="pricing-table">
+          <li class="title">Tailored</li>
+          <li class="price">One-time fee</li>
+          <li class="description">We customize to match exactly what you need.</li>
+          <li class="bullet-item">Unlimited classes</li>
+          <li class="bullet-item">Unlimited users</li>
+          <li class="bullet-item">Custom CSS</li>
+          <li class="bullet-item">Custom metrics</li>
+          <li class="cta-button"><%= link_to "Hire Us", 'mailto:hello@hourschool.com', :class => "btn btn-primary btn-large" %></li>
+        </ul>
+      </div>
+    </div>
   </center>
 </div>
 
@@ -196,8 +266,6 @@
       1.877.246.4689
     </p>
 
-    <%= link_to "Try HourSchool Pro free for 30 days", new_account_path, :class => "btn btn-large btn-primary", :style => "color: white" %>
-    <p style="margin-top: 10px">$50/month after trial</p>
 
     </center>
 </div>
