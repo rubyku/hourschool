@@ -4,27 +4,39 @@
   }
 </style>
 
-<%= render :partial => '/pages/show/subnav/about-subnav' %>
+<% if community_site? %>
 
-<div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
-  <center>
-    <p class="lead section-header">
-      About
-    </p>
-  </center>
-</div>
-<hr>
+  <%= render :partial => '/pages/show/subnav/about-subnav' %>
 
-<div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
-  <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;color=ff9933" width="960px" height="540px"  frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-</div>
+  <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+    <center>
+      <p class="lead section-header">
+        About
+      </p>
+    </center>
+  </div>
+  <hr>
 
-<div class="container_16" style="width: 490px">
-  <center><div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Our Manifesto</div></center>
-  <p style="font-size: 15px; line-height: 2em">We believe in taking responsibility for how interesting our lives are. We believe the best old stories were once new experiences. We believe the beer tastes better on the way home from a good adventure. We believe trying new things isn’t something we have to justify to anybody. We believe in being beginners, because we know passions are found through experimentation and involvement. We believe if we can't fix it, we don't truly own it. We believe if learning isn’t a little bit scary, we’re doing it wrong.  We believe there’s an enormous amount of knowledge in the people around us — we just need to pay more attention to the quiet heroes. We believe as soon as we take the first step, people will come out of the woodwork to help us. We believe we are the experts of our own stories and sharing them makes our communities stronger. We believe success shouldn’t be defined by what we have, but what we have to share. We believe learning isn't consumption, it's participation, and it's time to participate in our own lives.</p>
-</div>
+  <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
+    <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;color=ff9933" width="960px" height="540px"  frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  </div>
 
-<div class="container_16" style="margin-bottom: 20px; width: 490px">
-  <div class="big-quote">We believe in starting now.</div>
-  <p style="text-align: right; margin-bottom: 20px">Love, HourSchool</p>
-</div>
+  <div class="container_16" style="width: 490px">
+    <center><div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Our Manifesto</div></center>
+    <p style="font-size: 15px; line-height: 2em">We believe in taking responsibility for how interesting our lives are. We believe the best old stories were once new experiences. We believe the beer tastes better on the way home from a good adventure. We believe trying new things isn’t something we have to justify to anybody. We believe in being beginners, because we know passions are found through experimentation and involvement. We believe if we can't fix it, we don't truly own it. We believe if learning isn’t a little bit scary, we’re doing it wrong.  We believe there’s an enormous amount of knowledge in the people around us — we just need to pay more attention to the quiet heroes. We believe as soon as we take the first step, people will come out of the woodwork to help us. We believe we are the experts of our own stories and sharing them makes our communities stronger. We believe success shouldn’t be defined by what we have, but what we have to share. We believe learning isn't consumption, it's participation, and it's time to participate in our own lives.</p>
+  </div>
+
+  <div class="container_16" style="margin-bottom: 20px; width: 490px">
+    <div class="big-quote">We believe in starting now.</div>
+    <p style="text-align: right; margin-bottom: 20px">Love, HourSchool</p>
+  </div>
+
+<% else %>
+
+  <% if current_account %>
+    <%= current_account.about %>
+  <% end %>
+
+<% end %>
+
+
