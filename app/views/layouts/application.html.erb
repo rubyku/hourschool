@@ -4,6 +4,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
 <%- end %>
 
+
 <%= content_for :head do %>
   <!--
   ooooo   ooooo                                 .oooooo..o           oooo                            oooo
@@ -26,7 +27,10 @@
     <meta name="description" content="Feast for Days is an Austin startup that makes it easy for people to cook and share food." />
     <meta name="keywords" content="feast for days, feastfordays, feast4days, collaborative cooking, austin, feast, food, cook, cooking" />
   <% end %>
+
 <%- end -%>
+
+
 
 <% content_for :head_scripts do -%>
   <%= javascript_include_tag 'application' %>
@@ -69,25 +73,38 @@
       setTimeout('document.location = "' + link.href + '"', 100);
     }
   </script>
+
+  <!-- start Mixpanel --><script type="text/javascript">(function(c,a){window.mixpanel=a;var b,d,h,e;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.1.min.js';d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?
+g=a[f]=[]:f="mixpanel";g.people=g.people||[];h="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config people.identify people.set people.increment".split(" ");for(e=0;e<h.length;e++)d(g,h[e]);a._i.push([b,c,f])};a.__SV=1.1})(document,window.mixpanel||[]);
+mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
+
 <%- end -%>
 
 <%= content_for :first_inside_body do %>
 
-<!--   <% if current_user && (admin_of_current_account? || current_user.admin?) && !community_site? %>
+  <%# Admin bar %>
+  <% if current_user && !community_site? && (admin_of_current_account? || current_user.admin?) %>
     <div class='userConfirm'>
       <div class='container_16'>
-        <p>
-          <span style="color: #b4c9d9">HourSchool</span>
-          <%= link_to "Site", "http://#{current_account.subdomain}.hourschool.com", :class => "pull-right" %><%= link_to "Admin | ", admin_index_path, :class => "pull-right" %>
+        <p style="float: left">
+          <span class="reminder">HourSchool Pro</span>
+        </p>
+        <p style="float: right">
+          <%= link_to "Site", "http://#{current_account.subdomain}.hourschool.com" %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Admin", admin_index_path %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Post a new class", new_course_path %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Email HourSchool", "mailto:hello@hourschool.com" %></span>
         </p>
       </div>
     </div>
-  <% end %> -->
+  <% end %>
+
 
   <%# Header %>
-  <% if community_site? || params[:controller].include?("admin") %>
-    <%# do nothing %>
-  <% elsif current_account == Account.where(:id => 1).first %>
+  <% if current_account == Account.where(:id => 1).first %>
     <%= render 'layouts/application/accounts/feastfordays' %>
   <% elsif current_account == Account.where(:id => 2).first %>
     <%= render 'layouts/application/accounts/a2reskilling' %>
@@ -95,10 +112,12 @@
     <%= render 'layouts/application/accounts/missionzero' %>
   <% elsif current_account == Account.where(:id => 4).first %>
     <%= render 'layouts/application/accounts/womendesignbuild' %>
+  <% elsif current_account == Account.where(:id => 5).first %>
+    <%= render 'layouts/application/accounts/center61' %>
   <% elsif current_account == Account.where(:id => 7).first %>
     <%= render 'layouts/application/accounts/hubla' %>
   <% else %>
-    <%= render 'layouts/application/accounts/generic_account' %>
+    <%= render 'layouts/application/header' %>
   <%- end -%>
 
 <%- end -%>
@@ -107,10 +126,6 @@
 <%# Main Layout %>
 
 <%= render :layout => 'layouts/document' do %>
-
-  <% if community_site? %>
-    <%= render 'layouts/application/header' unless yield(:body_id) == "mission_builder" %>
-  <% end %>
 
   <%# Flash %>
   <div class='container_16'>
@@ -146,4 +161,5 @@
 <%- end -%>
 
 <%= render 'layouts/application/footer' %>
+
 

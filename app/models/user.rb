@@ -61,7 +61,8 @@ class User < ActiveRecord::Base
                                         :thumb_large => ["125x125#", :jpg],
                                         :thumb_75    => ["75x75#", :jpg],
                                         :thumb_small => ["50x50#",   :jpg],
-                                        :thumb_35    => ["35x35#",   :jpg]
+                                        :thumb_35    => ["35x35#",   :jpg],
+                                        :thumb_25    => ["25x25#",   :jpg]
                                         },
                             :storage => :s3,
                             :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -162,7 +163,6 @@ class User < ActiveRecord::Base
     @geocode ||= Geokit::Geocoders::GoogleGeocoder.geocode(zip)
     @geocode.lng
   end
-
 
   def zipcode
     self.zip
