@@ -5,6 +5,21 @@
     <div class="white">
       <div class="page-content">
         <div class="heading14 pull-left" style="margin-bottom: 20px">
+          WDB teachers
+        </div>
+        <% @teachers.each do |teacher| %>
+          <tr>
+            <%= link_to teacher.name, teacher %><br>
+          </tr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="span9">
+    <div class="white">
+      <div class="page-content">
+        <div class="heading14 pull-left" style="margin-bottom: 20px">
           Attended Most Events
         </div>
         <table class="table table-bordered">

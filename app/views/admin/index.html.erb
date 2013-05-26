@@ -3,7 +3,7 @@
 
   <div class="span9">
 
-    <div class="white" style="margin-bottom: 20px">
+<!--     <div class="white" style="margin-bottom: 20px">
       <div style="padding: 10px; background-color: #f7f7f7">
         <ul class="nav">
           <li class="pull-left"><strong>Event Registrations</strong></li>
@@ -20,14 +20,14 @@
             <% 5.times do |n| %>
               <tr>
                 <% day = n.days.ago %>
-                <td><%= day %></td>
+                <td><%= day.strftime("%Y/%m/%d") %></td>
                 <td><%= @registrations_by_day[day.day.to_s] || 0 %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
 
     <div class="white" style="margin-bottom: 20px">
       <div style="padding: 10px; background-color: #f7f7f7">
@@ -52,7 +52,7 @@
                     <%= link_to course.title, course %>
                   </div>
                 <td>
-                  <%= course.starts_at.strftime("%y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+                  <%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
                 </td>
                 <td>
                   <div class="progress">
@@ -93,7 +93,7 @@
           <thead>
             <th>Name</th>
             <th>Joined on</th>
-            <th>Referral</th>
+<!--             <th>Referral</th> -->
             <th>Action</th>
           </thead>
           <tbody>
@@ -105,11 +105,11 @@
                   </div>
                 </td>
                 <td>
-                  <%= member.created_at %>
+                  <%= member.created_at.strftime("%Y/%m/%d") %>
                 </td>
-                <td>
+<!--                 <td>
                   <%= User.where(:id => member.user.roles.first.invite_user_id).first if member.user.roles.present? %>
-                </td>
+                </td> -->
                 <td>
                   <div class="btn-group">
                     <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
@@ -121,7 +121,6 @@
                     </ul>
                   </div>
                 </td>
-              </tr>
               </tr>
             <% end %>
           </tbody>

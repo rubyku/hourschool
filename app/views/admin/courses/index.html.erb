@@ -16,19 +16,45 @@
           <%= link_to "Post event", new_course_path, :class => "btn pull-right" %>
         </div>
         <table class="table">
-          <% @courses.each do |course| %>
-            <tr>
-              <td class="span4">
-                <div class="heading13 brown">
-                  <%= link_to course.title, course %>
-                </div>
-              <td><%= course.starts_at.strftime("%y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
-              </td>
-              <td>
-                <%= link_to 'Edit', edit_course_path(course) %>
-              </td>
-            </tr>
-          <% end %>
+          <thead>
+            <th>Event name</th>
+            <th>Event time</th>
+            <th>Attendance</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% @courses.each do |course| %>
+              <tr>
+                <td class="span3">
+                  <div class="heading13 brown">
+                    <%= link_to course.title, course %><br>
+                    by <%= course.teacher.name %>
+                  </div>
+                <td><%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+                </td>
+                <td>
+                  <div class="progress">
+                    <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;"><%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %></div>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                      Action
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Promote event', "" %></li>
+                      <li><%= link_to 'Edit event', edit_course_path(course) %></li>
+                      <li><%= link_to 'Cancel event', edit_course_path(course) %></li>
+                      <li><%= link_to "Contact teacher", "" %></li>
+                      <li><%= link_to "Contact students", "" %></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
       </div>
     </div>

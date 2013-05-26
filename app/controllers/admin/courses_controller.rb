@@ -2,7 +2,7 @@ class Admin::CoursesController < ApplicationController
   layout 'application'
 
   def index
-    @courses = current_account ? current_account.courses.order('DATE(starts_at) DESC').where(:status => "live") : Course.order('DATE(starts_at) DESC').where(:status => "live")
+    @courses = current_account ? current_account.courses.order('DATE(starts_at) ASC').where(:status => "live") : Course.order('DATE(starts_at) ASC').where(:status => "live")
     @course = Course.new
 
     #@courses = current_account ? current_account.courses.order('DATE(date) DESC').where(:status => "live") : Course.order('DATE(date) DESC').where(:status => "live")

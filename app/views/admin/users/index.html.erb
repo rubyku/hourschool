@@ -15,36 +15,52 @@
           </div>
         </div>
         <table class="table">
-          <% @users.each do |user| %>
-            <tr>
-              <td>
-                <% if user.photo.present? %>
-                  <%= link_to_avatar(user, :thumb_small) %>
-                <% else %>
-                  <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
-                <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
-                  <span class="label label-info">Member</span>
-                <% end %>
-              </td>
-              <td>
-                <%= user.created_at.strftime("%b %d, %Y") %>
-              </td>
-              <td>
-            <% if community_site? %>
-              <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
-            <% else %>
-              <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
-                Admin
-              <% else %>
-                <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
-              <% end %>
+          <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Joined on</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
+                  <% if @teachers.include?(user) %>
+                    <span class="label label-info">Teacher</span>
+                  <% end %>
+                </td>
+                <td class="span3">
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= user.memberships.where(:account_id => current_account).first.created_at.strftime("%b %d, %Y") %>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                      Action
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%#= link_to "Make Teacher", "" %></li>
+                      <li>
+                        <% if community_site? %>
+                          <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
+                        <% else %>
+                          <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                            Admin
+                          <% else %>
+                            <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+                          <% end %>
+                        <% end %>
+                      </li>
+                      <li><%= link_to "Email", "mailto:#{user.email}" %></li>
+                    </ul>
+                  </div>
+                </td>
             <% end %>
-            | <%= link_to "Email", "mailto:#{user.email}" %>
-          <% end %>
+          </tbody>
         </table>
       </div>
     </div>
