@@ -4,7 +4,7 @@ class UsersController < DashboardsController
   #url --> /missions/:id/users
   def index
     @account     = current_account
-    @memberships = @account.memberships.order("created_at DESC").uniq
+    @memberships = @account.memberships.order("created_at ASC").uniq
 
     @invite = Invite.new
     @invite.invitable_id = params[:invitable_id]
