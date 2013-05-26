@@ -133,6 +133,35 @@ class UserMailer < ActionMailer::Base
          :subject => "#{inviter.name} wants you to join #{account.name}"
   end
 
+  def account_new_member(user, account, new_member)
+    @account    = account
+    @user       = user
+    @new_member = new_member
+    mail :to => @user.email,
+         :bcc => "admin@hourschool.com",
+         :subject => "#{@new_member.name} joined #{@account.name}"
+  end
+
+  def account_new_course(user, account, new_course)
+    @account    = account
+    @user       = user
+    @new_course = new_course
+    mail :from => "#{@account.name} <hello@hourschool.com>",
+         :to => @user.email,
+         :bcc => "admin@hourschool.com",
+         :subject => "[New event]: #{@new_course.title}"
+  end
+
+  def account_new_comment(user, account, new_comment)
+    @account     = account
+    @user        = user
+    @new_comment = new_comment
+    mail :from => "#{@account.name} <hello@hourschool.com>",
+         :to => @user.email,
+         :bcc => "admin@hourschool.com",
+         :subject => "#{@new_comment.user} left a new comment"
+  end
+
   #----------------------------------------------------------------------------------------------------------------------------
 
   def mission_new_member(user, mission, new_member)

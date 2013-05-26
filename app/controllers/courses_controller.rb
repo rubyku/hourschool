@@ -104,9 +104,9 @@ class CoursesController < ApplicationController
           end
           if @course.previous_changes["status"]
             UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-            if community_site? && @course.mission.present?
-              @course.mission.users.each do |user|
-                UserMailer.delay.mission_new_course(user, @course.mission, @course) if user.wants_newsletter? && user != current_user
+            if current_account == Account.where(:id => 9).first && @course.account.present?
+              @course.account.users.each do |user|
+                UserMailer.delay.account_new_course(user, @course.account, @course)
               end
             end
           end

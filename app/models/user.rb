@@ -287,6 +287,13 @@ class User < ActiveRecord::Base
       current_account = nil
     end
     UserMailer.user_registration(self.email, self.name, current_account).deliver
+
+    if current_account == Account.where(:id => 9).first
+      @admins = Membership.where(:account_id => current_account, :admin => true)
+      @admins.each do |admin|
+        UserMailer.delay.account_new_member(admin.user, current_account, self)
+      end
+    end
   end
 
   #after user has put in payment info, a stripe customer is created

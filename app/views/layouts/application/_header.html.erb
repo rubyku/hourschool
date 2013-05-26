@@ -93,7 +93,11 @@
         <% if current_user %>
           <li class="dropdown exception" id="menu1">
             <a class="dropdown-toggle main-nav exception" data-toggle="dropdown" href="#menu1">
-              <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
+              <% if current_user.photo.present? %>
+                <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
+              <% else %>
+                <%= image_tag 'v2/Avatars_01_V1.png', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
+              <% end %>
               <%= image_tag "v2/arrow_grey_profile.png", :style => "margin: 3px 0px 0px 3px" %>
             </a>
             <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px">
@@ -169,7 +173,11 @@
         <% if current_user %>
           <li class="dropdown exception" id="menu1">
             <a class="dropdown-toggle main-nav exception" data-toggle="dropdown" href="#menu1">
-              <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
+              <% if current_user.photo.present? %>
+                <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
+              <% else %>
+                <%= image_tag 'v2/Avatars_01_V1.png', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
+              <% end %>
               <%= image_tag "v2/arrow_grey_profile.png", :style => "margin: 3px 0px 0px 3px" %>
             </a>
             <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px;">
