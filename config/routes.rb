@@ -13,8 +13,6 @@ HourschoolV2::Application.routes.draw do
     end
   end
 
-  resources :pre_mission_signups
-
   resources :tracks
   resources :flowcharts
 
@@ -36,7 +34,7 @@ HourschoolV2::Application.routes.draw do
     resources :users
     resources :payments
     resources :metrics
-    resources :trends
+    resources :reports
     resources :settings
   end
 
