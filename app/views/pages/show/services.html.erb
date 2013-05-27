@@ -1,7 +1,6 @@
 <style type="text/css">
-  .section-header{
-    font-size: 40px;
-  }
+  .section-header{font-size: 40px;}
+  a{color: #ff7773;}
 </style>
 
 <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
@@ -47,8 +46,8 @@
 
 
 <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
-  <%= image_tag 'v4/services/greendoors.jpg', :style => "margin-bottom: 10px" %>
-  <div class="heading14" style="margin-top: 10px; margin-bottom: 5px">Green Doors</div>
+  <%= link_to (image_tag 'v4/services/greendoors.jpg', :style => "margin-bottom: 10px"), projects_greendoors_path %>
+  <div class="heading14" style="margin-top: 10px; margin-bottom: 5px"><%= link_to "Green Doors", projects_greendoors_path%></div>
   <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
 
   <%= image_tag 'v4/services/center61.jpg', :style => "margin-top: 30px; margin-bottom: 10px" %>
