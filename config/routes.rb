@@ -145,6 +145,8 @@ HourschoolV2::Application.routes.draw do
   match '/about-subnav'               => 'pages#show', :id => 'about-subnav'
 
   match '/business'                   => 'pages#show', :id => 'business'
+  match '/services'                   => 'pages#show', :id => 'services'
+  match '/projects/greendoors'        => 'pages#show', :id => 'greendoors'
   match '/store'                      => 'pages#show', :id => 'store'
   match '/about'                      => 'pages#show', :id => 'about'
   match '/team'                       => 'pages#show', :id => 'team'
