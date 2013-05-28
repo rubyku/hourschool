@@ -5,38 +5,63 @@
   </div>
 <% end %>
 
-<center><p class="lead section-header" style="margin-top: 20px">
-  <a href="#" id="all-link">All Upcoming Classes</a> // <a href="#" id="austin-link">in Austin only</a> // <a href="#" id="annarbor-link">in Ann Arbor only</a>
-</p></center>
-<hr>
-
-<div class="grid_16" style="margin-bottom: 30px" id="all-classes">
-  <% @upcoming_courses.each do |course| %>
-    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
-  <% end %>
-</div>
-
-<div class="grid_16" style="display:none" id="austin-classes">
-  <% @austin_courses.each do |course| %>
-    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
-  <% end %>
-</div>
-
-<div class="grid_16" style="display:none" id="annarbor-classes">
-  <% @annarbor_courses.each do |course| %>
-    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
-  <% end %>
-</div>
-
-<div class="grid_16">
-  <center><p class="lead section-header">
-    Past Classes
+<% if community_site? %>
+  <center><p class="lead section-header" style="margin-top: 20px">
+    <a href="#" id="all-link">All Upcoming Classes</a> // <a href="#" id="austin-link">in Austin only</a> // <a href="#" id="annarbor-link">in Ann Arbor only</a>
   </p></center>
   <hr>
-  <% @past_courses.each do |course| %>
-    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
-  <% end %>
-</div>
+
+  <div class="grid_16" style="margin-bottom: 30px" id="all-classes">
+    <% @upcoming_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+  <div class="grid_16" style="display:none" id="austin-classes">
+    <% @austin_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+  <div class="grid_16" style="display:none" id="annarbor-classes">
+    <% @annarbor_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+  <div class="grid_16">
+    <center><p class="lead section-header">
+      Past Classes
+    </p></center>
+    <hr>
+    <% @past_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <div class="grid_16" style="margin-bottom: 30px">
+    <center><p class="lead section-header">
+      Upcoming Classes
+    </p></center>
+    <hr>
+    <% @upcoming_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+  <div class="grid_16">
+    <center><p class="lead section-header">
+      Past Classes
+    </p></center>
+    <hr>
+    <% @past_courses.each do |course| %>
+      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+    <% end %>
+  </div>
+
+<% end %>
 
 <script type="text/javascript">
   $("#all-link").click(function(){
