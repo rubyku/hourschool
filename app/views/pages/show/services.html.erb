@@ -1,6 +1,16 @@
 <style type="text/css">
   .section-header{font-size: 40px;}
   a{color: #ff7773;}
+  img
+  {
+  opacity:1.0;
+  filter:alpha(opacity=40); /* For IE8 and earlier */
+  }
+  img:hover
+  {
+  opacity:0.6;
+  filter:alpha(opacity=100); /* For IE8 and earlier */
+  }
 </style>
 
 <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
@@ -14,18 +24,18 @@
 
 <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
 
-  <div class="span8">
+  <div class="span8" style="margin: 0">
     <div class="heading14" style="margin-top: 10px; margin-bottom: 5px">Visioning & Programming</div>
-    <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+    <p>We approach every community with sensibility and help translate visions and aspirations into plans, frameworks, and programs.</p>
 
     <div class="heading14" style="margin-top: 30px; margin-bottom: 5px">User Research & Synthesis</div>
-    <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+    <p>We conduct ethnographic research with individuals and groups to understand their values and behaviors. Emphasis is placed on "designing with, not designing for".</p>
 
     <div class="heading14" style="margin-top: 30px; margin-bottom: 5px">Service Design & Experience Mapping</div>
-    <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+    <p>We identify various touchpoints across a service and visually map what the user's journey looks like. The map can be used as a shared reference amongst teams and a kick-off point for detailed designs.</p>
 
     <div class="heading14" style="margin-top: 30px; margin-bottom: 5px">Community Workshops</div>
-    <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+    <p>We facilitate workshop for communities who are looking to have productive conversations around change via various participatory methods to ensure all voices are heard and the group walks away with something tangible they can work on next.</p>
   </div>
   <div class="span4">
     <div class="well">
@@ -47,13 +57,12 @@
 
 <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
   <%= link_to (image_tag 'v4/services/greendoors.jpg', :style => "margin-bottom: 10px"), projects_greendoors_path %>
-  <div class="heading14" style="margin-top: 10px; margin-bottom: 5px"><%= link_to "Green Doors", projects_greendoors_path%></div>
-  <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+  <div class="heading14" style="margin-top: 10px; margin-bottom: 5px">Green Doors</div>
+  <p>Designing and implementing a peer teaching program at Green Doors, a permanent supportive housing community, to provide residents a platform to share their knowledge with their community as a means to boost agency and engagement. <%= link_to "Read more...", projects_greendoors_path, :style => "color: #ff7733" %></p>
 
   <%= image_tag 'v4/services/center61.jpg', :style => "margin-top: 30px; margin-bottom: 10px" %>
   <div class="heading14" style="margin-top: 10px; margin-bottom: 5px">Center61 <span class="label">In Progress</span></div>
-
-  <p>We translate community-centered values, behaviors, and aspirations into a design vision and drivers. We use this foundation to create a design vision, plan, and programming.</p>
+  <p>Designing and implementing the education offerings at Center61, a space dedicated to bring together a community of like-minded purpose-driven organizations, social entrepreneurs, and non-profit professionals. The education offerings, along with the physical space, serve as a catalyst to help people achieve more together.</p></p>
 
 </div>
 
