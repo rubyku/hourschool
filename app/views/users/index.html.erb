@@ -1,10 +1,11 @@
 <div class="grid_16" style="margin-top: 30px">
-  <div class="heading14 left" style="margin-bottom: 30px">Membership:
+  <div class="heading14 left" style="margin-bottom: 30px">
     <% if community_site? %>
       <%= @users.count %>
     <% else %>
       <%= current_account.memberships.uniq.count %>
     <% end %>
+    members
   </div>
   <%#= link_to '+ Invite a User', new_invite_users_path, :class => "btn right" if current_account %>
 </div>
