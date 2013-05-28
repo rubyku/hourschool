@@ -1,10 +1,14 @@
 class UsersController < DashboardsController
   before_filter :authenticate_admin!, :only => [:make_admin, :new, :create]
 
-  #url --> /missions/:id/users
+
   def index
-    @account     = current_account
-    @memberships = @account.memberships.order("created_at ASC").uniq
+    @users       = User.all
+
+    if current_account
+      @account     = current_account
+      @memberships = @account.memberships.order("created_at ASC").uniq
+    end
 
     @invite = Invite.new
     @invite.invitable_id = params[:invitable_id]

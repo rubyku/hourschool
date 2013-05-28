@@ -1,29 +1,54 @@
-<div class="grid_16" style="margin-top: 30px">
-  <div class="heading14 left" style="margin-bottom: 30px">
-    <% if community_site? %>
-      <%= @users.count %>
-    <% else %>
-      <%= current_account.memberships.uniq.count %>
-    <% end %>
-    members
-  </div>
-  <%#= link_to '+ Invite a User', new_invite_users_path, :class => "btn right" if current_account %>
-</div>
+<% if community_site? %>
 
-<div class="grid_16">
-  <% @memberships.each do |membership| %>
-    <div class="grid_7" style="margin-bottom: 20px">
-      <div class="crewman-photo">
-        <% if membership.user.photo.present? %>
-          <%= link_to_avatar(membership.user, :thumb_large) %>
-        <% else %>
-          <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
-        <% end %>
-      </div>
-      <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
-      <%= membership.user.bio %>
-      </p>
+  <div class="grid_16" style="margin-top: 30px">
+    <div class="heading14 left" style="margin-bottom: 30px">
+      <%= @users.uniq.count %>
+      user
     </div>
-  <% end %>
-</div>
+  </div>
+
+  <div class="grid_16">
+    <% @users.each do |user| %>
+      <div class="grid_7" style="margin-bottom: 20px">
+        <div class="crewman-photo">
+          <% if user.photo.present? %>
+            <%= link_to_avatar(user, :thumb_25) %>
+          <% else %>
+            <%= image_tag 'v2/Avatars_01_V1.png', :size => "25x25" %>
+          <% end %>
+        </div>
+        <div class="heading13"><%= link_to user.name, user_path(user) %></div>
+        <%= user.bio %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+
+  <div class="grid_16" style="margin-top: 30px">
+    <div class="heading14 left" style="margin-bottom: 30px">
+      <%= current_account.memberships.uniq.count %>
+      members
+    </div>
+  </div>
+
+  <div class="grid_16">
+    <% @memberships.each do |membership| %>
+      <div class="grid_7" style="margin-bottom: 20px">
+        <div class="crewman-photo">
+          <% if membership.user.photo.present? %>
+            <%= link_to_avatar(membership.user, :thumb_large) %>
+          <% else %>
+            <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+          <% end %>
+        </div>
+        <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
+        <%= membership.user.bio %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
 
