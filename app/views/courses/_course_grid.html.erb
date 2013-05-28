@@ -1,19 +1,16 @@
-<div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
-
-  <% if @course.photo.present? %>
-    <%= link_to (image_tag(@course.photo.url(:small), :size => "190x120")), @course %>
+<% target = course.account_id ? '_blank' : '' %>
+<div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
+  <% if course.photo.present? %>
+    <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
   <% else %>
-    <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), @course %>
+    <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
   <% end %>
-
   <div class="class-description" style="float: left; width: 170px">
-    <div class="heading13 brown">
-      <%= link_to @course.title.truncate(50), @course %>
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
     </div>
-    <div class="heading10" style="font-weight: 400">
-      <%= "#{@course.starts_at.strftime("%a %b %d")}, #{@course.starts_at.strftime("%l:%M%p")}" %>
+    <div class="heading16">
+      <%= link_to course.title, course, :target => target %>
     </div>
-    <p><%= @course.description.truncate(70) %></p>
   </div>
-
 </div>

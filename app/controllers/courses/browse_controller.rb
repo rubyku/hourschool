@@ -5,6 +5,10 @@ class Courses::BrowseController < ApplicationController
     if community_site?
       @upcoming_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now)
       @past_courses = Course.order('DATE(starts_at) DESC').where(:status => "live").where("starts_at < (?)", Time.zone.now)
+
+      @austin_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:city_id => 111639)
+      @annarbor_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:city_id => 114765)
+
       if current_user
         @no_courses_in_user_city = current_user.city.try(:name).nil? || current_user.city.courses.empty?
       else

@@ -5,29 +5,26 @@
   </div>
 <% end %>
 
-<div class="grid_16" style="margin-bottom: 30px">
-  <center><p class="lead section-header" style="margin-top: 20px">
-    Upcoming Classes
-  </p></center>
-  <hr>
+<center><p class="lead section-header" style="margin-top: 20px">
+  <a href="#" id="all-link">All Upcoming Classes</a> // <a href="#" id="austin-link">in Austin only</a> // <a href="#" id="annarbor-link">in Ann Arbor only</a>
+</p></center>
+<hr>
 
+<div class="grid_16" style="margin-bottom: 30px" id="all-classes">
   <% @upcoming_courses.each do |course| %>
-    <% target = course.account_id ? '_blank' : '' %>
-    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
-      <% if course.photo.present? %>
-        <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
-      <% else %>
-        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
-      <% end %>
-      <div class="class-description" style="float: left; width: 170px">
-        <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-          <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-        </div>
-        <div class="heading16">
-          <%= link_to course.title, course, :target => target %>
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+  <% end %>
+</div>
+
+<div class="grid_16" style="display:none" id="austin-classes">
+  <% @austin_courses.each do |course| %>
+    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+  <% end %>
+</div>
+
+<div class="grid_16" style="display:none" id="annarbor-classes">
+  <% @annarbor_courses.each do |course| %>
+    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
   <% end %>
 </div>
 
@@ -36,24 +33,27 @@
     Past Classes
   </p></center>
   <hr>
-
   <% @past_courses.each do |course| %>
-    <% target = course.account_id ? '_blank' : '' %>
-    <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
-      <% if course.photo.present? %>
-        <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
-      <% else %>
-        <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
-      <% end %>
-      <div class="class-description" style="float: left; width: 170px">
-        <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-          <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-        </div>
-        <div class="heading16">
-          <%= link_to course.title, course, :target => target %>
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
   <% end %>
 </div>
 
+<script type="text/javascript">
+  $("#all-link").click(function(){
+    $("#all-classes").show();
+    $("#austin-classes").hide();
+    $("#annarbor-classes").hide();
+  });
+
+  $("#austin-link").click(function(){
+    $("#austin-classes").show();
+    $("#all-classes").hide();
+    $("#annarbor-classes").hide();
+  });
+
+  $("#annarbor-link").click(function(){
+    $("#annarbor-classes").show();
+    $("#all-classes").hide();
+    $("#austin-classes").hide();
+  });
+</script>
