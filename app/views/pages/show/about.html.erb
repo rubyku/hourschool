@@ -2,6 +2,8 @@
   .section-header{
     font-size: 40px;
   }
+
+  .italic{font-style: italic;}
 </style>
 
 <% if community_site? %>
@@ -33,7 +35,46 @@
 
 <% else %>
 
-  <% if current_account %>
+  <% if current_account == Account.where(:id => 9).first %>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Welcome</div>
+    <p>Welcome to <span class="italic">“French in Ann Arbor”</span>, a new and exciting learning platform dedicated to the French language and culture of France and of the French-speaking world in Ann Arbor. French in Ann Arbor is a gathering place for learning and teaching. It is inclusive and democratic in its concept.</p>
+    <p><span class="italic">“French in Ann Arbor”</span> is inclusive, because we consider that our members can be native speakers of French, as well as teachers of French, enthusiastic people who know French at many different levels, and the English speakers who are lovers of the French culture. While most of our classes are in French, it makes sense to offer some of them in English (for example: cooking, wine tasting, tourism).</p>
+    <p><span class="italic">“French in Ann Arbor”</span> is democratic because it is based on the belief that among the numerous people passionate about French, many can share their interest in a specific subject with the rest of us and become teachers. Anyone who would like to post a class to the school can do so by clicking the “post a class” button on the classes page. Doing so will walk you through the simple process of adding a class to French in Ann Arbor.</p>
+    <p><%= link_to "HourSchool", "http://www.hourschool.com", :style => "color: #ff7733" %> provides us with a system that allows us this kind of flexibility. We are very thankful to them for their vision and giving us the tools that allow us to create our new community, <span class="italic">“French in Ann Arbor”</span>. We could not agree more with the statement of its co-founders, Alex Pappas and Ruby Ku Schneeman:  “We believe there’s an enormous amount of knowledge in the people around us -- we just need to pay more attention to the quiet heroes. HourSchool was built as a launch pad for everyone seeking to give, share, teach and learn  -- one hour at a time.”</p>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">What are our classes like?</div>
+    <p>All of our classes center on a specific topic taught by one of us. We learn in a relaxed, social setting, inspired and eager to continue to explore the topic. We laugh, we get to know each other, and we have a glass of wine now and then. <span class="italic">“French in Ann Arbor”</span> puts the accent on mutual enrichment. Our form of teaching and learning is in general not teacher-centered. Rather, participants’ input is welcome. The exchange of ideas and our side conversations about the topic of the evening are what distinguishes us from a more traditional teaching format. Here is what one of our teachers, Brigitte Romero, owner of France Cuisine, said: </p>
+    <div class="big-quote" style="margin-left: 30px; font-size: 18px; font-style: italic; line-height: 30px"> “I find that the class where a subject is the starting point of discussion and exchanges gets us out of our routine of conversations that are often about the same thing. In these meetings we are charmingly forced to talk about other things in the company of people who naturally have similar interests. I find that very heartwarming."</div>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">What do we post?</div>
+    <p>Our hectic lives do not always allow us to check out all that is happening on the French scene in Ann Arbor. This is why we try to post the Ann Arbor events tied with French and the French-speaking world so that you can find everything in one place. The Michigan Theater, The University Musical Society, The University of Michigan Center for European Studies are but a few organizations about whose related activities we try to keep you informed.  Any of you can let us know about a French-related event in town.</p>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Special thanks to our enthusiastic teachers</div>
+    <p>Stuart Dombey, Bonnie Ion, Marcel Muller, Suzanne Murray, Cat Novak, Syl Novak, Brigitte Romero, and the many more in the future!<p>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">About the Director</div>
+    <p>My name is Mijo Pappas. I am the founder and director of <span class="italic">“French in Ann Arbor”</span>. I am a native speaker of French and have master degrees in French and in German from the Université of Paris-sorbonne and from the Phillips Universät in Marburg an der Lahn, Germany. I have been a teacher of French language and literature all my life. I am now retired from thirty years of teaching at Greenhills School in Ann Arbor. My dream has always been to build a gathering place of information and a learning community for lovers of the French language and culture in Ann Arbor. Thanks to HourSchool, I am now able to realize this dream. We started with just a handful of French enthusiasts and are now a larger community that is still growing.  Many thanks to everyone who participates and contributes so generously. This project has been a dream come true for me and has been awe-inspiring. I am looking forward to our continued “work and play” together.</p>
+
+    <p>Always get in touch with me if you have questions. You will be absolutely welcomed. You can reach me at <%= link_to "mijo@hourschool.com", "mailto:mijo@hourschool.com", :style => "color: #ff7733" %>.</p>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Collaboration and Partnerships</div>
+    <div class="row">
+      <div class="span4">
+        <%= image_tag "http://photos3.meetupstatic.com/photos/event/4/e/a/f/global_10340143.jpeg", :style => "margin: 40px 75px 39px 75px" %>
+        <p>Julia Kessler-Hollar, organizer of the <%= link_to "Ann Arbor French Conversation Group at Meetup", "http://www.meetup.com/french-581/", :style => "color: #ff7733" %></p>
+      </div>
+      <div class="span4">
+        <%= image_tag "http://labaguettea2.com/img/labaguette_logo.gif", :style => "margin-left: 15px" %>
+        <p>Suzanne Murray, co-owner of <%= link_to "La Baguette", "http://labaguettea2.com/", :style => "color: #ff7733" %>, selling her goodies at the Chelsea Farmers Market every Saturday from 8:00 am to noon.</p>
+      </div>
+      <div class="span4">
+        <%= image_tag "v4/hs-pro/brigitte_logo.jpg", :style => "width: 75%; margin: 0 30px 15px 30px" %>
+        <p>Brigitte Romero, France Cuisine, A Unique French Dining and Cultural Experience in the Heart of your Home. Contact her at <%= link_to "brigitte.romero@sbcglobal.net", "mailto:brigitte.romero@sbcglobal.net", :style => "color: #ff7733"  %></div>
+    </div>
+
+
+  <% else %>
     <%= current_account.about %>
   <% end %>
 
