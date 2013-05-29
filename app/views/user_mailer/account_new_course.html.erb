@@ -1,0 +1,3 @@
+<p>Hello <%= @user.name.split(" ").first %>,</p>
+
+<p><%= link_to @new_course.teacher.name, user_url(@new_course.teacher) %> posted a new event: <%= link_to "#{@new_course.title}", course_url(@new_course) %>. Sign up today!</p>

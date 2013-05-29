@@ -76,6 +76,6 @@
                     - if student.photo.present?
                       = image_tag(student.photo.url(:thumb_small))
                     - else
-                      = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
+                      = image_tag 'avatar.jpg', :size => "50x50"
                   %td
                     = link_to student.name, student, :id => "student_link"

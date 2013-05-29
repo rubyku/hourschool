@@ -1,0 +1,87 @@
+.mission-divider {
+  float: left;
+  border-bottom: 1px dashed #efefef;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  width: 100%; }
+
+.mission-description-box {
+  float: left;
+  width: 600px;
+  padding: 0px 30px 30px 30px; }
+
+.mission-status-box {
+  float: left;
+  width: 240px;
+  margin-bottom: 7px;
+  margin-top: 45px;
+  margin-left: 30px; }
+
+.mission-tab-intro {
+  width: 565px; }
+
+.crewman-box {
+  float: left;
+  margin-bottom: 20px; }
+
+.crewman-photo {
+  float: left;
+  margin-right: 10px; }
+
+.crewman-description {
+  float: left;
+  width: 470px; }
+
+.comment-box {
+  float: left; }
+  .comment-box.thread {
+    width: 570px; }
+  .comment-box.parent {
+    margin-bottom: 10px; }
+  .comment-box.child {
+    margin-left: 60px;
+    width: 490px; }
+  .comment-box.reply {
+    margin-left: 60px;
+    background-color: whiteSmoke;
+    padding: 10px;
+    width: 490px; }
+
+.commenter-photo {
+  float: left;
+  margin-right: 10px; }
+
+.comment-body {
+  float: left; }
+  .comment-body.parent {
+    width: 450px; }
+  .comment-body.child {
+    width: 430px; }
+
+.comment-field {
+  width: 77%;
+  height: 25px;
+  margin-bottom: 0px; }
+
+.info-callout {
+  background-color: #5382a4;
+  border: 1px solid white;
+  margin-bottom: 18px;
+  border-radius: 4px;
+  float: left;
+  padding: 10px 0px 10px 0px;
+  width: 960px; }
+
+.mission-section-header {
+  padding: 10px;
+  padding-left: 30px;
+  border-bottom: 1px solid #eeebeb;
+  height: 16px;
+  background-color: #505f6a; }
+
+.dashboard-sidebar-header {
+  padding: 10px;
+  padding-left: 20px;
+  border-bottom: 1px solid #eeebeb;
+  height: 16px;
+  background-color: #505f6a; }

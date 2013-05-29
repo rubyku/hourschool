@@ -82,8 +82,8 @@
 
 <% @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id) %>
 <% if @past_dates.any? %>
-  <div class="sidebar-block">
-    <div class="class-section-heading">Past Dates</div>
+  <div class="sidebar-block" style="border-bottom: 0px">
+    <div class="heading11">Past Classes</div>
     <% @past_dates.each do |course| %>
       <%= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course %><br>
     <% end %>

@@ -80,7 +80,7 @@
               <% if student.photo.present? %>
                 <%= link_to (image_tag student.photo.url(:thumb_small), :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
               <% else %>
-                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
+                <%= link_to (image_tag 'avatar.jpg', :size => "35x35", :style => "margin: 0px 5px 5px 0px"), student %>
               <% end %>
             <% end %>
             </p>

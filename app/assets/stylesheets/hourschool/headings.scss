@@ -69,6 +69,12 @@ a.heading20{
     color: #333;}
 }
 
+a.heading16{
+  color: #6a4a3b;
+  &:visited{color: #6a4a3b;}
+  &:hover{color: #6a4a3b;}
+}
+
 .heading15{
   @include hourschool-heading;
   font-size: 15px;

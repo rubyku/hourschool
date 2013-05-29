@@ -52,7 +52,6 @@ class InvitesController < ApplicationController
 
     # params = {:invite => {:inviter_id => 4, :invitee_id => 4}}
 
-    @invite = current_user.sent_invites.new(params[:invite])
 
     respond_to do |format|
       if @invite.save

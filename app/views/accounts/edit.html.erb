@@ -1,75 +1,72 @@
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Missions</a></li>
-    <li><a href="#tab2" data-toggle="tab" class="heading11">Events</a></li>
-    <li><a href="#tab3" data-toggle="tab" class="heading11">Crew</a></li>
-    <li><a href="#tab4" data-toggle="tab" class="heading11">Settings</a></li>
-    <li><a href="#tab5" data-toggle="tab" class="heading11">Billing</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Classes</a></li>
+    <li><a href="#tab2" data-toggle="tab" class="heading11">Members</a></li>
+    <li><a href="#tab3" data-toggle="tab" class="heading11">Settings</a></li>
+    <li><a href="#tab4" data-toggle="tab" class="heading11">Billing</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <div class="full-page white tab-border full">
         <div class="page-content">
           <div class="well">
-            <%= link_to "Add a mission", new_mission_path, :class => "btn" %>
+            <div class="left heading14">Total # of classes: <%= @account.courses.count %></div>
+            <%= link_to "Add an event", new_course_path, :class => "btn right" %>
           </div>
-          <% @account.missions.each do |mission| %>
-            <div class="mission-divider">
-              <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
-              <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
-                <div class="heading16 adelle" style="padding: 12px 0px 12px 12px"><%= link_to full_mission_title(mission).truncate(75), mission %></div>
-              </div>
-            </div>
-          <% end %>
+          <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Class name</th>
+                <th>Class teacher</th>
+                <th>Class date</th>
+                <th># of students</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <% @account.courses.order('DATE(starts_at) DESC').each do |course| %>
+              <tr>
+                <td style="width: 40%"><%= link_to course.title, course %></td>
+                <td><%= course.teacher.name %></td>
+                <td><%= "#{course.starts_at.strftime("%a %b %d %Y")}, #{course.starts_at.strftime("%l:%M%p")}" %></td>
+                <td><%= "#{course.students.count} out of #{course.max_seats} filled" %></td>
+                <td><%= link_to "Edit", edit_course_path(course) %></td>
+              </tr>
+            <% end %>
+          </table>
         </div>
       </div>
-    </div><!-- end tab1 -->
+    </div><!-- end tab2 -->
     <div class="tab-pane" id="tab2">
       <div class="full-page white tab-border full">
         <div class="page-content">
           <div class="well">
-            <%= link_to "Add an event", new_course_path, :class => "btn" %>
+            <div class="left heading14">Total # of members: <%= @account.memberships.count %></div>
+            <%= link_to "Add a member", "", :class => "btn right" %>
           </div>
-          <% @account.courses.each do |course| %>
-            <%= course.title %><br>
-          <% end %>
-        </div>
-      </div>
-    </div><!-- end tab2 -->
-    <div class="tab-pane" id="tab3">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-          <div class="mission-tab-intro">
-            <div class="heading14" style="width: 550px">These people have joined you in pursuing this mission.</div>
-          </div><hr>
           <% @account.users.each do |user| %>
             <div class="mission-divider">
               <div class="crewman-photo">
                 <% if user.photo.present? %>
                   <%= link_to_avatar(user, :thumb_large) %>
                 <% else %>
-                  <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+                  <%= image_tag 'avatar.jpg', :size => "125x125" %>
                 <% end %>
               </div>
               <div class="crewman-description">
-                <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to user.name, user %></div>
-                <%if user.crewmanships.where(:role => "creator", :mission_id => @mission).last %>
-                  <span class="label">Mission Creator</span>
-                <% elsif user.crewmanships.where(:role => "explorer", :mission_id => @mission).last %>
-                  <span class="label">Explorer</span>
-                <% elsif user.crewmanships.where(:role => "guide", :mission_id => @mission).last  %>
-                  <span class="label">Guide</span>
-                <% elsif user.crewmanships.where(:role => "alumni", :mission_id => @mission).last  %>
-                  <span class="label">Alumni</span>
-                <% end %>
+                <div style="font-weight: 700; width: 100%; margin-bottom: 10px">
+                  <%= link_to user.name, user %>
+                </div>
                 <p><%= user.bio %></p>
+                <p>User ID: <%= user.id %></p>
+                <p>Email: <%= link_to "#{user.email}", "mailto: #{user.email}" %></p>
+                <p>Joined: <%= user.memberships.where(:account_id => current_account.id).last.created_at %></p>
               </div>
             </div>
           <% end %>
         </div>
       </div>
     </div><!-- end tab3 -->
-    <div class="tab-pane" id="tab4">
+    <div class="tab-pane" id="tab3">
       <div class="full-page white tab-border full">
         <div class="page-content">
           <%= form_for @account do |f| %>
@@ -165,7 +162,7 @@
         </div>
       </div>
     </div><!-- end tab4 -->
-    <div class="tab-pane" id="tab5">
+    <div class="tab-pane" id="tab4">
       <div class="full-page white tab-border full">
         <div class="page-content">
           Coming soon

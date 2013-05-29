@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312204238) do
+ActiveRecord::Schema.define(:version => 20130524174319) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130312204238) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "about"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130312204238) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "comment_type"
+    t.integer  "account_id"
   end
 
   add_index "comments", ["course_id"], :name => "index_comments_on_course_id"
@@ -363,6 +365,7 @@ ActiveRecord::Schema.define(:version => 20130312204238) do
     t.boolean  "member"
     t.integer  "invite_user_id"
     t.integer  "donation"
+    t.string   "stripe_id"
   end
 
   add_index "roles", ["mission_id"], :name => "index_roles_on_mission_id"

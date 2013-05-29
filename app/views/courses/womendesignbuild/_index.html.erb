@@ -12,7 +12,7 @@
   <%= render :partial => "courses/womendesignbuild/sidebar_left", :locals => {:course => @course} %>
 
   <div class="middle" id="middle_events">
-    <%- @courses.each do |course| %>
+    <%- @upcoming_courses.each do |course| %>
       <div class="entry" style="float: left; width: 550px; margin-bottom: -50px ">
         <%- if course.present? %>
           <%- if course.photo.present? %>
@@ -27,7 +27,7 @@
             <h2 class="event_title" style="font-size: 24px; line-height: 1em, padding-top: -5px; margin-bottom: 15px"><%= link_to course.title, course, :class => "a_event_title" %></h2>
 
             <div class="event-meta">
-              <p class="event_details"><span style="font-family: Georgia;font-size: 16px; font-weight: bold;">Date:</span>  <%= "#{course.starts_at.strftime("%a %b %d")}"  ", #{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %></p><br>
+              <p class="event_details"><span style="font-family: Georgia;font-size: 16px; font-weight: bold;">Date:</span>  <%= "#{course.starts_at.strftime("%a %b %d")}"  ", #{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %></p>
               <p class="event_details"><span style="font-family: Georgia;font-size: 16px; font-weight: bold;">Location:</span> <%= course.place_name %></p><br>
              </div>
 

@@ -1,184 +1,219 @@
-<% if current_account == Account.where(:id => 4).first %>
-  <%= render :partial => 'courses/womendesignbuild/index' %>
-<% elsif current_account == Account.where(:id => 2).first %>
-  <div class="page">
-    <div class="page-content">
-      <%= render :partial => 'courses/course_grid', :locals => {:courses => @courses} %>
-      <div class="page-section-float-right">
-        <table class="view-more">
-          <tr>
-            <td>
-              <%= will_paginate @courses, :previous_label => "Prev" %>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <% content_for :sidebar do %>
-        <%= link_to "Admin Panel", admin_courses_path, :class => "section-heading", :style => "margin-left: -40px" %>
-      <% end %>
-    </div>
+<style type="text/css">
+  .section-header{
+    font-size: 40px;
+  }
+</style>
+
+
+<% if community_site? %>
+
+  <div style="background-image: none; background-repeat: repeat; height: 560px;">
+
+  <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 530px">
+    <center>
+      <p class="lead section-header">
+        Welcome to HourSchool
+      </p>
+      <p style="font-size: 14px; line-height: 1.5em; text-align: center">HourSchool is a social school built from your community. We offer peer-led, bite-sized classes, taught by people in your community.</p>
+    </center>
   </div>
-<% else community_site? %>
 
-  <div style="background-image: url(<%= asset_path 'bg-blue.png' %>); background-repeat: repeat; height: 540px;">
+  <div class="container_16" style="width: 700px; margin-bottom: 20px">
+    <iframe src="http://player.vimeo.com/video/24695810?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  </div>
 
-    <div style="background-image: url(<%= asset_path 'homepage-banner-2.gif' %>); background-position: center; background-repeat: no-repeat; height: 430px; margin-bottom: 30px">
-    </div>
+  </div>
 
-    <div class="featured" style="background-color: black; margin-top: -385px; padding-top: 30px; padding-bottom: 5px; margin-bottom: 100px">
+  <div style="background-color: white; background-repeat: repeat; height: 790px;">
+    <div class="container_16" style="padding-top: 40px; width: 500px">
       <center>
-        <div class="heading14" style="color: #f7b62a; margin-bottom: 10px">
-          Welcome to the school of doing stuff
-        </div>
-        <div style="font-family: futura-pt-1, futura-pt-2; font-size: 75px; font-weight: 700; font-style: italic; color: #b4c9d9; line-height: 90px; letter-spacing: 0.02em; margin-bottom: 40px">
-          So, what have you<br> always wanted to do?
-        </div>
+      <p class="lead section-header">
+        Never Stop Learning
+      </p>
+      <p style="font-size: 14px; line-height: 1.5em; text-align: center; width: 320px">Learn something new, meet someone cool, and get others excited about what you love.</p>
       </center>
-    </div><!-- end .featured -->
-
-    <div class="container_16">
-      <div class="heading14" style="color: white; text-align: center;">
-        Don’t just dream about it.<br>
-        Get tools. Share knowledge. Meet people who can help.
-      </div>
-    </div>
-  </div>
-
-  <div style="background-color: #f0f0f0; height: 1000px;">
-    <div class="container_16" style="padding-top: 20px">
-
-      <div class="heading14" style="margin: 40px 0px;"><center>Make it your mission</center>
-      </div>
-
-      <!-- Section 1 -->
-      <div style="float: left; width: 300px; margin-right: 25px; margin-left: 3px">
-
-        <div style="float: left; width: 300px; height: 180px; margin-right: 25px;">
-          <%= link_to (image_tag 'v3/explore/mission-interactionDesign.png'), '/missions/12' %>
-        </div>
-
-        <div style="float: left; width: 275px; height: 52px; background-color: white; margin-right: 25px; margin-bottom: 30px; opacity: 0.85; margin-left: 5px; margin-top: 5px; padding-top: 10px; padding-left: 15px">
-          <div class="title-text" id="explore"><%= link_to "Design Thinking and Making", '/missions/12', :class => "title-text", :id => "explore" %></div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
-        </div>
-
-      </div><!-- End Section 1 -->
-
-      <!-- Section 2 -->
-      <div style="float: left; width: 630px; margin-bottom: 20px">
-
-        <div style="float: left; width: 630px; height: 180px;">
-          <%= link_to (image_tag "v3/explore/mission-greenHouse.png"), '/missions/2' %>
-        </div>
-
-        <div style="float: left; width: 610px; height: 60px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 0px; padding-top: 10px; padding-left: 10px">
-
-          <div class="title-text" id="explore"><%= link_to "Encourage sustainability", '/missions/2', :class => "title-text", :id => "explore" %></div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
-        </div>
-
-      </div><!-- End Section 2-->
-
-      <!-- Section 3 -->
-      <div style="float: left; width: 960px; margin-top: 10px; margin-bottom: 30px">
-
-        <div style="float: left; width: 960px; height: 180px;">
-          <%= image_tag 'v3/explore/mission-soGoodNetwork.png' %>
-        </div>
-
-        <div style="float: left; width: 937px; height: 57px; background-color: white; opacity: 0.85; margin-left: 4px; margin-top: 4px; padding-top: 10px; padding-left: 15px">
-
-          <div class="title-text" id="explore">Launch the So Good Network, striving to be the heart of social innovation and change</div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div><span class="label">Coming soon</span>
-
-        </div>
-
-      </div><!-- End Section 3 -->
-
-      <!-- Section 4 -->
-      <div style="float: left; width: 630px; margin-bottom: 20px">
-
-        <div style="float: left; width: 630px; height: 180px;">
-          <%= link_to (image_tag 'v3/explore/mission-motorcycle.png'), '/missions/1' %>
-        </div>
-
-        <div style="float: left; width: 610px; height: 60px; background-color: white; opacity: 0.85; margin-left: 5px; margin-top: 0px; padding-top: 10px; padding-left: 10px">
-
-          <div class="title-text" id="explore"><%= link_to "Learn how to repair and maintain motorcycles", '/missions/1', :class => "title-text", :id => "explore" %></div>
-          <div class="heading11" id="explore" style="float: left; margin-right: 10px">Austin, TX</div>
-        </div>
-
-      </div><!-- End Section 4 -->
-
-      <!-- Section 5 -->
-      <div style="float: left; width: 300px; margin-left: 30px">
-
-        <div style="float: left; width: 300px; height: 170px; margin-bottom: 22px; background-image: url(<%= asset_path "v3/explore/bg-launchMission.png" %>); background-color: white; text-align: center;">
-          <div class="heading14" style="margin-top: 30px">Already have a <br>mission in mind?</div>
-          <br>
-          <%= link_to "Create your own!", build_mission_path, :class => "blue long button" %>
-        </div>
-        <div>
-          <%= link_to (image_tag "v3/homepage/start-here.png"), "mailto: hello@hourschool.com" %>
-        </div>
-
-      </div><!-- End Section 5 -->
-
-
-    </div>
-  </div>
-
-
-<!--   <div style="background-image: url(<%= asset_path 'bg-white-pattern.png' %>); background-repeat: repeat; height: 760px;">
-    <div class="container_16" style="padding-top: 30px; margin-top: -1px">
-
-    <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; background-color: #505f6a; width: 920px; padding: 10px; color: white">
-      Not ready to join a mission?<br>
-      Don't sweat it. Start with a class, workshop, or happy hour.
     </div>
 
-    <% @courses.where(:account_id => 0).where("starts_at > (?)", Time.zone.now).limit(8).each do |course| %>
-
-      <div class="classBlock" style="margin-right: 50px; background-color: #f3f3f3">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-
+    <div class="container_16" style="padding-top: 30px;">
+      <% @upcoming_courses.limit(8).each do |course| %>
+        <% target = course.account_id ? '_blank' : '' %>
+        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
+          <% end %>
           <div class="class-description" style="float: left; width: 170px">
-            <div class="heading13 brown">
-              <%= link_to course.title.truncate(50), course %>
-            </div>
-            <div class="heading10" style="font-weight: 400">
+            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
               <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
             </div>
-            <p><%= course.description.truncate(70) %></p>
+            <div class="heading16">
+              <%= link_to course.title, course, :target => target %>
+            </div>
           </div>
-      </div>
-    <% end %>
-
-    </div>
-  </div> -->
-
-  <div style="background-color: #b4c9d9; height: 950px; margin-bottom: -150px">
-    <div class="container_16">
-      <div class="heading14" style="margin: 40px 0px;"><center>Join us in building communities that never stop learning</center>
-      </div>
-      <div style="float: left;">
-        <iframe src="http://player.vimeo.com/video/42154383?color=ffffff" width="956" height="538" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-      </div>
+        </div>
+      <% end %>
     </div>
 
-    <div class="container_16">
-      <div style="font-family: futura-pt-1, futura-pt-2; font-size: 75px; font-weight: 700; font-style: italic; color: white; line-height: 90px; letter-spacing: 0.02em; margin-bottom: 20px; margin-top: 20px; text-align: center">
-        Are you in?
-      </div>
-
-      <%= link_to "Yes I'm in!", new_user_registration_path, :class => "blue long button", :style => "margin-left: 350px" %>
+    <div class="container_16" style="padding-top: 30px;">
+      <center>
+        <p style="margin-bottom: 50px">
+          <%= link_to "See more classes", courses_browse_index_path, :style => "text-decoration: underline" %>
+        </p>
+      </center>
     </div>
 
   </div>
+
+<% elsif current_account == Account.where(:id => 4).first %><!-- Women Design Build -->
+  <%= render :partial => 'courses/womendesignbuild/index' %>
+
+<% elsif current_account == Account.where(:id => 1).first %><!-- Feast for Days -->
+  <%= render :partial => 'accounts/show/feastfordays', :locals => {:courses => @courses} %>
+
+<% elsif current_account == Account.where(:id => 2).first %><!-- A2Reskilling -->
+    <%= render :partial => 'accounts/show/a2reskilling', :locals => {:courses => @courses} %>
+
+<% elsif current_account == Account.where(:id => 7).first %><!-- Hub LA -->
+  <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
+
+<% else %><!-- New Generic School -->
+
+  <div class="full-page" style="background-color: #f0f0f0">
+    <% if @account.photo.present? %>
+      <%= image_tag(@account.photo(:banner) )%>
+    <% else %>
+      <div style="background-color: #333; width: 960px; height: 250px;">
+        <div class="heading11" style="text-align: center; padding-top: 60px">
+          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
+        </div>
+      </div>
+    <% end %>
+  </div><!-- end full page -->
+
+
+  <!-- edit account info modal -->
+  <div class="modal hide" id="addBasicInfo">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Add Basic info</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@account) do |f| %>
+        <% if @account.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@account.errors.count, "error") %> prohibited this from being saved:</h2>
+
+            <ul>
+            <% @account.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :photo, 'Upload a photo that represent your mission' %>
+          <%= f.file_field :photo %>
+          <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
+        <%= f.submit "Save changes", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="grid_16">
+    <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+      Upcoming classes
+    </div>
+
+    <% if @upcoming_courses.present? %>
+      <div class="row-fluid" style="padding-left: 10px">
+        <% @upcoming_courses.limit(12).each do |course| %>
+          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <center><p>No upcoming class at the moment.</p></center>
+      <% if current_user && current_account && Membership.find_by_account_id_and_user_id_and_admin(current_account.id, current_user.id, true) %>
+        <div class="row-fluid" style="margin-left: 0; margin-bottom: 30px">
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px" %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+          <div class="span3" style="background-color: #ccc; height: 250px">
+            <%= link_to "Add a class", new_course_path, :class => "btn", :style => "margin-top: 105px; margin-left: 65px"  %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="grid_16" style="margin-bottom: 30px; width: 920px">
+      <div class="well">
+        <p class="bold left">Everyone is welcome to contribute and add their own class. Share what you know and join our community!</p>
+        <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid_16" style="padding-left: 10px">
+    <% if @past_courses.present? %>
+      <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
+        Past classes
+      </div>
+      <% @past_courses.limit(4).each do |course| %>
+        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+          <% if course.photo.present? %>
+            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+          <% else %>
+            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+          <% end %>
+
+            <div class="class-description" style="float: left; width: 170px">
+              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              </div>
+              <div class="heading16">
+                <%= link_to course.title, course %>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="container_16" style="padding-top: 30px;">
+    <center>
+      <p style="margin-bottom: 50px">
+        <%= link_to "See more classes", courses_browse_index_path, :style => "text-decoration: underline" %>
+      </p>
+    </center>
+  </div>
+
 
 <% end %>
 

@@ -47,6 +47,7 @@
   }
 
   &.parent{
+    margin-bottom: 10px;
   }
 
   &.child{
@@ -59,8 +60,6 @@
     background-color: whiteSmoke;
     padding: 10px;
     width: 490px;
-    margin-top: 10px;
-
   }
 }
 
@@ -71,7 +70,6 @@
 
 .comment-body{
   float: left;
-  margin-bottom: 10px;
 
   &.parent{
     width: 450px;
@@ -83,8 +81,9 @@
 }
 
 .comment-field{
-  width:  420px;
-  height: 40px;
+  width:  77%;
+  height: 25px;
+  margin-bottom: 0px;
 }
 
 .info-callout{

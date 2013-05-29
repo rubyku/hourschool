@@ -1,0 +1,120 @@
+<style type="text/css">
+  .nav-pills > .active > a,
+  .nav-pills > .active > a:hover {
+    color: black;
+    background-color: white;
+  }
+  form{margin-bottom:0px; }
+</style>
+
+<div class="well" style="margin-bottom: 50px">
+  <% if current_user %>
+    <div class="heading14">Leave a public message for all members</div>
+    <%= form_for @comments.new do |f| %>
+      <%= f.hidden_field :account_id, :value => current_account.id %>
+      <%= f.hidden_field :comment_type, :value => "note" %>
+      <%= f.text_area    :body, :class => "form-med-with-margin", 'data-comment_type' => 'note' %>
+      <%= f.hidden_field :body, :id => 'submit_body_value' %>
+      <%= f.submit 'Leave Comment', :class => "btn" %>
+    <% end %>
+  <% else %>
+    <p>Please first sign up or log in to leave a comment</p>
+  <% end %>
+</div>
+
+<script type='text/javascript' >
+  $('[data-comment_type]').bind('blur', function() {
+    $('#submit_body_value').val($(this).val());
+    $('#comment_comment_type').val($(this).attr('data-comment_type'));
+  })
+</script>
+
+<% if @comments.where(:parent_id => nil).present? %>
+  <% @comments.where(:parent_id => nil).where("comment_type = 'note' or comment_type = 'question' or comment_type = 'link' or comment_type = 'photo' or comment_type = 'file'").each do |comment| %>
+
+    <div class="mission-divider">
+
+      <div class="comment-box parent">
+        <div class="commenter-photo">
+          <% if comment.user.photo.present? %>
+            <%= link_to_avatar(comment.user, :thumb_small) %>
+          <% else %>
+            <%= image_tag 'avatar.jpg', :size => "50x50" %>
+          <% end %>
+        </div>
+        <div class="comment-body parent">
+          <div style="float: left; margin-right: 10px; font-size: 13px; font-weight: 700">
+            <%= comment.user.name %>
+          </div>
+          <div style="font-size: 10px">
+            <%= "#{time_ago_in_words comment.created_at} ago" %>
+          </div>
+          <% if current_user && current_user == comment.user %>
+            <div style="font-size: 10px; margin-left: 475px; margin-bottom: 10px; margin-top: -20px">
+              <%= link_to "Delete", comment, confirm: 'Are you sure?', method: :delete, :style => "color: #999; text-transform: uppercase; font-size: 10px; font-weight: 700" %>
+            </div>
+          <% end %>
+          <%= simple_format Rinku.auto_link(comment.body) %>
+          <% if comment.comment_type == 'file' %>
+            <%= link_to comment.photo_file_name, comment.photo.url %>
+          <% elsif comment.comment_type == 'photo' %>
+            <%= image_tag(comment.photo.url(:normal)) %>
+          <% end %>
+        </div><!-- end comment-body parent -->
+      </div><!-- end comment-box parent -->
+
+      <% if comment.child_comments.present? %>
+        <div class="comment-box child">
+          <% comment.child_comments.each do |child_comment| %>
+            <div style="float: left; width: 490px; margin-bottom: 5px; padding: 10px; background-color: whiteSmoke;">
+              <div class="commenter-photo">
+                <% if child_comment.user.photo.present? %>
+                  <%= link_to_avatar(child_comment.user, :thumb_35) %>
+                <% else %>
+                  <%= image_tag 'avatar.jpg', :size => "35x35" %>
+                <% end %>
+              </div>
+              <div class="comment-body child">
+                 <div style="float: left; margin-right: 10px; font-size: 13px; font-weight: 700">
+                  <%= child_comment.user.name %>
+                </div>
+                <div style="font-size: 10px">
+                  <%= "#{time_ago_in_words child_comment.created_at} ago" %>
+                </div>
+                <% if current_user && current_user == child_comment.user %>
+                <div style="font-size: 10px; margin-left: 390px; margin-bottom: 10px; margin-top: -20px">
+                  <%= link_to "Delete", child_comment, confirm: 'Are you sure?', method: :delete, :style => "color: #999; text-transform: uppercase; font-size: 10px; font-weight: 700" %>
+                </div>
+              <% end %>
+                <%= simple_format Rinku.auto_link(child_comment.body) %>
+              </div>
+              </div>
+          <% end %><!-- end child-comment each block -->
+        </div><!-- end child-comment-box -->
+      <% end %><!-- end if child_comments.present? -->
+
+      <div class="comment-box reply">
+        <% if current_user %>
+          <%= form_for @comments.new do |f| %>
+            <%= f.hidden_field :account, :value => current_account.id %>
+            <div class="commenter-photo">
+              <% if current_user.photo.present? %>
+                <%= image_tag(current_user.photo.url(:thumb_35)) %>
+              <% else %>
+                <%= image_tag 'avatar.jpg', :size => "35x35" %>
+              <% end %>
+            </div>
+            <%= f.hidden_field :parent_id, :value => comment.id %>
+            <%= f.text_area :body, :placeholder => "Leave a comment", :class => "comment-field" %>
+            <%= f.submit 'Reply', :class => "btn btn-small", :style => "float: right; margin-top: 5px" %>
+          <% end %>
+        <% else %>
+          <p>Please first sign up or log in to leave a comment</p>
+        <% end %>
+      </div><!-- end comment-box reply -->
+
+    </div><!-- end mission-divider // comment-box thread -->
+  <% end %><!-- end mission.comment each block -->
+
+<% end %>
+

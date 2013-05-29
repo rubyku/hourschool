@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def index
+    @account = current_account
+    @comments = Comment.where(:account_id => current_account.id)
+  end
+
   def create
     @comment = current_user.comments.create(params[:comment])
     if @comment.save
@@ -9,9 +14,9 @@ class CommentsController < ApplicationController
         else
           @comment.notify_participants
         end
-      elsif @comment.mission.present?
-        @comment.mission.users.each do |user|
-          UserMailer.delay.mission_new_comment(user, @comment.mission, @comment) if user.wants_newsletter? && user != current_user
+      elsif @comment.account_id.present? && current_account == Account.where(:id => 9).first
+        current_account.users.each do |user|
+          UserMailer.delay.account_new_comment(user, current_account, @comment)
         end
       end
     end

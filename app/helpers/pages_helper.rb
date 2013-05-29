@@ -8,7 +8,7 @@ module PagesHelper
     if user && user.photo.present?
       return image_tag(user.photo.url(size), options)
     else
-      avatar_url = ['/images/v2/Avatars_01_V1.png',
+      avatar_url = ['/images/avatar.jpg',
                     '/images/v2/Avatars_02_V1.png',
                     '/images/v2/Avatars_03_V1.png',
                     '/images/v2/Avatars_04_V1.png',
@@ -20,5 +20,5 @@ module PagesHelper
   def link_to_avatar(user, options = {})
      link_to avatar_for(user, options), user
   end
-  
+
 end

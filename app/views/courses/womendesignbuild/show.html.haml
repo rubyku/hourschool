@@ -1,0 +1,161 @@
+:css
+  .wdb-register-class-button{
+    border: none;
+    background: #00B6FF;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+      font-family: BebasNeue;
+      font-size: 18px;
+      height: 28px;
+      padding: 6px;
+      margin-bottom: 6px;
+      color: white;
+      background-color: #BA5F8F;
+      -moz-box-shadow: 0 2px 4px #999;
+      -webkit-box-shadow: 0 2px 4px #999;
+      box-shadow: 0 2px 4px #999;
+      cursor: pointer;
+  }
+
+  .wdb-edit-class-button{
+  border: none;
+  background: #00B6FF;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+    font-family: BebasNeue;
+    font-size: 18px;
+    height: 28px;
+    padding: 6px;
+    margin-bottom: 6px;
+    color: white;
+    background-color: #ccc;
+    -moz-box-shadow: 0 2px 4px #999;
+    -webkit-box-shadow: 0 2px 4px #999;
+    box-shadow: 0 2px 4px #999;
+    cursor: pointer;
+  }
+
+  .wdb-section-heading{
+    color: #BA5F8F;
+    font-family: BebasNeue;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 20px
+  }
+
+  #student_link{color: #BA5F8F;}
+
+  .wdb-text-strong{
+    font-family: Georgia;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .wdb-text{
+    font-family: Georgia;
+  }
+
+  .wdb-class-title{
+    font-family: 'BebasNeue'; font-size: 36px; color: #333; padding-top: 40px; line-height: 40px;
+  }
+
+
+.container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
+
+  - if @course.status == 'draft' && @course.teacher == current_user
+    .full-page.white{:style => "padding-bottom: 0px"}
+      .page-content
+        .wdb-text-strong{:style => "padding-bottom: 10px"} Preview before this goes live!
+        = link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "wdb-register-class-button", :style => "color: white", :method => :put
+        = link_to "Make changes", edit_course_path(@course.id), :class => "wdb-edit-class-button", :style => "color: white; margin-left: 10px; margin-right: 10px", :method => :get
+        = link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "wdb-edit-class-button", :method => :put
+
+  = render :partial => "courses/womendesignbuild/sidebar_register", :locals => {:course => @course}
+
+  .middle#middle_events
+    .page-section-float-left
+      .class-logistic-block
+        - if @course.photo.present?
+          = image_tag(@course.photo.url(:small))
+        - else
+          = image_tag("v2-courses/DefaultClassPics_Generic.png",:size => "190x120")
+      .class-description-block
+        .wdb-class-title
+          = "#{@course.title}"
+        %br
+        = render :partial => "courses/show/add_this_small", :locals => {:course => @course}
+
+    .page-section-float-left
+      .wdb-text-strong
+        = "Description"
+      = simple_format Rinku.auto_link(@course.description), :style => "font-family: Georgia"
+
+    .comment-section
+      .wdb-text-strong= "Join the conversation"
+      %div{:class => 'clearfix'}
+        - @course.comments.each do |comment|
+          %div.comment{:class => 'clearfix'}
+            %div.avatar
+              - if comment.user.photo.present?
+                = link_to_avatar(comment.user, :thumb_small)
+              - else
+                = image_tag 'avatar.jpg', :size => "50x50"
+            %div.content{:style => "margin-left: 60px"}
+              %div.name
+                = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
+              %div.location{:style => "float: left;"}
+                = comment.user.location
+              %br
+              %p{:style => "margin-top: -10px"}
+                %div.body
+                  = simple_format Rinku.auto_link(comment.body), :style => "font-family: Georgia; font-weight: normal"
+                %div.created_at{:style => "margin-top: -10px"}
+                  .class-alternatives
+                    = "#{time_ago_in_words comment.created_at} ago"
+        %div.comment_form
+        - if current_user.blank?
+          %div.comment
+            = "Please first"
+            = link_to "sign up", new_user_registration_path
+            = "or"
+            = link_to "log in", new_user_session_path
+            = "to leave a comment"
+
+        - else
+          %div.comment{:class => 'clearfix'}
+            = form_for @course.comments.new do |f|
+              %div
+                = f.hidden_field :course_id, :value => @course.id
+                = f.text_area    :body,      :placeholder => "Have questions or feedback? Leave a comment!", :class => "form-tall"
+              %div
+                = f.submit 'Leave Comment'
+
+
+  .wdb-right{:style => "margin-left: 20px"}
+    .wdb-section-heading= "About teacher"
+    %table
+      %tr
+        %td
+          - if @course.teacher.photo.present?
+            = image_tag(@course.teacher.photo.url(:thumb_small), :style => "margin-right: 5px")
+          - else
+            = image_tag 'avatar.jpg', :size => "50x50", :style => "margin-right: 5px"
+        %td
+          = link_to @course.teacher.name, @course.teacher, :id => "student_link"
+    .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}
+      - if @course.experience.blank?
+        = @course.teacher.bio
+      - else
+        = @course.experience
+    - if current_user
+      .class-attendance-block
+        - if @course.teacher != current_user
+          = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
+          %a{:'data-toggle' => "modal", :href => "#emailOrganizer"} Email teacher
+
+    = render 'courses/organizer/contacts/new'
+
+

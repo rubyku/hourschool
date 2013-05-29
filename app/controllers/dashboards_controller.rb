@@ -1,5 +1,5 @@
 class DashboardsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:show]
 
   def index
     feed_query_items = feed_query_items_for_mission

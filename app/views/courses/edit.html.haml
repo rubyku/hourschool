@@ -1,7 +1,7 @@
 - if current_account == Account.where(:id => 1).first
   = render 'submit_feast_form'
-- else 
-  .page
+- else
+  .page-main
     .page-content
       = render 'submit_proposal_form'
   .sidebar
