@@ -82,7 +82,7 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 
 <%= content_for :first_inside_body do %>
 
-  <%# Admin bar %>
+<!--   <%# Admin bar %>
   <% if current_user && !community_site? && (admin_of_current_account? || current_user.admin?) %>
     <div class='userConfirm'>
       <div class='container_16'>
@@ -101,7 +101,7 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
       </div>
     </div>
   <% end %>
-
+ -->
 
   <%# Header %>
   <% if current_account == Account.where(:id => 1).first %>

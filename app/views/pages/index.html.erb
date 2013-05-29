@@ -85,7 +85,7 @@
     <% else %>
       <div style="background-color: #333; width: 960px; height: 250px;">
         <div class="heading11" style="text-align: center; padding-top: 60px">
-          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a photo that represent your account</a>
+          <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a cover photo</a>
         </div>
       </div>
     <% end %>
@@ -113,7 +113,7 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :photo, 'Upload a photo that represent your mission' %>
+          <%= f.label :photo, 'Upload a cover photo' %>
           <%= f.file_field :photo %>
           <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
         </div>
@@ -185,23 +185,27 @@
       <div class="heading14" style="text-align: center; margin-bottom: 20px; text-align: center; width: 920px; padding: 10px; color: black">
         Past classes
       </div>
-      <% @past_courses.limit(4).each do |course| %>
-        <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-          <% end %>
+      <% if current_account == Account.where(:id => 9).first %>
+        <%= render :partial => '/layouts/application/accounts/frenchinannarbor' %>
+      <% else %>
+        <% @past_courses.limit(4).each do |course| %>
+          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
 
-            <div class="class-description" style="float: left; width: 170px">
-              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+              <div class="class-description" style="float: left; width: 170px">
+                <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+                  <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+                </div>
+                <div class="heading16">
+                  <%= link_to course.title, course %>
+                </div>
               </div>
-              <div class="heading16">
-                <%= link_to course.title, course %>
-              </div>
-            </div>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

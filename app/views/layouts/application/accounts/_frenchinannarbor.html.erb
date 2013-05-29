@@ -1,0 +1,55 @@
+<div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0; height: 300px">
+  <% @fav1 = Course.where(:id => 601).first %>
+  <%= link_to (image_tag(@fav1.photo.url(:small), :size => "190x120")), @fav1 %>
+
+  <div class="class-description" style="float: left; width: 170px;">
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{@fav1.starts_at.strftime("%a %b %d")}, #{@fav1.starts_at.strftime("%l:%M%p")}" %>
+    </div>
+    <div class="heading16">
+      <%= link_to @fav1.title, @fav1 %>
+    </div>
+  </div>
+</div>
+
+<div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0; height: 300px">
+  <% @fav2 = Course.where(:id => 782).first %>
+  <%= link_to (image_tag(@fav2.photo.url(:small), :size => "190x120")), @fav2 %>
+
+  <div class="class-description" style="float: left; width: 170px">
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{@fav2.starts_at.strftime("%a %b %d")}, #{@fav2.starts_at.strftime("%l:%M%p")}" %>
+    </div>
+    <div class="heading16">
+      <%= link_to @fav2.title, @fav2 %>
+    </div>
+  </div>
+</div>
+
+<div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0; height: 300px">
+  <% @fav3 = Course.where(:id => 800).first %>
+  <%= link_to (image_tag(@fav3.photo.url(:small), :size => "190x120")), @fav3 %>
+
+  <div class="class-description" style="float: left; width: 170px">
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{@fav3.starts_at.strftime("%a %b %d")}, #{@fav3.starts_at.strftime("%l:%M%p")}" %>
+    </div>
+    <div class="heading16">
+      <%= link_to @fav3.title, @fav3 %>
+    </div>
+  </div>
+</div>
+
+<div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0; height: 300px">
+  <% @fav4 = Course.where(:id => 773).first %>
+  <%= link_to (image_tag(@fav4.photo.url(:small), :size => "190x120")), @fav4 %>
+
+  <div class="class-description" style="float: left; width: 170px">
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{@fav4.starts_at.strftime("%a %b %d")}, #{@fav4.starts_at.strftime("%l:%M%p")}" %>
+    </div>
+    <div class="heading16">
+      <%= link_to @fav4.title, @fav4 %>
+    </div>
+  </div>
+</div>
