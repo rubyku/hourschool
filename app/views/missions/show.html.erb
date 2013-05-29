@@ -20,8 +20,14 @@
         </li>
       </ul>
   <% else %>
-    <%= render 'missions/show/tutorial' %>
-    <%= render 'missions/show/invitee_landing_page' %>
+
+    <% if @mission.id == 4 %>
+      <div class="alert alert-info" style="height: 150px">
+        <center><p style="font-size: 24px; margin-top: 60px">The page has been moved. Please visit <a href="http://frenchinannarbor.hourschool.com">http://frenchinannarbor.hourschool.com</a></p></center>
+      </div>
+    <% end %>
+    <%#= render 'missions/show/tutorial' %>
+    <%#= render 'missions/show/invitee_landing_page' %>
     <div class="full-page white">
       <% if @mission.photo.present? %>
         <div style="background-color: #333; width: 960px; height: 349px;">
