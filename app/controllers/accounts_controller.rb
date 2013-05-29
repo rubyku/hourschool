@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_filter :authenticate_admin!, :only => [:create, :index]
+  before_filter :authenticate_admin!, :only => [:index]
+  before_filter :authenticate_user!, :only => [:new, :create]
 
   def new
     @account = Account.new
@@ -23,7 +24,8 @@ class AccountsController < ApplicationController
       if @account.valid? && @account.save
         @user = current_user
         Membership.create!(:user => current_user, :account => @account, :admin => true)
-        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+        UserMailer.new_account(current_user, @account).deliver
+        redirect_to(root_url(:subdomain => @account.subdomain)) && return
       end
     else
       @user = User.new_with_session(params[:user], session)
@@ -31,7 +33,8 @@ class AccountsController < ApplicationController
       if (@user.valid? && @account.valid?) && (@user.save && @account.save)
         sign_in('user', @user)
         Membership.create!(:user => @user, :account => @account, :admin => true)
-        redirect_to(account_url(:admin, :subdomain => @account.subdomain)) && return
+        UserMailer.new_account(current_user, @account).deliver
+        redirect_to(root_url(:subdomain => @account.subdomain)) && return
       end
     end
 

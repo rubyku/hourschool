@@ -9,7 +9,12 @@ class Courses::Organizer::ContactsController < ApplicationController
 
   def create
     @course = Course.find(params[:course_id])
-    UserMailer.contact_teacher(current_user, @course, params[:message]).deliver
+    if @course.account.nil?
+      current_account = nil
+    else
+      current_account = @course.account
+    end
+    UserMailer.contact_teacher(current_user, @course, params[:message], current_account).deliver
     flash[:notice] = "Your message has successfully been sent"
     redirect_to @course
   end

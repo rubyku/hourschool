@@ -291,7 +291,7 @@ class User < ActiveRecord::Base
     if current_account == Account.where(:id => 9).first
       @admins = Membership.where(:account_id => current_account, :admin => true)
       @admins.each do |admin|
-        UserMailer.delay.account_new_member(admin.user, current_account, self)
+        UserMailer.account_new_member(admin.user, current_account, self).deliver
       end
     end
   end

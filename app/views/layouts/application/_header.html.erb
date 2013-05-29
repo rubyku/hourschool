@@ -101,7 +101,7 @@
               <% if current_user.photo.present? %>
                 <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
               <% else %>
-                <%= image_tag 'v2/Avatars_01_V1.png', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
+                <%= image_tag 'avatar.jpg', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
               <% end %>
               <%= image_tag "v2/arrow_grey_profile.png", :style => "margin: 3px 0px 0px 3px" %>
             </a>
@@ -181,7 +181,7 @@
               <% if current_user.photo.present? %>
                 <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
               <% else %>
-                <%= image_tag 'v2/Avatars_01_V1.png', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
+                <%= image_tag 'avatar.jpg', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
               <% end %>
               <%= image_tag "v2/arrow_grey_profile.png", :style => "margin: 3px 0px 0px 3px" %>
             </a>

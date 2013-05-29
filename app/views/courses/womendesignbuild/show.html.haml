@@ -102,7 +102,7 @@
               - if comment.user.photo.present?
                 = link_to_avatar(comment.user, :thumb_small)
               - else
-                = image_tag 'v2/Avatars_01_V1.png', :size => "50x50"
+                = image_tag 'avatar.jpg', :size => "50x50"
             %div.content{:style => "margin-left: 60px"}
               %div.name
                 = link_to comment.user.name, user_path(comment.user), :class => "profile-link"
@@ -142,7 +142,7 @@
           - if @course.teacher.photo.present?
             = image_tag(@course.teacher.photo.url(:thumb_small), :style => "margin-right: 5px")
           - else
-            = image_tag 'v2/Avatars_01_V1.png', :size => "50x50", :style => "margin-right: 5px"
+            = image_tag 'avatar.jpg', :size => "50x50", :style => "margin-right: 5px"
         %td
           = link_to @course.teacher.name, @course.teacher, :id => "student_link"
     .class-attendance-block{:style => "font-size: 13px; line-height: 17px"}

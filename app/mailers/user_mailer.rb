@@ -9,6 +9,7 @@ class UserMailer < ActionMailer::Base
     @role     = options[:role]
     @inviter  = options[:inviter]
     @course   = @role.course
+    @account  = @role.course.account
     mail :to        => @user.email,
          :bcc       => "admin@hourschool.com",
          :from      => "#{@inviter.name} <hello@hourschool.com>",
@@ -18,33 +19,28 @@ class UserMailer < ActionMailer::Base
 
   # course = Course.find(params[:id])
   # UserMailer.contact_teacher(user, course, "hello there").deliver
-  def contact_teacher(user, course, message)
+  def contact_teacher(user, course, message,current_account)
     @email = course.teacher.email
     @user = user
     @course = course
     @message = message
-    mail :to => course.teacher.email,
+    @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => course.teacher.email,
          :bcc => "admin@hourschool.com",
          :reply_to => user.email,
          :subject => "#{@user.name} left you a message about your event"
   end
 
-  def contact_teacher_from_nonuser(messenger_email, course, message)
-    @email = course.teacher.email
-    @messenger_email = messenger_email
-    @course = course
-    @message = message
-    mail :to => course.teacher.email,
-         :bcc => "admin@hourschool.com",
-         :reply_to => messenger_email,
-         :subject => "#{messenger_email} left you a message about your event"
-  end
-
-  def contact_all_students(user,course,message)
+  def contact_all_students(user,course,message, current_account)
     raise "Must be sent by teacher" unless user == course.teacher
     @course = course
     @message = message
-    mail :to => course.students.map(&:email),
+    @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => course.students.map(&:email),
          :bcc => "admin@hourschool.com",
          :reply_to => course.teacher.email,
          :subject => "Your teacher sent a message about your event"
@@ -57,8 +53,10 @@ class UserMailer < ActionMailer::Base
     @course  = course
     @comment = comment
     @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    mail :to => user.email,
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => user.email,
          :bcc => "admin@hourschool.com",
          :subject => "#{comment.user.name} left you a comment about your event"
   end
@@ -78,8 +76,10 @@ class UserMailer < ActionMailer::Base
     @name = user_name
     @course = course
     @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    mail :to => user_email,
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => user_email,
          :bcc => "admin@hourschool.com",
          :subject => "#{@course.title} is live!"
   end
@@ -89,10 +89,12 @@ class UserMailer < ActionMailer::Base
     @name = user_name
     @course = course
     @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
     @role    = role
     @price = @role.member? ? @course.member_price : @course.price
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
-    mail :to => user_email,
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => user_email,
          :bcc => "admin@hourschool.com",
          :subject => "You've signed up for #{@course.title}!"
   end
@@ -102,7 +104,9 @@ class UserMailer < ActionMailer::Base
     @name = user_name
     @course = course
     @account = current_account
-    mail :to => @course.teacher.email,
+    @account_name = @account.try(:name) || "HourSchool"
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => @course.teacher.email,
          :subject => "Someone signed up for #{@course.title}!"
   end
 
@@ -133,6 +137,33 @@ class UserMailer < ActionMailer::Base
          :subject => "#{inviter.name} wants you to join #{account.name}"
   end
 
+  def user_invite_to_course(options = {})
+    @inviter        = options[:inviter]
+    @course         = options[:course]
+    @invitee_email  = options[:invitee_email]
+    @invitable_type = options[:invitable_type]
+    @invitable_id   = options[:invitable_id]
+    @message        = options[:message]
+    @account        = current_account
+    @account_name   = @account.try(:name) || "HourSchool"
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => @invitee_email,
+         :bcc => "admin@hourschool.com",
+         :subject => "#{@inviter.name} invited you to an event"
+  end
+
+#----------------------------------------------------------------------------------------------------------------------------
+  #Account notifications for Account admin
+
+  def new_account(user, account)
+    @user       = user
+    @account    = account
+    @url = @account.nil? ? "http://hourschool.com/courses/new" : "http://#{@account.subdomain}.hourschool.com/courses/new"
+    mail :to => @user.email,
+         :bcc => "admin@hourschool.com, coreteam@hourschool.com",
+         :subject => "Congratulations! #{@account.name} is live!"
+  end
+
   def account_new_member(user, account, new_member)
     @account    = account
     @user       = user
@@ -141,6 +172,8 @@ class UserMailer < ActionMailer::Base
          :bcc => "admin@hourschool.com",
          :subject => "#{@new_member.name} joined #{@account.name}"
   end
+
+  #Account notifications for Account members
 
   def account_new_course(user, account, new_course)
     @account    = account
@@ -162,145 +195,6 @@ class UserMailer < ActionMailer::Base
          :subject => "#{@new_comment.user} left a new comment"
   end
 
-  #----------------------------------------------------------------------------------------------------------------------------
-
-  def mission_new_member(user, mission, new_member)
-    @mission    = mission
-    @user       = user
-    @new_member = new_member
-    mail :to => @user.email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@new_member.name} joined #{@mission.verb} #{@mission.title}"
-  end
-
-  def mission_new_course(user, mission, new_course)
-    @mission    = mission
-    @user       = user
-    @new_course = new_course
-    mail :to => @user.email,
-         :bcc => "admin@hourschool.com",
-         :subject => "New event: #{@mission.verb} #{@mission.title}"
-  end
-
-  def mission_new_comment(user, mission, new_comment)
-    @mission     = mission
-    @user        = user
-    @new_comment = new_comment
-    mail :to => @user.email,
-         :bcc => "admin@hourschool.com",
-         :subject => "New comment: #{@mission.verb} #{@mission.title}"
-  end
-
-  def mission_new_topic(user, mission, new_topic)
-    @mission    = mission
-    @user       = user
-    @new_topic  = new_topic
-    mail :to => @user.email,
-         :bcc => "admin@hourschool.com",
-         :subject => "New topic: #{@mission.verb} #{@mission.title}"
-  end
-
-  #----------------------------------------------------------------------------------------------------------------------------
-
-  def user_invite_to_mission(options = {})
-    @inviter        = options[:inviter]
-    @mission        = options[:mission]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter.name} invited you to a mission!"
-  end
-
-  def nonuser_invite_to_mission(options = {})
-    @inviter_name   = options[:inviter_name]
-    @inviter_email  = options[:inviter_email]
-    @mission        = options[:mission]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter_name} invited you to a mission!"
-  end
-
-  def user_invite_to_course(options = {})
-    @inviter        = options[:inviter]
-    @course         = options[:course]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter.name} invited you to an event"
-  end
-
-  def nonuser_invite_to_course(options = {})
-    @inviter_name   = options[:inviter_name]
-    @inviter_email  = options[:inviter_email]
-    @course         = options[:course]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter_name} invited you to an event"
-  end
-
-  def user_invite_to_topic(options = {})
-    @inviter        = options[:inviter]
-    @topic          = options[:topic]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter.name} invited you to organize an event"
-  end
-
-  def nonuser_invite_to_topic(options = {})
-    @inviter_name   = options[:inviter_name]
-    @inviter_email  = options[:inviter_email]
-    @topic          = options[:topic]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter_name} invited you to organize an event"
-  end
-
-  def user_invite_to_comment(options = {})
-    @inviter        = options[:inviter]
-    @comment        = options[:comment]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter.name} invited you to answer a question"
-  end
-
-  def nonuser_invite_to_comment(options = {})
-    @inviter_name   = options[:inviter_name]
-    @inviter_email  = options[:inviter_email]
-    @comment        = options[:comment]
-    @invitee_email  = options[:invitee_email]
-    @invitable_type = options[:invitable_type]
-    @invitable_id   = options[:invitable_id]
-    @message        = options[:message]
-    mail :to => @invitee_email,
-         :bcc => "admin@hourschool.com",
-         :subject => "#{@inviter_name} invited you to answer a question"
-  end
 
   #----------------------------------------------------------------------------------------------------------------------------
 

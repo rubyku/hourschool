@@ -39,7 +39,7 @@
           <% if comment.user.photo.present? %>
             <%= link_to_avatar(comment.user, :thumb_small) %>
           <% else %>
-            <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+            <%= image_tag 'avatar.jpg', :size => "50x50" %>
           <% end %>
         </div>
         <div class="comment-body parent">
@@ -71,7 +71,7 @@
                 <% if child_comment.user.photo.present? %>
                   <%= link_to_avatar(child_comment.user, :thumb_35) %>
                 <% else %>
-                  <%= image_tag 'v2/Avatars_01_V1.png', :size => "35x35" %>
+                  <%= image_tag 'avatar.jpg', :size => "35x35" %>
                 <% end %>
               </div>
               <div class="comment-body child">
@@ -101,7 +101,7 @@
               <% if current_user.photo.present? %>
                 <%= image_tag(current_user.photo.url(:thumb_35)) %>
               <% else %>
-                <%= image_tag 'v2/Avatars_01_V1.png', :size => "35x35" %>
+                <%= image_tag 'avatar.jpg', :size => "35x35" %>
               <% end %>
             </div>
             <%= f.hidden_field :parent_id, :value => comment.id %>

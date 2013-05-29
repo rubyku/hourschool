@@ -26,39 +26,6 @@
         <span class="help-block" style="font-weight:normal">(numbers and letters only)</span>
       </div>
 
-      <% if current_user %>
-        <p>You're currently logged in as <%= current_user.email %></p>
-      <% else %>
-        <div class="well">
-          <%= fields_for :user do |user| %>
-            <div class="form-question">
-              <%= user.label :name, "Your Name" %><br />
-              <%= user.text_field :name, :class => "form-short-with-margin" %>
-            </div>
-
-            <div class="form-question">
-              <%= user.label :email, "Your Email" %><br />
-              <%= user.text_field :email, :class => "form-short-with-margin" %>
-            </div>
-
-            <div class="form-question">
-              <%= user.label :zipcode, "Your Zipcode" %><br />
-              <%= user.text_field :zipcode, :class => "form-short-with-margin" %>
-            </div>
-
-            <div class="form-question">
-              <%= user.label :password, "Create a Password" %><br />
-              <%= user.password_field :password, :class => "form-short-with-margin" %>
-            </div>
-
-            <div class="form-question">
-              <%= user.label :password_confirmation, "Confirm Password" %><br />
-              <%= user.password_field :password_confirmation, :class => "form-short-with-margin" %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-
       <div class="actions">
         <%= f.submit 'Create my school', :class => "btn" %>
       </div>
