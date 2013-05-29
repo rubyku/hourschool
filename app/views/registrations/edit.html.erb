@@ -51,16 +51,6 @@
                  <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
                 </p>
 
-                <p>
-                 <%= f.label :quote, 'Your favorite quote', :class => "form-question" %><br />
-                 <%= f.text_area :quote, :class => "form-med-with-margin", :style => "width: 250px" %>
-                </p>
-
-                <p>
-                 <%= f.label :quote_author, 'Who wrote that quote?', :class => "form-question" %><br />
-                 <%= f.text_area :quote_author, :class => "form-med-with-margin", :style => "width: 250px" %>
-                </p>
-
               </div>
 
               <div class="grid_7">
@@ -85,9 +75,6 @@
         <div class="page-content">
           <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
             <ul style="list-style: none; margin-left: 0px">
-              <li>
-                <%= check_box_tag('user[preferences][mission_news]', 1, resource.wants?('mission_news') ) %> Send me emails when something is posted in my missions
-              </li>
               <li>
                 <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %>
                 Send me emails when something is posted in my events

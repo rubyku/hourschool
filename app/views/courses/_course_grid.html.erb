@@ -1,0 +1,19 @@
+<% if community_site? %>
+  <% target = course.account_id.present? ? '_blank' : '' %>
+<% end %>
+
+<div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
+  <% if course.photo.present? %>
+    <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
+  <% else %>
+    <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
+  <% end %>
+  <div class="class-description" style="float: left; width: 170px">
+    <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
+      <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
+    </div>
+    <div class="heading16">
+      <%= link_to course.title, course, :target => target %>
+    </div>
+  </div>
+</div>

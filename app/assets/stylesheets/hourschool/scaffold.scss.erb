@@ -61,7 +61,7 @@ body {
   font-size: $hourschool-body-font-size;
   color: $hourschool-body-color;
   line-height: $hourschool-body-line-height;
-  background-color: #f0f0f0;
+  background-color: #fff;
   background-image: none;
   position: relative;
 }
@@ -101,12 +101,13 @@ a {
 #header{
   width: 100%;
   padding-top: 15px;
-  margin-bottom: 30px;
-  background-color: white;
+  background-image: url( <%= asset_path 'bg-white-pattern.png' %> );
+  margin-bottom: 20px;
 }
 
 #homepage #header{
   background-color: transparent;
+  margin-bottom: 0px;
 }
 
 .middle_bg {
@@ -191,6 +192,7 @@ a {
   border-bottom: 0px dashed #ccc; }
 
 .tab-border{
+  border-top: 0px;
   border-left: 1px solid #DDD;
   border-right: 1px solid #DDD;
   border-bottom: 1px solid #DDD;

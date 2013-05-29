@@ -9,12 +9,9 @@ HourschoolV2::Application.routes.draw do
   resources :missions do
     resources :topics
     resources :courses
-    resources :users
     resources :crewmanships do
     end
   end
-
-  resources :pre_mission_signups
 
   resources :tracks
   resources :flowcharts
@@ -34,12 +31,22 @@ HourschoolV2::Application.routes.draw do
 
   scope :path => '/admin', :module => 'admin', :as => 'admin' do
     resources :courses
+    resources :users
+    resources :payments
     resources :metrics
+    resources :reports
+    resources :settings
   end
 
   resources :admin
 
   resources :comments
+
+  resources :accounts do
+    resources :users
+    resources :memberships do
+    end
+  end
 
   namespace :courses do
     resources :browse
@@ -110,14 +117,14 @@ HourschoolV2::Application.routes.draw do
   match 'oh-no/404'                   => 'pages#show',        :id => 'errors/404'
   match 'oh-no/500'                   => 'pages#show',        :id => 'errors/404'
 
-  match '/errand'               => 'admin#show',        :id => 'errand'
+  match '/errand'                     => 'admin#show',        :id => 'errand'
 
-  match '/explore'                    => 'accounts#show'
+  match '/members'                    => 'users#index'
+  match '/classes'                    => 'Courses::Browse#index'
+  match '/conversations'              => 'comments#index'
 
   match '/preview/:id'                => 'courses#preview', :as => 'preview'
   match '/confirm/:id'                => 'courses#confirm', :as => 'confirm'
-
-  match '/courses'                    => 'Courses::Admin#index'
 
   match '/proposal'                   => 'courses/admin#show_proposal'
   match '/approve'                    => 'courses#approve'
@@ -135,17 +142,25 @@ HourschoolV2::Application.routes.draw do
   match '/classes_taken'              => 'users#classes_taken'
   match '/classes_taught'             => 'users#classes_taught'
 
+  match '/about-subnav'               => 'pages#show', :id => 'about-subnav'
+
   match '/business'                   => 'pages#show', :id => 'business'
+  match '/services'                   => 'pages#show', :id => 'services'
+  match '/clients/greendoors'         => 'pages#show', :id => 'greendoors'
+  match '/store'                      => 'pages#show', :id => 'store'
   match '/about'                      => 'pages#show', :id => 'about'
   match '/team'                       => 'pages#show', :id => 'team'
   match '/story'                      => 'pages#show', :id => 'story'
+  match '/events'                     => 'pages#show', :id => 'events'
+  match '/resources'                  => 'pages#show', :id => 'resources'
   match '/campaign'                   => 'pages#show', :id => 'campaign'
+  match '/communities'                => 'pages#show', :id => 'communities'
   match '/teach'                      => 'pages#show', :id => 'teach'
   match '/build_mission'              => 'pages#show', :id => 'build_mission'
   match '/build_school'               => 'pages#show', :id => 'build_school'
   match '/wall_of_awesome'            => 'pages#show', :id => 'wall_of_awesome'
   match '/wall_of_missions'           => 'pages#show', :id => 'wall_of_missions'
-  match '/partner_schools'            => 'pages#show', :id => 'partner_schools'
+  match '/pro'                        => 'pages#show', :id => 'pro'
 
   match '/f4d_community'              => 'pages#show', :id => 'feastfordays/community'
   match '/f4d_host'                   => 'pages#show', :id => 'feastfordays/host'
@@ -157,6 +172,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/learn'                      => 'pages#index'
   match '/epic'                       => 'pages#index'
+  match '/explore'                     => 'pages#index'
 
   # post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
 

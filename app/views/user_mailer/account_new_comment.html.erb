@@ -1,0 +1,8 @@
+<p>Hello <%= @user.name.split(" ").first %>,</p>
+
+<p><%= link_to @new_comment.user.name, user_url(@new_comment.user) %> left a comment:
+</p>
+
+<p>"<%= @new_comment.body %>"</p>
+
+<p><%= link_to "Reply", comment_url(@new_comment) %> to <%= @new_comment.user.name.split(" ").first %></p>

@@ -4,11 +4,12 @@ class CoursesController < ApplicationController
   before_filter :restrict_draft_access!, :only => [:show]
 
 
-  # missions/:mission_id/courses
+  #url --> /missions/:id/courses
   def index
     @mission  = Mission.find(params[:mission_id])
     @users    = @mission.users
 
+    @courses = Course.active.order(:starts_at, :created_at)
     @upcoming_courses  = @mission.courses.where("starts_at > ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
     @past_courses      = @mission.courses.where("starts_at < ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
 
@@ -25,6 +26,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
+    @account = current_account
   end
 
   def create
@@ -56,6 +58,7 @@ class CoursesController < ApplicationController
   def edit
     enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
+    @account = current_account
     if @course.teacher == current_user || current_user.admin?
     else
        redirect_to @course
@@ -70,6 +73,15 @@ class CoursesController < ApplicationController
     @invite.invitable_id = params[:invitable_id]
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
+
+    ## show differnt layouts and jazz for different accounts
+    if @course.account.present? && current_account.blank?
+      redirect_to(course_url(@course, :subdomain => @course.account.subdomain)) and return true
+    elsif @course.account_id && @course.account_id == 4
+        render template: "courses/#{current_account.subdomain}/show"
+    else
+      #do nothing
+    end
   end
 
   def update
@@ -92,9 +104,9 @@ class CoursesController < ApplicationController
           end
           if @course.previous_changes["status"]
             UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-            if community_site? && @course.mission.present?
-              @course.mission.users.each do |user|
-                UserMailer.delay.mission_new_course(user, @course.mission, @course) if user.wants_newsletter? && user != current_user
+            if current_account == Account.where(:id => 9).first && @course.account.present?
+              @course.account.users.each do |user|
+                UserMailer.delay.account_new_course(user, @course.account, @course)
               end
             end
           end

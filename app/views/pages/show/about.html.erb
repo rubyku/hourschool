@@ -1,84 +1,88 @@
-<div class="heading28 brown" style="margin-bottom: 20px">Our Philosophy</div>
+<style type="text/css">
+  .section-header{
+    font-size: 40px;
+  }
 
-<div style="float: left; width: 630px">
-  <div class="page-main white">
-    <div class="page-content">
-      <div class="heading11 marcomm" id ="who-we-are">Who we are</div>
-      <p>We are a group of students, teachers, writers, designers, filmmakers, chefs, mechanics, engineers, thinkers and explorers who meet in person to share knowledge, skills, and resources to continually push each other to keep learning and doing new things.</p>
+  .italic{font-style: italic;}
+</style>
 
-      <%= image_tag(User.find(7).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(3).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(4).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(13).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(237).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(208).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(335).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(86).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(51).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
-      <%= image_tag(User.find(38).photo.url(:thumb_small), :style => "margin: 0px 5px 5px 0px") %>
+<% if community_site? %>
 
-      <%= image_tag(User.find(1435).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(1069).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(298).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(12).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(30).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(72).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(235).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(320).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(333).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
-      <%= image_tag(User.find(343).photo.url(:thumb_small), :style => "margin: 0px 5px 20px 0px") %>
+  <%= render :partial => '/pages/show/subnav/about-subnav' %>
 
+  <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
+    <center>
+      <p class="lead section-header">
+        About
+      </p>
+    </center>
+  </div>
+  <hr>
+
+  <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
+    <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;color=ff9933" width="960px" height="540px"  frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  </div>
+
+  <div class="container_16" style="width: 490px">
+    <center><div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Our Manifesto</div></center>
+    <p style="font-size: 15px; line-height: 2em">We believe in taking responsibility for how interesting our lives are. We believe the best old stories were once new experiences. We believe the beer tastes better on the way home from a good adventure. We believe trying new things isn’t something we have to justify to anybody. We believe in being beginners, because we know passions are found through experimentation and involvement. We believe if we can't fix it, we don't truly own it. We believe if learning isn’t a little bit scary, we’re doing it wrong.  We believe there’s an enormous amount of knowledge in the people around us — we just need to pay more attention to the quiet heroes. We believe as soon as we take the first step, people will come out of the woodwork to help us. We believe we are the experts of our own stories and sharing them makes our communities stronger. We believe success shouldn’t be defined by what we have, but what we have to share. We believe learning isn't consumption, it's participation, and it's time to participate in our own lives.</p>
+  </div>
+
+  <div class="container_16" style="margin-bottom: 20px; width: 490px">
+    <div class="big-quote">We believe in starting now.</div>
+    <p style="text-align: right; margin-bottom: 20px">Love, HourSchool</p>
+  </div>
+
+<% else %>
+
+  <% if current_account == Account.where(:id => 9).first %>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Welcome</div>
+    <p>Welcome to <span class="italic">“French in Ann Arbor”</span>, a new and exciting learning platform dedicated to the French language and culture of France and of the French-speaking world in Ann Arbor. French in Ann Arbor is a gathering place for learning and teaching. It is inclusive and democratic in its concept.</p>
+    <p><span class="italic">“French in Ann Arbor”</span> is inclusive, because we consider that our members can be native speakers of French, as well as teachers of French, enthusiastic people who know French at many different levels, and the English speakers who are lovers of the French culture. While most of our classes are in French, it makes sense to offer some of them in English (for example: cooking, wine tasting, tourism).</p>
+    <p><span class="italic">“French in Ann Arbor”</span> is democratic because it is based on the belief that among the numerous people passionate about French, many can share their interest in a specific subject with the rest of us and become teachers. Anyone who would like to add a class to the school can do so by clicking the <%= link_to "Add a class", new_course_path, :style => "color: #ff7733" %> button on the classes page. Doing so will walk you through the simple process of adding a class to French in Ann Arbor.</p>
+    <p><%= link_to "HourSchool", "http://www.hourschool.com", :style => "color: #ff7733" %> provides us with a system that allows us this kind of flexibility. We are very thankful to them for their vision and giving us the tools that allow us to create our new community, <span class="italic">“French in Ann Arbor”</span>. We could not agree more with the statement of its co-founders, Alex Pappas and Ruby Ku Schneeman:</p>
+
+    <div class="big-quote" style="margin-left: 30px; font-size: 18px; font-style: italic; line-height: 30px">“We believe there’s an enormous amount of knowledge in the people around us -- we just need to pay more attention to the quiet heroes. HourSchool was built as a launch pad for everyone seeking to give, share, teach and learn  -- one hour at a time.”</div>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">What are our classes like?</div>
+    <p>All of our classes center on a specific topic taught by one of us. We learn in a relaxed, social setting, inspired and eager to continue to explore the topic. We laugh, we get to know each other, and we have a glass of wine now and then. <span class="italic">“French in Ann Arbor”</span> puts the accent on mutual enrichment. Our form of teaching and learning is in general not teacher-centered. Rather, participants’ input is welcome. The exchange of ideas and our side conversations about the topic of the evening are what distinguishes us from a more traditional teaching format. Here is what one of our teachers, Brigitte Romero, owner of France Cuisine, said: </p>
+    <div class="big-quote" style="margin-left: 30px; font-size: 18px; font-style: italic; line-height: 30px"> “I find that the class where a subject is the starting point of discussion and exchanges gets us out of our routine of conversations that are often about the same thing. In these meetings we are charmingly forced to talk about other things in the company of people who naturally have similar interests. I find that very heartwarming."</div>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">What do we post?</div>
+    <p>Our hectic lives do not always allow us to check out all that is happening on the French scene in Ann Arbor. This is why we try to post the Ann Arbor events tied with French and the French-speaking world so that you can find everything in one place. The Michigan Theater, The University Musical Society, The University of Michigan Center for European Studies are but a few organizations about whose related activities we try to keep you informed.  Any of you can let us know about a French-related event in town.</p>
+
+    <hr style="margin-top: 40px">
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Special thanks to our enthusiastic teachers</div>
+    <p>Yann Beaumin, Stuart Dombey, Bonnie Ion, Marcel Muller, Suzanne Murray, Cat Novak, Syl Novak, Brigitte Romero, and the many more in the future!<p>
+
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">About the Director</div>
+    <p>My name is Mijo Pappas. I am the founder and director of <span class="italic">“French in Ann Arbor”</span>. I am a native speaker of French and have master degrees in French and in German from the Université of Paris-sorbonne and from the Phillips Universät in Marburg an der Lahn, Germany. I have been a teacher of French language and literature all my life. I am now retired from thirty years of teaching at Greenhills School in Ann Arbor. My dream has always been to build a gathering place of information and a learning community for lovers of the French language and culture in Ann Arbor. Thanks to HourSchool, I am now able to realize this dream. We started with just a handful of French enthusiasts and are now a larger community that is still growing.  Many thanks to everyone who participates and contributes so generously. This project has been a dream come true for me and has been awe-inspiring. I am looking forward to our continued “work and play” together.</p>
+
+    <p>Always get in touch with me if you have questions, or have suggestions about events or class topics you'd like to see in this community. You will be absolutely welcomed. You can reach me at <%= link_to "mijo@hourschool.com", "mailto:mijo@hourschool.com", :style => "color: #ff7733" %>.</p>
+
+
+    <div class="heading14" style="margin-top: 40px;">Collaboration and Partnerships</div>
+    <div class="row">
+      <div class="span4">
+        <%= image_tag "http://photos3.meetupstatic.com/photos/event/4/e/a/f/global_10340143.jpeg", :style => "margin: 40px 75px 39px 75px" %>
+        <p>Julia Kessler-Hollar, organizer of the <%= link_to "Ann Arbor French Conversation Group at Meetup", "http://www.meetup.com/french-581/", :style => "color: #ff7733" %></p>
+      </div>
+      <div class="span4">
+        <%= image_tag "http://labaguettea2.com/img/labaguette_logo.gif", :style => "margin: 22px 40px; width: 65%" %>
+        <p>Suzanne Murray, co-owner of <%= link_to "La Baguette", "http://labaguettea2.com/", :style => "color: #ff7733" %>, selling her goodies at the Chelsea Farmers Market every Saturday from 8:00 am to noon.</p>
+      </div>
+      <div class="span4">
+        <%= image_tag "v4/hs-pro/brigitte_logo.png", :style => "width: 60%; margin: 26px 50px" %>
+        <p>Brigitte Romero, France Cuisine, A Unique French Dining and Cultural Experience in the Heart of your Home. Contact her at <%= link_to "brigitte.romero@sbcglobal.net", "mailto:brigitte.romero@sbcglobal.net", :style => "color: #ff7733"  %></div>
     </div>
-  </div>
 
-  <div class="page-main white">
-    <div class="page-content">
-      <div class="heading11 marcomm" id="what-we-do">What we do</div>
-      <p>Simply put, we run missions.  We pick things we want to accomplish, and we connect each other with the necessary people, tools, frameworks, and support to get it done.  Oh, and we make sure we’re all having a grand ‘ol time along the way.</p>
-      <div class="big-quote">“Information is not knowledge. The only source of knowledge is experience.”</div>
-      <p style="text-align: right; margin-bottom: 20px">-Albert Einstein</p>
-      <p>If the basic building block of traditional learning is lessons, and the basic building block for solo endeavors is mistakes and hard knocks, our kind of learning is all about missions. Missions can be self-created, or co-created, but you always share them with other people – experts and peers alike.</p>
-      <p>Missions are goal-driven, not content-driven. You complete them when you feel like you’re able to do what you set out to do, whether it’s fix your own car, or create a healthy meal from scratch, from growing your own vegetables to making your own marinara sauce.</p>
-      <p>And the mission model is circular, not linear. Milestones are constantly changing as you learn more about the topic, discover new stuff you’d still like to try, and branch out in new directions. If you want to stay engaged, and start teaching others what you yourself have learned, the mission can go on and on. As long as it keeps your interest, we think you should keep  experimenting and stay engaged.  Learn more by <%= link_to "exploring our missions", wall_of_missions_path, :style => "color: #ff7733" %>.</p>
-    </div>
-  </div>
 
-  <div class="page-main white">
-    <div class="page-content">
-      <div class="heading11 marcomm" id="what-we-believe">What we believe</div>
-      <p>It’s simple. We think life is better when you’re learning. We think it’s deceptively easy to slip into the routine and to stick with what you know.  We think sometimes the best way to keep growing is to get together with other people and learn. </p>
-      <div class="big-quote">We think school doesn’t have to be about classrooms and curriculums.  It can be about garages and get-togethers. </div>
-      <p>We believe that everyone can and should teach.  You are the expert of your own stories, share them!</p>
-      <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;color=ff9933" width="570" height="321" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div>
-  </div>
-</div>
+  <% else %>
+    <%= current_account.about %>
+  <% end %>
 
-<div class="white right page-sidebar">
-  <div class="page-content">
-    <div class="heading11 marcomm">About</div>
-
-    <div class="heading16 adelle"><a href="#who-we-are">Who we are</a></div>
-    <p style="font-size: 11px; margin-bottom: 15px">
-      A community of awesome people who believe in life-wide learning
-    </p>
-
-    <div class="heading16 adelle"><a href="#what-we-do">What we do</a></div>
-    <p style="font-size: 11px; margin-bottom: 15px">
-      We pick things we want to accomplish and we start doing
-    </p>
-
-    <div class="heading16 adelle"><a href="#what-we-believe">What we believe</a></div>
-    <p style="font-size: 11px; margin-bottom: 15px">
-      Everyone should teach because life is better when you participate
-    </p>
-  </div>
-</div>
-
-<div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; margin-left: 55px; width: 230px">
-  <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 110px" %>
-  <div class="heading11" style="text-align: center; color: #5382a4">“Whatever you can do, or dream you can do, begin it. Boldness has genius, power, and magic in it. Begin in now.”</div>
-  <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em">William Hutchinson Murray</div>
-</div>
+<% end %>
 
 

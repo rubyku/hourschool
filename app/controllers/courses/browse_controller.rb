@@ -1,20 +1,24 @@
 class Courses::BrowseController < ApplicationController
 
   def index
-    @pre_mission_signup = PreMissionSignup.new
-    @courses = Course.active.order(:starts_at, :created_at)
     @account = current_account
     if community_site?
-      @courses = @courses.community
+      @upcoming_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now)
+      @past_courses = Course.order('DATE(starts_at) DESC').where(:status => "live").where("starts_at < (?)", Time.zone.now)
+
+      @austin_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:city_id => 111639)
+      @annarbor_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:city_id => 114765)
+
       if current_user
         @no_courses_in_user_city = current_user.city.try(:name).nil? || current_user.city.courses.empty?
       else
         @no_courses_in_user_city = false
       end
     else
-      @courses = @courses.where(:account_id => current_account.id)
+      @upcoming_courses = Course.active.order(:starts_at, :created_at).where("starts_at > (?)", Time.zone.now).where(:account_id => current_account.id)
+      @past_courses = Course.order('DATE(starts_at) DESC').where(:status => "live").where("starts_at < (?)", Time.zone.now).where(:account_id => current_account.id)
     end
-    @courses = @courses.paginate(:page => params[:page], :per_page => 99)
+    #@courses = @courses.paginate(:page => params[:page], :per_page => 99)
 
   end
 

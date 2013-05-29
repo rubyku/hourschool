@@ -17,10 +17,14 @@
   <% if @user.photo.present? %>
     <%= image_tag @user.photo.url(:large) %>
   <% else %>
-    <%= image_tag 'v2/Avatars_01_V1.png', :size => "125x125" %>
+    <%= image_tag 'avatar.jpg', :size => "125x125" %>
   <% end %>
 
-  <div style="float: left; padding-bottom: 30px; margin-top: 20px; width: 230px">
+  <div class="heading28 brown" style="float: left; margin-top: 30px;">
+    <%= @user.name %>
+  </div>
+
+  <div style="float: left; padding-bottom: 30px; width: 230px">
     <div class="heading11" style="margin-top: 30px">Bio</div><br>
     <p style="float: left">
       <% if @user.bio.blank? %>
@@ -41,9 +45,6 @@
 
 </div>
 
-<div class="heading28 brown" style="float: left; margin-bottom: 20px">
-  <%= @user.name %>
-</div>
 
 <% if current_user == @user %>
   <a href="/users/edit" class="btn" style="float: right">Edit my profile</a>
@@ -56,21 +57,20 @@
 <% end %>
 
 
-<% if community_site? %>
+
   <div class="page-main" style="width: 686px; border: 0px solid black">
     <%#= render :partial => "users/show/comments" %>
 
     <div class="tabbable">
       <ul class="nav nav-tabs" style="margin-bottom: 0px;">
         <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
-        <li><a href="#tab2" data-toggle="tab" class="heading11">Missions</a></li>
-        <li><a href="#tab3" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
-        <li><a href="#tab4" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
+        <li><a href="#tab2" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
+        <li><a href="#tab3" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
       </ul>
 
       <div class="tab-content" style="overflow-x: hidden">
         <div class="tab-pane active" id="tab1">
-          <div class="page-main white tab-border main" style="width: 686px">
+          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
             <div class="page-content">
               <% if @compact_feed_items.blank? %>
                 <div class="well">
@@ -90,108 +90,7 @@
           </div>
         </div><!-- end tab1 -->
         <div class="tab-pane" id="tab2">
-          <div class="page-main white tab-border main" style="width: 686px">
-            <div style="padding: 20px">
-              <% if @user.missions.blank? %>
-                <div class="well">
-                  <% if current_user == @user %>
-                    You have not joined any missions yet. <%= link_to "Go explore some!", wall_of_missions_path %>
-                  <% else %>
-                    No missions yet.
-                  <% end %>
-                </div>
-              <% else %>
-                <% @user.missions.each do |mission| %>
-                  <% @crewmanship = mission.crewmanships.where(:user_id => @user).first %>
-                  <div class="mission-divider">
-                    <%= image_tag(mission.photo.url(:stats)) if mission.photo.present? %>
-
-                    <div style="float: left; width: 648px; background-color: #ececed; height: 42px; border: 1px solid rgba(154, 149, 145, 0.5);">
-                      <div style="padding: 12px 0px 12px 12px; float: left">
-                        <%= link_to full_mission_title(mission).truncate(75), mission, :class => "heading16 adelle" %>
-                      </div>
-                      <% if current_user == @user %>
-                        <%= link_to 'Manage Membership', mission_crewmanship_path(:mission_id => mission, :id => @crewmanship), :class => "btn right", :style => "margin: 6px 6px 0px 12px;" %>
-                      <% end %>
-                    </div>
-
-                    <div style="float: left; width: 648px; background-color: white; border: 1px solid rgba(154, 149, 145, 0.5); height: 156px; border-top: 0px solid black">
-                      <div style="padding: 20px">
-
-                        <div style="float: left; margin-right: 20px">
-                          <% if @crewmanship.role == 'explorer' %>
-                            <%= image_tag 'v3/badge-explorer.png' %>
-                          <% elsif @crewmanship.role == 'guide' %>
-                            <%= image_tag 'v3/badge-guide.png' %>
-                          <% elsif @crewmanship.role == 'creator' %>
-                            <%= image_tag 'v3/badge-creator.png' %>
-                          <% elsif @crewmanship.role == 'alumni' %>
-                            <%= image_tag 'v3/badge-alumni.png' %>
-                          <% end %>
-                        </div>
-
-                        <div style="float: left; width: 472px;">
-
-                          <div style="float: left; margin: 0px 20px 20px 0px">
-
-                            <div class="heading16 futura mission-stats-16">
-                              <%= @crewmanship.created_at.strftime("%m. %d. %y") %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">joined on</div>
-                            <%= image_tag 'v3/stats-joined-mission.png', :style => "margin-top: -44px" %>
-                          </div>
-
-                          <div style="float: left; margin: 0px 20px 20px 0px">
-                            <div class="heading16 futura mission-stats-16">
-                              <%= (Time.zone.now - @crewmanship.created_at).to_int / 60 / 60 /24 %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">days on mission</div>
-                            <%= image_tag 'v3/stats-mission-days.png', :style => "margin-top: -44px" %>
-                          </div>
-
-                          <div style="float: left;">
-                            <div class="heading16 futura mission-stats-16">
-                              <%= mission.comments.where(:user_id => @user).count %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">comments made</div>
-                            <%= image_tag 'v3/stats-comments-made.png', :style => "margin-top: -44px" %>
-                          </div>
-
-                          <div style="float: left; margin: 0px 20px 20px 0px">
-                            <div class="heading16 futura mission-stats-16">
-                              <%= @crewmanship.user.courses_taught.where(:mission_id => mission).count %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">events hosted</div>
-                            <%= image_tag 'v3/stats-events-organized.png', :style => "margin-top: -44px" %>
-                          </div>
-
-                          <div style="float: left; margin: 0px 20px 20px 0px">
-                            <div class="heading16 futura mission-stats-16">
-                              <%= @crewmanship.user.courses_attended.where(:mission_id => mission).count %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 53px; color: #ccc">events attended</div>
-                            <%= image_tag 'v3/stats-events-attended.png', :style => "margin-top: -44px" %>
-                          </div>
-
-                          <div style="float: left;">
-                            <div class="heading16 futura mission-stats-16">
-                              <%= mission.topics.where(:user_id => @user).count %>
-                            </div>
-                            <div class="heading9 bold" style="margin-left: 55px; color: #ccc">topics created</div>
-                            <%= image_tag 'v3/stats-topics-created.png', :style => "margin-top: -44px" %>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div><!-- end tab2 -->
-        <div class="tab-pane" id="tab3">
-          <div class="page-main white tab-border main" style="width: 686px">
+          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
             <div class="page-content">
               <% if @user.followers.blank? %>
                 <div class="well">
@@ -208,7 +107,7 @@
                       <% if user.photo.present? %>
                         <%= image_tag(user.photo.url(:thumb_large)) %>
                       <% else %>
-                        <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
+                        <%= image_tag 'avatar.jpg', :size => '125x125' %>
                       <% end %>
                     </div>
                     <div class="crewman-description">
@@ -221,8 +120,8 @@
             </div>
           </div>
         </div><!-- end tab3 -->
-        <div class="tab-pane" id="tab4">
-          <div class="page-main white tab-border main" style="width: 686px">
+        <div class="tab-pane" id="tab3">
+          <div class="page-main white tab-border main" style="width: 683px; border: 0px">
             <div class="page-content">
               <% if @user.following.blank? %>
                 <div class="well">
@@ -239,7 +138,7 @@
                       <% if user.photo.present? %>
                         <%= image_tag(user.photo.url(:thumb_large)) %>
                       <% else %>
-                        <%= image_tag 'v2/Avatars_01_V1.png', :size => '125x125' %>
+                        <%= image_tag 'avatar.jpg', :size => '125x125' %>
                       <% end %>
                       <br><br>
                       <% if current_user == @user %>
@@ -263,7 +162,7 @@
 
   </div>
 
-<% elsif current_account == Account.where(:id => 1).first %>
+<% if current_account == Account.where(:id => 1).first %>
 
   <div class="page-main" style="width: 686px; border: 0px solid black">
 

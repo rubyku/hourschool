@@ -37,7 +37,7 @@ class Users::AfterRegisterController < Wicked::WizardController
 
   protected
     def finish_wizard_path
-      previous_path_or(dashboards_path)
+      previous_path_or(root_path)
     end
 
 end

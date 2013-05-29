@@ -82,7 +82,7 @@
                   <%= link_to course.title, course %> by <%= link_to course.teacher.name, course.teacher %><br>
                   <div style="font-size: 11px">
                   <% if course.account == nil %>
-                    <%= "#{course.mission.verb} #{course.mission.title}" %>
+                    <%= "#{course.mission.verb} #{course.mission.title}" if course.mission.present? %>
                   <% else %>
                     Partner school: <%= course.account.name %>
                   <% end %><br>

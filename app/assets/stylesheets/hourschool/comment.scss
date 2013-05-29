@@ -1,7 +1,6 @@
 @import 'hourschool/variables';
 
 .comments {
-  margin-top: 20px;
   .avatar {
     width: 50px;
     margin-right: 10px;
@@ -19,7 +18,7 @@
 
 .comments .content {
   float: left;
-  width: 90%; 
+  width: 90%;
   margin-left: 60px;
   margin-top: -50px;
 }
@@ -28,5 +27,4 @@
   margin-bottom: 10px; }
 
 .comments textarea {
-  padding: 5px;
-  margin-top: 5px;}
+  padding: 5px;}

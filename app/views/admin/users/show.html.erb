@@ -1,0 +1,16 @@
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
+
+  <div class="span9">
+    <div><p><small><%= link_to "< back to people", admin_users_path %></small></p></div>
+    <div class="white" style="margin-bottom: 20px">
+      <div style="padding: 10px; background-color: #f7f7f7">
+        <div class="heading14">User Journey</div>
+      </div>
+      <div style="padding: 19px">
+        <%= @user.name %>
+      </div>
+    </div>
+  </div>
+
+</div>

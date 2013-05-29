@@ -10,7 +10,7 @@
 }
 
 #homepage #logo{
-  background: url( <%= asset_path 'v3/logo-white.png' %> );
+  background: url( <%= asset_path 'v3/logo-black.png' %> );
 }
 
 
@@ -34,13 +34,13 @@ li a.main-nav{
     border-top: 3px solid black;
     padding-left: 0px 10px; }
   &.main-nav-inactive {
-    padding: 0px 10px; } 
+    padding: 0px 10px; }
 }
 
 #homepage a.main-nav{
-  color: white;
-  &:visisted{color: white;}
-  &:hover{color: white;}
+  color: black;
+  &:visisted{color: black;}
+  &:hover{color: black;}
 }
 
 .nav-heading{
@@ -59,11 +59,14 @@ a:visited.nav-heading{color: white; text-decoration: none;}
 
 ul.sub-nav {
   @include hourschool-heading;
+  background-color: #f0f0f0;
+  padding: 10px;
+  padding-right: 0px;
+  padding-left: 10px;
   float: left;
   list-style: none;
   font-size: 12px;
-  letter-spacing: 0.1em;
-  margin-bottom: 20px; }
+  letter-spacing: 0.1em;}
 
 li {
   &.sub-nav-active, &.sub-nav-inactive {
@@ -71,12 +74,11 @@ li {
     margin-right: 10px;
     padding-bottom: 3px; }
   &.sub-nav-active {
-    border-bottom: 3px solid $hourschool-house-color;
     padding-left: 0px 10px; }
   &.sub-nav-inactive {
-    padding: 0px 10px; } 
+    padding: 0px 10px; }
   }
-    
+
 
 a {
   &.sub-nav-active {

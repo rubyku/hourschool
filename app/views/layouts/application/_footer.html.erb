@@ -1,6 +1,6 @@
 <% if community_site? %>
 
-  <div class="footer_bg" style="background-color: white; margin-top: 60px; padding-bottom: 100px;">
+  <div class="footer_bg" style="background-color: #f0f0f0; margin-top: 60px; padding-bottom: 100px;">
 
     <div class="container_16 clearfix">
 
@@ -25,12 +25,6 @@
              </div>
            </tr>
           <tr id="footer">
-            <div style="margin-bottom: 20px">
-               <a href="https://twitter.com/HourSchoolBus" class="twitter-follow-button" data-show-count="false">Follow @HourSchoolBus</a>
-               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
-          </tr>
-          <tr id="footer">
             <div class="fb-like" data-href="http://www.facebook.com/hourschool" data-send="false" data-width="250" data-show-faces="true" style="margin-bottom: 20px"></div>
           </tr>
         </table>
@@ -45,7 +39,15 @@
              <%= image_tag 'v2/icon_email.png', :class => 'footer_contact' %>
            </td>
            <td id="footer">
-              <a href="mailto:hello@hourschool.com" class="footer" target="_blank">hello@hourschool.com</a>
+              <a href="mailto:hello@hourschool.com" class="footer" target="_blank" style="color: black">hello@hourschool.com</a>
+           </td>
+         </tr>
+         <tr id="footer">
+           <td id="footer">
+             <%= image_tag 'v2/icon_phone.png', :class => 'footer_contact' %>
+           </td>
+           <td id="footer">
+              1.877.246.4689
            </td>
          </tr>
         </table>
@@ -54,7 +56,7 @@
     </div><!-- /end .container_16 -->
 
     <div class="container_16 clearfix" style="margin-top: 20px">
-        <div class="heading11"><i class="icon-fire"></i> HourSchool 2012, aspire to inspire from the heart of Austin, Texas</div>
+        <div class="heading11"><i class="icon-fire"></i> HourSchool 2013, aspire to inspire from the heart of Austin, Texas</div>
     </div>
 
   </div>
@@ -100,17 +102,7 @@
         <div style="float: left">
           <%= link_to "Admin Dashboard", admin_index_path, :style => "margin-right: 10px" %> |
           <%= link_to "Post new event", new_course_path(:place_name => "The Hub LA",
-      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614, :directions => "Located in the Arts District of Downtown Los Angeles.
-Cross Street :: Alameda between 2nd & 3rd St.
-
-To reach us, please take the exterior set of purple stairs up to the third floor. These stairs are located in the building’s adjacent parking lot ($5 all day parking) across the street from Novel Cafe at 811 Traction.
-
-PARKING LOTS:
-1. 830 Traction’s lot offers $5 parking for the evening.
-2. Lot on Hewitt St. between Traction and 3rd: $5
-
-STREET PARKING:
-Free parking after 6pm. Metered parking available on certain blocks."), :style => "margin-right: 10px" %> |
+      :address => "830 Traction Avenue, #3A", :zip => "90013", :city_id => 119614), :style => "margin-right: 10px" %> |
           <%= link_to "Logout", destroy_user_session_path, :style => "margin-right: 10px" %>
         </div>
       <% end %>
@@ -132,6 +124,7 @@ Free parking after 6pm. Metered parking available on certain blocks."), :style =
   </div>
 
 <% else %>
+
   <div class="container_16 enterprise_footer" style="padding-top: 60px">
     <table id="powered-by">
       <tr>
@@ -146,4 +139,5 @@ Free parking after 6pm. Metered parking available on certain blocks."), :style =
       </td>
     </table>
   </div>
+
 <% end %>

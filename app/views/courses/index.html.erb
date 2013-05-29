@@ -45,7 +45,7 @@
           <% if user.photo.present? %>
             <%= link_to image_tag(user.photo.url(:thumb_small)), user %>
           <% else %>
-            <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
+            <%= link_to (image_tag 'avatar.jpg', :size => "50x50"), user %>
           <% end %>
         </div>
       </div>
@@ -65,7 +65,7 @@
               <% if user.photo.present? %>
                 <%= link_to_avatar(user, :thumb_small) %>
               <% else %>
-                <%= link_to (image_tag 'v2/Avatars_01_V1.png', :size => "50x50"), user %>
+                <%= link_to (image_tag 'avatar.jpg', :size => "50x50"), user %>
               <% end %>
             </div>
             <div class="crewman-description">

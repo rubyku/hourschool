@@ -8,9 +8,6 @@
 <% end %>
 
 
-<% if current_account == Account.where(:id => 4).first %>
-  <%= render :partial => 'courses/womendesignbuild/show' %>
-<% else %>
 
   <!-- send back to mission box -->
   <% if @course.status == 'live' && @course.mission.present? && @course.mission.status == "draft" && @course.teacher == current_user %>
@@ -40,17 +37,6 @@
       <div class="page-content">
         <div class="heading28 brown" style="margin-bottom: 5px"><%= "#{@course.title}" %></div>
         <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
-          <% if @course.mission.present? %>
-            <% if @mission.id != 54 %><!-- Hub LA -->
-              This event is part of the mission <%= link_to full_mission_title(@course.mission), @course.mission %>
-            <% end %>
-          <% end %><br>
-          <% if @course.topics.present? %>
-            Related topics:
-            <% @course.topics.each do |topic| %>
-              <%= link_to topic.title, mission_topic_path(@course.mission, topic) %>,
-            <% end %>
-          <% end %>
         </div>
 
         <div style="width: 97%; margin-top: 10px">
@@ -64,7 +50,7 @@
             <% if @course.teacher.photo.present? %>
               <%= link_to_avatar(@course.teacher, :thumb_small) %>
             <% else %>
-              <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+              <%= image_tag 'avatar.jpg', :size => "50x50" %>
             <% end %>
           </div>
           <div class="crewman-description">
@@ -97,7 +83,7 @@
               <% if student.photo.present? %>
                 <%= link_to_avatar(student, :thumb_small) %>
               <% else %>
-                <%= image_tag 'v2/Avatars_01_V1.png', :size => "50x50" %>
+                <%= image_tag 'avatar.jpg', :size => "50x50" %>
               <% end %>
               </div>
               <div class="crewman-description">
@@ -152,7 +138,8 @@
             <%= link_to "Edit event", edit_course_path %><br>
             <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
             <% if @course.starts_at > Time.zone.now %>
-              <%= link_to "Cancel this event", "" %><br>
+              <%= link_to "Cancel this event", course_organizer_path(@course, :cancel), :method => :get %><br>
+              <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
               <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
             <% else %>
               <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
@@ -161,7 +148,7 @@
           <% else %><!-- if current_user is not this course's teacher -->
             <a data-toggle="modal" href="#emailOrganizer">Email organizer</a><br>
             <% if current_user && @course.starts_at > Time.zone.now %>
-              <a href="mailto: hello@hourschool.com" target="_blank">Cancel registration</a>
+              <a href="mailto:hello@hourschool.com" target="_blank">Cancel registration</a>
             <% end %>
           <% end %>
         </div>
@@ -204,4 +191,4 @@
 
 
   </div><!-- end sidebar container -->
-<% end %>
+

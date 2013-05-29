@@ -82,69 +82,29 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 
 <%= content_for :first_inside_body do %>
 
-  <%# Notice Bar if not logged in %>
-  <% if community_site? %>
-    <% if !current_user || (current_user && current_user.crewmanships.blank?) %>
-      <div class='userConfirm'>
-        <div class='container_16'>
-          <p>
-            <span style="color: #b4c9d9">
-              Hi there!
-            </span>
-            <span class='whiteText'>
-              HourSchool is a place to achieve your goals by joining a mission.
-            </span>
-            <span style="text-decoration: underline; color: #f7b62a">
-              <a data-toggle="modal" href="#explainMission" style="color: #f7b62a">Learn more!</a>
-            </span>
-          </p>
-        </div>
+  <%# Admin bar %>
+  <% if current_user && !community_site? && (admin_of_current_account? || current_user.admin?) %>
+    <div class='userConfirm'>
+      <div class='container_16'>
+        <p style="float: left">
+          <span class="reminder">HourSchool Pro</span>
+        </p>
+        <p style="float: right">
+          <%= link_to "Site", "http://#{current_account.subdomain}.hourschool.com" %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Admin", admin_index_path %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Post a new class", new_course_path %>
+          <span style="margin: 0 7px 0 7px; color: white">|</span>
+          <%= link_to "Email HourSchool", "mailto:hello@hourschool.com" %></span>
+        </p>
       </div>
-    <% end %>
-
-    <div class="modal hide" id="explainMission"><!-- modal begins -->
-      <div class="modal-body">
-
-        <div class="heading28" style="float: left; width: 485px; margin-bottom: 25px">
-          We believe the best way to achieve a goal is with a Mission.
-        </div>
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <div style="margin-bottom: 30px">
-          <div class="title-text" id="explore">What is a mission?</div>
-          <p>Each mission is a micro-community that connects passionate people working towards their individually-defined goals through in-person classes, workshops, and happy hours.</p>
-        </div>
-
-        <div style="margin: 0px 30px 20px 0px">
-          <div class="title-text" id="explore">How does a mission work?</div>
-          <p>Here are the building blocks of a mission:</p>
-        </div>
-
-        <div class="heading14">Mission</div>
-        <p>A mission is something you want to accomplish.</p>
-
-        <div class="heading14">Topics:</div>
-        <p>Topics are knowledge or skills you need in your toolbox to achieve your mission. They are collectively, and continuously built by everyone in the mission.</p>
-
-        <div class="heading14">Events:</div>
-        <p>Events are organized based on the topics, where people get together in person to learn with and from each other - whether through a class or a happy hour.</p>
-
-        <div class="heading11" style="margin-top: 20px">For example:</div>
-
-        <%= image_tag 'v3/mission-framework.png', :style => "margin-top: 5px; padding-bottom: 20px" %>
-
-        <button type="button" class="close" data-dismiss="modal" style="text-decoration: underline; margin: 30px 0px; color: #333">Okay, got it.</button>
-
-        </div>
-      </div>
-    </div><!-- modal ends -->
+    </div>
   <% end %>
 
 
-
   <%# Header %>
-  <% if community_site? %>
-    <%# do nothing %>
-  <% elsif current_account == Account.where(:id => 1).first %>
+  <% if current_account == Account.where(:id => 1).first %>
     <%= render 'layouts/application/accounts/feastfordays' %>
   <% elsif current_account == Account.where(:id => 2).first %>
     <%= render 'layouts/application/accounts/a2reskilling' %>
@@ -157,7 +117,7 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
   <% elsif current_account == Account.where(:id => 7).first %>
     <%= render 'layouts/application/accounts/hubla' %>
   <% else %>
-    <%= render 'layouts/application/accounts/generic_account' %>
+    <%= render 'layouts/application/header' %>
   <%- end -%>
 
 <%- end -%>
@@ -166,10 +126,6 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 <%# Main Layout %>
 
 <%= render :layout => 'layouts/document' do %>
-
-  <% if community_site? %>
-    <%= render 'layouts/application/header' unless yield(:body_id) == "mission_builder" %>
-  <% end %>
 
   <%# Flash %>
   <div class='container_16'>
@@ -205,4 +161,5 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 <%- end -%>
 
 <%= render 'layouts/application/footer' %>
+
 

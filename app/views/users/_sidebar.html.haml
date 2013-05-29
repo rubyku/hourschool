@@ -2,22 +2,22 @@
   .sidebar-content
     - if @user.photo.present?
       = avatar_for(@user, :thumb_large)
-    - else 
-      = image_tag 'v2/Avatars_01_V1.png', :size => "125x125"
+    - else
+      = image_tag 'avatar.jpg', :size => "125x125"
 
     .sidebar-block
       %p{:style => "font-weight: bold; width: 200px"}
         = @user.name
       %p{:style => "font-weight: normal; width: 200px"}
         = "#{@user.city.try(:name)}, #{@user.city.try(:state)}"
-        
+
     .sidebar-block
       %p{:style => "font-weight: normal; width: 200px"}
         - if @user.bio.blank?
           = "No bio yet."
           - if current_user == @user
             = link_to "Tell us more about you.", edit_user_registration_path(@user)
-        - else 
+        - else
           = @user.bio
         = link_to "Edit bio", edit_user_registration_path
       %br
@@ -27,9 +27,9 @@
             - if !@user.web.blank?
               = link_to "Website", url_with_protocol(@user.web), :class => "profile-link", :target => "_blank"
             - if !@user.twitter_id.blank?
-              = link_to "Twitter", @user.twitter_url, :class => "profile-link", :target => "_blank"      
+              = link_to "Twitter", @user.twitter_url, :class => "profile-link", :target => "_blank"
 
-              
+
     .sidebar-block-last
       %table.user-stat
         %tr
@@ -52,16 +52,15 @@
 /       .sidebar-block-last
 /         .sidebar-heading
 /           = link_to 'Classmates', '#', :class => 'showClassmateModal', :onclick => "$('.ClassmateModal').show()"
-/ 
+/
 / = render :layout => 'shared/page/modal', :locals => {:modal_class => 'ClassmateModal', :display => (params[:show_classmates].present? ? 'block': 'none'), :click_closes_overlay => true} do
 /   %div
 /     = content_tag(:h2, 'Classmates')
 /     = content_tag(:p, "Classmates are friends at Hourschool. They're automatically added after each class and can be add or removed at any time")
 /     - @user.fetch_followed.each do |user|
 /       = render :partial => 'followings/user_following', :locals => {:user => user}
-/ 
+/
 / - content_for :admin_action do
 /   = link_to_function 'Approve Proposals', "$('.section').hide(); $('#pending').show()", :class => 'sub-nav-inactive'
-  
-  
-  
+
+
