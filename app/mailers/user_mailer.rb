@@ -192,7 +192,7 @@ class UserMailer < ActionMailer::Base
     mail :from => "#{@account.name} <hello@hourschool.com>",
          :to => @user.email,
          :bcc => "admin@hourschool.com",
-         :subject => "#{@new_comment.user} left a new comment"
+         :subject => "#{@new_comment.user.name} left a new comment"
   end
 
 

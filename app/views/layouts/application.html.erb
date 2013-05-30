@@ -112,8 +112,6 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
     <%= render 'layouts/application/accounts/missionzero' %>
   <% elsif current_account == Account.where(:id => 4).first %>
     <%= render 'layouts/application/accounts/womendesignbuild' %>
-  <% elsif current_account == Account.where(:id => 5).first %>
-    <%= render 'layouts/application/accounts/center61' %>
   <% elsif current_account == Account.where(:id => 7).first %>
     <%= render 'layouts/application/accounts/hubla' %>
   <% else %>
