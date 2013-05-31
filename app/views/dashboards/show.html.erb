@@ -57,6 +57,7 @@
 <% end %>
 
 
+<% if community_site? || current_account == Account.where(:id => 9).first %>
 
   <div class="page-main" style="width: 686px; border: 0px solid black">
     <%#= render :partial => "users/show/comments" %>
@@ -161,6 +162,8 @@
     </div><!-- end tabbable -->
 
   </div>
+
+<% end %>
 
 <% if current_account == Account.where(:id => 1).first %>
 
