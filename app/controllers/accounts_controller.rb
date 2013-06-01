@@ -8,10 +8,6 @@ class AccountsController < ApplicationController
     @errors = []
   end
 
-  def edit
-    @account = current_account
-  end
-
   def index
     @accounts = Account.all
   end

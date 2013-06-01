@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524174319) do
+ActiveRecord::Schema.define(:version => 20130530170639) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -298,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20130524174319) do
     t.boolean  "admin",      :default => false, :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "role"
   end
 
   add_index "memberships", ["account_id"], :name => "index_memberships_on_account_id"

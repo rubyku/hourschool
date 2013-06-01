@@ -82,7 +82,7 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 
 <%= content_for :first_inside_body do %>
 
-<!--   <%# Admin bar %>
+  <%# Admin bar %>
   <% if current_user && !community_site? && (admin_of_current_account? || current_user.admin?) %>
     <div class='userConfirm'>
       <div class='container_16'>
@@ -94,17 +94,19 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
           <span style="margin: 0 7px 0 7px; color: white">|</span>
           <%= link_to "Admin", admin_index_path %>
           <span style="margin: 0 7px 0 7px; color: white">|</span>
-          <%= link_to "Post a new class", new_course_path %>
+          <%= link_to "Post a new event", new_course_path %>
           <span style="margin: 0 7px 0 7px; color: white">|</span>
           <%= link_to "Email HourSchool", "mailto:hello@hourschool.com" %></span>
         </p>
       </div>
     </div>
   <% end %>
- -->
+
 
   <%# Header %>
-  <% if current_account == Account.where(:id => 1).first %>
+  <% if params[:controller].include?("admin") %>
+    <%# do nothing %>
+  <% elsif current_account == Account.where(:id => 1).first %>
     <%= render 'layouts/application/accounts/feastfordays' %>
   <% elsif current_account == Account.where(:id => 2).first %>
     <%= render 'layouts/application/accounts/a2reskilling' %>

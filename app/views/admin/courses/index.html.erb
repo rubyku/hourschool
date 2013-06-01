@@ -27,7 +27,7 @@
               <tr>
                 <td class="span3">
                   <div class="heading13 brown">
-                    <%= link_to course.title, course %><br>
+                    <%= link_to course.title, admin_course_path(course) %><br>
                     by <%= course.teacher.name %>
                   </div>
                 <td><%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>

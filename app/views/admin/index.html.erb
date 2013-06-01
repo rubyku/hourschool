@@ -45,11 +45,11 @@
             <th>Action</th>
           </thead>
           <tbody>
-            <% @courses.first(3).each do |course| %>
+            <% @courses.first(5).each do |course| %>
               <tr>
                 <td class="span3">
                   <div class="heading13 brown">
-                    <%= link_to course.title, course %>
+                    <%= link_to course.title, admin_course_path(course) %>
                   </div>
                 <td>
                   <%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
@@ -66,10 +66,10 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to 'Promote event', "" %></li>
+                      <!-- <li><%= link_to 'Promote event', "" %></li> -->
                       <li><%= link_to 'Edit event', edit_course_path(course) %></li>
-                      <li><%= link_to "Contact teacher", "" %></li>
-                      <li><%= link_to "Contact students", "" %></li>
+<!--                       <li><%= link_to "Contact teacher", "" %></li>
+                      <li><%= link_to "Contact students", "" %></li> -->
                     </ul>
                   </div>
                 </td>
@@ -97,7 +97,7 @@
             <th>Action</th>
           </thead>
           <tbody>
-            <% current_account.memberships.last(5).each do |member| %>
+            <% current_account.memberships.order('DATE(created_at) ASC').last(5).each do |member| %>
               <tr>
                 <td class="span3">
                   <div class="heading13 brown">
@@ -117,7 +117,7 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to 'Email', "" %></li>
+                      <li><%= link_to 'Send welcome email', "mailto:#{member.user.email}" %></li>
                     </ul>
                   </div>
                 </td>
