@@ -1,18 +1,14 @@
 @import 'hourschool/variables';
 
-#logo {
+.logo{
   position: relative;
   float: left;
   width: 77px;
   height: 76px;
   margin-bottom: 15px;
-  background: url( <%= asset_path 'v3/logo-black.png' %> );
-}
 
-#homepage #logo{
-  background: url( <%= asset_path 'v3/logo-black.png' %> );
+  &.hourschool{background: url( <%= asset_path 'v3/logo-black.png' %> );}
 }
-
 
 /*NAV*/
 
