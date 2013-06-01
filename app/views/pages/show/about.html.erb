@@ -78,6 +78,22 @@
         <p>Brigitte Romero, France Cuisine, A Unique French Dining and Cultural Experience in the Heart of your Home. Contact her at <%= link_to "brigitte.romero@sbcglobal.net", "mailto:brigitte.romero@sbcglobal.net", :style => "color: #ff7733"  %></div>
     </div>
 
+  <% elsif current_account == Account.find(5) %>
+
+  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">History:</div>
+  <p>Many of the initial conversations during the 2 plus years of Center61 ideation were between Maggie Miller, Will Gudeman, and Founder, Steve Wanta, who was initially inspired by Maggie’s bootstrapping non-profit, DiscoverHope. Often the struggle for Maggie was finding space to convene her board and volunteers. Their brainstorming sessions explored everything from the layout, the purpose of the space, and even the eventual bean bag court to be played on the roof top garden, and acted as seeds for the launch of Center61. Their dream finally came to fruition when visiting the new PeopleFund building in June 2011, which made for a perfect partnership.</p>
+
+  <p>Center61 officially opened on August 12th, 2011 and we celebrated our Grand Opening on November 10th,2011. Steve Wanta is the founder, but fully acknowledges that the manifestation of Center61 encompasses an entire community.</p>
+
+  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Purpose:</div>
+  <p>In one word, the purpose of Center61 is service. We aspire to bring together a community of like-minded organizations and individuals with the hope that we are able to accomplish more together. We believe that there are opportunities to increase fundraising, sales, and ideas through collaboration and healthy, supportive competition. We also recognized the need that many startup organizations and entrepreneurs have—a place that they could call home away from home or the coffee shops, that embodies their dreams, and can be a catalyst to help them achieve their goals, even if they aren’t quite there yet. Center61 exists to be an early stage supporter of small-scale organizations and individuals that are dedicated to changing the world.</p>
+
+  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Company:</div>
+  <p>Many people feel compelled to give back to their communities through volunteer work or charity. Steve, working in the field of microfinance for Whole Planet Foundation, felt the best way to give back to Austin would be to create a social business that served small non-profits and social entrepreneurs. To us, profit simple means that our Members value our service and we run a responsible organization. The use of future profits is explicitly intended to be invested back into the Austin community, and the success of Center61 will be measured not by its financial return but rather by the social capital created.</p>
+
+  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">The Name:</div>
+  <p>The name is not typical and then again we hope Center61 is not either. For the founding members, the number represented struggle, brotherhood, dedication, perseverance and much more. When discussing potential names, we felt that future members would embody these same qualities and thus the name stuck. It is our hope the name takes on a meaning of its own for everyone that becomes a part of the space.</p>
+
 
   <% else %>
     <%= current_account.about %>
