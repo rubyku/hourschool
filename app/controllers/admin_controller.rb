@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_filter :authenticate_admin!
 
   def index
-    @courses = current_account ? current_account.courses.order('DATE(starts_at) DESC').where(:status => "live") : Course.order('DATE(starts_at) DESC').where(:status => "live")
+    @courses = current_account ? current_account.courses.active.order('DATE(starts_at) ASC').where(:status => "live") : Course.active.order('DATE(starts_at) ASC').where(:status => "live")
     @users   = current_account ? current_account.users.uniq : User.uniq.includes(:memberships, [:memberships => :account])
 
     @course  = Course.new

@@ -1,42 +1,51 @@
-<div class="page">
-  <div class="page-content">
+<div class="row">
+  <%= render :partial => 'admin/sidebar' %>
 
-    <div class="page-section-float-left">
+  <div class="span9">
 
-       <div class="form-question">Proposal's Topic:</div>
-       <div class="form-question-tip"><%= @course.title %></div>
+    <div class="white" style="margin-bottom: 20px">
+      <div style="padding: 19px">
 
-       <div class="form-question">Proposal's Description:</div>
-       <div class="form-question-tip"><p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 15px" %></p></div>
+        <ul class="breadcrumb">
+          <li><a href="/admin">Dashboard</a> <span class="divider">/</span></li>
+          <li><a href="/admin/courses">Events</a> <span class="divider">/</span></li>
+          <li class="active"><%= @course.title %></li>
+          <li class="pull-right"><%= link_to "View class page", @course, :class => "btn btn-success", :style => "margin-top: -3px; color: white" %></li>
+        </ul>
 
-       <div class="form-question">Teacher/host's name:</div>
-       <div class="form-question-tip"><%= @course.teacher.name %></div>
+        <div class="heading14">Class Topic:</div>
+        <p><%= @course.title %></p>
 
-       <div class="form-question">Teacher/host's city:</div>
-       <div class="form-question-tip"><%= @course.city.name %></div>
+        <div class="heading14">Teacher:</div>
+        <p><%= @course.teacher.name %></p>
 
-       <div class="form-question">About the teacher/host</div>
-       <div class="form-question-tip"><%= @course.experience %></div>
+        <div class="heading14">Date & Time:</div>
+        <p><%= @course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= @course.ends_at.strftime("%l:%M%p") if @course.ends_at.present? %></p>
 
-       <div class="form-question">Capacity</div>
-       <div class="form-question-tip">A minimum of <%= @course.min_seats %></div>
-       <div class="form-question-tip">A maximum of <%= @course.max_seats %></div>
+        <div class="heading14">Total # of students:</div>
+        <p><%= @course.students.count %> / <%= @course.max_seats %></p>
 
-       <div class="form-question">Date & Time</div>
-       <div class="form-question-tip"><%= @course.starts_at.strftime("%a %b %d, %Y") %></div>
-       <div class="form-question-tip"><%= "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %></div>
+        <div class="heading14">Total profit from this class:</div>
+        <p>$ <%= @course.price * @course.students.count %></p>
 
-       <div class="form-question">Location</div>
-       <div class="form-question-tip">Pubic location? <%= @course.public %></div>
-       <div class="form-question-tip"><%= @course.place_name %></div>
-       <div class="form-question-tip"><%= @course.address %></div>
+        <table class="table">
+          <thead>
+            <th>Student name</th>
+            <th>Student email</th>
+          </thead>
+          <tbody>
+           <% @course.students.each do |student| %>
+             <tr>
+              <td><%= student.name %></td>
+              <td><%= student.email %></td>
+             </tr>
+           <% end %>
+          </tbody>
+        </table>
 
-       <div class="form-question">Price</div>
-       <div class="form-question-tip">$ <%= @course.price %></div>
 
-      <%= button_to "Approve this course", admin_course_path(:course_id => @course), :class => "submit-proposal-button", :method => :put %>
+        <%#= button_to "Approve this course", admin_course_path(:course_id => @course), :class => "submit-proposal-button", :method => :put, :class => "btn" %>
 
+      </div>
     </div>
 
-  </div>
-</div>
