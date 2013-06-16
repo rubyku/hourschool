@@ -1,10 +1,3 @@
-# Hourschool
-
-
-## Welcome
-
-**Please have some tea**
-
 # Set up Git
 
 First, make sure `git` is installed: `which git`. If it's not installed,
@@ -106,7 +99,7 @@ Or start the servers manually (and manage them manually from now on):
 
 ## 5. Pull the Production DB from heroku
 
-    $ heroku db:pull --app sharp-sunset-8021
+    $ bundle exec rake db:pull
 
 ## 6. Setup Solr
 
@@ -159,24 +152,12 @@ http://localhost:3000/mail_view/student_mailer/preview
 
 
 
-##Database
-
-heroku db:pull --tables users,courses
-
-or
-
-bundle exec rake pgbackup:seed
-Check out the readme for setup requirements: https://github.com/chap/pgbackup-tasks
-
-
 
 ##Using pow for sub-domains
 
-$ cd ~/.pow
+    $ cd ~/.pow
+    $ ln -s ~/Desktop/hourschool hourschool
+    $ open http://subdomain.hourschool.dev/
 
-$ ln -s ~/Desktop/hourschool hourschool
-
-$ open http://subdomain.hourschool.dev/
-
-When using pow and want to view logs, go back to project directory
-tail -f log/development.log
+    When using pow and want to view logs, go back to project directory in terminal and run
+    $ tail -f log/development.log
