@@ -51,6 +51,71 @@ li a.main-nav{
 a.nav-heading{color: white; text-decoration: none;}
 a:visited.nav-heading{color: white; text-decoration: none;}
 
+
+a:hover.dropdown-toggle.main-nav{
+  background-color: transparent;
+  color: black;
+  border-top: 3px solid black;
+  border-radius: 0px;
+}
+
+a:hover.dropdown-toggle.main-nav.exception{
+  background-color: transparent;
+  color: black;
+  border-top: 3px solid white;
+  border-radius: 0px;
+}
+
+#homepage a.main-nav:hover{
+  color: black;
+  border-top: 3px solid black;
+}
+
+#homepage a.main-nav:hover.exception{
+  color: black;
+  border-top: 3px solid white;
+}
+
+.nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover {
+  background-color: white;
+  color: black;
+}
+
+.nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover #homepage{
+    background-color: transparent;
+    color: black;
+  }
+
+li.dropdown-menu-wrapper{
+  background-color: black;
+  padding: 10px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+  height: 60px;
+  width: 200px;
+}
+
+.dropdown-menu-item{
+  padding: 0px 0px 21px 10px;
+  position: relative;
+  z-index: 1000;
+  margin-top: -75px;
+}
+
+.dropdown-menu.main-nav{
+  background-color: transparent;
+}
+
+p.nav-description{
+  font-size: 11px;
+  margin-bottom: 0px;
+  color: white;
+  text-transform: none;
+  font-weight: 400;
+}
+
+
+
 /*SUB-NAV*/
 
 ul.sub-nav {
@@ -83,4 +148,5 @@ a {
     color: #8f8f8f; }
   &.sub-nav-active:hover, &.sub-nav-inactive:hover {
     color: $hourschool-house-color; } }
+
 

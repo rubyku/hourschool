@@ -29,22 +29,7 @@
 
     <div class="container_16" style="padding-top: 30px;">
       <% @upcoming_courses.limit(8).each do |course| %>
-        <% target = course.account_id ? '_blank' : '' %>
-        <div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 40px">
-          <% if course.photo.present? %>
-            <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
-          <% else %>
-            <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course, :target => target  %>
-          <% end %>
-          <div class="class-description" style="float: left; width: 170px">
-            <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-              <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-            </div>
-            <div class="heading16">
-              <%= link_to course.title, course, :target => target %>
-            </div>
-          </div>
-        </div>
+        <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
       <% end %>
     </div>
 
@@ -126,22 +111,7 @@
     <% if @upcoming_courses.present? %>
       <div class="row-fluid" style="padding-left: 10px">
         <% @upcoming_courses.limit(12).each do |course| %>
-          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-            <% if course.photo.present? %>
-              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-            <% else %>
-              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-            <% end %>
-
-            <div class="class-description" style="float: left; width: 170px">
-              <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-                <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-              </div>
-              <div class="heading16">
-                <%= link_to course.title, course %>
-              </div>
-            </div>
-          </div>
+          <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
         <% end %>
       </div>
     <% else %>
@@ -190,22 +160,7 @@
         <%= render :partial => '/layouts/application/accounts/frenchinannarbor' %>
       <% else %>
         <% @past_courses.limit(4).each do |course| %>
-          <div class="classBlock" style="margin: 0 20px 30px 20px; background-color: #f0f0f0">
-            <% if course.photo.present? %>
-              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-            <% else %>
-              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-            <% end %>
-
-              <div class="class-description" style="float: left; width: 170px">
-                <div style="font-size: 12px; font-weight: 400; margin: 10px 0 10px 0">
-                  <%= "#{course.starts_at.strftime("%a %b %d")}, #{course.starts_at.strftime("%l:%M%p")}" %>
-                </div>
-                <div class="heading16">
-                  <%= link_to course.title, course %>
-                </div>
-              </div>
-          </div>
+         <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
         <% end %>
       <% end %>
     <% end %>
