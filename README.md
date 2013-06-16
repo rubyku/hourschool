@@ -142,9 +142,17 @@ ruby-1.9.2-p290@hourschool  ~/Desktop/hourschool_v2 (rubyku/campaign)
 
 
 
+##Using pow for sub-domains
 
-## Mail View
+    $ cd ~/.pow
+    $ ln -s ~/Desktop/hourschool hourschool
+    $ open http://subdomain.hourschool.dev/
 
+    #When using pow and want to view logs, go back to project directory in terminal and run
+    $ tail -f log/development.log
+
+
+## Viewing HTML emails in browser
 
 http://localhost:3000/mail_view/user_mailer/preview
 
@@ -152,12 +160,8 @@ http://localhost:3000/mail_view/student_mailer/preview
 
 
 
+## Viewing routes in browser
 
-##Using pow for sub-domains
+http://localhost:3000/rake/routes
 
-    $ cd ~/.pow
-    $ ln -s ~/Desktop/hourschool hourschool
-    $ open http://subdomain.hourschool.dev/
 
-    When using pow and want to view logs, go back to project directory in terminal and run
-    $ tail -f log/development.log
