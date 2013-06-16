@@ -9,5 +9,5 @@
 
 //= require_self
 //= require bootstrap
-//= require bootstrap-typeahead-fork
+//= require bootstrap-typeahead
 //= require_tree .

@@ -3,6 +3,7 @@
 <%= label_tag :citySearch, 'City, State', :class => "form-question" %><br />
 <%= text_field_tag :citySearch, parent.city.try(:name_state), :placeholder => "ex. Austin, TX", :class => "form-short-edit-profile", :autocomplete => "off", :class => "form-short-edit-profile"  %>
 
+
 <script type="text/javascript">
   $(document).ready(function() {
     var cityIdField     = $('#city-id'),
@@ -10,7 +11,10 @@
         form            = cityIdField.parents('form');
 
     citySearchField.typeahead({
-      source: function(typeahead, query) {
+      source: function(query, process) {
+        cities     = [];
+        city_to_id = {};
+
         var _this = this;
         return $.ajax({
           url: "<%= cities_path(:format => :json) %>?q=" + query,
@@ -19,15 +23,21 @@
             cityIdField.val('');
           },
           success: function(data) {
-            return typeahead.process(data);
+            // process function needs array of strings
+            $.each(data, function(i, city) {
+              city_to_id[city.name] = city.id
+              cities.push(city.name);
+            })
+            return process(cities);
           }
         });
       },
       property: "name",
-      onselect: function (obj) {
-        cityIdField.val(obj.id);
-        form.find('[type=submit]').removeAttr("disabled");
-        $('#city-id-error').hide();
+      updater: function (city) {
+        city_id = city_to_id[city];
+        cityIdField.val(city_id);
+
+        return city;
       }
     });
 
@@ -42,4 +52,5 @@
       }
     })
   })
+// http://tatiyants.com/how-to-use-json-objects-with-twitter-bootstrap-typeahead/
 </script>
