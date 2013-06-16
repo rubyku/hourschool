@@ -1,0 +1,8 @@
+<p>Hello <%= @user.name.split(" ").first %>,</p>
+
+<p><%= @comment.user.name %> just left a comment for your <%= @course.title %> class:</p>
+
+<p>"<%= @comment.body %>"</p>
+
+<p>To respond, follow this link: <%= @url %></p>
+
