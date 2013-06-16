@@ -3,6 +3,7 @@ class UsersController < DashboardsController
 
 
   def index
+    #url => /members
     @users       = User.all
 
     if current_account
@@ -16,24 +17,6 @@ class UsersController < DashboardsController
     @invite.inviter = current_user
   end
 
-  def search
-    user = params[:q]
-    response = User.where('name ilike ?', "#{user}%").limit(10)
-    response = response.collect{|u| {:name => u.name, :id => u.id}}
-    if response.empty?
-      response = [{:name => "Looks like #{params[:q]} isn't a member. Give us their email and we'll send em an invite.", :id => 0}]
-    end
-    logger.info("RESPONSE:#{response}")
-    render :json => response
-  end
-
-  def table
-    if community_site?
-      @users = User.order('DATE(created_at) DESC').includes(:memberships, [:memberships => :account])
-    else
-      @users = current_account.users
-    end
-  end
 
   def show
     # @user = User.me_or_find(params[:id], current_user)
@@ -53,24 +36,8 @@ class UsersController < DashboardsController
     render :template => 'dashboards/show'
   end
 
-  def profile_teaching
-    @user = current_user
-    @approved_courses = @user.courses.where(:status => "approved")
-    @pending_courses  = @user.courses.where(:status => "proposal")
-    if current_account
-      @approved_courses = @approved_courses.where(:account_id => current_account.id)
-      @pending_courses = @pending_courses.where(:account_id => current_account.id)
-    end
-  end
 
-  def profile_past_taught
-  end
-
-  def profile_past_attending
-  end
-
-  def profile_pending
-  end
+  private
 
   def profile_suggest
     @top_suggestions =  Suggestion.tally(
@@ -81,10 +48,15 @@ class UsersController < DashboardsController
       @suggestions = (@top_suggestions & @suggestions_in_my_location).paginate(:page => params[:page], :per_page => 6)
   end
 
-  def profile_approved
-  end
-
-  def admin_dashboard
+  def search
+    user = params[:q]
+    response = User.where('name ilike ?', "#{user}%").limit(10)
+    response = response.collect{|u| {:name => u.name, :id => u.id}}
+    if response.empty?
+      response = [{:name => "Looks like #{params[:q]} isn't a member. Give us their email and we'll send em an invite.", :id => 0}]
+    end
+    logger.info("RESPONSE:#{response}")
+    render :json => response
   end
 
   def make_admin
@@ -108,7 +80,7 @@ class UsersController < DashboardsController
     if @existing_user
       Membership.create!(:user => @existing_user, :account => current_account, :admin => false) unless Membership.find_by_user_id_and_account_id(@existing_user.id, current_account.id)
       UserMailer.membership_invitation(@existing_user, current_account, current_user, true).deliver
-      redirect_to(users_url, :notice => "User invited.")
+      redirect_to(new_course_path, :notice => "User invited.")
     else
       @user = User.new(params[:user])
       # set user's password to a random string to keep from
@@ -116,14 +88,13 @@ class UsersController < DashboardsController
       password = SecureRandom.hex
       @user.password = password
       @user.password_confirmation = password
-      @user.skip_confirmation!
       @user.dont_send_reg_email = true
       if @user.save
         # cant use .send_reset_password_instructions because it will send mail
         @user.send(:generate_reset_password_token!)
         Membership.create!(:user => @user, :account => current_account, :admin => false)
         UserMailer.membership_invitation(@user, current_account, current_user, false).deliver
-        redirect_to(users_url, :notice => "User invited.")
+        redirect_to(new_course_path, :notice => "User invited.")
       else
         render :new_invite
       end

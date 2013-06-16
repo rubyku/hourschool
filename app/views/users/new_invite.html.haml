@@ -1,11 +1,8 @@
 .page
   .page-content
-
-    = render :partial => 'layouts/application/admin_bar'
+    .h2 Create new teacher
 
     = form_for(@user, :url => send_invite_users_path) do |f|
-
-
       - @user.errors.full_messages.each do |message|
         .form-error
           = "*#{message}"
@@ -17,11 +14,9 @@
         = f.text_field :name, :class => "form-short-with-margin"
 
       %div{:class => "form-question"}
-        = f.label "Zipcode"
+        = f.label "City, State"
         %br/
-        = f.text_field :zipcode, :class => "form-short-with-margin"
-        / = f.text_field :location
-        / = f.select :location, options_for_select([["Austin", "Austin, TX"], ["San Francisco", "San Francisco, CA"]]), :class => "form"
+        = render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @user}
 
       %div{:class => "form-question"}
         = f.label :email
@@ -30,6 +25,5 @@
 
       .page-section-float-left
         = f.submit "Invite", :class => "grey button", :id => 'user_submit'
-
 
 

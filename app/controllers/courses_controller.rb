@@ -1,86 +1,43 @@
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new, :register, :preview, :heart, :register_preview, :feedback]
-  before_filter :authenticate_admin!, :only => [:approve]
+  before_filter :authenticate_user!, :only => [:create, :edit, :destroy, :update, :new]
   before_filter :restrict_draft_access!, :only => [:show]
-
-
-  #url --> /missions/:id/courses
-  def index
-    @mission  = Mission.find(params[:mission_id])
-    @users    = @mission.users
-
-    @courses = Course.active.order(:starts_at, :created_at)
-    @upcoming_courses  = @mission.courses.where("starts_at > ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
-    @past_courses      = @mission.courses.where("starts_at < ?", Time.zone.now).where(:status => "live").order("starts_at ASC")
-
-    @course   = Course.new
-    @topic = Topic.new
-    @invite = Invite.new
-    @invite.invitable_id = params[:invitable_id]
-    @invite.invitable_type = params[:invitable_type]
-    @invite.inviter = current_user
-    session["user_return_to"] = mission_courses_path(@mission)
-  end
-
+  before_filter :check_can_create_course, :only => [:create]
 
   def new
     @course = Course.new
-    @course.mission = Mission.find(params[:mission_id]) if params[:mission_id].present?
-    @account = current_account
+  end
+
+  def check_can_create_course
+    @course = Course.new(params[:course])
+    @user   = params[:teacher_id].present? ? User.find(params[:teacher_id]) : current_user
+    return true if current_user == @user
+    return true if current_user.admin?
+    if current_account.present?
+      return true if current_user.memberships.where(admin: true).where(account_id: current_account.id).first
+    end
+
+    flash[:error] = "Oops, looks like you didn't have permission to assign teachers to a class other than yourself."
+    render :action => 'new'
   end
 
   def create
-    @course         = Course.new(params[:course])
+    # @course set above
+    # @user   set above
     @course.account = current_account if current_account
 
     @topic = Topic.find(params[:topic_id]) if params[:topic_id].present?
 
-    @user = current_user
     if @course.save
       @course.update_attribute(:status, 'draft')
       @course.topics << @topic if @topic
-      @role = Role.find_by_course_id_and_user_id(@course.id, current_user.id)
+      @role = Role.find_by_course_id_and_user_id(@course.id, @user.id)
       if @role.nil?
-        @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => current_user)
-        if @course.mission.present? && @course.mission.crewmanships.where(:user_id => current_user).blank?
-          if community_site? && current_user && current_user.crewmanships.where(:mission_id => @course.mission.id).blank?
-            Crewmanship.create!(:mission_id => @course.mission.id, :user_id => current_user.id, :status => 'trial_active', :role => 'guide')
-          end
-        end
+        @role = @course.roles.create!(:attending => true, :name => 'teacher', :user => @user)
         @user.save
       end
       redirect_to @course
     else
       render :action => 'new'
-    end
-  end
-
-  def edit
-    enqueue_warm_facebook_cache
-    @course = Course.find(params[:id])
-    @account = current_account
-    if @course.teacher == current_user || current_user.admin?
-    else
-       redirect_to @course
-    end
-  end
-
-  def show
-    @course = Course.find(params[:id])
-    @current_course = @course
-    @mission = @course.mission
-    @invite = Invite.new
-    @invite.invitable_id = params[:invitable_id]
-    @invite.invitable_type = params[:invitable_type]
-    @invite.inviter = current_user
-
-    ## show differnt layouts and jazz for different accounts
-    if @course.account.present? && current_account.blank?
-      redirect_to(course_url(@course, :subdomain => @course.account.subdomain)) and return true
-    elsif @course.account_id && @course.account_id == 4
-        render template: "courses/#{current_account.subdomain}/show"
-    else
-      #do nothing
     end
   end
 
@@ -96,18 +53,12 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        if @course.status == 'live'
-          if @course.account.nil?
-            current_account = nil
-          else
-            current_account = @course.account
-          end
-          if @course.previous_changes["status"]
-            UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-            if current_account == Account.where(:id => 9).first && @course.account.present?
-              @course.account.users.each do |user|
-                UserMailer.delay.account_new_course(user, @course.account, @course)
-              end
+        if @course.status == 'live' && @course.previous_changes["status"]
+          @course.account.nil? ? current_account = nil : current_account = @course.account
+          UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
+          if current_account == Account.where(:id => 9).first && @course.account.present?
+            @course.account.users.each do |user|
+              UserMailer.delay.account_new_course(user, @course.account, @course)
             end
           end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
@@ -119,6 +70,32 @@ class CoursesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+
+  def edit
+    enqueue_warm_facebook_cache
+    @course = Course.find(params[:id])
+
+    redirect_to @course unless @course.teacher == current_user || current_user.admin?
+  end
+
+  def show
+    @course = Course.find(params[:id])
+
+    @invite = Invite.new
+    @invite.invitable_id = params[:invitable_id]
+    @invite.invitable_type = params[:invitable_type]
+    @invite.inviter = current_user
+
+    ## show differnt layouts and jazz for different accounts
+    if @course.account.present? && current_account.blank?
+      redirect_to(course_url(@course, :subdomain => @course.account.subdomain)) and return true
+    elsif @course.account_id && @course.account_id == 4
+      render template: "courses/#{current_account.subdomain}/show"
+    else
+      #do nothing
     end
   end
 
@@ -137,16 +114,20 @@ class CoursesController < ApplicationController
       INDEX.document("course_#{@course.id}").delete()
       redirect_to courses_url, :notice => "Successfully destroyed course."
     else
-      redirect_to :back, :alert => "You are not authorized to do this"
+      redirect_to :back, :alert => "You are not authorized to do this."
     end
   end
+
+
 
   private
 
   def restrict_draft_access!
     @course = Course.find(params[:id])
-    if @course.status != "live"
-      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to." if current_user.blank? || current_user != @course.teacher
+    unless current_user.admin?
+      if current_user.blank? || current_user != @course.teacher
+        redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to."
+      end
     end
   end
 
