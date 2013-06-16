@@ -1,95 +1,3 @@
-<style type="text/css">
-  .nav{
-    text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 1px;
-    a{color: #999;}
-    a:hover{color: #232323;}
-  }
-
-  .navbar-inner{
-    height: 40px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-  }
-
-  .white{
-    background-color: white;
-  }
-
-  .section{
-    width: 820px;
-  }
-
-  .section-header{
-    font-size: 40px;
-  }
-
-  .quote-box{
-    border: 1px solid #e6e6e6;
-    padding: 30px 30px 0 30px;
-    margin-bottom: 30px;
-    border-radius: 2px;
-  }
-
-  .hero-unit{
-    background: url(<%= asset_path 'v4-homepage/Banner_01.png' %>);
-    background-position: 50% 0%;
-    padding-top: 150px;
-    margin-bottom: 80px;
-    height: 324px;
-    border-radius: 0px
-  }
-
-  .white-text{
-    color: #fff !important;
-    text-shadow: 0 1px 1px #000;
-  }
-
-/* Pricing Tables */
-.pricing-table {
-  border: solid 1px #dddddd;
-  margin-left: 0;
-  margin-bottom: 1.25em; }
-  .pricing-table * {
-    list-style: none;
-    line-height: 1; }
-  .pricing-table .title {
-    background-color: #dddddd;
-    padding: 0.9375em 1.25em;
-    text-align: center;
-    color: #333333;
-    font-weight: bold;
-    font-size: 1em; }
-  .pricing-table .price {
-    background-color: #eeeeee;
-    padding: 0.9375em 1.25em;
-    text-align: center;
-    color: #333333;
-    font-weight: normal;
-    font-size: 1.5em; }
-  .pricing-table .description {
-    background-color: white;
-    padding: 0.9375em;
-    text-align: center;
-    color: #777777;
-    font-size: 0.875em;
-    font-weight: normal;
-    line-height: 1.4;
-    border-bottom: dotted 1px #dddddd; }
-  .pricing-table .bullet-item {
-    background-color: white;
-    padding: 0.9375em;
-    text-align: center;
-    color: #333333;
-    font-size: 1em;
-    font-weight: normal;
-    border-bottom: dotted 1px #dddddd; }
-  .pricing-table .cta-button {
-    background-color: whitesmoke;
-    text-align: center;
-    padding: 1.25em 1.25em 0;
-    height: 50px; }
-</style>
-
 <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
   <center><p class="lead section-header">
     Introducing HourSchool Pro
@@ -247,7 +155,7 @@
           <li class="bullet-item">Unlimited users</li>
           <li class="bullet-item">Custom design</li>
           <li class="bullet-item">Custom metrics</li>
-          <li class="cta-button"><%= link_to "Hire Us", 'mailto:hello@hourschool.com', :class => "btn btn-primary btn-large", :style => "color: white" %></li>
+          <li class="cta-button"><%= link_to "Hire Us", 'mailto:hello@hourschool.com', :class => "btn btn-primary btn-large white-text" %></li>
         </ul>
       </div>
     </div>
