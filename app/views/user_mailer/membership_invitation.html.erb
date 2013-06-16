@@ -1,0 +1,7 @@
+<p>You have been invited to join <%= @account.name %></p>
+<p><%= root_url(:subdomain => @account.subdomain) %></p>
+
+<% unless @existing_user %>
+  <p>Create a password and signup here:</p>
+  <p><%= edit_password_url(@user, :reset_password_token => @user.reset_password_token, :subdomain => @account.subdomain) %></p>
+<% end %>

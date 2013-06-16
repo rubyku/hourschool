@@ -1,0 +1,12 @@
+<p>Hello <%= @student.name.split(" ").first %>,</p>
+
+<p>'<%= @course.title %>' got canceled.</p>
+
+<% if @teacher_message.present? %>
+<p>Message from <%= @teacher.name %>:</p>
+<p><%= @teacher_message %></p>
+<%- end -%>
+
+<% if @course.price >= 0 %>
+  <p>You will receive a full refund for the class.</p>
+<%- end -%>

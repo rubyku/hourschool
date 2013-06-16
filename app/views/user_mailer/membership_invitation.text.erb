@@ -1,7 +1,0 @@
-<% if @existing_user %>
-Check it out!
-<%= root_url(:subdomain => @account.subdomain) %>
-<% else %>
-Create a password and signup here:
-<%= edit_password_url(@user, :reset_password_token => @user.reset_password_token, :subdomain => @account.subdomain) %>
-<% end %>

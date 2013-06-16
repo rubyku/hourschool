@@ -1,0 +1,11 @@
+<p>Hello <%= @student.name.split(" ").first %>,</p>
+
+<p>This is a friendly reminder that the class you registered for, <%= @course.title %>, is happening tomorrow. We hope you're all ready and excited. Here are some handy details for you:</p>
+
+<p>
+When: <%= @course.starts_at.strftime("%a %b %d, %Y") %> at <%= @course.starts_at.strftime("%l:%M%p") %> - <%= @course.ends_at.strftime("%l:%M%p") %><br>
+Where: <%= @course.place_name %> - <%= @course.address %>, <%= @course.city.name %>, <%= @course.city.state %>, <%= @course.zip %><br>
+<%= "Direction: #{@course.directions}" if @course.directions.present? %>
+</p>
+
+<p>Got questions? You can message your teacher at <%= @url %></p>

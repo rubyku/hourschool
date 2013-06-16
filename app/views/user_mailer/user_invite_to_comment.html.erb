@@ -1,0 +1,7 @@
+<p>Hello,</p>
+
+<p><%= @inviter.name %> invited you to answer a question:</p>
+
+<p>"<%= @comment.body %>"</p>
+
+<p>Visit <%= comment_url(@comment, :q => 'comment') %> to respond</p>

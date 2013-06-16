@@ -1,0 +1,7 @@
+<p>Hello,</p>
+
+<p><%= @inviter.name %> invited you to the mission: <%= "#{@mission.verb} #{@mission.title.downcase}" %></p>
+
+<p>"<%= @message %>"</p>
+
+<p>Visit <%= mission_url(@mission, :q => 'mission') %> to join!</p>
