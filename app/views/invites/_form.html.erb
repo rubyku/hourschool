@@ -17,7 +17,7 @@
   <% end %>
   <br>
 
-<!--   <div class="field clearfix" style="float: left; margin-right: 10px">
+  <div class="field clearfix" style="float: left; margin-right: 10px">
     <%= f.label :invitee, "Invite an HourSchool user by name" %>
     <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "userSearchTypeahead", :autocomplete => "off" %>
     <%= f.hidden_field :invitee_id %>
@@ -44,7 +44,7 @@
     });
     </script>
   </div>
- -->
+
   <div class="field clearfix" id="invite_by_email">
     To email: <%= f.text_field :invitee_email, :placeholder => "email@email.com"  %>
   </div><br>

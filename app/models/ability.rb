@@ -9,7 +9,6 @@ class Ability
     #   can :manage, :all
     # end
 
-    
     can :sign_up_for_course, Course do |course|
       course.not_student?(user) && course.not_teacher?(user)
     end

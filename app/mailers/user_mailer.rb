@@ -134,7 +134,7 @@ class UserMailer < ActionMailer::Base
     @existing_user = existing_user
     mail :to => user.email,
          :bcc => "admin@hourschool.com",
-         :subject => "#{inviter.name} wants you to join #{account.name}"
+         :subject => "#{inviter.name} invited you to join #{account.name}"
   end
 
   def user_invite_to_course(options = {})

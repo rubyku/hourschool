@@ -28,7 +28,7 @@
                 <td class="span3">
                   <div class="heading13 brown">
                     <%= link_to course.title, admin_course_path(course) %><br>
-                    by <%= course.teacher.name %>
+                    by <%= course.teacher.name if course.teacher.present? %>
                   </div>
                 <td><%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
                 </td>
@@ -44,11 +44,8 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to 'Promote event', "" %></li>
                       <li><%= link_to 'Edit event', edit_course_path(course) %></li>
                       <li><%= link_to 'Cancel event', edit_course_path(course) %></li>
-                      <li><%= link_to "Contact teacher", "" %></li>
-                      <li><%= link_to "Contact students", "" %></li>
                     </ul>
                   </div>
                 </td>

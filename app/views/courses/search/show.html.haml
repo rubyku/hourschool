@@ -1,18 +1,18 @@
 .page
-  .page-content    
-          
+  .page-content
+
     = render :layout => 'shared/page/section', :locals => {:header => "Learn at #{community_site? ? 'HourSchool' : current_account.name}"} do
 
       - if @no_courses_found
         .pagenote-box.clearfix
-          .pagenote-header 
+          .pagenote-header
             = "Sorry, we can't find anything :("
           = "If there's something you have always wanted to learn but don't see it on HourSchool, "
           = link_to "suggest it!", new_suggestion_path, :class => "pagenote-link"
           = "It's very likely that someone near you can teach it."
 
-    
-      = render :partial => 'courses/course_grid', :locals => {:courses => @courses}
+
+      = render :partial => 'shared/course_grid', :locals => {:courses => @courses}
     .page-section-float-right
       %table.view-more
         %tr

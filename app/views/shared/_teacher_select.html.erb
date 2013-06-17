@@ -1,0 +1,43 @@
+<%= hidden_field_tag :teacher_id %>
+<%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "userSearchField", :autocomplete => "off" %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var userIdField     = $('#teacher_id'),
+        userSearchField = $('#userSearch'),
+        form            = userIdField.parents('form');
+
+    userSearchField.typeahead({
+      source: function(query, process) {
+        users     = [];
+        user_to_id = {};
+
+        var _this = this;
+        return $.ajax({
+          url: "<%= search_users_path(:format => :json) %>?q=" + query,
+          beforeSend: function() {
+            // clear out previous user_id value
+            userIdField.val('');
+          },
+          success: function(data) {
+            // process function needs array of strings
+            $.each(data, function(i, user) {
+              user_to_id[user.name] = user.id
+              users.push(user.name);
+            })
+            return process(users);
+          }
+        });
+      },
+      property: "name",
+      updater: function (user) {
+        teacher_id = user_to_id[user];
+        userIdField.val(teacher_id);
+
+        return user;
+      }
+    });
+
+  })
+// http://tatiyants.com/how-to-use-json-objects-with-twitter-bootstrap-typeahead/
+</script>
