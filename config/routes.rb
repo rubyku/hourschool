@@ -171,7 +171,7 @@ HourschoolV2::Application.routes.draw do
 
   match '/learn'                      => 'pages#index'
   match '/epic'                       => 'pages#index'
-  match '/explore'                     => 'pages#index'
+  match '/explore'                    => 'pages#index'
 
   # post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
 

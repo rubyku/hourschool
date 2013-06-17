@@ -124,10 +124,8 @@ class CoursesController < ApplicationController
 
   def restrict_draft_access!
     @course = Course.find(params[:id])
-    unless current_user.admin?
-      if current_user.blank? || current_user != @course.teacher
-        redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to."
-      end
+    if @course.status != "live" && (current_user.blank? || current_user != @course.teacher)
+      redirect_to root_path, :notice => "Oops, looks like you didn't have access to the page you were trying to go to."
     end
   end
 
