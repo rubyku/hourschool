@@ -1,4 +1,4 @@
-<div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
+<div style="padding-right: 40px">
 
   <% @course.errors.full_messages.each do |message| %>
     <div class="error-block">
@@ -26,12 +26,6 @@
         <span class="help-block">Events with good photos are always more popular - seriously! Take a couple minutes to find one you like.</span>
         <%= f.file_field :photo %>
         <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
-
-        <div class="heading14" style="margin-top: 30px">Event capacity</div>
-        <span class="help-block">Min. # for me to host this event</span>
-        <%= f.text_field :min_seats, :class => "span3", :type => "text" %>
-        <span class="help-block">Min. # I can have for this event</span>
-        <%= f.text_field :max_seats, :class => "span3", :type => "text" %>
 
         <div class="heading14" style="margin-top: 30px">Event date and time</div>
         <span class="help-block">We recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</span>
@@ -66,21 +60,21 @@
         <label>Venue name</label>
         <%= f.text_field :place_name, :class => "input-block-level", :type => "text", :autocomplete => "off", :placeholder => "ex. HourSchool HQ"  %>
 
-        <label class="radio">
+        <label class="radio" style="margin-top: 20px;">
           <%= f.radio_button :public, true, :checked => true, :type => "radio", :name => "optionsRadios", :id => "optionsRadios1" %>
           Public venue (ex. cafes, offices, etc)
         </label>
-        <label class="radio">
+        <label class="radio" style="margin-bottom: 20px">
           <%= f.radio_button :public, false, :type => "radio", :name => "optionsRadios", :id => "optionsRadios2" %>
           Residential location (only students who have signed up will see the address)
         </label>
 
         <label>Venue address</label>
-        <%= f.text_field :address, :class => "span6", :type => "text", :autocomplete => "off", :placeholder => "ex. 2720 E.17th St"  %>
-        <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => @course} %>
-        <%= f.text_field :zip, :class => "span3", :type => "text", :autocomplete => "off", :placeholder => "ex. 78702"  %>
+        <%= f.text_field :address, :class => "span3", :type => "text", :autocomplete => "off", :placeholder => "ex. 2720 E.17th St", :style => "width: 284px" %>
+        <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @course} %>
+        <%= f.text_field :zip, :class => "span2", :type => "text", :autocomplete => "off", :placeholder => "ex. 78702"  %>
 
-        <label>Parking/driving directions</label>
+        <label>Special directions for parking/driving</label>
         <%= f.text_area :directions, :class => "input-block-level", :type => "text", :rows => "3" %>
 
         <div class="heading14" style="margin-top: 30px">Event description</div>
@@ -88,30 +82,9 @@
         <%= f.text_area :description, :class => "input-block-level", :type => "text", :rows => "10" %>
 
         <hr>
-
+<!--
         <% if current_user && (admin_of_current_account? || current_user.admin?) %>
-          <div class="alert alert-info">
-            <div class="heading14">Are you the teacher or someone else is?</div>
-            <label class="radio">
-              <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>
-                I am
-            </label>
-            <label class="radio">
-              <input type="radio" name="optionsRadios1" id="optionsRadios2" value="option2">
-                <%= text_field_tag :userSearch, "", :placeholder => "Start typing a name", :class => "userSearchTypeahead", :autocomplete => "off" %>
-                <%= hidden_field_tag :teacher_id %>
-            </label>
-          </div>
-        <% end %>
-
-        <div class="heading14">About the teacher</div>
-        <span class="help-block">This is more than just qualifications! Mention the teacher's passion about the subject and why they want to share.</span>
-        <%= f.text_area :experience, :class => "input-block-level", :type => "text", :rows => "5" %>
-
-        <hr>
-
-        <% if current_user && (admin_of_current_account? || current_user.admin?) %>
-          <div class="alert alert-info">
+          <div class="well">
             <div class="heading14">Is the event public or private?</div>
             <label class="radio inline">
               <input type="radio" name="optionsRadios2" id="optionsRadios3" value="option3" checked>
@@ -126,50 +99,57 @@
               Only members can see and sign up
             </label>
           </div>
-        <% end %>
+        <% end %> -->
+
+        <div class="heading14" style="margin-top: 30px">Event capacity</div>
+        <table>
+          <tr>
+            <td style="padding-right: 50px">
+              <span class="help-block">Min. # for me to host this event</span>
+              <%= f.text_field :min_seats, :class => "span2", :type => "text" %>
+            </td>
+            <td>
+              <span class="help-block">Min. # I can have for this event</span>
+              <%= f.text_field :max_seats, :class => "span2", :type => "text" %>
+            </td>
+          </tr>
+        </table>
 
         <div class="heading14">Price</div>
-        <span class="help-block">If you need to cover supplies, venue rental fee, snacks and other resources, you can have a cover charge for your event.</span>
-        <%= f.text_field :price, :class => "span3", :placeholder => "ex. 10" %>
+        <span class="help-block">If you need to cover supplies, venue rental fee, snacks and other resources, remember to take those into account when you set the price for your class.</span>
+        <div class="input-prepend input-append">
+          <span class="add-on" style="margin-right: -5px">$</span>
+          <%= f.text_field :price, :class => "span1", :placeholder => "25" %>
+          <span class="add-on" style="margin-left: -5px">.00</span>
+        </div>
+
+        <hr>
+
+        <% if current_user && (admin_of_current_account? || current_user.admin?) %>
+          <div class="well">
+            <div class="heading14">Who is the teacher?</div>
+            <p style="margin-top: 10px; margin-bottom: -10px"><%= render :partial => 'shared/teacher_select', :locals => {:f => f, :parent => @course} %></p>
+          </div>
+        <% end %>
+
+        <div class="heading14">About the teacher</div>
+        <span class="help-block">This is more than just qualifications! Why are you passionate about the subject?</span>
+        <%= f.text_area :experience, :class => "input-block-level", :type => "text", :rows => "10" %>
 
         <hr>
 
         <% if @course.status == 'live' %>
-          <%= f.submit "Submit", :class => "btn btn-large btn-primary pull-right", :value => "Save" %>
+          <%= f.submit "Submit", :class => "btn btn-large", :value => "Save" %>
         <% else %>
-          <%= f.submit "Submit", :status => 'live', :class => "btn btn-large btn-primary pull-right", :value => "Make event live" %>
-          <%= f.submit "Submit", :status => 'draft', :class => "btn btn-large pull-right", :value => "Preview" %>
-          <%= f.submit "Submit", :status => 'draft', :class => "btn btn-large pull-right", :value => "Save draft" %>
+          <%= f.submit "Submit", :class => "btn btn-large", :value => "Preview" %>
         <% end %>
+
 
       </fieldset>
     </form>
   <% end %>
 
 </div><!-- end container_16 -->
-
-
-<script type="text/javascript">
-  $('.userSearchTypeahead').typeahead({
-    source: function(typeahead, query) {
-      var _this = this;
-      return $.ajax({
-        url: "<%= search_users_path(:format => :json) %>?q=" + query,
-        success: function(data) {
-          return typeahead.process(data);
-        }
-      });
-    },
-    property: "name",
-    onselect: function (obj) {
-      if (obj.id == 0) {
-        $('#user_email').focus()
-      } else {
-        $('#teacher_id').val(obj.id);
-      }
-    }
-  });
-</script>
 
 
 

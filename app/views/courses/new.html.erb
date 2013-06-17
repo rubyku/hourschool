@@ -1,9 +1,8 @@
-<% if current_account == Account.where(:id => 1).first %>
-  <%= render 'submit_feast_form' %>
-<% else %>
-  <div class="page">
-    <div class="page-content">
-      <%= render 'form' %>
-    </div>
+<div class="row">
+  <div class="span9">
+    <%= render 'form' %>
   </div>
-<% end %>
+  <div class="span3">
+    <%#= render 'form_sidebar' %>
+  </div>
+</div>
