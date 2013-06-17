@@ -84,7 +84,6 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 
   <%# Admin bar %>
   <% if current_user && !community_site? && (admin_of_current_account? || current_user.admin?) %>
-    <% unless current_account == Account.where(:id => 4).first %>
     <div class='userConfirm'>
       <div class='container_16'>
         <p style="float: left">
@@ -101,7 +100,6 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
         </p>
       </div>
     </div>
-    <% end %>
   <% end %>
 
 
@@ -109,17 +107,17 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
   <% if params[:controller].include?("admin") %>
     <%# do nothing %>
   <% elsif current_account == Account.where(:id => 1).first %>
-    <%= render 'layouts/application/accounts/feastfordays' %>
+    <%= render 'layouts/accounts/feastfordays' %>
   <% elsif current_account == Account.where(:id => 2).first %>
-    <%= render 'layouts/application/accounts/a2reskilling' %>
+    <%= render 'layouts/accounts/a2reskilling' %>
   <% elsif current_account == Account.where(:id => 3).first %>
-    <%= render 'layouts/application/accounts/missionzero' %>
+    <%= render 'layouts/accounts/missionzero' %>
   <% elsif current_account == Account.where(:id => 4).first %>
-    <%= render 'layouts/application/accounts/womendesignbuild' %>
+    <%= render 'layouts/accounts/womendesignbuild' %>
   <% elsif current_account == Account.where(:id => 7).first %>
-    <%= render 'layouts/application/accounts/hubla' %>
+    <%= render 'layouts/accounts/hubla' %>
   <% else %>
-    <%= render 'layouts/application/header' %>
+    <%= render 'layouts/header' %>
   <%- end -%>
 
 <%- end -%>
@@ -162,6 +160,6 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
 <%- content_for :after_main do  -%>
 <%- end -%>
 
-<%= render 'layouts/application/footer' %>
+<%= render 'layouts/footer' %>
 
 

@@ -13,19 +13,19 @@
 
   <div class="grid_16" style="margin-bottom: 30px" id="all-classes">
     <% @upcoming_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
   <div class="grid_16" style="display:none" id="austin-classes">
     <% @austin_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
   <div class="grid_16" style="display:none" id="annarbor-classes">
     <% @annarbor_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
@@ -35,7 +35,7 @@
     </p></center>
     <hr>
     <% @past_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
@@ -47,7 +47,7 @@
     </p></center>
     <hr>
     <% @upcoming_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
@@ -57,7 +57,7 @@
     </p></center>
     <hr>
     <% @past_courses.each do |course| %>
-      <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
 
