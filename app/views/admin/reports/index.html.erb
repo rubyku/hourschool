@@ -14,10 +14,11 @@
             <th>Date joined</th>
           </thead>
           <tbody>
-            <% @top_users.each do |user| %>
+            <% @top_user_hash.each do |id, count| %>
+              <% user = User.find(id) %>
               <tr>
                 <td><%= link_to user.name, user %></td>
-                <td><%= user.roles.count %></td>
+                <td><%= count %></td>
                 <td><%= user.created_at.strftime("%b %d, %Y") %></td>
               </tr>
             <% end %>

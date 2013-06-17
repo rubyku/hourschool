@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
   has_many :courses
+  has_many :roles, through: :courses
   has_many :suggestions
   has_many :missions
 
@@ -12,7 +13,7 @@ class Account < ActiveRecord::Base
 
   scope :open, where(:private => false)
   scope :private, where(:private => true)
-  
+
   has_attached_file :photo, :styles => { :small => "243x48#", :banner => "959x349#" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",

@@ -1,0 +1,29 @@
+<div class="page">
+  <div class="page-content">
+    <h2>Invite new member</h2><br>
+
+    <%= form_for(@user, :url => send_invite_users_path) do |f| %>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="form-error">
+          <%= "*#{message}" %>
+        </div>
+      <% end %>
+
+      <label>Full name</label>
+      <%= f.text_field :name, :class => "span3", :type => "text" %>
+
+      <label>Email</label>
+      <%= f.text_field :email, :class => "span3", :type => "email" %>
+
+      <label>City, State</label>
+      <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @user} %>
+
+      <label>Message</label>
+      <%= text_area_tag :message, "", :class => "input-block-level", :type => "text", :rows => "5" %>
+
+
+      <%= f.submit "Invite", :class => "btn btn-large", :id => 'user_submit' %>
+    <% end %>
+
+  </div>
+</div>

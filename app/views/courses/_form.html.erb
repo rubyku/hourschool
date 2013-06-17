@@ -1,0 +1,156 @@
+<div style="padding-right: 40px">
+
+  <% @course.errors.full_messages.each do |message| %>
+    <div class="error-block">
+      <div class="form-error">
+        *<%= message %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_for @course, :html => { :multipart => true } do |f| %>
+    <form>
+      <fieldset>
+        <legend>
+          <% if @course.status != "live" %>
+            Hi, <%= current_user.name.split(" ").first %>! Let's get your event up and running.
+          <% else %>
+            Edit your event
+          <% end %>
+        </legend>
+
+        <div class="heading14">Event title</div>
+        <%= f.text_field :title, :class => "input-block-level", :type => "text" %>
+
+        <div class="heading14" style="margin-top: 30px">Event photo</div>
+        <span class="help-block">Events with good photos are always more popular - seriously! Take a couple minutes to find one you like.</span>
+        <%= f.file_field :photo %>
+        <%= image_tag(@course.photo,  :size => "190x120") if @course.photo.present? %>
+
+        <div class="heading14" style="margin-top: 30px">Event date and time</div>
+        <span class="help-block">We recommend scheduling your event at least 3 weeks from today to give enough time for more people to sign up!</span>
+        <%= f.datetime_select :starts_at, {:ampm => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+1, :minute_step => 15, :default => 2.weeks.from_now}, :style => "width: 100px" %><br>
+        <%= f.datetime_select :ends_at, {:ampm => true, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year+1, :minute_step => 15, :default => 2.weeks.from_now}, :style => "width: 100px" %>
+
+        <!-- Show warning if event is less than 2 weeks away -->
+        <div id="date-warning" style="display:none;color:red;">
+          Your event is less than 2 weeks away!
+          <%= link_to_function 'ignore', "$('#date-warning').hide(); SHOW_DATE_WARNING=false;" %>
+        </div>
+
+        <% if f.object.new_record? %>
+          <script type="text/javascript">
+            var SHOW_DATE_WARNING = true;
+            $('#course_starts_at_1i, #course_starts_at_2i, #course_starts_at_3i').change(function() {
+              var now = new Date();
+              var twoWeeksFromNow = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000));
+              var selectedDate = new Date($('#course_starts_at_1i').val(), ($('#course_starts_at_2i').val() - 1), $('#course_starts_at_3i').val());
+
+              if (selectedDate < twoWeeksFromNow && SHOW_DATE_WARNING) {
+                $('#date-warning').show();
+              } else {
+                $('#date-warning').hide();
+              }
+            })
+          </script>
+        <% end %>
+
+        <div class="heading14" style="margin-top: 30px">Event location</div>
+        <span class="help-block">For public space, take into consideration of your event size. If it's outdoor, have a back up plan in case of bad weather. For private space, please take the proper precautions when inviting strangers into your home. We don't recommend having 1 on 1 event at your own house. We have partnerships with a number of co-working spaces, and lots of good suggestions from past event organizers. If you're looking for ideas, just email us at hello@hourschool.com for help!</span>
+        <label>Venue name</label>
+        <%= f.text_field :place_name, :class => "input-block-level", :type => "text", :autocomplete => "off", :placeholder => "ex. HourSchool HQ"  %>
+
+        <label class="radio" style="margin-top: 20px;">
+          <%= f.radio_button :public, true, :checked => true, :type => "radio", :name => "optionsRadios", :id => "optionsRadios1" %>
+          Public venue (ex. cafes, offices, etc)
+        </label>
+        <label class="radio" style="margin-bottom: 20px">
+          <%= f.radio_button :public, false, :type => "radio", :name => "optionsRadios", :id => "optionsRadios2" %>
+          Residential location (only students who have signed up will see the address)
+        </label>
+
+        <label>Venue address</label>
+        <%= f.text_field :address, :class => "span3", :type => "text", :autocomplete => "off", :placeholder => "ex. 2720 E.17th St", :style => "width: 284px" %>
+        <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @course} %>
+        <%= f.text_field :zip, :class => "span2", :type => "text", :autocomplete => "off", :placeholder => "ex. 78702"  %>
+
+        <label>Special directions for parking/driving</label>
+        <%= f.text_area :directions, :class => "input-block-level", :type => "text", :rows => "3" %>
+
+        <div class="heading14" style="margin-top: 30px">Event description</div>
+        <span class="help-block">A good event description is important! You don't have to lay out everything, but people generally like to know what to expect. Consider the following: Who should attend this event? What are the 3 things they will get out of the event? What kind of material or equipment do they need ahead of time?</p>
+        <%= f.text_area :description, :class => "input-block-level", :type => "text", :rows => "10" %>
+
+        <hr>
+<!--
+        <% if current_user && (admin_of_current_account? || current_user.admin?) %>
+          <div class="well">
+            <div class="heading14">Is the event public or private?</div>
+            <label class="radio inline">
+              <input type="radio" name="optionsRadios2" id="optionsRadios3" value="option3" checked>
+              Open to public
+            </label>
+            <label class="radio inline">
+              <input type="radio" name="optionsRadios2" id="optionsRadios4" value="option2">
+              Visible to public, but only members can sign up
+            </label>
+            <label class="radio inline">
+              <input type="radio" name="optionsRadios2" id="optionsRadios5" value="option2">
+              Only members can see and sign up
+            </label>
+          </div>
+        <% end %> -->
+
+        <div class="heading14" style="margin-top: 30px">Event capacity</div>
+        <table>
+          <tr>
+            <td style="padding-right: 50px">
+              <span class="help-block">Min. # for me to host this event</span>
+              <%= f.text_field :min_seats, :class => "span2", :type => "text" %>
+            </td>
+            <td>
+              <span class="help-block">Min. # I can have for this event</span>
+              <%= f.text_field :max_seats, :class => "span2", :type => "text" %>
+            </td>
+          </tr>
+        </table>
+
+        <div class="heading14">Price</div>
+        <span class="help-block">If you need to cover supplies, venue rental fee, snacks and other resources, remember to take those into account when you set the price for your class.</span>
+        <div class="input-prepend input-append">
+          <span class="add-on" style="margin-right: -5px">$</span>
+          <%= f.text_field :price, :class => "span1", :placeholder => "25" %>
+          <span class="add-on" style="margin-left: -5px">.00</span>
+        </div>
+
+        <hr>
+
+        <% if current_user && (admin_of_current_account? || current_user.admin?) %>
+          <div class="well">
+            <div class="heading14">Who is the teacher?</div>
+            <p style="margin-top: 10px; margin-bottom: -10px"><%= render :partial => 'shared/teacher_select', :locals => {:f => f, :parent => @course} %></p>
+          </div>
+        <% end %>
+
+        <div class="heading14">About the teacher</div>
+        <span class="help-block">This is more than just qualifications! Why are you passionate about the subject?</span>
+        <%= f.text_area :experience, :class => "input-block-level", :type => "text", :rows => "10" %>
+
+        <hr>
+
+        <% if @course.status == 'live' %>
+          <%= f.submit "Submit", :class => "btn btn-large", :value => "Save" %>
+        <% else %>
+          <%= f.submit "Submit", :class => "btn btn-large", :value => "Preview" %>
+        <% end %>
+
+
+      </fieldset>
+    </form>
+  <% end %>
+
+</div><!-- end container_16 -->
+
+
+
+

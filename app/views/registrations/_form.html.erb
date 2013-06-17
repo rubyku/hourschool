@@ -8,14 +8,14 @@
 
   <p>
    <%= f.label :email, 'Email', :class => "form-question" %><br />
-   <%= f.text_field :email, :class => "form-short-edit-profile" %>
+   <%= f.email_field :email, :class => "form-short-edit-profile" %>
   </p>
   <br>
 
   <p>
-    <%= render :partial => 'layouts/application/city_state_select', :locals => {:f => f, :parent => resource} %>
+    <%= f.label :email, 'City, State', :class => "form-question" %><br />
+    <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => resource} %>
   </p>
-  <br>
 
   <p>
     <%= f.label :password, :class => "form-question" %><br>

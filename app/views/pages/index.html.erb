@@ -29,7 +29,7 @@
 
     <div class="container_16" style="padding-top: 30px;">
       <% @upcoming_courses.limit(8).each do |course| %>
-        <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
       <% end %>
     </div>
 
@@ -67,8 +67,7 @@
         </div>
       </div>
     <% end %>
-  </div><!-- end full page -->
-
+  </div>
 
   <!-- edit account info modal -->
   <div class="modal hide" id="addBasicInfo">
@@ -111,7 +110,7 @@
     <% if @upcoming_courses.present? %>
       <div class="row-fluid" style="padding-left: 10px">
         <% @upcoming_courses.limit(12).each do |course| %>
-          <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+          <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
         <% end %>
       </div>
     <% else %>
@@ -157,17 +156,14 @@
         Past classes
       </div>
       <% if current_account == Account.where(:id => 9).first %>
-        <%= render :partial => '/layouts/application/accounts/frenchinannarbor' %>
+        <%= render :partial => '/layouts/accounts/frenchinannarbor' %>
       <% else %>
         <% @past_courses.limit(4).each do |course| %>
-         <%= render :partial => "/courses/course_grid", :locals => {:course => course}  %>
+          <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
         <% end %>
       <% end %>
     <% end %>
   </div>
-
-
-
 
 <% end %>
 

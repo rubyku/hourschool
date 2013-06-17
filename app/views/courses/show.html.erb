@@ -7,188 +7,292 @@
   <meta property="og:url"         content="<%= course_url(@course) %>"        />
 <% end %>
 
+<!-- preview box -->
+<% if @course.status == 'draft' && (@course.teacher == current_user || current_user.admin?) %>
+  <div class="alert alert-info full-page" style="width: 904px">
+    <div style="float: left; margin-top: 5px; padding-bottom: 5px"><strong>Preview before this goes live!</strong></div>
+    <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px;", :method => :put %>
+    <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
+    <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
+  </div>
+<% end %>
+<!-- end preview box -->
 
+<div class="left" style="width: 626px"><!-- page-main container -->
 
-  <!-- send back to mission box -->
-  <% if @course.status == 'live' && @course.mission.present? && @course.mission.status == "draft" && @course.teacher == current_user %>
-    <div class="alert alert-success" style="width: 904px">
-      <strong>Your event is now live.</strong> As people sign up for the event, they will also be joining your mission. But before all of that happens, you need to first launch your mission.
-      <%= link_to 'Go back to mission', mission_path(@course.mission), :style => "text-decoration: underline" %>
+<%= render 'missions/show/invitee_landing_page' %>
+
+  <div class="page-main white">
+    <div class="page-content">
+      <div class="heading28 brown" style="margin-bottom: 5px"><%= "#{@course.title}" %></div>
+      <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
+      </div>
+
+      <div style="width: 97%; margin-top: 10px">
+        <%= image_tag(@course.photo.url(:large), :style => "float: none") if @course.photo.present? %>
+        <div class="class-section-heading" style="margin-top: 10px">Description</div>
+        <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 30px" %></p>
+
+      <div class="mission-divider">
+        <div class="class-section-heading">Organizer</div>
+        <div class="crewman-photo">
+          <% if @course.teacher.photo.present? %>
+            <%= link_to_avatar(@course.teacher, :thumb_small) %>
+          <% else %>
+            <%= image_tag 'avatar.jpg', :size => "50x50" %>
+          <% end %>
+        </div>
+        <div class="crewman-description">
+          <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
+          <p>
+            <% if @course.experience.blank? %>
+             <%= @course.teacher.bio %>
+            <% else %>
+              <%= @course.experience %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      </div>
     </div>
-  <% end %>
-  <!-- end preview box -->
+  </div>
 
-  <!-- preview box -->
-  <% if @course.status == 'draft' && @course.teacher == current_user %>
-    <div class="alert alert-info full-page" style="width: 904px">
-      <div style="float: left; margin-top: 5px; padding-bottom: 5px"><strong>Preview before this goes live!</strong></div>
-      <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px;", :method => :put %>
-      <%= link_to "Make changes", edit_course_path(@course.id), :class => "btn right", :style => "margin-left: 10px", :method => :get %>
-      <%= link_to "Save draft", course_path(@course.id, :course => {:status => 'draft'}), :class => "btn right",  :method => :put %>
-    </div>
-  <% end %>
-  <!-- end preview box -->
-
-  <div class="left" style="width: 626px"><!-- page-main container -->
-
-  <%= render 'missions/show/invitee_landing_page' %>
-
+  <% if @course.students.any? %>
     <div class="page-main white">
       <div class="page-content">
-        <div class="heading28 brown" style="margin-bottom: 5px"><%= "#{@course.title}" %></div>
-        <div class="heading9" style="text-transform: uppercase; font-weight: 700; color: #999; letter-spacing: 0.2em">
-        </div>
-
-        <div style="width: 97%; margin-top: 10px">
-          <%= image_tag(@course.photo.url(:large), :style => "float: none") if @course.photo.present? %>
-          <div class="class-section-heading" style="margin-top: 10px">Description</div>
-          <p><%= simple_format Rinku.auto_link(@course.description), :style => "margin-bottom: 30px" %></p>
-
-        <div class="mission-divider">
-          <div class="class-section-heading">Organizer</div>
-          <div class="crewman-photo">
-            <% if @course.teacher.photo.present? %>
-              <%= link_to_avatar(@course.teacher, :thumb_small) %>
+        <% if @course.max_seats.present? %>
+          <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}/#{@course.max_seats}" %>)</div>
+        <% else %>
+          <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
+        <% end %>
+        <% @course.students.each do |student| %>
+          <div class="mission-divider">
+            <div class="crewman-photo">
+            <% if student.photo.present? %>
+              <%= link_to_avatar(student, :thumb_small) %>
             <% else %>
               <%= image_tag 'avatar.jpg', :size => "50x50" %>
             <% end %>
-          </div>
-          <div class="crewman-description">
-            <div style="font-weight: 700; float: left; margin-right: 10px"><%= link_to @course.teacher.name, @course.teacher %></div>
-            <p>
-              <% if @course.experience.blank? %>
-               <%= @course.teacher.bio %>
-              <% else %>
-                <%= @course.experience %>
-              <% end %>
-            </p>
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </div>
-
-    <% if @course.students.any? %>
-      <div class="page-main white">
-        <div class="page-content">
-          <% if @course.max_seats.present? %>
-            <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}/#{@course.max_seats}" %>)</div>
-          <% else %>
-            <div class="sidebar-heading">Attendees (<%= "#{@course.students.count}" %>)</div>
-          <% end %>
-          <% @course.students.each do |student| %>
-            <div class="mission-divider">
-              <div class="crewman-photo">
-              <% if student.photo.present? %>
-                <%= link_to_avatar(student, :thumb_small) %>
-              <% else %>
-                <%= image_tag 'avatar.jpg', :size => "50x50" %>
-              <% end %>
-              </div>
-              <div class="crewman-description">
-                <div style="font-weight: 700; float: left; margin-right: 10px">
-                <% if student.name.present? %>
-                  <%= link_to student.name, student %>
-                <% else %>
-                  <% @role = student.roles.first %>
-                  <% @inviter = User.where(:id => @role.invite_user_id).first %>
-                  <%= @inviter.name.split(" ").first %>'s guest
-                <% end %>
-                </div>
-                <p><%= student.bio %></p><br>
-                <% if student == current_user %>
-                  <%= link_to "edit your bio", edit_user_registration_path, :class => "btn" %>
-                <% end %>
-              </div>
             </div>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
-    <div class="page-main white">
-      <div class="page-content">
-        <div style="width: 97%">
-          <div class="class-section-heading">Comments</div>
-          <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
-        </div>
+            <div class="crewman-description">
+              <div style="font-weight: 700; float: left; margin-right: 10px">
+              <% if student.name.present? %>
+                <%= link_to student.name, student %>
+              <% else %>
+                <% @role = student.roles.first %>
+                <% @inviter = User.where(:id => @role.invite_user_id).first %>
+                <%= @inviter.name.split(" ").first %>'s guest
+              <% end %>
+              </div>
+              <p><%= student.bio %></p><br>
+              <% if student == current_user %>
+                <%= link_to "edit your bio", edit_user_registration_path, :class => "btn" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
+  <% end %>
 
+  <div class="page-main white">
+    <div class="page-content">
+      <div style="width: 97%">
+        <div class="class-section-heading">Comments</div>
+        <%= render :partial => "courses/show/comments", :locals => {:course => @course} %>
+      </div>
+    </div>
   </div>
 
-  <div class="left" style="width: 290px"><!-- sidebar container -->
+</div>
 
-    <div class="white right page-sidebar">
-      <div class="sidebar-content-white">
-        <%= render :partial => "courses/show/sidebar", :locals => {:course => @course} %>
-      </div>
-    </div>
+<div class="left" style="width: 290px"><!-- sidebar container -->
 
-    <div class="white right page-sidebar">
-      <div class="sidebar-content-white">
+  <div class="white right page-sidebar">
+    <div class="sidebar-content-white">
+      <!-- todo move this out of tables and move the glyphs (pricetag, icon_calendar, etc.) to css -->
+      <div>
+
         <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
-          Some handy tools
+          Register for event
         </div>
 
-        <% if current_user %>
-        <div class="mission-divider">
-          <% if @course.teacher == current_user %>
-            <%= link_to "Edit event", edit_course_path %><br>
-            <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
-            <% if @course.starts_at > Time.zone.now %>
-              <%= link_to "Cancel this event", course_organizer_path(@course, :cancel), :method => :get %><br>
-              <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
-              <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+        <div class="user_status">
+          <%= content_tag(:p, "You have now registered!", :class => "heading13-class") if @course.has_student?(current_user) && @course.active? %>
+        </div>
+        <div class="course_status">
+          <%= content_tag(:p, "This session is full!", :class => "heading13-class")                if @course.sold_out? && course.active? %>
+          <%= content_tag(:p, "This session has passed.", :class => "heading13-class")             if @course.inactive? %>
+          <%= content_tag(:p, "This session has been canceled!", :class => "heading13-class")      if @course.canceled? %>
+          <%#= content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user) %>
+        </div>
+
+        <div class="course_action">
+          <% if can? :sign_up_for_course, @course %>
+            <% if @course.sold_out? || @course.inactive? %>
+              <%#= button_to "Pre-register for next session",  new_suggestion_path,  :class => "orange button", :method => :get %>
             <% else %>
-              <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
-              <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+              <%= button_to "Sign me up!",    new_course_attendee_registration_path(:course_id => @course), :method => :get, :class => "btn btn-warning #{'tooFarToRegister' unless @course.near_user?(current_user) }", :style => "color: white" %>
             <% end %>
-          <% else %><!-- if current_user is not this course's teacher -->
-            <a data-toggle="modal" href="#emailOrganizer">Email organizer</a><br>
-            <% if current_user && @course.starts_at > Time.zone.now %>
-              <a href="mailto:hello@hourschool.com" target="_blank">Cancel registration</a>
+          <% end %>
+          <% if can? :edit_course, @course %>
+            <% if @course.inactive? %>
+              <%= button_to "Schedule this again", course_duplicate_path(:course_id => @course), :method => :post, :class => "btn" %>
+            <% else %>
+              <%= button_to "Edit details",        edit_course_path, :method => :get, :class => "btn" %>
+              <%= button_to "Cancel this event",   course_organizer_path(@course, :cancel), :method => :get, :class => "btn" %>
             <% end %>
           <% end %>
         </div>
+
+        <div class="class-alternatives" style="margin-bottom: 30px; width: 270px">
+          <% if @course.min_seats != 0 && @course.max_seats.present? %>
+            <%= "This event has #{@course.seats_left} seats left" %>
+          <% end %>
+        </div>
+
+        <div style="width: 260px">
+          <%= image_tag "v3/icon-event-price.png", :class => "class-details-icon-cost" %>
+          <% if @course.member_price.present? %>
+            <div class="class-details" style="width: 240px"><%= "Member price: $ #{@course.member_price}" %></div>
+            <div style="width: 240px; margin-left: 21px"><%= "Non-member price: $ #{@course.price}" %></div>
+          <% else %>
+            <div class="class-details" style="width: 240px"><%= "$ #{@course.price}" %></div>
+          <% end %>
+        </div>
+
+        <div style="width: 260px">
+          <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
+          <div class="class-details" style="width: 240px">
+            <%= @course.starts_at.strftime("%a %b %d, %Y") %>
+          </div>
+          <div style="margin-left: 22px">
+            <%= "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
+          </div>
+        </div>
+
+        <div style="width: 260px; margin-bottom: 20px">
+          <%= image_tag "v3/icon-event-location.png", :class => "class-details-icon-where" %>
+          <div class="class-details" style="width: 240px"><%= "#{@course.place_name}" %></div>
+          <div style="margin-left: 21px">
+            <% if @course.public? %>
+              <%= @course.address %>
+              <%= "#{@course.city.try(:name)}, #{@course.city.try(:state)}" %>
+              <%= ", #{@course.zip}" if @course.zip.present? %>
+              <div class="class-details" style="width: 240px">Directions</div>
+              <%= simple_format Rinku.auto_link(@course.directions) if @course.directions.present? %>
+            <% else %>
+              Residential address<br>
+              Area: <%= @course.zip %>
+            <% end %>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <% @past_dates = Course.where('title ilike ?', @course.title).order('DATE(starts_at) DESC').where(:status => "live").where('id != ?', @course.id) %>
+      <% if @past_dates.any? %>
+        <div class="sidebar-block" style="border-bottom: 0px">
+          <div class="heading11">Past Classes</div>
+          <% @past_dates.each do |course| %>
+            <%= link_to "#{course.starts_at.strftime("%a %b %d, %Y")}", course %><br>
+          <% end %>
+        </div>
+      <% end %>
+
+
+      <!-- Modal Layout for when a User tries to sign up for a course too far away -->
+      <%= render :layout => 'shared/page/modal', :locals => {:modal_class => 'tooFarToRegisterModal'} do %>
+        <p>
+          <%= content_tag(:p, "Wait!! This class is in #{@course.city.try(:name_state)}, which  we think is kinda far away from #{current_user.try(:location)}.") %>
+        </p>
+        <p>
+          <%= "If you're no longer in #{current_user.try(:location)} " %>
+          <%= link_to "change your location here", edit_user_registration_path(:id => current_user) %>
+          <%= ", or continue signing up for this class" %>
+        </p>
+        <%= button_to "Register for this session",    new_course_attendee_registration_path(:course_id => @course), :method => :get, :class => "btn" %>
+      <% end %>
+
+      <!-- Show the modal window if a person tries to register for a course too far away from them -->
+      <script type="text/javascript">
+        $(document).ready( function(){
+          $('.tooFarToRegister').bind('click', function(){
+            $('.tooFarToRegisterModal').show();
+            return false;
+          })
+        });
+      </script>
+
+    </div>
+  </div>
+
+  <div class="white right page-sidebar">
+    <div class="sidebar-content-white">
+      <div class="heading11" style="border-bottom: 1px dashed #EFEFEF; padding-bottom: 7px; margin-bottom: 10px">
+        Some handy tools
+      </div>
+
+      <% if current_user %>
+      <div class="mission-divider">
+        <% if @course.teacher == current_user %>
+          <%= link_to "Edit event", edit_course_path %><br>
+          <a data-toggle="modal" href="#emailAttendees">Email Attendees</a><br>
+          <% if @course.starts_at > Time.zone.now %>
+            <%= link_to "Cancel this event", course_organizer_path(@course, :cancel), :method => :get %><br>
+            <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
+            <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+          <% else %>
+            <%#= link_to "Schedule this event one more time", course_duplicate_path(:course_id => @course), :method => :post %><br>
+            <%#= link_to "Make this a recurring event", new_course_duplicate_path(:course_id => @course) %>
+          <% end %>
+        <% else %><!-- if current_user is not this course's teacher -->
+          <a data-toggle="modal" href="#emailOrganizer">Email organizer</a><br>
+          <% if current_user && @course.starts_at > Time.zone.now %>
+            <a href="mailto:hello@hourschool.com" target="_blank">Cancel registration</a>
+          <% end %>
         <% end %>
+      </div>
+      <% end %>
 
-        <div style="float: left; margin-bottom: 30px">
-          <% if @course.status == 'live' %>
-            <% if current_user %>
-              <a data-toggle="modal" href="#rally" class="btn btn-mini left" href="" style="color: black; font-weight: 700; margin-right: 10px"><i class="icon-bullhorn"></i> Rally</a>
-            <% end %>
-            <div style="float: left; margin-right: 10px">
-              <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-            </div>
-            <div style="float: left; margin-top: 0px; width: 100px">
-              <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="hourschool">Tweet</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
-
-            <% if current_user %>
-              <!-- modal begins -->
-              <div class="modal hide" id="rally">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">×</button>
-                  <h3>Rally your troops</h3>
-                </div>
-                <div class="modal-body">
-                  <%= render 'invites/accordian' %>
-                </div>
-              </div>
-              <!-- modal ends -->
-            <% end %>
-
+      <div style="float: left; margin-bottom: 30px">
+        <% if @course.status == 'live' %>
+          <% if current_user %>
+            <a data-toggle="modal" href="#rally" class="btn btn-mini left" href="" style="color: black; font-weight: 700; margin-right: 10px"><i class="icon-bullhorn"></i> Rally</a>
           <% end %>
-        </div>
+          <div style="float: left; margin-right: 10px">
+            <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+          </div>
+          <div style="float: left; margin-top: 0px; width: 100px">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="hourschool">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          </div>
+
+          <% if current_user %>
+            <!-- modal begins -->
+            <div class="modal hide" id="rally">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Rally your troops</h3>
+              </div>
+              <div class="modal-body">
+                <%= render 'invites/accordian' %>
+              </div>
+            </div>
+            <!-- modal ends -->
+          <% end %>
+
+        <% end %>
       </div>
     </div>
+  </div>
 
-    <%= render 'courses/attendee/contacts/new' %>
-    <%= render 'courses/organizer/contacts/new' %>
+  <%= render 'courses/attendee/contacts/new' %>
+  <%= render 'courses/organizer/contacts/new' %>
 
 
-  </div><!-- end sidebar container -->
+</div><!-- end sidebar container -->
 
