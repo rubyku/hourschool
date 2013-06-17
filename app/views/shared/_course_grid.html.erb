@@ -2,7 +2,7 @@
   <% target = course.account_id.present? ? '_blank' : '' %>
 <% end %>
 
-<div class="span3 classBlock" style="background-color: #f3f3f3; width: 190px; margin-left: 35px">
+<div class="span3 classBlock" style="background-color: #edeae6; width: 190px; height: 270px; margin-left: 35px">
   <% if course.photo.present? %>
     <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course, :target => target %>
   <% else %>
