@@ -13,6 +13,7 @@
               <%= current_account.users.uniq.count %>
             <% end %>
           </div>
+          <%= link_to "Invite new member", new_invite_users_path, :class => "btn pull-right" %>
         </div>
         <table class="table">
           <thead>
@@ -28,7 +29,7 @@
                   <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
                   <% if @teachers.include?(user) %>
                     <span class="label label-info">Teacher</span>
-                   <% elsif Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
+                   <% elsif @admins.include?(user) %>
                     <span class="label label-inverse">Admin</span>
                   <% end %>
                 </td>
@@ -50,11 +51,7 @@
                         <% if community_site? %>
                           <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
                         <% else %>
-                          <% if Membership.find_by_account_id_and_user_id_and_admin(current_account.id, user.id, true) %>
-                            Admin
-                          <% else %>
-                            <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
-                          <% end %>
+                          <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
                         <% end %>
                       </li>
                       <li><%= link_to "Email", "mailto:#{user.email}" %></li>
