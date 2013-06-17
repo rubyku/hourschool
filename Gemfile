@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails',                '3.2.11'
-gem 'ruby',                 '1.9.3'
+gem ruby '1.9.3'
 
 group :assets do
   gem 'coffee-rails',       '~> 3.2.1'
