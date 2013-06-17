@@ -122,7 +122,7 @@
           <%= content_tag(:p, "You have now registered!", :class => "heading13-class") if @course.has_student?(current_user) && @course.active? %>
         </div>
         <div class="course_status">
-          <%= content_tag(:p, "This session is full!", :class => "heading13-class")                if @course.sold_out? && course.active? %>
+          <%= content_tag(:p, "This session is full!", :class => "heading13-class")                if @course.sold_out? && @course.active? %>
           <%= content_tag(:p, "This session has passed.", :class => "heading13-class")             if @course.inactive? %>
           <%= content_tag(:p, "This session has been canceled!", :class => "heading13-class")      if @course.canceled? %>
           <%#= content_tag(:p, "This class is not in your city!")    unless course.near_user?(current_user) %>

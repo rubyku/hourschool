@@ -28,6 +28,10 @@ class Courses::Attendee::RegistrationsController < ApplicationController
       UserMailer.course_registration(current_user.email, current_user.name, @course, @role, @course.account).deliver
       UserMailer.course_registration_to_teacher(current_user.email, current_user.name, @course, @course.account).deliver
 
+      if current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 4).first
+        UserMailer.course_registration_to_admin(current_user.email, current_user.name, @course, @course.account).deliver
+      end
+
       redirect_to course_attendee_registration_url(:course_id => @course, :id => 'confirm')
     else
       flash[:error] = "Your charge didn't go through. Please try another card or contact hello@hourschool.com for help."

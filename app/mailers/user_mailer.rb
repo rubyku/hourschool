@@ -110,6 +110,18 @@ class UserMailer < ActionMailer::Base
          :subject => "Someone signed up for #{@course.title}!"
   end
 
+
+  def course_registration_to_admin(user_email, user_name, course, current_account)
+    @email = user_email
+    @name = user_name
+    @course = course
+    @account = current_account
+    @account_name = @account.try(:name) || "HourSchool"
+    mail :from => "#{@account_name} <hello@hourschool.com>",
+         :to => course.account.admins.map(&:email),
+         :subject => "Someone signed up for #{@course.title}!"
+  end
+
   #----------------------------------------------------------------------------------------------------------------------------
 
   # def followed_created_a_course(user, followed, course)

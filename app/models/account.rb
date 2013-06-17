@@ -34,6 +34,15 @@ class Account < ActiveRecord::Base
     self.open.collect(&:id) + [0] - [1] - [2] - [3]
   end
 
+  def admins
+    admins = self.memberships.where(:admin => true)
+    if admins.any?
+      admins.collect(&:user)
+    else
+      []
+    end
+  end
+
   private
   def format_subdomain
     self.subdomain = self.subdomain.parameterize
