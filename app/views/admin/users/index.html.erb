@@ -27,10 +27,10 @@
               <tr>
                 <td>
                   <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
-                  <% if @teachers.include?(user) %>
-                    <span class="label label-info">Teacher</span>
-                   <% elsif @admins.include?(user) %>
+                  <% if @admins.include?(user) %>
                     <span class="label label-inverse">Admin</span>
+                  <% elsif @teachers.include?(user) %>
+                    <span class="label label-info">Teacher</span>
                   <% end %>
                 </td>
                 <td class="span3" style="overflow: scroll; float: left">
