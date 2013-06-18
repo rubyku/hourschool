@@ -61,11 +61,11 @@
         <%= f.text_field :place_name, :class => "input-block-level", :type => "text", :autocomplete => "off", :placeholder => "ex. HourSchool HQ"  %>
 
         <label class="radio" style="margin-top: 20px;">
-          <%= f.radio_button :public, true, :checked => true, :type => "radio", :name => "optionsRadios", :id => "optionsRadios1" %>
+          <%= f.radio_button :public, true, :checked => true, :style => "float: left; margin-right: 10px" %>
           Public venue (ex. cafes, offices, etc)
         </label>
         <label class="radio" style="margin-bottom: 20px">
-          <%= f.radio_button :public, false, :type => "radio", :name => "optionsRadios", :id => "optionsRadios2" %>
+          <%= f.radio_button :public, false, :style => "float: left; margin-right: 10px;"  %>
           Residential location (only students who have signed up will see the address)
         </label>
 
