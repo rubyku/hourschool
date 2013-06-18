@@ -1,0 +1,161 @@
+<style type="text/css">
+
+  body {
+    background-image: url(<%= asset_path "v4/hs-pro/vuka-bg2.jpg" %>) ;
+  }
+
+  #header{
+    width: 100%;
+    padding-top: 15px;
+    background-image: none;
+    background-color: black;
+    height: 91px;
+    margin-bottom: 20px;
+  }
+
+  li a.main-nav{
+    @include hourschool-heading;
+    letter-spacing: 2px;
+    font-size: 11px;
+    color: white;
+    &:visisted{color: white;}
+    &:hover{color: white; text-decoration: none;}
+    &.main-nav-active {
+      border-top: 3px solid white;
+      padding-left: 0px 10px; }
+    &.main-nav-inactive {
+      padding: 0px 10px; }
+  }
+
+  a.nav-heading{color: white; text-decoration: none;}
+  a:visited.nav-heading{color: white; text-decoration: none;}
+
+
+  a:hover.dropdown-toggle.main-nav{
+    background-color: transparent;
+    color: white;
+    border-top: 3px solid black;
+    border-radius: 0px;
+  }
+
+  a:hover.dropdown-toggle.main-nav.exception{
+    background-color: transparent;
+    color: black;
+    border-top: 3px solid black;
+    border-radius: 0px;
+  }
+
+  .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover {
+    background-color: white;
+    color: white;
+  }
+
+  .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover #homepage{
+      background-color: transparent;
+      color: black;
+    }
+
+  li.dropdown-menu-wrapper{
+    background-color: black;
+    padding: 10px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    height: 60px;
+    width: 200px;
+  }
+
+  .dropdown-menu-item{
+    padding: 0px 0px 21px 10px;
+    position: relative;
+    z-index: 1000;
+    margin-top: -75px;
+  }
+
+  .dropdown-menu.main-nav{
+    background-color: transparent;
+  }
+
+  p.nav-description{
+    font-size: 11px;
+    margin-bottom: 0px;
+    color: white;
+    text-transform: none;
+    font-weight: 400;
+  }
+
+
+
+</style>
+
+
+  <div id="header">
+    <div class="container_16">
+
+      <% if current_account.logo.present? %>
+        <%= link_to image_tag(current_account.logo.url(:small)), root_path, :class => "logo"  %>
+      <% else %>
+        <div style="float: left; margin-top: 15px; margin-bottom: 25px">
+          <p><%= link_to current_account.name, root_path, :class => "heading28", :style => "color: black" %></p>
+          <p><%= current_account.description %></p>
+        </div>
+      <% end %>
+
+      <div class="pull-right">
+        <% if !current_user %>
+          <ul class="nav nav-pills main-nav" style="margin-top: 0; margin-bottom: -15px; width: 100%">
+            <li class="dropdown pull-right" id="menu6">
+              <%= link_to "Become a member", new_user_registration_path, :class => "main-nav dropdown-toggle", :style => " font-weight: 400" %>
+            </li>
+            <li class="dropdown pull-right" id="menu5">
+              <%= link_to "Login", new_user_session_path, :class => "main-nav dropdown-toggle", :style => "font-weight: 400" %>
+            </li>
+          </ul>
+        <% else %>
+          <div style="margin-top: 18px"></div>
+        <% end %>
+
+        <ul class="nav nav-pills main-nav">
+          <% if current_user %>
+            <li class="dropdown exception pull-right" id="menu1">
+              <a class="dropdown-toggle main-nav exception" data-toggle="dropdown" href="#menu1">
+                <% if current_user.photo.present? %>
+                  <%= image_tag(current_user.photo.url(:thumb_25), :style => "margin: -5px 5px 0px 0px; float: left") %>
+                <% else %>
+                  <%= image_tag 'avatar.jpg', :size => "25x25", :style => "margin: -5px 5px 0px 0px; float: left" %>
+                <% end %>
+                <%= image_tag "v2/arrow_grey_profile.png", :style => "margin: 3px 0px 0px 3px" %>
+              </a>
+              <ul class="dropdown-menu pull-right" style="background-color: transparent; border: 0px; border-radius: 0px; box-shadow: 0 0px; width: 200px;">
+                <li class="dropdown-menu-wrapper"></li>
+                  <div class="dropdown-menu-item">
+                    <%= link_to "My Profile", user_path(current_user), :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                    <p class="nav-description">All the events you have attended and hosted!</p>
+                  </div>
+                <li class="dropdown-menu-wrapper"></li>
+                  <div class="dropdown-menu-item">
+                    <%= link_to "Settings", edit_user_registration_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                    <p class="nav-description">Update profile? Less emails? Not a problem!</p>
+                  </div>
+                <li class="dropdown-menu-wrapper"></li>
+                  <div class="dropdown-menu-item">
+                    <%= link_to "Sign out", destroy_user_session_path, :class => "nav-heading", :style => "padding: 0px; font-weight: 700" %>
+                    <p class="nav-description">Come back and visit soon!</p>
+                  </div>
+              </ul>
+            </li>
+          <% end %>
+          <li class="dropdown pull-right">
+            <%= link_to "Conversations", "/conversations", :class => "main-nav dropdown-toggle" %>
+          </li>
+          <li class="dropdown pull-right">
+            <%= link_to "Members", "/members", :class => "main-nav dropdown-toggle" %>
+          </li>
+          <li class="dropdown pull-right">
+            <%= link_to "Events", "/classes", :class => "main-nav dropdown-toggle" %>
+          </li>
+
+        </ul>
+      </div>
+
+    </div><!-- /end .container_16 -->
+  </div><!-- /end #header -->

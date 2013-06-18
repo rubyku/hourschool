@@ -55,6 +55,9 @@
 <% elsif current_account == Account.where(:id => 7).first %><!-- Hub LA -->
   <%= render :partial => 'accounts/show/hubla', :locals => {:courses => @courses} %>
 
+<% elsif current_account == Account.where(:id => 11).first %><!-- Vuka Austin -->
+  <%= render :partial => 'accounts/show/vukaaustin', :locals => {:courses => @courses} %>
+
 <% else %><!-- New Generic School -->
 
   <div class="full-page" style="background-color: #f0f0f0">
@@ -65,39 +68,6 @@
         <div class="heading11" style="text-align: center; padding-top: 60px">
           <a data-toggle="modal" href="#addBasicInfo" style="color: white">Upload a cover photo</a>
         </div>
-      </div>
-    <% end %>
-  </div>
-
-  <!-- edit account info modal -->
-  <div class="modal hide" id="addBasicInfo">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">×</button>
-      <h3>Add Basic info</h3>
-    </div>
-    <div class="modal-body">
-      <%= form_for(@account) do |f| %>
-        <% if @account.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@account.errors.count, "error") %> prohibited this from being saved:</h2>
-
-            <ul>
-            <% @account.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <div class="field">
-          <%= f.label :photo, 'Upload a cover photo' %>
-          <%= f.file_field :photo %>
-          <%= image_tag(@account.photo, :size => "384x144") if @account.photo.present? %>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal" style="text-decoration: none">Close</a>
-        <%= f.submit "Save changes", :class => "btn btn-primary" %>
       </div>
     <% end %>
   </div>
@@ -147,7 +117,6 @@
         <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
       </div>
     </div>
-
   </div>
 
   <div class="grid_16" style="padding-left: 10px">
