@@ -165,7 +165,7 @@
         <div style="width: 260px">
           <%= image_tag "v3/icon-event-calendar.png", :class => "class-details-icon-when"  %>
           <div class="class-details" style="width: 240px">
-            <%= @course.starts_at.strftime("%a %b %d, %Y") %>
+            <%= "#{@course.starts_at.strftime("%a %b %d, %Y")} - #{@course.starts_at.strftime("%a %b %d, %Y")}" %>
           </div>
           <div style="margin-left: 22px">
             <%= "#{@course.starts_at.strftime("%l:%M%p")} - #{@course.ends_at.strftime("%l:%M%p")}" %>
