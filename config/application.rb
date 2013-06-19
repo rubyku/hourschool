@@ -25,7 +25,7 @@ module HourschoolV2
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(lib/hourschool_subdomain_redirect)
+    # config.autoload_paths += %W(#{config.root}/extras)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -59,8 +59,6 @@ module HourschoolV2
     # config.assets.precompile += ['screen.css']
 
     config.autoload_paths += Dir["#{config.root}/lib/concerns/models/*"]
-
-    config.middleware.use "HourschoolSubdomainRedirect"
 
     #https://github.com/plataformatec/devise/wiki/How-To%3a-Send-emails-from-subdomains
     config.to_prepare do
