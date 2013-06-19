@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619033354) do
+ActiveRecord::Schema.define(:version => 20130530170639) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20130619033354) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.text     "about"
-    t.string   "custom_domain"
   end
 
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
