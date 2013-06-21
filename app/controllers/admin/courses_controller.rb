@@ -1,5 +1,5 @@
 class Admin::CoursesController < ApplicationController
-  layout 'application'
+  before_filter :authenticate_admin!
 
   def index
     @courses = current_account ? current_account.courses.order('DATE(starts_at) DESC') : Course.order('DATE(starts_at) DESC')
