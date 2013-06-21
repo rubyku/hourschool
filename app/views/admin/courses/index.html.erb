@@ -25,17 +25,26 @@
           <tbody>
             <% @courses.each do |course| %>
               <tr>
-                <td class="span3">
+                <td class="span4">
                   <div class="heading13 brown">
-                    <%= link_to course.title, admin_course_path(course) %><br>
+                    <%= link_to course.title, admin_course_path(course) %>
+                    <% if course.status == "draft" %>
+                      <span class="label">Draft</span>
+                    <% end %>
+                    <br>
                     by <%= course.teacher.name if course.teacher.present? %>
                   </div>
-                <td><%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+                <td>
+                  <% if course.starts_at.present? && course.ends_at.present? %>
+                    <%= course.starts_at.strftime("%Y/%m/%d") %><br>
+                    <%= course.starts_at.strftime("%l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") %>
+                  <% end %>
                 </td>
                 <td>
-                  <div class="progress">
+                  <div class="progress" style="margin-bottom: 0px">
                     <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;"><%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %></div>
                   </div>
+                  <%= "#{course.students.count} / #{course.max_seats}" %>
                 </td>
                 <td>
                   <div class="btn-group">
