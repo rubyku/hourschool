@@ -8,7 +8,7 @@
 <% end %>
 
 <!-- preview box -->
-<% if @course.status == 'draft' && (@course.teacher == current_user || current_user.admin?) %>
+<% if @course.status == 'draft' && (@course.teacher == current_user || current_user.admin? || admin_of_current_account?) %>
   <div class="alert alert-info full-page" style="width: 904px">
     <div style="float: left; margin-top: 5px; padding-bottom: 5px"><strong>Preview before this goes live!</strong></div>
     <%= link_to 'Publish now', course_path(@course.id, :course => {:status => 'live'}), :class => "btn btn-inverse right", :style => "color: white; margin-left: 10px;", :method => :put %>
