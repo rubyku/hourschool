@@ -70,7 +70,7 @@
         </label>
 
         <label>Venue address</label>
-        <%= f.text_field :address, :class => "span3", :type => "text", :autocomplete => "off", :placeholder => "ex. 2720 E.17th St", :style => "width: 284px" %>
+        <%= f.text_field :address, :class => "span3", :type => "text", :autocomplete => "off", :placeholder => "ex. 2720 E.17th St", :style => "width: 240px" %>
         <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @course} %>
         <%= f.text_field :zip, :class => "span2", :type => "text", :autocomplete => "off", :placeholder => "ex. 78702"  %>
 

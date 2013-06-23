@@ -123,7 +123,7 @@
     </table>
   </div>
 
-<% else %>
+<% elsif current_account == Account.where(:id => 11).last %>
 
   <div class="footer_bg" style="background-color: black; margin-top: 60px;">
 
@@ -143,5 +143,22 @@
     </div>
 
   </div>
+
+<% else %>
+
+    <div class="container_16 enterprise_footer" style="padding-top: 60px;">
+      <table id="powered-by">
+        <tr>
+          <td>
+            <div class="footer-powered-by">Powered by</div>
+          </td>
+          <td>
+            <a href="http://www.hourschool.com" target="_blank">
+              <%= image_tag('v2/Logo_Grey.png', :id => "powered-by-logo") %>
+            </a>
+          </td>
+        </td>
+      </table>
+    </div>
 
 <% end %>

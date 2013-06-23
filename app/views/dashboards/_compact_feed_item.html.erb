@@ -18,7 +18,7 @@
     <%= image_tag 'v3/profile/journey-glyph-comment.png', :class => "left"  %>
     <hr style="width: 22px; float: left">
     <div style="width: 100%">
-      <div style="float: left; width: 560px; margin: 10px 5px 0px 5px">
+      <div style="width: 560px; margin: 10px 5px 0px 5px">
         <% if compact_feed_item.mission_id.present? %>
           I commented on the mission  <%= link_to full_mission_title(compact_feed_item.mission), compact_feed_item.mission, :style => "font-weight: 700" %>
         <% else %>
