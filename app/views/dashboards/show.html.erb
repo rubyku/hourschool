@@ -65,8 +65,11 @@
     <div class="tabbable">
       <ul class="nav nav-tabs" style="margin-bottom: 0px;">
         <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
-        <li><a href="#tab2" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
-        <li><a href="#tab3" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
+        <% if current_user == @user %>
+          <li><a href="#tab2" data-toggle="tab" class="heading11">Draft</a></li>
+        <% end %>
+        <li><a href="#tab3" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
+        <li><a href="#tab4" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
       </ul>
 
       <div class="tab-content" style="overflow-x: hidden">
@@ -91,6 +94,18 @@
           </div>
         </div><!-- end tab1 -->
         <div class="tab-pane" id="tab2">
+          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
+            <div class="page-content">
+              <% if @user.courses.where(:status => "draft").present? %>
+                <% @courses = @user.courses.where(:status => "draft") %>
+                <% @courses.each do |course| %>
+                  <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div><!-- end tab2 -->
+        <div class="tab-pane" id="tab3">
           <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
             <div class="page-content">
               <% if @user.followers.blank? %>
@@ -121,7 +136,7 @@
             </div>
           </div>
         </div><!-- end tab3 -->
-        <div class="tab-pane" id="tab3">
+        <div class="tab-pane" id="tab4">
           <div class="page-main white tab-border main" style="width: 683px; border: 0px">
             <div class="page-content">
               <% if @user.following.blank? %>
@@ -136,20 +151,22 @@
                 <% @user.following.each do |user| %>
                   <div class="mission-divider">
                     <div class="crewman-photo">
-                      <% if user.photo.present? %>
-                        <%= image_tag(user.photo.url(:thumb_large)) %>
-                      <% else %>
-                        <%= image_tag 'avatar.jpg', :size => '125x125' %>
-                      <% end %>
-                      <br><br>
-                      <% if current_user == @user %>
-                        <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
-                      <% end %>
-                    </div>
-                    <div class="crewman-description">
-                      <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
-                      <p><%= user.bio %></p>
-                    </div>
+                      <% if user.present? %>
+                        <% if user.photo.present? %>
+                          <%= image_tag(user.photo.url(:thumb_large)) %>
+                        <% else %>
+                          <%= image_tag 'avatar.jpg', :size => '125x125' %>
+                        <% end %>
+                        <br><br>
+                        <% if current_user == @user %>
+                          <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
+                        <% end %>
+                      </div>
+                      <div class="crewman-description">
+                        <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                        <p><%= user.bio %></p>
+                      </div>
+                    <% end %>
                   </div>
                 <% end %>
               <% end %>
