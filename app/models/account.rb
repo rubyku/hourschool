@@ -17,15 +17,15 @@ class Account < ActiveRecord::Base
   has_attached_file :photo, :styles => { :small => "243x48#", :banner => "959x349#" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "user/:style/:id/:filename"
+                    :path => "account/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  has_attached_file :logo, :styles => { :small => "76x150#{}" },
+  has_attached_file :logo, :styles => { :small => "200x76>" },
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml",
-                    :path => "user/:style/:id/:filename"
+                    :path => "account/:style/:id/:filename"
 
   validates_attachment_size :logo, :less_than => 5.megabytes
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']

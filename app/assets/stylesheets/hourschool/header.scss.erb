@@ -3,11 +3,15 @@
 .logo{
   position: relative;
   float: left;
-  width: 77px;
+  width: 200px;
   height: 76px;
   margin-bottom: 15px;
 
-  &.hourschool{background: url( <%= asset_path 'v3/logo-black.png' %> );}
+  &.hourschool{
+    background: url( <%= asset_path 'v3/logo-black.png' %> );
+    background-repeat: no-repeat;
+  }
+
 }
 
 /*NAV*/
