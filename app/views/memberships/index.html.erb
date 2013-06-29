@@ -2,13 +2,13 @@
 
   <div class="grid_16" style="margin-top: 30px">
     <div class="heading14 left" style="margin-bottom: 30px">
-      <%= @users.uniq.count %>
+      <%= @memberships.uniq.count %>
       user
     </div>
   </div>
 
   <div class="grid_16">
-    <% @users.each do |user| %>
+    <% @memberships.each do |user| %>
       <div class="grid_7" style="margin-bottom: 20px">
         <div class="crewman-photo">
           <% if user.photo.present? %>
@@ -57,7 +57,10 @@
           <% end %>
         </div>
         <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
-        <%= membership.user.bio %>
+        <%= membership.user.bio %><br>
+        <% if membership.user == current_user %>
+          <%= link_to "edit my profile", edit_user_registration_path, :class => "btn" %>
+        <% end %>
         </p>
       </div>
     <% end %>
