@@ -56,7 +56,7 @@ class CoursesController < ApplicationController
         if @course.status == 'live' && @course.previous_changes["status"]
           @course.account.nil? ? current_account = nil : current_account = @course.account
           UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-          if current_account == Account.where(:id => 9).first && @course.account.present?
+          if (current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 13).first) && @course.account.present?
             @course.account.users.each do |user|
               UserMailer.delay.account_new_course(user, @course.account, @course)
             end
