@@ -1,33 +1,30 @@
-<% if community_site? %>
+<div class="container_16" style="width: 960px">
 
-  <%= render :partial => '/pages/show/subnav/about-subnav' %>
+  <% if community_site? %>
+    <%= render :partial => '/pages/show/subnav/about-subnav' %>
 
-  <div class="container_16" style="margin-top: 40px; margin-bottom: 20px; width: 960px">
-    <center>
+    <div class="span9 pull-right" style="margin-top: 40px; margin-bottom: 20px;">
       <p class="lead section-header">
         About
       </p>
-    </center>
-  </div>
-  <hr>
+      <hr>
+    </div>
 
-  <div class="container_16" style="margin-top: 20px; margin-bottom: 20px; width: 960px">
-    <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;color=ff9933" width="960px" height="540px"  frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-  </div>
+    <div class="span9 pull-right" style="margin-bottom: 20px;">
+      <iframe src="http://player.vimeo.com/video/42154383?byline=0&amp;portrait=0&amp;color=ff7733" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
 
-  <div class="container_16" style="width: 490px">
-    <center><div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Our Manifesto</div></center>
-    <p style="font-size: 15px; line-height: 2em">We believe in taking responsibility for how interesting our lives are. We believe the best old stories were once new experiences. We believe the beer tastes better on the way home from a good adventure. We believe trying new things isn’t something we have to justify to anybody. We believe in being beginners, because we know passions are found through experimentation and involvement. We believe if we can't fix it, we don't truly own it. We believe if learning isn’t a little bit scary, we’re doing it wrong.  We believe there’s an enormous amount of knowledge in the people around us — we just need to pay more attention to the quiet heroes. We believe as soon as we take the first step, people will come out of the woodwork to help us. We believe we are the experts of our own stories and sharing them makes our communities stronger. We believe success shouldn’t be defined by what we have, but what we have to share. We believe learning isn't consumption, it's participation, and it's time to participate in our own lives.</p>
-  </div>
+    <div class="span9 pull-right">
+      <div class="heading14" style="margin-top: 40px; margin-bottom: 20px">Our Manifesto</div>
+      <p style="font-size: 15px; line-height: 2em">We believe in taking responsibility for how interesting our lives are. We believe the best old stories were once new experiences. We believe the beer tastes better on the way home from a good adventure. We believe trying new things isn’t something we have to justify to anybody. We believe in being beginners, because we know passions are found through experimentation and involvement. We believe if we can't fix it, we don't truly own it. We believe if learning isn’t a little bit scary, we’re doing it wrong.  We believe there’s an enormous amount of knowledge in the people around us — we just need to pay more attention to the quiet heroes. We believe as soon as we take the first step, people will come out of the woodwork to help us. We believe we are the experts of our own stories and sharing them makes our communities stronger. We believe success shouldn’t be defined by what we have, but what we have to share. We believe learning isn't consumption, it's participation, and it's time to participate in our own lives.</p>
+    </div>
 
-  <div class="container_16" style="margin-bottom: 20px; width: 490px">
-    <div class="big-quote">We believe in starting now.</div>
-    <p style="text-align: right; margin-bottom: 20px">Love, HourSchool</p>
-  </div>
+    <div class="span9 pull-right" style="margin-bottom: 20px; width: 490px">
+      <div class="big-quote">We believe in starting now.</div>
+      <p style="text-align: right; margin-bottom: 20px">Love, HourSchool</p>
+    </div>
 
-<% else %>
-
-  <% if current_account == Account.where(:id => 9).first %>
+  <% elsif current_account == Account.where(:id => 9).first %>
 
     <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Welcome</div>
     <p>Welcome to <span class="italic">“French in Ann Arbor”</span>, a new and exciting learning platform dedicated to the French language and culture of France and of the French-speaking world in Ann Arbor. French in Ann Arbor is a gathering place for learning and teaching. It is inclusive and democratic in its concept.</p>
@@ -72,25 +69,85 @@
 
   <% elsif current_account == Account.find(5) %>
 
-  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">History:</div>
-  <p>Many of the initial conversations during the 2 plus years of Center61 ideation were between Maggie Miller, Will Gudeman, and Founder, Steve Wanta, who was initially inspired by Maggie’s bootstrapping non-profit, DiscoverHope. Often the struggle for Maggie was finding space to convene her board and volunteers. Their brainstorming sessions explored everything from the layout, the purpose of the space, and even the eventual bean bag court to be played on the roof top garden, and acted as seeds for the launch of Center61. Their dream finally came to fruition when visiting the new PeopleFund building in June 2011, which made for a perfect partnership.</p>
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">History:</div>
+    <p>Many of the initial conversations during the 2 plus years of Center61 ideation were between Maggie Miller, Will Gudeman, and Founder, Steve Wanta, who was initially inspired by Maggie’s bootstrapping non-profit, DiscoverHope. Often the struggle for Maggie was finding space to convene her board and volunteers. Their brainstorming sessions explored everything from the layout, the purpose of the space, and even the eventual bean bag court to be played on the roof top garden, and acted as seeds for the launch of Center61. Their dream finally came to fruition when visiting the new PeopleFund building in June 2011, which made for a perfect partnership.</p>
 
-  <p>Center61 officially opened on August 12th, 2011 and we celebrated our Grand Opening on November 10th,2011. Steve Wanta is the founder, but fully acknowledges that the manifestation of Center61 encompasses an entire community.</p>
+    <p>Center61 officially opened on August 12th, 2011 and we celebrated our Grand Opening on November 10th,2011. Steve Wanta is the founder, but fully acknowledges that the manifestation of Center61 encompasses an entire community.</p>
 
-  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Purpose:</div>
-  <p>In one word, the purpose of Center61 is service. We aspire to bring together a community of like-minded organizations and individuals with the hope that we are able to accomplish more together. We believe that there are opportunities to increase fundraising, sales, and ideas through collaboration and healthy, supportive competition. We also recognized the need that many startup organizations and entrepreneurs have—a place that they could call home away from home or the coffee shops, that embodies their dreams, and can be a catalyst to help them achieve their goals, even if they aren’t quite there yet. Center61 exists to be an early stage supporter of small-scale organizations and individuals that are dedicated to changing the world.</p>
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Purpose:</div>
+    <p>In one word, the purpose of Center61 is service. We aspire to bring together a community of like-minded organizations and individuals with the hope that we are able to accomplish more together. We believe that there are opportunities to increase fundraising, sales, and ideas through collaboration and healthy, supportive competition. We also recognized the need that many startup organizations and entrepreneurs have—a place that they could call home away from home or the coffee shops, that embodies their dreams, and can be a catalyst to help them achieve their goals, even if they aren’t quite there yet. Center61 exists to be an early stage supporter of small-scale organizations and individuals that are dedicated to changing the world.</p>
 
-  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Company:</div>
-  <p>Many people feel compelled to give back to their communities through volunteer work or charity. Steve, working in the field of microfinance for Whole Planet Foundation, felt the best way to give back to Austin would be to create a social business that served small non-profits and social entrepreneurs. To us, profit simple means that our Members value our service and we run a responsible organization. The use of future profits is explicitly intended to be invested back into the Austin community, and the success of Center61 will be measured not by its financial return but rather by the social capital created.</p>
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">Company:</div>
+    <p>Many people feel compelled to give back to their communities through volunteer work or charity. Steve, working in the field of microfinance for Whole Planet Foundation, felt the best way to give back to Austin would be to create a social business that served small non-profits and social entrepreneurs. To us, profit simple means that our Members value our service and we run a responsible organization. The use of future profits is explicitly intended to be invested back into the Austin community, and the success of Center61 will be measured not by its financial return but rather by the social capital created.</p>
 
-  <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">The Name:</div>
-  <p>The name is not typical and then again we hope Center61 is not either. For the founding members, the number represented struggle, brotherhood, dedication, perseverance and much more. When discussing potential names, we felt that future members would embody these same qualities and thus the name stuck. It is our hope the name takes on a meaning of its own for everyone that becomes a part of the space.</p>
+    <div class="heading14" style="margin-top: 40px; margin-bottom: 10px">The Name:</div>
+    <p>The name is not typical and then again we hope Center61 is not either. For the founding members, the number represented struggle, brotherhood, dedication, perseverance and much more. When discussing potential names, we felt that future members would embody these same qualities and thus the name stuck. It is our hope the name takes on a meaning of its own for everyone that becomes a part of the space.</p>
+
+  <% elsif current_account == Account.find(1) %>
+
+    <div class="full-page white" style="box-shadow: 2px 2px 2px #ccc; margin-bottom: 30px">
+      <div class="page-content">
+
+        <h1 class="feastfordays">About</h1>
+        <%= image_tag 'feastfordays/how-it-works.png', :style => "padding-bottom: 30px;" %>
+
+      </div>
+    </div>
+
+    <div style="float: left; margin-right: 30px">
+      <div class="column_heading">History of Feast for Days</div>
+      <div class="three_column">
+        <%= image_tag 'feastfordays/cutting-veggies.jpg', :style => "margin-bottom: 20px" %>
+        <p>Feast for days is the brainchild of Benjamin Franck and Jonathan Lewis. While students at the Austin Center for Design they extensively researched food access issues in the Austin area.</p>
+        <p class="quote" id="feastfordays">They spent countless hours at food pantries, farmer’s markets, and grocery stores watching people shop, prepare, and consume food.</p><p> They boiled (no pun intended) all of their conversations and findings into three key insights.</p>
+        <strong>
+        <p>1. People use food to connect with others.</p>
+
+        <p>2. Changing eating habits is hard.</p>
+
+        <p>3. Cooking skills are best learned by doing.</p>
+        </strong>
+        <p>Then came the idea for Feast for Days. People cook and share food in a fun environment, while saving time and money. Care to join us?</p>
+      </div>
+    </div>
+    <div style="float: left; margin-right: 30px">
+      <div class="column_heading">Thoughts from Ben</div>
+      <div class="three_column">
+        <%= image_tag 'feastfordays/ben.jpg', :style => "margin-bottom: 20px" %>
+        <p>
+        I come from a proud heritage of bakers. My grandma makes an amazing marble cake. My mom creates homemade donuts to die for. As for me, I enjoy preparing desserts that are a little less conventional. I love trying recipes that include healthy ingredients such as black beans as excuse to consume more sugar.</p>
+
+        <p class="quote" id="feastfordays">Quick tip: if you bake spinach cookies, freeze the spinach first. I once forgot to. The results were gross.</p>
+
+        <p>As I became a more experienced baker I quickly discovered the value of community. It is highly motivating to watch your friends and family enjoy a dish you have carefully prepared.</p>
+
+        <p>However, sometimes it isn't easy to build that positive network surrounding food. This is the main reason I'm so excited about Feast for Days: it gives people an opportunity to build a healthy community through food. I can't wait to be a part of it.</p>
+      </div>
+    </div>
+    <div style="float: left;">
+      <div class="column_heading">Thoughts from Jonathan</div>
+      <div class="three_column">
+        <%= image_tag 'feastfordays/jon.jpg', :style => "margin-bottom: 20px" %>
+        <p>Sometimes I feel like I created this business for myself. Before researching issues surrounding food access, cooking used to be last on my priority list, right behind finishing my novel where I’ve only written the opening line,</p>
+
+        <p class="quote" id="feastfordays">“I could tell by the orange cheeto dust on her fingers that she had been making dinner.”</p>
+
+        <p>Usually I would go out to eat or go “grocery shopping” where I would buy food that was already prepared and feel slightly better about myself because I did not technically go to a restaurant.</p>
+
+        <p>As I talked with people at grocery stores, farmer’s markets, and kitchen tables I realized that it’s important for everyone to have a palette that can tolerate different tastes and know how to prepare different kinds of food.  My dietary decisions were not only hurting my pocket book and causing me to sweat when I brushed my teeth but they also caused me to miss out on meaningful social experiences.</p>
+
+        <p>All that being said, Ben and I believe there is something powerful about people coming together to prepare food and share with one another.</p>
+
+        <p>Bon Appetit!</p>
+      </div>
+    </div>
+
 
 
   <% else %>
     <%= current_account.about %>
   <% end %>
 
-<% end %>
+</div>
 
 

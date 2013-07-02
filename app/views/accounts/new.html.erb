@@ -1,34 +1,39 @@
-<div class="page-main">
-  <div class="page-content">
-    <div class="heading28 brown" style="margin-bottom: 20px">Create a School</div>
+<div style="background: url( <%= asset_path 'v4/space-partners/vuka_bg.jpg' %>); padding: 50px; margin-top: -20px; background-repeat: no-repeat; background-position: 50% 40%; height: 800px; margin-bottom: -160px">
+  <div class="container_16" style="width: 460px;">
 
+    <div style="background-color: white; opacity: 0.9; position: relative; height: 400px; width: 460px; box-shadow: 0 0 0 5px rgba(0,0,0,0.3); border: 1px solid rgba(0,0,0,0.9)"></div>
+    <div class="page-content" style="position: relative; margin-top: -400px">
+      <center>
+        <div class="heading25" style="margin-bottom: 20px">Create a School</div>
+      </center>
+      <%= form_for @account do |f| %>
+        <% if @errors.any? %>
+          <div id="error_explanation" class="error">
+            <strong style="font-weight:bold;color:red;">Oops, check the errors below:</strong>
+            <ul>
+              <% @errors.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-    <%= form_for @account do |f| %>
-      <% if @errors.any? %>
-        <div id="error_explanation" class="error">
-          <strong style="font-weight:bold;color:red;">Oops, check the errors below:</strong>
-          <ul>
-            <% @errors.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
+        <div class="heading14" style="margin-top: 30px; margin-bottom: 10px">Name of your School</div>
+        <%= f.text_field :name, :class => "input-block-level"%>
+
+        <div class="heading14" style="margin-top: 30px; margin-bottom: 10px">Subdomain of your School</div>
+        <%= f.text_field :subdomain, :class => "span3", :type => "text"  %><span>.hourschool.com<span>
+        <span class="help-block">You can change this at any time</span>
+        <hr>
+        <div class="actions">
+          <%= f.submit 'Create my school', :class => "btn" %>
         </div>
       <% end %>
+    </div>
+  </div>
 
-      <div class="form-question">
-        <%= f.label :name, "Organization Name" %><br />
-        <%= f.text_field :name, :class => "form-short-with-margin" %>
-      </div>
-
-      <div class="form-question">
-        <%= f.label :subdomain, "Custom URL" %><br />
-        <%= f.text_field :subdomain, :class => "form-short-with-margin" %>.hourschool.com<br />
-        <span class="help-block" style="font-weight:normal">(numbers and letters only)</span>
-      </div>
-
-      <div class="actions">
-        <%= f.submit 'Create my school', :class => "btn" %>
-      </div>
-    <% end %>
+  <div class="container_16" style="width: 960px;">
+    <div style="margin-top: 320px; margin-left: 10px; color: white">
+      space: <a href="http://www.vukaaustin.com" style="text-decoration: underline; color: white">vuka austin</a></div>
   </div>
 </div>

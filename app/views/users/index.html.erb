@@ -1,67 +1,67 @@
-<% if community_site? %>
+<div class="container_16" style="width: 960px">
+  <% if community_site? %>
 
-  <div class="grid_16" style="margin-top: 30px">
-    <div class="heading14 left" style="margin-bottom: 30px">
-      <%= @users.uniq.count %>
-      user
-    </div>
-  </div>
-
-  <div class="grid_16">
-    <% @users.each do |user| %>
-      <div class="grid_7" style="margin-bottom: 20px">
-        <div class="crewman-photo">
-          <% if user.photo.present? %>
-            <%= link_to_avatar(user, :thumb_large) %>
-          <% else %>
-            <%= image_tag 'avatar.jpg', :size => "125x125" %>
-          <% end %>
-        </div>
-        <div class="heading13"><%= link_to user.name, user_path(user) %></div>
-        <%= user.bio %>
-        </p>
+    <div class="row-fluid" style="margin-top: 30px">
+      <div class="heading14 left" style="margin-bottom: 30px">
+        <%= @users.uniq.count %>
+        user
       </div>
-    <% end %>
-  </div>
+    </div>
 
-<% else %>
-
-  <% if current_account == Account.find(9) || current_account == Account.find(13) %>
-    <div class="well">
-      <p class="bold left">Join our community and get updates on new events!</p>
-      <% if !current_user || (current_user && current_user.memberships.where(:account_id => current_account).blank?) %>
-        <%= link_to "Join this community", account_memberships_path(:user_id => current_user, :account_id => current_account, :admin => false), :method => :post, :class => "btn btn-primary right", :style => "color: white" %>
-      <% elsif current_user && current_user.memberships.where(:account_id => current_account).present? %>
-        <div class="btn btn-primary right disabled" style="color: white">You're a member!</div>
+    <div class="row-fluid">
+      <% @users.each do |user| %>
+        <div class="grid_7" style="margin-bottom: 20px">
+          <div class="crewman-photo">
+            <% if user.photo.present? %>
+              <%= link_to_avatar(user, :thumb_large) %>
+            <% else %>
+              <%= image_tag 'avatar.jpg', :size => "125x125" %>
+            <% end %>
+          </div>
+          <div class="heading13"><%= link_to user.name, user_path(user) %></div>
+          <%= user.bio %>
+          </p>
+        </div>
       <% end %>
     </div>
-  <% end %>
 
+  <% else %>
 
-
-  <div class="grid_16" style="margin-top: 30px">
-    <div class="heading14 left" style="margin-bottom: 30px">
-      <%= current_account.memberships.uniq.count %>
-      members
-    </div>
-  </div>
-
-  <div class="grid_16">
-    <% @memberships.each do |membership| %>
-      <div class="grid_7" style="margin-bottom: 20px">
-        <div class="crewman-photo">
-          <% if membership.user.photo.present? %>
-            <%= link_to_avatar(membership.user, :thumb_large) %>
-          <% else %>
-            <%= image_tag 'avatar.jpg', :size => "125x125" %>
-          <% end %>
-        </div>
-        <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
-        <%= membership.user.bio %>
-        </p>
+    <% if current_account == Account.find(9) || current_account == Account.find(13) %>
+      <div class="well">
+        <p class="bold left">Join our community and get updates on new events!</p>
+        <% if !current_user || (current_user && current_user.memberships.where(:account_id => current_account).blank?) %>
+          <%= link_to "Join this community", account_memberships_path(:user_id => current_user, :account_id => current_account, :admin => false), :method => :post, :class => "btn btn-primary right", :style => "color: white" %>
+        <% elsif current_user && current_user.memberships.where(:account_id => current_account).present? %>
+          <div class="btn btn-primary right disabled" style="color: white">You're a member!</div>
+        <% end %>
       </div>
     <% end %>
-  </div>
 
-<% end %>
+    <div class="row-fluid" style="margin-top: 30px">
+      <div class="heading14 left" style="margin-bottom: 30px">
+        <%= current_account.memberships.uniq.count %>
+        members
+      </div>
+    </div>
 
+    <div class="row-fluid">
+      <% @memberships.each do |membership| %>
+        <div class="grid_7" style="margin-bottom: 20px">
+          <div class="crewman-photo">
+            <% if membership.user.photo.present? %>
+              <%= link_to_avatar(membership.user, :thumb_large) %>
+            <% else %>
+              <%= image_tag 'avatar.jpg', :size => "125x125" %>
+            <% end %>
+          </div>
+          <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
+          <%= membership.user.bio %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>

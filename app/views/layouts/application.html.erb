@@ -1,7 +1,12 @@
 <% content_for :head_stylesheets do -%>
   <%= stylesheet_link_tag 'application' %>
+
+  <!-- google fonts -->
   <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- font awesome -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <%- end %>
 
 
@@ -35,14 +40,14 @@
 <% content_for :head_scripts do -%>
   <%= javascript_include_tag 'application' %>
 
+  <!-- jQuery -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
 
+  <!-- Typekit -->
   <script type="text/javascript" src="http://use.typekit.com/xjt1fgx.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-
   <script>
-
     // Fix CSRF http://excid3.com/blog/rails-tip-2-include-csrf-token-with-every-ajax-request/
     $(document).ajaxSend(function(e, xhr, options) {
       var token = $("meta[name='csrf-token']").attr("content");
@@ -149,13 +154,7 @@ mixpanel.init("4c725de6bc70a07532bdd7ee7ded4b03");</script><!-- end Mixpanel -->
   </div>
 
   <%# Page Content %>
-  <% unless yield(:body_id) == "homepage" %>
-    <div class='container_16'>
-    <%= yield %>
-    </div>
-  <% else %>
-    <%= yield %>
-  <% end %>
+  <%= yield %>
 
 <%- end -%>
 

@@ -1,143 +1,144 @@
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-    <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Profile</a></li>
-    <li><a href="#tab2" data-toggle="tab" class="heading11">Notification Settings</a></li>
-    <li><a href="#tab3" data-toggle="tab" class="heading11">Billing</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-          <%= devise_error_messages! %>
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
-            <div class="clearfix">
-              <div class="grid_8" style="margin-left: 0px">
-                <p>
-                 <%= f.label :name, 'Full Name', :class => "form-question" %><br />
-                 <%= f.text_field :name, :class => "form-short-edit-profile" %>
-                </p>
-                <br><br>
-                <p>
-                 <%= f.label :email, 'Email', :class => "form-question" %><br />
-                 <%= f.text_field :email, :class => "form-short-edit-profile" %>
-                </p>
-                <br><br>
+  <div class="container_16" style="width: 960px">
+  <div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+      <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Profile</a></li>
+      <li><a href="#tab2" data-toggle="tab" class="heading11">Notification Settings</a></li>
+      <li><a href="#tab3" data-toggle="tab" class="heading11">Billing</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
+            <%= devise_error_messages! %>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
+              <div class="clearfix">
+                <div class="grid_8" style="margin-left: 0px">
+                  <p>
+                   <%= f.label :name, 'Full Name', :class => "form-question" %><br />
+                   <%= f.text_field :name, :class => "form-short-edit-profile" %>
+                  </p>
+                  <br><br>
+                  <p>
+                   <%= f.label :email, 'Email', :class => "form-question" %><br />
+                   <%= f.text_field :email, :class => "form-short-edit-profile" %>
+                  </p>
+                  <br><br>
 
-                <p>
-                  <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @user} %>
-                </p>
+                  <p>
+                    <%= render :partial => 'shared/city_state_select', :locals => {:f => f, :parent => @user} %>
+                  </p>
 
-                <br><br>
+                  <br><br>
 
-                <p>
-                 <%= f.label :web, 'Website', :class => "form-question"  %><br />
-                 <%= f.text_field :web, :class => "form-short-edit-profile"   %>
-                </p>
+                  <p>
+                   <%= f.label :web, 'Website', :class => "form-question"  %><br />
+                   <%= f.text_field :web, :class => "form-short-edit-profile"   %>
+                  </p>
 
-                <p>
-                 <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
-                 <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
-                </p>
-                <br><br>
+                  <p>
+                   <%= f.label :twitter_id, 'Twitter', :class => "form-question" %><br />
+                   <%= f.text_field :twitter_id, :class => "form-short-edit-profile"  %>
+                  </p>
+                  <br><br>
 
-                <p>
-                  <% unless current_user.facebook? || current_account %>
-                    <%= render :partial => 'users/facebook/connect_button' %>
-                  <%- end -%>
-                </p>
+                  <p>
+                    <% unless current_user.facebook? || current_account %>
+                      <%= render :partial => 'users/facebook/connect_button' %>
+                    <%- end -%>
+                  </p>
 
-                <p>
-                 <%= f.label :bio, 'Short bio', :class => "form-question" %><br />
-                 <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
-                </p>
+                  <p>
+                   <%= f.label :bio, 'Short bio', :class => "form-question" %><br />
+                   <%= f.text_area :bio, :class => "form-med-with-margin", :style => "width: 250px" %>
+                  </p>
 
+                </div>
+
+                <div class="grid_7">
+                  <p>
+                  <%= f.label :photo, 'Photo', :class => "form-question" %><br />
+                  <% if current_user.photo.present? %>
+                    <%= image_tag current_user.photo.url(:small) %>
+                  <% end %>
+                  <%= f.file_field :photo %>
+                  </p>
+                  <br><br>
               </div>
-
-              <div class="grid_7">
-                <p>
-                <%= f.label :photo, 'Photo', :class => "form-question" %><br />
-                <% if current_user.photo.present? %>
-                  <%= image_tag current_user.photo.url(:small) %>
-                <% end %>
-                <%= f.file_field :photo %>
-                </p>
-                <br><br>
-            </div>
-            </div>
-            <br />
-            <%= f.submit "Update", :class => "btn" %>
-          <% end %>
-        </div><!-- end page-content -->
-      </div><!-- end full-page -->
-    </div><!-- end tab1 -->
-    <div class="tab-pane" id="tab2">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <ul style="list-style: none; margin-left: 0px">
-              <li>
-                <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %>
-                Send me emails when something is posted in my events
-              </li>
-              <hr />
-              <%= hidden_field_tag('user[preferences][touched]', 1) %>
-            </ul>
-            <%= f.submit "Update", :class => "btn" %>
-          <% end %>
-
-        </div>
-      </div>
-    </div><!-- end tab2 -->
-    <div class="tab-pane" id="tab3">
-      <div class="full-page white tab-border full">
-        <div class="page-content">
-
-          <div style="width: 300px; float: left; margin-right: 60px">
-            <% if current_user.stripe_customer %>
-              <p>
-                <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
-                ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
-              </p>
-
-              <% if current_user.subscription_charges.present? %>
-                <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
-              <% end %>
-
-              <% if current_user.billing_day_of_month.present? %>
-                <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
-              <% end %>
-
-              <%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal', :class => "btn", :style => "margin-top: 10px" %>
-
-            <% else %>
-              <p>You can use your credit card to pay for events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => 'submitCreditCard'}) do |f| %>
-                <%= render :partial => 'subscription_charges/credit_card_fields' %>
-                <%= f.submit "Update", :class => "btn" %>
-              <% end %>
-
+              </div>
+              <br />
+              <%= f.submit "Update", :class => "btn" %>
+            <% end %>
+          </div><!-- end page-content -->
+        </div><!-- end full-page -->
+      </div><!-- end tab1 -->
+      <div class="tab-pane" id="tab2">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <ul style="list-style: none; margin-left: 0px">
+                <li>
+                  <%= check_box_tag('user[preferences][event_news]', 1, resource.wants?('event_news')) %>
+                  Send me emails when something is posted in my events
+                </li>
+                <hr />
+                <%= hidden_field_tag('user[preferences][touched]', 1) %>
+              </ul>
+              <%= f.submit "Update", :class => "btn" %>
             <% end %>
 
           </div>
-
-          <div style="width: 500px; float: left;">
-            <div class="well">
-              <strong>Your Information is Secure</strong>
-              <p>We never store your credit card information on our servers, and we encrypt your information via SSL prior to sending it for processing. We use Stripe for credit card processing. Stripy encrypts your credit card information on their servers, and is fully PCI compliant.</p>
-
-              <strong>Have a Question?</strong>
-              <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com</a>.</p>
-            </div>
-          </div>
-
-
         </div>
-      </div>
-    </div><!-- end tab3 -->
+      </div><!-- end tab2 -->
+      <div class="tab-pane" id="tab3">
+        <div class="full-page white tab-border full">
+          <div class="page-content">
 
-  </div><!-- end tab-content -->
-</div><!-- end tabbable -->
+            <div style="width: 300px; float: left; margin-right: 60px">
+              <% if current_user.stripe_customer %>
+                <p>
+                  <span id="updatable-card-type"><%= current_user.stripe_customer.active_card.type %></span>
+                  ending in ****-****-****-<span id="updatable-card-last4"><%= current_user.stripe_customer.active_card.last4 %></span>
+                </p>
 
+                <% if current_user.subscription_charges.present? %>
+                  <p>Last invoice: <%= number_to_currency current_user.subscription_charges.last.amount %> paid on <%= current_user.last_months_billing_date %></p>
+                <% end %>
+
+                <% if current_user.billing_day_of_month.present? %>
+                  <p>Next Billing Date: <%= current_user.this_months_billing_date %></p>
+                <% end %>
+
+                <%= link_to "Updated credit card", '#updateCard', 'data-toggle' => 'modal', :class => "btn", :style => "margin-top: 10px" %>
+
+              <% else %>
+                <p>You can use your credit card to pay for events; we accept VISA, Mastercard, American Express, JCB, and Discover. </p><%= image_tag 'http://d297h9he240fqh.cloudfront.net/cache-038f5c8ac/images/compass/pledges/amazon_payments_footer.png', :style => "margin-bottom: 20px" %>
+                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => 'submitCreditCard'}) do |f| %>
+                  <%= render :partial => 'subscription_charges/credit_card_fields' %>
+                  <%= f.submit "Update", :class => "btn" %>
+                <% end %>
+
+              <% end %>
+
+            </div>
+
+            <div style="width: 500px; float: left;">
+              <div class="well">
+                <strong>Your Information is Secure</strong>
+                <p>We never store your credit card information on our servers, and we encrypt your information via SSL prior to sending it for processing. We use Stripe for credit card processing. Stripy encrypts your credit card information on their servers, and is fully PCI compliant.</p>
+
+                <strong>Have a Question?</strong>
+                <p>Get in touch with a member of the HourSchool team with any questions about billing. Email us at <a href="mailto: hello@hourschool.com" target="_blank">hello@hourschool.com</a>.</p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div><!-- end tab3 -->
+
+    </div><!-- end tab-content -->
+  </div><!-- end tabbable -->
+</div>
 
 <!-- status(trial_active,trial_expired,trial_canceled,active,past_due,abandoned(past_due for a month),canceled,completed) -->
 

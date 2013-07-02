@@ -1,47 +1,71 @@
-<% if current_account == Account.find(9) || current_account == Account.find(13) %>
-  <div class="well">
-    <p class="bold left">Everyone is welcome to contribute and add their own class. Share what you know and join our community!</p>
-    <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
-  </div>
-<% end %>
-
 <% if community_site? %>
-  <center><p class="lead" style="margin-top: 20px">
-    <a href="#" id="all-link">All Upcoming Classes</a> // <a href="#" id="austin-link">in Austin only</a> // <a href="#" id="annarbor-link">in Ann Arbor only</a>
-  </p></center>
-  <hr>
 
-  <div class="grid_16" style="margin-bottom: 30px" id="all-classes">
-    <% @upcoming_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
+  <div class="container_16">
+
+    <div class="span3" style="margin: 30px 0">
+      <ul class="nav nav-tabs nav-stacked affix" style="padding-left: 0">
+  <!--         <form class="form-search">
+          <div class="input-prepend">
+          <i class="icon-search"></i>
+          <input type="text" class="span2 search-query">
+          </div>
+        </form>
+        <li class="divider"></li> -->
+        <li><a href="#" id="all-link">All Upcoming Classes</a></li>
+        <li><a href="#" id="austin-link">Austin, TX</a></li>
+        <li><a href="#" id="dallas-link">Dallas, TX</a></li>
+        <li><a href="#" id="annarbor-link">Ann Arbor, MI</a></li>
+  <!--         <li class="divider"></li>
+        <label class="checkbox">
+          <input type="checkbox"> Free only
+        </label> -->
+      </uL>
+    </div>
+
+    <div class="span9 pull-right" style="margin: 30px 0" id="all-classes">
+      <% @upcoming_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
+    <div class="span9 pull-right" style="margin: 30px 0; display:none" id="austin-classes">
+      <% @austin_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
+    <div class="span9 pull-right" style="margin: 30px 0; display:none" id="dallas-classes">
+      <% @dallas_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
+    <div class="span9 pull-right" style="margin: 30px 0; display:none" id="annarbor-classes">
+      <% @annarbor_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
+
+    <div class="span9 pull-right">
+      <center><p class="lead">
+        Past Classes
+      </p></center>
+      <hr>
+      <% @past_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="grid_16" style="display:none" id="austin-classes">
-    <% @austin_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
-  </div>
+<% elsif current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 13).first %>
 
-  <div class="grid_16" style="display:none" id="annarbor-classes">
-    <% @annarbor_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
-  </div>
+  <% if  %>
+    <div class="container_16" style="margin-bottom: 30px; width: 960px">
+      <div class="well">
+        <p class="bold left">Everyone is welcome to contribute and add their own class. Share what you know and join our community!</p>
+        <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="grid_16">
-    <center><p class="lead">
-      Past Classes
-    </p></center>
-    <hr>
-    <% @past_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
-  </div>
-
-<% else %>
-
-  <div class="grid_16" style="margin-bottom: 30px">
+  <div class="container_16" style="margin-bottom: 30px; width: 960px">
     <center><p class="lead">
       Upcoming Classes
     </p></center>
@@ -51,7 +75,7 @@
     <% end %>
   </div>
 
-  <div class="grid_16">
+  <div class="container_16" style="margin-bottom: 30px; width: 960px">
     <center><p class="lead">
       Past Classes
     </p></center>
@@ -60,6 +84,7 @@
       <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
     <% end %>
   </div>
+</div>
 
 <% end %>
 
@@ -68,10 +93,19 @@
     $("#all-classes").show();
     $("#austin-classes").hide();
     $("#annarbor-classes").hide();
+    $("#dallas-classes").hide();
   });
 
   $("#austin-link").click(function(){
     $("#austin-classes").show();
+    $("#all-classes").hide();
+    $("#annarbor-classes").hide();
+    $("#dallas-classes").hide();
+  });
+
+  $("#dallas-link").click(function(){
+    $("#dallas-classes").show();
+    $("#austin-classes").hide();
     $("#all-classes").hide();
     $("#annarbor-classes").hide();
   });
@@ -80,5 +114,7 @@
     $("#annarbor-classes").show();
     $("#all-classes").hide();
     $("#austin-classes").hide();
+    $("#dallas-classes").hide();
   });
 </script>
+

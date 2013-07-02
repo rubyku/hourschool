@@ -23,12 +23,7 @@ class PagesController < ApplicationController
     end
 
     if community_site?
-      # @featured_courses = Course.where(:featured => true).order("created_at desc").first(4)
-      @fav2 = Course.where(:id => 392).first || Course.live.random.first
-      @fav1 = Course.where(:id => 421).first || Course.live.random.first
-      @fav3 = Course.where(:id => 438).first || Course.live.random.first
-      @fav4 = Course.where(:id => 384).first || Course.live.random.first
-      render :layout => 'home'
+      @featured_courses = Course.active.where(:featured => true).order(:starts_at, :created_at)
     end
   end
 

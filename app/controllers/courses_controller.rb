@@ -89,14 +89,6 @@ class CoursesController < ApplicationController
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
 
-    ## show differnt layouts and jazz for different accounts
-    if @course.account.present? && current_account.blank?
-      redirect_to(course_url(@course, :subdomain => @course.account.subdomain)) and return true
-    elsif @course.account_id && @course.account_id == 4
-      render template: "courses/#{current_account.subdomain}/show"
-    else
-      #do nothing
-    end
   end
 
   def destroy
