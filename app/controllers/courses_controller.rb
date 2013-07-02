@@ -89,6 +89,10 @@ class CoursesController < ApplicationController
     @invite.invitable_type = params[:invitable_type]
     @invite.inviter = current_user
 
+    if @course.account_id && @course.account_id == 4
+      render template: "courses/#{current_account.subdomain}/show"
+    end
+
   end
 
   def destroy

@@ -1,6 +1,6 @@
 <%= form_for(@role, :url => course_attendee_registrations_path(@course)) do |f| %>
 
-  <div class="full-page white">
+  <div class="container_16 white" style="width: 960px">
     <div class="page-content">
       <div class="heading14" style="margin-bottom: 10px">Event Details</div>
       <div class="heading28 brown" style="margin-bottom: 10px"><%= @course.title %></div>
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="full-page white">
+  <div class="container_16 white" style="width: 960px">
     <div class="page-content">
       <div class="heading14" style="margin-bottom: 10px">Ticket information</div>
 
@@ -135,7 +135,7 @@
 
 
   <% if !@course.free? || (current_account == Account.where(:id => 7).first && !@course.member_free?) %>
-    <div class="full-page white" id="billing_info">
+    <div class="container_16 white" style="width: 960px" id="billing-info">
       <div class="page-content">
         <div class="heading14" style="margin-bottom: 10px;">Billing information</div>
         <p>We use <a href="https://stripe.com/">stripe</a> to securely process credit cards. Your details never touch our server.</p>
@@ -153,8 +153,10 @@
     </div>
   <% end %>
 
-  <p><%= f.submit 'Continue registration', :class => "btn disabled", :style => "display:none", :id => "continue_disabled" %></p>
-  <p><%= f.submit 'Continue registration', :class => "btn", :id => "continue_enabled" %></p>
+  <div class="container_16" style="width: 960px">
+    <p><%= f.submit 'Continue registration', :class => "btn disabled", :style => "display:none", :id => "continue_disabled" %></p>
+    <p><%= f.submit 'Continue registration', :class => "btn", :id => "continue_enabled" %></p>
+  </div>
 
 <% end %>
 

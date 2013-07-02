@@ -25,7 +25,7 @@
       <div class="heading28 brown" style="width: 550px; margin-bottom: 5px">
         <%= "#{@course.title}" %>
       </div>
-      <% if @course.account.present? %>
+      <% if community_site? && @course.account.present? %>
         <p>from <%= link_to @course.account.name, "http://#{@course.account.subdomain}.hourschool.com", :style => "text-decoration: underline" %></p>
       <% end %>
     </center>

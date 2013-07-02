@@ -71,11 +71,20 @@
           .class-attendance-block
             - course.students.each do |student|
               %table
-                %tr
+                %tr{:style => "margin-bottom: 10px; float: left"}
                   %td
                     - if student.photo.present?
-                      = image_tag(student.photo.url(:thumb_small))
+                      = image_tag(student.photo.url(:thumb_small), :style => "margin-right: 10px")
                     - else
-                      = image_tag 'avatar.jpg', :size => "50x50"
+                      = image_tag 'avatar.jpg', :size => "50x50", :style => "margin-right: 10px"
                   %td
-                    = link_to student.name, student, :id => "student_link"
+                    - if student.name.present?
+                      = link_to student.name, student
+                    - else
+                      - @role = student.roles.first
+                      - @inviter = User.where(:id => @role.invite_user_id).first
+                      = "#{@inviter.name.split(" ").first} 's guest"
+
+
+
+

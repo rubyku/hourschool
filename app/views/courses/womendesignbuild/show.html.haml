@@ -63,7 +63,7 @@
   }
 
 
-.container_16{:style => "margin-left: auto; margin-right: auto; width: 1110px;"}
+.container_16
 
   - if @course.status == 'draft' && @course.teacher == current_user
     .full-page.white{:style => "padding-bottom: 0px"}
@@ -154,7 +154,7 @@
       .class-attendance-block
         - if @course.teacher != current_user
           = image_tag "v2/icon_email.png", :class => "class-details-icon-email"
-          %a{:'data-toggle' => "modal", :href => "#emailOrganizer"} Email teacher
+          %a{:'data-toggle' => "modal", :href => "#emailOrganizer", :style => "margin-top: 3px; margin-left: 5px; float: left"} Email teacher
 
     = render 'courses/organizer/contacts/new'
 

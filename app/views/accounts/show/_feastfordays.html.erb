@@ -1,77 +1,80 @@
-<div class="banner_box"></div>
-<%= image_tag 'feastfordays/homepage_banner.png', :class => "banner_image" %>
-<div class="hp_heading1">When people cook together, <br>good things happen.</div>
-<div class="btn btn-success" id="join_button">
-  <%= link_to "Join a Feast", courses_browse_index_path, :style => "color: white; text-decoration: none" %>
-</div>
-<div class="hp_heading2"><span style="font-weight: 700">Feast for Days</span> is a <span class="emphasis_heading">collaborative</span> cooking platform that makes it easy for people to <span class="emphasis_heading">cook</span> and <span class="emphasis_heading">share</span> food.</div>
-
-<div style="float: left">
-<div class="column_heading">Upcoming Feasts</div>
-<div class="three_column" style="margin-right: 30px; height: 430px">
-  <% @upcoming_courses.each do |course| %>
-  <%= link_to (image_tag(course.photo.url(:small), :size => "263x167")), course if course.photo.present? %>
-  <%= link_to course.title, course, :class => "feast_title" %><br>
-  <div style="margin-top: 10px; margin-bottom: 10px">hosted by <%= link_to course.teacher.name, course.teacher %></div>
-  <%= course.description.truncate(110) %><br>
-  <div style="font-family: 'Lobster', cursive; font-size: 25px; margin-top: 10px; margin-bottom: 10px">$<%= course.price %></div>
-  <%= "#{course.starts_at.strftime("%a, %b %d, ")}" %><%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
-  <%= "#{course.city.name}, #{course.city.state}" %><br>
-  <div style="float: right;"><%= link_to "See more feasts...", courses_browse_index_path, :class => "see_more_link"  %></div>
-  <% end %>
-</div>
-</div>
-
-<div style="float: left">
-<div class="column_heading">How to Host a Feast</div>
-<div class="three_column" style="margin-right: 30px; height: 430px">
-
-  <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 10px">
-    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Post</div>
-    <div style="color: #b3aea7">Choose one of our favorite Feasts or build your own and post it!</div>
+<div class="container_16" style="width: 960px">
+  <div class="banner_box"></div>
+  <%= image_tag 'feastfordays/homepage_banner.png', :class => "banner_image" %>
+  <div class="hp_heading1">When people cook together, <br>good things happen.</div>
+  <div class="btn btn-success" id="join_button">
+    <%= link_to "Join a Feast", courses_browse_index_path, :style => "color: white; text-decoration: none" %>
   </div>
-  <div style="position: relative; width: 138px; height: 100px; margin-top: 35px; margin-left: 10px">
-    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Prep</div>
-    <div style="color: #b3aea7">Invite your friends and prep materials for your Feast.</div>
+  <div class="hp_heading2"><span style="font-weight: 700">Feast for Days</span> is a <span class="emphasis_heading">collaborative</span> cooking platform that makes it easy for people to <span class="emphasis_heading">cook</span> and <span class="emphasis_heading">share</span> food.</div>
+
+  <div style="float: left">
+  <div class="column_heading">Upcoming Feasts</div>
+  <div class="three_column" style="margin-right: 30px; height: 430px">
+    <% @upcoming_courses.each do |course| %>
+    <%= link_to (image_tag(course.photo.url(:small), :size => "263x167")), course if course.photo.present? %>
+    <%= link_to course.title, course, :class => "feast_title" %><br>
+    <div style="margin-top: 10px; margin-bottom: 10px">hosted by <%= link_to course.teacher.name, course.teacher %></div>
+    <%= course.description.truncate(110) %><br>
+    <div style="font-family: 'Lobster', cursive; font-size: 25px; margin-top: 10px; margin-bottom: 10px">$<%= course.price %></div>
+    <%= "#{course.starts_at.strftime("%a, %b %d, ")}" %><%= "#{course.starts_at.strftime("%l:%M%p")} - #{course.ends_at.strftime("%l:%M%p")}" %><br>
+    <%= "#{course.city.name}, #{course.city.state}" %><br>
+    <div style="float: right;"><%= link_to "See more feasts...", courses_browse_index_path, :class => "see_more_link"  %></div>
+    <% end %>
   </div>
-  <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 30px">
-    <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Share</div>
-    <div style="color: #b3aea7">Guests cook with the host and leave with a feast for days.</div>
   </div>
-  <%= image_tag 'feastfordays/hp_how_it_works.png', :style => "position: relative; margin-top: -370px; margin-left: 10px" %>
-  <div style="float: right; margin-top: 3px">
-    <%= link_to "Find out more...", f4d_host_path, :class => "see_more_link" %></div>
-</div>
-</div>
 
-<div style="float: left">
-<div class="column_heading">Past Feasts</div>
-<div class="three_column" style="height: 430px">
-  <%= image_tag 'feastfordays/past_feasts_thumbnail.png', :style => "margin-bottom: 20px" %>
-  <div style="color: #402b15; font-weight: 600; font-size: 14px">Take a gander and be inspired by the Feasts (cooking sessinos) that have made Feast for Days the greatest thing since play dough. </div>
-  <div style="float: right; margin-top: 40px">
-    <%= link_to "View past feasts...", f4d_past_feasts_path, :class => "see_more_link" %></div>
-</div>
-</div>
-<br>
+  <div style="float: left">
+  <div class="column_heading">How to Host a Feast</div>
+  <div class="three_column" style="margin-right: 30px; height: 430px">
 
-
-<%= image_tag 'feastfordays/dotted_line.png', :style => "margin-top: 50px; margin-bottom: 40px" %>
-<div class="column_heading" style="width: 960px; text-align: center; margin-bottom: 20px">Get updates about upcoming Feasts!</div>
-
-<div style="margin-left: 200px">
-  <!-- Begin MailChimp Signup Form -->
-  <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-  <style type="text/css">
-    #mc_embed_signup{background:none; font:14px Helvetica,Arial,sans-serif; }
-    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-  </style>
-  <div id="mc_embed_signup">
-  <form action="http://gonktechnologies.us4.list-manage.com/subscribe/post?u=7427c55a939a657555d4fef27&amp;id=aa5824cacf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Type your email here..." required style="color: #957c62; width: 420px; height: 25px; float: left; font-family: 'Open Sans', sans-serif; font-size: 18px; font-style: italic; border: 3px solid #c7c0ba; padding-left: 5px">
-    <input type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color: #c54e28; color: white; float: left; width: 100px; margin-top: -53px; margin-left: 440px; height: 40px; border: 1px solid #b8431e; text-shadow: 1px 1px 1px #000; font-family: 'Open Sans', sans-serif; font-size: 18px;">
-  </form>
+    <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 10px">
+      <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Post</div>
+      <div style="color: #b3aea7">Choose one of our favorite Feasts or build your own and post it!</div>
+    </div>
+    <div style="position: relative; width: 138px; height: 100px; margin-top: 35px; margin-left: 10px">
+      <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Prep</div>
+      <div style="color: #b3aea7">Invite your friends and prep materials for your Feast.</div>
+    </div>
+    <div style="position: relative; width: 138px; height: 100px; margin-left: 130px; margin-top: 30px">
+      <div style="color: #493714; font-size: 30px; margin-bottom: 5px">Share</div>
+      <div style="color: #b3aea7">Guests cook with the host and leave with a feast for days.</div>
+    </div>
+    <%= image_tag 'feastfordays/hp_how_it_works.png', :style => "position: relative; margin-top: -370px; margin-left: 10px" %>
+    <div style="float: right; margin-top: 3px">
+      <%= link_to "Find out more...", f4d_host_path, :class => "see_more_link" %></div>
   </div>
-  <!--End mc_embed_signup-->
+  </div>
+
+  <div style="float: left">
+  <div class="column_heading">Past Feasts</div>
+  <div class="three_column" style="height: 430px">
+    <%= image_tag 'feastfordays/past_feasts_thumbnail.png', :style => "margin-bottom: 20px" %>
+    <div style="color: #402b15; font-weight: 600; font-size: 14px">Take a gander and be inspired by the Feasts (cooking sessinos) that have made Feast for Days the greatest thing since play dough. </div>
+    <div style="float: right; margin-top: 40px">
+      <%= link_to "View past feasts...", f4d_past_feasts_path, :class => "see_more_link" %></div>
+  </div>
+  </div>
+  <br>
+
+
+  <%= image_tag 'feastfordays/dotted_line.png', :style => "margin-top: 50px; margin-bottom: 40px" %>
+  <div class="column_heading" style="width: 960px; text-align: center; margin-bottom: 20px">Get updates about upcoming Feasts!</div>
+
+  <div style="margin-left: 200px">
+    <!-- Begin MailChimp Signup Form -->
+    <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #mc_embed_signup{background:none; font:14px Helvetica,Arial,sans-serif; }
+      /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+         We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+    <form action="http://gonktechnologies.us4.list-manage.com/subscribe/post?u=7427c55a939a657555d4fef27&amp;id=aa5824cacf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Type your email here..." required style="color: #957c62; width: 420px; height: 25px; float: left; font-family: 'Open Sans', sans-serif; font-size: 18px; font-style: italic; border: 3px solid #c7c0ba; padding-left: 5px">
+      <input type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color: #c54e28; color: white; float: left; width: 100px; margin-top: -53px; margin-left: 440px; height: 40px; border: 1px solid #b8431e; text-shadow: 1px 1px 1px #000; font-family: 'Open Sans', sans-serif; font-size: 18px;">
+    </form>
+    </div>
+    <!--End mc_embed_signup-->
+  </div>
+
 </div>
