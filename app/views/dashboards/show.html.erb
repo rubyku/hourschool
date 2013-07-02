@@ -13,182 +13,213 @@
   a:active{color: #6a4a3b;}
 </style>
 
-<div class="page-sidebar left" style="width: 243px; margin-right: 27px; border: 0px">
-  <% if @user.photo.present? %>
-    <%= image_tag @user.photo.url(:large) %>
-  <% else %>
-    <%= image_tag 'avatar.jpg', :size => "125x125" %>
-  <% end %>
+<div class="container_16" style="width: 960px">
+  <div class="page-sidebar left" style="width: 243px; margin-right: 27px; border: 0px">
+    <% if @user.photo.present? %>
+      <%= image_tag @user.photo.url(:large) %>
+    <% else %>
+      <%= image_tag 'avatar.jpg', :size => "125x125" %>
+    <% end %>
 
-  <div class="heading28 brown" style="float: left; margin-top: 30px;">
-    <%= @user.name %>
-  </div>
-
-  <div style="float: left; padding-bottom: 30px; width: 230px">
-    <div class="heading11" style="margin-top: 30px">Bio</div><br>
-    <p style="float: left">
-      <% if @user.bio.blank? %>
-        <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
-      <% else %>
-        <%= @user.bio %><br>
-      <% end %>
-    </p>
-  </div>
-
-  <% if @user.quote.present? %>
-    <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 220px">
-      <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 100px" %>
-      <div class="heading11" style="text-align: center; color: #5382a4"><%= @user.quote if @user.quote.present? %></div>
-      <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em"><%= @user.quote_author if @user.quote_author.present? %></div>
+    <div class="heading28 brown" style="float: left; margin-top: 30px;">
+      <%= @user.name %>
     </div>
-  <% end %>
 
-</div>
-
-
-<% if current_user == @user %>
-  <a href="/users/edit" class="btn" style="float: right">Edit my profile</a>
-<% else %>
-  <% if Following.where(:follower_id => current_user, :followed_id => @user).blank? %>
-    <%= link_to "Follow", user_followings_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :post %>
-  <% else %>
-    <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :delete %>
-  <% end %>
-<% end %>
-
-
-<% if community_site? || current_account == Account.where(:id => 9).first %>
-
-  <div class="page-main" style="width: 686px; border: 0px solid black">
-    <%#= render :partial => "users/show/comments" %>
-
-    <div class="tabbable">
-      <ul class="nav nav-tabs" style="margin-bottom: 0px;">
-        <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
-        <% if current_user == @user %>
-          <li><a href="#tab2" data-toggle="tab" class="heading11">Draft</a></li>
+    <div style="float: left; padding-bottom: 30px; width: 230px">
+      <div class="heading11" style="margin-top: 30px">Bio</div><br>
+      <p style="float: left">
+        <% if @user.bio.blank? %>
+          <%= link_to "Tell us more about you.", edit_user_registration_path(@user) if current_user == @user %>
+        <% else %>
+          <%= @user.bio %><br>
         <% end %>
-        <li><a href="#tab3" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
-        <li><a href="#tab4" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
-      </ul>
+      </p>
+    </div>
 
-      <div class="tab-content" style="overflow-x: hidden">
-        <div class="tab-pane active" id="tab1">
-          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
-            <div class="page-content">
-              <% if @compact_feed_items.blank? %>
-                <div class="well">
-                  <% if current_user == @user %>
-                    You don't have any activity yet. Get started by <%= link_to "exploring some missions", wall_of_missions_path %>!
-                  <% else %>
-                    <%= @user.name %> doesn't have any activity yet.
-                  <% end %>
-                </div>
-              <% else %>
-                <div id="news-feed">
-                    <%= render :partial => 'compact_feed_item', :collection => @compact_feed_items %>
-                </div>
-                <%= render :partial => 'dashboards/paginate' %>
-              <% end %>
-            </div>
-          </div>
-        </div><!-- end tab1 -->
-        <div class="tab-pane" id="tab2">
-          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
-            <div class="page-content">
-              <% if @user.courses.where(:status => "draft").present? %>
-                <% @courses = @user.courses.where(:status => "draft") %>
-                <% @courses.each do |course| %>
-                  <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-                <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div><!-- end tab2 -->
-        <div class="tab-pane" id="tab3">
-          <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
-            <div class="page-content">
-              <% if @user.followers.blank? %>
-                <div class="well">
-                  <% if current_user == @user %>
-                    You don't have any followers yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people!
-                  <% else %>
-                    No followers yet
-                  <% end %>
-                </div>
-              <% else %>
-                <% @user.followers.each do |user| %>
-                  <div class="mission-divider">
-                    <div class="crewman-photo">
-                      <% if user.photo.present? %>
-                        <%= image_tag(user.photo.url(:thumb_large)) %>
-                      <% else %>
-                        <%= image_tag 'avatar.jpg', :size => '125x125' %>
-                      <% end %>
-                    </div>
-                    <div class="crewman-description">
-                      <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
-                      <p><%= user.bio %></p>
-                    </div>
+    <% if @user.quote.present? %>
+      <div style="float: left; border-top: 3px solid #5382a4; border-bottom: 3px solid #5382a4; padding: 10px; padding-bottom: 30px; margin-top: 20px; width: 220px">
+        <%= image_tag 'v3/pages/icon-quote.png', :style => "margin: 10px 90px 10px 100px" %>
+        <div class="heading11" style="text-align: center; color: #5382a4"><%= @user.quote if @user.quote.present? %></div>
+        <div class="heading9" style="font-weight: 700; text-transform: uppercase; text-align: center; color: #5382a4; margin-top: 20px; letter-spacing: 0.2em"><%= @user.quote_author if @user.quote_author.present? %></div>
+      </div>
+    <% end %>
+
+  </div>
+
+
+  <% if current_user == @user %>
+    <a href="/users/edit" class="btn" style="float: right">Edit my profile</a>
+  <% else %>
+    <% if Following.where(:follower_id => current_user, :followed_id => @user).blank? %>
+      <%= link_to "Follow", user_followings_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :post %>
+    <% else %>
+      <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => @user), :class => "btn right", :method => :delete %>
+    <% end %>
+  <% end %>
+
+
+  <% if community_site? || current_account == Account.where(:id => 9).first %>
+
+    <div class="page-main" style="width: 686px; border: 0px solid black">
+      <%#= render :partial => "users/show/comments" %>
+
+      <div class="tabbable">
+        <ul class="nav nav-tabs" style="margin-bottom: 0px;">
+          <li class="active"><a href="#tab1" data-toggle="tab" class="heading11">Journey</a></li>
+          <% if current_user == @user %>
+            <li><a href="#tab2" data-toggle="tab" class="heading11">Draft</a></li>
+          <% end %>
+          <li><a href="#tab3" data-toggle="tab" class="heading11">Followers (<%= @user.followers.count %>)</a></li>
+          <li><a href="#tab4" data-toggle="tab" class="heading11">Following (<%= @user.following.count %>)</a></li>
+        </ul>
+
+        <div class="tab-content" style="overflow-x: hidden">
+          <div class="tab-pane active" id="tab1">
+            <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
+              <div class="page-content">
+                <% if @compact_feed_items.blank? %>
+                  <div class="well">
+                    <% if current_user == @user %>
+                      You don't have any activity yet. Get started by <%= link_to "exploring some missions", wall_of_missions_path %>!
+                    <% else %>
+                      <%= @user.name %> doesn't have any activity yet.
+                    <% end %>
                   </div>
+                <% else %>
+                  <div id="news-feed">
+                      <%= render :partial => 'compact_feed_item', :collection => @compact_feed_items %>
+                  </div>
+                  <%= render :partial => 'dashboards/paginate' %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
-        </div><!-- end tab3 -->
-        <div class="tab-pane" id="tab4">
-          <div class="page-main white tab-border main" style="width: 683px; border: 0px">
-            <div class="page-content">
-              <% if @user.following.blank? %>
-                <div class="well">
-                  <% if current_user == @user %>
-                    You are not following anyone yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people!
-                  <% else %>
-                    <%= @user.name %> is not following anyone yet.
+          </div><!-- end tab1 -->
+          <div class="tab-pane" id="tab2">
+            <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
+              <div class="page-content">
+                <% if @user.courses.where(:status => "draft").present? %>
+                  <% @courses = @user.courses.where(:status => "draft") %>
+                  <% @courses.each do |course| %>
+                    <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
                   <% end %>
-                </div>
-              <% else %>
-                <% @user.following.each do |user| %>
-                  <div class="mission-divider">
-                    <div class="crewman-photo">
-                      <% if user.present? %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- end tab2 -->
+          <div class="tab-pane" id="tab3">
+            <div class="page-main white tab-border main" style="width: 683px; border-top: 0px">
+              <div class="page-content">
+                <% if @user.followers.blank? %>
+                  <div class="well">
+                    <% if current_user == @user %>
+                      You don't have any followers yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people!
+                    <% else %>
+                      No followers yet
+                    <% end %>
+                  </div>
+                <% else %>
+                  <% @user.followers.each do |user| %>
+                    <div class="mission-divider">
+                      <div class="crewman-photo">
                         <% if user.photo.present? %>
                           <%= image_tag(user.photo.url(:thumb_large)) %>
                         <% else %>
                           <%= image_tag 'avatar.jpg', :size => '125x125' %>
-                        <% end %>
-                        <br><br>
-                        <% if current_user == @user %>
-                          <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
                         <% end %>
                       </div>
                       <div class="crewman-description">
                         <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
                         <p><%= user.bio %></p>
                       </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- end tab3 -->
+          <div class="tab-pane" id="tab4">
+            <div class="page-main white tab-border main" style="width: 683px; border: 0px">
+              <div class="page-content">
+                <% if @user.following.blank? %>
+                  <div class="well">
+                    <% if current_user == @user %>
+                      You are not following anyone yet. <%= link_to "Join some missions", wall_of_missions_path %> and meet new people!
+                    <% else %>
+                      <%= @user.name %> is not following anyone yet.
                     <% end %>
                   </div>
+                <% else %>
+                  <% @user.following.each do |user| %>
+                    <div class="mission-divider">
+                      <div class="crewman-photo">
+                        <% if user.present? %>
+                          <% if user.photo.present? %>
+                            <%= image_tag(user.photo.url(:thumb_large)) %>
+                          <% else %>
+                            <%= image_tag 'avatar.jpg', :size => '125x125' %>
+                          <% end %>
+                          <br><br>
+                          <% if current_user == @user %>
+                            <%= link_to "unfollow", user_following_path(:user_id => current_user, :id => user), :method => :delete %>
+                          <% end %>
+                        </div>
+                        <div class="crewman-description">
+                          <div style="font-weight: 700; float: left; margin-right: 10px"><%= user.name %></div>
+                          <p><%= user.bio %></p>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
-        </div><!-- end tab4 -->
+          </div><!-- end tab4 -->
 
 
-      </div><!-- end tab-content -->
-    </div><!-- end tabbable -->
+        </div><!-- end tab-content -->
+      </div><!-- end tabbable -->
 
-  </div>
+    </div>
 
-<% end %>
+  <% end %>
 
-<% if current_account == Account.where(:id => 1).first %>
+  <% if current_account == Account.where(:id => 1).first %>
 
-  <div class="page-main" style="width: 686px; border: 0px solid black">
+    <div class="page-main" style="width: 686px; border: 0px solid black">
 
-    <div style="margin-bottom: 30px; width: 686px; float: left">
-      <div class="heading11">Feast attended:</div>
-      <% @user.courses_attended.where(:account_id => 1).each do |course| %>
+      <div style="margin-bottom: 30px; width: 686px; float: left">
+        <div class="heading11">Feast attended:</div>
+        <% @user.courses_attended.where(:account_id => 1).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
+            <% end %>
+            <br>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+            <div class="class-note">
+              <div class="heading9-class">
+                <% if course.active? %>
+                  <% if course.max_seats.blank? %>
+                    <%= "Unlimited seats" %>
+                  <% elsif course.seats_left == 0 %>
+                    <%= "Full! |" %>
+                  <% else %>
+                    <%= "#{course.seats_left} seats left" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- end classBlock -->
+        <% end %>
+      </div>
+
+      <div class="heading11">Feast hosted:</div>
+      <% @user.courses_taught.where(:account_id => 1).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -215,46 +246,46 @@
           </div>
         </div><!-- end classBlock -->
       <% end %>
+
     </div>
 
-    <div class="heading11">Feast hosted:</div>
-    <% @user.courses_taught.where(:account_id => 1).each do |course| %>
-      <div class="classBlock">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-        <br>
-        <div class="class-description" style="float: left; width: 170px">
-          <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
-          <p><%= course.description.truncate(70) %></p>
-        </div>
-        <div class="class-note">
-          <div class="heading9-class">
-            <% if course.active? %>
-              <% if course.max_seats.blank? %>
-                <%= "Unlimited seats" %>
-              <% elsif course.seats_left == 0 %>
-                <%= "Full! |" %>
-              <% else %>
-                <%= "#{course.seats_left} seats left" %>
-              <% end %>
+  <% elsif current_account == Account.where(:id => 4).first %>
+
+    <div class="page-main" style="width: 686px; border: 0px solid black">
+
+      <div style="margin-bottom: 30px; width: 686px; float: left">
+        <div class="heading11">Classes attended:</div>
+        <% @user.courses_attended.where(:account_id => 4).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
             <% end %>
-          </div>
-        </div>
-      </div><!-- end classBlock -->
-    <% end %>
+            <br>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+            <div class="class-note">
+              <div class="heading9-class">
+                <% if course.active? %>
+                  <% if course.max_seats.blank? %>
+                    <%= "Unlimited seats" %>
+                  <% elsif course.seats_left == 0 %>
+                    <%= "Full! |" %>
+                  <% else %>
+                    <%= "#{course.seats_left} seats left" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- end classBlock -->
+        <% end %>
+      </div>
 
-  </div>
-
-<% elsif current_account == Account.where(:id => 4).first %>
-
-  <div class="page-main" style="width: 686px; border: 0px solid black">
-
-    <div style="margin-bottom: 30px; width: 686px; float: left">
-      <div class="heading11">Classes attended:</div>
-      <% @user.courses_attended.where(:account_id => 4).each do |course| %>
+      <div class="heading11">Classes taught:</div>
+      <% @user.courses_taught.where(:account_id => 4).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -281,46 +312,46 @@
           </div>
         </div><!-- end classBlock -->
       <% end %>
+
     </div>
 
-    <div class="heading11">Classes taught:</div>
-    <% @user.courses_taught.where(:account_id => 4).each do |course| %>
-      <div class="classBlock">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-        <br>
-        <div class="class-description" style="float: left; width: 170px">
-          <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
-          <p><%= course.description.truncate(70) %></p>
-        </div>
-        <div class="class-note">
-          <div class="heading9-class">
-            <% if course.active? %>
-              <% if course.max_seats.blank? %>
-                <%= "Unlimited seats" %>
-              <% elsif course.seats_left == 0 %>
-                <%= "Full! |" %>
-              <% else %>
-                <%= "#{course.seats_left} seats left" %>
-              <% end %>
+  <% elsif current_account == Account.where(:id => 5).first %>
+
+    <div class="page-main" style="width: 686px; border: 0px solid black">
+
+      <div style="margin-bottom: 30px; width: 686px; float: left">
+        <div class="heading11">Events attended:</div>
+        <% @user.courses_attended.where(:account_id => 5).each do |course| %>
+          <div class="classBlock">
+            <% if course.photo.present? %>
+              <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
+            <% else %>
+              <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
             <% end %>
-          </div>
-        </div>
-      </div><!-- end classBlock -->
-    <% end %>
+            <br>
+            <div class="class-description" style="float: left; width: 170px">
+              <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
+              <p><%= course.description.truncate(70) %></p>
+            </div>
+            <div class="class-note">
+              <div class="heading9-class">
+                <% if course.active? %>
+                  <% if course.max_seats.blank? %>
+                    <%= "Unlimited seats" %>
+                  <% elsif course.seats_left == 0 %>
+                    <%= "Full! |" %>
+                  <% else %>
+                    <%= "#{course.seats_left} seats left" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- end classBlock -->
+        <% end %>
+      </div>
 
-  </div>
-
-<% elsif current_account == Account.where(:id => 5).first %>
-
-  <div class="page-main" style="width: 686px; border: 0px solid black">
-
-    <div style="margin-bottom: 30px; width: 686px; float: left">
-      <div class="heading11">Events attended:</div>
-      <% @user.courses_attended.where(:account_id => 5).each do |course| %>
+      <div class="heading11">Events organized:</div>
+      <% @user.courses_taught.where(:account_id => 5).each do |course| %>
         <div class="classBlock">
           <% if course.photo.present? %>
             <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
@@ -347,39 +378,10 @@
           </div>
         </div><!-- end classBlock -->
       <% end %>
+
     </div>
 
-    <div class="heading11">Events organized:</div>
-    <% @user.courses_taught.where(:account_id => 5).each do |course| %>
-      <div class="classBlock">
-        <% if course.photo.present? %>
-          <%= link_to (image_tag(course.photo.url(:small), :size => "190x120")), course %>
-        <% else %>
-          <%= link_to image_tag("v2-courses/DefaultClassPics_Generic.png"), course %>
-        <% end %>
-        <br>
-        <div class="class-description" style="float: left; width: 170px">
-          <div class="heading13-class"><%= link_to course.title.truncate(50), course %></div>
-          <p><%= course.description.truncate(70) %></p>
-        </div>
-        <div class="class-note">
-          <div class="heading9-class">
-            <% if course.active? %>
-              <% if course.max_seats.blank? %>
-                <%= "Unlimited seats" %>
-              <% elsif course.seats_left == 0 %>
-                <%= "Full! |" %>
-              <% else %>
-                <%= "#{course.seats_left} seats left" %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div><!-- end classBlock -->
-    <% end %>
 
-  </div>
+  <% end %>
 
-
-<% end %>
-
+</div>

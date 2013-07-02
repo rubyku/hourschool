@@ -38,8 +38,8 @@
 .heading25 {
   @include hourschool-heading;
   font-size: 25px;
-  margin-top: 30px;
-  margin-bottom: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   letter-spacing: 0.1em;
 
   &.light_grey{color: $hourschool-light-grey;}
@@ -70,7 +70,7 @@ a.heading20{
 }
 
 a.heading16{
-  color: #6a4a3b;
+  color: #ff7733;
   &:visited{color: #6a4a3b;}
   &:hover{color: #6a4a3b;}
 }

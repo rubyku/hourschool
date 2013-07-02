@@ -1,28 +1,30 @@
-<div class="white">
-  <div style="padding: 20px">
+<div class="container_16">
+  <div class="white">
+    <div style="padding: 20px">
 
-    <div style="float: left; width: 250px; margin-right: 20px">
-      <div class="heading14" style="margin-top: 20px; margin-bottom: 20px">Connect with Facebook</div>
+      <div style="float: left; width: 250px; margin-right: 20px">
+        <div class="heading14" style="margin-top: 20px; margin-bottom: 20px">Connect with Facebook</div>
 
-      <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %>
-      <div class="class-alternatives" style="margin-top: 10px">We will not post anything without your permission.</div>
-    </div>
-
-    <div style="float: left; width: 300px; margin-right: 20px">
-      <div class="heading14" style="margin-top: 20px; margin-bottom: 20px">New here?</div>
-      <% if current_account && current_account.private? %>
-        <p>Please contact the school admin to invite you to sign up.</p>
-      <% else %>
-        <%= render 'registrations/form' %>
-      <% end %>
-    </div>
-
-    <div style="float: left; width: 300px;">
-      <div class="well pull-left">
-        <div class="heading14" style="margin-bottom: 20px">Already have an account?</div>
-        <%= render 'form' %>
+        <%= link_to image_tag('fb-signup-small.png'), user_omniauth_authorize_path(:facebook) %>
+        <div class="class-alternatives" style="margin-top: 10px">We will not post anything without your permission.</div>
       </div>
-    </div>
 
+      <div style="float: left; width: 300px; margin-right: 20px">
+        <div class="heading14" style="margin-top: 20px; margin-bottom: 20px">New here?</div>
+        <% if current_account && current_account.private? %>
+          <p>Please contact the school admin to invite you to sign up.</p>
+        <% else %>
+          <%= render 'registrations/form' %>
+        <% end %>
+      </div>
+
+      <div style="float: left; width: 300px;">
+        <div class="well pull-left">
+          <div class="heading14" style="margin-bottom: 20px">Already have an account?</div>
+          <%= render 'form' %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

@@ -1,53 +1,57 @@
 <% if community_site? %>
 
-  <div class="grid_16" style="margin-top: 30px">
-    <div class="heading14 left" style="margin-bottom: 30px">
-      <%= @users.uniq.count %>
-      user
-    </div>
-  </div>
-
-  <div class="grid_16">
-    <% @users.each do |user| %>
-      <div class="grid_7" style="margin-bottom: 20px">
-        <div class="crewman-photo">
-          <% if user.photo.present? %>
-            <%= link_to_avatar(user, :thumb_large) %>
-          <% else %>
-            <%= image_tag 'avatar.jpg', :size => "125x125" %>
-          <% end %>
-        </div>
-        <div class="heading13"><%= link_to user.name, user_path(user) %></div>
-        <%= user.bio %>
-        </p>
+  <div class="container_16" style="width: 960px">
+    <div class="row-fluid" style="margin-top: 30px">
+      <div class="heading14 left" style="margin-bottom: 30px">
+        <%= @users.uniq.count %>
+        user
       </div>
-    <% end %>
+    </div>
+
+    <div class="row-fluid">
+      <% @users.each do |user| %>
+        <div class="grid_7" style="margin-bottom: 20px">
+          <div class="crewman-photo">
+            <% if user.photo.present? %>
+              <%= link_to_avatar(user, :thumb_large) %>
+            <% else %>
+              <%= image_tag 'avatar.jpg', :size => "125x125" %>
+            <% end %>
+          </div>
+          <div class="heading13"><%= link_to user.name, user_path(user) %></div>
+          <%= user.bio %>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 <% else %>
 
-  <div class="grid_16" style="margin-top: 30px">
-    <div class="heading14 left" style="margin-bottom: 30px">
-      <%= current_account.memberships.uniq.count %>
-      members
-    </div>
-  </div>
-
-  <div class="grid_16">
-    <% @memberships.each do |membership| %>
-      <div class="grid_7" style="margin-bottom: 20px">
-        <div class="crewman-photo">
-          <% if membership.user.photo.present? %>
-            <%= link_to_avatar(membership.user, :thumb_large) %>
-          <% else %>
-            <%= image_tag 'avatar.jpg', :size => "125x125" %>
-          <% end %>
-        </div>
-        <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
-        <%= membership.user.bio %>
-        </p>
+  <div class="container_16" style="width: 960px">
+    <div class="row-fluid" style="margin-top: 30px">
+      <div class="heading14 left" style="margin-bottom: 30px">
+        <%= current_account.memberships.uniq.count %>
+        members
       </div>
-    <% end %>
+    </div>
+
+    <div class="row-fluid">
+      <% @memberships.each do |membership| %>
+        <div class="grid_7" style="margin-bottom: 20px">
+          <div class="crewman-photo">
+            <% if membership.user.photo.present? %>
+              <%= link_to_avatar(membership.user, :thumb_large) %>
+            <% else %>
+              <%= image_tag 'avatar.jpg', :size => "125x125" %>
+            <% end %>
+          </div>
+          <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
+          <%= membership.user.bio %>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 <% end %>

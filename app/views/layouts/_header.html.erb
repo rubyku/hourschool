@@ -6,22 +6,13 @@
 
       <ul class="nav nav-pills main-nav">
         <li class="dropdown" id="menu5">
-          <%= link_to "Learn", courses_browse_index_path, :class => "main-nav dropdown-toggle" %>
+          <%= link_to "Take a class", courses_browse_index_path, :class => "main-nav dropdown-toggle" %>
         </li>
         <li class="dropdown" id="menu5">
-          <%= link_to "Teach", teach_path, :class => "main-nav dropdown-toggle" %>
+          <%= link_to "Start a school", start_a_school_path, :class => "main-nav dropdown-toggle" %>
         </li>
         <li class="dropdown" id="menu5">
-          <%= link_to "HourSchool Pro", pro_path, :class => "main-nav dropdown-toggle" %>
-        </li>
-        <li class="dropdown" id="menu5">
-          <%= link_to "Services", services_path, :class => "main-nav dropdown-toggle" %>
-        </li>
-        <li class="dropdown" id="menu5">
-          <%= link_to "Resources", resources_path, :class => "main-nav dropdown-toggle" %>
-        </li>
-        <li class="dropdown" id="menu5">
-          <%= link_to "About", about_path, :class => "main-nav dropdown-toggle" %>
+          <%= link_to "Get Involved", get_involved_path, :class => "main-nav dropdown-toggle" %>
         </li>
 
         <% if current_user %>
