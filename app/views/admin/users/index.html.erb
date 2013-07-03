@@ -1,68 +1,70 @@
-<div class="row">
-  <%= render :partial => 'admin/sidebar' %>
+<div class="container_16" style="width: 960px">
+  <div class="row">
+    <%= render :partial => 'admin/sidebar' %>
 
-  <div class="span9">
-    <div class="white">
-      <div class="page-content">
-        <div class="well">
-          <div class="heading14 pull-left">
-            Total users:
-            <% if community_site? %>
-              <%= User.uniq.count %>
-            <% else %>
-              <%= current_account.users.uniq.count %>
-            <% end %>
+    <div class="span9">
+      <div class="white">
+        <div class="page-content">
+          <div class="well">
+            <div class="heading14 pull-left">
+              Total users:
+              <% if community_site? %>
+                <%= User.uniq.count %>
+              <% else %>
+                <%= current_account.users.uniq.count %>
+              <% end %>
+            </div>
+            <%= link_to "Invite new member", new_invite_users_path, :class => "btn pull-right" %>
           </div>
-          <%= link_to "Invite new member", new_invite_users_path, :class => "btn pull-right" %>
+          <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Joined on</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td>
+                    <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
+                    <% if @admins.include?(user) %>
+                      <span class="label label-inverse">Admin</span>
+                    <% elsif @teachers.include?(user) %>
+                      <span class="label label-info">Teacher</span>
+                    <% end %>
+                  </td>
+                  <td class="span3" style="overflow: hidden; float: left; margin-top: 0px">
+                    <%= user.email %>
+                  </td>
+                  <td>
+                    <%= user.memberships.where(:account_id => current_account).first.created_at.strftime("%b %d, %Y") %>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                        Action
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><%#= link_to "Make Teacher", "" %></li>
+                        <li>
+                          <% if community_site? %>
+                            <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
+                          <% else %>
+                            <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
+                          <% end %>
+                        </li>
+                        <li><%= link_to "Email", "mailto:#{user.email}" %></li>
+                      </ul>
+                    </div>
+                  </td>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-        <table class="table">
-          <thead>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Joined on</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td>
-                  <%= link_to user.name, admin_user_path(user.id), :class => "heading13 brown" %>
-                  <% if @admins.include?(user) %>
-                    <span class="label label-inverse">Admin</span>
-                  <% elsif @teachers.include?(user) %>
-                    <span class="label label-info">Teacher</span>
-                  <% end %>
-                </td>
-                <td class="span3" style="overflow: hidden; float: left; margin-top: 0px">
-                  <%= user.email %>
-                </td>
-                <td>
-                  <%= user.memberships.where(:account_id => current_account).first.created_at.strftime("%b %d, %Y") %>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                      Action
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%#= link_to "Make Teacher", "" %></li>
-                      <li>
-                        <% if community_site? %>
-                          <%= user.memberships.collect(&:account).reject {|x| x.blank? }.collect(&:name).to_sentence %>
-                        <% else %>
-                          <%= link_to 'Make Admin', make_admin_user_path(user), :method => :put %>
-                        <% end %>
-                      </li>
-                      <li><%= link_to "Email", "mailto:#{user.email}" %></li>
-                    </ul>
-                  </div>
-                </td>
-            <% end %>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>

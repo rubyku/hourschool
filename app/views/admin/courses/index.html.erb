@@ -1,71 +1,74 @@
-<div class="row">
-  <%= render :partial => 'admin/sidebar' %>
+<div class="container_16" style="width: 960px">
+  <div class="row">
+    <%= render :partial => 'admin/sidebar' %>
 
-  <div class="span9">
-    <div class="white">
-      <div class="page-content">
-        <div class="well">
-          <div class="heading14 pull-left">
-            Total events:
-            <% if community_site? %>
-              <%= Course.uniq.count %>
-            <% else %>
-              <%= current_account.courses.uniq.count %>
-            <% end %>
-          </div>
-          <%= link_to "Post event", new_course_path, :class => "btn pull-right" %>
-        </div><!-- end well -->
-        <table class="table">
-          <thead>
-            <th>Event name</th>
-            <th>Event time</th>
-            <th>Attendance</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <% @courses.each do |course| %>
-              <tr>
-                <td class="span4">
-                  <div class="heading13 brown">
-                    <%= link_to course.title, admin_course_path(course) %>
-                    <% if course.status == "draft" %>
-                      <span class="label">Draft</span>
-                    <% end %>
-                    <br>
-                    by <%= course.teacher.name if course.teacher.present? %>
-                  </div>
-                <td>
-                  <% if course.starts_at.present? && course.ends_at.present? %>
-                    <%= course.starts_at.strftime("%Y/%m/%d") %><br>
-                    <%= course.starts_at.strftime("%l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") %>
-                  <% end %>
-                </td>
-                <td>
-                  <div class="progress" style="margin-bottom: 0px">
-                    <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;">
-                      <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>
+    <div class="span9">
+      <div class="white">
+        <div class="page-content">
+          <div class="well">
+            <div class="heading14 pull-left">
+              Total events:
+              <% if community_site? %>
+                <%= Course.uniq.count %>
+              <% else %>
+                <%= current_account.courses.uniq.count %>
+              <% end %>
+            </div>
+            <%= link_to "Post event", new_course_path, :class => "btn pull-right" %>
+          </div><!-- end well -->
+          <table class="table">
+            <thead>
+              <th>Event name</th>
+              <th>Event time</th>
+              <th>Attendance</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <% @courses.each do |course| %>
+                <tr>
+                  <td class="span4">
+                    <div class="heading13 brown">
+                      <%= link_to course.title, admin_course_path(course) %>
+                      <% if course.status == "draft" %>
+                        <span class="label">Draft</span>
+                      <% end %>
+                      <br>
+                      by <%= course.teacher.name if course.teacher.present? %>
                     </div>
-                  </div>
-                  <%= "#{course.students.count} / #{course.max_seats}" %>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                      Action
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to 'Edit event', edit_course_path(course) %></li>
-                      <li><%= link_to 'Cancel event', edit_course_path(course) %></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+                  <td>
+                    <% if course.starts_at.present? && course.ends_at.present? %>
+                      <%= course.starts_at.strftime("%Y/%m/%d") %><br>
+                      <%= course.starts_at.strftime("%l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <div class="progress" style="margin-bottom: 0px">
+                      <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;">
+                        <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>
+                      </div>
+                    </div>
+                    <%= "#{course.students.count} / #{course.max_seats}" %>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                        Action
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to 'Edit event', edit_course_path(course) %></li>
+                        <li><%= link_to 'Cancel event', edit_course_path(course) %></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+
   </div>
 
 </div>

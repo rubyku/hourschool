@@ -1,51 +1,53 @@
-<div class="row">
-  <%= render :partial => 'admin/sidebar' %>
+<div class="container_16" style="width: 960px">
+  <div class="row">
+    <%= render :partial => 'admin/sidebar' %>
 
-  <div class="span9">
+    <div class="span9">
 
-    <div class="white" style="margin-bottom: 20px">
-      <div style="padding: 19px">
+      <div class="white" style="margin-bottom: 20px">
+        <div style="padding: 19px">
 
-        <ul class="breadcrumb">
-          <li><a href="/admin">Dashboard</a> <span class="divider">/</span></li>
-          <li><a href="/admin/courses">Events</a> <span class="divider">/</span></li>
-          <li class="active"><%= @course.title %></li>
-          <li class="pull-right"><%= link_to "View class page", @course, :class => "btn btn-success", :style => "margin-top: -3px; color: white" %></li>
-        </ul>
+          <ul class="breadcrumb">
+            <li><a href="/admin">Dashboard</a> <span class="divider">/</span></li>
+            <li><a href="/admin/courses">Events</a> <span class="divider">/</span></li>
+            <li class="active"><%= @course.title %></li>
+            <li class="pull-right"><%= link_to "View class page", @course, :class => "btn btn-success", :style => "margin-top: -3px; color: white" %></li>
+          </ul>
 
-        <div class="heading14">Class Topic:</div>
-        <p><%= @course.title %></p>
+          <div class="heading14">Class Topic:</div>
+          <p><%= @course.title %></p>
 
-        <div class="heading14">Teacher:</div>
-        <p><%= @course.teacher.name %></p>
+          <div class="heading14">Teacher:</div>
+          <p><%= @course.teacher.name %></p>
 
-        <div class="heading14">Date & Time:</div>
-        <p><%= @course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= @course.ends_at.strftime("%l:%M%p") if @course.ends_at.present? %></p>
+          <div class="heading14">Date & Time:</div>
+          <p><%= @course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= @course.ends_at.strftime("%l:%M%p") if @course.ends_at.present? %></p>
 
-        <div class="heading14">Total # of students:</div>
-        <p><%= @course.students.count %> / <%= @course.max_seats %></p>
+          <div class="heading14">Total # of students:</div>
+          <p><%= @course.students.count %> / <%= @course.max_seats %></p>
 
-        <div class="heading14">Total profit from this class:</div>
-        <p>$ <%= @course.price * @course.students.count %></p>
+          <div class="heading14">Total profit from this class:</div>
+          <p>$ <%= @course.price * @course.students.count %></p>
 
-        <table class="table">
-          <thead>
-            <th>Student name</th>
-            <th>Student email</th>
-          </thead>
-          <tbody>
-           <% @course.students.each do |student| %>
-             <tr>
-              <td><%= student.name %></td>
-              <td><%= student.email %></td>
-             </tr>
-           <% end %>
-          </tbody>
-        </table>
+          <table class="table">
+            <thead>
+              <th>Student name</th>
+              <th>Student email</th>
+            </thead>
+            <tbody>
+             <% @course.students.each do |student| %>
+               <tr>
+                <td><%= student.name %></td>
+                <td><%= student.email %></td>
+               </tr>
+             <% end %>
+            </tbody>
+          </table>
 
 
-        <%#= button_to "Approve this course", admin_course_path(:course_id => @course), :class => "submit-proposal-button", :method => :put, :class => "btn" %>
+          <%#= button_to "Approve this course", admin_course_path(:course_id => @course), :class => "submit-proposal-button", :method => :put, :class => "btn" %>
 
+        </div>
       </div>
-    </div>
 
+</div>

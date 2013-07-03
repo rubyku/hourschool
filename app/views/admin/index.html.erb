@@ -1,136 +1,138 @@
-<div class="row">
-  <%= render :partial => 'admin/sidebar' %>
+<div class="container_16" style="width: 960px">
 
-  <div class="span9">
-<!--
-    <div class="white" style="margin-bottom: 20px">
-      <div style="padding: 10px; background-color: #f7f7f7">
-        <ul class="nav">
-          <li class="pull-left"><strong>Event Registrations</strong></li>
-          <li class="pull-right"><%= link_to "view all >", admin_payments_path, :style => "text-decoration: underline" %></li>
-        </ul>
+  <div class="row">
+    <%= render :partial => 'admin/sidebar' %>
+
+    <div class="span9">
+  <!--
+      <div class="white" style="margin-bottom: 20px">
+        <div style="padding: 10px; background-color: #f7f7f7">
+          <ul class="nav">
+            <li class="pull-left"><strong>Event Registrations</strong></li>
+            <li class="pull-right"><%= link_to "view all >", admin_payments_path, :style => "text-decoration: underline" %></li>
+          </ul>
+        </div>
+        <div style="padding: 19px">
+          <table class="table">
+            <thead>
+              <th>Date</th>
+              <th>Tickets sold</th>
+            </thead>
+            <tbody>
+              <% 5.times do |n| %>
+                <tr>
+                  <% day = n.days.ago %>
+                  <td><%= day.strftime("%Y/%m/%d") %></td>
+                  <td><%= @registrations_by_day[day.day.to_s] || 0 %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div> -->
+
+      <div class="white" style="margin-bottom: 20px">
+        <div style="padding: 10px; background-color: #f7f7f7">
+          <ul class="nav">
+            <li class="pull-left"><strong>Upcoming events</strong></li>
+            <li class="pull-right"><%= link_to "view all >", admin_courses_path, :style => "text-decoration: underline" %></li>
+          </ul>
+        </div>
+        <div style="padding: 19px">
+          <table class="table">
+            <thead>
+              <th>Event name</th>
+              <th>Event time</th>
+              <th>Attendance</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <% @courses.first(5).each do |course| %>
+                <tr>
+                  <td class="span3">
+                    <div class="heading13 brown">
+                      <%= link_to course.title, admin_course_path(course) %>
+                    </div>
+                  <td>
+                    <%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
+                  </td>
+                  <td>
+                    <div class="progress">
+                      <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;"><%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %></div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                        Action
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <!-- <li><%= link_to 'Promote event', "" %></li> -->
+                        <li><%= link_to 'Edit event', edit_course_path(course) %></li>
+  <!--                       <li><%= link_to "Contact teacher", "" %></li>
+                        <li><%= link_to "Contact students", "" %></li> -->
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div style="padding: 19px">
-        <table class="table">
-          <thead>
-            <th>Date</th>
-            <th>Tickets sold</th>
-          </thead>
-          <tbody>
-            <% 5.times do |n| %>
-              <tr>
-                <% day = n.days.ago %>
-                <td><%= day.strftime("%Y/%m/%d") %></td>
-                <td><%= @registrations_by_day[day.day.to_s] || 0 %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+
+      <div class="white" style="margin-bottom: 20px">
+        <div style="padding: 10px; background-color: #f7f7f7">
+          <ul class="nav">
+            <li class="pull-left"><strong>Newest Members</strong></li>
+            <li class="pull-right"><%= link_to "view all >", admin_users_path, :style => "text-decoration: underline" %></li>
+          </ul>
+        </div>
+        <div style="padding: 19px">
+          <table class="table">
+            <thead>
+              <th>Name</th>
+              <th>Joined on</th>
+  <!--             <th>Referral</th> -->
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <% current_account.memberships.order('DATE(created_at) ASC').last(5).each do |member| %>
+                <tr>
+                  <td class="span3">
+                    <div class="heading13 brown">
+                      <%= link_to member.user.name, member.user %>
+                    </div>
+                  </td>
+                  <td>
+                    <%= member.created_at.strftime("%Y/%m/%d") %>
+                  </td>
+  <!--                 <td>
+                    <%= User.where(:id => member.user.roles.first.invite_user_id).first if member.user.roles.present? %>
+                  </td> -->
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                        Action
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><%= link_to 'Send welcome email', "mailto:#{member.user.email}" %></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div> -->
-
-    <div class="white" style="margin-bottom: 20px">
-      <div style="padding: 10px; background-color: #f7f7f7">
-        <ul class="nav">
-          <li class="pull-left"><strong>Upcoming events</strong></li>
-          <li class="pull-right"><%= link_to "view all >", admin_courses_path, :style => "text-decoration: underline" %></li>
-        </ul>
-      </div>
-      <div style="padding: 19px">
-        <table class="table">
-          <thead>
-            <th>Event name</th>
-            <th>Event time</th>
-            <th>Attendance</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <% @courses.first(5).each do |course| %>
-              <tr>
-                <td class="span3">
-                  <div class="heading13 brown">
-                    <%= link_to course.title, admin_course_path(course) %>
-                  </div>
-                <td>
-                  <%= course.starts_at.strftime("%Y/%m/%d, %l:%M") %>-<%= course.ends_at.strftime("%l:%M%p") if course.ends_at.present? %>
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="bar" style="width: <%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %>;"><%= "#{number_to_percentage(course.students.count/course.max_seats.to_f * 100, :precision => 0)}" %></div>
-                  </div>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                      Action
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <!-- <li><%= link_to 'Promote event', "" %></li> -->
-                      <li><%= link_to 'Edit event', edit_course_path(course) %></li>
-<!--                       <li><%= link_to "Contact teacher", "" %></li>
-                      <li><%= link_to "Contact students", "" %></li> -->
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="white" style="margin-bottom: 20px">
-      <div style="padding: 10px; background-color: #f7f7f7">
-        <ul class="nav">
-          <li class="pull-left"><strong>Newest Members</strong></li>
-          <li class="pull-right"><%= link_to "view all >", admin_users_path, :style => "text-decoration: underline" %></li>
-        </ul>
-      </div>
-      <div style="padding: 19px">
-        <table class="table">
-          <thead>
-            <th>Name</th>
-            <th>Joined on</th>
-<!--             <th>Referral</th> -->
-            <th>Action</th>
-          </thead>
-          <tbody>
-            <% current_account.memberships.order('DATE(created_at) ASC').last(5).each do |member| %>
-              <tr>
-                <td class="span3">
-                  <div class="heading13 brown">
-                    <%= link_to member.user.name, member.user %>
-                  </div>
-                </td>
-                <td>
-                  <%= member.created_at.strftime("%Y/%m/%d") %>
-                </td>
-<!--                 <td>
-                  <%= User.where(:id => member.user.roles.first.invite_user_id).first if member.user.roles.present? %>
-                </td> -->
-                <td>
-                  <div class="btn-group">
-                    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-                      Action
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to 'Send welcome email', "mailto:#{member.user.email}" %></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
 
 
-  </div><!-- end span9 -->
+    </div><!-- end span9 -->
 
-</div><!-- /row -->
+  </div><!-- /row -->
 
-
+</div>

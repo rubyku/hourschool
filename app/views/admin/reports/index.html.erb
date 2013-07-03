@@ -1,31 +1,33 @@
-<div class="row">
-  <%= render :partial => 'admin/sidebar' %>
+<div class="container_16" style="width: 960px">
+  <div class="row">
+    <%= render :partial => 'admin/sidebar' %>
 
-  <div class="span9">
-    <div class="white">
-      <div class="page-content">
-        <div class="heading14 pull-left" style="margin-bottom: 20px">
-          Most engaged members
+    <div class="span9">
+      <div class="white">
+        <div class="page-content">
+          <div class="heading14 pull-left" style="margin-bottom: 20px">
+            Most engaged members
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <th>Name</th>
+              <th># of events</th>
+              <th>Date joined</th>
+            </thead>
+            <tbody>
+              <% @top_user_hash.each do |id, count| %>
+                <% user = User.find(id) %>
+                <tr>
+                  <td><%= link_to user.name, user %></td>
+                  <td><%= count %></td>
+                  <td><%= user.created_at.strftime("%b %d, %Y") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-        <table class="table table-bordered">
-          <thead>
-            <th>Name</th>
-            <th># of events</th>
-            <th>Date joined</th>
-          </thead>
-          <tbody>
-            <% @top_user_hash.each do |id, count| %>
-              <% user = User.find(id) %>
-              <tr>
-                <td><%= link_to user.name, user %></td>
-                <td><%= count %></td>
-                <td><%= user.created_at.strftime("%b %d, %Y") %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
