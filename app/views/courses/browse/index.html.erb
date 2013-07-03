@@ -54,37 +54,34 @@
     </div>
   </div>
 
-<% elsif current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 13).first %>
+<% else %>
 
-  <% if  %>
     <div class="container_16" style="margin-bottom: 30px; width: 960px">
       <div class="well">
         <p class="bold left">Everyone is welcome to contribute and add their own class. Share what you know and join our community!</p>
         <%= link_to "Add a class", new_course_path, :class => "btn btn-primary right", :style => "color: white" %>
       </div>
     </div>
-  <% end %>
 
-  <div class="container_16" style="margin-bottom: 30px; width: 960px">
-    <center><p class="lead">
-      Upcoming Classes
-    </p></center>
-    <hr>
-    <% @upcoming_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
-  </div>
+    <div class="container_16" style="margin-bottom: 30px; width: 960px">
+      <center><p class="lead">
+        Upcoming Classes
+      </p></center>
+      <hr>
+      <% @upcoming_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
 
-  <div class="container_16" style="margin-bottom: 30px; width: 960px">
-    <center><p class="lead">
-      Past Classes
-    </p></center>
-    <hr>
-    <% @past_courses.each do |course| %>
-      <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-    <% end %>
-  </div>
-</div>
+    <div class="container_16" style="margin-bottom: 30px; width: 960px">
+      <center><p class="lead">
+        Past Classes
+      </p></center>
+      <hr>
+      <% @past_courses.each do |course| %>
+        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
+      <% end %>
+    </div>
 
 <% end %>
 
