@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails',                '3.2.11'
 
 group :assets do
@@ -8,7 +10,7 @@ group :assets do
   gem 'sass-rails',         '~> 3.2.4'
 end
 
-gem 'dotenv', :groups => [:development, :test]
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'sextant', :group => :development
 gem 'quiet_assets', :group => :development
@@ -123,7 +125,7 @@ group :development, :test do
   gem 'capybara',           '~> 1.1.2'
   gem "rspec-rails",        "~> 2.8.1"
   gem 'factory_girl_rails', '~> 1.4.0'
-  gem 'rb-fsevent',         '~> 0.4.3.1'
+  gem 'rb-fsevent',         '~> 0.9.3'
   gem "selenium-webdriver", "~> 2.24.0"
 
   # Guard

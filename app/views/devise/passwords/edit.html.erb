@@ -1,16 +1,18 @@
-<h2>Change your password</h2><br>
+<div class="container_16" style="width: 960px">
+	<h2>Change your password</h2><br>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+	<%= devise_error_messages! %>
+	<%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %>
-  <%= f.password_field :password %></div>
+	<div><%= f.label :password, "New password" %>
+	<%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %>
-  <%= f.password_field :password_confirmation %></div>
+	<div><%= f.label :password_confirmation, "Confirm new password" %>
+	<%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.submit "Change my password", :class => "btn" %></div>
-<% end %>
+	<div><%= f.submit "Change my password", :class => "btn" %></div>
+	<% end %>
 
-<%= render :partial => "devise/shared/links" %>
+	<%= render :partial => "devise/shared/links" %>
+</div>
