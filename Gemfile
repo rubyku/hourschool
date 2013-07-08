@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails',                '3.2.11'
+gem 'rails',                '3.2.13'
 
 group :assets do
   gem 'coffee-rails',       '~> 3.2.1'
@@ -49,7 +49,7 @@ gem 'tumblr-api',           '~> 0.1.4'
 
 
 # Error logging/reporting
-gem 'newrelic_rpm',         '~> 3.3.1'
+gem 'newrelic_rpm',         '~> 3.6.5'
 gem "airbrake",             '~> 3.0.9'
 
 gem 'timezone',             '~> 0.1.4'
