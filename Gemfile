@@ -15,6 +15,7 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'sextant', :group => :development
 gem 'quiet_assets', :group => :development
 
+gem "rack-reverse-proxy", :require => "rack/reverse_proxy"
 
 gem 'paypal-express'
 gem "paypal-recurring"

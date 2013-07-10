@@ -171,6 +171,8 @@ HourschoolV2::Application.routes.draw do
   match '/epic'                       => 'pages#index'
   match '/explore'                    => 'pages#index'
 
+  match "/blog" => redirect("/blog/")
+
   # post 'courses/:id/duplicate'        => 'courses#duplicate', :as => 'duplicate_course'
 
 
