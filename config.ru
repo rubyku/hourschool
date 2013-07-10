@@ -4,8 +4,9 @@ require ::File.expand_path('../config/environment',  __FILE__)
 
 use Rack::ReverseProxy do
   reverse_proxy(/^\/blog(\/.*)$/,
-    'http://gentle-stream-9977.herokuapp.com$1',
+    'http://evening-temple-4099.herokuapp.com$1',
     opts = {:preserve_host => true})
 end
 
 run HourschoolV2::Application
+
