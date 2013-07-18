@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
     def debug
     end
 
+    def ensure_subdomain
+      if request.subdomain == 'www.vukaaustin'
+        redirect_to request.url.gsub("//www.", '//vukaaustin'), :status => 301
+      end
+    end
+
     helper_method :current_account
     def current_account
       @current_account ||= if request.subdomain.present?
