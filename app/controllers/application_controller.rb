@@ -11,13 +11,9 @@ class ApplicationController < ActionController::Base
     end
 
     def fix_double_subdomain
-      puts "============="
-      puts "request.subdomain: #{request.subdomain}"
       if request.subdomain.match(/www\..*/)
-        puts "match!"
         correct_subdomain = request.subdomain.gsub("www.", "")
-        puts "correct_subdomain: #{correct_subdomain}"
-        redirect_to request.url.gsub("//#{request.subdomain}", correct_subdomain), :status => 301
+        redirect_to request.url.gsub("//#{request.subdomain}", "//#{correct_subdomain}"), :status => 301
       end
     end
 
