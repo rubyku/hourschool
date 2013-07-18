@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :eventual_warm_facebook_cache, :hide_private_accounts
+  before_filter :debug, :ensure_domain, :fix_double_subdomain, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
