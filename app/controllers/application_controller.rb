@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
     def debug
     end
 
-    def ensure_subdomain
-      if request.subdomain == 'www.vukaaustin'
-        redirect_to request.url.gsub("//www.", '//vukaaustin'), :status => 301
+    def fix_double_subdomain
+      if request.subdomain.match(/www\..*/)
+        correct_subdomain = request.subdomain.gsub("www.", "")
+        redirect_to request.url.gsub("//#{request.subdomain}", correct_subdomain), :status => 301
       end
     end
 
