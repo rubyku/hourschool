@@ -3,11 +3,18 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :eventual_warm_facebook_cache, :hide_private_accounts
+  before_filter :debug, :ensure_domain, :fix_double_subdomain, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
     def debug
+    end
+
+    def fix_double_subdomain
+      if request.subdomain.match(/www\..*/)
+        correct_subdomain = request.subdomain.gsub("www.", "")
+        redirect_to request.url.gsub("//#{request.subdomain}", "//#{correct_subdomain}"), :status => 301
+      end
     end
 
     helper_method :current_account
