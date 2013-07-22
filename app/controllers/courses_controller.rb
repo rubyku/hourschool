@@ -78,7 +78,8 @@ class CoursesController < ApplicationController
     enqueue_warm_facebook_cache
     @course = Course.find(params[:id])
 
-    redirect_to @course unless @course.teacher == current_user || current_user.admin?
+    redirect_to @course unless @course.teacher == current_user || current_user.admin? || admin_of_current_account?
+  
   end
 
   def show
