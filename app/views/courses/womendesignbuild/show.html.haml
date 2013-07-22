@@ -65,7 +65,7 @@
 
 .container_16
 
-  - if @course.status == 'draft' && @course.teacher == current_user
+  - if @course.status == 'draft' && (@course.teacher == current_user || current_user.admin? || admin_of_current_account?)
     .full-page.white{:style => "padding-bottom: 0px"}
       .page-content
         .wdb-text-strong{:style => "padding-bottom: 10px"} Preview before this goes live!
