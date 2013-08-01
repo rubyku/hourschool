@@ -3,9 +3,6 @@ class UserMailer < ActionMailer::Base
 
   layout 'layouts/email_layout'
 
-  # fix for https://github.com/collectiveidea/delayed_job/issues/349#issuecomment-5391754
-  def encode_with(coder)
-  end
 
   def ticket_invite(options = {})
     @user     = options[:user]

@@ -84,9 +84,11 @@ GEM
     daemons (1.1.9)
     dalli (1.1.5)
     database_cleaner (0.9.1)
-    delayed_job (2.1.4)
-      activesupport (~> 3.0)
-      daemons
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -449,7 +451,8 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dalli (~> 1.1.4)
   database_cleaner
-  delayed_job (~> 2.1.4)
+  delayed_job (~> 4.0.0)
+  delayed_job_active_record
   devise (~> 1.4.9)
   dotenv-rails
   factory_girl_rails (~> 1.4.0)
