@@ -58,9 +58,8 @@ class ApplicationController < ActionController::Base
     def enqueue_warm_facebook_cache
       return true if current_user.blank? || current_user.no_facebook?
       return true if current_user.cache.exist?(:facebook_friend_locations)
-      Rails.logger.warn '==== run `rake jobs:work` to ensure facebook cache is getting set' unless Rails.env.production?
-      job = User::Facebook::FullCacheWarm.new(current_user.id)
-      Delayed::Job.enqueue(job)
+      Rails.logger.warn '==== run `bundle exec rake resque:work VVERBOSE=1 QUEUE=*` to ensure facebook cache is getting set' unless Rails.env.production?
+      Resque.enqueue(User::Facebook::FullCacheWarm, current_user.id)
     rescue => ex
       facebook_error(ex)
     end
@@ -88,7 +87,7 @@ class ApplicationController < ActionController::Base
     def facebook_error(exception)
       log_error(exception)
       notify_airbrake(exception)
-      flash[:notice] = "There was a problem authenticating with Facebook, login again using Facebook"
+      logger.error "There was a problem authenticating with Facebook, login again using Facebook"
       redirect_to destroy_user_session_path
     end
 

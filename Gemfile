@@ -74,9 +74,7 @@ gem 'will_paginate',        '~> 3.0.2'
 gem 'sunspot_rails',        '~> 1.3.0'
 
 
-# Delayed job
-gem 'delayed_job',          '~> 4.0.0'
-gem 'delayed_job_active_record'
+gem 'resque'
 
 # rails-tinymce
 # gem 'use_tinymce'

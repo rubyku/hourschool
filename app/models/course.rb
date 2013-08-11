@@ -278,6 +278,16 @@ class Course < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.to_file(style))
    end
 
+   class AccountNewCourse
+     @queue = :account_new_course
+     def self.perform(user_id, account_id, course_id)
+       user    = User.find(user_id)
+       account = Account.find(account_id) if account_id
+       course  = Course.find(course_id)
+       UserMailer.account_new_course(user, @course.account, @course).deliver
+     end
+   end
+
   private
 
   def notify_followers

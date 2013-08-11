@@ -39,7 +39,7 @@ class Comment < ActiveRecord::Base
       current_account = self.course.account
     end
     participants.each do |user|
-      UserMailer.delay.course_comments(user, self, self.course, current_account) unless self.user == user
+      Resque.enqueue(CourseComments, user.id, self.id, self.course.id, current_account.try(:id)) unless self.user == user
     end
   end
 
@@ -50,7 +50,7 @@ class Comment < ActiveRecord::Base
       current_account = self.course.account
     end
     participants_and_students.each do |user|
-      UserMailer.delay.course_comments(user, self, self.course, current_account) unless self.user == user
+      Resque.enqueue(CourseComments, user.id, self.id, self.course.id, current_account.try(:id)) unless self.user == user
     end
   end
 
@@ -60,6 +60,29 @@ class Comment < ActiveRecord::Base
 
   def child_comments
     Comment.where(:parent_id => self.id).reverse_order
+  end
+
+  class AccountNewComment
+    @queue = :account_new_comment
+
+    def self.perform(user_id, account_id, comment_id)
+      user    = User.find(user_id)
+      account = Account.find(account_id) if account_id
+      comment = Comment.find(comment.id)
+      UserMailer.account_new_comment(user, current_account, @comment).deliver
+    end
+  end
+
+  class CourseComments
+    @queue = :course_comments
+
+    def self.perform(user_id, comment_id, course_id, current_account_id)
+      user    = User.find(user_id)
+      comment = Comment.find(comment_id)
+      course  = Course.find(course_id)
+      account = Account.find(current_account_id) if current_account_id
+      UserMailer.course_comments(user, comment, course, account).deliver
+    end
   end
 
 end

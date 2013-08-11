@@ -6,3 +6,11 @@ require 'rake/dsl_definition'
 require 'rake'
 
 HourschoolV2::Application.load_tasks
+
+require 'resque/tasks'
+require 'resque/tasks'
+
+
+task "resque:setup" => :environment do
+  Resque.after_fork = Proc.new { ActiveRecord::Base.establish_connection }
+end

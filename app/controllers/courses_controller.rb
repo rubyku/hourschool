@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
           UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
           if (current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 13).first) && @course.account.present?
             @course.account.users.each do |user|
-              UserMailer.delay.account_new_course(user, @course.account, @course)
+              Resque.enqueue(Course::AccountNewCourse, user.id, @course.account.try(:id), @course.id)
             end
           end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
@@ -79,7 +79,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     redirect_to @course unless @course.teacher == current_user || current_user.admin? || admin_of_current_account?
-  
+
   end
 
   def show

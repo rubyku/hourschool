@@ -88,7 +88,6 @@ class Role < ActiveRecord::Base
     def notify_followers
       if name == 'student'
         user.fetch_followers.each do |follower|
-          # UserMailer.delay.followed_signed_up_for_a_course(follower, self.user, course)
         end
       end
       return true

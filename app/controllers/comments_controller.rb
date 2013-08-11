@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
         end
       elsif @comment.account_id.present? && current_account == Account.where(:id => 9).first
         current_account.users.each do |user|
-          UserMailer.delay.account_new_comment(user, current_account, @comment)
+          Resque.enqueue(Comment::AccountNewComment, user.id, current_account.try(:id), @comment.id)
         end
       end
     end

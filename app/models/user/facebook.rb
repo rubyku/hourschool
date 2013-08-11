@@ -229,14 +229,9 @@ module User::Facebook
   # Delayed::Job.enqueue User::Facebook::FullCacheWarm.new(User.rs.id)
   # rake jobs:work
   class FullCacheWarm
-    attr_accessor :user_id
+    @queue = :full_facebook_cache_warm
 
-    def initialize(user_id)
-      self.user_id = user_id
-    end
-
-
-    def perform
+    def self.perform(user_id)
       user = User.find(user_id)
       user.warm_facebook_expensive_cache
     end

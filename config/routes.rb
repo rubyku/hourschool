@@ -194,5 +194,7 @@ HourschoolV2::Application.routes.draw do
     end
   end
 
+  mount Resque::Server.new, :at => "/resque"
+
 end
 
