@@ -284,7 +284,7 @@ class Course < ActiveRecord::Base
        user    = User.find(user_id)
        account = Account.find(account_id) if account_id
        course  = Course.find(course_id)
-       UserMailer.account_new_course(user, @course.account, @course).deliver
+       UserMailer.account_new_course(user, account, course).deliver
      end
    end
 
