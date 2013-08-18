@@ -107,6 +107,7 @@ class UserMailer < ActionMailer::Base
     @account_name = @account.try(:name) || "HourSchool"
     mail :from => "#{@account_name} <hello@hourschool.com>",
          :to => @course.teacher.email,
+         :bcc => "admin@hourschool.com",
          :subject => "Someone signed up for #{@course.title}!"
   end
 
@@ -119,6 +120,7 @@ class UserMailer < ActionMailer::Base
     @account_name = @account.try(:name) || "HourSchool"
     mail :from => "#{@account_name} <hello@hourschool.com>",
          :to => course.account.admins.map(&:email),
+         :bcc => "admin@hourschool.com",
          :subject => "Someone signed up for #{@course.title}!"
   end
 
