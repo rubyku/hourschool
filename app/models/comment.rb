@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
   belongs_to :mission
+  belongs_to :account
 
   has_attached_file :photo, :styles => { :normal => "510x381" },
                     :storage => :s3,
