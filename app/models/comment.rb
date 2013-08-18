@@ -70,7 +70,7 @@ class Comment < ActiveRecord::Base
       user    = User.find(user_id)
       account = Account.find(account_id) if account_id
       comment = Comment.find(comment.id)
-      UserMailer.account_new_comment(user, current_account, @comment).deliver
+      UserMailer.account_new_comment(user, account, comment).deliver
     end
   end
 
