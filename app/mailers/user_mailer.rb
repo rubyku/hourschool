@@ -53,10 +53,11 @@ class UserMailer < ActionMailer::Base
     @course  = course
     @comment = comment
     @account = current_account
-    @account_name = @account.try(:name) || "HourSchool"
+    @account_name = current_account.try(:name) || "HourSchool"
     @url = @account.nil? ? "http://hourschool.com/courses/#{@course.id}" : "http://#{@account.subdomain}.hourschool.com/courses/#{@course.id}"
     mail :from => "#{@account_name} <hello@hourschool.com>",
          :to => user.email,
+         :reply_to => comment.user.email,
          :bcc => "admin@hourschool.com",
          :subject => "#{comment.user.name} left you a comment about your event"
   end
@@ -178,33 +179,37 @@ class UserMailer < ActionMailer::Base
          :subject => "Congratulations! #{@account.name} is live!"
   end
 
-  def account_new_member(user, account, new_member)
+  def account_new_member(admin, account, new_member)
+    @admin      = admin
     @account    = account
-    @user       = user
     @new_member = new_member
-    mail :to => @user.email,
+    mail :to => @admin.email,
          :bcc => "admin@hourschool.com",
          :subject => "#{@new_member.name} joined #{@account.name}"
   end
 
   #Account notifications for Account members
 
-  def account_new_course(user, account, new_course)
-    @account    = account
+  def account_new_course(user, admin, account, new_course)
     @user       = user
+    @admin      = admin
+    @account    = account
     @new_course = new_course
     mail :from => "#{@account.name} <hello@hourschool.com>",
          :to => @user.email,
+         :reply_to => @admin.email,
          :bcc => "admin@hourschool.com",
          :subject => "[New event]: #{@new_course.title}"
   end
 
-  def account_new_comment(user, account, new_comment)
-    @account     = account
+  def account_new_comment(user, admin, account, new_comment)
     @user        = user
+    @admin       = admin
+    @account     = account
     @new_comment = new_comment
     mail :from => "#{@account.name} <hello@hourschool.com>",
          :to => @user.email,
+         :reply_to => @admin.email,
          :bcc => "admin@hourschool.com",
          :subject => "#{@new_comment.user.name} left a new comment"
   end

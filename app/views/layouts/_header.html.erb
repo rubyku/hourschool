@@ -118,9 +118,11 @@
           <li class="dropdown pull-right">
             <%= link_to "About", "/about", :class => "main-nav dropdown-toggle" %>
           </li>
-          <li class="dropdown pull-right">
-            <%= link_to "Conversations", "/conversations", :class => "main-nav dropdown-toggle" %>
-          </li>
+          <% if current_account.present? && current_account == Account.where(:id => 9).last %>
+            <li class="dropdown pull-right">
+              <%= link_to "Conversations", "/conversations", :class => "main-nav dropdown-toggle" %>
+            </li>
+          <% end %>
           <li class="dropdown pull-right">
             <%= link_to "Members", "/members", :class => "main-nav dropdown-toggle" %>
           </li>

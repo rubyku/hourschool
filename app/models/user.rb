@@ -289,10 +289,8 @@ class User < ActiveRecord::Base
     UserMailer.user_registration(self.email, self.name, current_account).deliver
 
     if current_account == Account.where(:id => 9).first
-      @admins = Membership.where(:account_id => current_account, :admin => true)
-      @admins.each do |admin|
-        UserMailer.account_new_member(admin.user, current_account, self).deliver
-      end
+      @admin = Membership.where(:account_id => current_account, :admin => true).last
+      UserMailer.account_new_member(@admin.user, current_account, self).deliver
     end
   end
 

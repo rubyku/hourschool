@@ -56,9 +56,10 @@ class CoursesController < ApplicationController
         if @course.status == 'live' && @course.previous_changes["status"]
           @course.account.nil? ? current_account = nil : current_account = @course.account
           UserMailer.course_live(@course.teacher.email, @course.teacher.name, @course, current_account).deliver
-          if (current_account == Account.where(:id => 9).first || current_account == Account.where(:id => 13).first) && @course.account.present?
+          if @course.account.present? && current_account == Account.where(:id => 9).first
+            @admin = Membership.where(:account_id => @course.account, :admin => true).last.user
             @course.account.users.each do |user|
-              Resque.enqueue(Course::AccountNewCourse, user.id, @course.account.try(:id), @course.id)
+              Resque.enqueue(Course::AccountNewCourse, user.id, @admin.id, @course.account.try(:id), @course.id)
             end
           end
           format.html { redirect_to @course, notice: 'Woohoo your event is live!' }
