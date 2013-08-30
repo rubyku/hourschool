@@ -190,26 +190,24 @@ class UserMailer < ActionMailer::Base
 
   #Account notifications for Account members
 
-  def account_new_course(user, admin, account, new_course)
+  def account_new_course(user, account, new_course)
     @user       = user
-    @admin      = admin
     @account    = account
     @new_course = new_course
     mail :from => "#{@account.name} <hello@hourschool.com>",
          :to => @user.email,
-         :reply_to => @admin.email,
+         :reply_to => @new_course.teacher.email,
          :bcc => "admin@hourschool.com",
          :subject => "[New event]: #{@new_course.title}"
   end
 
-  def account_new_comment(user, admin, account, new_comment)
+  def account_new_comment(user, account, new_comment)
     @user        = user
-    @admin       = admin
     @account     = account
     @new_comment = new_comment
     mail :from => "#{@account.name} <hello@hourschool.com>",
          :to => @user.email,
-         :reply_to => @admin.email,
+         :reply_to => @new_comment.user.email,
          :bcc => "admin@hourschool.com",
          :subject => "#{@new_comment.user.name} left a new comment"
   end
@@ -232,6 +230,20 @@ class UserMailer < ActionMailer::Base
 
   class Preview < MailView
     # Pull data from existing fixtures
+
+    def account_new_course
+      @user       = User.find(1)
+      @account    = Account.find(9)
+      @new_course = Course.find(828)
+      UserMailer.account_new_course(@user, @admin, @account, @new_course)
+    end
+
+    def account_new_comment
+      @user        = User.find(2)
+      @account     = Account.find(9)
+      @new_comment = Comment.find(927)
+      UserMailer.account_new_comment(@user, @admin, @account, @new_comment)
+    end
 
     def mission_new_member
       mission = Mission.find(1)

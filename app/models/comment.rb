@@ -66,12 +66,11 @@ class Comment < ActiveRecord::Base
   class AccountNewComment
     @queue = :account_new_comment
 
-    def self.perform(user_id, admin_id, account_id, comment_id)
+    def self.perform(user_id, account_id, comment_id)
       user    = User.find(user_id)
-      admin   = User.find(admin_id)
       account = Account.find(account_id) if account_id
       comment = Comment.find(comment_id)
-      UserMailer.account_new_comment(user, admin, account, comment).deliver
+      UserMailer.account_new_comment(user, account, comment).deliver
     end
   end
 
