@@ -21,38 +21,15 @@
     });
   </script>
 
+  <div style="background-color: white; background-repeat: repeat; padding-top: 10px; height: 660px">
 
-  <div style="background-color: #f0f0f0; background-repeat: repeat;">
-    <div class="container_16" style="padding-top: 50px; width: 500px">
-      <center>
-      <p class="lead section-header">
-        Welcome to HourSchool
-      </p>
-      <p style="font-size: 14px; line-height: 1.5em; text-align: center; width: 320px">A social school built from your community, offering in-person, peer-led, bite-sized classes.</p>
-      <div class="fb-like" data-href="http://www.facebook.com/hourschool" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" style="margin-top: 5px"></div>
-      </center>
-    </div>
-
-    <div class="container_16" style="padding-top: 30px;">
-      <% @featured_courses.limit(4).each do |course| %>
-        <%= render :partial => "/shared/course_grid", :locals => {:course => course}  %>
-      <% end %>
-    </div>
-
-    <div class="container_16" style="padding-bottom: 40px">
-      <hr>
-      <center>
-        <%= link_to "See more classes", courses_browse_index_path, :class => "button orange long" %>
-      </center>
-    </div>
-  </div>
-
-  <div style="background-color: white; background-repeat: repeat; padding-top: 10px; height: 600px">
     <div class="container_16" style="margin-top: 50px; margin-bottom: 20px; width: 960px">
       <center>
         <p class="lead section-header">
-          How HourSchool works
+          Welcome to HourSchool
         </p>
+        <p style="font-size: 14px; line-height: 1.5em; text-align: center; width: 320px">A social school built from your community, offering in-person, peer-led, bite-sized classes.</p>
+        <div class="fb-like" data-href="http://www.facebook.com/hourschool" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" style="margin-top: 5px"></div>
         <div class="row-fluid" style="width: 960px;">
           <div class="span4">
             <p><%= image_tag "v2-teach/step1.jpg", :class => "width: 100%" %></p>
