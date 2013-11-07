@@ -43,9 +43,9 @@ class Role < ActiveRecord::Base
 
   def amount
     if member?
-      (self.course.member_price || self.course.price) * 0.029 + 0.3
+      self.course.member_price || self.course.price
     else
-      (self.course.price) ) * 0.029 + 0.3
+      self.course.price
     end
   end
 
