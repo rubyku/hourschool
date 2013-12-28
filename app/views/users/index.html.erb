@@ -47,18 +47,20 @@
 
     <div class="row-fluid">
       <% @memberships.each do |membership| %>
-        <div class="grid_7" style="margin-bottom: 20px">
-          <div class="crewman-photo">
-            <% if membership.user.present? && membership.user.photo.present? %>
-              <%= link_to_avatar(membership.user, :thumb_large) %>
-            <% else %>
-              <%= image_tag 'avatar.jpg', :size => "125x125" %>
-            <% end %>
+        <% membership.user.present? %>
+          <div class="grid_7" style="margin-bottom: 20px">
+            <div class="crewman-photo">
+              <% if membership.user.photo.present? %>
+                <%= link_to_avatar(membership.user, :thumb_large) %>
+              <% else %>
+                <%= image_tag 'avatar.jpg', :size => "125x125" %>
+              <% end %>
+            </div>
+            <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
+            <%= membership.user.bio %>
+            </p>
           </div>
-          <div class="heading13"><%= link_to membership.user.name, user_path(membership.user) %></div>
-          <%= membership.user.bio %>
-          </p>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
