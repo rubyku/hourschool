@@ -49,7 +49,7 @@
       <% @memberships.each do |membership| %>
         <div class="grid_7" style="margin-bottom: 20px">
           <div class="crewman-photo">
-            <% if membership.user.photo.present? %>
+            <% if membership.user.present? && membership.user.photo.present? %>
               <%= link_to_avatar(membership.user, :thumb_large) %>
             <% else %>
               <%= image_tag 'avatar.jpg', :size => "125x125" %>

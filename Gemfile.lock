@@ -175,7 +175,7 @@ GEM
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.0)
+    json (1.8.1)
     keytar (1.5.3)
       activesupport
     kgio (2.8.0)

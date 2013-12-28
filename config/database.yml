@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: hourschool_v2_development5
+  database: hourschool_v2_development9
   pool: 5
   host: localhost
   # username: root
