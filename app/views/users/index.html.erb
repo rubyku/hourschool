@@ -47,7 +47,7 @@
 
     <div class="row-fluid">
       <% @memberships.each do |membership| %>
-        <% membership.user.present? %>
+        <% if membership.user.present? %>
           <div class="grid_7" style="margin-bottom: 20px">
             <div class="crewman-photo">
               <% if membership.user.photo.present? %>
