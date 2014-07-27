@@ -16,7 +16,7 @@ class Account < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :small => "243x48#", :banner => "959x349#" },
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :s3_credentials => S3_CREDENTIALS,
                     :path => "account/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
@@ -24,7 +24,7 @@ class Account < ActiveRecord::Base
 
   has_attached_file :logo, :styles => { :small => "200x76>" },
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :s3_credentials => S3_CREDENTIALS,
                     :path => "account/:style/:id/:filename"
 
   validates_attachment_size :logo, :less_than => 5.megabytes

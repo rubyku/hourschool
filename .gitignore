@@ -4,6 +4,7 @@ log/*.log
 log/*.log.lck
 tmp/
 .rvmrc
+.env
 
 .DS_Store
 public/.DS_Store

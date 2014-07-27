@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
                                         :thumb_25    => ["25x25#",   :jpg]
                                         },
                             :storage => :s3,
-                            :s3_credentials => "#{Rails.root}/config/s3.yml",
+                            :s3_credentials => S3_CREDENTIALS,
                             :path => "user/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes

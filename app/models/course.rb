@@ -29,7 +29,7 @@ class Course < ActiveRecord::Base
                                          :thumb_300 => "300x252#",
                                          :large => "570x360>" },
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :s3_credentials => S3_CREDENTIALS,
                     :path => "/:style/:id/:filename",
                     :processors => [:cropper]
 

@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
 
   has_attached_file :photo, :styles => { :normal => "510x381" },
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :s3_credentials => S3_CREDENTIALS,
                     :path => "comment/:style/:id/:filename"
 
   validates_attachment_size :photo, :less_than => 5.megabytes
