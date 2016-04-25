@@ -4,11 +4,9 @@ ruby '2.3.0'
 
 gem 'rails',                '3.2.13'
 
-group :assets do
-  gem 'coffee-rails',       '~> 3.2.1'
-  gem 'uglifier',           '>= 1.0.3'
-  gem 'sass-rails',         '~> 3.2.4'
-end
+gem 'coffee-rails',       '~> 3.2.1'
+gem 'uglifier',           '>= 1.0.3'
+gem 'sass-rails',         '~> 3.2.4'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
@@ -22,14 +20,9 @@ gem "paypal-recurring"
 
 gem 'ice_cube',             '~> 0.8.0'
 
-gem 'sass-rails',           '~> 3.2.4'
-
 gem 'pg',                   '~> 0.12.2'
 
-gem 'thin'
-gem 'unicorn',              '~> 4.2.0'
-
-gem 'pg',                   '~> 0.12.2'
+gem 'unicorn',              '~> 4.9.0'
 
 # cache helper
 gem 'method_cacheable',     '0.0.4'
@@ -94,7 +87,7 @@ gem 'geokit-rails3',        :git =>  'git://github.com/jlecour/geokit-rails3.git
 
 gem 'awesome_print'         # for the printing
 
-gem 'rinku',              '~> 1.2.2', :require => 'rails_rinku'
+gem 'rinku',              '~> 1.7.3', :require => 'rails_rinku'
 
 
 gem 'cancan',             '~> 1.6.5'
@@ -128,14 +121,6 @@ group :development, :test do
   gem 'rb-fsevent',         '~> 0.9.3'
   gem "selenium-webdriver", "~> 2.24.0"
 
-  # Guard
-  gem 'guard-livereload',   '~> 0.4.0'
-  gem 'guard-rspec',        '~> 0.6.0'
-  gem 'guard-spork',        '~> 0.5.1'
-  gem 'guard-bundler',      '~> 0.1.3'
-  gem 'guard-sass',         '~> 0.5.4'
-
-
   gem 'foreman'
   gem 'forgery',            '~> 0.5.0'
   gem 'launchy',            '~> 2.0.5'
@@ -156,3 +141,5 @@ end
 group :test do
   gem 'webmock', :require => false
 end
+
+gem 'json', '~> 1.8.3'
