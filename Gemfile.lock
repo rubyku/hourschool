@@ -241,7 +241,7 @@ GEM
       i18n
       restclient_with_cert
     paypal-recurring (1.1.0)
-    pg (0.12.2)
+    pg (0.18.4)
     poltergeist (1.0.2)
       capybara (~> 1.1)
       childprocess (~> 0.3)
@@ -445,7 +445,7 @@ DEPENDENCIES
   paperclip (~> 2.7.4)
   paypal-express
   paypal-recurring
-  pg (~> 0.12.2)
+  pg (~> 0.18.4)
   poltergeist (~> 1.0.2)
   progress_bar
   quiet_assets

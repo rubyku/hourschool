@@ -20,7 +20,7 @@ gem "paypal-recurring"
 
 gem 'ice_cube',             '~> 0.8.0'
 
-gem 'pg',                   '~> 0.12.2'
+gem 'pg',                   '~> 0.18.4'
 
 gem 'unicorn',              '~> 4.9.0'
 
