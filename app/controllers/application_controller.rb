@@ -3,19 +3,19 @@ class ApplicationController < ActionController::Base
 
   include UrlHelper
 
-  before_filter :debug, :ensure_domain, :fix_double_subdomain, :eventual_warm_facebook_cache, :hide_private_accounts
+  before_filter :debug, :eventual_warm_facebook_cache, :hide_private_accounts
   protect_from_forgery
 
   protected
     def debug
     end
 
-    def fix_double_subdomain
-      if request.subdomain.match(/www\..*/)
-        correct_subdomain = request.subdomain.gsub("www.", "")
-        redirect_to request.url.gsub("//#{request.subdomain}", "//#{correct_subdomain}"), :status => 301
-      end
-    end
+    # def fix_double_subdomain
+    #   if request.subdomain.match(/www\..*/)
+    #     correct_subdomain = request.subdomain.gsub("www.", "")
+    #     redirect_to request.url.gsub("//#{request.subdomain}", "//#{correct_subdomain}"), :status => 301
+    #   end
+    # end
 
     helper_method :current_account
     def current_account
@@ -42,14 +42,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # remove the www. from our URL ensures facebook auth works
-    # and ensures we don't accidentally swap domains while a user
-    # is logged in (which makes it look like the user gets logged out)
-    def ensure_domain
-      if request.subdomain == 'www'
-        redirect_to request.url.gsub("//www.", '//'), :status => 301
-      end
-    end
+    # # remove the www. from our URL ensures facebook auth works
+    # # and ensures we don't accidentally swap domains while a user
+    # # is logged in (which makes it look like the user gets logged out)
+    # def ensure_domain
+    #   if request.subdomain == 'www'
+    #     redirect_to request.url.gsub("//www.", '//'), :status => 301
+    #   end
+    # end
 
     def eventual_warm_facebook_cache
       enqueue_warm_facebook_cache if rand(4) == 1 # one in 5 chance
